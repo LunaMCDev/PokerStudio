@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>♠ PokerStudio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #1a0e14;
+        --bg2: #221319;
+        --surface: #2d1a22;
+        --surface2: #3a2030;
+        --surface3: #4a2a3e;
+        --border: #5a3048;
+        --border-light: #7a4060;
+
+        --pink: #ff6eb4;
+        --pink-bright: #ff8fcb;
+        --pink-dim: rgba(255, 110, 180, 0.15);
+        --pink-glow: rgba(255, 110, 180, 0.3);
+        --rose: #e8417a;
+        --gold: #f5c6d0;
+        --cream: #fdeef5;
+
+        --text: #fdeef5;
+        --text-dim: #c98aaa;
+        --muted: #8a5570;
+
+        --fold-bg: #2a1820;
+
+        --font-display: "Playfair Display", serif;
+        --font-body: "DM Sans", sans-serif;
+        --font-mono: "DM Mono", monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-body);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── BACKGROUND ── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(
+            ellipse 60% 40% at 80% 10%,
+            rgba(232, 65, 122, 0.12) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 40% 60% at 10% 80%,
+            rgba(255, 110, 180, 0.08) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff6eb4' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .app {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* ── HEADER ── */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 32px;
+        background: rgba(26, 14, 20, 0.8);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .logo {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .logo-icon {
+        font-size: 22px;
+      }
+      .logo-text {
+        font-family: var(--font-display);
+        font-size: 26px;
+        font-weight: 900;
+        color: var(--cream);
+        letter-spacing: -0.5px;
+      }
+      .logo-text span {
+        color: var(--pink);
+        font-style: italic;
+      }
+      .logo-sub {
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--muted);
+        text-transform: uppercase;
+        font-family: var(--font-mono);
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .header-stat {
+        text-align: right;
+      }
+      .header-stat-val {
+        font-family: var(--font-display);
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--pink);
+        line-height: 1;
+      }
+      .header-stat-label {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      /* ── MAIN ── */
+      .main {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        grid-template-rows: 1fr;
+        flex: 1;
+        min-height: 0;
+      }
+
+      /* ── LEFT ── */
+      .left-col {
+        padding: 24px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: auto;
+      }
+
+      /* ── MATRIX ── */
+      .matrix-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .section-label {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: var(--muted);
+        text-transform: uppercase;
+      }
+
+      .matrix-wrapper {
+        user-select: none;
+        cursor: crosshair;
+      }
+
+      #matrix {
+        display: grid;
+        grid-template-columns: repeat(13, 1fr);
+        gap: 2px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        padding: 3px;
+        border-radius: 12px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 110, 180, 0.1);
+      }
+
+      .cell {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: clamp(7px, 1vw, 12px);
+        font-weight: 500;
+        cursor: crosshair;
+        border-radius: 4px;
+        background: var(--fold-bg);
+        color: var(--muted);
+        transition: transform 0.06s, filter 0.06s, box-shadow 0.06s;
+        position: relative;
+        border: 1px solid transparent;
+        overflow: hidden;
+      }
+      .cell::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.05) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+
+      .cell:hover {
+        transform: scale(1.15);
+        z-index: 10;
+        filter: brightness(1.35);
+        box-shadow: 0 2px 12px rgba(255, 110, 180, 0.3);
+      }
+
+      .cell.pair {
+        font-weight: 700;
+      }
+
+      /* Dynamic action classes injected via JS */
+
+      .legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--text-dim);
+      }
+      .legend-swatch {
+        width: 12px;
+        height: 12px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+
+      /* ── RIGHT SIDEBAR ── */
+      .right-col {
+        border-left: 1px solid var(--border);
+        background: rgba(22, 12, 18, 0.6);
+        backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .sidebar-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--border);
+      }
+      .stab {
+        flex: 1;
+        padding: 13px 8px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-family: var(--font-mono);
+        color: var(--muted);
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        transition: all 0.2s;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+      }
+      .stab:hover {
+        color: var(--text-dim);
+      }
+      .stab.active {
+        color: var(--pink);
+        border-bottom-color: var(--pink);
+      }
+
+      .tab-pane {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+        flex: 1;
+        padding: 0;
+      }
+      .tab-pane.active {
+        display: flex;
+      }
+      .tab-pane::-webkit-scrollbar {
+        width: 4px;
+      }
+      .tab-pane::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+
+      /* ── PANELS ── */
+      .panel {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--border);
+      }
+      .panel-title {
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 14px;
+        letter-spacing: 0.3px;
+      }
+
+      /* ── ACTION BUTTONS ── */
+      .actions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .action-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .action-paint-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        border: 1.5px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        background: var(--surface2);
+        color: var(--text-dim);
+        transition: all 0.15s;
+        text-align: left;
+      }
+      .action-paint-btn:hover {
+        filter: brightness(1.2);
+      }
+      .action-paint-btn.active {
+        color: #fff;
+        box-shadow: 0 0 16px var(--action-glow, rgba(255, 110, 180, 0.3));
+      }
+
+      .action-color-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: var(--action-color, #888);
+      }
+
+      .action-name {
+        flex: 1;
+      }
+
+      .action-edit-btn,
+      .action-del-btn {
+        width: 26px;
+        height: 26px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s;
+        flex-shrink: 0;
+      }
+      .action-edit-btn:hover {
+        color: var(--pink);
+        border-color: var(--pink);
+      }
+      .action-del-btn:hover {
+        color: #ff6b8a;
+        border-color: #ff6b8a;
+      }
+
+      .add-action-btn {
+        width: 100%;
+        padding: 9px;
+        border: 1.5px dashed var(--border);
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 13px;
+        font-family: var(--font-body);
+        transition: all 0.2s;
+        margin-top: 4px;
+      }
+      .add-action-btn:hover {
+        border-color: var(--pink);
+        color: var(--pink);
+        background: var(--pink-dim);
+      }
+
+      /* ── QUICK SELECT ── */
+      .quick-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      .quick-btn {
+        padding: 8px 6px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-dim);
+        cursor: pointer;
+        transition: all 0.15s;
+        text-align: center;
+      }
+      .quick-btn:hover {
+        color: var(--text);
+        border-color: var(--pink);
+        background: var(--pink-dim);
+      }
+
+      /* ── BREAKDOWN ── */
+      .breakdown {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .br-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .br-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .br-name {
+        font-size: 12px;
+        font-weight: 600;
+        flex: 1;
+        color: var(--text-dim);
+      }
+      .br-bar-wrap {
+        flex: 2;
+        height: 4px;
+        background: var(--surface2);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .br-bar {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .br-count {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--muted);
+        width: 28px;
+        text-align: right;
+      }
+
+      /* ── FILE SYSTEM ── */
+      .fs-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .fs-search {
+        flex: 1;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: var(--text);
+        padding: 7px 12px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .fs-search::placeholder {
+        color: var(--muted);
+      }
+      .fs-search:focus {
+        border-color: var(--pink);
+      }
+
+      .fs-icon-btn {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--surface2);
+        color: var(--text-dim);
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s;
+        flex-shrink: 0;
+      }
+      .fs-icon-btn:hover {
+        border-color: var(--pink);
+        color: var(--pink);
+        background: var(--pink-dim);
+      }
+
+      .fs-path {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 20px;
+        border-bottom: 1px solid var(--border);
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--muted);
+        flex-shrink: 0;
+        flex-wrap: wrap;
+      }
+      .fs-crumb {
+        color: var(--text-dim);
+        cursor: pointer;
+        padding: 2px 4px;
+        border-radius: 3px;
+        transition: color 0.15s;
+      }
+      .fs-crumb:hover {
+        color: var(--pink);
+      }
+      .fs-crumb.active {
+        color: var(--pink);
+        cursor: default;
+      }
+      .fs-sep {
+        color: var(--border);
+      }
+
+      .fs-sort-bar {
+        display: flex;
+        gap: 4px;
+        padding: 8px 20px;
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+      .fs-sort-btn {
+        padding: 4px 10px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        background: transparent;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 1px;
+        color: var(--muted);
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.15s;
+      }
+      .fs-sort-btn:hover {
+        color: var(--text-dim);
+      }
+      .fs-sort-btn.active {
+        color: var(--pink);
+        border-color: var(--border);
+        background: var(--pink-dim);
+      }
+
+      .fs-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 8px 0;
+      }
+      .fs-list::-webkit-scrollbar {
+        width: 4px;
+      }
+      .fs-list::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+
+      /* Folder */
+      .fs-folder {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 20px;
+        cursor: pointer;
+        transition: background 0.12s;
+        border-left: 2px solid transparent;
+      }
+      .fs-folder:hover {
+        background: var(--pink-dim);
+        border-left-color: var(--pink);
+      }
+      .fs-folder-icon {
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .fs-folder-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        flex: 1;
+      }
+      .fs-folder-count {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      /* Range Item */
+      .fs-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background 0.12s;
+        border-left: 2px solid transparent;
+        position: relative;
+      }
+      .fs-item:hover {
+        background: var(--pink-dim);
+        border-left-color: var(--pink);
+      }
+      .fs-item.active {
+        background: rgba(255, 110, 180, 0.1);
+        border-left-color: var(--pink);
+      }
+
+      .fs-item-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .fs-item-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .fs-item-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .fs-item-meta {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 2px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .fs-item-tag {
+        padding: 1px 6px;
+        border-radius: 10px;
+        font-size: 9px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .fs-item-actions {
+        display: flex;
+        gap: 4px;
+        opacity: 0;
+        transition: opacity 0.15s;
+      }
+      .fs-item:hover .fs-item-actions {
+        opacity: 1;
+      }
+
+      .fs-mini-btn {
+        width: 24px;
+        height: 24px;
+        border: none;
+        border-radius: 4px;
+        background: var(--surface3);
+        color: var(--text-dim);
+        cursor: pointer;
+        font-size: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.12s;
+      }
+      .fs-mini-btn:hover {
+        background: var(--pink);
+        color: #fff;
+      }
+      .fs-mini-btn.del:hover {
+        background: #e8416a;
+      }
+
+      /* ── SAVE BAR ── */
+      .save-bar {
+        padding: 16px 20px;
+        border-top: 1px solid var(--border);
+        background: rgba(26, 14, 20, 0.8);
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .save-inputs {
+        display: flex;
+        gap: 8px;
+      }
+
+      .inp {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 8px 12px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        border-radius: 6px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .inp:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 3px rgba(255, 110, 180, 0.1);
+      }
+      .inp::placeholder {
+        color: var(--muted);
+      }
+      .inp-name {
+        flex: 1;
+      }
+
+      .pos-chips {
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .pos-chip {
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.15s;
+        background: transparent;
+      }
+      .pos-chip:hover {
+        border-color: var(--pink);
+        color: var(--pink-bright);
+      }
+      .pos-chip.active {
+        background: var(--pink);
+        border-color: var(--pink);
+        color: #fff;
+        box-shadow: 0 0 8px var(--pink-glow);
+      }
+
+      .save-row {
+        display: flex;
+        gap: 8px;
+      }
+
+      .btn {
+        padding: 9px 16px;
+        border-radius: 7px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.15s;
+        letter-spacing: 0.3px;
+      }
+      .btn-pink {
+        background: linear-gradient(135deg, var(--rose), var(--pink));
+        color: #fff;
+        flex: 1;
+        box-shadow: 0 4px 16px rgba(232, 65, 122, 0.3);
+      }
+      .btn-pink:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(232, 65, 122, 0.4);
+      }
+      .btn-outline {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-dim);
+      }
+      .btn-outline:hover {
+        border-color: var(--pink);
+        color: var(--pink);
+        background: var(--pink-dim);
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 5, 8, 0.75);
+        backdrop-filter: blur(6px);
+        z-index: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .modal-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .modal {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        width: 360px;
+        max-width: 90vw;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 110, 180, 0.1);
+        transform: translateY(16px);
+        transition: transform 0.2s;
+      }
+      .modal-overlay.open .modal {
+        transform: translateY(0);
+      }
+
+      .modal-title {
+        font-family: var(--font-display);
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--cream);
+        margin-bottom: 20px;
+      }
+
+      .modal-field {
+        margin-bottom: 16px;
+      }
+      .modal-label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--muted);
+        text-transform: uppercase;
+        font-family: var(--font-mono);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .modal-inp {
+        width: 100%;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 10px 14px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .modal-inp:focus {
+        border-color: var(--pink);
+      }
+
+      .color-picker-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .color-swatch {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: transform 0.1s, border-color 0.1s;
+      }
+      .color-swatch:hover {
+        transform: scale(1.15);
+      }
+      .color-swatch.selected {
+        border-color: white;
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+      }
+
+      .custom-color-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 6px;
+      }
+      .custom-color-inp {
+        width: 42px;
+        height: 32px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background: none;
+      }
+
+      .emoji-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .emoji-opt {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        border: 1.5px solid var(--border);
+        background: var(--surface2);
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.12s;
+      }
+      .emoji-opt:hover {
+        border-color: var(--pink);
+        background: var(--pink-dim);
+      }
+      .emoji-opt.selected {
+        border-color: var(--pink);
+        background: var(--pink-dim);
+      }
+
+      .modal-footer {
+        display: flex;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      /* ── FOLDER MODAL ── */
+      /* reuses modal styles */
+
+      /* ── TOAST ── */
+      .toast {
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%) translateY(80px);
+        background: linear-gradient(135deg, var(--rose), var(--pink));
+        color: #fff;
+        padding: 10px 24px;
+        border-radius: 24px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        z-index: 2000;
+        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        pointer-events: none;
+        box-shadow: 0 8px 24px rgba(232, 65, 122, 0.4);
+        white-space: nowrap;
+      }
+      .toast.show {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ── CONTEXT MENU ── */
+      .ctx-menu {
+        position: fixed;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 6px;
+        min-width: 160px;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: none;
+      }
+      .ctx-menu.open {
+        display: block;
+      }
+      .ctx-item {
+        padding: 8px 12px;
+        font-size: 13px;
+        color: var(--text-dim);
+        cursor: pointer;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.1s;
+      }
+      .ctx-item:hover {
+        background: var(--pink-dim);
+        color: var(--text);
+      }
+      .ctx-item.danger {
+        color: #ff8a9a;
+      }
+      .ctx-item.danger:hover {
+        background: rgba(255, 107, 138, 0.15);
+      }
+      .ctx-sep {
+        height: 1px;
+        background: var(--border);
+        margin: 4px 0;
+      }
+
+      /* ── EMPTY STATE ── */
+      .empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        color: var(--muted);
+        gap: 8px;
+        text-align: center;
+      }
+      .empty-icon {
+        font-size: 32px;
+        margin-bottom: 4px;
+      }
+      .empty-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-dim);
+      }
+      .empty-sub {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      /* scrollbars */
+      .left-col::-webkit-scrollbar {
+        width: 4px;
+      }
+      .left-col::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+
+      @media (max-width: 800px) {
+        .main {
+          grid-template-columns: 1fr;
+        }
+        .right-col {
+          border-left: none;
+          border-top: 1px solid var(--border);
+          max-height: 60vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <!-- HEADER -->
+      <header>
+        <div class="logo">
+          <span class="logo-icon">♠</span>
+          <div>
+            <div class="logo-text">Poker <span>Studio</span></div>
+            <div class="logo-sub">Poker Range Editor</div>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="header-stat">
+            <div class="header-stat-val" id="stat-combos">0</div>
+            <div class="header-stat-label">Combos</div>
+          </div>
+          <div class="header-stat">
+            <div class="header-stat-val" id="stat-pct">0.0%</div>
+            <div class="header-stat-label">of Hands</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN -->
+      <div class="main">
+        <!-- LEFT -->
+        <div class="left-col">
+          <div>
+            <div class="matrix-header">
+              <span class="section-label"
+                >✦ Hand Matrix — click or drag to paint</span
+              >
+              <span class="section-label" id="active-action-label"
+                >Painting: —</span
+              >
+            </div>
+          </div>
+          <div class="matrix-wrapper">
+            <div id="matrix"></div>
+          </div>
+          <div class="legend" id="legend"></div>
+
+          <!-- BREAKDOWN -->
+          <div
+            style="
+              background: var(--surface);
+              border: 1px solid var(--border);
+              border-radius: 12px;
+              padding: 18px;
+            "
+          >
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--gold);
+                margin-bottom: 14px;
+              "
+            >
+              Range Breakdown
+            </div>
+            <div class="breakdown" id="breakdown"></div>
+          </div>
+
+          <!-- QUICK SELECT -->
+          <div
+            style="
+              background: var(--surface);
+              border: 1px solid var(--border);
+              border-radius: 12px;
+              padding: 18px;
+            "
+          >
+            <div
+              style="
+                font-family: var(--font-display);
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--gold);
+                margin-bottom: 14px;
+              "
+            >
+              Quick Select
+            </div>
+            <div class="quick-grid">
+              <button class="quick-btn" onclick="quickSelect('premium')">
+                💎 Premium
+              </button>
+              <button class="quick-btn" onclick="quickSelect('broadway')">
+                👑 Broadway
+              </button>
+              <button class="quick-btn" onclick="quickSelect('pairs')">
+                🃏 All Pairs
+              </button>
+              <button class="quick-btn" onclick="quickSelect('suited_aces')">
+                🌸 Suited Aces
+              </button>
+              <button
+                class="quick-btn"
+                onclick="quickSelect('suited_connectors')"
+              >
+                🔗 Suited Conn.
+              </button>
+              <button class="quick-btn" onclick="quickSelect('top20')">
+                ⭐ Top 20%
+              </button>
+              <button class="quick-btn" onclick="clearAll()">
+                🗑 Clear All
+              </button>
+              <button class="quick-btn" onclick="invertRange()">
+                ↔ Invert
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right-col">
+          <div class="sidebar-tabs">
+            <button
+              class="stab active"
+              onclick="showTab('paint')"
+              id="tab-paint"
+            >
+              Paint
+            </button>
+            <button class="stab" onclick="showTab('files')" id="tab-files">
+              Files
+            </button>
+          </div>
+
+          <!-- PAINT TAB -->
+          <div class="tab-pane active" id="pane-paint">
+            <div class="panel">
+              <div class="panel-title">Paint Actions</div>
+              <div class="actions-list" id="actions-list"></div>
+              <button class="add-action-btn" onclick="openActionModal()">
+                + Create Action
+              </button>
+            </div>
+
+            <!-- SAVE PANEL inside paint tab -->
+            <div class="panel" style="margin-top: auto">
+              <div class="panel-title">Save Current Range</div>
+              <div style="margin-bottom: 10px">
+                <div class="pos-chips" id="pos-chips">
+                  <button class="pos-chip active" data-pos="UTG">UTG</button>
+                  <button class="pos-chip" data-pos="MP">MP</button>
+                  <button class="pos-chip" data-pos="CO">CO</button>
+                  <button class="pos-chip" data-pos="BTN">BTN</button>
+                  <button class="pos-chip" data-pos="SB">SB</button>
+                  <button class="pos-chip" data-pos="BB">BB</button>
+                </div>
+              </div>
+              <div class="save-inputs" style="margin-bottom: 10px">
+                <input
+                  class="inp inp-name"
+                  id="range-name-inp"
+                  placeholder="Range name…"
+                />
+              </div>
+              <div style="margin-bottom: 10px">
+                <input
+                  class="inp"
+                  id="range-tags-inp"
+                  placeholder="Tags: 3bet, oop, ep…"
+                  style="width: 100%"
+                />
+              </div>
+              <div class="save-row">
+                <button class="btn btn-pink" onclick="saveRange()">
+                  ✦ Save
+                </button>
+                <button class="btn btn-outline" onclick="exportRange()">
+                  ↗ Export
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- FILES TAB -->
+          <div class="tab-pane" id="pane-files">
+            <div class="fs-toolbar">
+              <input
+                class="fs-search"
+                id="fs-search"
+                placeholder="Search ranges…"
+                oninput="renderFileSystem()"
+              />
+              <button
+                class="fs-icon-btn"
+                onclick="openFolderModal()"
+                title="New folder"
+              >
+                📁
+              </button>
+              <button
+                class="fs-icon-btn"
+                onclick="toggleView()"
+                title="Toggle view"
+                id="view-toggle-btn"
+              >
+                ☰
+              </button>
+            </div>
+
+            <div class="fs-path" id="fs-path"></div>
+
+            <div class="fs-sort-bar">
+              <button
+                class="fs-sort-btn active"
+                data-sort="date"
+                onclick="setSort('date')"
+              >
+                Date
+              </button>
+              <button
+                class="fs-sort-btn"
+                data-sort="name"
+                onclick="setSort('name')"
+              >
+                Name
+              </button>
+              <button
+                class="fs-sort-btn"
+                data-sort="combos"
+                onclick="setSort('combos')"
+              >
+                Combos
+              </button>
+              <button
+                class="fs-sort-btn"
+                data-sort="pos"
+                onclick="setSort('pos')"
+              >
+                Position
+              </button>
+            </div>
+
+            <div class="fs-list" id="fs-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTION MODAL -->
+    <div class="modal-overlay" id="action-modal">
+      <div class="modal">
+        <div class="modal-title" id="action-modal-title">Create Action</div>
+        <div class="modal-field">
+          <label class="modal-label">Action Name</label>
+          <input
+            class="modal-inp"
+            id="am-name"
+            placeholder="e.g. 3-Bet, Open, Cold Call…"
+          />
+        </div>
+        <div class="modal-field">
+          <label class="modal-label">Color</label>
+          <div class="color-picker-row" id="am-colors"></div>
+          <div class="custom-color-row">
+            <input
+              type="color"
+              class="custom-color-inp"
+              id="am-custom-color"
+              value="#ff6eb4"
+            />
+            <span style="font-size: 12px; color: var(--muted)"
+              >Custom color</span
+            >
+          </div>
+        </div>
+        <div class="modal-field">
+          <label class="modal-label">Icon / Emoji</label>
+          <div class="emoji-row" id="am-emojis"></div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-outline"
+            style="flex: 1"
+            onclick="closeActionModal()"
+          >
+            Cancel
+          </button>
+          <button class="btn btn-pink" style="flex: 1" onclick="saveAction()">
+            Save Action
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOLDER MODAL -->
+    <div class="modal-overlay" id="folder-modal">
+      <div class="modal">
+        <div class="modal-title">New Folder</div>
+        <div class="modal-field">
+          <label class="modal-label">Folder Name</label>
+          <input
+            class="modal-inp"
+            id="fm-name"
+            placeholder="e.g. Cash Game, Tournament…"
+          />
+        </div>
+        <div class="modal-field">
+          <label class="modal-label">Icon</label>
+          <div class="emoji-row" id="fm-emojis"></div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-outline"
+            style="flex: 1"
+            onclick="closeFolderModal()"
+          >
+            Cancel
+          </button>
+          <button class="btn btn-pink" style="flex: 1" onclick="saveFolder()">
+            Create Folder
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RENAME MODAL -->
+    <div class="modal-overlay" id="rename-modal">
+      <div class="modal">
+        <div class="modal-title">Rename Range</div>
+        <div class="modal-field">
+          <label class="modal-label">New Name</label>
+          <input class="modal-inp" id="rn-name" />
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-outline"
+            style="flex: 1"
+            onclick="closeRenameModal()"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-pink"
+            style="flex: 1"
+            onclick="confirmRename()"
+          >
+            Rename
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEXT MENU -->
+    <div class="ctx-menu" id="ctx-menu">
+      <div class="ctx-item" onclick="ctxLoad()">📂 Load Range</div>
+      <div class="ctx-item" onclick="ctxRename()">✏️ Rename</div>
+      <div class="ctx-item" onclick="ctxDuplicate()">⧉ Duplicate</div>
+      <div class="ctx-item" onclick="ctxMove()">📁 Move to Folder</div>
+      <div class="ctx-sep"></div>
+      <div class="ctx-item" onclick="ctxExport()">↗ Export</div>
+      <div class="ctx-sep"></div>
+      <div class="ctx-item danger" onclick="ctxDelete()">🗑 Delete</div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+      // ═══════════════════════════════════════════════════════════
+      // CONSTANTS
+      // ═══════════════════════════════════════════════════════════
+      const RANKS = [
+        "A",
+        "K",
+        "Q",
+        "J",
+        "T",
+        "9",
+        "8",
+        "7",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+      ];
+      const TOTAL_COMBOS = 1326;
+
+      const PRESET_COLORS = [
+        "#e8417a",
+        "#ff6eb4",
+        "#ff9fd0",
+        "#f5a623",
+        "#f5e623",
+        "#5cb85c",
+        "#2a9d8f",
+        "#5b7cf5",
+        "#9b59b6",
+        "#e74c3c",
+        "#e67e22",
+        "#1abc9c",
+      ];
+
+      const PRESET_EMOJIS = [
+        "🔴",
+        "🟢",
+        "🟡",
+        "🔵",
+        "🟣",
+        "⚡",
+        "🔥",
+        "💎",
+        "👑",
+        "🌸",
+        "⭐",
+        "🎯",
+        "♠",
+        "♥",
+        "♦",
+        "♣",
+      ];
+      const FOLDER_EMOJIS = [
+        "📁",
+        "💼",
+        "🗂",
+        "📂",
+        "🃏",
+        "♠",
+        "💰",
+        "🏆",
+        "📊",
+        "🎲",
+        "🌸",
+        "⭐",
+      ];
+
+      // ═══════════════════════════════════════════════════════════
+      // STATE
+      // ═══════════════════════════════════════════════════════════
+      function loadState() {
+        return {
+          cellState: JSON.parse(localStorage.getItem("rs_cellState") || "{}"),
+          actions: JSON.parse(localStorage.getItem("rs_actions") || "null") || [
+            {
+              id: "raise",
+              name: "Raise / 3-Bet",
+              color: "#e8417a",
+              emoji: "🔴",
+              locked: false,
+            },
+            {
+              id: "call",
+              name: "Call / Flat",
+              color: "#2a9d8f",
+              emoji: "🟢",
+              locked: false,
+            },
+            {
+              id: "bluff",
+              name: "Bluff / Defend",
+              color: "#f5c623",
+              emoji: "🟡",
+              locked: false,
+            },
+          ],
+          folders: JSON.parse(localStorage.getItem("rs_folders") || "[]"),
+          ranges: JSON.parse(localStorage.getItem("rs_ranges") || "[]"),
+          currentAction: localStorage.getItem("rs_currentAction") || "raise",
+          currentPos: localStorage.getItem("rs_currentPos") || "UTG",
+          currentFolder: null,
+          sortBy: localStorage.getItem("rs_sortBy") || "date",
+          viewMode: localStorage.getItem("rs_viewMode") || "list",
+          editingActionId: null,
+          activeRangeId: localStorage.getItem("rs_activeRange") || null,
+          renameTarget: null,
+          ctxTarget: null,
+        };
+      }
+
+      let S = loadState();
+
+      function persist() {
+        localStorage.setItem("rs_cellState", JSON.stringify(S.cellState));
+        localStorage.setItem("rs_actions", JSON.stringify(S.actions));
+        localStorage.setItem("rs_folders", JSON.stringify(S.folders));
+        localStorage.setItem("rs_ranges", JSON.stringify(S.ranges));
+        localStorage.setItem("rs_currentAction", S.currentAction);
+        localStorage.setItem("rs_currentPos", S.currentPos);
+        localStorage.setItem("rs_sortBy", S.sortBy);
+        localStorage.setItem("rs_viewMode", S.viewMode);
+        if (S.activeRangeId)
+          localStorage.setItem("rs_activeRange", S.activeRangeId);
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // MATRIX
+      // ═══════════════════════════════════════════════════════════
+      let isDragging = false,
+        dragAction = null;
+
+      function buildMatrix() {
+        const matrix = document.getElementById("matrix");
+        matrix.innerHTML = "";
+        for (let i = 0; i < 13; i++) {
+          for (let j = 0; j < 13; j++) {
+            const r1 = RANKS[i],
+              r2 = RANKS[j];
+            let label, type, key;
+            if (i === j) {
+              label = r1 + r2;
+              type = "pair";
+              key = r1 + r2;
+            } else if (i < j) {
+              label = r1 + r2 + "s";
+              type = "suited";
+              key = r1 + r2 + "s";
+            } else {
+              label = r2 + r1 + "o";
+              type = "offsuit";
+              key = r2 + r1 + "o";
+            }
+
+            const cell = document.createElement("div");
+            cell.className = "cell" + (type === "pair" ? " pair" : "");
+            cell.dataset.key = key;
+            cell.dataset.type = type;
+            cell.textContent = label;
+
+            applyCellStyle(cell, S.cellState[key] || null);
+
+            cell.addEventListener("mousedown", (e) => {
+              e.preventDefault();
+              isDragging = true;
+              const cur = S.cellState[key] || null;
+              dragAction = cur === S.currentAction ? null : S.currentAction;
+              setCellAction(key, dragAction, cell);
+            });
+            cell.addEventListener("mouseenter", () => {
+              if (isDragging) setCellAction(key, dragAction, cell);
+            });
+            matrix.appendChild(cell);
+          }
+        }
+        document.addEventListener("mouseup", () => {
+          isDragging = false;
+          dragAction = null;
+        });
+      }
+
+      function applyCellStyle(cell, actionId) {
+        // Remove all action classes
+        cell.style.background = "";
+        cell.style.color = "";
+        cell.style.borderColor = "";
+
+        if (!actionId) {
+          cell.style.background = "var(--fold-bg)";
+          cell.style.color = "var(--muted)";
+          return;
+        }
+        const action = S.actions.find((a) => a.id === actionId);
+        if (!action) {
+          cell.style.background = "var(--fold-bg)";
+          cell.style.color = "var(--muted)";
+          return;
+        }
+        cell.style.background = action.color;
+        cell.style.color = isLight(action.color) ? "#111" : "#fff";
+        cell.style.borderColor = "rgba(255,255,255,0.12)";
+      }
+
+      function isLight(hex) {
+        const r = parseInt(hex.slice(1, 3), 16),
+          g = parseInt(hex.slice(3, 5), 16),
+          b = parseInt(hex.slice(5, 7), 16);
+        return (r * 299 + g * 587 + b * 114) / 1000 > 128;
+      }
+
+      function setCellAction(key, actionId, cell) {
+        if (actionId === null) delete S.cellState[key];
+        else S.cellState[key] = actionId;
+        if (!cell) cell = document.querySelector(`[data-key="${key}"]`);
+        if (cell) applyCellStyle(cell, actionId);
+        updateStats();
+        persist();
+      }
+
+      function updateStats() {
+        let counts = {};
+        S.actions.forEach((a) => (counts[a.id] = 0));
+
+        const combosFor = (key, type) =>
+          type === "pair" ? 6 : type === "suited" ? 4 : 12;
+
+        for (let i = 0; i < 13; i++) {
+          for (let j = 0; j < 13; j++) {
+            const r1 = RANKS[i],
+              r2 = RANKS[j];
+            let key, type;
+            if (i === j) {
+              key = r1 + r2;
+              type = "pair";
+            } else if (i < j) {
+              key = r1 + r2 + "s";
+              type = "suited";
+            } else {
+              key = r2 + r1 + "o";
+              type = "offsuit";
+            }
+
+            const aid = S.cellState[key];
+            if (aid && counts[aid] !== undefined)
+              counts[aid] += combosFor(key, type);
+          }
+        }
+
+        const total = Object.values(counts).reduce((a, b) => a + b, 0);
+        document.getElementById("stat-combos").textContent = total;
+        document.getElementById("stat-pct").textContent =
+          ((total / TOTAL_COMBOS) * 100).toFixed(1) + "%";
+
+        renderBreakdown(counts, total);
+      }
+
+      function renderBreakdown(counts, total) {
+        const el = document.getElementById("breakdown");
+        const maxVal = Math.max(...Object.values(counts), 1);
+        el.innerHTML = S.actions
+          .map(
+            (a) => `
+    <div class="br-row">
+      <div class="br-dot" style="background:${a.color}"></div>
+      <div class="br-name">${a.emoji} ${a.name}</div>
+      <div class="br-bar-wrap"><div class="br-bar" style="background:${
+        a.color
+      };width:${((counts[a.id] || 0) / maxVal) * 100}%"></div></div>
+      <div class="br-count">${counts[a.id] || 0}</div>
+    </div>
+  `
+          )
+          .join("");
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // ACTIONS PANEL
+      // ═══════════════════════════════════════════════════════════
+      function renderActions() {
+        const list = document.getElementById("actions-list");
+        list.innerHTML = "";
+
+        S.actions.forEach((action) => {
+          const row = document.createElement("div");
+          row.className = "action-row";
+
+          const btn = document.createElement("button");
+          btn.className =
+            "action-paint-btn" +
+            (S.currentAction === action.id ? " active" : "");
+          btn.style.setProperty("--action-color", action.color);
+          btn.style.setProperty("--action-glow", hexToRgba(action.color, 0.35));
+          if (S.currentAction === action.id) {
+            btn.style.borderColor = action.color;
+            btn.style.background = hexToRgba(action.color, 0.2);
+          }
+          btn.innerHTML = `
+      <div class="action-color-dot" style="background:${action.color}"></div>
+      <span class="action-name">${action.emoji} ${action.name}</span>
+    `;
+          btn.onclick = () => selectAction(action.id);
+
+          const editBtn = document.createElement("button");
+          editBtn.className = "action-edit-btn";
+          editBtn.innerHTML = "✏";
+          editBtn.title = "Edit action";
+          editBtn.onclick = () => openActionModal(action.id);
+
+          const delBtn = document.createElement("button");
+          delBtn.className = "action-del-btn";
+          delBtn.innerHTML = "✕";
+          delBtn.title = "Delete action";
+          delBtn.onclick = () => deleteAction(action.id);
+
+          row.appendChild(btn);
+          row.appendChild(editBtn);
+          row.appendChild(delBtn);
+          list.appendChild(row);
+        });
+
+        // Update fold row
+        const foldRow = document.createElement("div");
+        foldRow.className = "action-row";
+        const foldBtn = document.createElement("button");
+        foldBtn.className =
+          "action-paint-btn" + (S.currentAction === null ? " active" : "");
+        if (S.currentAction === null) {
+          foldBtn.style.borderColor = "var(--border-light)";
+          foldBtn.style.background = "var(--surface3)";
+        }
+        foldBtn.innerHTML = `<div class="action-color-dot" style="background:#3a2030;border:1px solid var(--border)"></div><span class="action-name">⬛ Fold / Clear</span>`;
+        foldBtn.onclick = () => selectAction(null);
+        foldRow.appendChild(foldBtn);
+        list.appendChild(foldRow);
+
+        renderLegend();
+        updateActiveActionLabel();
+      }
+
+      function selectAction(id) {
+        S.currentAction = id;
+        persist();
+        renderActions();
+      }
+
+      function updateActiveActionLabel() {
+        const lbl = document.getElementById("active-action-label");
+        if (S.currentAction === null) {
+          lbl.textContent = "Painting: Fold / Clear";
+          return;
+        }
+        const a = S.actions.find((x) => x.id === S.currentAction);
+        lbl.textContent = a ? `Painting: ${a.emoji} ${a.name}` : "Painting: —";
+      }
+
+      function renderLegend() {
+        const el = document.getElementById("legend");
+        el.innerHTML =
+          S.actions
+            .map(
+              (a) => `
+    <div class="legend-item">
+      <div class="legend-swatch" style="background:${a.color}"></div>
+      ${a.emoji} ${a.name}
+    </div>
+  `
+            )
+            .join("") +
+          `
+    <div class="legend-item">
+      <div class="legend-swatch" style="background:var(--fold-bg);border:1px solid var(--border)"></div>
+      Fold
+    </div>
+    <span style="margin-left:auto;font-size:10px;color:var(--muted);font-family:var(--font-mono)">XX=pair · XYs=suited · XYo=offsuit</span>
+  `;
+      }
+
+      function deleteAction(id) {
+        if (S.actions.length <= 1) {
+          showToast("Keep at least one action");
+          return;
+        }
+        // Remove from cells
+        Object.keys(S.cellState).forEach((k) => {
+          if (S.cellState[k] === id) delete S.cellState[k];
+        });
+        S.actions = S.actions.filter((a) => a.id !== id);
+        if (S.currentAction === id) S.currentAction = S.actions[0]?.id || null;
+        persist();
+        renderActions();
+        rebuildMatrix();
+        updateStats();
+        showToast("Action deleted");
+      }
+
+      function rebuildMatrix() {
+        document.querySelectorAll(".cell").forEach((cell) => {
+          applyCellStyle(cell, S.cellState[cell.dataset.key] || null);
+        });
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // ACTION MODAL
+      // ═══════════════════════════════════════════════════════════
+      let selectedModalColor = "#ff6eb4";
+      let selectedModalEmoji = "🔴";
+
+      function openActionModal(editId = null) {
+        S.editingActionId = editId;
+        const modal = document.getElementById("action-modal");
+        document.getElementById("action-modal-title").textContent = editId
+          ? "Edit Action"
+          : "Create Action";
+
+        const existing = editId ? S.actions.find((a) => a.id === editId) : null;
+        document.getElementById("am-name").value = existing
+          ? existing.name
+          : "";
+        selectedModalColor = existing ? existing.color : "#ff6eb4";
+        selectedModalEmoji = existing ? existing.emoji : "🔴";
+        document.getElementById("am-custom-color").value = selectedModalColor;
+
+        // Colors
+        const colorRow = document.getElementById("am-colors");
+        colorRow.innerHTML = PRESET_COLORS.map(
+          (c) => `
+    <div class="color-swatch ${c === selectedModalColor ? "selected" : ""}"
+      style="background:${c}" onclick="selectModalColor('${c}',this)"></div>
+  `
+        ).join("");
+
+        // Emojis
+        const emojiRow = document.getElementById("am-emojis");
+        emojiRow.innerHTML = PRESET_EMOJIS.map(
+          (e) => `
+    <div class="emoji-opt ${e === selectedModalEmoji ? "selected" : ""}"
+      onclick="selectModalEmoji('${e}',this)">${e}</div>
+  `
+        ).join("");
+
+        modal.classList.add("open");
+        setTimeout(() => document.getElementById("am-name").focus(), 100);
+      }
+
+      function selectModalColor(c, el) {
+        selectedModalColor = c;
+        document
+          .querySelectorAll("#am-colors .color-swatch")
+          .forEach((s) => s.classList.remove("selected"));
+        el.classList.add("selected");
+        document.getElementById("am-custom-color").value = c;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .getElementById("am-custom-color")
+          .addEventListener("input", (e) => {
+            selectedModalColor = e.target.value;
+            document
+              .querySelectorAll("#am-colors .color-swatch")
+              .forEach((s) => s.classList.remove("selected"));
+          });
+      });
+
+      function selectModalEmoji(e, el) {
+        selectedModalEmoji = e;
+        document
+          .querySelectorAll("#am-emojis .emoji-opt")
+          .forEach((x) => x.classList.remove("selected"));
+        el.classList.add("selected");
+      }
+
+      function closeActionModal() {
+        document.getElementById("action-modal").classList.remove("open");
+        S.editingActionId = null;
+      }
+
+      function saveAction() {
+        const name = document.getElementById("am-name").value.trim();
+        if (!name) {
+          showToast("Please enter a name");
+          return;
+        }
+        const color = selectedModalColor;
+        const emoji = selectedModalEmoji;
+
+        if (S.editingActionId) {
+          const idx = S.actions.findIndex((a) => a.id === S.editingActionId);
+          if (idx >= 0) {
+            S.actions[idx].name = name;
+            S.actions[idx].color = color;
+            S.actions[idx].emoji = emoji;
+          }
+        } else {
+          const id = "action_" + Date.now();
+          S.actions.push({ id, name, color, emoji });
+          S.currentAction = id;
+        }
+
+        persist();
+        closeActionModal();
+        renderActions();
+        rebuildMatrix();
+        updateStats();
+        showToast(S.editingActionId ? "Action updated" : `"${name}" created`);
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // POSITION CHIPS
+      // ═══════════════════════════════════════════════════════════
+      document.querySelectorAll(".pos-chip").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".pos-chip")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          S.currentPos = btn.dataset.pos;
+          persist();
+        });
+      });
+
+      // ═══════════════════════════════════════════════════════════
+      // SAVE RANGE
+      // ═══════════════════════════════════════════════════════════
+      function saveRange() {
+        const name =
+          document.getElementById("range-name-inp").value.trim() ||
+          S.currentPos + " Range";
+        const tagsRaw = document.getElementById("range-tags-inp").value.trim();
+        const tags = tagsRaw
+          ? tagsRaw
+              .split(",")
+              .map((t) => t.trim())
+              .filter(Boolean)
+          : [];
+
+        let combos = 0;
+        const combosFor = (key, type) =>
+          type === "pair" ? 6 : type === "suited" ? 4 : 12;
+        for (let i = 0; i < 13; i++) {
+          for (let j = 0; j < 13; j++) {
+            const r1 = RANKS[i],
+              r2 = RANKS[j];
+            let key, type;
+            if (i === j) {
+              key = r1 + r2;
+              type = "pair";
+            } else if (i < j) {
+              key = r1 + r2 + "s";
+              type = "suited";
+            } else {
+              key = r2 + r1 + "o";
+              type = "offsuit";
+            }
+            if (S.cellState[key]) combos += combosFor(key, type);
+          }
+        }
+
+        const pct = ((combos / TOTAL_COMBOS) * 100).toFixed(1) + "%";
+
+        const range = {
+          id: "r_" + Date.now(),
+          name,
+          pos: S.currentPos,
+          tags,
+          folderId: S.currentFolder,
+          state: { ...S.cellState },
+          combos,
+          pct,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+        };
+
+        // Update if same name+pos+folder
+        const idx = S.ranges.findIndex(
+          (r) =>
+            r.name === name &&
+            r.pos === S.currentPos &&
+            r.folderId === S.currentFolder
+        );
+        if (idx >= 0) {
+          range.id = S.ranges[idx].id;
+          range.createdAt = S.ranges[idx].createdAt;
+          S.ranges[idx] = range;
+        } else S.ranges.unshift(range);
+
+        S.activeRangeId = range.id;
+        persist();
+        renderFileSystem();
+        showTab("files");
+        showToast(`✦ "${name}" saved`);
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // FILE SYSTEM
+      // ═══════════════════════════════════════════════════════════
+      let fsSelectedFolderEmoji = "📁";
+
+      function openFolderModal() {
+        fsSelectedFolderEmoji = "📁";
+        document.getElementById("fm-name").value = "";
+        const emojiRow = document.getElementById("fm-emojis");
+        emojiRow.innerHTML = FOLDER_EMOJIS.map(
+          (e) => `
+    <div class="emoji-opt ${e === fsSelectedFolderEmoji ? "selected" : ""}"
+      onclick="selectFolderEmoji('${e}',this)">${e}</div>
+  `
+        ).join("");
+        document.getElementById("folder-modal").classList.add("open");
+        setTimeout(() => document.getElementById("fm-name").focus(), 100);
+      }
+
+      function selectFolderEmoji(e, el) {
+        fsSelectedFolderEmoji = e;
+        document
+          .querySelectorAll("#fm-emojis .emoji-opt")
+          .forEach((x) => x.classList.remove("selected"));
+        el.classList.add("selected");
+      }
+
+      function closeFolderModal() {
+        document.getElementById("folder-modal").classList.remove("open");
+      }
+
+      function saveFolder() {
+        const name = document.getElementById("fm-name").value.trim();
+        if (!name) {
+          showToast("Enter a folder name");
+          return;
+        }
+        S.folders.push({
+          id: "f_" + Date.now(),
+          name,
+          emoji: fsSelectedFolderEmoji,
+          createdAt: Date.now(),
+        });
+        persist();
+        closeFolderModal();
+        renderFileSystem();
+        showToast(`📁 "${name}" created`);
+      }
+
+      function navigateTo(folderId) {
+        S.currentFolder = folderId;
+        renderFileSystem();
+      }
+
+      function setSort(s) {
+        S.sortBy = s;
+        persist();
+        document
+          .querySelectorAll(".fs-sort-btn")
+          .forEach((b) => b.classList.toggle("active", b.dataset.sort === s));
+        renderFileSystem();
+      }
+
+      function toggleView() {
+        S.viewMode = S.viewMode === "list" ? "grid" : "list";
+        persist();
+        renderFileSystem();
+      }
+
+      function renderFileSystem() {
+        renderFsPath();
+        const list = document.getElementById("fs-list");
+        const search = document
+          .getElementById("fs-search")
+          .value.toLowerCase()
+          .trim();
+
+        // Folders in current level
+        const folders = S.folders.filter((f) => {
+          if (search) return f.name.toLowerCase().includes(search);
+          return true; // show all folders always when searching
+        });
+
+        // Ranges in current folder
+        let ranges = S.ranges.filter((r) => {
+          if (search) {
+            return (
+              r.name.toLowerCase().includes(search) ||
+              r.pos.toLowerCase().includes(search) ||
+              (r.tags || []).some((t) => t.toLowerCase().includes(search))
+            );
+          }
+          return r.folderId === S.currentFolder;
+        });
+
+        // Sort
+        ranges = [...ranges].sort((a, b) => {
+          if (S.sortBy === "name") return a.name.localeCompare(b.name);
+          if (S.sortBy === "combos") return b.combos - a.combos;
+          if (S.sortBy === "pos") return a.pos.localeCompare(b.pos);
+          return b.updatedAt - a.updatedAt; // date
+        });
+
+        if (!search && folders.length === 0 && ranges.length === 0) {
+          list.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">🌸</div>
+        <div class="empty-title">No ranges yet</div>
+        <div class="empty-sub">Build a range and click Save,<br>or create a folder to organise.</div>
+      </div>`;
+          return;
+        }
+
+        let html = "";
+
+        if (!search) {
+          folders.forEach((f) => {
+            const count = S.ranges.filter((r) => r.folderId === f.id).length;
+            html += `
+        <div class="fs-folder" onclick="navigateTo('${
+          f.id
+        }')" oncontextmenu="openCtxFolder(event,'${f.id}')">
+          <div class="fs-folder-icon">${f.emoji}</div>
+          <div class="fs-folder-name">${f.name}</div>
+          <div class="fs-folder-count">${count} range${
+              count !== 1 ? "s" : ""
+            }</div>
+          <span style="color:var(--muted);font-size:13px">›</span>
+        </div>`;
+          });
+        }
+
+        ranges.forEach((r) => {
+          const isActive = r.id === S.activeRangeId;
+          const tagsHtml = (r.tags || [])
+            .map(
+              (t) =>
+                `<span class="fs-item-tag" style="background:var(--pink-dim);color:var(--pink)">${t}</span>`
+            )
+            .join("");
+          const posColor =
+            {
+              UTG: "#e8417a",
+              MP: "#f5a623",
+              CO: "#f5e623",
+              BTN: "#5cb85c",
+              SB: "#5b7cf5",
+              BB: "#9b59b6",
+            }[r.pos] || "#888";
+          html += `
+      <div class="fs-item ${isActive ? "active" : ""}" onclick="loadRange('${
+            r.id
+          }')" oncontextmenu="openCtxRange(event,'${r.id}')">
+        <div class="fs-item-icon" style="background:${hexToRgba(
+          posColor,
+          0.15
+        )};color:${posColor};font-size:12px;font-family:var(--font-mono);font-weight:600">
+          ${r.pos}
+        </div>
+        <div class="fs-item-body">
+          <div class="fs-item-name">${r.name}</div>
+          <div class="fs-item-meta">
+            <span>${r.combos} combos</span>
+            <span>${r.pct}</span>
+            <span>${new Date(r.updatedAt).toLocaleDateString()}</span>
+            ${tagsHtml}
+          </div>
+        </div>
+        <div class="fs-item-actions">
+          <button class="fs-mini-btn" onclick="event.stopPropagation();loadRange('${
+            r.id
+          }')" title="Load">▶</button>
+          <button class="fs-mini-btn del" onclick="event.stopPropagation();deleteRange('${
+            r.id
+          }')" title="Delete">✕</button>
+        </div>
+      </div>`;
+        });
+
+        list.innerHTML = html;
+      }
+
+      function renderFsPath() {
+        const pathEl = document.getElementById("fs-path");
+        let html = `<span class="fs-crumb ${
+          !S.currentFolder ? "active" : ""
+        }" onclick="navigateTo(null)">All Ranges</span>`;
+        if (S.currentFolder) {
+          const folder = S.folders.find((f) => f.id === S.currentFolder);
+          if (folder) {
+            html += `<span class="fs-sep">›</span>`;
+            html += `<span class="fs-crumb active">${folder.emoji} ${folder.name}</span>`;
+          }
+        }
+        pathEl.innerHTML = html;
+      }
+
+      function loadRange(id) {
+        const r = S.ranges.find((x) => x.id === id);
+        if (!r) return;
+        S.cellState = { ...r.state };
+        S.activeRangeId = id;
+        document.getElementById("range-name-inp").value = r.name;
+        document.getElementById("range-tags-inp").value = (r.tags || []).join(
+          ", "
+        );
+        // Set pos
+        document
+          .querySelectorAll(".pos-chip")
+          .forEach((b) =>
+            b.classList.toggle("active", b.dataset.pos === r.pos)
+          );
+        S.currentPos = r.pos;
+        rebuildMatrix();
+        updateStats();
+        persist();
+        renderFileSystem();
+        showTab("paint");
+        showToast(`✦ "${r.name}" loaded`);
+      }
+
+      function deleteRange(id) {
+        const r = S.ranges.find((x) => x.id === id);
+        S.ranges = S.ranges.filter((x) => x.id !== id);
+        if (S.activeRangeId === id) S.activeRangeId = null;
+        persist();
+        renderFileSystem();
+        if (r) showToast(`"${r.name}" deleted`);
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // CONTEXT MENU
+      // ═══════════════════════════════════════════════════════════
+      let ctxType = null; // 'range' | 'folder'
+      let ctxId = null;
+
+      function openCtxRange(e, id) {
+        e.preventDefault();
+        ctxType = "range";
+        ctxId = id;
+        showCtxAt(e.clientX, e.clientY);
+      }
+      function openCtxFolder(e, id) {
+        e.preventDefault();
+        e.stopPropagation();
+        ctxType = "folder";
+        ctxId = id;
+        showCtxAt(e.clientX, e.clientY);
+      }
+      function showCtxAt(x, y) {
+        const m = document.getElementById("ctx-menu");
+        m.classList.add("open");
+        m.style.left = Math.min(x, window.innerWidth - 180) + "px";
+        m.style.top = Math.min(y, window.innerHeight - 220) + "px";
+      }
+      document.addEventListener("click", () =>
+        document.getElementById("ctx-menu").classList.remove("open")
+      );
+      document.addEventListener("contextmenu", (e) => {
+        if (!e.target.closest(".fs-item") && !e.target.closest(".fs-folder"))
+          document.getElementById("ctx-menu").classList.remove("open");
+      });
+
+      function ctxLoad() {
+        if (ctxType === "range") loadRange(ctxId);
+      }
+      function ctxDelete() {
+        if (ctxType === "range") deleteRange(ctxId);
+        else if (ctxType === "folder") deleteFolderById(ctxId);
+      }
+      function ctxExport() {
+        if (ctxType === "range") exportRangeById(ctxId);
+      }
+      function ctxDuplicate() {
+        if (ctxType !== "range") return;
+        const r = S.ranges.find((x) => x.id === ctxId);
+        if (!r) return;
+        const copy = {
+          ...r,
+          id: "r_" + Date.now(),
+          name: r.name + " (copy)",
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+        };
+        S.ranges.unshift(copy);
+        persist();
+        renderFileSystem();
+        showToast("Range duplicated");
+      }
+      function ctxMove() {
+        if (ctxType !== "range") return;
+        const r = S.ranges.find((x) => x.id === ctxId);
+        if (!r) return;
+        const choices = [{ id: null, name: "Root" }, ...S.folders];
+        const choice = choices.find((f) => f.id !== r.folderId);
+        if (!choice) {
+          showToast("No other folders");
+          return;
+        }
+        // simple: cycle through folders
+        const idx = choices.findIndex((f) => f.id === r.folderId);
+        const next = choices[(idx + 1) % choices.length];
+        r.folderId = next.id;
+        persist();
+        renderFileSystem();
+        showToast(`Moved to "${next.name || "Root"}"`);
+      }
+      function ctxRename() {
+        if (ctxType !== "range") return;
+        const r = S.ranges.find((x) => x.id === ctxId);
+        if (!r) return;
+        S.renameTarget = ctxId;
+        document.getElementById("rn-name").value = r.name;
+        document.getElementById("rename-modal").classList.add("open");
+        setTimeout(() => document.getElementById("rn-name").focus(), 100);
+      }
+      function closeRenameModal() {
+        document.getElementById("rename-modal").classList.remove("open");
+      }
+      function confirmRename() {
+        const name = document.getElementById("rn-name").value.trim();
+        if (!name) return;
+        const r = S.ranges.find((x) => x.id === S.renameTarget);
+        if (r) {
+          r.name = name;
+          r.updatedAt = Date.now();
+        }
+        persist();
+        closeRenameModal();
+        renderFileSystem();
+        showToast("Renamed");
+      }
+
+      function deleteFolderById(id) {
+        S.folders = S.folders.filter((f) => f.id !== id);
+        S.ranges.forEach((r) => {
+          if (r.folderId === id) r.folderId = null;
+        });
+        if (S.currentFolder === id) S.currentFolder = null;
+        persist();
+        renderFileSystem();
+        showToast("Folder deleted");
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // QUICK SELECT
+      // ═══════════════════════════════════════════════════════════
+      function quickSelect(type) {
+        const sets = {
+          premium: ["AA", "KK", "QQ", "JJ", "TT", "AKs", "AKo", "AQs"],
+          broadway: [
+            "AKs",
+            "AKo",
+            "AQs",
+            "AQo",
+            "AJs",
+            "KQs",
+            "ATs",
+            "KQo",
+            "AJo",
+            "QJs",
+            "KJs",
+            "ATo",
+          ],
+          pairs: RANKS.map((r) => r + r),
+          suited_aces: RANKS.slice(1).map((r) => "A" + r + "s"),
+          suited_connectors: [
+            "98s",
+            "87s",
+            "76s",
+            "65s",
+            "54s",
+            "T9s",
+            "J9s",
+            "JTs",
+            "QTs",
+            "QJs",
+            "KTs",
+            "KJs",
+            "KQs",
+          ],
+          top20: [
+            "AA",
+            "KK",
+            "QQ",
+            "JJ",
+            "TT",
+            "99",
+            "88",
+            "AKs",
+            "AKo",
+            "AQs",
+            "AQo",
+            "AJs",
+            "AJo",
+            "ATs",
+            "KQs",
+            "KQo",
+            "KJs",
+            "QJs",
+            "JTs",
+            "T9s",
+          ],
+        };
+        const hands = sets[type] || [];
+        hands.forEach((h) => {
+          const cell = document.querySelector(`[data-key="${h}"]`);
+          if (cell) setCellAction(h, S.currentAction, cell);
+        });
+        showToast(`${type.replace(/_/g, " ")} painted`);
+      }
+
+      function clearAll() {
+        S.cellState = {};
+        document
+          .querySelectorAll(".cell")
+          .forEach((cell) => applyCellStyle(cell, null));
+        updateStats();
+        persist();
+        showToast("Range cleared");
+      }
+
+      function invertRange() {
+        for (let i = 0; i < 13; i++) {
+          for (let j = 0; j < 13; j++) {
+            const r1 = RANKS[i],
+              r2 = RANKS[j];
+            let key;
+            if (i === j) key = r1 + r2;
+            else if (i < j) key = r1 + r2 + "s";
+            else key = r2 + r1 + "o";
+            const cell = document.querySelector(`[data-key="${key}"]`);
+            if (S.cellState[key]) {
+              delete S.cellState[key];
+              applyCellStyle(cell, null);
+            } else {
+              S.cellState[key] = S.currentAction;
+              applyCellStyle(cell, S.currentAction);
+            }
+          }
+        }
+        updateStats();
+        persist();
+        showToast("Range inverted");
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // EXPORT
+      // ═══════════════════════════════════════════════════════════
+      function exportRange() {
+        const hands = Object.entries(S.cellState)
+          .filter(([, v]) => v)
+          .map(([k]) => k)
+          .join(",");
+        navigator.clipboard
+          .writeText(hands || "")
+          .then(() => showToast("Copied to clipboard"))
+          .catch(() => {
+            prompt("Copy range:", hands);
+          });
+      }
+
+      function exportRangeById(id) {
+        const r = S.ranges.find((x) => x.id === id);
+        if (!r) return;
+        const hands = Object.entries(r.state || {})
+          .filter(([, v]) => v)
+          .map(([k]) => k)
+          .join(",");
+        navigator.clipboard
+          .writeText(hands)
+          .then(() => showToast("Copied to clipboard"))
+          .catch(() => prompt("Copy:", hands));
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // TABS
+      // ═══════════════════════════════════════════════════════════
+      function showTab(name) {
+        document
+          .querySelectorAll(".tab-pane")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".stab")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("pane-" + name).classList.add("active");
+        document.getElementById("tab-" + name).classList.add("active");
+        if (name === "files") renderFileSystem();
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // UTILS
+      // ═══════════════════════════════════════════════════════════
+      function hexToRgba(hex, alpha) {
+        const r = parseInt(hex.slice(1, 3), 16),
+          g = parseInt(hex.slice(3, 5), 16),
+          b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r},${g},${b},${alpha})`;
+      }
+
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => t.classList.remove("show"), 2200);
+      }
+
+      // ═══════════════════════════════════════════════════════════
+      // INIT
+      // ═══════════════════════════════════════════════════════════
+      // Set pos chips
+      document.querySelectorAll(".pos-chip").forEach((b) => {
+        b.classList.toggle("active", b.dataset.pos === S.currentPos);
+      });
+
+      buildMatrix();
+      renderActions();
+      updateStats();
+      renderFileSystem();
+
+      // Handle custom color input (attach after DOM ready)
+      window.addEventListener("load", () => {
+        document
+          .getElementById("am-custom-color")
+          .addEventListener("input", (e) => {
+            selectedModalColor = e.target.value;
+            document
+              .querySelectorAll("#am-colors .color-swatch")
+              .forEach((s) => s.classList.remove("selected"));
+          });
+      });
+
+      // Close modals on overlay click
+      document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+        overlay.addEventListener("click", (e) => {
+          if (e.target === overlay) overlay.classList.remove("open");
+        });
+      });
+    </script>
+  </body>
+</html>
