@@ -42,7 +42,7 @@
     />
     <link rel="manifest" id="pwamf" />
     <style>
-      /* ━━━━━━━━━━━━━━━━━━━━ THEMES ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ THEMES ━━━ */
       :root,
       [data-theme="pink"] {
         --bg: #110a0e;
@@ -54,16 +54,16 @@
         --bd2: #5a2a4a;
         --ac: #e8438a;
         --ac2: #ff7ab5;
-        --ac3: rgba(232, 67, 138, 0.14);
-        --ac4: rgba(232, 67, 138, 0.32);
+        --ac3: rgba(232, 67, 138, 0.15);
+        --ac4: rgba(232, 67, 138, 0.35);
         --gr: #34c97a;
-        --gr2: rgba(52, 201, 122, 0.13);
+        --gr2: rgba(52, 201, 122, 0.14);
         --rd: #e17055;
-        --rd2: rgba(225, 112, 85, 0.13);
+        --rd2: rgba(225, 112, 85, 0.14);
         --am: #f0c040;
-        --am2: rgba(240, 192, 64, 0.13);
+        --am2: rgba(240, 192, 64, 0.14);
         --bl: #74b9ff;
-        --bl2: rgba(116, 185, 255, 0.13);
+        --bl2: rgba(116, 185, 255, 0.14);
         --tx: #f5eef2;
         --tx2: #b090a0;
         --tx3: #6a4a58;
@@ -78,8 +78,8 @@
         --bd2: #363670;
         --ac: #5b7cf5;
         --ac2: #8fa0ff;
-        --ac3: rgba(91, 124, 245, 0.14);
-        --ac4: rgba(91, 124, 245, 0.32);
+        --ac3: rgba(91, 124, 245, 0.15);
+        --ac4: rgba(91, 124, 245, 0.35);
         --tx: #eeeeff;
         --tx2: #9090c0;
         --tx3: #50507a;
@@ -94,8 +94,8 @@
         --bd2: #285040;
         --ac: #2ece72;
         --ac2: #5af0a0;
-        --ac3: rgba(46, 206, 114, 0.14);
-        --ac4: rgba(46, 206, 114, 0.32);
+        --ac3: rgba(46, 206, 114, 0.15);
+        --ac4: rgba(46, 206, 114, 0.35);
         --tx: #eefff5;
         --tx2: #80b095;
         --tx3: #3a6048;
@@ -110,8 +110,8 @@
         --bd2: #3c2f6e;
         --ac: #9b5df5;
         --ac2: #c090ff;
-        --ac3: rgba(155, 93, 245, 0.14);
-        --ac4: rgba(155, 93, 245, 0.32);
+        --ac3: rgba(155, 93, 245, 0.15);
+        --ac4: rgba(155, 93, 245, 0.35);
         --tx: #f0eaff;
         --tx2: #9080b8;
         --tx3: #524070;
@@ -126,14 +126,14 @@
         --bd2: #5e4022;
         --ac: #f0a020;
         --ac2: #ffc860;
-        --ac3: rgba(240, 160, 32, 0.14);
-        --ac4: rgba(240, 160, 32, 0.32);
+        --ac3: rgba(240, 160, 32, 0.15);
+        --ac4: rgba(240, 160, 32, 0.35);
         --tx: #fff8e8;
         --tx2: #b09060;
         --tx3: #6a5030;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ RESET ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ RESET ━━━ */
       *,
       *::before,
       *::after {
@@ -142,17 +142,17 @@
         padding: 0;
         -webkit-tap-highlight-color: transparent;
       }
-      html,
-      body {
+      html {
         height: 100%;
         height: 100dvh;
-        overflow: hidden;
-        background: var(--bg);
       }
       body {
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
           "Segoe UI", sans-serif;
         color: var(--tx);
+        background: var(--bg);
+        height: 100dvh;
+        overflow: hidden;
         -webkit-font-smoothing: antialiased;
         overscroll-behavior: none;
       }
@@ -168,8 +168,8 @@
       textarea {
         font-family: inherit;
         background: var(--s3);
-        border: 1px solid var(--bd);
-        border-radius: 8px;
+        border: 1.5px solid var(--bd);
+        border-radius: 9px;
         padding: 10px 12px;
         font-size: 14px;
         color: var(--tx);
@@ -196,17 +196,13 @@
       }
       ::-webkit-scrollbar {
         width: 2px;
-        height: 2px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
       }
       ::-webkit-scrollbar-thumb {
         background: var(--bd2);
         border-radius: 2px;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ SHELL ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ LAYOUT ━━━ */
       .app {
         display: flex;
         flex-direction: column;
@@ -216,33 +212,33 @@
       header {
         flex-shrink: 0;
         z-index: 100;
+        height: calc(48px + env(safe-area-inset-top));
+        padding-top: env(safe-area-inset-top);
+        padding-left: 14px;
+        padding-right: 14px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 14px;
         gap: 8px;
-        background: rgba(17, 10, 14, 0.92);
+        background: rgba(17, 10, 14, 0.94);
         border-bottom: 1px solid var(--bd);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        height: calc(48px + env(safe-area-inset-top));
-        padding-top: env(safe-area-inset-top);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
       .logo {
         display: flex;
         align-items: center;
         gap: 7px;
-        min-width: 0;
       }
       .logo-ic {
-        width: 26px;
-        height: 26px;
+        width: 28px;
+        height: 28px;
         background: linear-gradient(135deg, var(--ac), var(--ac2));
-        border-radius: 7px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 800;
         color: #fff;
         flex-shrink: 0;
@@ -251,29 +247,28 @@
         font-size: 16px;
         font-weight: 700;
         letter-spacing: -0.3px;
-        white-space: nowrap;
       }
       .logo-tx b {
         color: var(--ac2);
       }
-      .hdr-stats {
+      .hdr-r {
         display: flex;
         gap: 6px;
+        align-items: center;
         flex-shrink: 0;
       }
       .hstat {
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: 7px;
+        border-radius: 8px;
         padding: 3px 8px;
         text-align: center;
-        min-width: 46px;
+        min-width: 48px;
       }
       .hstat-v {
         font-size: 13px;
         font-weight: 700;
         color: var(--ac2);
-        line-height: 1.1;
         font-variant-numeric: tabular-nums;
       }
       .hstat-l {
@@ -297,7 +292,7 @@
         -webkit-overflow-scrolling: touch;
         display: none;
         flex-direction: column;
-        padding-bottom: calc(50px + env(safe-area-inset-bottom) + 4px);
+        padding-bottom: calc(56px + env(safe-area-inset-bottom) + 6px);
       }
       .scr.on {
         display: flex;
@@ -306,19 +301,20 @@
         padding: 10px 12px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 9px;
       }
 
+      /* ━━━ NAVBAR ━━━ */
       nav {
         flex-shrink: 0;
         z-index: 200;
         display: flex;
-        background: rgba(17, 10, 14, 0.96);
-        border-top: 1px solid var(--bd);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        height: calc(50px + env(safe-area-inset-bottom));
+        height: calc(54px + env(safe-area-inset-bottom));
         padding-bottom: env(safe-area-inset-bottom);
+        background: rgba(17, 10, 14, 0.97);
+        border-top: 1px solid var(--bd);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
       .nb {
         flex: 1;
@@ -329,13 +325,13 @@
         gap: 2px;
         color: var(--tx3);
         font-size: 9px;
-        letter-spacing: 0.3px;
-        transition: color 0.14s;
+        letter-spacing: 0.2px;
         position: relative;
+        transition: color 0.14s;
       }
       .nb svg {
-        width: 18px;
-        height: 18px;
+        width: 19px;
+        height: 19px;
         stroke: currentColor;
         fill: none;
         stroke-width: 1.8;
@@ -353,27 +349,27 @@
         content: "";
         position: absolute;
         top: 0;
-        left: 20%;
-        right: 20%;
-        height: 2px;
-        background: var(--ac);
-        border-radius: 0 0 2px 2px;
+        left: 25%;
+        right: 25%;
+        height: 2.5px;
+        background: linear-gradient(90deg, var(--ac), var(--ac2));
+        border-radius: 0 0 3px 3px;
         transform: scaleX(0);
-        transition: transform 0.2s;
+        transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
       .nb.on::after {
         transform: scaleX(1);
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ CARDS ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ CARDS ━━━ */
       .card {
         background: var(--s1);
         border: 1px solid var(--bd);
-        border-radius: 12px;
+        border-radius: 13px;
         overflow: hidden;
       }
       .ch {
-        padding: 10px 12px 8px;
+        padding: 10px 13px 9px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -383,21 +379,21 @@
         font-size: 11px;
         font-weight: 700;
         color: var(--tx2);
-        letter-spacing: 0.5px;
+        letter-spacing: 0.6px;
         text-transform: uppercase;
       }
       .cb {
-        padding: 11px 12px;
+        padding: 11px 13px;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ BUTTONS ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ BUTTONS ━━━ */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
-        padding: 10px 14px;
-        border-radius: 8px;
+        padding: 10px 16px;
+        border-radius: 9px;
         font-size: 14px;
         font-weight: 600;
         transition: opacity 0.1s, transform 0.08s;
@@ -405,17 +401,17 @@
         white-space: nowrap;
       }
       .btn:active {
-        opacity: 0.78;
-        transform: scale(0.96);
+        opacity: 0.76;
+        transform: scale(0.95);
       }
       .btn-ac {
         background: linear-gradient(135deg, var(--ac), var(--ac2));
         color: #fff;
-        box-shadow: 0 2px 10px var(--ac4);
+        box-shadow: 0 2px 12px var(--ac4);
       }
       .btn-ghost {
         background: var(--s3);
-        border: 1px solid var(--bd);
+        border: 1.5px solid var(--bd);
         color: var(--tx2);
       }
       .btn-ghost.on {
@@ -425,18 +421,28 @@
       }
       .btn-gr {
         background: var(--gr2);
-        border: 1px solid var(--gr);
+        border: 1.5px solid var(--gr);
         color: var(--gr);
       }
       .btn-rd {
         background: var(--rd2);
-        border: 1px solid var(--rd);
+        border: 1.5px solid var(--rd);
         color: var(--rd);
       }
+      .btn-am {
+        background: var(--am2);
+        border: 1.5px solid var(--am);
+        color: var(--am);
+      }
       .btn-sm {
-        padding: 5px 10px;
+        padding: 5px 11px;
         font-size: 12px;
         border-radius: 7px;
+      }
+      .btn-xs {
+        padding: 4px 8px;
+        font-size: 11px;
+        border-radius: 6px;
       }
       .btn-w {
         width: 100%;
@@ -452,7 +458,7 @@
         gap: 6px;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ TOGGLE ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ CHIP/TOGGLE ━━━ */
       .tog {
         position: relative;
         width: 40px;
@@ -484,23 +490,21 @@
         height: 18px;
         background: #fff;
         border-radius: 50%;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
         transition: transform 0.18s;
         pointer-events: none;
       }
       .tog input:checked ~ .tog-k {
         transform: translateX(18px);
       }
-
-      /* ━━━━━━━━━━━━━━━━━━━━ CHIP ━━━━━━━━━━━━━━━━━━━━ */
       .chip {
         display: inline-flex;
         align-items: center;
-        padding: 4px 10px;
+        padding: 4px 11px;
         border-radius: 14px;
         font-size: 12px;
         font-weight: 600;
-        border: 1px solid var(--bd);
+        border: 1.5px solid var(--bd);
         color: var(--tx2);
         background: var(--s2);
         cursor: pointer;
@@ -517,12 +521,10 @@
         gap: 5px;
         flex-wrap: wrap;
       }
-
-      /* ━━━━━━━━━━━━━━━━━━━━ SET ROW ━━━━━━━━━━━━━━━━━━━━ */
       .sr {
         display: flex;
         align-items: center;
-        padding: 11px 12px;
+        padding: 11px 13px;
         border-bottom: 1px solid var(--bd);
       }
       .sr:last-child {
@@ -530,10 +532,10 @@
       }
       .sr-l {
         flex: 1;
+        min-width: 0;
       }
       .sr-lb {
         font-size: 14px;
-        color: var(--tx);
       }
       .sr-d {
         font-size: 11px;
@@ -543,32 +545,32 @@
       .sl {
         font-size: 10px;
         font-weight: 700;
-        letter-spacing: 1px;
+        letter-spacing: 1.2px;
         text-transform: uppercase;
         color: var(--tx3);
-        padding: 10px 12px 5px;
+        padding: 10px 13px 5px;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ MATRIX ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ MATRIX ━━━ */
       #matrix {
         display: grid;
         grid-template-columns: repeat(13, 1fr);
         gap: 1.5px;
-        padding: 6px;
+        padding: 7px;
         background: var(--bg);
-        border-radius: 0 0 11px 11px;
+        border-radius: 0 0 12px 12px;
       }
       .cell {
         aspect-ratio: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: clamp(5.5px, 1.75vw, 9.5px);
+        font-size: clamp(5px, 1.7vw, 9px);
         font-family: "SF Mono", "Fira Mono", monospace;
         font-weight: 500;
         background: var(--s3);
         color: var(--tx3);
-        border-radius: 2px;
+        border-radius: 2.5px;
         cursor: pointer;
         user-select: none;
         transition: transform 0.07s;
@@ -576,44 +578,47 @@
         overflow: hidden;
       }
       .cell:active {
-        transform: scale(0.86);
+        transform: scale(0.84);
       }
       .cell.pair {
         font-weight: 700;
       }
       .cell.lit {
         color: #fff;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
       }
       .cell.pop {
-        animation: cpop 0.16s ease;
+        animation: cpop 0.15s ease;
       }
       @keyframes cpop {
         0% {
-          transform: scale(1.28);
+          transform: scale(1.3);
         }
         100% {
           transform: scale(1);
         }
       }
-      .cell-freq {
-        position: absolute;
-        bottom: 1px;
-        right: 1px;
-        font-size: 5px;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.85);
-        font-family: "SF Mono", "Fira Mono", monospace;
-        line-height: 1;
+      .cell-lbl {
+        position: relative;
+        z-index: 2;
         pointer-events: none;
+      }
+      .cell-bg {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        pointer-events: none;
+      }
+      .cell-seg {
+        height: 100%;
       }
 
       /* action strip */
       .astrip {
         display: flex;
         gap: 5px;
-        padding: 9px 11px 0;
+        padding: 9px 12px 0;
         overflow-x: auto;
-        -ms-overflow-style: none;
         scrollbar-width: none;
       }
       .astrip::-webkit-scrollbar {
@@ -623,7 +628,7 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        padding: 5px 10px;
+        padding: 5px 11px;
         border-radius: 14px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
@@ -636,29 +641,41 @@
         transition: all 0.12s;
       }
       .apill .adot {
-        width: 7px;
-        height: 7px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         flex-shrink: 0;
       }
       .apill.on {
         color: #fff;
       }
+      .apill .aedit {
+        opacity: 0;
+        width: 14px;
+        height: 14px;
+        transition: opacity 0.1s;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 10px;
+        flex-shrink: 0;
+      }
+      .apill:hover .aedit,
+      .apill.on .aedit {
+        opacity: 1;
+      }
 
       /* freq strip */
       .fstrip {
         display: flex;
         gap: 4px;
-        padding: 5px 11px 8px;
+        padding: 6px 12px 9px;
         overflow-x: auto;
-        -ms-overflow-style: none;
         scrollbar-width: none;
       }
       .fstrip::-webkit-scrollbar {
         display: none;
       }
       .fpill {
-        padding: 4px 8px;
+        padding: 4px 9px;
         border-radius: 10px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
@@ -678,17 +695,17 @@
       }
 
       /* range stats */
-      .rbar {
-        height: 4px;
+      .rbar-wrap {
+        height: 6px;
         background: var(--s3);
-        border-radius: 2px;
+        border-radius: 3px;
         overflow: hidden;
         margin: 6px 0 3px;
+        display: flex;
       }
-      .rbar-f {
+      .rbar-seg {
         height: 100%;
-        border-radius: 2px;
-        transition: width 0.35s;
+        transition: width 0.3s;
       }
       .rstats {
         display: flex;
@@ -700,11 +717,11 @@
         display: flex;
         align-items: center;
         gap: 7px;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
       }
       .bddot {
-        width: 7px;
-        height: 7px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
         flex-shrink: 0;
       }
@@ -718,7 +735,7 @@
       }
       .bdbw {
         flex: 2;
-        height: 3px;
+        height: 4px;
         background: var(--s3);
         border-radius: 2px;
         overflow: hidden;
@@ -726,12 +743,18 @@
       .bdb {
         height: 100%;
         border-radius: 2px;
+        transition: width 0.3s;
       }
       .bdn {
         font-size: 10px;
         color: var(--tx3);
-        width: 28px;
+        width: 32px;
         text-align: right;
+        font-family: "SF Mono", "Fira Mono", monospace;
+      }
+      .bdf {
+        font-size: 9px;
+        color: var(--tx3);
         font-family: "SF Mono", "Fira Mono", monospace;
       }
 
@@ -750,16 +773,94 @@
         font-weight: 600;
         color: var(--tx2);
         text-align: center;
-        line-height: 1.4;
+        line-height: 1.5;
         cursor: pointer;
         transition: all 0.1s;
       }
       .qb:active {
         background: var(--s3);
-        transform: scale(0.94);
+        transform: scale(0.93);
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ TRAINER ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ CELL DETAIL POPUP ━━━ */
+      .cell-popup {
+        position: fixed;
+        z-index: 600;
+        background: var(--s1);
+        border: 1px solid var(--bd2);
+        border-radius: 12px;
+        padding: 10px;
+        min-width: 160px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        animation: popIn 0.15s ease;
+      }
+      @keyframes popIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .cp-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--tx2);
+        text-align: center;
+        margin-bottom: 7px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .cp-row {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 4px 0;
+        border-bottom: 1px solid var(--bd);
+      }
+      .cp-row:last-of-type {
+        border-bottom: none;
+      }
+      .cp-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .cp-nm {
+        font-size: 12px;
+        flex: 1;
+      }
+      .cp-f {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--ac2);
+        width: 32px;
+        text-align: right;
+      }
+      .cp-fld {
+        font-size: 11px;
+        color: var(--tx3);
+        margin-top: 5px;
+        padding-top: 5px;
+        border-top: 1px solid var(--bd);
+      }
+      .cp-clear {
+        margin-top: 7px;
+        width: 100%;
+        padding: 6px;
+        background: var(--rd2);
+        border: 1px solid var(--rd);
+        border-radius: 7px;
+        color: var(--rd);
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      /* ━━━ TRAINER ━━━ */
       .t-hand {
         background: var(--s2);
         border: 1px solid var(--bd2);
@@ -770,15 +871,15 @@
       .t-cards {
         display: flex;
         justify-content: center;
-        gap: 8px;
+        gap: 9px;
         margin: 9px 0;
       }
       .pcard {
-        width: clamp(50px, 13vw, 66px);
-        height: clamp(68px, 18vw, 88px);
+        width: clamp(48px, 12vw, 64px);
+        height: clamp(66px, 17vw, 86px);
         background: #fff;
         border-radius: 9px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -787,11 +888,11 @@
         font-weight: 800;
       }
       .pcard-r {
-        font-size: clamp(17px, 5vw, 24px);
+        font-size: clamp(16px, 5vw, 24px);
         line-height: 1.1;
       }
       .pcard-s {
-        font-size: clamp(12px, 3.5vw, 17px);
+        font-size: clamp(11px, 3.2vw, 16px);
         line-height: 1.1;
       }
       .pcard.red {
@@ -803,37 +904,46 @@
       .t-hname {
         font-size: 12px;
         color: var(--tx2);
-        margin-top: 3px;
+        margin-top: 2px;
       }
       .t-scen {
         font-size: 13px;
-        color: var(--tx2);
-        padding: 8px 11px;
+        color: var(--tx);
+        padding: 9px 12px;
         background: var(--s3);
-        border-radius: 8px;
+        border-radius: 9px;
         text-align: center;
-        line-height: 1.5;
+        line-height: 1.55;
         margin: 7px 0;
+        border: 1px solid var(--bd);
       }
       .t-btns {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 7px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
       }
       .t-btn {
-        padding: 12px 8px;
-        border-radius: 8px;
+        padding: 11px 10px;
+        border-radius: 9px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
         font-size: 13px;
         font-weight: 600;
-        color: var(--tx2);
+        color: var(--tx);
         text-align: center;
         transition: all 0.12s;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
       .t-btn:active {
-        transform: scale(0.96);
+        transform: scale(0.97);
+      }
+      .t-btn.sel {
+        border-color: var(--ac);
+        background: var(--ac3);
+        color: var(--ac2);
       }
       .t-btn.ok {
         background: var(--gr2);
@@ -845,13 +955,28 @@
         border-color: var(--rd);
         color: var(--rd);
       }
+      .t-btn.ok.sel {
+        background: var(--gr);
+        border-color: var(--gr);
+        color: #fff;
+      }
+      .t-btn.bad.sel {
+        background: var(--rd);
+        border-color: var(--rd);
+        color: #fff;
+      }
+      .t-btn-pct {
+        font-size: 11px;
+        opacity: 0.7;
+      }
       .t-res {
         padding: 10px 12px;
-        border-radius: 8px;
+        border-radius: 9px;
         text-align: center;
         font-size: 14px;
         font-weight: 600;
         display: none;
+        line-height: 1.5;
       }
       .t-res.on {
         display: block;
@@ -871,13 +996,13 @@
         background: var(--s3);
         border-radius: 2px;
         overflow: hidden;
-        margin-bottom: 8px;
+        margin-bottom: 9px;
       }
       .prog {
         height: 100%;
         background: linear-gradient(90deg, var(--ac), var(--ac2));
         border-radius: 2px;
-        transition: width 0.25s;
+        transition: width 0.28s;
       }
       .t3 {
         display: grid;
@@ -887,7 +1012,7 @@
       .t3b {
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: 8px;
+        border-radius: 9px;
         padding: 9px;
         text-align: center;
       }
@@ -914,31 +1039,44 @@
         border-bottom: none;
       }
       .hbadge {
-        width: 34px;
-        height: 34px;
-        border-radius: 7px;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
         flex-shrink: 0;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ BANKROLL ━━━━━━━━━━━━━━━━━━━━ */
-      .br-roll-strip {
+      /* difficulty bar */
+      .diff-bar {
+        height: 4px;
+        background: var(--s3);
+        border-radius: 2px;
+        overflow: hidden;
+        margin: 5px 0 2px;
+      }
+      .diff-f {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.3s;
+      }
+
+      /* ━━━ BANKROLL ━━━ */
+      .br-strip {
         display: flex;
         gap: 7px;
         overflow-x: auto;
         padding: 10px 12px;
-        -ms-overflow-style: none;
         scrollbar-width: none;
       }
-      .br-roll-strip::-webkit-scrollbar {
+      .br-strip::-webkit-scrollbar {
         display: none;
       }
       .brc {
-        min-width: 130px;
+        min-width: 140px;
         padding: 11px 12px;
         border-radius: 10px;
         border: 1.5px solid var(--bd);
@@ -946,12 +1084,13 @@
         cursor: pointer;
         transition: all 0.15s;
         flex-shrink: 0;
+        position: relative;
       }
       .brc.on {
         border-color: var(--ac);
         background: var(--ac3);
       }
-      .brc-name {
+      .brc-n {
         font-size: 13px;
         font-weight: 700;
         overflow: hidden;
@@ -959,12 +1098,12 @@
         white-space: nowrap;
         margin-bottom: 2px;
       }
-      .brc-val {
+      .brc-v {
         font-size: 17px;
         font-weight: 700;
         color: var(--ac2);
       }
-      .brc-cur {
+      .brc-c {
         font-size: 11px;
         color: var(--tx3);
       }
@@ -1003,9 +1142,6 @@
       .br-val .sym {
         color: var(--ac2);
       }
-      .br-sub {
-        font-size: 12px;
-      }
       .s4g {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1014,7 +1150,7 @@
       .sb {
         background: var(--s1);
         border: 1px solid var(--bd);
-        border-radius: 8px;
+        border-radius: 9px;
         padding: 10px;
         text-align: center;
       }
@@ -1030,15 +1166,6 @@
         color: var(--tx3);
         margin-top: 2px;
       }
-      .chart-box {
-        height: 110px;
-        background: var(--s2);
-        border: 1px solid var(--bd);
-        border-radius: 8px;
-        overflow: hidden;
-        padding: 7px;
-        position: relative;
-      }
       .sess-it {
         display: flex;
         align-items: center;
@@ -1051,9 +1178,9 @@
         border-bottom: none;
       }
       .sess-ic {
-        width: 32px;
-        height: 32px;
-        border-radius: 7px;
+        width: 33px;
+        height: 33px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1082,11 +1209,11 @@
         flex-shrink: 0;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ TOOLS ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ TOOLS ━━━ */
       .tool-res {
         background: var(--s2);
         border: 1px solid var(--ac);
-        border-radius: 8px;
+        border-radius: 9px;
         padding: 12px;
         display: none;
       }
@@ -1094,7 +1221,7 @@
         display: block;
       }
       .tool-rv {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 700;
         color: var(--ac2);
         text-align: center;
@@ -1107,12 +1234,12 @@
       }
       .tool-ri {
         font-size: 11px;
-        color: var(--tx3);
-        line-height: 1.7;
-        margin-top: 7px;
+        color: var(--tx2);
+        line-height: 1.75;
+        margin-top: 8px;
       }
       .tmr-d {
-        font-size: 44px;
+        font-size: 42px;
         font-weight: 700;
         letter-spacing: 2px;
         font-family: "SF Mono", "Fira Mono", monospace;
@@ -1120,12 +1247,12 @@
         text-align: center;
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ FILES ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ FILES ━━━ */
       .fit {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 9px 12px;
+        padding: 9px 13px;
         border-bottom: 1px solid var(--bd);
         cursor: pointer;
         transition: background 0.1s;
@@ -1137,9 +1264,9 @@
         background: var(--s2);
       }
       .fbg {
-        width: 32px;
-        height: 32px;
-        border-radius: 7px;
+        width: 33px;
+        height: 33px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1169,8 +1296,8 @@
         gap: 5px;
       }
       .fa {
-        width: 26px;
-        height: 26px;
+        width: 27px;
+        height: 27px;
         border-radius: 6px;
         background: var(--s3);
         display: flex;
@@ -1179,16 +1306,20 @@
         font-size: 11px;
         color: var(--tx2);
         flex-shrink: 0;
+        cursor: pointer;
+      }
+      .fa:active {
+        background: var(--s4);
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ MODALS ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ MODALS ━━━ */
       .ovl {
         position: fixed;
         inset: 0;
         z-index: 500;
-        background: rgba(0, 0, 0, 0.68);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(7px);
+        -webkit-backdrop-filter: blur(7px);
         display: flex;
         align-items: flex-end;
         justify-content: center;
@@ -1203,36 +1334,36 @@
       .modal {
         background: var(--s1);
         border: 1px solid var(--bd);
-        border-radius: 20px 20px 0 0;
+        border-radius: 22px 22px 0 0;
         width: 100%;
-        max-width: 480px;
-        max-height: 88vh;
+        max-width: 490px;
+        max-height: 90vh;
         overflow-y: auto;
-        padding-bottom: calc(env(safe-area-inset-bottom)+12px);
+        padding-bottom: calc(env(safe-area-inset-bottom)+14px);
         transform: translateY(100%);
-        transition: transform 0.28s cubic-bezier(0.32, 1, 0.56, 1);
+        transition: transform 0.3s cubic-bezier(0.32, 1, 0.56, 1);
       }
       .ovl.on .modal {
         transform: translateY(0);
       }
       .mh {
-        width: 28px;
+        width: 30px;
         height: 3px;
         background: var(--bd2);
         border-radius: 2px;
-        margin: 9px auto 0;
+        margin: 10px auto 0;
       }
       .mt {
         font-size: 16px;
         font-weight: 700;
-        padding: 9px 14px 11px;
+        padding: 10px 14px 12px;
         border-bottom: 1px solid var(--bd);
       }
       .mb {
-        padding: 12px 13px;
+        padding: 12px 14px;
         display: flex;
         flex-direction: column;
-        gap: 9px;
+        gap: 10px;
       }
       .ml {
         font-size: 10px;
@@ -1243,70 +1374,28 @@
         display: block;
       }
       .mf {
-        padding: 0 13px 2px;
+        padding: 0 14px 2px;
         display: flex;
         gap: 7px;
-      }
-
-      /* ━━━━━━━━━━━━━━━━━━━━ TOAST ━━━━━━━━━━━━━━━━━━━━ */
-      .toast {
-        position: fixed;
-        bottom: calc(50px + env(safe-area-inset-bottom) + 10px);
-        left: 50%;
-        transform: translateX(-50%) translateY(14px);
-        background: var(--s4);
-        border: 1px solid var(--bd2);
-        color: var(--tx);
-        padding: 8px 16px;
-        border-radius: 14px;
-        font-size: 13px;
-        font-weight: 500;
-        z-index: 900;
-        opacity: 0;
-        transition: all 0.23s;
-        pointer-events: none;
-        white-space: nowrap;
-        max-width: 86vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-      }
-      .toast.on {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
-
-      /* ━━━━━━━━━━━━━━━━━━━━ THEME SWATCHES ━━━━━━━━━━━━━━━━━━━━ */
-      .tsw {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        cursor: pointer;
-        border: 2.5px solid transparent;
-        transition: transform 0.12s, border-color 0.12s;
-        flex-shrink: 0;
-      }
-      .tsw.on {
-        border-color: #fff;
-        transform: scale(1.18);
       }
       .cswatches {
         display: flex;
         gap: 6px;
         flex-wrap: wrap;
+        margin-bottom: 4px;
       }
       .csw {
-        width: 24px;
-        height: 24px;
+        width: 26px;
+        height: 26px;
         border-radius: 50%;
         cursor: pointer;
-        border: 2px solid transparent;
+        border: 2.5px solid transparent;
         transition: transform 0.1s, border-color 0.1s;
         flex-shrink: 0;
       }
       .csw.on {
         border-color: #fff;
-        transform: scale(1.16);
+        transform: scale(1.18);
       }
       .erow {
         display: flex;
@@ -1314,12 +1403,12 @@
         flex-wrap: wrap;
       }
       .eopt {
-        width: 28px;
-        height: 28px;
-        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
-        font-size: 13px;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1331,17 +1420,96 @@
         background: var(--ac3);
       }
 
-      /* ━━━━━━━━━━━━━━━━━━━━ EMPTY ━━━━━━━━━━━━━━━━━━━━ */
+      /* ━━━ THEME SWATCHES ━━━ */
+      .tsw {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2.5px solid transparent;
+        transition: transform 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+      }
+      .tsw.on {
+        border-color: rgba(255, 255, 255, 0.9);
+        transform: scale(1.18);
+      }
+      .theme-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .theme-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+      }
+      .theme-lbl {
+        font-size: 10px;
+        color: var(--tx3);
+      }
+
+      /* ━━━ TOAST ━━━ */
+      .toast {
+        position: fixed;
+        bottom: calc(58px + env(safe-area-inset-bottom) + 10px);
+        left: 50%;
+        transform: translateX(-50%) translateY(12px);
+        background: var(--s4);
+        border: 1px solid var(--bd2);
+        color: var(--tx);
+        padding: 8px 16px;
+        border-radius: 14px;
+        font-size: 13px;
+        font-weight: 500;
+        z-index: 900;
+        opacity: 0;
+        transition: all 0.22s;
+        pointer-events: none;
+        white-space: nowrap;
+        max-width: 88vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+      .toast.on {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ━━━ SPARKLE ━━━ */
+      .sp {
+        position: fixed;
+        pointer-events: none;
+        z-index: 1500;
+        border-radius: 50%;
+        animation: spFly 0.55s ease-out forwards;
+      }
+      @keyframes spFly {
+        from {
+          opacity: 1;
+          transform: translate(0, 0) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translate(var(--dx), var(--dy)) scale(0);
+        }
+      }
+
+      /* ━━━ EMPTY ━━━ */
       .empty {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 24px 14px;
+        padding: 22px 14px;
         gap: 5px;
         text-align: center;
       }
       .ei {
-        font-size: 24px;
+        font-size: 26px;
         margin-bottom: 2px;
       }
       .et {
@@ -1353,25 +1521,6 @@
         font-size: 12px;
         color: var(--tx3);
         line-height: 1.5;
-      }
-
-      /* ━━━━━━━━━━━━━━━━━━━━ SPARKLE ━━━━━━━━━━━━━━━━━━━━ */
-      .sp {
-        position: fixed;
-        pointer-events: none;
-        z-index: 1500;
-        border-radius: 50%;
-        animation: spFly 0.5s ease-out forwards;
-      }
-      @keyframes spFly {
-        from {
-          opacity: 1;
-          transform: translate(0, 0) scale(1);
-        }
-        to {
-          opacity: 0;
-          transform: translate(var(--dx), var(--dy)) scale(0);
-        }
       }
 
       /* iOS banner */
@@ -1395,6 +1544,17 @@
         align-items: center;
         gap: 10px;
       }
+
+      /* chart */
+      .chart-box {
+        height: 110px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: 9px;
+        overflow: hidden;
+        padding: 7px;
+        position: relative;
+      }
     </style>
   </head>
   <body data-theme="pink">
@@ -1404,7 +1564,7 @@
           <div class="logo-ic">&#9824;</div>
           <div class="logo-tx">Poker<b>Studio</b></div>
         </div>
-        <div class="hdr-stats">
+        <div class="hdr-r">
           <div class="hstat">
             <div class="hstat-v" id="h-c">0</div>
             <div class="hstat-l">Combos</div>
@@ -1415,33 +1575,40 @@
           </div>
         </div>
       </header>
+
       <div class="content">
+        <!-- ═══ RANGE ═══ -->
         <div class="scr on" id="s-range">
           <div class="pg">
             <div class="card">
               <div class="ch">
                 <span class="cht">Hand Matrix</span
                 ><span id="act-lbl" style="font-size: 11px; color: var(--tx3)"
-                  >Tap to paint</span
+                  >Select action &amp; tap</span
                 >
               </div>
               <div id="matrix"></div>
               <div class="astrip" id="astrip"></div>
               <div class="fstrip" id="fstrip"></div>
+              <div
+                style="
+                  padding: 4px 12px 8px;
+                  font-size: 10px;
+                  color: var(--tx3);
+                "
+              >
+                💡 Tap hand for multi-action breakdown &nbsp;·&nbsp; Long-press
+                to clear
+              </div>
             </div>
 
             <div class="card">
-              <div class="ch"><span class="cht">Range Stats</span></div>
+              <div class="ch"><span class="cht">Range Breakdown</span></div>
               <div class="cb" style="padding-top: 8px">
-                <div class="rbar">
-                  <div
-                    class="rbar-f"
-                    id="rbar"
-                    style="width: 0%; background: var(--ac)"
-                  ></div>
-                </div>
+                <div class="rbar-wrap" id="rbar-wrap"></div>
                 <div class="rstats">
-                  <span id="rst-c">0 combos</span><span id="rst-p">0.0%</span>
+                  <span id="rst-c">0 combos</span
+                  ><span id="rst-p">0.0% of hands</span>
                 </div>
                 <div id="bdown" style="margin-top: 9px"></div>
               </div>
@@ -1457,29 +1624,25 @@
               <div class="cb" style="padding-top: 8px">
                 <div class="qg">
                   <button class="qb" onclick="qs('premium')">
-                    &#128142;<br />Premium
+                    💎<br />Premium
                   </button>
                   <button class="qb" onclick="qs('broadway')">
-                    &#128081;<br />Broadway
+                    🎭<br />Broadway
                   </button>
                   <button class="qb" onclick="qs('pairs')">
-                    &#127183;<br />All Pairs
+                    🎯<br />All Pairs
                   </button>
                   <button class="qb" onclick="qs('suited_a')">
-                    A&#9824;<br />Suited A
+                    🅰<br />Suited A
                   </button>
                   <button class="qb" onclick="qs('sc')">
-                    &#128279;<br />Suit.Conn
+                    🔗<br />Suit.Conn
                   </button>
                   <button class="qb" onclick="qs('top20')">
-                    &#11088;<br />Top 20%
+                    ⭐<br />Top 20%
                   </button>
-                  <button class="qb" onclick="clearMx()">
-                    &#128465;<br />Clear
-                  </button>
-                  <button class="qb" onclick="invertMx()">
-                    &#8596;<br />Invert
-                  </button>
+                  <button class="qb" onclick="clearMx()">🗑<br />Clear</button>
+                  <button class="qb" onclick="invertMx()">↔<br />Invert</button>
                 </div>
               </div>
             </div>
@@ -1492,7 +1655,7 @@
               >
                 <textarea
                   id="rng-import"
-                  placeholder="Paste hands: AA,KK,QQ,AKs,AKo&#10;Or with actions: raise:AA,KK,QQ call:AKs,AKo&#10;Or GTO format: AA:1.0,KK:1.0,AKs:0.75"
+                  placeholder="Paste any format:&#10;AA,KK,QQ,AKs,AKo&#10;raise:AA,KK  call:AKs,AQs&#10;AA:1.0,KK:0.75,AKs:0.5&#10;raise:AA:0.7,call:AA:0.3"
                   rows="4"
                   style="
                     resize: none;
@@ -1501,7 +1664,7 @@
                   "
                 ></textarea>
                 <button class="btn btn-ac btn-w" onclick="importRngText()">
-                  &#8599; Import to Matrix
+                  ↗ Import to Matrix
                 </button>
               </div>
             </div>
@@ -1514,53 +1677,86 @@
               >
                 <input
                   id="rng-name"
-                  placeholder="Range name (e.g. BTN Open, 3-Bet vs CO)"
+                  placeholder="Name (e.g. BTN Open, 3-Bet vs CO)"
                 />
                 <div class="chips" id="pos-chips"></div>
-                <div style="font-size: 11px; color: var(--tx3)">
-                  &#9432; Unselected cells will be saved as
+                <div style="font-size: 11px; color: var(--tx3); padding: 2px 0">
+                  ℹ️ Unselected hands saved as
                   <strong style="color: var(--ac2)">Fold</strong>
                 </div>
                 <div class="r2">
                   <button class="btn btn-ac" onclick="saveRange()">
-                    &#128190; Save Range
+                    💾 Save
                   </button>
                   <button class="btn btn-ghost" onclick="goTo('s-files')">
-                    Library
+                    📚 Library
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- ═══ TRAINER ═══ -->
         <div class="scr" id="s-trainer">
           <div class="pg">
             <div class="card">
-              <div class="ch"><span class="cht">Training Setup</span></div>
+              <div class="ch"><span class="cht">Session Setup</span></div>
               <div
                 class="cb"
-                style="display: flex; flex-direction: column; gap: 7px"
+                style="display: flex; flex-direction: column; gap: 8px"
               >
                 <div>
-                  <label class="ml">Train on Range</label>
+                  <label class="ml">Range to Train</label>
                   <select id="t-rsel">
-                    <option value="">
-                      &#8212; GTO Defaults (BTN Open) &#8212;
-                    </option>
+                    <option value="">— GTO BTN Open Defaults —</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="ml">Position / Scenario</label>
+                  <div
+                    class="chips"
+                    id="t-pos-chips"
+                    style="flex-wrap: wrap; gap: 5px"
+                  ></div>
+                </div>
+                <div>
+                  <label class="ml">Difficulty</label>
+                  <div class="r3">
+                    <div class="chip" id="tdiff-easy" onclick="setDiff('easy')">
+                      Easy
+                    </div>
+                    <div
+                      class="chip on"
+                      id="tdiff-med"
+                      onclick="setDiff('med')"
+                    >
+                      Medium
+                    </div>
+                    <div class="chip" id="tdiff-hard" onclick="setDiff('hard')">
+                      Hard
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="ml">Questions</label>
+                  <select id="st-q">
+                    <option>10</option>
+                    <option selected>20</option>
+                    <option>30</option>
+                    <option>50</option>
                   </select>
                 </div>
                 <div class="r2">
-                  <button class="btn btn-ac" onclick="startT()">
-                    &#9654; Start Session
-                  </button>
+                  <button class="btn btn-ac" onclick="startT()">▶ Start</button>
                   <button class="btn btn-ghost" onclick="resetT()">
-                    &#8635; Reset Stats
+                    ↺ Reset Stats
                   </button>
                 </div>
               </div>
             </div>
 
-            <div class="card">
+            <div class="card" id="t-session-card">
               <div class="cb">
                 <div class="prog-w">
                   <div class="prog" id="t-prog" style="width: 0%"></div>
@@ -1569,16 +1765,17 @@
                   style="
                     display: flex;
                     justify-content: space-between;
-                    margin-bottom: 8px;
+                    margin-bottom: 9px;
                   "
                 >
                   <span id="t-qnum" style="font-size: 11px; color: var(--tx3)"
                     >Not started</span
                   >
                   <span id="t-streak" style="font-size: 11px; color: var(--tx3)"
-                    >Streak: 0 &#128293;</span
+                    >Streak: 0 🔥</span
                   >
                 </div>
+
                 <div class="t-hand">
                   <div
                     style="
@@ -1588,32 +1785,62 @@
                       color: var(--tx3);
                     "
                   >
-                    Your Hand
+                    Hand
                   </div>
                   <div class="t-cards" id="t-cards">
                     <div class="pcard red">
                       <div class="pcard-r">A</div>
-                      <div class="pcard-s">&#9829;</div>
+                      <div class="pcard-s">♥</div>
                     </div>
                     <div class="pcard blk">
                       <div class="pcard-r">K</div>
-                      <div class="pcard-s">&#9824;</div>
+                      <div class="pcard-s">♠</div>
                     </div>
                   </div>
                   <div class="t-hname" id="t-hname">AK offsuit</div>
                 </div>
+
                 <div class="t-scen" id="t-scen">
-                  Select a range and press Start to begin training.
+                  Configure a range above and press Start.
                 </div>
-                <div class="t-res" id="t-res"></div>
+
+                <div
+                  id="t-hint"
+                  style="
+                    display: none;
+                    font-size: 11px;
+                    color: var(--tx3);
+                    text-align: center;
+                    margin: -3px 0 5px;
+                    font-style: italic;
+                  "
+                ></div>
+
                 <div class="t-btns" id="t-btns" style="margin-top: 8px"></div>
+
+                <div class="t-res" id="t-res"></div>
+                <div
+                  id="t-explain"
+                  style="
+                    display: none;
+                    margin-top: 7px;
+                    padding: 9px 11px;
+                    background: var(--s3);
+                    border-radius: 8px;
+                    font-size: 12px;
+                    color: var(--tx2);
+                    line-height: 1.6;
+                    border: 1px solid var(--bd);
+                  "
+                ></div>
+
                 <button
                   class="btn btn-ac btn-w"
                   id="t-next"
                   onclick="tNext()"
                   style="display: none; margin-top: 8px"
                 >
-                  Next Hand &#8594;
+                  Next Hand →
                 </button>
               </div>
             </div>
@@ -1627,7 +1854,7 @@
                     <div class="t3l">Correct</div>
                   </div>
                   <div class="t3b">
-                    <div class="t3v" id="t-sa">&#8212;</div>
+                    <div class="t3v" id="t-sa">—</div>
                     <div class="t3l">Accuracy</div>
                   </div>
                   <div class="t3b">
@@ -1635,34 +1862,37 @@
                     <div class="t3l">Best Streak</div>
                   </div>
                 </div>
+                <div id="t-cat-stats" style="margin-top: 9px"></div>
               </div>
             </div>
 
             <div class="card">
-              <div class="ch"><span class="cht">History</span></div>
+              <div class="ch"><span class="cht">Session History</span></div>
               <div class="cb" style="padding-top: 4px" id="t-hist"></div>
             </div>
           </div>
         </div>
+
+        <!-- ═══ BANKROLL ═══ -->
         <div class="scr" id="s-bank">
           <div class="pg">
             <div class="card">
               <div class="ch">
-                <span class="cht">Bankrolls</span>
-                <button class="btn btn-ac btn-sm" onclick="openBRModal()">
+                <span class="cht">Bankrolls</span
+                ><button class="btn btn-ac btn-sm" onclick="openBRModal()">
                   + New
                 </button>
               </div>
-              <div class="br-roll-strip" id="br-roll-strip"></div>
+              <div class="br-strip" id="br-strip"></div>
             </div>
 
             <div class="br-hero card">
-              <div class="br-lbl">Bankroll Balance</div>
+              <div class="br-lbl">Current Bankroll</div>
               <div class="br-val">
-                <span class="sym" id="br-sym">&#163;</span
+                <span class="sym" id="br-sym">£</span
                 ><span id="br-total">0.00</span>
               </div>
-              <div class="br-sub" id="br-sub" style="color: var(--tx3)">
+              <div id="br-sub" style="color: var(--tx3); font-size: 12px">
                 Log your first session
               </div>
             </div>
@@ -1673,25 +1903,21 @@
                 <div class="sb-l">Sessions</div>
               </div>
               <div class="sb card">
-                <div class="sb-v" id="brs-wr">&#8212;</div>
+                <div class="sb-v" id="brs-wr">—</div>
                 <div class="sb-l">Win Rate</div>
               </div>
               <div class="sb card">
-                <div class="sb-v" id="brs-best" style="font-size: 14px">
-                  &#8212;
-                </div>
+                <div class="sb-v" id="brs-best" style="font-size: 14px">—</div>
                 <div class="sb-l">Best Session</div>
               </div>
               <div class="sb card">
-                <div class="sb-v" id="brs-avg" style="font-size: 14px">
-                  &#8212;
-                </div>
+                <div class="sb-v" id="brs-avg" style="font-size: 14px">—</div>
                 <div class="sb-l">Avg P&amp;L</div>
               </div>
             </div>
 
             <div class="card">
-              <div class="ch"><span class="cht">Chart</span></div>
+              <div class="ch"><span class="cht">Equity Curve</span></div>
               <div
                 class="chart-box cb"
                 style="padding-top: 0; margin-top: -1px"
@@ -1711,31 +1937,43 @@
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
-                <input id="br-name" placeholder="Session name" />
+                <input id="br-name" placeholder="Session name (optional)" />
                 <div class="r2">
-                  <input id="br-bi" type="number" placeholder="Buy-in" />
-                  <input id="br-co" type="number" placeholder="Cash-out" />
+                  <div>
+                    <label class="ml">Buy-in</label
+                    ><input id="br-bi" type="number" placeholder="0" />
+                  </div>
+                  <div>
+                    <label class="ml">Cash-out</label
+                    ><input id="br-co" type="number" placeholder="0" />
+                  </div>
                 </div>
                 <div class="r2">
-                  <input
-                    id="br-hr"
-                    type="number"
-                    placeholder="Hours"
-                    step="0.5"
-                  />
-                  <select id="br-gt">
-                    <option>NL Cash</option>
-                    <option>PL Cash</option>
-                    <option>MTT</option>
-                    <option>Sit&amp;Go</option>
-                    <option>Spin&amp;Go</option>
-                    <option>Live Cash</option>
-                    <option>Online MTT</option>
-                  </select>
+                  <div>
+                    <label class="ml">Hours</label
+                    ><input
+                      id="br-hr"
+                      type="number"
+                      placeholder="0"
+                      step="0.5"
+                    />
+                  </div>
+                  <div>
+                    <label class="ml">Game Type</label
+                    ><select id="br-gt">
+                      <option>NL Cash</option>
+                      <option>PL Cash</option>
+                      <option>MTT</option>
+                      <option>Sit&amp;Go</option>
+                      <option>Spin&amp;Go</option>
+                      <option>Live Cash</option>
+                      <option>Online MTT</option>
+                    </select>
+                  </div>
                 </div>
                 <textarea
                   id="br-notes"
-                  placeholder="Notes (table, stakes, reads)&#8230;"
+                  placeholder="Notes, stakes, reads…"
                   rows="2"
                   style="resize: none"
                 ></textarea>
@@ -1761,30 +1999,27 @@
                     id="bf-win"
                     onclick="filterBR('win')"
                   >
-                    &#8593;Win
+                    ↑Win
                   </button>
                   <button
                     class="btn btn-ghost btn-sm"
                     id="bf-loss"
                     onclick="filterBR('loss')"
                   >
-                    &#8595;Loss
+                    ↓Loss
                   </button>
                 </div>
               </div>
-              <div style="padding: 0 12px" id="sess-list"></div>
+              <div style="padding: 0 13px" id="sess-list"></div>
             </div>
           </div>
         </div>
+
+        <!-- ═══ TOOLS ═══ -->
         <div class="scr" id="s-tools">
           <div class="pg">
             <div class="card">
-              <div class="ch">
-                <span class="cht">EV Calculator</span
-                ><span style="font-size: 10px; color: var(--tx3)"
-                  >Expected Value</span
-                >
-              </div>
+              <div class="ch"><span class="cht">EV Calculator</span></div>
               <div
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
@@ -1839,63 +2074,71 @@
                 <button class="btn btn-ac btn-w" onclick="calcPO()">
                   Calculate
                 </button>
-                <div class="r2 tool-res" id="po-res" style="display: none">
-                  <div style="text-align: center">
-                    <div
-                      style="
-                        font-size: 22px;
-                        font-weight: 700;
-                        color: var(--ac2);
-                      "
-                      id="po-odds"
-                    >
-                      &#8212;
+                <div class="tool-res" id="po-res">
+                  <div id="po-r2" class="r2" style="display: none">
+                    <div style="text-align: center">
+                      <div
+                        style="
+                          font-size: 22px;
+                          font-weight: 700;
+                          color: var(--ac2);
+                        "
+                        id="po-odds"
+                      >
+                        —
+                      </div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          color: var(--tx3);
+                          margin-top: 2px;
+                        "
+                      >
+                        Pot Odds
+                      </div>
                     </div>
-                    <div
-                      style="font-size: 9px; color: var(--tx3); margin-top: 2px"
-                    >
-                      Pot Odds
+                    <div style="text-align: center">
+                      <div
+                        style="
+                          font-size: 22px;
+                          font-weight: 700;
+                          color: var(--ac2);
+                        "
+                        id="po-mdf"
+                      >
+                        —
+                      </div>
+                      <div
+                        style="
+                          font-size: 9px;
+                          color: var(--tx3);
+                          margin-top: 2px;
+                        "
+                      >
+                        Min Defence
+                      </div>
                     </div>
                   </div>
-                  <div style="text-align: center">
-                    <div
-                      style="
-                        font-size: 22px;
-                        font-weight: 700;
-                        color: var(--ac2);
-                      "
-                      id="po-mdf"
-                    >
-                      &#8212;
-                    </div>
-                    <div
-                      style="font-size: 9px; color: var(--tx3); margin-top: 2px"
-                    >
-                      Min Defence
-                    </div>
-                  </div>
-                  <div
-                    class="tool-ri"
-                    id="po-inf"
-                    style="grid-column: span 2; margin-top: 0"
-                  ></div>
+                  <div class="tool-ri" id="po-inf"></div>
                 </div>
               </div>
             </div>
 
             <div class="card">
-              <div class="ch"><span class="cht">SPR Calculator</span></div>
+              <div class="ch">
+                <span class="cht">SPR &amp; Commitment</span>
+              </div>
               <div
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
                 <div class="r2">
                   <div>
-                    <label class="ml">Eff. Stack</label
+                    <label class="ml">Eff. Stack (bb)</label
                     ><input id="spr-s" type="number" placeholder="200" />
                   </div>
                   <div>
-                    <label class="ml">Pot</label
+                    <label class="ml">Pot (bb)</label
                     ><input id="spr-p" type="number" placeholder="50" />
                   </div>
                 </div>
@@ -1911,12 +2154,74 @@
             </div>
 
             <div class="card">
-              <div class="ch">
-                <span class="cht">ICM Pressure</span
-                ><span style="font-size: 10px; color: var(--tx3)"
-                  >Tournament</span
-                >
+              <div class="ch"><span class="cht">Bluff Break-Even</span></div>
+              <div
+                class="cb"
+                style="display: flex; flex-direction: column; gap: 7px"
+              >
+                <div class="r2">
+                  <div>
+                    <label class="ml">Pot (bb)</label
+                    ><input id="bbe-pot" type="number" placeholder="100" />
+                  </div>
+                  <div>
+                    <label class="ml">Bluff Size (bb)</label
+                    ><input id="bbe-bet" type="number" placeholder="75" />
+                  </div>
+                </div>
+                <button class="btn btn-ac btn-w" onclick="calcBBE()">
+                  Calculate
+                </button>
+                <div class="tool-res" id="bbe-res">
+                  <div class="tool-rv" id="bbe-val">—</div>
+                  <div class="tool-rl">Fold Equity Needed</div>
+                  <div class="tool-ri" id="bbe-inf"></div>
+                </div>
               </div>
+            </div>
+
+            <div class="card">
+              <div class="ch"><span class="cht">3-Bet Sizing</span></div>
+              <div
+                class="cb"
+                style="display: flex; flex-direction: column; gap: 7px"
+              >
+                <div class="r2">
+                  <div>
+                    <label class="ml">Open Size (bb)</label
+                    ><input id="tb-open" type="number" placeholder="2.5" />
+                  </div>
+                  <div>
+                    <label class="ml">Your Position</label
+                    ><select id="tb-pos">
+                      <option>IP (in position)</option>
+                      <option>OOP (out of pos)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="r2">
+                  <div>
+                    <label class="ml">Stack Depth (bb)</label
+                    ><input id="tb-stack" type="number" placeholder="100" />
+                  </div>
+                  <div>
+                    <label class="ml">Dead Money</label
+                    ><input id="tb-dead" type="number" placeholder="1.5" />
+                  </div>
+                </div>
+                <button class="btn btn-ac btn-w" onclick="calc3B()">
+                  Calculate 3-Bet Size
+                </button>
+                <div class="tool-res" id="tb-res">
+                  <div class="tool-rv" id="tb-val">—</div>
+                  <div class="tool-rl">Recommended 3-Bet</div>
+                  <div class="tool-ri" id="tb-inf"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="ch"><span class="cht">ICM Pressure</span></div>
               <div
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
@@ -1945,7 +2250,7 @@
                   Analyse ICM
                 </button>
                 <div class="tool-res" id="icm-res">
-                  <div class="tool-rv" id="icm-val">&#8212;</div>
+                  <div class="tool-rv" id="icm-val">—</div>
                   <div class="tool-rl">ICM Analysis</div>
                   <div class="tool-ri" id="icm-inf"></div>
                 </div>
@@ -1979,14 +2284,14 @@
                     id="tmr-btn"
                     onclick="toggleTmr()"
                   >
-                    &#9654; Start
+                    ▶ Start
                   </button>
                   <button class="btn btn-ghost btn-w" onclick="resetTmr()">
-                    &#8635; Reset
+                    ↺ Reset
                   </button>
                 </div>
                 <div style="width: 100%">
-                  <label class="ml">Target rate (to track EV)</label
+                  <label class="ml">Hourly rate target</label
                   ><input
                     id="tmr-rate"
                     type="number"
@@ -1997,6 +2302,8 @@
             </div>
           </div>
         </div>
+
+        <!-- ═══ FILES ═══ -->
         <div class="scr" id="s-files">
           <div class="pg">
             <div class="card">
@@ -2006,17 +2313,15 @@
                   + New
                 </button>
               </div>
-              <div style="padding: 7px 11px">
-                <input
-                  id="lib-q"
-                  placeholder="Search ranges&#8230;"
-                  oninput="renderLib()"
-                />
+              <div style="padding: 7px 12px">
+                <input id="lib-q" placeholder="Search…" oninput="renderLib()" />
               </div>
               <div id="lib-list"></div>
             </div>
           </div>
         </div>
+
+        <!-- ═══ SETTINGS ═══ -->
         <div class="scr" id="s-settings">
           <div class="pg">
             <div class="card" style="text-align: center; padding: 16px 14px">
@@ -2036,7 +2341,7 @@
                   margin: 0 auto 8px;
                 "
               >
-                &#9824;
+                ♠
               </div>
               <input
                 id="st-name"
@@ -2049,32 +2354,16 @@
                   border-radius: 0;
                   font-size: 15px;
                   font-weight: 600;
-                  max-width: 190px;
+                  max-width: 200px;
                 "
               />
             </div>
 
             <div class="card">
               <div class="sl">Theme</div>
-              <div style="padding: 0 12px 12px">
-                <div
-                  style="
-                    display: flex;
-                    gap: 10px;
-                    align-items: center;
-                    flex-wrap: wrap;
-                  "
-                >
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      gap: 4px;
-                      cursor: pointer;
-                    "
-                    onclick="setTheme('pink')"
-                  >
+              <div style="padding: 0 13px 13px">
+                <div class="theme-row">
+                  <div class="theme-item" onclick="setTheme('pink')">
                     <div
                       class="tsw on"
                       id="tsw-pink"
@@ -2082,18 +2371,9 @@
                         background: linear-gradient(135deg, #e8438a, #ff7ab5);
                       "
                     ></div>
-                    <span style="font-size: 10px; color: var(--tx3)">Pink</span>
+                    <span class="theme-lbl">Pink</span>
                   </div>
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      gap: 4px;
-                      cursor: pointer;
-                    "
-                    onclick="setTheme('midnight')"
-                  >
+                  <div class="theme-item" onclick="setTheme('midnight')">
                     <div
                       class="tsw"
                       id="tsw-midnight"
@@ -2101,20 +2381,9 @@
                         background: linear-gradient(135deg, #5b7cf5, #8fa0ff);
                       "
                     ></div>
-                    <span style="font-size: 10px; color: var(--tx3)"
-                      >Midnight</span
-                    >
+                    <span class="theme-lbl">Midnight</span>
                   </div>
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      gap: 4px;
-                      cursor: pointer;
-                    "
-                    onclick="setTheme('forest')"
-                  >
+                  <div class="theme-item" onclick="setTheme('forest')">
                     <div
                       class="tsw"
                       id="tsw-forest"
@@ -2122,20 +2391,9 @@
                         background: linear-gradient(135deg, #2ece72, #5af0a0);
                       "
                     ></div>
-                    <span style="font-size: 10px; color: var(--tx3)"
-                      >Forest</span
-                    >
+                    <span class="theme-lbl">Forest</span>
                   </div>
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      gap: 4px;
-                      cursor: pointer;
-                    "
-                    onclick="setTheme('violet')"
-                  >
+                  <div class="theme-item" onclick="setTheme('violet')">
                     <div
                       class="tsw"
                       id="tsw-violet"
@@ -2143,20 +2401,9 @@
                         background: linear-gradient(135deg, #9b5df5, #c090ff);
                       "
                     ></div>
-                    <span style="font-size: 10px; color: var(--tx3)"
-                      >Violet</span
-                    >
+                    <span class="theme-lbl">Violet</span>
                   </div>
-                  <div
-                    style="
-                      display: flex;
-                      flex-direction: column;
-                      align-items: center;
-                      gap: 4px;
-                      cursor: pointer;
-                    "
-                    onclick="setTheme('amber')"
-                  >
+                  <div class="theme-item" onclick="setTheme('amber')">
                     <div
                       class="tsw"
                       id="tsw-amber"
@@ -2164,9 +2411,7 @@
                         background: linear-gradient(135deg, #f0a020, #ffc860);
                       "
                     ></div>
-                    <span style="font-size: 10px; color: var(--tx3)"
-                      >Amber</span
-                    >
+                    <span class="theme-lbl">Amber</span>
                   </div>
                 </div>
               </div>
@@ -2183,7 +2428,7 @@
               </div>
               <div class="sr">
                 <div class="sr-l">
-                  <div class="sr-lb">Show correct action in trainer</div>
+                  <div class="sr-lb">Show correct answer in trainer</div>
                 </div>
                 <label class="tog"
                   ><input type="checkbox" id="st-sc" checked />
@@ -2193,14 +2438,13 @@
               </div>
               <div class="sr">
                 <div class="sr-l">
-                  <div class="sr-lb">Questions per session</div>
+                  <div class="sr-lb">Show hand explanation</div>
                 </div>
-                <select id="st-q" style="width: 70px; margin: 0">
-                  <option>10</option>
-                  <option selected>20</option>
-                  <option>30</option>
-                  <option>50</option>
-                </select>
+                <label class="tog"
+                  ><input type="checkbox" id="st-exp" checked />
+                  <div class="tog-t"></div>
+                  <div class="tog-k"></div
+                ></label>
               </div>
             </div>
 
@@ -2219,7 +2463,7 @@
               </div>
               <div class="sr">
                 <div class="sr-l"><div class="sr-lb">Version</div></div>
-                <span style="font-size: 12px; color: var(--tx3)">4.0 PWA</span>
+                <span style="font-size: 12px; color: var(--tx3)">5.0 PWA</span>
               </div>
             </div>
 
@@ -2227,7 +2471,7 @@
               <div class="sl" style="color: var(--rd)">Danger Zone</div>
               <div
                 style="
-                  padding: 0 12px 12px;
+                  padding: 0 13px 13px;
                   display: flex;
                   flex-direction: column;
                   gap: 6px;
@@ -2244,7 +2488,6 @@
                 </button>
               </div>
             </div>
-
             <div
               style="
                 text-align: center;
@@ -2253,11 +2496,13 @@
                 color: var(--tx3);
               "
             >
-              Poker Studio v4.0 &middot; All data stored on device
+              Poker Studio v5.0 · All data stored on device
             </div>
           </div>
         </div>
       </div>
+      <!-- /content -->
+
       <nav>
         <button class="nb on" id="nb-range" onclick="goTo('s-range')">
           <svg viewBox="0 0 24 24">
@@ -2278,7 +2523,7 @@
             <rect x="11" y="9" width="2" height="10" />
             <rect x="17" y="9" width="2" height="10" />
             <path d="M3 19h18" /></svg
-          >Bankroll
+          >Bank
         </button>
         <button class="nb" id="nb-tools" onclick="goTo('s-tools')">
           <svg viewBox="0 0 24 24">
@@ -2297,15 +2542,17 @@
         </button>
       </nav>
     </div>
-    <!-- ACTION MODAL -->
+    <!-- /app -->
+
+    <!-- MODALS -->
     <div class="ovl" id="m-act">
       <div class="modal">
         <div class="mh"></div>
         <div class="mt" id="m-act-t">New Action</div>
         <div class="mb">
           <div>
-            <label class="ml">Name</label
-            ><input id="ma-name" placeholder="e.g. Raise, 3-Bet, Limp" />
+            <label class="ml">Action Name</label
+            ><input id="ma-name" placeholder="e.g. Raise, 3-Bet, Call, Limp" />
           </div>
           <div>
             <label class="ml">Colour</label>
@@ -2314,8 +2561,8 @@
               style="
                 display: flex;
                 align-items: center;
-                gap: 6px;
-                margin-top: 6px;
+                gap: 7px;
+                margin-top: 5px;
               "
             >
               <input
@@ -2323,20 +2570,23 @@
                 id="ma-cc"
                 value="#e8438a"
                 style="
-                  width: 30px;
-                  height: 24px;
+                  width: 32px;
+                  height: 26px;
                   padding: 2px;
-                  border-radius: 5px;
+                  border-radius: 6px;
                 "
-              /><span style="font-size: 11px; color: var(--tx3)"
-                >Custom colour</span
-              >
+              /><span style="font-size: 11px; color: var(--tx3)">Custom</span>
             </div>
           </div>
           <div>
             <label class="ml">Icon</label>
             <div class="erow" id="ma-emj"></div>
           </div>
+        </div>
+        <div id="ma-del-wrap" style="padding: 0 14px 4px; display: none">
+          <button class="btn btn-rd btn-w btn-sm" onclick="delAct()">
+            Delete this action
+          </button>
         </div>
         <div class="mf">
           <button
@@ -2353,7 +2603,6 @@
       </div>
     </div>
 
-    <!-- RENAME MODAL -->
     <div class="ovl" id="m-ren">
       <div class="modal">
         <div class="mh"></div>
@@ -2367,16 +2616,14 @@
             style="flex: 1"
             onclick="closeM('m-ren')"
           >
-            Cancel
-          </button>
-          <button class="btn btn-ac" style="flex: 1" onclick="doRename()">
+            Cancel</button
+          ><button class="btn btn-ac" style="flex: 1" onclick="doRename()">
             Rename
           </button>
         </div>
       </div>
     </div>
 
-    <!-- BANKROLL MODAL -->
     <div class="ovl" id="m-br">
       <div class="modal">
         <div class="mh"></div>
@@ -2388,7 +2635,11 @@
           </div>
           <div>
             <label class="ml">Currency</label>
-            <div class="chips" id="mbr-cur-chips" style="margin-top: 5px"></div>
+            <div
+              class="chips"
+              id="mbr-cur-chips"
+              style="margin-top: 5px; flex-wrap: wrap"
+            ></div>
           </div>
           <div>
             <label class="ml">Starting Balance</label
@@ -2402,6 +2653,11 @@
               placeholder="e.g. 200 (optional)"
             />
           </div>
+        </div>
+        <div id="mbr-del-wrap" style="padding: 0 14px 4px; display: none">
+          <button class="btn btn-rd btn-w btn-sm" onclick="delBR()">
+            Delete this bankroll
+          </button>
         </div>
         <div class="mf">
           <button
@@ -2418,7 +2674,6 @@
       </div>
     </div>
 
-    <!-- SESSION DETAIL MODAL -->
     <div class="ovl" id="m-sess">
       <div class="modal">
         <div class="mh"></div>
@@ -2430,36 +2685,37 @@
             style="flex: 1"
             onclick="closeM('m-sess')"
           >
-            Close
+            Close</button
+          ><button class="btn btn-rd" style="flex: 1" id="ms-del">
+            Delete
           </button>
-          <button class="btn btn-rd" style="flex: 1" id="ms-del">Delete</button>
         </div>
       </div>
     </div>
+
     <div class="toast" id="toast"></div>
     <div id="ios-banner">
       <div class="ios-in">
-        <div style="font-size: 18px">&#9824;</div>
+        <div style="font-size: 18px">♠</div>
         <div style="flex: 1">
           <div style="font-size: 13px; font-weight: 600">
             Install Poker Studio
           </div>
           <div style="font-size: 11px; color: var(--tx3); margin-top: 1px">
-            Safari: Share &#8594; Add to Home Screen
+            Safari: Share → Add to Home Screen
           </div>
         </div>
         <button
           onclick="dismissBanner()"
           style="color: var(--tx3); font-size: 18px; padding: 4px 8px"
         >
-          &#10005;
+          ✕
         </button>
       </div>
     </div>
+
     <script>
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // CONSTANTS
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ CONSTANTS ━━━
       const RK = [
         "A",
         "K",
@@ -2487,8 +2743,8 @@
         "#00cec9",
         "#fd79a8",
         "#f0a020",
-        "#636e72",
-        "#b2bec3",
+        "#a29bfe",
+        "#55efc4",
       ];
       const PEMJ = [
         "🔴",
@@ -2515,7 +2771,17 @@
         SB: "#74b9ff",
         BB: "#9b5df5",
       };
-      const POSITIONS = ["UTG", "MP", "CO", "BTN", "SB", "BB"];
+      const POSITIONS = ["UTG", "UTG+1", "MP", "MP+1", "CO", "BTN", "SB", "BB"];
+      const CURS = ["GBP", "USD", "EUR", "JPY", "CAD", "AUD", "BB"];
+      const CUR_SYM = {
+        GBP: "£",
+        USD: "$",
+        EUR: "€",
+        JPY: "¥",
+        CAD: "CA$",
+        AUD: "AU$",
+        BB: "BB",
+      };
       const GTO = [
         "AA",
         "KK",
@@ -2566,26 +2832,14 @@
         "76s",
         "65s",
       ];
-      const FREQS = [100, 75, 66, 50, 33, 25];
-      const CURS = ["GBP", "USD", "EUR", "JPY", "CAD", "AUD", "BB"];
-      const CUR_SYM = {
-        GBP: "£",
-        USD: "$",
-        EUR: "€",
-        JPY: "¥",
-        CAD: "CA$",
-        AUD: "AU$",
-        BB: "BB",
-      };
+      const FREQS = [100, 75, 66, 50, 33, 25, 10];
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // STATE — cs[key] = {a: actionId, f: 0-100}
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      function defBR(name, cur) {
+      // ━━━ STATE: S.cs[key] = [{a:actionId, f:0-100}, ...] summing ≤100 (remainder = fold) ━━━
+      function defBR(n, c) {
         return {
           id: "br" + Date.now() + Math.random().toString(36).slice(2),
-          name: name || "Main Bankroll",
-          cur: cur || "GBP",
+          name: n || "Main Bankroll",
+          cur: c || "GBP",
           startBR: 0,
           stopLoss: 0,
           sessions: [],
@@ -2597,7 +2851,7 @@
           actions: [
             { id: "raise", name: "Raise", color: "#e8438a", emoji: "🔴" },
             { id: "call", name: "Call", color: "#34c97a", emoji: "🟢" },
-            { id: "fold", name: "Fold", color: "#55556a", emoji: "⬛" },
+            { id: "fold", name: "Fold", color: "#636e72", emoji: "⬛" },
           ],
           ranges: [],
           bankrolls: [],
@@ -2611,10 +2865,17 @@
             uname: "",
             anim: true,
             showCorr: true,
-            qcount: 20,
+            showExp: true,
             theme: "pink",
           },
-          trainer: { correct: 0, wrong: 0, streak: 0, best: 0, history: [] },
+          trainer: {
+            correct: 0,
+            wrong: 0,
+            streak: 0,
+            best: 0,
+            history: [],
+            catStats: {},
+          },
         };
       }
 
@@ -2629,22 +2890,22 @@
               return d;
             }
           };
-          S.cs = lg("ps_cs", {});
-          // migrate old string format
-          Object.keys(S.cs).forEach((k) => {
-            if (typeof S.cs[k] === "string") S.cs[k] = { a: S.cs[k], f: 100 };
+          // migrate old format: S.cs[key] was {a,f} now it's [{a,f}]
+          const rawCs = lg("ps_cs", {});
+          Object.entries(rawCs).forEach(([k, v]) => {
+            if (Array.isArray(v)) S.cs[k] = v;
+            else if (v && v.a) {
+              S.cs[k] = [{ a: v.a, f: v.f || 100 }];
+            }
           });
           const la = lg("ps_ac", null);
           if (la) S.actions = la;
           S.ranges = lg("ps_ra", []);
-          // multiple bankrolls — migrate old sessions
           const brs = lg("ps_brs", null);
-          if (brs && brs.length) {
-            S.bankrolls = brs;
-          } else {
+          if (brs && brs.length) S.bankrolls = brs;
+          else {
             const br = defBR("Main Bankroll", "GBP");
-            const oldSess = lg("ps_se", []);
-            br.sessions = oldSess;
+            br.sessions = lg("ps_se", []);
             S.bankrolls = [br];
           }
           S.activeBRId =
@@ -2662,15 +2923,12 @@
         }
       }
       let S = loadS();
-      if (!S.bankrolls.length) {
-        S.bankrolls = [defBR("Main Bankroll", "GBP")];
-      }
+      if (!S.bankrolls.length) S.bankrolls = [defBR("Main Bankroll", "GBP")];
       if (!S.activeBRId) S.activeBRId = S.bankrolls[0].id;
 
       function getActiveBR() {
         return S.bankrolls.find((b) => b.id === S.activeBRId) || S.bankrolls[0];
       }
-
       function save() {
         try {
           localStorage.setItem("ps_cs", JSON.stringify(S.cs));
@@ -2689,14 +2947,39 @@
               wrong: S.trainer.wrong,
               best: S.trainer.best,
               history: S.trainer.history,
+              catStats: S.trainer.catStats,
             })
           );
         } catch {}
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // NAV
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ HELPERS ━━━
+      function getFoldId() {
+        return (
+          S.actions.find(
+            (a) => a.name.toLowerCase() === "fold" || a.id === "fold"
+          )?.id || "fold"
+        );
+      }
+      function combosForKey(key) {
+        const i = RK.indexOf(key[0]),
+          j = RK.indexOf(key[1] || key[0]);
+        if (key.length === 2 && key[0] === key[1]) return 6;
+        if (key.endsWith("s")) return 4;
+        return 12;
+      }
+      function getAction(id) {
+        return (
+          S.actions.find((a) => a.id === id) || {
+            id,
+            name: id,
+            color: "#555",
+            emoji: "⬛",
+          }
+        );
+      }
+
+      // ━━━ NAV ━━━
       function goTo(id) {
         document
           .querySelectorAll(".scr")
@@ -2711,21 +2994,14 @@
         if (id === "s-trainer") {
           updTSel();
           renderTHist();
+          updTStats();
         }
-        if (id === "s-bank") {
-          renderBR();
-        }
-        if (id === "s-files") {
-          renderLib();
-        }
-        if (id === "s-settings") {
-          applySetUI();
-        }
+        if (id === "s-bank") renderBR();
+        if (id === "s-files") renderLib();
+        if (id === "s-settings") applySetUI();
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // MATRIX — TAP ONLY
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ MATRIX ━━━
       function buildMx() {
         const mx = document.getElementById("matrix");
         mx.innerHTML = "";
@@ -2733,42 +3009,100 @@
           for (let j = 0; j < 13; j++) {
             const r1 = RK[i],
               r2 = RK[j];
-            let label, type, key;
+            let label,
+              key,
+              isPair = false;
             if (i === j) {
               label = r1 + r2;
-              type = "pair";
               key = r1 + r2;
+              isPair = true;
             } else if (i < j) {
               label = r1 + r2 + "s";
-              type = "suited";
               key = r1 + r2 + "s";
             } else {
               label = r2 + r1 + "o";
-              type = "offsuit";
               key = r2 + r1 + "o";
             }
             const c = document.createElement("div");
-            c.className = "cell" + (type === "pair" ? " pair" : "");
+            c.className = "cell" + (isPair ? " pair" : "");
             c.dataset.key = key;
-            c.textContent = label;
-            applyCell(c, S.cs[key] || null);
-            c.addEventListener("click", () => tapCell(key, c));
+            c.innerHTML =
+              '<div class="cell-bg" id="cbg-' +
+              key +
+              '"></div><span class="cell-lbl">' +
+              label +
+              "</span>";
+            applyCell(c, S.cs[key] || []);
+            c.addEventListener("click", (e) => {
+              e.stopPropagation();
+              tapCell(key, c);
+            });
+            // Long press to show breakdown popup
+            let lpt;
+            c.addEventListener(
+              "touchstart",
+              (e) => {
+                lpt = setTimeout(() => {
+                  e.preventDefault();
+                  showCellPopup(key, c);
+                }, 480);
+              },
+              { passive: true }
+            );
+            c.addEventListener("touchend", () => clearTimeout(lpt));
+            c.addEventListener("touchmove", () => clearTimeout(lpt));
             mx.appendChild(c);
           }
       }
 
       function tapCell(key, cell) {
-        const cur = S.cs[key];
-        const curAction = cur ? cur.a : null;
-        // if same action same freq → clear; if same action diff freq → update freq; else set new
+        const cur = S.cs[key] || [];
         if (S.curAct === null) {
-          delete S.cs[key];
-        } else if (curAction === S.curAct && cur.f === S.curFreq) {
-          delete S.cs[key];
+          // Erase
+          S.cs[key] = [];
         } else {
-          S.cs[key] = { a: S.curAct, f: S.curFreq };
+          const foldId = getFoldId();
+          const actId = S.curAct;
+          const freq = S.curFreq;
+          // Find existing entry for this action
+          const existIdx = cur.findIndex((x) => x.a === actId);
+          if (existIdx >= 0 && cur[existIdx].f === freq && cur.length === 1) {
+            // Toggle off: same action same freq and it's the only one → clear
+            S.cs[key] = [];
+          } else {
+            // Set this action to freq, scale remaining actions proportionally
+            const others = cur.filter((x) => x.a !== actId && x.a !== foldId);
+            const remaining = 100 - freq;
+            const othersTotal = others.reduce((s, x) => s + x.f, 0);
+            let newActions = [{ a: actId, f: freq }];
+            if (remaining > 0 && others.length > 0 && othersTotal > 0) {
+              let scaleSum = 0;
+              const scaled = others.map((o) => {
+                const f = Math.round((o.f / othersTotal) * remaining);
+                scaleSum += f;
+                return { a: o.a, f };
+              });
+              // fix rounding
+              const diff = remaining - scaleSum;
+              if (scaled.length > 0 && diff !== 0)
+                scaled[scaled.length - 1].f += diff;
+              scaled.forEach((s) => {
+                if (s.f > 0) newActions.push(s);
+              });
+            } else if (remaining > 0 && others.length === 0) {
+              // sole action at <100% freq — that's fine, rest is fold
+            }
+            // clamp
+            let total = newActions.reduce((s, x) => s + x.f, 0);
+            if (total > 100) {
+              const excess = total - 100;
+              newActions[newActions.length > 1 ? newActions.length - 1 : 0].f -=
+                excess;
+            }
+            S.cs[key] = newActions.filter((x) => x.f > 0);
+          }
         }
-        applyCell(cell, S.cs[key] || null);
+        applyCell(cell, S.cs[key] || []);
         if (S.settings.anim) {
           cell.classList.remove("pop");
           void cell.offsetWidth;
@@ -2778,84 +3112,125 @@
         save();
       }
 
-      function applyCell(cell, cs) {
-        // remove freq badge
-        const old = cell.querySelector(".cell-freq");
-        if (old) old.remove();
-        if (!cs || !cs.a) {
+      function applyCell(cell, actions) {
+        const bg = cell.querySelector(".cell-bg");
+        if (bg) bg.innerHTML = "";
+        if (!actions || !actions.length) {
           cell.style.background = "var(--s3)";
-          cell.style.cssText += "";
-          cell.style.background = "var(--s3)";
-          cell.style.color = "var(--tx3)";
           cell.classList.remove("lit");
           return;
         }
-        const a = S.actions.find((x) => x.id === cs.a);
-        if (!a) {
+        const nonFold = actions.filter((a) => a.a !== getFoldId());
+        if (!nonFold.length) {
           cell.style.background = "var(--s3)";
-          cell.style.color = "var(--tx3)";
           cell.classList.remove("lit");
           return;
         }
-        const f = cs.f || 100;
-        if (f < 100) {
-          // partial fill: gradient shows frequency as a left-fill
-          cell.style.background =
-            "linear-gradient(to right," +
-            a.color +
-            " " +
-            f +
-            "%,var(--s3) " +
-            f +
-            "%)";
-          // add freq badge
-          const badge = document.createElement("div");
-          badge.className = "cell-freq";
-          badge.textContent = f + "%";
-          cell.appendChild(badge);
-        } else {
-          cell.style.background = a.color;
-        }
+        // Build colour segments
+        const total = nonFold.reduce((s, x) => s + x.f, 0);
+        let foldPct = 100 - total;
+        if (foldPct < 0) foldPct = 0;
+        cell.style.background = "transparent";
         cell.classList.add("lit");
-        const rv = parseInt(a.color.slice(1, 3), 16),
-          gv = parseInt(a.color.slice(3, 5), 16),
-          bv = parseInt(a.color.slice(5, 7), 16);
-        cell.style.color =
-          (rv * 299 + gv * 587 + bv * 114) / 1000 > 145 ? "#111" : "#fff";
+        if (bg) {
+          nonFold.forEach(({ a, f }) => {
+            const act = getAction(a);
+            const pct = f;
+            const seg = document.createElement("div");
+            seg.className = "cell-seg";
+            seg.style.width = pct + "%";
+            seg.style.background = act.color;
+            bg.appendChild(seg);
+          });
+          if (foldPct > 0) {
+            const seg = document.createElement("div");
+            seg.className = "cell-seg";
+            seg.style.width = foldPct + "%";
+            seg.style.background = "var(--s3)";
+            bg.appendChild(seg);
+          }
+        }
       }
 
       function rebuildMx() {
-        document
-          .querySelectorAll("#matrix .cell")
-          .forEach((c) => applyCell(c, S.cs[c.dataset.key] || null));
+        document.querySelectorAll("#matrix .cell").forEach((c) => {
+          applyCell(c, S.cs[c.dataset.key] || []);
+        });
       }
 
+      // Cell popup for breakdown
+      let cpTimeout;
+      function showCellPopup(key, cell) {
+        closePopup();
+        const actions = S.cs[key] || [];
+        const nonFold = actions.filter((a) => a.a !== getFoldId());
+        const rect = cell.getBoundingClientRect();
+        const popup = document.createElement("div");
+        popup.className = "cell-popup";
+        popup.id = "cpopup";
+        const foldPct = 100 - nonFold.reduce((s, x) => s + x.f, 0);
+        let html = `<div class="cp-title">${key}</div>`;
+        nonFold.forEach(({ a, f }) => {
+          const act = getAction(a);
+          html += `<div class="cp-row"><div class="cp-dot" style="background:${act.color}"></div><div class="cp-nm">${act.emoji} ${act.name}</div><div class="cp-f">${f}%</div></div>`;
+        });
+        if (foldPct > 0) html += `<div class="cp-fld">Fold: ${foldPct}%</div>`;
+        html +=
+          '<button class="cp-clear" onclick="clearCell(\'' +
+          key +
+          "')\">Clear Hand</button>";
+        popup.innerHTML = html;
+        let top = rect.bottom + 6,
+          left = rect.left - 60;
+        if (top + 140 > window.innerHeight) top = rect.top - 145;
+        if (left < 4) left = 4;
+        if (left + 170 > window.innerWidth) left = window.innerWidth - 174;
+        popup.style.cssText = `top:${top}px;left:${left}px;`;
+        document.body.appendChild(popup);
+        cpTimeout = setTimeout(closePopup, 4000);
+      }
+      function clearCell(key) {
+        S.cs[key] = [];
+        const cell = document.querySelector('.cell[data-key="' + key + '"]');
+        if (cell) applyCell(cell, []);
+        updateStats();
+        save();
+        closePopup();
+      }
+      function closePopup() {
+        clearTimeout(cpTimeout);
+        document.getElementById("cpopup")?.remove();
+      }
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".cell-popup") && !e.target.closest(".cell"))
+          closePopup();
+      });
+
+      // ━━━ STATS (excludes fold) ━━━
       function updateStats() {
+        const foldId = getFoldId();
         const counts = {};
-        S.actions.forEach((a) => (counts[a.id] = 0));
+        S.actions
+          .filter((a) => a.id !== foldId)
+          .forEach((a) => (counts[a.id] = 0));
         let total = 0;
         for (let i = 0; i < 13; i++)
           for (let j = 0; j < 13; j++) {
             const r1 = RK[i],
               r2 = RK[j];
-            let key, type;
-            if (i === j) {
-              key = r1 + r2;
-              type = "pair";
-            } else if (i < j) {
-              key = r1 + r2 + "s";
-              type = "suited";
-            } else {
-              key = r2 + r1 + "o";
-              type = "offsuit";
-            }
-            const n = type === "pair" ? 6 : type === "suited" ? 4 : 12;
-            const cs = S.cs[key];
-            if (cs && cs.a && counts[cs.a] !== undefined) {
-              const weighted = (n * (cs.f || 100)) / 100;
-              counts[cs.a] += weighted;
-              total += weighted;
-            }
+            let key;
+            if (i === j) key = r1 + r2;
+            else if (i < j) key = r1 + r2 + "s";
+            else key = r2 + r1 + "o";
+            const n = combosForKey(key);
+            const actions = (S.cs[key] || []).filter((x) => x.a !== foldId);
+            actions.forEach(({ a, f }) => {
+              if (counts[a] !== undefined) {
+                const w = (n * f) / 100;
+                counts[a] += w;
+                total += w;
+              }
+            });
           }
         const pct = (total / TOTAL) * 100;
         document.getElementById("h-c").textContent = Math.round(total);
@@ -2863,24 +3238,40 @@
         document.getElementById("rst-c").textContent =
           Math.round(total) + " combos";
         document.getElementById("rst-p").textContent =
-          pct.toFixed(1) + "% of hands";
-        const fill = document.getElementById("rbar");
-        if (fill) {
-          fill.style.width = pct + "%";
-          const a = S.curAct ? S.actions.find((x) => x.id === S.curAct) : null;
-          if (a) fill.style.background = a.color;
+          pct.toFixed(1) + "% (excl. fold)";
+        // Multi-colour bar
+        const barWrap = document.getElementById("rbar-wrap");
+        if (barWrap) {
+          barWrap.innerHTML = "";
+          S.actions
+            .filter((a) => a.id !== foldId && counts[a.id] > 0.1)
+            .forEach((a) => {
+              const seg = document.createElement("div");
+              seg.className = "rbar-seg";
+              seg.style.width = (counts[a.id] / TOTAL) * 100 + "%";
+              seg.style.background = a.color;
+              barWrap.appendChild(seg);
+            });
         }
-        renderBdown(counts);
+        renderBdown(counts, total);
       }
 
-      function renderBdown(counts) {
+      function renderBdown(counts, total) {
         const el = document.getElementById("bdown");
         if (!el) return;
-        const mx2 = Math.max(...Object.values(counts), 1);
-        el.innerHTML = S.actions
-          .filter((a) => counts[a.id] > 0.01)
-          .map(
-            (a) =>
+        const foldId = getFoldId();
+        const acts = S.actions.filter(
+          (a) => a.id !== foldId && counts[a.id] > 0.01
+        );
+        if (!acts.length) {
+          el.innerHTML = "";
+          return;
+        }
+        el.innerHTML = acts
+          .map((a) => {
+            const pct = total ? (counts[a.id] / total) * 100 : 0;
+            const comboPct = (counts[a.id] / TOTAL) * 100;
+            return (
               '<div class="bdrow"><div class="bddot" style="background:' +
               a.color +
               '"></div><div class="bdnm">' +
@@ -2890,45 +3281,42 @@
               '</div><div class="bdbw"><div class="bdb" style="background:' +
               a.color +
               ";width:" +
-              (counts[a.id] / mx2) * 100 +
+              pct +
               '%"></div></div><div class="bdn">' +
               Math.round(counts[a.id]) +
-              "</div></div>"
-          )
+              '</div><div class="bdf">' +
+              comboPct.toFixed(1) +
+              "%</div></div>"
+            );
+          })
           .join("");
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // ACTION STRIP + FREQ STRIP
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ ACTION STRIP ━━━
       function renderAstrip() {
         const strip = document.getElementById("astrip");
         if (!strip) return;
         strip.innerHTML = "";
+        const foldId = getFoldId();
         S.actions.forEach((a) => {
+          if (a.id === foldId) return; // don't show fold as painting action
           const p = document.createElement("div");
           p.className = "apill" + (S.curAct === a.id ? " on" : "");
           if (S.curAct === a.id) {
             p.style.background = a.color + "28";
             p.style.borderColor = a.color;
+            p.style.color = "#fff";
           }
-          p.innerHTML =
-            '<div class="adot" style="background:' +
-            a.color +
-            '"></div>' +
-            a.name;
+          p.innerHTML = `<div class="adot" style="background:${a.color}"></div>${a.emoji} ${a.name}<span class="aedit" onclick="event.stopPropagation();openActModal('${a.id}')">✎</span>`;
           p.onclick = () => {
             S.curAct = a.id;
             save();
             renderAstrip();
             updateStats();
           };
-          p.addEventListener("contextmenu", (e) => {
-            e.preventDefault();
-            openActModal(a.id);
-          });
           strip.appendChild(p);
         });
+        // Erase pill
         const ep = document.createElement("div");
         ep.className = "apill" + (S.curAct === null ? " on" : "");
         ep.innerHTML =
@@ -2937,20 +3325,23 @@
           S.curAct = null;
           save();
           renderAstrip();
-          updateStats();
         };
         strip.appendChild(ep);
-
+        // Update label
         const lbl = document.getElementById("act-lbl");
         if (lbl) {
-          const a = S.curAct ? S.actions.find((x) => x.id === S.curAct) : null;
-          lbl.textContent = a
-            ? a.emoji +
+          if (S.curAct === null) {
+            lbl.textContent = "Erase mode";
+            lbl.style.color = "var(--tx3)";
+          } else {
+            const a = getAction(S.curAct);
+            lbl.textContent =
+              a.emoji +
               " " +
               a.name +
-              (S.curFreq < 100 ? " @" + S.curFreq + "%" : "")
-            : "Erase";
-          lbl.style.color = a ? a.color : "var(--tx3)";
+              (S.curFreq < 100 ? " @ " + S.curFreq + "%" : "");
+            lbl.style.color = a.color;
+          }
         }
       }
 
@@ -2961,7 +3352,7 @@
         FREQS.forEach((f) => {
           const p = document.createElement("div");
           p.className = "fpill" + (S.curFreq === f ? " on" : "");
-          p.textContent = f === "100" ? "100%" : f + "%";
+          p.textContent = f + "%";
           p.onclick = () => {
             S.curFreq = f;
             save();
@@ -2972,12 +3363,12 @@
         });
       }
 
-      // action modal
+      // ━━━ ACTION MODAL ━━━
       let maCol = "#e8438a",
         maEmj = "🔴",
         maEid = null;
-      function openActModal(eid = null) {
-        maEid = eid;
+      function openActModal(eid) {
+        maEid = eid || null;
         const ex = eid ? S.actions.find((a) => a.id === eid) : null;
         document.getElementById("m-act-t").textContent = eid
           ? "Edit Action"
@@ -2988,24 +3379,22 @@
         document.getElementById("ma-cc").value = maCol;
         document.getElementById("ma-cols").innerHTML = PCOLS.map(
           (c) =>
-            '<div class="csw' +
-            (c === maCol ? " on" : "") +
-            '" style="background:' +
-            c +
-            '" onclick="pickCol(\'' +
-            c +
-            "',this)\"></div>"
+            `<div class="csw${
+              c === maCol ? " on" : ""
+            }" style="background:${c}" onclick="pickCol('${c}',this)"></div>`
         ).join("");
         document.getElementById("ma-emj").innerHTML = PEMJ.map(
           (e) =>
-            '<div class="eopt' +
-            (e === maEmj ? " on" : "") +
-            '" onclick="pickEmj(\'' +
-            e +
-            "',this)\">" +
-            e +
-            "</div>"
+            `<div class="eopt${
+              e === maEmj ? " on" : ""
+            }" onclick="pickEmj('${e}',this)">${e}</div>`
         ).join("");
+        const delWrap = document.getElementById("ma-del-wrap");
+        if (delWrap)
+          delWrap.style.display =
+            eid && eid !== "raise" && eid !== "call" && eid !== "fold"
+              ? "block"
+              : "none";
         openM("m-act");
         setTimeout(() => document.getElementById("ma-name").focus(), 220);
       }
@@ -3047,20 +3436,36 @@
             color: maCol,
             emoji: maEmj,
           });
-          S.curAct = S.actions[S.actions.length - 1].id;
         }
+        if (!maEid) S.curAct = S.actions[S.actions.length - 1].id;
         save();
         closeM("m-act");
         renderAstrip();
         rebuildMx();
         updateStats();
-        toast(maEid ? "Action updated" : "Action added ✓");
+        toast(maEid ? name + " updated" : "Action added ✓");
+      }
+      function delAct() {
+        if (!maEid) return;
+        // remove from all cells
+        Object.keys(S.cs).forEach((k) => {
+          S.cs[k] = (S.cs[k] || []).filter((x) => x.a !== maEid);
+        });
+        S.actions = S.actions.filter((a) => a.id !== maEid);
+        if (S.curAct === maEid) S.curAct = "raise";
+        save();
+        closeM("m-act");
+        renderAstrip();
+        rebuildMx();
+        updateStats();
+        toast("Action deleted");
       }
 
       function initPosChips() {
         const el = document.getElementById("pos-chips");
+        if (!el) return;
         el.innerHTML = "";
-        POSITIONS.forEach((p) => {
+        ["UTG", "MP", "CO", "BTN", "SB", "BB"].forEach((p) => {
           const c = document.createElement("div");
           c.className = "chip" + (p === S.curPos ? " on" : "");
           c.textContent = p;
@@ -3076,10 +3481,12 @@
         });
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // QUICK SELECT
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ QUICK SELECT ━━━
       function qs(type) {
+        if (!S.curAct) {
+          toast("Select an action first");
+          return;
+        }
         const sets = {
           premium: ["AA", "KK", "QQ", "JJ", "TT", "AKs", "AKo", "AQs"],
           broadway: [
@@ -3121,13 +3528,23 @@
             "T9s",
           ],
         };
-        const hands = sets[type] || [];
-        if (!S.curAct) {
-          toast("Select an action first");
-          return;
-        }
-        hands.forEach((h) => {
-          S.cs[h] = { a: S.curAct, f: S.curFreq };
+        (sets[type] || []).forEach((h) => {
+          const cur = S.cs[h] || [];
+          const freq = S.curFreq;
+          const actId = S.curAct;
+          const others = cur.filter(
+            (x) => x.a !== actId && x.a !== getFoldId()
+          );
+          const remaining = 100 - freq;
+          const othTotal = others.reduce((s, x) => s + x.f, 0);
+          let na = [{ a: actId, f: freq }];
+          if (remaining > 0 && others.length && othTotal > 0) {
+            others.forEach((o) => {
+              const f = Math.round((o.f / othTotal) * remaining);
+              if (f > 0) na.push({ a: o.a, f });
+            });
+          }
+          S.cs[h] = na;
         });
         rebuildMx();
         updateStats();
@@ -3142,6 +3559,10 @@
         toast("Range cleared");
       }
       function invertMx() {
+        if (!S.curAct) {
+          toast("Select an action first");
+          return;
+        }
         for (let i = 0; i < 13; i++)
           for (let j = 0; j < 13; j++) {
             const r1 = RK[i],
@@ -3150,26 +3571,24 @@
             if (i === j) key = r1 + r2;
             else if (i < j) key = r1 + r2 + "s";
             else key = r2 + r1 + "o";
-            if (S.cs[key]) delete S.cs[key];
-            else if (S.curAct) S.cs[key] = { a: S.curAct, f: S.curFreq };
+            const cur = S.cs[key] || [];
+            const hasAct = cur.some((x) => x.a === S.curAct);
+            if (hasAct) S.cs[key] = cur.filter((x) => x.a !== S.curAct);
+            else S.cs[key] = [...cur, { a: S.curAct, f: S.curFreq }];
           }
         rebuildMx();
         updateStats();
         save();
-        toast("Range inverted");
+        toast("Inverted ✓");
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // RANGE TEXT IMPORT
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ IMPORT TEXT ━━━
       function importRngText() {
         const raw = document.getElementById("rng-import").value.trim();
         if (!raw) {
           toast("Paste a range first");
           return;
         }
-        let count = 0;
-        // Build set of all valid keys for quick lookup
         const validKeys = new Set();
         for (let i = 0; i < 13; i++)
           for (let j = 0; j < 13; j++) {
@@ -3179,75 +3598,67 @@
             else if (i < j) validKeys.add(r1 + r2 + "s");
             else validKeys.add(r2 + r1 + "o");
           }
-
-        // Try to detect format:
-        // Format A: "raise: AA,KK,QQ  call: AKs,AKo"  (action prefix)
-        // Format B: "AA:1.0,KK:0.75,AKs:0.5"  (GTO solver with freq 0-1)
-        // Format C: "AA,KK,QQ,AKs"  (simple list — uses current action+freq)
-
-        const curActId = S.curAct || "raise";
-        const curFreqVal = S.curFreq || 100;
-
-        // Check for action-prefixed format
-        const actionPrefixed = /\b(raise|call|fold|[a-z0-9_]+)\s*:/i.test(raw);
-        // Check for GTO solver format (number after colon, 0-1)
-        const gtoFormat =
-          /\b[A-KT][A-KT][so]?:0\.\d/i.test(raw) ||
-          /\b[A-KT][A-KT][so]?:1\.?0?\b/i.test(raw);
-
-        if (actionPrefixed) {
-          // Split on action names followed by colon
+        let count = 0;
+        const curAct = S.curAct || "raise";
+        const curF = S.curFreq || 100;
+        const gtoFmt =
+          /[A-KT][A-KT][so]?:0\.\d/i.test(raw) ||
+          /[A-KT][A-KT][so]?:1\.?0?\b/i.test(raw);
+        const actPfx =
+          /\b(raise|call|fold|[a-z0-9_]+)\s*:/i.test(raw) &&
+          !/:[01]\.\d/.test(raw);
+        if (actPfx) {
           const parts = raw.split(/([a-z0-9_\-]+)\s*:/gi);
-          let curPart = curActId;
+          let curPart = curAct;
           for (let i = 0; i < parts.length; i++) {
             const p = parts[i].trim();
             if (!p) continue;
-            // check if it's an action name
-            const matchedAct = S.actions.find(
+            const matchAct = S.actions.find(
               (a) =>
                 a.name.toLowerCase() === p.toLowerCase() ||
                 a.id.toLowerCase() === p.toLowerCase()
             );
-            if (matchedAct) {
-              curPart = matchedAct.id;
+            if (matchAct) {
+              curPart = matchAct.id;
               continue;
             }
-            // else it's hand data
-            const hands = p.split(/[\s,;]+/).filter(Boolean);
-            hands.forEach((h) => {
+            p.split(/[\s,;]+/).forEach((h) => {
               const k = normalizeKey(h);
               if (k && validKeys.has(k)) {
-                S.cs[k] = { a: curPart, f: curFreqVal };
+                const cur = S.cs[k] || [];
+                const existing = cur.find((x) => x.a === curPart);
+                if (existing) existing.f = curF;
+                else cur.push({ a: curPart, f: curF });
+                S.cs[k] = cur;
                 count++;
               }
             });
           }
-        } else if (gtoFormat) {
-          // AA:1.0,KK:0.75 format
-          const tokens = raw.split(/[\s,;]+/).filter(Boolean);
-          tokens.forEach((t) => {
+        } else if (gtoFmt) {
+          raw.split(/[\s,;]+/).forEach((t) => {
             const m = t.match(/^([A-KT][A-KT][so]?):([0-9.]+)$/i);
             if (m) {
               const k = normalizeKey(m[1]);
-              const fv = Math.round(parseFloat(m[2]) * 100);
+              const fv = Math.min(Math.round(parseFloat(m[2]) * 100), 100);
               if (k && validKeys.has(k) && fv > 0) {
-                S.cs[k] = { a: curActId, f: Math.min(fv, 100) };
+                const cur = S.cs[k] || [];
+                const ex = cur.find((x) => x.a === curAct);
+                if (ex) ex.f = fv;
+                else cur.push({ a: curAct, f: fv });
+                S.cs[k] = cur;
                 count++;
               }
             }
           });
         } else {
-          // Simple comma/space/newline list
-          const hands = raw.split(/[\s,;\n]+/).filter(Boolean);
-          hands.forEach((h) => {
+          raw.split(/[\s,;\n]+/).forEach((h) => {
             const k = normalizeKey(h);
             if (k && validKeys.has(k)) {
-              S.cs[k] = { a: curActId, f: curFreqVal };
+              S.cs[k] = [{ a: curAct, f: curF }];
               count++;
             }
           });
         }
-
         rebuildMx();
         updateStats();
         save();
@@ -3257,36 +3668,25 @@
 
       function normalizeKey(h) {
         if (!h) return null;
-        // uppercase, fix T notation
         h = h.trim().toUpperCase().replace(/10/g, "T");
-        // Already valid pair e.g. AA
         if (h.length === 2 && h[0] === h[1]) return h;
-        // Suited/offsuit e.g. AKs AKo
         if (h.length === 3 && (h[2] === "S" || h[2] === "O"))
           return h[0] + h[1] + h[2].toLowerCase();
-        // Bare two cards e.g. AK → try both suited/offsuit
         if (h.length === 2 && h[0] !== h[1]) {
-          // return the offsuit version (most common in pasted ranges)
           const i1 = RK.indexOf(h[0]),
             i2 = RK.indexOf(h[1]);
           if (i1 < 0 || i2 < 0) return null;
-          if (i1 < i2) return h[0] + h[1] + "o";
-          return h[1] + h[0] + "o";
+          return i1 < i2 ? h[0] + h[1] + "o" : h[1] + h[0] + "o";
         }
         return null;
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // SAVE / LOAD RANGE (unselected = fold)
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ SAVE / LOAD RANGE ━━━
       function saveRange() {
         const name =
           document.getElementById("rng-name").value.trim() ||
           S.curPos + " Range";
-        const foldAct = S.actions.find(
-          (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
-        );
-        const foldId = foldAct ? foldAct.id : "fold";
+        const foldId = getFoldId();
         const fullState = {};
         for (let i = 0; i < 13; i++)
           for (let j = 0; j < 13; j++) {
@@ -3296,35 +3696,21 @@
             if (i === j) key = r1 + r2;
             else if (i < j) key = r1 + r2 + "s";
             else key = r2 + r1 + "o";
-            if (S.cs[key] && S.cs[key].a) {
-              fullState[key] = S.cs[key];
+            const actions = S.cs[key] || [];
+            const nonFold = actions.filter((x) => x.a !== foldId);
+            if (nonFold.length) {
+              fullState[key] = nonFold;
             } else {
-              fullState[key] = { a: foldId, f: 100 };
+              fullState[key] = [{ a: foldId, f: 100 }];
             }
           }
         let combos = 0;
-        for (let i = 0; i < 13; i++)
-          for (let j = 0; j < 13; j++) {
-            const r1 = RK[i],
-              r2 = RK[j];
-            let key, type;
-            if (i === j) {
-              key = r1 + r2;
-              type = "pair";
-            } else if (i < j) {
-              key = r1 + r2 + "s";
-              type = "suited";
-            } else {
-              key = r2 + r1 + "o";
-              type = "offsuit";
-            }
-            const cs = S.cs[key];
-            if (cs && cs.a && cs.a !== foldId)
-              combos +=
-                ((type === "pair" ? 6 : type === "suited" ? 4 : 12) *
-                  (cs.f || 100)) /
-                100;
-          }
+        Object.entries(fullState).forEach(([k, v]) => {
+          const n = combosForKey(k);
+          v.filter((x) => x.a !== foldId).forEach(({ f }) => {
+            combos += (n * f) / 100;
+          });
+        });
         const r = {
           id: "r" + Date.now(),
           name,
@@ -3353,14 +3739,11 @@
       function loadRange(id) {
         const r = S.ranges.find((x) => x.id === id);
         if (!r) return;
-        // load non-fold cells into display state
-        const foldAct = S.actions.find(
-          (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
-        );
-        const foldId = foldAct ? foldAct.id : "fold";
+        const foldId = getFoldId();
         S.cs = {};
         Object.entries(r.state).forEach(([k, v]) => {
-          if (v && v.a !== foldId) S.cs[k] = v;
+          const nonFold = v.filter((x) => x.a !== foldId);
+          if (nonFold.length) S.cs[k] = nonFold;
         });
         S.curPos = r.pos;
         document.getElementById("rng-name").value = r.name;
@@ -3381,9 +3764,7 @@
         if (r) toast('"' + r.name + '" deleted');
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // LIBRARY
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ LIBRARY ━━━
       function renderLib() {
         const el = document.getElementById("lib-list");
         if (!el) return;
@@ -3396,7 +3777,7 @@
         );
         if (!rs.length) {
           el.innerHTML =
-            '<div class="empty"><div class="ei">&#128218;</div><div class="et">No ranges saved</div><div class="es">Build a range and save it here.</div></div>';
+            '<div class="empty"><div class="ei">📚</div><div class="et">No ranges saved</div><div class="es">Build a range and save it here.</div></div>';
           return;
         }
         el.innerHTML = rs
@@ -3405,31 +3786,25 @@
             return (
               '<div class="fit" onclick="loadRange(\'' +
               r.id +
-              "')\">" +
-              '<div class="fbg" style="background:' +
+              '\')"><div class="fbg" style="background:' +
               pc +
               "22;color:" +
               pc +
               '">' +
               r.pos +
-              "</div>" +
-              '<div class="fbd"><div class="fn">' +
+              '</div><div class="fbd"><div class="fn">' +
               r.name +
               '</div><div class="fm">' +
               r.combos +
-              " combos &middot; " +
+              " combos · " +
               r.pct +
-              "% &middot; " +
+              "% · " +
               new Date(r.updated).toLocaleDateString() +
-              "</div></div>" +
-              '<div class="fax">' +
-              '<div class="fa" onclick="event.stopPropagation();startRen(\'' +
+              '</div></div><div class="fax"><div class="fa" onclick="event.stopPropagation();startRen(\'' +
               r.id +
-              "')\">&#9999;</div>" +
-              '<div class="fa" onclick="event.stopPropagation();delRange(\'' +
+              "')\">✎</div><div class=\"fa\" onclick=\"event.stopPropagation();if(confirm('Delete?'))delRange('" +
               r.id +
-              '\')" style="color:var(--rd)">&#10005;</div>' +
-              "</div></div>"
+              '\')" style="color:var(--rd)">✕</div></div></div>'
             );
           })
           .join("");
@@ -3455,113 +3830,211 @@
         toast("Renamed ✓");
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // TRAINER
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ TRAINER (ADVANCED) ━━━
       let tHands = [],
         tIdx = 0,
         tActive = false,
         tRid = null,
-        tActMap = {};
+        tActMap = {},
+        tDiff = "med",
+        tPos = "ALL";
+      const SCENARIOS = {
+        BTN: [
+          "Folds to you on BTN — open or fold?",
+          "CO folds, action on BTN — RFI decision",
+          "HJ folds, you are BTN — raise or fold?",
+        ],
+        SB: [
+          "Folds to SB — complete or raise vs BB?",
+          "SB vs BB — what is your action?",
+        ],
+        CO: [
+          "Folds to CO — what is your action?",
+          "HJ folds, UTG folds, action on CO",
+        ],
+        UTG: [
+          "First to act — UTG open or fold?",
+          "UTG action — tight range required",
+        ],
+        BB: [
+          "SB completes, you are BB — check or raise?",
+          "SB min-raises, you defend or 3-bet?",
+        ],
+        DEFAULT: [
+          "Folds to you — what is your action?",
+          "You are the raiser — action?",
+        ],
+      };
+      const CAT_EXPLAIN = {
+        pair: "Pocket pairs derive value from set-mining and domination. Strong pairs (TT+) are always played, medium pairs mixed, small pairs mostly fold to 4-bets.",
+        suited:
+          "Suited hands have flush draw equity. They play better than their offsuit equivalents by ~3% equity in most spots.",
+        offsuit:
+          "Offsuit hands lose the flush draw equity but can still be played for straight/top pair value when they connect strongly.",
+      };
 
       function updTSel() {
         const sel = document.getElementById("t-rsel");
         if (!sel) return;
         const cur = sel.value;
-        sel.innerHTML =
-          '<option value="">&#8212; GTO Defaults (BTN Open) &#8212;</option>';
+        sel.innerHTML = '<option value="">— GTO BTN Open Defaults —</option>';
         S.ranges.forEach(
           (r) =>
-            (sel.innerHTML +=
-              '<option value="' +
-              r.id +
-              '">' +
-              r.pos +
-              " &#8212; " +
-              r.name +
-              "</option>")
+            (sel.innerHTML += `<option value="${r.id}">${r.pos} — ${r.name}</option>`)
         );
         if (cur) sel.value = cur;
+      }
+
+      let tPosFilter = "ALL";
+      function initTPosChips() {
+        const el = document.getElementById("t-pos-chips");
+        if (!el) return;
+        el.innerHTML = "";
+        ["ALL", ...POSITIONS.slice(0, 6)].forEach((p) => {
+          const c = document.createElement("div");
+          c.className = "chip" + (p === tPosFilter ? " on" : "");
+          c.textContent = p;
+          c.onclick = () => {
+            document
+              .querySelectorAll("#t-pos-chips .chip")
+              .forEach((x) => x.classList.remove("on"));
+            c.classList.add("on");
+            tPosFilter = p;
+          };
+          el.appendChild(c);
+        });
+      }
+
+      function setDiff(d) {
+        tDiff = d;
+        ["easy", "med", "hard"].forEach((x) => {
+          document
+            .getElementById("tdiff-" + x)
+            ?.classList.toggle("on", x === d);
+        });
       }
 
       function getTConfig() {
         tRid = document.getElementById("t-rsel")?.value || "";
         tActMap = {};
-        const foldAct = S.actions.find(
-          (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
-        );
-        const foldId = foldAct ? foldAct.id : "fold";
+        const foldId = getFoldId();
         if (tRid) {
           const r = S.ranges.find((x) => x.id === tRid);
           if (r) {
             Object.entries(r.state).forEach(([k, v]) => {
-              if (v && v.a) tActMap[k] = v.a;
+              // tActMap[key] = [{a,f}] — the full mixed strategy
+              const nonFold = v.filter((x) => x.a !== foldId);
+              tActMap[k] = nonFold.length ? v : [{ a: foldId, f: 100 }];
             });
             return Object.keys(tActMap);
           }
         }
         GTO.forEach((h) => {
-          tActMap[h] = "raise";
+          tActMap[h] = [{ a: "raise", f: 100 }];
         });
-        return GTO;
+        // fold everything else
+        for (let i = 0; i < 13; i++)
+          for (let j = 0; j < 13; j++) {
+            const r1 = RK[i],
+              r2 = RK[j];
+            let key;
+            if (i === j) key = r1 + r2;
+            else if (i < j) key = r1 + r2 + "s";
+            else key = r2 + r1 + "o";
+            if (!tActMap[key]) tActMap[key] = [{ a: foldId, f: 100 }];
+          }
+        return GTO.concat(
+          [...Array(169 - GTO.length).fill(null)]
+            .map((_, i) => {
+              const ri = Math.floor(i / 13),
+                rj = i % 13;
+              if (ri >= 13 || rj >= 13) return null;
+              const r1 = RK[ri],
+                r2 = RK[rj];
+              if (ri === rj) return r1 + r2;
+              if (ri < rj) return r1 + r2 + "s";
+              return r2 + r1 + "o";
+            })
+            .filter(Boolean)
+        );
       }
 
-      function getCorr(key) {
-        return tActMap[key] || "fold";
+      function getDiffHands(allKeys) {
+        const foldId = getFoldId();
+        if (tDiff === "easy") {
+          // Only clearly in-range or clearly fold — exclude mixed
+          return allKeys.filter((k) => {
+            const v = tActMap[k] || [];
+            const nf = v.filter((x) => x.a !== foldId);
+            const maxF = nf.length ? Math.max(...nf.map((x) => x.f)) : 0;
+            return maxF === 0 || maxF === 100;
+          });
+        }
+        if (tDiff === "hard") {
+          // Prefer mixed/borderline hands
+          return allKeys
+            .filter((k) => {
+              const v = tActMap[k] || [];
+              const nf = v.filter((x) => x.a !== foldId);
+              const maxF = nf.length ? Math.max(...nf.map((x) => x.f)) : 0;
+              return nf.length > 1 || (maxF > 0 && maxF < 100);
+            })
+            .concat(allKeys.slice(0, 20));
+        }
+        return allKeys;
       }
 
-      function buildTBtns() {
+      function getCorrectForHand(key) {
+        // Returns the action with highest frequency (the primary action)
+        const foldId = getFoldId();
+        const v = tActMap[key] || [{ a: foldId, f: 100 }];
+        let best = v[0];
+        v.forEach((x) => {
+          if (x.f > best.f) best = x;
+        });
+        return best.a;
+      }
+
+      function getHandCategory(key) {
+        if (key.length === 2 && key[0] === key[1]) return "pair";
+        if (key.endsWith("s")) return "suited";
+        return "offsuit";
+      }
+
+      function buildTBtns(key) {
         const el = document.getElementById("t-btns");
         if (!el) return;
-        let aids = [...new Set(Object.values(tActMap))];
-        if (!aids.length) aids = ["raise", "fold"];
-        const hasFold = aids.some((id) => {
-          const a = S.actions.find((x) => x.id === id);
-          return a && a.name.toLowerCase() === "fold";
-        });
-        if (!hasFold) {
-          const fa = S.actions.find(
-            (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
-          );
-          if (fa && !aids.includes(fa.id)) aids.push(fa.id);
-        }
+        const foldId = getFoldId();
+        // Collect all possible actions for this range
+        let aids = new Set();
+        Object.values(tActMap).forEach((v) => v.forEach((x) => aids.add(x.a)));
+        aids = Array.from(aids);
+        if (!aids.includes(foldId)) aids.push(foldId);
         el.innerHTML = aids
           .map((id) => {
-            const a = S.actions.find((x) => x.id === id) || {
-              id: id,
-              name: id,
-              color: "#555",
-              emoji: "⬛",
-            };
-            return (
-              '<div class="t-btn" id="tb-' +
-              a.id +
-              '" onclick="tAns(\'' +
-              a.id +
-              "')\">" +
-              a.emoji +
-              " " +
-              a.name +
-              "</div>"
-            );
+            const a = getAction(id);
+            // show frequency for this hand
+            const v = tActMap[key] || [];
+            const entry = v.find((x) => x.a === id);
+            const pct = entry ? entry.f : 0;
+            return `<div class="t-btn" id="tb-${a.id}" onclick="tAns('${a.id}')">${a.emoji} ${a.name}<span class="t-btn-pct" id="tbp-${a.id}" style="display:none">${pct}%</span></div>`;
           })
           .join("");
       }
 
       function startT() {
-        const nq = parseInt(S.settings.qcount) || 20;
-        const hands = getTConfig();
-        if (!hands.length) {
-          toast("Range has no hands!");
-          return;
-        }
+        const nq = parseInt(document.getElementById("st-q")?.value) || 20;
+        const allKeys = getTConfig();
+        let pool = getDiffHands(allKeys);
+        if (tPosFilter !== "ALL") pool = pool.filter((k) => k); // in future: filter by position scenarios
+        if (!pool.length) pool = allKeys;
         tHands = [];
         for (let i = 0; i < nq; i++)
-          tHands.push(hands[Math.floor(Math.random() * hands.length)]);
+          tHands.push(pool[Math.floor(Math.random() * pool.length)]);
         tIdx = 0;
         tActive = true;
         S.trainer.streak = 0;
-        buildTBtns();
+        buildTBtns(tHands[0]);
         showTHand();
         toast("Session started!");
       }
@@ -3571,25 +4044,21 @@
           endT();
           return;
         }
+        const key = tHands[tIdx];
         document.getElementById("t-prog").style.width =
           (tIdx / tHands.length) * 100 + "%";
         document.getElementById("t-qnum").textContent =
           "Q " + (tIdx + 1) + " / " + tHands.length;
         document.getElementById("t-streak").textContent =
           "Streak: " + S.trainer.streak + " 🔥";
-        const key = tHands[tIdx];
         const cards = genCards(key);
         const h = parseHand(key);
         document.getElementById("t-cards").innerHTML = cards
           .map(
             (c) =>
-              '<div class="pcard ' +
-              SCOL[c.s] +
-              '"><div class="pcard-r">' +
-              c.r +
-              '</div><div class="pcard-s">' +
-              SSYM[c.s] +
-              "</div></div>"
+              `<div class="pcard ${SCOL[c.s]}"><div class="pcard-r">${
+                c.r
+              }</div><div class="pcard-s">${SSYM[c.s]}</div></div>`
           )
           .join("");
         document.getElementById("t-hname").textContent =
@@ -3600,58 +4069,105 @@
             : h.type === "suited"
             ? "Suited"
             : "Offsuit");
-        const pos = POSITIONS[Math.floor(Math.random() * 6)];
-        document.getElementById("t-scen").innerHTML = tRid
-          ? "You are on the <strong>" + pos + "</strong>. What is your action?"
-          : "<strong>" + pos + "</strong> — folds to you. Raise or fold?";
+        // Scenario
+        const posKey =
+          tPosFilter === "ALL"
+            ? POSITIONS[Math.floor(Math.random() * 6)]
+            : tPosFilter;
+        const scenList = SCENARIOS[posKey] || SCENARIOS.DEFAULT;
+        document.getElementById("t-scen").innerHTML =
+          scenList[Math.floor(Math.random() * scenList.length)];
+        // Hint for hard mode
+        const hint = document.getElementById("t-hint");
+        if (tDiff === "hard" && hint) {
+          const cat = getHandCategory(key);
+          hint.textContent =
+            cat === "pair" ? "Pair hand — consider stack depth & position" : "";
+          hint.style.display = tDiff === "hard" ? "block" : "none";
+        }
         document.getElementById("t-res").classList.remove("on");
+        document.getElementById("t-explain").style.display = "none";
         document.getElementById("t-next").style.display = "none";
         document.querySelectorAll(".t-btn").forEach((b) => {
-          b.classList.remove("ok", "bad");
+          b.className = "t-btn";
           b.style.opacity = "1";
           b.style.pointerEvents = "auto";
         });
+        document
+          .querySelectorAll('[id^="tbp-"]')
+          .forEach((b) => (b.style.display = "none"));
+        buildTBtns(key);
       }
 
       function tAns(aid) {
         if (!tActive) return;
-        const corr = getCorr(tHands[tIdx]);
+        const key = tHands[tIdx];
+        const corr = getCorrectForHand(key);
         const ok = aid === corr;
-        const res = document.getElementById("t-res");
+        const cat = getHandCategory(key);
+        if (!S.trainer.catStats[cat]) S.trainer.catStats[cat] = { c: 0, w: 0 };
         if (ok) {
           S.trainer.correct++;
           S.trainer.streak++;
           if (S.trainer.streak > S.trainer.best)
             S.trainer.best = S.trainer.streak;
+          S.trainer.catStats[cat].c++;
+          const res = document.getElementById("t-res");
           res.textContent =
             "✓ Correct!" +
             (S.trainer.streak > 2 ? " 🔥 ×" + S.trainer.streak : "");
           res.className = "t-res ok on";
-          document.getElementById("tb-" + aid)?.classList.add("ok");
+          document.getElementById("tb-" + aid)?.classList.add("ok", "sel");
         } else {
           S.trainer.wrong++;
           S.trainer.streak = 0;
-          const ca = S.actions.find((x) => x.id === corr) || {
-            name: corr,
-            emoji: "⬛",
-          };
-          res.textContent = "✗ Should be: " + ca.emoji + " " + ca.name;
+          S.trainer.catStats[cat].w++;
+          const ca = getAction(corr);
+          const res = document.getElementById("t-res");
+          res.textContent = "✗ Correct action: " + ca.emoji + " " + ca.name;
           res.className = "t-res bad on";
-          document.getElementById("tb-" + aid)?.classList.add("bad");
+          document.getElementById("tb-" + aid)?.classList.add("bad", "sel");
           if (S.settings.showCorr)
             document.getElementById("tb-" + corr)?.classList.add("ok");
         }
+        // Show frequencies
+        document
+          .querySelectorAll('[id^="tbp-"]')
+          .forEach((b) => (b.style.display = "inline"));
         document.querySelectorAll(".t-btn").forEach((b) => {
-          b.style.opacity = ".35";
+          b.style.opacity = ".4";
           b.style.pointerEvents = "none";
         });
+        document.getElementById("tb-" + aid).style.opacity = "1";
+        // Explanation
+        if (S.settings.showExp) {
+          const expEl = document.getElementById("t-explain");
+          const v = tActMap[key] || [];
+          const foldId = getFoldId();
+          const isMixed = v.filter((x) => x.a !== foldId).length > 1;
+          let exp = "";
+          if (isMixed) {
+            exp = "This is a <strong>mixed strategy hand</strong>. In theory: ";
+            v.forEach(({ a, f }) => {
+              const ac = getAction(a);
+              exp += `${ac.emoji} ${ac.name} ${f}% `;
+            });
+          } else {
+            const cat = getHandCategory(key);
+            exp = CAT_EXPLAIN[cat] || "";
+          }
+          expEl.innerHTML = exp;
+          expEl.style.display = exp ? "block" : "none";
+        }
         document.getElementById("t-next").style.display = "block";
         updTStats();
         save();
       }
+
       function tNext() {
         tIdx++;
-        showTHand();
+        if (tIdx < tHands.length) showTHand();
+        else endT();
       }
       function endT() {
         tActive = false;
@@ -3663,19 +4179,22 @@
           total,
           acc,
           streak: S.trainer.best,
+          diff: tDiff,
         });
         if (S.trainer.history.length > 20)
           S.trainer.history = S.trainer.history.slice(0, 20);
         save();
         renderTHist();
         document.getElementById("t-res").textContent =
-          "Done! " + acc + "% accuracy 🎉";
+          "Session done! " + acc + "% accuracy 🎉";
         document.getElementById("t-res").className = "t-res ok on";
         document.getElementById("t-next").style.display = "none";
         document.getElementById("t-prog").style.width = "100%";
         spark();
-        toast("Session done — " + acc + "%");
+        toast("Done — " + acc + "%");
+        updTCatStats();
       }
+
       function updTStats() {
         const total = S.trainer.correct + (S.trainer.wrong || 0);
         const acc = total ? Math.round((S.trainer.correct / total) * 100) : 0;
@@ -3685,17 +4204,44 @@
         document.getElementById("t-streak").textContent =
           "Streak: " + S.trainer.streak + " 🔥";
       }
+      function updTCatStats() {
+        const el = document.getElementById("t-cat-stats");
+        if (!el) return;
+        const cats = S.trainer.catStats;
+        if (!Object.keys(cats).length) {
+          el.innerHTML = "";
+          return;
+        }
+        el.innerHTML = Object.entries(cats)
+          .map(([cat, v]) => {
+            const tot = v.c + v.w;
+            const acc = tot ? Math.round((v.c / tot) * 100) : 0;
+            return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span style="font-size:11px;color:var(--tx2);width:52px;text-transform:capitalize">${cat}</span><div class="diff-bar" style="flex:1;margin:0;"><div class="diff-f" style="width:${acc}%;background:${
+              acc >= 70 ? "var(--gr)" : acc >= 50 ? "var(--am)" : "var(--rd)"
+            }"></div></div><span style="font-size:11px;color:var(--tx3);width:28px;text-align:right">${acc}%</span></div>`;
+          })
+          .join("");
+      }
       function resetT() {
-        S.trainer = defS().trainer;
+        S.trainer = {
+          correct: 0,
+          wrong: 0,
+          streak: 0,
+          best: 0,
+          history: [],
+          catStats: {},
+        };
         save();
         updTStats();
         renderTHist();
+        updTCatStats();
         tHands = [];
         tIdx = 0;
         tActive = false;
         document.getElementById("t-qnum").textContent = "Not started";
         document.getElementById("t-prog").style.width = "0%";
         document.getElementById("t-res").classList.remove("on");
+        document.getElementById("t-explain").style.display = "none";
         toast("Stats reset");
       }
       function renderTHist() {
@@ -3703,35 +4249,32 @@
         if (!el) return;
         if (!S.trainer.history.length) {
           el.innerHTML =
-            '<div class="empty" style="padding:12px 0"><div class="ei">&#127919;</div><div class="es">No sessions yet</div></div>';
+            '<div class="empty" style="padding:12px 0"><div class="ei">🎯</div><div class="es">No sessions yet</div></div>';
           return;
         }
         el.innerHTML = S.trainer.history
-          .slice(0, 6)
+          .slice(0, 8)
           .map(
             (h) =>
-              '<div class="hist-row"><div class="hbadge" style="background:' +
-              (h.acc >= 70 ? "var(--gr2)" : "var(--rd2)") +
-              ";border:1px solid " +
-              (h.acc >= 70 ? "var(--gr)" : "var(--rd)") +
-              ";color:" +
-              (h.acc >= 70 ? "var(--gr)" : "var(--rd)") +
-              '">' +
-              h.acc +
-              '%</div><div style="flex:1"><div style="font-size:13px;font-weight:600">' +
-              h.correct +
-              "/" +
-              h.total +
-              ' correct</div><div style="font-size:11px;color:var(--tx3)">' +
-              h.date +
-              " · streak " +
-              h.streak +
-              "</div></div></div>"
+              `<div class="hist-row"><div class="hbadge" style="background:${
+                h.acc >= 70 ? "var(--gr2)" : "var(--rd2)"
+              };border:1px solid ${
+                h.acc >= 70 ? "var(--gr)" : "var(--rd)"
+              };color:${h.acc >= 70 ? "var(--gr)" : "var(--rd)"}">${
+                h.acc
+              }%</div><div style="flex:1"><div style="font-size:13px;font-weight:600">${
+                h.correct
+              }/${
+                h.total
+              } correct</div><div style="font-size:11px;color:var(--tx3)">${
+                h.date
+              } · ${h.diff || "med"} · streak ${h.streak}</div></div></div>`
           )
           .join("");
       }
+
       function parseHand(k) {
-        if (k.length === 2) return { type: "pair", r1: k[0], r2: k[1] };
+        if (k.length === 2) return { type: "pair" };
         if (k.endsWith("s")) return { type: "suited", r1: k[0], r2: k[1] };
         return { type: "offsuit", r1: k[0], r2: k[1] };
       }
@@ -3745,15 +4288,15 @@
             s2 = r();
           } while (s2 === s1);
           return [
-            { r: h.r1, s: s1 },
-            { r: h.r2, s: s2 },
+            { r: k[0], s: s1 },
+            { r: k[1], s: s2 },
           ];
         }
         if (h.type === "suited") {
           const s = r();
           return [
-            { r: h.r1, s },
-            { r: h.r2, s },
+            { r: k[0], s },
+            { r: k[1], s },
           ];
         }
         const s1 = r();
@@ -3762,69 +4305,53 @@
           s2 = r();
         } while (s2 === s1);
         return [
-          { r: h.r1, s: s1 },
-          { r: h.r2, s: s2 },
+          { r: k[0], s: s1 },
+          { r: k[1], s: s2 },
         ];
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // BANKROLL — multiple bankrolls
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ BANKROLL ━━━
       function getCur() {
         const br = getActiveBR();
-        return CUR_SYM[br.cur] || br.cur;
+        return CUR_SYM[br?.cur] || "£";
       }
       function brTotal() {
         const br = getActiveBR();
+        if (!br) return 0;
         return br.sessions.reduce((s, x) => s + x.pnl, 0) + (br.startBR || 0);
       }
 
       function renderBRStrip() {
-        const el = document.getElementById("br-roll-strip");
+        const el = document.getElementById("br-strip");
         if (!el) return;
         el.innerHTML = S.bankrolls
           .map((br) => {
             const total =
               br.sessions.reduce((s, x) => s + x.pnl, 0) + (br.startBR || 0);
             const sym = CUR_SYM[br.cur] || br.cur;
-            return (
-              '<div class="brc' +
-              (br.id === S.activeBRId ? " on" : "") +
-              '" onclick="switchBR(\'' +
-              br.id +
-              "')\">" +
-              '<div class="brc-name">' +
-              br.name +
-              "</div>" +
-              '<div class="brc-val">' +
-              sym +
-              (Math.abs(total) >= 1000
-                ? (Math.abs(total) / 1000).toFixed(1) + "k"
-                : Math.abs(total).toFixed(0)) +
-              "</div>" +
-              '<div class="brc-cur">' +
-              br.cur +
-              " &middot; " +
-              br.sessions.length +
-              " sessions &middot; <span onclick=\"event.stopPropagation();editBR('" +
-              br.id +
-              '\')" style="text-decoration:underline">edit</span></div>' +
-              "</div>"
-            );
+            return `<div class="brc${
+              br.id === S.activeBRId ? " on" : ""
+            }" onclick="switchBR('${br.id}')"><div class="brc-n">${
+              br.name
+            }</div><div class="brc-v">${sym}${Math.abs(total).toFixed(
+              0
+            )}</div><div class="brc-c">${br.cur} · ${
+              br.sessions.length
+            }sess · <span onclick="event.stopPropagation();openBRModal('${
+              br.id
+            }')" style="text-decoration:underline">edit</span></div></div>`;
           })
           .join("");
       }
-
       function switchBR(id) {
         S.activeBRId = id;
         save();
         renderBR();
       }
 
-      // Bankroll modal
       let mbrCur = "GBP";
-      function openBRModal(editId = null) {
-        S.mbrEditId = editId;
+      function openBRModal(editId) {
+        S.mbrEditId = editId || null;
         const ex = editId ? S.bankrolls.find((b) => b.id === editId) : null;
         document.getElementById("m-br-t").textContent = editId
           ? "Edit Bankroll"
@@ -3833,22 +4360,18 @@
         mbrCur = ex ? ex.cur : "GBP";
         document.getElementById("mbr-start").value = ex ? ex.startBR || "" : "";
         document.getElementById("mbr-sl").value = ex ? ex.stopLoss || "" : "";
-        const chips = document.getElementById("mbr-cur-chips");
-        chips.innerHTML = CURS.map(
+        document.getElementById("mbr-cur-chips").innerHTML = CURS.map(
           (c) =>
-            '<div class="chip' +
-            (c === mbrCur ? " on" : "") +
-            '" onclick="pickBRCur(\'' +
-            c +
-            "',this)\">" +
-            c +
-            "</div>"
+            `<div class="chip${
+              c === mbrCur ? " on" : ""
+            }" onclick="pickBRCur('${c}',this)">${c}</div>`
         ).join("");
+        const dw = document.getElementById("mbr-del-wrap");
+        if (dw)
+          dw.style.display =
+            editId && S.bankrolls.length > 1 ? "block" : "none";
         openM("m-br");
         setTimeout(() => document.getElementById("mbr-name").focus(), 220);
-      }
-      function editBR(id) {
-        openBRModal(id);
       }
       function pickBRCur(c, el) {
         mbrCur = c;
@@ -3882,13 +4405,27 @@
         save();
         closeM("m-br");
         renderBR();
-        toast(S.mbrEditId ? "Bankroll updated ✓" : "Bankroll created ✓");
+        toast(S.mbrEditId ? "Updated ✓" : "Bankroll created ✓");
+      }
+      function delBR() {
+        if (S.bankrolls.length <= 1) {
+          toast("Can't delete last bankroll");
+          return;
+        }
+        S.bankrolls = S.bankrolls.filter((b) => b.id !== S.mbrEditId);
+        S.activeBRId = S.bankrolls[0].id;
+        save();
+        closeM("m-br");
+        renderBR();
+        toast("Bankroll deleted");
       }
 
       function logSess() {
         const br = getActiveBR();
+        if (!br) return;
         const name =
-          document.getElementById("br-name").value.trim() || "Session";
+          document.getElementById("br-name").value.trim() ||
+          "Session " + (br.sessions.length + 1);
         const bi = parseFloat(document.getElementById("br-bi").value) || 0;
         const co = parseFloat(document.getElementById("br-co").value) || 0;
         const hr = parseFloat(document.getElementById("br-hr").value) || 0;
@@ -3920,11 +4457,7 @@
             " logged"
         );
         if (br.stopLoss && brTotal() < -Math.abs(br.stopLoss))
-          toast(
-            "⚠️ Stop-loss hit! Down " +
-              getCur() +
-              Math.abs(brTotal()).toFixed(2)
-          );
+          toast("⚠️ Stop-loss hit!");
       }
 
       let brF = "all";
@@ -3943,15 +4476,16 @@
         if (!br) return;
         const total = brTotal();
         const c = getCur();
-        document.getElementById("br-sym").textContent =
-          br.cur === "BB" ? "" : CUR_SYM[br.cur] || br.cur;
+        const sym = br.cur === "BB" ? "" : CUR_SYM[br.cur] || br.cur;
+        document.getElementById("br-sym").textContent = sym;
         document.getElementById("br-total").textContent =
           Math.abs(total).toFixed(2);
         const sub = document.getElementById("br-sub");
         sub.textContent =
-          (total >= 0 ? "↑ All-time: +" : "↓ All-time: -") +
+          (total >= 0 ? "↑ Up " : "↓ Down ") +
           c +
-          Math.abs(total).toFixed(2);
+          Math.abs(total).toFixed(2) +
+          " all-time";
         sub.style.color = total >= 0 ? "var(--gr)" : "var(--rd)";
         const n = br.sessions.length,
           wins = br.sessions.filter((s) => s.pnl > 0).length;
@@ -4000,57 +4534,28 @@
         const tx2 = (i) => ((W - pl.l - pl.r) / (pts.length - 1)) * i + pl.l;
         const ty = (v) => H - pl.b - ((v - mn) / rng) * (H - pl.t - pl.b);
         const pd = pts
-          .map((v, i) => (i ? "L" : "M") + tx2(i) + "," + ty(v))
+          .map(
+            (v, i) =>
+              (i ? "L" : "M") + tx2(i).toFixed(1) + "," + ty(v).toFixed(1)
+          )
           .join("");
-        const ad =
-          pd +
-          "L" +
-          tx2(pts.length - 1) +
-          "," +
-          ty(0) +
-          " L" +
-          tx2(0) +
-          "," +
-          ty(0) +
-          "Z";
-        const col = pts[pts.length - 1] >= pts[0] ? "var(--gr)" : "var(--rd)";
         const zY = ty(0);
-        svg.innerHTML =
-          '<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="' +
-          col +
-          '" stop-opacity=".3"/><stop offset="100%" stop-color="' +
-          col +
-          '" stop-opacity="0"/></linearGradient></defs>' +
-          '<line x1="' +
-          pl.l +
-          '" y1="' +
-          zY +
-          '" x2="' +
-          (W - pl.r) +
-          '" y2="' +
-          zY +
-          '" stroke="var(--bd)" stroke-width="1" stroke-dasharray="3,3"/>' +
-          '<path d="' +
-          ad +
-          '" fill="url(#cg)"/>' +
-          '<path d="' +
-          pd +
-          '" fill="none" stroke="' +
-          col +
-          '" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>' +
-          pts
-            .map((v, i) =>
-              i === 0 || i === pts.length - 1
-                ? '<circle cx="' +
-                  tx2(i) +
-                  '" cy="' +
-                  ty(v) +
-                  '" r="2.5" fill="' +
-                  col +
-                  '"/>'
-                : ""
-            )
-            .join("");
+        const col = pts[pts.length - 1] >= pts[0] ? "var(--gr)" : "var(--rd)";
+        svg.innerHTML = `<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${col}" stop-opacity=".3"/><stop offset="100%" stop-color="${col}" stop-opacity="0"/></linearGradient></defs><line x1="${
+          pl.l
+        }" y1="${zY.toFixed(1)}" x2="${W - pl.r}" y2="${zY.toFixed(
+          1
+        )}" stroke="var(--bd)" stroke-width="1" stroke-dasharray="3,3"/><path d="${pd}L${tx2(
+          pts.length - 1
+        )},${ty(0)} L${tx2(0)},${ty(
+          0
+        )}Z" fill="url(#cg)"/><path d="${pd}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>${pts
+          .map((v, i) =>
+            i === 0 || i === pts.length - 1
+              ? `<circle cx="${tx2(i)}" cy="${ty(v)}" r="2.5" fill="${col}"/>`
+              : ``
+          )
+          .join("")}`;
       }
 
       function renderSessList() {
@@ -4066,33 +4571,30 @@
         if (brF === "loss") ss = ss.filter((s) => s.pnl <= 0);
         if (!ss.length) {
           el.innerHTML =
-            '<div class="empty"><div class="ei">&#128202;</div><div class="es">No sessions yet</div></div>';
+            '<div class="empty"><div class="ei">📊</div><div class="es">No sessions match</div></div>';
           return;
         }
         const c = getCur();
         el.innerHTML = ss
           .map(
             (s) =>
-              '<div class="sess-it" onclick="openSess(\'' +
-              s.id +
-              '\')"><div class="sess-ic" style="background:' +
-              (s.pnl >= 0 ? "var(--gr2)" : "var(--rd2)") +
-              '">' +
-              (s.pnl >= 0 ? "📈" : "📉") +
-              '</div><div class="sess-bd"><div class="sess-n">' +
-              s.name +
-              '</div><div class="sess-m">' +
-              s.gt +
-              (s.hr ? " · " + s.hr + "h" : "") +
-              " · " +
-              new Date(s.date).toLocaleDateString() +
-              '</div></div><div class="sess-p" style="color:' +
-              (s.pnl >= 0 ? "var(--gr)" : "var(--rd)") +
-              '">' +
-              (s.pnl >= 0 ? "+" : "") +
-              c +
-              Math.abs(s.pnl).toFixed(2) +
-              "</div></div>"
+              `<div class="sess-it" onclick="openSess('${
+                s.id
+              }')"><div class="sess-ic" style="background:${
+                s.pnl >= 0 ? "var(--gr2)" : "var(--rd2)"
+              }">${
+                s.pnl >= 0 ? "📈" : "📉"
+              }</div><div class="sess-bd"><div class="sess-n">${
+                s.name
+              }</div><div class="sess-m">${s.gt}${
+                s.hr ? " · " + s.hr + "h" : ""
+              } · ${new Date(
+                s.date
+              ).toLocaleDateString()}</div></div><div class="sess-p" style="color:${
+                s.pnl >= 0 ? "var(--gr)" : "var(--rd)"
+              }">${s.pnl >= 0 ? "+" : ""}${c}${Math.abs(s.pnl).toFixed(
+                2
+              )}</div></div>`
           )
           .join("");
       }
@@ -4103,45 +4605,32 @@
         if (!s) return;
         const c = getCur();
         document.getElementById("ms-title").textContent = s.name;
-        document.getElementById("ms-body").innerHTML =
-          '<div class="r2" style="margin-bottom:9px;">' +
-          '<div class="sb"><div class="sb-v">' +
-          c +
-          s.bi.toFixed(2) +
-          '</div><div class="sb-l">Buy-in</div></div>' +
-          '<div class="sb"><div class="sb-v">' +
-          c +
-          s.co.toFixed(2) +
-          '</div><div class="sb-l">Cash-out</div></div>' +
-          "</div>" +
-          '<div style="background:' +
-          (s.pnl >= 0 ? "var(--gr2)" : "var(--rd2)") +
-          ";border:1px solid " +
-          (s.pnl >= 0 ? "var(--gr)" : "var(--rd)") +
-          ';border-radius:8px;padding:12px;text-align:center;margin-bottom:9px;">' +
-          '<div style="font-size:26px;font-weight:700;color:' +
-          (s.pnl >= 0 ? "var(--gr)" : "var(--rd)") +
-          ';">' +
-          (s.pnl >= 0 ? "+" : "") +
-          c +
-          Math.abs(s.pnl).toFixed(2) +
-          '</div><div style="font-size:10px;color:var(--tx3);margin-top:2px">P&L</div></div>' +
-          '<div style="font-size:13px;color:var(--tx2);line-height:1.9;">' +
-          "&#128197; " +
-          new Date(s.date).toLocaleDateString(undefined, {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          }) +
-          "<br>" +
-          "&#127918; " +
-          s.gt +
-          (s.hr ? " · " + s.hr + "h" : "") +
-          (s.hr && s.pnl ? " · " + c + (s.pnl / s.hr).toFixed(2) + "/hr" : "") +
-          "<br>" +
-          (s.notes ? "&#128221; " + s.notes : "") +
-          "</div>";
+        document.getElementById(
+          "ms-body"
+        ).innerHTML = `<div class="r2" style="margin-bottom:9px;"><div class="sb"><div class="sb-v">${c}${s.bi.toFixed(
+          2
+        )}</div><div class="sb-l">Buy-in</div></div><div class="sb"><div class="sb-v">${c}${s.co.toFixed(
+          2
+        )}</div><div class="sb-l">Cash-out</div></div></div><div style="background:${
+          s.pnl >= 0 ? "var(--gr2)" : "var(--rd2)"
+        };border:1px solid ${
+          s.pnl >= 0 ? "var(--gr)" : "var(--rd)"
+        };border-radius:9px;padding:12px;text-align:center;margin-bottom:9px;"><div style="font-size:26px;font-weight:700;color:${
+          s.pnl >= 0 ? "var(--gr)" : "var(--rd)"
+        }">${s.pnl >= 0 ? "+" : ""}${c}${Math.abs(s.pnl).toFixed(
+          2
+        )}</div><div style="font-size:10px;color:var(--tx3);margin-top:2px">P&L${
+          s.hr ? " · " + c + (s.pnl / s.hr).toFixed(2) + "/hr" : ""
+        }</div></div><div style="font-size:13px;color:var(--tx2);line-height:2;">📅 ${new Date(
+          s.date
+        ).toLocaleDateString(undefined, {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}<br>🎮 ${s.gt}${s.hr ? " · " + s.hr + "h" : ""}${
+          s.notes ? "<br>📝 " + s.notes : ""
+        }</div>`;
         document.getElementById("ms-del").onclick = () => {
           const idx = br.sessions.findIndex((x) => x.id === id);
           if (idx >= 0) br.sessions.splice(idx, 1);
@@ -4153,9 +4642,7 @@
         openM("m-sess");
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // TOOLS
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ TOOLS ━━━
       function calcEV() {
         const pot = parseFloat(document.getElementById("ev-pot").value) || 0;
         const bet = parseFloat(document.getElementById("ev-bet").value) || 0;
@@ -4176,18 +4663,20 @@
         vEl.textContent = (ev >= 0 ? "+" : "") + ev.toFixed(2) + " bb";
         vEl.style.color = ev >= 0 ? "var(--gr)" : "var(--rd)";
         document.getElementById("ev-lbl").textContent =
-          ev >= 0 ? "Profitable bet" : "Losing bet — consider checking";
-        document.getElementById("ev-inf").innerHTML =
-          "Fold equity: " +
-          (fe * 100).toFixed(0) +
-          "% → +" +
-          evFold.toFixed(2) +
-          " bb<br>When called: EV = " +
-          evCall.toFixed(2) +
-          " bb<br>Break-even equity: " +
-          ((bet / (pot + 2 * bet)) * 100).toFixed(1) +
-          "%";
+          ev >= 0 ? "Profitable bet" : "Losing bet";
+        document.getElementById("ev-inf").innerHTML = `Fold equity: ${(
+          fe * 100
+        ).toFixed(0)}% → +${evFold.toFixed(
+          2
+        )} bb<br>When called: EV = ${evCall.toFixed(
+          2
+        )} bb<br>Break-even equity: ${((bet / (pot + 2 * bet)) * 100).toFixed(
+          1
+        )}%<br>Pot odds you give villain: ${((bet / (pot + bet)) * 100).toFixed(
+          1
+        )}%`;
       }
+
       function calcPO() {
         const pot = parseFloat(document.getElementById("po-pot").value) || 0;
         const bet = parseFloat(document.getElementById("po-bet").value) || 0;
@@ -4197,20 +4686,24 @@
         }
         const odds = bet / (pot + bet);
         const mdf = 1 - odds;
-        const res = document.getElementById("po-res");
-        res.style.display = "grid";
-        res.classList.add("on");
+        const r2 = document.getElementById("po-r2");
+        if (r2) r2.style.display = "grid";
+        document.getElementById("po-res").classList.add("on");
         document.getElementById("po-odds").textContent =
           (odds * 100).toFixed(1) + "%";
         document.getElementById("po-mdf").textContent =
           (mdf * 100).toFixed(1) + "%";
-        document.getElementById("po-inf").innerHTML =
-          "You need ≥" +
-          (odds * 100).toFixed(1) +
-          "% equity to call profitably.<br>Villain must bluff " +
-          ((1 - mdf) * 100).toFixed(1) +
-          "% of his range for you to be indifferent.";
+        document.getElementById("po-inf").innerHTML = `Need ≥${(
+          odds * 100
+        ).toFixed(1)}% equity to call.<br>Villain must bluff ≥${(
+          (1 - mdf) *
+          100
+        ).toFixed(1)}% for you to be indifferent.<br>Bet is ${(
+          (bet / pot) *
+          100
+        ).toFixed(0)}% pot.`;
       }
+
       function calcSPR() {
         const s = parseFloat(document.getElementById("spr-s").value) || 0;
         const p = parseFloat(document.getElementById("spr-p").value) || 0;
@@ -4219,22 +4712,87 @@
           return;
         }
         const spr = s / p;
-        let hint =
-          spr < 2
-            ? "Very low SPR — almost pot-committed. Strong made hands dominate. Hard to fold TPTK+."
+        const hint =
+          spr < 1
+            ? "Micro SPR — committed. Shove top pair or better."
+            : spr < 2
+            ? "Very low SPR — pot committed with TPTK+. Hard to fold any top pair hand."
             : spr < 5
-            ? "Low SPR — premium hands play straightforwardly. Sets/straights/flushes need careful sizing."
+            ? "Low SPR — strong draws and sets play straightforwardly for stacks."
             : spr < 10
-            ? "Medium SPR — sets and flushes gain implied odds. Balanced play important."
-            : "High SPR — speculative hands (suited connectors, small pairs) gain significant implied odds. Deep stack poker.";
+            ? "Medium SPR — balance value/bluffs. Sets and flushes have good implied odds."
+            : "High SPR — deep. Suited connectors, small pairs gain implied value. Position is crucial.";
+        const commit =
+          spr < 4
+            ? `Stack-off threshold: TPTK+ always commit`
+            : "Consider hand value vs range before committing.";
         const res = document.getElementById("spr-res");
         res.className = "tool-res on";
         const vEl = document.getElementById("spr-val");
         vEl.textContent = spr.toFixed(1);
         vEl.style.color =
-          spr < 3 ? "var(--am)" : spr < 7 ? "var(--ac2)" : "var(--gr)";
-        document.getElementById("spr-inf").textContent = hint;
+          spr < 2 ? "var(--am)" : spr < 7 ? "var(--ac2)" : "var(--gr)";
+        document.getElementById("spr-inf").innerHTML =
+          hint + "<br><br>" + commit;
       }
+
+      function calcBBE() {
+        const pot = parseFloat(document.getElementById("bbe-pot").value) || 0;
+        const bet = parseFloat(document.getElementById("bbe-bet").value) || 0;
+        if (!pot || !bet) {
+          toast("Enter pot and bluff size");
+          return;
+        }
+        const needed = (bet / (pot + bet)) * 100;
+        const res = document.getElementById("bbe-res");
+        res.className = "tool-res on";
+        const vEl = document.getElementById("bbe-val");
+        vEl.textContent = needed.toFixed(1) + "%";
+        vEl.style.color =
+          needed < 40 ? "var(--gr)" : needed < 55 ? "var(--am)" : "var(--rd)";
+        document.getElementById(
+          "bbe-inf"
+        ).innerHTML = `Your bluff needs to work ${needed.toFixed(
+          1
+        )}% of the time to break even.<br>Bluffing ${(
+          (bet / pot) *
+          100
+        ).toFixed(0)}% pot.<br>${
+          needed < 40
+            ? "Low risk — profitable against most opponents."
+            : needed < 55
+            ? "Moderate — needs reasonable fold equity."
+            : "High risk — only attempt vs tight folders."
+        }`;
+      }
+
+      function calc3B() {
+        const open =
+          parseFloat(document.getElementById("tb-open").value) || 2.5;
+        const isIP = document.getElementById("tb-pos").value.includes("IP");
+        const stack =
+          parseFloat(document.getElementById("tb-stack").value) || 100;
+        const dead =
+          parseFloat(document.getElementById("tb-dead").value) || 1.5;
+        const multi = isIP ? 3.2 : 4.0;
+        const size = Math.round((open * multi + dead) * 2) / 2;
+        const spr3b = ((stack - size) / (size + open + dead)).toFixed(1);
+        const res = document.getElementById("tb-res");
+        res.className = "tool-res on";
+        document.getElementById("tb-val").textContent = size.toFixed(1) + "bb";
+        document.getElementById(
+          "tb-inf"
+        ).innerHTML = `Formula: ${open}bb open × ${multi} (${
+          isIP ? "IP" : "OOP"
+        } multiplier) + ${dead}bb dead = ${size}bb<br>Post-3bet SPR: ${spr3b}<br>${
+          parseFloat(spr3b) < 3
+            ? "Low SPR — stack-off range is wide. Villain cannot call with many hands profitably."
+            : parseFloat(spr3b) < 6
+            ? "Medium SPR — 3-bet pot. Villain needs a strong hand to continue."
+            : "High SPR — still room to manoeuvre on later streets."
+        }`;
+      }
+
       function calcICM() {
         const my = parseFloat(document.getElementById("icm-my").value) || 0;
         const vl = parseFloat(document.getElementById("icm-vl").value) || 0;
@@ -4250,29 +4808,25 @@
         const vEl = document.getElementById("icm-val");
         if (bubble) {
           const risk = Math.round((vl / (my + vl)) * 100);
-          vEl.textContent = risk + "%";
+          vEl.textContent = risk + "% elim risk";
           vEl.style.color =
             risk > 60 ? "var(--rd)" : risk > 40 ? "var(--am)" : "var(--gr)";
-          document.getElementById("icm-inf").innerHTML =
-            "ON THE BUBBLE (" +
-            pl +
-            " left, " +
-            paid +
-            " paid).<br>Calling this all-in: villain has " +
-            risk +
-            "% chance to eliminate you.<br>ICM pressure is MAXIMUM — you need a very strong hand to call off.<br>Villain can profitably shove a very wide range given your ICM pressure.";
+          document.getElementById(
+            "icm-inf"
+          ).innerHTML = `ON THE BUBBLE (${pl} left, ${paid} paid).<br>Calling all-in: ${risk}% elimination chance.<br>ICM pressure MAXIMUM — you need a very strong hand to call off.<br>Villain can profitably shove a very wide range here.`;
         } else {
           const dist = pl - paid;
-          vEl.textContent = dist + " from $";
+          const pressure =
+            dist === 1 ? "Moderate" : dist <= 3 ? "Low" : "None yet";
+          vEl.textContent = dist + " from money";
           vEl.style.color = "var(--tx2)";
-          document.getElementById("icm-inf").innerHTML =
-            pl +
-            " players remain, " +
-            paid +
-            " paid. " +
-            (dist > 2
-              ? "Not yet near the bubble — play closer to chip EV."
-              : "Approaching the bubble — begin tightening your calling range by ~10-15%.");
+          document.getElementById(
+            "icm-inf"
+          ).innerHTML = `${pl} left, ${paid} paid. ICM pressure: ${pressure}.<br>${
+            dist > 3
+              ? "Play closer to chip EV — ICM effects are minimal."
+              : "Begin tightening calling ranges by ~10-15% vs short stacks."
+          }`;
         }
       }
 
@@ -4301,28 +4855,26 @@
       function updTmr() {
         const h = Math.floor(tmrSec / 3600),
           m = Math.floor((tmrSec % 3600) / 60),
-          ss = tmrSec % 60;
-        document.getElementById("tmr").textContent =
-          String(h).padStart(2, "0") +
-          ":" +
-          String(m).padStart(2, "0") +
-          ":" +
-          String(ss).padStart(2, "0");
+          s = tmrSec % 60;
+        document.getElementById("tmr").textContent = [h, m, s]
+          .map((x) => String(x).padStart(2, "0"))
+          .join(":");
         const rate =
           parseFloat(document.getElementById("tmr-rate")?.value) || 0;
-        if (rate && tmrSec > 0) {
+        const inf = document.getElementById("tmr-info");
+        if (inf) {
           const hrs = tmrSec / 3600;
-          document.getElementById("tmr-info").textContent =
-            hrs.toFixed(2) +
-            "h · Expected: " +
-            getCur() +
-            (rate * hrs).toFixed(2);
-        } else document.getElementById("tmr-info").textContent = "";
+          inf.textContent =
+            rate && tmrSec > 0
+              ? hrs.toFixed(2) +
+                "h · target: " +
+                getCur() +
+                (rate * hrs).toFixed(2)
+              : "";
+        }
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // THEME
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ THEME ━━━
       function setTheme(t) {
         S.settings.theme = t;
         save();
@@ -4330,14 +4882,11 @@
         document
           .querySelectorAll(".tsw")
           .forEach((s) => s.classList.remove("on"));
-        const tsw = document.getElementById("tsw-" + t);
-        if (tsw) tsw.classList.add("on");
-        toast("Theme: " + t.charAt(0).toUpperCase() + t.slice(1));
+        document.getElementById("tsw-" + t)?.classList.add("on");
+        toast("Theme: " + t[0].toUpperCase() + t.slice(1));
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // SETTINGS
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ SETTINGS ━━━
       function initSettings() {
         document
           .getElementById("st-name")
@@ -4350,26 +4899,20 @@
                 : "♠";
             save();
           });
-        document
-          .getElementById("st-anim")
-          .addEventListener("change", function (e) {
-            S.settings.anim = e.target.checked;
-            save();
-          });
-        document
-          .getElementById("st-sc")
-          .addEventListener("change", function (e) {
-            S.settings.showCorr = e.target.checked;
-            save();
-          });
-        document
-          .getElementById("st-q")
-          .addEventListener("change", function (e) {
-            S.settings.qcount = parseInt(e.target.value);
-            save();
-          });
-        document.getElementById("btn-cr").onclick = function () {
-          if (confirm("Clear all ranges?")) {
+        document.getElementById("st-anim").addEventListener("change", (e) => {
+          S.settings.anim = e.target.checked;
+          save();
+        });
+        document.getElementById("st-sc").addEventListener("change", (e) => {
+          S.settings.showCorr = e.target.checked;
+          save();
+        });
+        document.getElementById("st-exp").addEventListener("change", (e) => {
+          S.settings.showExp = e.target.checked;
+          save();
+        });
+        document.getElementById("btn-cr").onclick = () => {
+          if (confirm("Clear all saved ranges?")) {
             S.ranges = [];
             S.cs = {};
             save();
@@ -4379,18 +4922,18 @@
             toast("Ranges cleared");
           }
         };
-        document.getElementById("btn-cb").onclick = function () {
-          if (confirm("Clear ALL bankroll data from all bankrolls?")) {
+        document.getElementById("btn-cb").onclick = () => {
+          if (confirm("Clear ALL bankroll data?")) {
             S.bankrolls.forEach((b) => {
               b.sessions = [];
             });
             save();
             renderBR();
-            toast("Bankroll data cleared");
+            toast("Bankroll cleared");
           }
         };
-        document.getElementById("btn-rs").onclick = function () {
-          if (confirm("Factory reset? All data will be lost!")) {
+        document.getElementById("btn-rs").onclick = () => {
+          if (confirm("Factory reset? This cannot be undone.")) {
             localStorage.clear();
             location.reload();
           }
@@ -4403,12 +4946,13 @@
         if (av) av.textContent = st.uname ? st.uname[0].toUpperCase() : "♠";
         document.getElementById("st-anim").checked = st.anim !== false;
         document.getElementById("st-sc").checked = st.showCorr !== false;
-        document.getElementById("st-q").value = st.qcount || 20;
+        document.getElementById("st-exp").checked = st.showExp !== false;
         document
           .querySelectorAll(".tsw")
           .forEach((s) => s.classList.remove("on"));
-        const tsw = document.getElementById("tsw-" + (st.theme || "pink"));
-        if (tsw) tsw.classList.add("on");
+        document
+          .getElementById("tsw-" + (st.theme || "pink"))
+          ?.classList.add("on");
       }
       function exportAll() {
         const d = {
@@ -4416,14 +4960,14 @@
           bankrolls: S.bankrolls,
           actions: S.actions,
           settings: S.settings,
-          version: "4.0",
+          version: "5.0",
           date: new Date().toISOString(),
         };
         const a = document.createElement("a");
         a.href = URL.createObjectURL(
           new Blob([JSON.stringify(d, null, 2)], { type: "application/json" })
         );
-        a.download = "pokerstudio-" + Date.now() + ".json";
+        a.download = "pokerstudio-v5-" + Date.now() + ".json";
         a.click();
         toast("Exported ✓");
       }
@@ -4431,11 +4975,11 @@
         const inp = document.createElement("input");
         inp.type = "file";
         inp.accept = ".json";
-        inp.onchange = function (e) {
+        inp.onchange = (e) => {
           const f = e.target.files[0];
           if (!f) return;
           const rd = new FileReader();
-          rd.onload = function (ev) {
+          rd.onload = (ev) => {
             try {
               const d = JSON.parse(ev.target.result);
               if (d.ranges) S.ranges = d.ranges;
@@ -4446,10 +4990,12 @@
               renderLib();
               renderBR();
               renderAstrip();
+              rebuildMx();
+              updateStats();
               applySetUI();
               spark();
               toast("Imported ✓");
-            } catch (err) {
+            } catch {
               toast("Import failed");
             }
           };
@@ -4458,20 +5004,18 @@
         inp.click();
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // MODAL + TOAST + UTILS
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ MODAL / TOAST ━━━
       function openM(id) {
         document.getElementById(id)?.classList.add("on");
       }
       function closeM(id) {
         document.getElementById(id)?.classList.remove("on");
       }
-      document.querySelectorAll(".ovl").forEach(function (ov) {
-        ov.addEventListener("click", function (e) {
+      document.querySelectorAll(".ovl").forEach((ov) =>
+        ov.addEventListener("click", (e) => {
           if (e.target === ov) ov.classList.remove("on");
-        });
-      });
+        })
+      );
 
       let toastT;
       function toast(msg) {
@@ -4479,7 +5023,7 @@
         t.textContent = msg;
         t.classList.add("on");
         clearTimeout(toastT);
-        toastT = setTimeout(() => t.classList.remove("on"), 2500);
+        toastT = setTimeout(() => t.classList.remove("on"), 2600);
       }
 
       function spark() {
@@ -4491,30 +5035,19 @@
             s.className = "sp";
             const x = window.innerWidth / 2 + (Math.random() - 0.5) * 180;
             const y = window.innerHeight * 0.38 + (Math.random() - 0.5) * 80;
-            s.style.cssText =
-              "left:" +
-              x +
-              "px;top:" +
-              y +
-              "px;width:" +
-              (4 + Math.random() * 5) +
-              "px;height:" +
-              (4 + Math.random() * 5) +
-              "px;background:" +
-              cs[i % cs.length] +
-              ";--dx:" +
-              (Math.random() - 0.5) * 100 +
-              "px;--dy:" +
-              (-38 - Math.random() * 70) +
-              "px";
+            s.style.cssText = `left:${x}px;top:${y}px;width:${
+              4 + Math.random() * 5
+            }px;height:${4 + Math.random() * 5}px;background:${
+              cs[i % cs.length]
+            };--dx:${(Math.random() - 0.5) * 100}px;--dy:${
+              -38 - Math.random() * 70
+            }px`;
             document.body.appendChild(s);
-            setTimeout(() => s.remove(), 560);
-          }, i * 30);
+            setTimeout(() => s.remove(), 580);
+          }, i * 28);
       }
 
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // INIT
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // ━━━ INIT ━━━
       document.body.dataset.theme = S.settings.theme || "pink";
       buildMx();
       renderAstrip();
@@ -4523,14 +5056,16 @@
       initPosChips();
       initSettings();
       applySetUI();
-      renderTHist();
       updTStats();
+      updTCatStats();
+      renderTHist();
+      initTPosChips();
 
-      // prevent double-tap zoom
+      // Prevent double-tap zoom
       let lt = 0;
       document.addEventListener(
         "touchend",
-        function (e) {
+        (e) => {
           const n = Date.now();
           if (n - lt < 300) e.preventDefault();
           lt = n;
@@ -4538,26 +5073,13 @@
         { passive: false }
       );
 
-      // iOS PWA
-      (function () {
+      // iOS PWA install banner
+      (() => {
         const isIOS =
           /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         const isSA =
           window.matchMedia("(display-mode:standalone)").matches ||
           navigator.standalone;
-        function upPWA() {
-          document.documentElement.classList.toggle(
-            "pwa",
-            !!(
-              window.matchMedia("(display-mode:standalone)").matches ||
-              navigator.standalone
-            )
-          );
-        }
-        upPWA();
-        window
-          .matchMedia("(display-mode:standalone)")
-          .addEventListener("change", upPWA);
         if (isIOS && !isSA && !localStorage.getItem("ps_ios"))
           setTimeout(() => {
             document.getElementById("ios-banner")?.classList.add("on");
@@ -4602,12 +5124,14 @@
         );
         if ("serviceWorker" in navigator) {
           var sw =
-            "const C='ps2';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['./'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>{if(c)return c;return fetch(e.request).then(r=>{if(r&&r.status===200){const cl=r.clone();caches.open(C).then(ca=>ca.put(e.request,cl));}return r;}).catch(()=>c);}));});";
-          var url = URL.createObjectURL(
-            new Blob([sw], { type: "application/javascript" })
-          );
+            "const C='ps5';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['./'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>{if(c)return c;return fetch(e.request).then(r=>{if(r&&r.status===200){const cl=r.clone();caches.open(C).then(ca=>ca.put(e.request,cl));}return r;}).catch(()=>c);}));});";
           navigator.serviceWorker
-            .register(url, { scope: "./" })
+            .register(
+              URL.createObjectURL(
+                new Blob([sw], { type: "application/javascript" })
+              ),
+              { scope: "./" }
+            )
             .catch(function () {});
         }
       })();
