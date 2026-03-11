@@ -14,7 +14,7 @@
     />
     <meta name="apple-mobile-web-app-title" content="Poker Studio" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="theme-color" content="#110a0e" />
     <meta name="format-detection" content="telephone=no" />
     <link
       rel="apple-touch-icon"
@@ -42,40 +42,98 @@
     />
     <link rel="manifest" id="pwamf" />
     <style>
-      :root {
-        --bg: #0a0a0f;
-        --s1: #111118;
-        --s2: #18181f;
-        --s3: #1f1f28;
-        --s4: #26262f;
-        --bd: #2a2a38;
-        --bd2: #363648;
-        --ac: #6c5ce7;
-        --ac2: #a29bfe;
-        --ac3: rgba(108, 92, 231, 0.15);
-        --ac4: rgba(108, 92, 231, 0.35);
-        --gr: #00b894;
-        --gr2: rgba(0, 184, 148, 0.15);
+      /* ━━━━━━━━━━━━━━━━━━━━ THEMES ━━━━━━━━━━━━━━━━━━━━ */
+      :root,
+      [data-theme="pink"] {
+        --bg: #110a0e;
+        --s1: #1a0d13;
+        --s2: #221018;
+        --s3: #2c1520;
+        --s4: #381c2a;
+        --bd: #46213a;
+        --bd2: #5a2a4a;
+        --ac: #e8438a;
+        --ac2: #ff7ab5;
+        --ac3: rgba(232, 67, 138, 0.14);
+        --ac4: rgba(232, 67, 138, 0.32);
+        --gr: #34c97a;
+        --gr2: rgba(52, 201, 122, 0.13);
         --rd: #e17055;
-        --rd2: rgba(225, 112, 85, 0.15);
-        --am: #fdcb6e;
-        --am2: rgba(253, 203, 110, 0.15);
+        --rd2: rgba(225, 112, 85, 0.13);
+        --am: #f0c040;
+        --am2: rgba(240, 192, 64, 0.13);
         --bl: #74b9ff;
-        --bl2: rgba(116, 185, 255, 0.15);
-        --tx: #f0f0f8;
-        --tx2: #9090b0;
-        --tx3: #55556a;
-        --nav: 50px;
-        --hdr: 48px;
-        --ff: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
-          sans-serif;
-        --fm: "SF Mono", "Fira Mono", monospace;
-        --r4: 4px;
-        --r8: 8px;
-        --r12: 12px;
-        --r16: 16px;
-        --r20: 20px;
+        --bl2: rgba(116, 185, 255, 0.13);
+        --tx: #f5eef2;
+        --tx2: #b090a0;
+        --tx3: #6a4a58;
       }
+      [data-theme="midnight"] {
+        --bg: #08081a;
+        --s1: #0e0e24;
+        --s2: #13132e;
+        --s3: #191938;
+        --s4: #1f1f42;
+        --bd: #2a2a58;
+        --bd2: #363670;
+        --ac: #5b7cf5;
+        --ac2: #8fa0ff;
+        --ac3: rgba(91, 124, 245, 0.14);
+        --ac4: rgba(91, 124, 245, 0.32);
+        --tx: #eeeeff;
+        --tx2: #9090c0;
+        --tx3: #50507a;
+      }
+      [data-theme="forest"] {
+        --bg: #061210;
+        --s1: #0a1a14;
+        --s2: #0e201a;
+        --s3: #122820;
+        --s4: #163028;
+        --bd: #1e4030;
+        --bd2: #285040;
+        --ac: #2ece72;
+        --ac2: #5af0a0;
+        --ac3: rgba(46, 206, 114, 0.14);
+        --ac4: rgba(46, 206, 114, 0.32);
+        --tx: #eefff5;
+        --tx2: #80b095;
+        --tx3: #3a6048;
+      }
+      [data-theme="violet"] {
+        --bg: #0c0818;
+        --s1: #110d22;
+        --s2: #17112c;
+        --s3: #1d1636;
+        --s4: #231b40;
+        --bd: #302555;
+        --bd2: #3c2f6e;
+        --ac: #9b5df5;
+        --ac2: #c090ff;
+        --ac3: rgba(155, 93, 245, 0.14);
+        --ac4: rgba(155, 93, 245, 0.32);
+        --tx: #f0eaff;
+        --tx2: #9080b8;
+        --tx3: #524070;
+      }
+      [data-theme="amber"] {
+        --bg: #100c04;
+        --s1: #1a1208;
+        --s2: #22180a;
+        --s3: #2a1e0e;
+        --s4: #322412;
+        --bd: #4a3218;
+        --bd2: #5e4022;
+        --ac: #f0a020;
+        --ac2: #ffc860;
+        --ac3: rgba(240, 160, 32, 0.14);
+        --ac4: rgba(240, 160, 32, 0.32);
+        --tx: #fff8e8;
+        --tx2: #b09060;
+        --tx3: #6a5030;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━ RESET ━━━━━━━━━━━━━━━━━━━━ */
       *,
       *::before,
       *::after {
@@ -92,7 +150,8 @@
         background: var(--bg);
       }
       body {
-        font-family: var(--ff);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+          "Segoe UI", sans-serif;
         color: var(--tx);
         -webkit-font-smoothing: antialiased;
         overscroll-behavior: none;
@@ -110,7 +169,7 @@
         font-family: inherit;
         background: var(--s3);
         border: 1px solid var(--bd);
-        border-radius: var(--r8);
+        border-radius: 8px;
         padding: 10px 12px;
         font-size: 14px;
         color: var(--tx);
@@ -130,13 +189,14 @@
         color: var(--tx3);
       }
       select {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2355556a'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236a4a58'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 12px center;
         padding-right: 32px;
       }
       ::-webkit-scrollbar {
         width: 2px;
+        height: 2px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
@@ -146,13 +206,12 @@
         border-radius: 2px;
       }
 
-      /* Shell */
+      /* ━━━━━━━━━━━━━━━━━━━━ SHELL ━━━━━━━━━━━━━━━━━━━━ */
       .app {
         display: flex;
         flex-direction: column;
         height: 100dvh;
         overflow: hidden;
-        position: relative;
       }
       header {
         flex-shrink: 0;
@@ -160,64 +219,68 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 16px;
-        background: rgba(10, 10, 15, 0.9);
+        padding: 0 14px;
+        gap: 8px;
+        background: rgba(17, 10, 14, 0.92);
         border-bottom: 1px solid var(--bd);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        height: calc(var(--hdr) + env(safe-area-inset-top));
+        height: calc(48px + env(safe-area-inset-top));
         padding-top: env(safe-area-inset-top);
       }
       .logo {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 7px;
+        min-width: 0;
       }
-      .logo-icon {
-        width: 28px;
-        height: 28px;
+      .logo-ic {
+        width: 26px;
+        height: 26px;
         background: linear-gradient(135deg, var(--ac), var(--ac2));
         border-radius: 7px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 800;
         color: #fff;
+        flex-shrink: 0;
       }
-      .logo-text {
-        font-size: 17px;
+      .logo-tx {
+        font-size: 16px;
         font-weight: 700;
         letter-spacing: -0.3px;
+        white-space: nowrap;
       }
-      .logo-text b {
+      .logo-tx b {
         color: var(--ac2);
       }
-      .hdr-pills {
+      .hdr-stats {
         display: flex;
-        gap: 8px;
+        gap: 6px;
+        flex-shrink: 0;
       }
-      .hdr-pill {
-        text-align: center;
+      .hstat {
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: var(--r8);
-        padding: 4px 10px;
-        min-width: 52px;
+        border-radius: 7px;
+        padding: 3px 8px;
+        text-align: center;
+        min-width: 46px;
       }
-      .hdr-pill-val {
-        font-size: 14px;
+      .hstat-v {
+        font-size: 13px;
         font-weight: 700;
         color: var(--ac2);
         line-height: 1.1;
         font-variant-numeric: tabular-nums;
       }
-      .hdr-pill-lbl {
+      .hstat-l {
         font-size: 8px;
-        letter-spacing: 1.2px;
+        letter-spacing: 0.8px;
         text-transform: uppercase;
         color: var(--tx3);
-        margin-top: 1px;
       }
 
       .content {
@@ -234,7 +297,7 @@
         -webkit-overflow-scrolling: touch;
         display: none;
         flex-direction: column;
-        padding-bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 4px);
+        padding-bottom: calc(50px + env(safe-area-inset-bottom) + 4px);
       }
       .scr.on {
         display: flex;
@@ -250,11 +313,11 @@
         flex-shrink: 0;
         z-index: 200;
         display: flex;
-        background: rgba(10, 10, 15, 0.96);
+        background: rgba(17, 10, 14, 0.96);
         border-top: 1px solid var(--bd);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        height: calc(var(--nav) + env(safe-area-inset-bottom));
+        height: calc(50px + env(safe-area-inset-bottom));
         padding-bottom: env(safe-area-inset-bottom);
       }
       .nb {
@@ -267,7 +330,8 @@
         color: var(--tx3);
         font-size: 9px;
         letter-spacing: 0.3px;
-        transition: color 0.15s;
+        transition: color 0.14s;
+        position: relative;
       }
       .nb svg {
         width: 18px;
@@ -277,69 +341,87 @@
         stroke-width: 1.8;
         stroke-linecap: round;
         stroke-linejoin: round;
-        transition: transform 0.15s;
+        transition: transform 0.14s;
       }
       .nb.on {
         color: var(--ac2);
       }
       .nb.on svg {
-        transform: scale(1.08);
+        transform: scale(1.1);
+      }
+      .nb::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 20%;
+        right: 20%;
+        height: 2px;
+        background: var(--ac);
+        border-radius: 0 0 2px 2px;
+        transform: scaleX(0);
+        transition: transform 0.2s;
+      }
+      .nb.on::after {
+        transform: scaleX(1);
       }
 
-      /* Cards */
+      /* ━━━━━━━━━━━━━━━━━━━━ CARDS ━━━━━━━━━━━━━━━━━━━━ */
       .card {
         background: var(--s1);
         border: 1px solid var(--bd);
-        border-radius: var(--r12);
+        border-radius: 12px;
         overflow: hidden;
       }
       .ch {
-        padding: 11px 13px 9px;
+        padding: 10px 12px 8px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid var(--bd);
       }
-      .ch-title {
-        font-size: 12px;
-        font-weight: 600;
+      .cht {
+        font-size: 11px;
+        font-weight: 700;
         color: var(--tx2);
-        letter-spacing: 0.3px;
+        letter-spacing: 0.5px;
         text-transform: uppercase;
       }
       .cb {
-        padding: 12px 13px;
+        padding: 11px 12px;
       }
 
-      /* Buttons */
+      /* ━━━━━━━━━━━━━━━━━━━━ BUTTONS ━━━━━━━━━━━━━━━━━━━━ */
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
-        padding: 10px 15px;
-        border-radius: var(--r8);
+        padding: 10px 14px;
+        border-radius: 8px;
         font-size: 14px;
         font-weight: 600;
         transition: opacity 0.1s, transform 0.08s;
         cursor: pointer;
+        white-space: nowrap;
       }
       .btn:active {
-        opacity: 0.8;
-        transform: scale(0.97);
+        opacity: 0.78;
+        transform: scale(0.96);
       }
       .btn-ac {
         background: linear-gradient(135deg, var(--ac), var(--ac2));
         color: #fff;
-        box-shadow: 0 2px 12px var(--ac4);
+        box-shadow: 0 2px 10px var(--ac4);
       }
       .btn-ghost {
         background: var(--s3);
         border: 1px solid var(--bd);
         color: var(--tx2);
       }
-      .btn-ghost:active {
-        background: var(--s4);
+      .btn-ghost.on {
+        background: var(--ac3);
+        border-color: var(--ac);
+        color: var(--ac2);
       }
       .btn-gr {
         background: var(--gr2);
@@ -352,25 +434,25 @@
         color: var(--rd);
       }
       .btn-sm {
-        padding: 6px 11px;
+        padding: 5px 10px;
         font-size: 12px;
-        border-radius: var(--r8);
+        border-radius: 7px;
       }
       .btn-w {
         width: 100%;
       }
-      .row2 {
+      .r2 {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 7px;
       }
-      .row3 {
+      .r3 {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 6px;
       }
 
-      /* Toggle */
+      /* ━━━━━━━━━━━━━━━━━━━━ TOGGLE ━━━━━━━━━━━━━━━━━━━━ */
       .tog {
         position: relative;
         width: 40px;
@@ -410,12 +492,12 @@
         transform: translateX(18px);
       }
 
-      /* Chip */
+      /* ━━━━━━━━━━━━━━━━━━━━ CHIP ━━━━━━━━━━━━━━━━━━━━ */
       .chip {
         display: inline-flex;
         align-items: center;
-        padding: 5px 10px;
-        border-radius: 16px;
+        padding: 4px 10px;
+        border-radius: 14px;
         font-size: 12px;
         font-weight: 600;
         border: 1px solid var(--bd);
@@ -436,92 +518,65 @@
         flex-wrap: wrap;
       }
 
-      /* Set row */
+      /* ━━━━━━━━━━━━━━━━━━━━ SET ROW ━━━━━━━━━━━━━━━━━━━━ */
       .sr {
         display: flex;
         align-items: center;
-        padding: 11px 13px;
+        padding: 11px 12px;
         border-bottom: 1px solid var(--bd);
       }
       .sr:last-child {
         border-bottom: none;
       }
-      .sr-left {
+      .sr-l {
         flex: 1;
       }
-      .sr-label {
+      .sr-lb {
         font-size: 14px;
         color: var(--tx);
       }
-      .sr-desc {
+      .sr-d {
         font-size: 11px;
         color: var(--tx3);
-        margin-top: 2px;
+        margin-top: 1px;
       }
-
-      /* Section label */
       .sl {
         font-size: 10px;
-        font-weight: 600;
-        letter-spacing: 1.2px;
-        text-transform: uppercase;
-        color: var(--tx3);
-        padding: 12px 13px 6px;
-      }
-
-      /* Stat row */
-      .stat4 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-      }
-      .stat-box {
-        background: var(--s2);
-        border: 1px solid var(--bd);
-        border-radius: var(--r8);
-        padding: 10px;
-        text-align: center;
-      }
-      .stat-val {
-        font-size: 18px;
         font-weight: 700;
-        color: var(--ac2);
-        line-height: 1;
-      }
-      .stat-lbl {
-        font-size: 9px;
         letter-spacing: 1px;
         text-transform: uppercase;
         color: var(--tx3);
-        margin-top: 3px;
+        padding: 10px 12px 5px;
       }
 
-      /* ═══ MATRIX ═══ */
+      /* ━━━━━━━━━━━━━━━━━━━━ MATRIX ━━━━━━━━━━━━━━━━━━━━ */
       #matrix {
         display: grid;
         grid-template-columns: repeat(13, 1fr);
         gap: 1.5px;
         padding: 6px;
         background: var(--bg);
+        border-radius: 0 0 11px 11px;
       }
       .cell {
         aspect-ratio: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: clamp(6px, 1.9vw, 10px);
-        font-family: var(--fm);
+        font-size: clamp(5.5px, 1.75vw, 9.5px);
+        font-family: "SF Mono", "Fira Mono", monospace;
         font-weight: 500;
         background: var(--s3);
         color: var(--tx3);
         border-radius: 2px;
         cursor: pointer;
         user-select: none;
-        transition: transform 0.07s, filter 0.07s;
+        transition: transform 0.07s;
+        position: relative;
+        overflow: hidden;
       }
       .cell:active {
-        transform: scale(0.88);
-        filter: brightness(1.3);
+        transform: scale(0.86);
       }
       .cell.pair {
         font-weight: 700;
@@ -530,23 +585,34 @@
         color: #fff;
       }
       .cell.pop {
-        animation: cpop 0.18s ease;
+        animation: cpop 0.16s ease;
       }
       @keyframes cpop {
         0% {
-          transform: scale(1.25);
+          transform: scale(1.28);
         }
         100% {
           transform: scale(1);
         }
       }
+      .cell-freq {
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        font-size: 5px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.85);
+        font-family: "SF Mono", "Fira Mono", monospace;
+        line-height: 1;
+        pointer-events: none;
+      }
 
-      /* action pills */
+      /* action strip */
       .astrip {
         display: flex;
         gap: 5px;
+        padding: 9px 11px 0;
         overflow-x: auto;
-        padding: 10px 12px;
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
@@ -557,8 +623,8 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        padding: 6px 11px;
-        border-radius: 16px;
+        padding: 5px 10px;
+        border-radius: 14px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
         color: var(--tx2);
@@ -569,9 +635,9 @@
         cursor: pointer;
         transition: all 0.12s;
       }
-      .apill .dot {
-        width: 8px;
-        height: 8px;
+      .apill .adot {
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
         flex-shrink: 0;
       }
@@ -579,17 +645,49 @@
         color: #fff;
       }
 
+      /* freq strip */
+      .fstrip {
+        display: flex;
+        gap: 4px;
+        padding: 5px 11px 8px;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .fstrip::-webkit-scrollbar {
+        display: none;
+      }
+      .fpill {
+        padding: 4px 8px;
+        border-radius: 10px;
+        border: 1.5px solid var(--bd);
+        background: var(--s2);
+        color: var(--tx2);
+        font-size: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: all 0.12s;
+        font-family: "SF Mono", "Fira Mono", monospace;
+      }
+      .fpill.on {
+        background: var(--ac3);
+        border-color: var(--ac);
+        color: var(--ac2);
+      }
+
       /* range stats */
       .rbar {
-        height: 5px;
+        height: 4px;
         background: var(--s3);
-        border-radius: 3px;
+        border-radius: 2px;
         overflow: hidden;
         margin: 6px 0 3px;
       }
       .rbar-f {
         height: 100%;
-        border-radius: 3px;
+        border-radius: 2px;
         transition: width 0.35s;
       }
       .rstats {
@@ -598,8 +696,6 @@
         font-size: 11px;
         color: var(--tx3);
       }
-
-      /* breakdown */
       .bdrow {
         display: flex;
         align-items: center;
@@ -612,7 +708,7 @@
         border-radius: 50%;
         flex-shrink: 0;
       }
-      .bdname {
+      .bdnm {
         font-size: 12px;
         color: var(--tx2);
         flex: 1;
@@ -634,22 +730,22 @@
       .bdn {
         font-size: 10px;
         color: var(--tx3);
-        width: 26px;
+        width: 28px;
         text-align: right;
-        font-family: var(--fm);
+        font-family: "SF Mono", "Fira Mono", monospace;
       }
 
-      /* quick select */
-      .qsgrid {
+      /* quick btns */
+      .qg {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 5px;
       }
-      .qsbtn {
-        padding: 9px 4px;
+      .qb {
+        padding: 8px 3px;
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: var(--r8);
+        border-radius: 8px;
         font-size: 10px;
         font-weight: 600;
         color: var(--tx2);
@@ -658,28 +754,28 @@
         cursor: pointer;
         transition: all 0.1s;
       }
-      .qsbtn:active {
+      .qb:active {
         background: var(--s3);
-        transform: scale(0.95);
+        transform: scale(0.94);
       }
 
-      /* ═══ TRAINER ═══ */
+      /* ━━━━━━━━━━━━━━━━━━━━ TRAINER ━━━━━━━━━━━━━━━━━━━━ */
       .t-hand {
         background: var(--s2);
         border: 1px solid var(--bd2);
-        border-radius: var(--r12);
-        padding: 16px 12px;
+        border-radius: 12px;
+        padding: 14px 12px;
         text-align: center;
       }
       .t-cards {
         display: flex;
         justify-content: center;
         gap: 8px;
-        margin: 10px 0;
+        margin: 9px 0;
       }
       .pcard {
-        width: clamp(52px, 14vw, 68px);
-        height: clamp(70px, 19vw, 92px);
+        width: clamp(50px, 13vw, 66px);
+        height: clamp(68px, 18vw, 88px);
         background: #fff;
         border-radius: 9px;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
@@ -691,32 +787,33 @@
         font-weight: 800;
       }
       .pcard-r {
-        font-size: clamp(18px, 5.5vw, 26px);
+        font-size: clamp(17px, 5vw, 24px);
         line-height: 1.1;
       }
       .pcard-s {
-        font-size: clamp(13px, 3.8vw, 18px);
+        font-size: clamp(12px, 3.5vw, 17px);
         line-height: 1.1;
       }
       .pcard.red {
-        color: #cc2200;
+        color: #cc2000;
       }
-      .pcard.black {
+      .pcard.blk {
         color: #0a0a14;
       }
       .t-hname {
         font-size: 12px;
         color: var(--tx2);
-        margin-top: 4px;
+        margin-top: 3px;
       }
       .t-scen {
         font-size: 13px;
         color: var(--tx2);
-        padding: 9px 12px;
+        padding: 8px 11px;
         background: var(--s3);
-        border-radius: var(--r8);
+        border-radius: 8px;
         text-align: center;
         line-height: 1.5;
+        margin: 7px 0;
       }
       .t-btns {
         display: grid;
@@ -724,15 +821,15 @@
         gap: 7px;
       }
       .t-btn {
-        padding: 13px 8px;
-        border-radius: var(--r8);
+        padding: 12px 8px;
+        border-radius: 8px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
         font-size: 13px;
         font-weight: 600;
         color: var(--tx2);
         text-align: center;
-        transition: all 0.13s;
+        transition: all 0.12s;
         cursor: pointer;
       }
       .t-btn:active {
@@ -748,27 +845,23 @@
         border-color: var(--rd);
         color: var(--rd);
       }
-      .t-btn.dis {
-        opacity: 0.35;
-        pointer-events: none;
-      }
-      .t-result {
-        padding: 10px 14px;
-        border-radius: var(--r8);
+      .t-res {
+        padding: 10px 12px;
+        border-radius: 8px;
         text-align: center;
         font-size: 14px;
         font-weight: 600;
         display: none;
       }
-      .t-result.on {
+      .t-res.on {
         display: block;
       }
-      .t-result.ok {
+      .t-res.ok {
         background: var(--gr2);
         border: 1px solid var(--gr);
         color: var(--gr);
       }
-      .t-result.bad {
+      .t-res.bad {
         background: var(--rd2);
         border: 1px solid var(--rd);
         color: var(--rd);
@@ -791,21 +884,21 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 6px;
       }
-      .t3box {
+      .t3b {
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: var(--r8);
+        border-radius: 8px;
         padding: 9px;
         text-align: center;
       }
-      .t3val {
+      .t3v {
         font-size: 18px;
         font-weight: 700;
         color: var(--ac2);
       }
-      .t3lbl {
+      .t3l {
         font-size: 8px;
-        letter-spacing: 1px;
+        letter-spacing: 0.8px;
         text-transform: uppercase;
         color: var(--tx3);
         margin-top: 2px;
@@ -820,10 +913,10 @@
       .hist-row:last-child {
         border-bottom: none;
       }
-      .hist-badge {
-        width: 36px;
-        height: 36px;
-        border-radius: var(--r8);
+      .hbadge {
+        width: 34px;
+        height: 34px;
+        border-radius: 7px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -832,12 +925,54 @@
         flex-shrink: 0;
       }
 
-      /* ═══ BANKROLL ═══ */
+      /* ━━━━━━━━━━━━━━━━━━━━ BANKROLL ━━━━━━━━━━━━━━━━━━━━ */
+      .br-roll-strip {
+        display: flex;
+        gap: 7px;
+        overflow-x: auto;
+        padding: 10px 12px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .br-roll-strip::-webkit-scrollbar {
+        display: none;
+      }
+      .brc {
+        min-width: 130px;
+        padding: 11px 12px;
+        border-radius: 10px;
+        border: 1.5px solid var(--bd);
+        background: var(--s2);
+        cursor: pointer;
+        transition: all 0.15s;
+        flex-shrink: 0;
+      }
+      .brc.on {
+        border-color: var(--ac);
+        background: var(--ac3);
+      }
+      .brc-name {
+        font-size: 13px;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-bottom: 2px;
+      }
+      .brc-val {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ac2);
+      }
+      .brc-cur {
+        font-size: 11px;
+        color: var(--tx3);
+      }
       .br-hero {
         background: linear-gradient(135deg, var(--s2), var(--s3));
         border: 1px solid var(--bd2);
-        border-radius: var(--r16);
-        padding: 18px 14px;
+        border-radius: 14px;
+        padding: 16px 14px;
         text-align: center;
         position: relative;
         overflow: hidden;
@@ -854,16 +989,16 @@
       }
       .br-lbl {
         font-size: 9px;
-        letter-spacing: 1.8px;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
         color: var(--tx3);
       }
       .br-val {
-        font-size: clamp(30px, 9vw, 42px);
+        font-size: clamp(28px, 8vw, 40px);
         font-weight: 700;
         color: var(--tx);
         line-height: 1.1;
-        margin: 5px 0 3px;
+        margin: 4px 0 3px;
       }
       .br-val .sym {
         color: var(--ac2);
@@ -871,148 +1006,172 @@
       .br-sub {
         font-size: 12px;
       }
+      .s4g {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      .sb {
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+      }
+      .sb-v {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ac2);
+      }
+      .sb-l {
+        font-size: 8px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--tx3);
+        margin-top: 2px;
+      }
       .chart-box {
-        height: 120px;
+        height: 110px;
         background: var(--s2);
         border: 1px solid var(--bd);
-        border-radius: var(--r8);
+        border-radius: 8px;
         overflow: hidden;
-        padding: 8px;
+        padding: 7px;
         position: relative;
       }
-      .sess-item {
+      .sess-it {
         display: flex;
         align-items: center;
-        gap: 9px;
+        gap: 8px;
         padding: 9px 0;
         border-bottom: 1px solid var(--bd);
         cursor: pointer;
       }
-      .sess-item:last-child {
+      .sess-it:last-child {
         border-bottom: none;
       }
       .sess-ic {
-        width: 34px;
-        height: 34px;
-        border-radius: var(--r8);
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
+        font-size: 15px;
         flex-shrink: 0;
       }
-      .sess-body {
+      .sess-bd {
         flex: 1;
         min-width: 0;
       }
-      .sess-name {
+      .sess-n {
         font-size: 13px;
         font-weight: 600;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      .sess-meta {
+      .sess-m {
         font-size: 11px;
         color: var(--tx3);
         margin-top: 1px;
       }
-      .sess-pnl {
+      .sess-p {
         font-size: 14px;
         font-weight: 700;
         flex-shrink: 0;
       }
 
-      /* ═══ TOOLS ═══ */
+      /* ━━━━━━━━━━━━━━━━━━━━ TOOLS ━━━━━━━━━━━━━━━━━━━━ */
       .tool-res {
         background: var(--s2);
         border: 1px solid var(--ac);
-        border-radius: var(--r8);
+        border-radius: 8px;
         padding: 12px;
         display: none;
       }
       .tool-res.on {
         display: block;
       }
-      .tool-res-val {
+      .tool-rv {
         font-size: 26px;
         font-weight: 700;
         color: var(--ac2);
         text-align: center;
       }
-      .tool-res-lbl {
+      .tool-rl {
         font-size: 10px;
         color: var(--tx3);
         text-align: center;
-        margin-top: 3px;
+        margin-top: 2px;
       }
-      .tool-info {
+      .tool-ri {
         font-size: 11px;
         color: var(--tx3);
         line-height: 1.7;
-        margin-top: 8px;
+        margin-top: 7px;
       }
-      .timer-dsp {
-        font-size: 46px;
+      .tmr-d {
+        font-size: 44px;
         font-weight: 700;
         letter-spacing: 2px;
-        font-family: var(--fm);
+        font-family: "SF Mono", "Fira Mono", monospace;
         color: var(--tx);
         text-align: center;
       }
 
-      /* ═══ FILES ═══ */
-      .fitem {
+      /* ━━━━━━━━━━━━━━━━━━━━ FILES ━━━━━━━━━━━━━━━━━━━━ */
+      .fit {
         display: flex;
         align-items: center;
-        gap: 9px;
-        padding: 10px 13px;
+        gap: 8px;
+        padding: 9px 12px;
         border-bottom: 1px solid var(--bd);
         cursor: pointer;
         transition: background 0.1s;
       }
-      .fitem:last-child {
+      .fit:last-child {
         border-bottom: none;
       }
-      .fitem:active {
+      .fit:active {
         background: var(--s2);
       }
-      .fbadge {
-        width: 34px;
-        height: 34px;
-        border-radius: var(--r8);
+      .fbg {
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 11px;
         font-weight: 700;
-        font-family: var(--fm);
+        font-family: "SF Mono", "Fira Mono", monospace;
         flex-shrink: 0;
       }
-      .fbody {
+      .fbd {
         flex: 1;
         min-width: 0;
       }
-      .fname {
+      .fn {
         font-size: 13px;
         font-weight: 600;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      .fmeta {
+      .fm {
         font-size: 11px;
         color: var(--tx3);
         margin-top: 1px;
       }
-      .facts {
+      .fax {
         display: flex;
         gap: 5px;
       }
-      .fact {
+      .fa {
         width: 26px;
         height: 26px;
-        border-radius: var(--r4);
+        border-radius: 6px;
         background: var(--s3);
         display: flex;
         align-items: center;
@@ -1022,12 +1181,12 @@
         flex-shrink: 0;
       }
 
-      /* ═══ MODALS ═══ */
-      .overlay {
+      /* ━━━━━━━━━━━━━━━━━━━━ MODALS ━━━━━━━━━━━━━━━━━━━━ */
+      .ovl {
         position: fixed;
         inset: 0;
         z-index: 500;
-        background: rgba(0, 0, 0, 0.65);
+        background: rgba(0, 0, 0, 0.68);
         backdrop-filter: blur(6px);
         -webkit-backdrop-filter: blur(6px);
         display: flex;
@@ -1037,14 +1196,14 @@
         pointer-events: none;
         transition: opacity 0.18s;
       }
-      .overlay.on {
+      .ovl.on {
         opacity: 1;
         pointer-events: all;
       }
       .modal {
         background: var(--s1);
         border: 1px solid var(--bd);
-        border-radius: var(--r20) var(--r20) 0 0;
+        border-radius: 20px 20px 0 0;
         width: 100%;
         max-width: 480px;
         max-height: 88vh;
@@ -1053,87 +1212,101 @@
         transform: translateY(100%);
         transition: transform 0.28s cubic-bezier(0.32, 1, 0.56, 1);
       }
-      .overlay.on .modal {
+      .ovl.on .modal {
         transform: translateY(0);
       }
-      .mhandle {
-        width: 30px;
+      .mh {
+        width: 28px;
         height: 3px;
         background: var(--bd2);
         border-radius: 2px;
-        margin: 10px auto 0;
+        margin: 9px auto 0;
       }
-      .mtitle {
+      .mt {
         font-size: 16px;
         font-weight: 700;
-        padding: 10px 14px 12px;
+        padding: 9px 14px 11px;
         border-bottom: 1px solid var(--bd);
       }
-      .mbody {
-        padding: 12px 14px;
+      .mb {
+        padding: 12px 13px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 9px;
       }
-      .mlbl {
+      .ml {
         font-size: 10px;
-        letter-spacing: 1.2px;
+        letter-spacing: 1px;
         text-transform: uppercase;
         color: var(--tx3);
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         display: block;
       }
-      .mfoot {
-        padding: 0 14px 2px;
+      .mf {
+        padding: 0 13px 2px;
         display: flex;
         gap: 7px;
       }
 
-      /* Toast */
+      /* ━━━━━━━━━━━━━━━━━━━━ TOAST ━━━━━━━━━━━━━━━━━━━━ */
       .toast {
         position: fixed;
-        bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 10px);
+        bottom: calc(50px + env(safe-area-inset-bottom) + 10px);
         left: 50%;
-        transform: translateX(-50%) translateY(16px);
+        transform: translateX(-50%) translateY(14px);
         background: var(--s4);
         border: 1px solid var(--bd2);
         color: var(--tx);
         padding: 8px 16px;
-        border-radius: 16px;
+        border-radius: 14px;
         font-size: 13px;
         font-weight: 500;
         z-index: 900;
         opacity: 0;
-        transition: all 0.25s;
+        transition: all 0.23s;
         pointer-events: none;
         white-space: nowrap;
         max-width: 86vw;
         overflow: hidden;
         text-overflow: ellipsis;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
       }
       .toast.on {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
       }
 
-      /* Color pickers */
+      /* ━━━━━━━━━━━━━━━━━━━━ THEME SWATCHES ━━━━━━━━━━━━━━━━━━━━ */
+      .tsw {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2.5px solid transparent;
+        transition: transform 0.12s, border-color 0.12s;
+        flex-shrink: 0;
+      }
+      .tsw.on {
+        border-color: #fff;
+        transform: scale(1.18);
+      }
       .cswatches {
         display: flex;
         gap: 6px;
         flex-wrap: wrap;
       }
       .csw {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
         border-radius: 50%;
         cursor: pointer;
         border: 2px solid transparent;
         transition: transform 0.1s, border-color 0.1s;
+        flex-shrink: 0;
       }
       .csw.on {
         border-color: #fff;
-        transform: scale(1.15);
+        transform: scale(1.16);
       }
       .erow {
         display: flex;
@@ -1141,12 +1314,12 @@
         flex-wrap: wrap;
       }
       .eopt {
-        width: 30px;
-        height: 30px;
-        border-radius: var(--r4);
+        width: 28px;
+        height: 28px;
+        border-radius: 5px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
-        font-size: 14px;
+        font-size: 13px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1158,18 +1331,18 @@
         background: var(--ac3);
       }
 
-      /* Empty */
+      /* ━━━━━━━━━━━━━━━━━━━━ EMPTY ━━━━━━━━━━━━━━━━━━━━ */
       .empty {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 28px 16px;
+        padding: 24px 14px;
         gap: 5px;
         text-align: center;
       }
       .ei {
-        font-size: 26px;
-        margin-bottom: 3px;
+        font-size: 24px;
+        margin-bottom: 2px;
       }
       .et {
         font-size: 14px;
@@ -1180,6 +1353,25 @@
         font-size: 12px;
         color: var(--tx3);
         line-height: 1.5;
+      }
+
+      /* ━━━━━━━━━━━━━━━━━━━━ SPARKLE ━━━━━━━━━━━━━━━━━━━━ */
+      .sp {
+        position: fixed;
+        pointer-events: none;
+        z-index: 1500;
+        border-radius: 50%;
+        animation: spFly 0.5s ease-out forwards;
+      }
+      @keyframes spFly {
+        from {
+          opacity: 1;
+          transform: translate(0, 0) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translate(var(--dx), var(--dy)) scale(0);
+        }
       }
 
       /* iOS banner */
@@ -1203,69 +1395,44 @@
         align-items: center;
         gap: 10px;
       }
-
-      /* Sparkles */
-      .sp {
-        position: fixed;
-        pointer-events: none;
-        z-index: 1500;
-        border-radius: 50%;
-        animation: spFly 0.5s ease-out forwards;
-      }
-      @keyframes spFly {
-        from {
-          opacity: 1;
-          transform: translate(0, 0) scale(1);
-        }
-        to {
-          opacity: 0;
-          transform: translate(var(--dx), var(--dy)) scale(0);
-        }
-      }
     </style>
   </head>
-  <body>
+  <body data-theme="pink">
     <div class="app">
       <header>
         <div class="logo">
-          <div class="logo-icon">&#9824;</div>
-          <div class="logo-text">Poker<b>Studio</b></div>
+          <div class="logo-ic">&#9824;</div>
+          <div class="logo-tx">Poker<b>Studio</b></div>
         </div>
-        <div class="hdr-pills">
-          <div class="hdr-pill">
-            <div class="hdr-pill-val" id="h-combos">0</div>
-            <div class="hdr-pill-lbl">Combos</div>
+        <div class="hdr-stats">
+          <div class="hstat">
+            <div class="hstat-v" id="h-c">0</div>
+            <div class="hstat-l">Combos</div>
           </div>
-          <div class="hdr-pill">
-            <div class="hdr-pill-val" id="h-pct">0%</div>
-            <div class="hdr-pill-lbl">Range%</div>
+          <div class="hstat">
+            <div class="hstat-v" id="h-p">0%</div>
+            <div class="hstat-l">Range</div>
           </div>
         </div>
       </header>
-
       <div class="content">
-        <!-- ═══════════════ RANGE ═══════════════ -->
         <div class="scr on" id="s-range">
           <div class="pg">
             <div class="card">
               <div class="ch">
-                <span class="ch-title">Hand Matrix</span>
-                <span id="act-lbl" style="font-size: 12px; color: var(--tx3)"
+                <span class="cht">Hand Matrix</span
+                ><span id="act-lbl" style="font-size: 11px; color: var(--tx3)"
                   >Tap to paint</span
                 >
               </div>
               <div id="matrix"></div>
+              <div class="astrip" id="astrip"></div>
+              <div class="fstrip" id="fstrip"></div>
             </div>
 
             <div class="card">
-              <div class="ch">
-                <span class="ch-title">Paint Action</span
-                ><button class="btn btn-ghost btn-sm" onclick="openActModal()">
-                  + Add
-                </button>
-              </div>
-              <div class="astrip" id="astrip"></div>
-              <div class="cb" style="padding-top: 0">
+              <div class="ch"><span class="cht">Range Stats</span></div>
+              <div class="cb" style="padding-top: 8px">
                 <div class="rbar">
                   <div
                     class="rbar-f"
@@ -1281,31 +1448,36 @@
             </div>
 
             <div class="card">
-              <div class="ch"><span class="ch-title">Quick Select</span></div>
+              <div class="ch">
+                <span class="cht">Quick Select</span
+                ><button class="btn btn-ghost btn-sm" onclick="openActModal()">
+                  + Action
+                </button>
+              </div>
               <div class="cb" style="padding-top: 8px">
-                <div class="qsgrid">
-                  <button class="qsbtn" onclick="qs('premium')">
+                <div class="qg">
+                  <button class="qb" onclick="qs('premium')">
                     &#128142;<br />Premium
                   </button>
-                  <button class="qsbtn" onclick="qs('broadway')">
+                  <button class="qb" onclick="qs('broadway')">
                     &#128081;<br />Broadway
                   </button>
-                  <button class="qsbtn" onclick="qs('pairs')">
+                  <button class="qb" onclick="qs('pairs')">
                     &#127183;<br />All Pairs
                   </button>
-                  <button class="qsbtn" onclick="qs('suited_a')">
+                  <button class="qb" onclick="qs('suited_a')">
                     A&#9824;<br />Suited A
                   </button>
-                  <button class="qsbtn" onclick="qs('sc')">
+                  <button class="qb" onclick="qs('sc')">
                     &#128279;<br />Suit.Conn
                   </button>
-                  <button class="qsbtn" onclick="qs('top20')">
+                  <button class="qb" onclick="qs('top20')">
                     &#11088;<br />Top 20%
                   </button>
-                  <button class="qsbtn" onclick="clearMx()">
+                  <button class="qb" onclick="clearMx()">
                     &#128465;<br />Clear
                   </button>
-                  <button class="qsbtn" onclick="invertMx()">
+                  <button class="qb" onclick="invertMx()">
                     &#8596;<br />Invert
                   </button>
                 </div>
@@ -1313,20 +1485,46 @@
             </div>
 
             <div class="card">
-              <div class="ch"><span class="ch-title">Save Range</span></div>
-              <div class="cb">
+              <div class="ch"><span class="cht">Import Range Text</span></div>
+              <div
+                class="cb"
+                style="display: flex; flex-direction: column; gap: 7px"
+              >
+                <textarea
+                  id="rng-import"
+                  placeholder="Paste hands: AA,KK,QQ,AKs,AKo&#10;Or with actions: raise:AA,KK,QQ call:AKs,AKo&#10;Or GTO format: AA:1.0,KK:1.0,AKs:0.75"
+                  rows="4"
+                  style="
+                    resize: none;
+                    font-size: 12px;
+                    font-family: 'SF Mono', 'Fira Mono', monospace;
+                  "
+                ></textarea>
+                <button class="btn btn-ac btn-w" onclick="importRngText()">
+                  &#8599; Import to Matrix
+                </button>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="ch"><span class="cht">Save Range</span></div>
+              <div
+                class="cb"
+                style="display: flex; flex-direction: column; gap: 7px"
+              >
                 <input
                   id="rng-name"
-                  placeholder="Range name&hellip;"
-                  style="margin-bottom: 8px"
+                  placeholder="Range name (e.g. BTN Open, 3-Bet vs CO)"
                 />
-                <div
-                  class="chips"
-                  id="pos-chips"
-                  style="margin-bottom: 9px"
-                ></div>
-                <div class="row2">
-                  <button class="btn btn-ac" onclick="saveRange()">Save</button>
+                <div class="chips" id="pos-chips"></div>
+                <div style="font-size: 11px; color: var(--tx3)">
+                  &#9432; Unselected cells will be saved as
+                  <strong style="color: var(--ac2)">Fold</strong>
+                </div>
+                <div class="r2">
+                  <button class="btn btn-ac" onclick="saveRange()">
+                    &#128190; Save Range
+                  </button>
                   <button class="btn btn-ghost" onclick="goTo('s-files')">
                     Library
                   </button>
@@ -1335,30 +1533,28 @@
             </div>
           </div>
         </div>
-
-        <!-- ═══════════════ TRAINER ═══════════════ -->
         <div class="scr" id="s-trainer">
           <div class="pg">
             <div class="card">
-              <div class="ch"><span class="ch-title">Training Setup</span></div>
+              <div class="ch"><span class="cht">Training Setup</span></div>
               <div
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
                 <div>
-                  <label class="mlbl"
-                    >Train on (saved range or GTO defaults)</label
-                  >
+                  <label class="ml">Train on Range</label>
                   <select id="t-rsel">
-                    <option value="">&#8212; GTO Defaults (BTN) &#8212;</option>
+                    <option value="">
+                      &#8212; GTO Defaults (BTN Open) &#8212;
+                    </option>
                   </select>
                 </div>
-                <div class="row2">
+                <div class="r2">
                   <button class="btn btn-ac" onclick="startT()">
-                    &#9654; Start
+                    &#9654; Start Session
                   </button>
                   <button class="btn btn-ghost" onclick="resetT()">
-                    &#8635; Reset
+                    &#8635; Reset Stats
                   </button>
                 </div>
               </div>
@@ -1373,7 +1569,7 @@
                   style="
                     display: flex;
                     justify-content: space-between;
-                    margin-bottom: 9px;
+                    margin-bottom: 8px;
                   "
                 >
                   <span id="t-qnum" style="font-size: 11px; color: var(--tx3)"
@@ -1399,17 +1595,17 @@
                       <div class="pcard-r">A</div>
                       <div class="pcard-s">&#9829;</div>
                     </div>
-                    <div class="pcard black">
+                    <div class="pcard blk">
                       <div class="pcard-r">K</div>
                       <div class="pcard-s">&#9824;</div>
                     </div>
                   </div>
                   <div class="t-hname" id="t-hname">AK offsuit</div>
                 </div>
-                <div class="t-scen" id="t-scen" style="margin: 8px 0">
-                  Select a range and press Start.
+                <div class="t-scen" id="t-scen">
+                  Select a range and press Start to begin training.
                 </div>
-                <div class="t-result" id="t-res"></div>
+                <div class="t-res" id="t-res"></div>
                 <div class="t-btns" id="t-btns" style="margin-top: 8px"></div>
                 <button
                   class="btn btn-ac btn-w"
@@ -1423,37 +1619,45 @@
             </div>
 
             <div class="card">
-              <div class="ch"><span class="ch-title">Session Stats</span></div>
+              <div class="ch"><span class="cht">Session Stats</span></div>
               <div class="cb" style="padding-top: 8px">
                 <div class="t3">
-                  <div class="t3box">
-                    <div class="t3val" id="t-sc">0</div>
-                    <div class="t3lbl">Correct</div>
+                  <div class="t3b">
+                    <div class="t3v" id="t-sc">0</div>
+                    <div class="t3l">Correct</div>
                   </div>
-                  <div class="t3box">
-                    <div class="t3val" id="t-sa">&#8212;</div>
-                    <div class="t3lbl">Accuracy</div>
+                  <div class="t3b">
+                    <div class="t3v" id="t-sa">&#8212;</div>
+                    <div class="t3l">Accuracy</div>
                   </div>
-                  <div class="t3box">
-                    <div class="t3val" id="t-sb">0</div>
-                    <div class="t3lbl">Best Streak</div>
+                  <div class="t3b">
+                    <div class="t3v" id="t-sb">0</div>
+                    <div class="t3l">Best Streak</div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div class="card">
-              <div class="ch"><span class="ch-title">History</span></div>
+              <div class="ch"><span class="cht">History</span></div>
               <div class="cb" style="padding-top: 4px" id="t-hist"></div>
             </div>
           </div>
         </div>
-
-        <!-- ═══════════════ BANKROLL ═══════════════ -->
         <div class="scr" id="s-bank">
           <div class="pg">
+            <div class="card">
+              <div class="ch">
+                <span class="cht">Bankrolls</span>
+                <button class="btn btn-ac btn-sm" onclick="openBRModal()">
+                  + New
+                </button>
+              </div>
+              <div class="br-roll-strip" id="br-roll-strip"></div>
+            </div>
+
             <div class="br-hero card">
-              <div class="br-lbl">Total Bankroll</div>
+              <div class="br-lbl">Bankroll Balance</div>
               <div class="br-val">
                 <span class="sym" id="br-sym">&#163;</span
                 ><span id="br-total">0.00</span>
@@ -1463,31 +1667,31 @@
               </div>
             </div>
 
-            <div class="stat4">
-              <div class="stat-box card">
-                <div class="stat-val" id="brs-n">0</div>
-                <div class="stat-lbl">Sessions</div>
+            <div class="s4g">
+              <div class="sb card">
+                <div class="sb-v" id="brs-n">0</div>
+                <div class="sb-l">Sessions</div>
               </div>
-              <div class="stat-box card">
-                <div class="stat-val" id="brs-wr">&#8212;</div>
-                <div class="stat-lbl">Win Rate</div>
+              <div class="sb card">
+                <div class="sb-v" id="brs-wr">&#8212;</div>
+                <div class="sb-l">Win Rate</div>
               </div>
-              <div class="stat-box card">
-                <div class="stat-val" id="brs-best" style="font-size: 15px">
+              <div class="sb card">
+                <div class="sb-v" id="brs-best" style="font-size: 14px">
                   &#8212;
                 </div>
-                <div class="stat-lbl">Best</div>
+                <div class="sb-l">Best Session</div>
               </div>
-              <div class="stat-box card">
-                <div class="stat-val" id="brs-avg" style="font-size: 15px">
+              <div class="sb card">
+                <div class="sb-v" id="brs-avg" style="font-size: 14px">
                   &#8212;
                 </div>
-                <div class="stat-lbl">Avg P&amp;L</div>
+                <div class="sb-l">Avg P&amp;L</div>
               </div>
             </div>
 
             <div class="card">
-              <div class="ch"><span class="ch-title">Bankroll Chart</span></div>
+              <div class="ch"><span class="cht">Chart</span></div>
               <div
                 class="chart-box cb"
                 style="padding-top: 0; margin-top: -1px"
@@ -1502,17 +1706,17 @@
             </div>
 
             <div class="card">
-              <div class="ch"><span class="ch-title">Log Session</span></div>
+              <div class="ch"><span class="cht">Log Session</span></div>
               <div
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
                 <input id="br-name" placeholder="Session name" />
-                <div class="row2">
+                <div class="r2">
                   <input id="br-bi" type="number" placeholder="Buy-in" />
                   <input id="br-co" type="number" placeholder="Cash-out" />
                 </div>
-                <div class="row2">
+                <div class="r2">
                   <input
                     id="br-hr"
                     type="number"
@@ -1525,12 +1729,13 @@
                     <option>MTT</option>
                     <option>Sit&amp;Go</option>
                     <option>Spin&amp;Go</option>
-                    <option>Live</option>
+                    <option>Live Cash</option>
+                    <option>Online MTT</option>
                   </select>
                 </div>
                 <textarea
                   id="br-notes"
-                  placeholder="Notes&hellip;"
+                  placeholder="Notes (table, stakes, reads)&#8230;"
                   rows="2"
                   style="resize: none"
                 ></textarea>
@@ -1542,7 +1747,7 @@
 
             <div class="card">
               <div class="ch">
-                <span class="ch-title">Sessions</span>
+                <span class="cht">Sessions</span>
                 <div style="display: flex; gap: 4px">
                   <button
                     class="btn btn-ghost btn-sm on"
@@ -1567,18 +1772,15 @@
                   </button>
                 </div>
               </div>
-              <div style="padding: 0 13px" id="sess-list"></div>
+              <div style="padding: 0 12px" id="sess-list"></div>
             </div>
           </div>
         </div>
-
-        <!-- ═══════════════ TOOLS ═══════════════ -->
         <div class="scr" id="s-tools">
           <div class="pg">
-            <!-- EV Calc -->
             <div class="card">
               <div class="ch">
-                <span class="ch-title">EV Calculator</span
+                <span class="cht">EV Calculator</span
                 ><span style="font-size: 10px; color: var(--tx3)"
                   >Expected Value</span
                 >
@@ -1587,23 +1789,23 @@
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
-                <div class="row2">
+                <div class="r2">
                   <div>
-                    <label class="mlbl">Pot (bb)</label
+                    <label class="ml">Pot (bb)</label
                     ><input id="ev-pot" type="number" placeholder="100" />
                   </div>
                   <div>
-                    <label class="mlbl">Bet (bb)</label
+                    <label class="ml">Bet (bb)</label
                     ><input id="ev-bet" type="number" placeholder="50" />
                   </div>
                 </div>
-                <div class="row2">
+                <div class="r2">
                   <div>
-                    <label class="mlbl">Your Equity %</label
+                    <label class="ml">Your Equity %</label
                     ><input id="ev-eq" type="number" placeholder="55" />
                   </div>
                   <div>
-                    <label class="mlbl">Fold Equity %</label
+                    <label class="ml">Fold Equity %</label
                     ><input id="ev-fe" type="number" placeholder="30" />
                   </div>
                 </div>
@@ -1611,39 +1813,33 @@
                   Calculate EV
                 </button>
                 <div class="tool-res" id="ev-res">
-                  <div class="tool-res-val" id="ev-val">0 bb</div>
-                  <div class="tool-res-lbl" id="ev-lbl">Expected value</div>
-                  <div class="tool-info" id="ev-inf"></div>
+                  <div class="tool-rv" id="ev-val">0 bb</div>
+                  <div class="tool-rl" id="ev-lbl"></div>
+                  <div class="tool-ri" id="ev-inf"></div>
                 </div>
               </div>
             </div>
 
-            <!-- Pot Odds / MDF -->
             <div class="card">
-              <div class="ch">
-                <span class="ch-title">Pot Odds &amp; MDF</span
-                ><span style="font-size: 10px; color: var(--tx3)"
-                  >Min. Defence</span
-                >
-              </div>
+              <div class="ch"><span class="cht">Pot Odds &amp; MDF</span></div>
               <div
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
-                <div class="row2">
+                <div class="r2">
                   <div>
-                    <label class="mlbl">Pot (bb)</label
+                    <label class="ml">Pot (bb)</label
                     ><input id="po-pot" type="number" placeholder="100" />
                   </div>
                   <div>
-                    <label class="mlbl">Bet (bb)</label
+                    <label class="ml">Bet (bb)</label
                     ><input id="po-bet" type="number" placeholder="66" />
                   </div>
                 </div>
                 <button class="btn btn-ac btn-w" onclick="calcPO()">
                   Calculate
                 </button>
-                <div class="tool-res row2" id="po-res" style="display: none">
+                <div class="r2 tool-res" id="po-res" style="display: none">
                   <div style="text-align: center">
                     <div
                       style="
@@ -1656,7 +1852,7 @@
                       &#8212;
                     </div>
                     <div
-                      style="font-size: 9px; color: var(--tx3); margin-top: 3px"
+                      style="font-size: 9px; color: var(--tx3); margin-top: 2px"
                     >
                       Pot Odds
                     </div>
@@ -1673,13 +1869,13 @@
                       &#8212;
                     </div>
                     <div
-                      style="font-size: 9px; color: var(--tx3); margin-top: 3px"
+                      style="font-size: 9px; color: var(--tx3); margin-top: 2px"
                     >
                       Min Defence
                     </div>
                   </div>
                   <div
-                    class="tool-info"
+                    class="tool-ri"
                     id="po-inf"
                     style="grid-column: span 2; margin-top: 0"
                   ></div>
@@ -1687,43 +1883,36 @@
               </div>
             </div>
 
-            <!-- SPR -->
             <div class="card">
-              <div class="ch">
-                <span class="ch-title">SPR Calculator</span
-                ><span style="font-size: 10px; color: var(--tx3)"
-                  >Stack-to-Pot</span
-                >
-              </div>
+              <div class="ch"><span class="cht">SPR Calculator</span></div>
               <div
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
-                <div class="row2">
+                <div class="r2">
                   <div>
-                    <label class="mlbl">Stack</label
+                    <label class="ml">Eff. Stack</label
                     ><input id="spr-s" type="number" placeholder="200" />
                   </div>
                   <div>
-                    <label class="mlbl">Pot</label
+                    <label class="ml">Pot</label
                     ><input id="spr-p" type="number" placeholder="50" />
                   </div>
                 </div>
                 <button class="btn btn-ac btn-w" onclick="calcSPR()">
-                  Calculate
+                  Calculate SPR
                 </button>
                 <div class="tool-res" id="spr-res">
-                  <div class="tool-res-val" id="spr-val">0</div>
-                  <div class="tool-res-lbl">Stack-to-Pot Ratio</div>
-                  <div class="tool-info" id="spr-inf"></div>
+                  <div class="tool-rv" id="spr-val">0</div>
+                  <div class="tool-rl">Stack-to-Pot Ratio</div>
+                  <div class="tool-ri" id="spr-inf"></div>
                 </div>
               </div>
             </div>
 
-            <!-- ICM Pressure -->
             <div class="card">
               <div class="ch">
-                <span class="ch-title">ICM Pressure</span
+                <span class="cht">ICM Pressure</span
                 ><span style="font-size: 10px; color: var(--tx3)"
                   >Tournament</span
                 >
@@ -1732,40 +1921,39 @@
                 class="cb"
                 style="display: flex; flex-direction: column; gap: 7px"
               >
-                <div class="row2">
+                <div class="r2">
                   <div>
-                    <label class="mlbl">Your Stack (bb)</label
+                    <label class="ml">Your Stack (bb)</label
                     ><input id="icm-my" type="number" placeholder="25" />
                   </div>
                   <div>
-                    <label class="mlbl">Villain Stack (bb)</label
-                    ><input id="icm-vill" type="number" placeholder="40" />
+                    <label class="ml">Villain Stack (bb)</label
+                    ><input id="icm-vl" type="number" placeholder="40" />
                   </div>
                 </div>
-                <div class="row2">
+                <div class="r2">
                   <div>
-                    <label class="mlbl">Players Left</label
+                    <label class="ml">Players Left</label
                     ><input id="icm-p" type="number" placeholder="6" />
                   </div>
                   <div>
-                    <label class="mlbl">Paid Spots</label
+                    <label class="ml">Paid Spots</label
                     ><input id="icm-paid" type="number" placeholder="3" />
                   </div>
                 </div>
                 <button class="btn btn-ac btn-w" onclick="calcICM()">
-                  Estimate ICM
+                  Analyse ICM
                 </button>
                 <div class="tool-res" id="icm-res">
-                  <div class="tool-res-val" id="icm-val">&#8212;</div>
-                  <div class="tool-res-lbl">Risk of Ruin (chips)</div>
-                  <div class="tool-info" id="icm-inf"></div>
+                  <div class="tool-rv" id="icm-val">&#8212;</div>
+                  <div class="tool-rl">ICM Analysis</div>
+                  <div class="tool-ri" id="icm-inf"></div>
                 </div>
               </div>
             </div>
 
-            <!-- Session Timer -->
             <div class="card">
-              <div class="ch"><span class="ch-title">Session Timer</span></div>
+              <div class="ch"><span class="cht">Session Timer</span></div>
               <div
                 class="cb"
                 style="
@@ -1775,12 +1963,17 @@
                   align-items: center;
                 "
               >
-                <div class="timer-dsp" id="tmr">00:00:00</div>
+                <div class="tmr-d" id="tmr">00:00:00</div>
                 <div
-                  style="font-size: 12px; color: var(--tx3); min-height: 16px"
-                  id="tmr-rate"
+                  style="
+                    font-size: 12px;
+                    color: var(--tx3);
+                    min-height: 16px;
+                    text-align: center;
+                  "
+                  id="tmr-info"
                 ></div>
-                <div class="row2" style="width: 100%">
+                <div class="r2" style="width: 100%">
                   <button
                     class="btn btn-ac btn-w"
                     id="tmr-btn"
@@ -1793,65 +1986,30 @@
                   </button>
                 </div>
                 <div style="width: 100%">
-                  <label class="mlbl">Hourly rate (for EV tracking)</label
+                  <label class="ml">Target rate (to track EV)</label
                   ><input
-                    id="tmr-rate-in"
+                    id="tmr-rate"
                     type="number"
-                    placeholder="e.g. 15 bb/hr or &#163;30/hr"
+                    placeholder="e.g. 15 bb/hr"
                   />
-                </div>
-              </div>
-            </div>
-
-            <!-- Hand Equity Lookup -->
-            <div class="card">
-              <div class="ch">
-                <span class="ch-title">Equity Reference</span
-                ><span style="font-size: 10px; color: var(--tx3)"
-                  >Preflop %</span
-                >
-              </div>
-              <div
-                class="cb"
-                style="display: flex; flex-direction: column; gap: 7px"
-              >
-                <div class="row2">
-                  <div>
-                    <label class="mlbl">Hero Hand</label
-                    ><input id="eq-h" placeholder="e.g. AKs" />
-                  </div>
-                  <div>
-                    <label class="mlbl">vs Range</label
-                    ><input id="eq-v" placeholder="e.g. QQ+,AKs" />
-                  </div>
-                </div>
-                <button class="btn btn-ac btn-w" onclick="lookupEq()">
-                  Look Up
-                </button>
-                <div class="tool-res" id="eq-res">
-                  <div class="tool-res-val" id="eq-val">&#8212;</div>
-                  <div class="tool-res-lbl">Approximate equity</div>
-                  <div class="tool-info" id="eq-inf"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- ═══════════════ FILES ═══════════════ -->
         <div class="scr" id="s-files">
           <div class="pg">
             <div class="card">
               <div class="ch">
-                <span class="ch-title">Range Library</span
-                ><button class="btn btn-ghost btn-sm" onclick="goTo('s-range')">
+                <span class="cht">Range Library</span
+                ><button class="btn btn-ac btn-sm" onclick="goTo('s-range')">
                   + New
                 </button>
               </div>
-              <div style="padding: 8px 12px">
+              <div style="padding: 7px 11px">
                 <input
                   id="lib-q"
-                  placeholder="Search&hellip;"
+                  placeholder="Search ranges&#8230;"
                   oninput="renderLib()"
                 />
               </div>
@@ -1859,25 +2017,23 @@
             </div>
           </div>
         </div>
-
-        <!-- ═══════════════ SETTINGS ═══════════════ -->
         <div class="scr" id="s-settings">
           <div class="pg">
-            <div class="card" style="text-align: center; padding: 18px 14px">
+            <div class="card" style="text-align: center; padding: 16px 14px">
               <div
                 id="av"
                 style="
-                  width: 60px;
-                  height: 60px;
+                  width: 56px;
+                  height: 56px;
                   border-radius: 50%;
                   background: linear-gradient(135deg, var(--ac), var(--ac2));
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  font-size: 22px;
+                  font-size: 20px;
                   font-weight: 700;
                   color: #fff;
-                  margin: 0 auto 9px;
+                  margin: 0 auto 8px;
                 "
               >
                 &#9824;
@@ -1893,23 +2049,132 @@
                   border-radius: 0;
                   font-size: 15px;
                   font-weight: 600;
-                  max-width: 200px;
+                  max-width: 190px;
                 "
               />
             </div>
 
             <div class="card">
-              <div class="sl">Currency</div>
-              <div style="padding: 0 13px 12px">
-                <div class="chips" id="cur-chips"></div>
+              <div class="sl">Theme</div>
+              <div style="padding: 0 12px 12px">
+                <div
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 4px;
+                      cursor: pointer;
+                    "
+                    onclick="setTheme('pink')"
+                  >
+                    <div
+                      class="tsw on"
+                      id="tsw-pink"
+                      style="
+                        background: linear-gradient(135deg, #e8438a, #ff7ab5);
+                      "
+                    ></div>
+                    <span style="font-size: 10px; color: var(--tx3)">Pink</span>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 4px;
+                      cursor: pointer;
+                    "
+                    onclick="setTheme('midnight')"
+                  >
+                    <div
+                      class="tsw"
+                      id="tsw-midnight"
+                      style="
+                        background: linear-gradient(135deg, #5b7cf5, #8fa0ff);
+                      "
+                    ></div>
+                    <span style="font-size: 10px; color: var(--tx3)"
+                      >Midnight</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 4px;
+                      cursor: pointer;
+                    "
+                    onclick="setTheme('forest')"
+                  >
+                    <div
+                      class="tsw"
+                      id="tsw-forest"
+                      style="
+                        background: linear-gradient(135deg, #2ece72, #5af0a0);
+                      "
+                    ></div>
+                    <span style="font-size: 10px; color: var(--tx3)"
+                      >Forest</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 4px;
+                      cursor: pointer;
+                    "
+                    onclick="setTheme('violet')"
+                  >
+                    <div
+                      class="tsw"
+                      id="tsw-violet"
+                      style="
+                        background: linear-gradient(135deg, #9b5df5, #c090ff);
+                      "
+                    ></div>
+                    <span style="font-size: 10px; color: var(--tx3)"
+                      >Violet</span
+                    >
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 4px;
+                      cursor: pointer;
+                    "
+                    onclick="setTheme('amber')"
+                  >
+                    <div
+                      class="tsw"
+                      id="tsw-amber"
+                      style="
+                        background: linear-gradient(135deg, #f0a020, #ffc860);
+                      "
+                    ></div>
+                    <span style="font-size: 10px; color: var(--tx3)"
+                      >Amber</span
+                    >
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="card">
               <div class="sr">
-                <div class="sr-left">
-                  <div class="sr-label">Animations</div>
-                </div>
+                <div class="sr-l"><div class="sr-lb">Animations</div></div>
                 <label class="tog"
                   ><input type="checkbox" id="st-anim" checked />
                   <div class="tog-t"></div>
@@ -1917,20 +2182,20 @@
                 ></label>
               </div>
               <div class="sr">
-                <div class="sr-left">
-                  <div class="sr-label">Show correct action in trainer</div>
+                <div class="sr-l">
+                  <div class="sr-lb">Show correct action in trainer</div>
                 </div>
                 <label class="tog"
-                  ><input type="checkbox" id="st-showcorr" checked />
+                  ><input type="checkbox" id="st-sc" checked />
                   <div class="tog-t"></div>
                   <div class="tog-k"></div
                 ></label>
               </div>
               <div class="sr">
-                <div class="sr-left">
-                  <div class="sr-label">Questions per session</div>
+                <div class="sr-l">
+                  <div class="sr-lb">Questions per session</div>
                 </div>
-                <select id="st-q" style="width: 74px; margin: 0">
+                <select id="st-q" style="width: 70px; margin: 0">
                   <option>10</option>
                   <option selected>20</option>
                   <option>30</option>
@@ -1940,46 +2205,21 @@
             </div>
 
             <div class="card">
-              <div class="sl">Bankroll</div>
-              <div
-                style="
-                  padding: 0 13px 12px;
-                  display: flex;
-                  flex-direction: column;
-                  gap: 7px;
-                "
-              >
-                <div>
-                  <label class="mlbl">Starting bankroll</label
-                  ><input id="st-sbr" type="number" placeholder="0" />
-                </div>
-                <div>
-                  <label class="mlbl">Stop-loss alert (loss amount)</label
-                  ><input id="st-sl" type="number" placeholder="e.g. 200" />
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
               <div class="sr">
-                <div class="sr-left">
-                  <div class="sr-label">Export all data</div>
-                </div>
+                <div class="sr-l"><div class="sr-lb">Export all data</div></div>
                 <button class="btn btn-ghost btn-sm" onclick="exportAll()">
                   Export
                 </button>
               </div>
               <div class="sr">
-                <div class="sr-left">
-                  <div class="sr-label">Import backup</div>
-                </div>
+                <div class="sr-l"><div class="sr-lb">Import backup</div></div>
                 <button class="btn btn-ghost btn-sm" onclick="importAll()">
                   Import
                 </button>
               </div>
               <div class="sr">
-                <div class="sr-left"><div class="sr-label">Version</div></div>
-                <span style="font-size: 12px; color: var(--tx3)">3.0 PWA</span>
+                <div class="sr-l"><div class="sr-lb">Version</div></div>
+                <span style="font-size: 12px; color: var(--tx3)">4.0 PWA</span>
               </div>
             </div>
 
@@ -1987,19 +2227,19 @@
               <div class="sl" style="color: var(--rd)">Danger Zone</div>
               <div
                 style="
-                  padding: 0 13px 12px;
+                  padding: 0 12px 12px;
                   display: flex;
                   flex-direction: column;
                   gap: 6px;
                 "
               >
-                <button class="btn btn-rd btn-w" id="btn-clr-ranges">
+                <button class="btn btn-rd btn-w" id="btn-cr">
                   Clear all ranges
                 </button>
-                <button class="btn btn-rd btn-w" id="btn-clr-br">
-                  Clear bankroll data
+                <button class="btn btn-rd btn-w" id="btn-cb">
+                  Clear all bankroll data
                 </button>
-                <button class="btn btn-rd btn-w" id="btn-reset">
+                <button class="btn btn-rd btn-w" id="btn-rs">
                   Factory reset
                 </button>
               </div>
@@ -2008,18 +2248,16 @@
             <div
               style="
                 text-align: center;
-                padding: 6px;
+                padding: 5px;
                 font-size: 10px;
                 color: var(--tx3);
               "
             >
-              Poker Studio v3.0 &middot; Data stored locally on device
+              Poker Studio v4.0 &middot; All data stored on device
             </div>
           </div>
         </div>
       </div>
-      <!-- /content -->
-
       <nav>
         <button class="nb on" id="nb-range" onclick="goTo('s-range')">
           <svg viewBox="0 0 24 24">
@@ -2059,47 +2297,48 @@
         </button>
       </nav>
     </div>
-
     <!-- ACTION MODAL -->
-    <div class="overlay" id="m-act">
+    <div class="ovl" id="m-act">
       <div class="modal">
-        <div class="mhandle"></div>
-        <div class="mtitle" id="m-act-title">New Action</div>
-        <div class="mbody">
+        <div class="mh"></div>
+        <div class="mt" id="m-act-t">New Action</div>
+        <div class="mb">
           <div>
-            <label class="mlbl">Name</label
-            ><input id="ma-name" placeholder="e.g. 3-Bet, Open, Limp" />
+            <label class="ml">Name</label
+            ><input id="ma-name" placeholder="e.g. Raise, 3-Bet, Limp" />
           </div>
           <div>
-            <label class="mlbl">Colour</label>
+            <label class="ml">Colour</label>
             <div class="cswatches" id="ma-cols"></div>
             <div
               style="
                 display: flex;
                 align-items: center;
-                gap: 7px;
+                gap: 6px;
                 margin-top: 6px;
               "
             >
               <input
                 type="color"
                 id="ma-cc"
-                value="#6c5ce7"
+                value="#e8438a"
                 style="
-                  width: 32px;
-                  height: 26px;
+                  width: 30px;
+                  height: 24px;
                   padding: 2px;
                   border-radius: 5px;
                 "
-              /><span style="font-size: 11px; color: var(--tx3)">Custom</span>
+              /><span style="font-size: 11px; color: var(--tx3)"
+                >Custom colour</span
+              >
             </div>
           </div>
           <div>
-            <label class="mlbl">Icon</label>
+            <label class="ml">Icon</label>
             <div class="erow" id="ma-emj"></div>
           </div>
         </div>
-        <div class="mfoot">
+        <div class="mf">
           <button
             class="btn btn-ghost"
             style="flex: 1"
@@ -2115,14 +2354,14 @@
     </div>
 
     <!-- RENAME MODAL -->
-    <div class="overlay" id="m-ren">
+    <div class="ovl" id="m-ren">
       <div class="modal">
-        <div class="mhandle"></div>
-        <div class="mtitle">Rename Range</div>
-        <div class="mbody">
-          <label class="mlbl">New Name</label><input id="ren-in" />
+        <div class="mh"></div>
+        <div class="mt">Rename Range</div>
+        <div class="mb">
+          <label class="ml">New Name</label><input id="ren-in" />
         </div>
-        <div class="mfoot">
+        <div class="mf">
           <button
             class="btn btn-ghost"
             style="flex: 1"
@@ -2137,13 +2376,55 @@
       </div>
     </div>
 
-    <!-- SESSION DETAIL MODAL -->
-    <div class="overlay" id="m-sess">
+    <!-- BANKROLL MODAL -->
+    <div class="ovl" id="m-br">
       <div class="modal">
-        <div class="mhandle"></div>
-        <div class="mtitle" id="ms-title">Session</div>
-        <div class="mbody" id="ms-body"></div>
-        <div class="mfoot">
+        <div class="mh"></div>
+        <div class="mt" id="m-br-t">New Bankroll</div>
+        <div class="mb">
+          <div>
+            <label class="ml">Name</label
+            ><input id="mbr-name" placeholder="e.g. Main, Live, Online MTT" />
+          </div>
+          <div>
+            <label class="ml">Currency</label>
+            <div class="chips" id="mbr-cur-chips" style="margin-top: 5px"></div>
+          </div>
+          <div>
+            <label class="ml">Starting Balance</label
+            ><input id="mbr-start" type="number" placeholder="0" />
+          </div>
+          <div>
+            <label class="ml">Stop-Loss Alert</label
+            ><input
+              id="mbr-sl"
+              type="number"
+              placeholder="e.g. 200 (optional)"
+            />
+          </div>
+        </div>
+        <div class="mf">
+          <button
+            class="btn btn-ghost"
+            style="flex: 1"
+            onclick="closeM('m-br')"
+          >
+            Cancel
+          </button>
+          <button class="btn btn-ac" style="flex: 1" onclick="saveBRModal()">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SESSION DETAIL MODAL -->
+    <div class="ovl" id="m-sess">
+      <div class="modal">
+        <div class="mh"></div>
+        <div class="mt" id="ms-title">Session</div>
+        <div class="mb" id="ms-body"></div>
+        <div class="mf">
           <button
             class="btn btn-ghost"
             style="flex: 1"
@@ -2155,16 +2436,15 @@
         </div>
       </div>
     </div>
-
     <div class="toast" id="toast"></div>
     <div id="ios-banner">
       <div class="ios-in">
-        <div style="font-size: 20px">&#9824;</div>
+        <div style="font-size: 18px">&#9824;</div>
         <div style="flex: 1">
           <div style="font-size: 13px; font-weight: 600">
             Install Poker Studio
           </div>
-          <div style="font-size: 11px; color: var(--tx3); margin-top: 2px">
+          <div style="font-size: 11px; color: var(--tx3); margin-top: 1px">
             Safari: Share &#8594; Add to Home Screen
           </div>
         </div>
@@ -2176,7 +2456,6 @@
         </button>
       </div>
     </div>
-
     <script>
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       // CONSTANTS
@@ -2198,16 +2477,16 @@
       ];
       const TOTAL = 1326;
       const PCOLS = [
-        "#6c5ce7",
-        "#e060a0",
-        "#00b894",
+        "#e8438a",
+        "#5b7cf5",
+        "#34c97a",
         "#e17055",
-        "#fdcb6e",
+        "#f0c040",
         "#74b9ff",
-        "#a29bfe",
+        "#9b5df5",
         "#00cec9",
         "#fd79a8",
-        "#55efc4",
+        "#f0a020",
         "#636e72",
         "#b2bec3",
       ];
@@ -2227,14 +2506,14 @@
       ];
       const SUITS = ["s", "h", "d", "c"];
       const SSYM = { s: "♠", h: "♥", d: "♦", c: "♣" };
-      const SCOL = { s: "black", h: "red", d: "red", c: "black" };
+      const SCOL = { s: "blk", h: "red", d: "red", c: "blk" };
       const PCCOL = {
         UTG: "#e17055",
-        MP: "#fdcb6e",
-        CO: "#f0d060",
-        BTN: "#00b894",
+        MP: "#f0c040",
+        CO: "#ffd080",
+        BTN: "#34c97a",
         SB: "#74b9ff",
-        BB: "#6c5ce7",
+        BB: "#9b5df5",
       };
       const POSITIONS = ["UTG", "MP", "CO", "BTN", "SB", "BB"];
       const GTO = [
@@ -2275,7 +2554,6 @@
         "KTo",
         "K9s",
         "K8s",
-        "K7s",
         "QJs",
         "QJo",
         "QTs",
@@ -2288,31 +2566,53 @@
         "76s",
         "65s",
       ];
+      const FREQS = [100, 75, 66, 50, 33, 25];
+      const CURS = ["GBP", "USD", "EUR", "JPY", "CAD", "AUD", "BB"];
+      const CUR_SYM = {
+        GBP: "£",
+        USD: "$",
+        EUR: "€",
+        JPY: "¥",
+        CAD: "CA$",
+        AUD: "AU$",
+        BB: "BB",
+      };
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // STATE
+      // STATE — cs[key] = {a: actionId, f: 0-100}
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      function defBR(name, cur) {
+        return {
+          id: "br" + Date.now() + Math.random().toString(36).slice(2),
+          name: name || "Main Bankroll",
+          cur: cur || "GBP",
+          startBR: 0,
+          stopLoss: 0,
+          sessions: [],
+        };
+      }
       function defS() {
         return {
           cs: {},
           actions: [
-            { id: "raise", name: "Raise", color: "#6c5ce7", emoji: "🔴" },
-            { id: "call", name: "Call", color: "#00b894", emoji: "🟢" },
+            { id: "raise", name: "Raise", color: "#e8438a", emoji: "🔴" },
+            { id: "call", name: "Call", color: "#34c97a", emoji: "🟢" },
             { id: "fold", name: "Fold", color: "#55556a", emoji: "⬛" },
           ],
           ranges: [],
-          sessions: [],
+          bankrolls: [],
+          activeBRId: "",
           curAct: "raise",
+          curFreq: 100,
           curPos: "BTN",
           renId: null,
+          mbrEditId: null,
           settings: {
-            cur: "£",
             uname: "",
             anim: true,
             showCorr: true,
             qcount: 20,
-            startBR: 0,
-            stopLoss: 0,
+            theme: "pink",
           },
           trainer: { correct: 0, wrong: 0, streak: 0, best: 0, history: [] },
         };
@@ -2330,11 +2630,27 @@
             }
           };
           S.cs = lg("ps_cs", {});
+          // migrate old string format
+          Object.keys(S.cs).forEach((k) => {
+            if (typeof S.cs[k] === "string") S.cs[k] = { a: S.cs[k], f: 100 };
+          });
           const la = lg("ps_ac", null);
           if (la) S.actions = la;
           S.ranges = lg("ps_ra", []);
-          S.sessions = lg("ps_se", []);
+          // multiple bankrolls — migrate old sessions
+          const brs = lg("ps_brs", null);
+          if (brs && brs.length) {
+            S.bankrolls = brs;
+          } else {
+            const br = defBR("Main Bankroll", "GBP");
+            const oldSess = lg("ps_se", []);
+            br.sessions = oldSess;
+            S.bankrolls = [br];
+          }
+          S.activeBRId =
+            localStorage.getItem("ps_abr") || S.bankrolls[0]?.id || "";
           S.curAct = localStorage.getItem("ps_ca") || "raise";
+          S.curFreq = parseInt(localStorage.getItem("ps_cf") || "100") || 100;
           S.curPos = localStorage.getItem("ps_cp") || "BTN";
           const lst = lg("ps_st", null);
           if (lst) Object.assign(S.settings, lst);
@@ -2346,14 +2662,24 @@
         }
       }
       let S = loadS();
+      if (!S.bankrolls.length) {
+        S.bankrolls = [defBR("Main Bankroll", "GBP")];
+      }
+      if (!S.activeBRId) S.activeBRId = S.bankrolls[0].id;
+
+      function getActiveBR() {
+        return S.bankrolls.find((b) => b.id === S.activeBRId) || S.bankrolls[0];
+      }
 
       function save() {
         try {
           localStorage.setItem("ps_cs", JSON.stringify(S.cs));
           localStorage.setItem("ps_ac", JSON.stringify(S.actions));
           localStorage.setItem("ps_ra", JSON.stringify(S.ranges));
-          localStorage.setItem("ps_se", JSON.stringify(S.sessions));
+          localStorage.setItem("ps_brs", JSON.stringify(S.bankrolls));
+          localStorage.setItem("ps_abr", S.activeBRId);
           localStorage.setItem("ps_ca", S.curAct || "");
+          localStorage.setItem("ps_cf", String(S.curFreq));
           localStorage.setItem("ps_cp", S.curPos);
           localStorage.setItem("ps_st", JSON.stringify(S.settings));
           localStorage.setItem(
@@ -2371,7 +2697,6 @@
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       // NAV
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      let curScr = "s-range";
       function goTo(id) {
         document
           .querySelectorAll(".scr")
@@ -2382,10 +2707,9 @@
         document.getElementById(id).classList.add("on");
         const nb = document.getElementById("nb-" + id.replace("s-", ""));
         if (nb) nb.classList.add("on");
-        curScr = id;
         document.getElementById(id).scrollTo(0, 0);
         if (id === "s-trainer") {
-          updateTSel();
+          updTSel();
           renderTHist();
         }
         if (id === "s-bank") {
@@ -2395,12 +2719,12 @@
           renderLib();
         }
         if (id === "s-settings") {
-          applySettingsUI();
+          applySetUI();
         }
       }
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // MATRIX — TAP ONLY, NO DRAG
+      // MATRIX — TAP ONLY
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       function buildMx() {
         const mx = document.getElementById("matrix");
@@ -2432,12 +2756,19 @@
             mx.appendChild(c);
           }
       }
+
       function tapCell(key, cell) {
-        const cur = S.cs[key] || null;
-        const next = cur === S.curAct ? null : S.curAct;
-        if (next === null) delete S.cs[key];
-        else S.cs[key] = next;
-        applyCell(cell, next);
+        const cur = S.cs[key];
+        const curAction = cur ? cur.a : null;
+        // if same action same freq → clear; if same action diff freq → update freq; else set new
+        if (S.curAct === null) {
+          delete S.cs[key];
+        } else if (curAction === S.curAct && cur.f === S.curFreq) {
+          delete S.cs[key];
+        } else {
+          S.cs[key] = { a: S.curAct, f: S.curFreq };
+        }
+        applyCell(cell, S.cs[key] || null);
         if (S.settings.anim) {
           cell.classList.remove("pop");
           void cell.offsetWidth;
@@ -2446,19 +2777,45 @@
         updateStats();
         save();
       }
-      function applyCell(cell, aid) {
-        if (!aid) {
+
+      function applyCell(cell, cs) {
+        // remove freq badge
+        const old = cell.querySelector(".cell-freq");
+        if (old) old.remove();
+        if (!cs || !cs.a) {
+          cell.style.background = "var(--s3)";
+          cell.style.cssText += "";
           cell.style.background = "var(--s3)";
           cell.style.color = "var(--tx3)";
           cell.classList.remove("lit");
           return;
         }
-        const a = S.actions.find((x) => x.id === aid);
+        const a = S.actions.find((x) => x.id === cs.a);
         if (!a) {
-          applyCell(cell, null);
+          cell.style.background = "var(--s3)";
+          cell.style.color = "var(--tx3)";
+          cell.classList.remove("lit");
           return;
         }
-        cell.style.background = a.color;
+        const f = cs.f || 100;
+        if (f < 100) {
+          // partial fill: gradient shows frequency as a left-fill
+          cell.style.background =
+            "linear-gradient(to right," +
+            a.color +
+            " " +
+            f +
+            "%,var(--s3) " +
+            f +
+            "%)";
+          // add freq badge
+          const badge = document.createElement("div");
+          badge.className = "cell-freq";
+          badge.textContent = f + "%";
+          cell.appendChild(badge);
+        } else {
+          cell.style.background = a.color;
+        }
         cell.classList.add("lit");
         const rv = parseInt(a.color.slice(1, 3), 16),
           gv = parseInt(a.color.slice(3, 5), 16),
@@ -2466,11 +2823,13 @@
         cell.style.color =
           (rv * 299 + gv * 587 + bv * 114) / 1000 > 145 ? "#111" : "#fff";
       }
+
       function rebuildMx() {
         document
           .querySelectorAll("#matrix .cell")
           .forEach((c) => applyCell(c, S.cs[c.dataset.key] || null));
       }
+
       function updateStats() {
         const counts = {};
         S.actions.forEach((a) => (counts[a.id] = 0));
@@ -2491,16 +2850,18 @@
               type = "offsuit";
             }
             const n = type === "pair" ? 6 : type === "suited" ? 4 : 12;
-            const aid = S.cs[key];
-            if (aid && counts[aid] !== undefined) {
-              counts[aid] += n;
-              total += n;
+            const cs = S.cs[key];
+            if (cs && cs.a && counts[cs.a] !== undefined) {
+              const weighted = (n * (cs.f || 100)) / 100;
+              counts[cs.a] += weighted;
+              total += weighted;
             }
           }
         const pct = (total / TOTAL) * 100;
-        document.getElementById("h-combos").textContent = total;
-        document.getElementById("h-pct").textContent = pct.toFixed(1) + "%";
-        document.getElementById("rst-c").textContent = total + " combos";
+        document.getElementById("h-c").textContent = Math.round(total);
+        document.getElementById("h-p").textContent = pct.toFixed(1) + "%";
+        document.getElementById("rst-c").textContent =
+          Math.round(total) + " combos";
         document.getElementById("rst-p").textContent =
           pct.toFixed(1) + "% of hands";
         const fill = document.getElementById("rbar");
@@ -2511,29 +2872,34 @@
         }
         renderBdown(counts);
       }
+
       function renderBdown(counts) {
         const el = document.getElementById("bdown");
         if (!el) return;
         const mx2 = Math.max(...Object.values(counts), 1);
         el.innerHTML = S.actions
-          .filter((a) => counts[a.id] > 0)
+          .filter((a) => counts[a.id] > 0.01)
           .map(
             (a) =>
-              `<div class="bdrow"><div class="bddot" style="background:${
-                a.color
-              }"></div><div class="bdname">${a.emoji} ${
-                a.name
-              }</div><div class="bdbw"><div class="bdb" style="background:${
-                a.color
-              };width:${
-                (counts[a.id] / mx2) * 100
-              }%"></div></div><div class="bdn">${counts[a.id]}</div></div>`
+              '<div class="bdrow"><div class="bddot" style="background:' +
+              a.color +
+              '"></div><div class="bdnm">' +
+              a.emoji +
+              " " +
+              a.name +
+              '</div><div class="bdbw"><div class="bdb" style="background:' +
+              a.color +
+              ";width:" +
+              (counts[a.id] / mx2) * 100 +
+              '%"></div></div><div class="bdn">' +
+              Math.round(counts[a.id]) +
+              "</div></div>"
           )
           .join("");
       }
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // ACTION STRIP + MODAL
+      // ACTION STRIP + FREQ STRIP
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       function renderAstrip() {
         const strip = document.getElementById("astrip");
@@ -2546,7 +2912,11 @@
             p.style.background = a.color + "28";
             p.style.borderColor = a.color;
           }
-          p.innerHTML = `<div class="dot" style="background:${a.color}"></div>${a.name}`;
+          p.innerHTML =
+            '<div class="adot" style="background:' +
+            a.color +
+            '"></div>' +
+            a.name;
           p.onclick = () => {
             S.curAct = a.id;
             save();
@@ -2559,48 +2929,82 @@
           });
           strip.appendChild(p);
         });
-        const fp = document.createElement("div");
-        fp.className = "apill" + (S.curAct === null ? " on" : "");
-        fp.innerHTML =
-          '<div class="dot" style="background:var(--tx3);border:1px solid var(--bd2)"></div>Erase';
-        fp.onclick = () => {
+        const ep = document.createElement("div");
+        ep.className = "apill" + (S.curAct === null ? " on" : "");
+        ep.innerHTML =
+          '<div class="adot" style="background:var(--tx3);border:1px solid var(--bd2)"></div>Erase';
+        ep.onclick = () => {
           S.curAct = null;
           save();
           renderAstrip();
           updateStats();
         };
-        strip.appendChild(fp);
+        strip.appendChild(ep);
+
         const lbl = document.getElementById("act-lbl");
         if (lbl) {
           const a = S.curAct ? S.actions.find((x) => x.id === S.curAct) : null;
-          lbl.textContent = a ? a.emoji + " " + a.name : "Erase";
+          lbl.textContent = a
+            ? a.emoji +
+              " " +
+              a.name +
+              (S.curFreq < 100 ? " @" + S.curFreq + "%" : "")
+            : "Erase";
           lbl.style.color = a ? a.color : "var(--tx3)";
         }
       }
-      let maCol = "#6c5ce7",
+
+      function renderFstrip() {
+        const strip = document.getElementById("fstrip");
+        if (!strip) return;
+        strip.innerHTML = "";
+        FREQS.forEach((f) => {
+          const p = document.createElement("div");
+          p.className = "fpill" + (S.curFreq === f ? " on" : "");
+          p.textContent = f === "100" ? "100%" : f + "%";
+          p.onclick = () => {
+            S.curFreq = f;
+            save();
+            renderFstrip();
+            renderAstrip();
+          };
+          strip.appendChild(p);
+        });
+      }
+
+      // action modal
+      let maCol = "#e8438a",
         maEmj = "🔴",
         maEid = null;
       function openActModal(eid = null) {
         maEid = eid;
         const ex = eid ? S.actions.find((a) => a.id === eid) : null;
-        document.getElementById("m-act-title").textContent = eid
+        document.getElementById("m-act-t").textContent = eid
           ? "Edit Action"
           : "New Action";
         document.getElementById("ma-name").value = ex ? ex.name : "";
-        maCol = ex ? ex.color : "#6c5ce7";
+        maCol = ex ? ex.color : "#e8438a";
         maEmj = ex ? ex.emoji : "🔴";
         document.getElementById("ma-cc").value = maCol;
         document.getElementById("ma-cols").innerHTML = PCOLS.map(
           (c) =>
-            `<div class="csw${
-              c === maCol ? " on" : ""
-            }" style="background:${c}" onclick="pickCol('${c}',this)"></div>`
+            '<div class="csw' +
+            (c === maCol ? " on" : "") +
+            '" style="background:' +
+            c +
+            '" onclick="pickCol(\'' +
+            c +
+            "',this)\"></div>"
         ).join("");
         document.getElementById("ma-emj").innerHTML = PEMJ.map(
           (e) =>
-            `<div class="eopt${
-              e === maEmj ? " on" : ""
-            }" onclick="pickEmj('${e}',this)">${e}</div>`
+            '<div class="eopt' +
+            (e === maEmj ? " on" : "") +
+            '" onclick="pickEmj(\'' +
+            e +
+            "',this)\">" +
+            e +
+            "</div>"
         ).join("");
         openM("m-act");
         setTimeout(() => document.getElementById("ma-name").focus(), 220);
@@ -2620,7 +3024,7 @@
           .forEach((x) => x.classList.remove("on"));
         el.classList.add("on");
       }
-      document.getElementById("ma-cc").addEventListener("input", (e) => {
+      document.getElementById("ma-cc").addEventListener("input", function (e) {
         maCol = e.target.value;
         document
           .querySelectorAll("#ma-cols .csw")
@@ -2650,8 +3054,9 @@
         renderAstrip();
         rebuildMx();
         updateStats();
-        toast(maEid ? "Action updated" : "Action added");
+        toast(maEid ? "Action updated" : "Action added ✓");
       }
+
       function initPosChips() {
         const el = document.getElementById("pos-chips");
         el.innerHTML = "";
@@ -2717,14 +3122,17 @@
           ],
         };
         const hands = sets[type] || [];
+        if (!S.curAct) {
+          toast("Select an action first");
+          return;
+        }
         hands.forEach((h) => {
-          if (!S.curAct) delete S.cs[h];
-          else S.cs[h] = S.curAct;
+          S.cs[h] = { a: S.curAct, f: S.curFreq };
         });
         rebuildMx();
         updateStats();
         save();
-        toast("Applied");
+        toast("Applied ✓");
       }
       function clearMx() {
         S.cs = {};
@@ -2743,7 +3151,7 @@
             else if (i < j) key = r1 + r2 + "s";
             else key = r2 + r1 + "o";
             if (S.cs[key]) delete S.cs[key];
-            else if (S.curAct) S.cs[key] = S.curAct;
+            else if (S.curAct) S.cs[key] = { a: S.curAct, f: S.curFreq };
           }
         rebuildMx();
         updateStats();
@@ -2752,12 +3160,148 @@
       }
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // RANGE SAVE / LOAD
+      // RANGE TEXT IMPORT
+      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      function importRngText() {
+        const raw = document.getElementById("rng-import").value.trim();
+        if (!raw) {
+          toast("Paste a range first");
+          return;
+        }
+        let count = 0;
+        // Build set of all valid keys for quick lookup
+        const validKeys = new Set();
+        for (let i = 0; i < 13; i++)
+          for (let j = 0; j < 13; j++) {
+            const r1 = RK[i],
+              r2 = RK[j];
+            if (i === j) validKeys.add(r1 + r2);
+            else if (i < j) validKeys.add(r1 + r2 + "s");
+            else validKeys.add(r2 + r1 + "o");
+          }
+
+        // Try to detect format:
+        // Format A: "raise: AA,KK,QQ  call: AKs,AKo"  (action prefix)
+        // Format B: "AA:1.0,KK:0.75,AKs:0.5"  (GTO solver with freq 0-1)
+        // Format C: "AA,KK,QQ,AKs"  (simple list — uses current action+freq)
+
+        const curActId = S.curAct || "raise";
+        const curFreqVal = S.curFreq || 100;
+
+        // Check for action-prefixed format
+        const actionPrefixed = /\b(raise|call|fold|[a-z0-9_]+)\s*:/i.test(raw);
+        // Check for GTO solver format (number after colon, 0-1)
+        const gtoFormat =
+          /\b[A-KT][A-KT][so]?:0\.\d/i.test(raw) ||
+          /\b[A-KT][A-KT][so]?:1\.?0?\b/i.test(raw);
+
+        if (actionPrefixed) {
+          // Split on action names followed by colon
+          const parts = raw.split(/([a-z0-9_\-]+)\s*:/gi);
+          let curPart = curActId;
+          for (let i = 0; i < parts.length; i++) {
+            const p = parts[i].trim();
+            if (!p) continue;
+            // check if it's an action name
+            const matchedAct = S.actions.find(
+              (a) =>
+                a.name.toLowerCase() === p.toLowerCase() ||
+                a.id.toLowerCase() === p.toLowerCase()
+            );
+            if (matchedAct) {
+              curPart = matchedAct.id;
+              continue;
+            }
+            // else it's hand data
+            const hands = p.split(/[\s,;]+/).filter(Boolean);
+            hands.forEach((h) => {
+              const k = normalizeKey(h);
+              if (k && validKeys.has(k)) {
+                S.cs[k] = { a: curPart, f: curFreqVal };
+                count++;
+              }
+            });
+          }
+        } else if (gtoFormat) {
+          // AA:1.0,KK:0.75 format
+          const tokens = raw.split(/[\s,;]+/).filter(Boolean);
+          tokens.forEach((t) => {
+            const m = t.match(/^([A-KT][A-KT][so]?):([0-9.]+)$/i);
+            if (m) {
+              const k = normalizeKey(m[1]);
+              const fv = Math.round(parseFloat(m[2]) * 100);
+              if (k && validKeys.has(k) && fv > 0) {
+                S.cs[k] = { a: curActId, f: Math.min(fv, 100) };
+                count++;
+              }
+            }
+          });
+        } else {
+          // Simple comma/space/newline list
+          const hands = raw.split(/[\s,;\n]+/).filter(Boolean);
+          hands.forEach((h) => {
+            const k = normalizeKey(h);
+            if (k && validKeys.has(k)) {
+              S.cs[k] = { a: curActId, f: curFreqVal };
+              count++;
+            }
+          });
+        }
+
+        rebuildMx();
+        updateStats();
+        save();
+        document.getElementById("rng-import").value = "";
+        toast("Imported " + count + " hands ✓");
+      }
+
+      function normalizeKey(h) {
+        if (!h) return null;
+        // uppercase, fix T notation
+        h = h.trim().toUpperCase().replace(/10/g, "T");
+        // Already valid pair e.g. AA
+        if (h.length === 2 && h[0] === h[1]) return h;
+        // Suited/offsuit e.g. AKs AKo
+        if (h.length === 3 && (h[2] === "S" || h[2] === "O"))
+          return h[0] + h[1] + h[2].toLowerCase();
+        // Bare two cards e.g. AK → try both suited/offsuit
+        if (h.length === 2 && h[0] !== h[1]) {
+          // return the offsuit version (most common in pasted ranges)
+          const i1 = RK.indexOf(h[0]),
+            i2 = RK.indexOf(h[1]);
+          if (i1 < 0 || i2 < 0) return null;
+          if (i1 < i2) return h[0] + h[1] + "o";
+          return h[1] + h[0] + "o";
+        }
+        return null;
+      }
+
+      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // SAVE / LOAD RANGE (unselected = fold)
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       function saveRange() {
         const name =
           document.getElementById("rng-name").value.trim() ||
           S.curPos + " Range";
+        const foldAct = S.actions.find(
+          (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
+        );
+        const foldId = foldAct ? foldAct.id : "fold";
+        const fullState = {};
+        for (let i = 0; i < 13; i++)
+          for (let j = 0; j < 13; j++) {
+            const r1 = RK[i],
+              r2 = RK[j];
+            let key;
+            if (i === j) key = r1 + r2;
+            else if (i < j) key = r1 + r2 + "s";
+            else key = r2 + r1 + "o";
+            if (S.cs[key] && S.cs[key].a) {
+              fullState[key] = S.cs[key];
+            } else {
+              fullState[key] = { a: foldId, f: 100 };
+            }
+          }
         let combos = 0;
         for (let i = 0; i < 13; i++)
           for (let j = 0; j < 13; j++) {
@@ -2774,15 +3318,19 @@
               key = r2 + r1 + "o";
               type = "offsuit";
             }
-            if (S.cs[key])
-              combos += type === "pair" ? 6 : type === "suited" ? 4 : 12;
+            const cs = S.cs[key];
+            if (cs && cs.a && cs.a !== foldId)
+              combos +=
+                ((type === "pair" ? 6 : type === "suited" ? 4 : 12) *
+                  (cs.f || 100)) /
+                100;
           }
         const r = {
           id: "r" + Date.now(),
           name,
           pos: S.curPos,
-          state: { ...S.cs },
-          combos,
+          state: fullState,
+          combos: Math.round(combos),
           pct: ((combos / TOTAL) * 100).toFixed(1),
           created: Date.now(),
           updated: Date.now(),
@@ -2797,14 +3345,23 @@
         } else S.ranges.unshift(r);
         save();
         renderLib();
-        updateTSel();
+        updTSel();
         spark();
-        toast('"' + name + '" saved');
+        toast('"' + name + '" saved ✓');
       }
+
       function loadRange(id) {
         const r = S.ranges.find((x) => x.id === id);
         if (!r) return;
-        S.cs = { ...r.state };
+        // load non-fold cells into display state
+        const foldAct = S.actions.find(
+          (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
+        );
+        const foldId = foldAct ? foldAct.id : "fold";
+        S.cs = {};
+        Object.entries(r.state).forEach(([k, v]) => {
+          if (v && v.a !== foldId) S.cs[k] = v;
+        });
         S.curPos = r.pos;
         document.getElementById("rng-name").value = r.name;
         initPosChips();
@@ -2814,12 +3371,13 @@
         goTo("s-range");
         toast('"' + r.name + '" loaded');
       }
+
       function delRange(id) {
         const r = S.ranges.find((x) => x.id === id);
         S.ranges = S.ranges.filter((x) => x.id !== id);
         save();
         renderLib();
-        updateTSel();
+        updTSel();
         if (r) toast('"' + r.name + '" deleted');
       }
 
@@ -2838,28 +3396,41 @@
         );
         if (!rs.length) {
           el.innerHTML =
-            '<div class="empty"><div class="ei">&#128218;</div><div class="et">No ranges saved</div><div class="es">Build a range and save it to see it here.</div></div>';
+            '<div class="empty"><div class="ei">&#128218;</div><div class="et">No ranges saved</div><div class="es">Build a range and save it here.</div></div>';
           return;
         }
         el.innerHTML = rs
           .map((r) => {
             const pc = PCCOL[r.pos] || "#888";
-            return `<div class="fitem" onclick="loadRange('${r.id}')">
-      <div class="fbadge" style="background:${pc}22;color:${pc}">${r.pos}</div>
-      <div class="fbody"><div class="fname">${r.name}</div><div class="fmeta">${
-              r.combos
-            } combos &middot; ${r.pct}% &middot; ${new Date(
-              r.updated
-            ).toLocaleDateString()}</div></div>
-      <div class="facts">
-        <div class="fact" onclick="event.stopPropagation();startRen('${
-          r.id
-        }')">&#9999;</div>
-        <div class="fact" onclick="event.stopPropagation();delRange('${
-          r.id
-        }')" style="color:var(--rd)">&#10005;</div>
-      </div>
-    </div>`;
+            return (
+              '<div class="fit" onclick="loadRange(\'' +
+              r.id +
+              "')\">" +
+              '<div class="fbg" style="background:' +
+              pc +
+              "22;color:" +
+              pc +
+              '">' +
+              r.pos +
+              "</div>" +
+              '<div class="fbd"><div class="fn">' +
+              r.name +
+              '</div><div class="fm">' +
+              r.combos +
+              " combos &middot; " +
+              r.pct +
+              "% &middot; " +
+              new Date(r.updated).toLocaleDateString() +
+              "</div></div>" +
+              '<div class="fax">' +
+              '<div class="fa" onclick="event.stopPropagation();startRen(\'' +
+              r.id +
+              "')\">&#9999;</div>" +
+              '<div class="fa" onclick="event.stopPropagation();delRange(\'' +
+              r.id +
+              '\')" style="color:var(--rd)">&#10005;</div>' +
+              "</div></div>"
+            );
           })
           .join("");
       }
@@ -2881,11 +3452,11 @@
         save();
         closeM("m-ren");
         renderLib();
-        toast("Renamed");
+        toast("Renamed ✓");
       }
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // TRAINER — trains from saved ranges
+      // TRAINER
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       let tHands = [],
         tIdx = 0,
@@ -2893,15 +3464,22 @@
         tRid = null,
         tActMap = {};
 
-      function updateTSel() {
+      function updTSel() {
         const sel = document.getElementById("t-rsel");
         if (!sel) return;
         const cur = sel.value;
         sel.innerHTML =
-          '<option value="">&#8212; GTO Defaults (BTN) &#8212;</option>';
+          '<option value="">&#8212; GTO Defaults (BTN Open) &#8212;</option>';
         S.ranges.forEach(
           (r) =>
-            (sel.innerHTML += `<option value="${r.id}">${r.pos} &#8212; ${r.name}</option>`)
+            (sel.innerHTML +=
+              '<option value="' +
+              r.id +
+              '">' +
+              r.pos +
+              " &#8212; " +
+              r.name +
+              "</option>")
         );
         if (cur) sel.value = cur;
       }
@@ -2909,17 +3487,19 @@
       function getTConfig() {
         tRid = document.getElementById("t-rsel")?.value || "";
         tActMap = {};
+        const foldAct = S.actions.find(
+          (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
+        );
+        const foldId = foldAct ? foldAct.id : "fold";
         if (tRid) {
           const r = S.ranges.find((x) => x.id === tRid);
           if (r) {
             Object.entries(r.state).forEach(([k, v]) => {
-              if (v) tActMap[k] = v;
+              if (v && v.a) tActMap[k] = v.a;
             });
             return Object.keys(tActMap);
           }
         }
-        // GTO defaults: all BTN hands mapped to raise, others fold
-        tActMap = {};
         GTO.forEach((h) => {
           tActMap[h] = "raise";
         });
@@ -2927,24 +3507,17 @@
       }
 
       function getCorr(key) {
-        if (tActMap[key]) return tActMap[key];
-        // not in range = fold (find fold action or use id 'fold')
-        const fa = S.actions.find(
-          (a) => a.id === "fold" || a.name.toLowerCase() === "fold"
-        );
-        return fa ? fa.id : "fold";
+        return tActMap[key] || "fold";
       }
 
       function buildTBtns() {
         const el = document.getElementById("t-btns");
         if (!el) return;
-        // collect all distinct actions in the current range
         let aids = [...new Set(Object.values(tActMap))];
         if (!aids.length) aids = ["raise", "fold"];
-        // ensure fold is always present
         const hasFold = aids.some((id) => {
           const a = S.actions.find((x) => x.id === id);
-          return a && (a.id === "fold" || a.name.toLowerCase() === "fold");
+          return a && a.name.toLowerCase() === "fold";
         });
         if (!hasFold) {
           const fa = S.actions.find(
@@ -2952,17 +3525,27 @@
           );
           if (fa && !aids.includes(fa.id)) aids.push(fa.id);
         }
-        // if no saved actions exist fall back to GTO buttons
-        const btns = aids.map((id) => {
-          const a = S.actions.find((x) => x.id === id) || {
-            id,
-            name: id,
-            color: "#555",
-            emoji: "⬛",
-          };
-          return `<div class="t-btn" id="tb-${a.id}" onclick="tAns('${a.id}')">${a.emoji} ${a.name}</div>`;
-        });
-        el.innerHTML = btns.join("");
+        el.innerHTML = aids
+          .map((id) => {
+            const a = S.actions.find((x) => x.id === id) || {
+              id: id,
+              name: id,
+              color: "#555",
+              emoji: "⬛",
+            };
+            return (
+              '<div class="t-btn" id="tb-' +
+              a.id +
+              '" onclick="tAns(\'' +
+              a.id +
+              "')\">" +
+              a.emoji +
+              " " +
+              a.name +
+              "</div>"
+            );
+          })
+          .join("");
       }
 
       function startT() {
@@ -2988,10 +3571,10 @@
           endT();
           return;
         }
-        const nq = tHands.length;
-        document.getElementById("t-prog").style.width = (tIdx / nq) * 100 + "%";
+        document.getElementById("t-prog").style.width =
+          (tIdx / tHands.length) * 100 + "%";
         document.getElementById("t-qnum").textContent =
-          "Q " + (tIdx + 1) + " / " + nq;
+          "Q " + (tIdx + 1) + " / " + tHands.length;
         document.getElementById("t-streak").textContent =
           "Streak: " + S.trainer.streak + " 🔥";
         const key = tHands[tIdx];
@@ -3000,27 +3583,31 @@
         document.getElementById("t-cards").innerHTML = cards
           .map(
             (c) =>
-              `<div class="pcard ${SCOL[c.s]}"><div class="pcard-r">${
-                c.r
-              }</div><div class="pcard-s">${SSYM[c.s]}</div></div>`
+              '<div class="pcard ' +
+              SCOL[c.s] +
+              '"><div class="pcard-r">' +
+              c.r +
+              '</div><div class="pcard-s">' +
+              SSYM[c.s] +
+              "</div></div>"
           )
           .join("");
-        const tl =
-          h.type === "pair"
+        document.getElementById("t-hname").textContent =
+          key +
+          " — " +
+          (h.type === "pair"
             ? "Pocket Pair"
             : h.type === "suited"
             ? "Suited"
-            : "Offsuit";
-        document.getElementById("t-hname").textContent = key + " — " + tl;
+            : "Offsuit");
         const pos = POSITIONS[Math.floor(Math.random() * 6)];
-        const scen = tRid
-          ? `You are on the <strong>${pos}</strong>. What is your action?`
-          : `<strong>${pos}</strong> — folds to you. Open or fold?`;
-        document.getElementById("t-scen").innerHTML = scen;
+        document.getElementById("t-scen").innerHTML = tRid
+          ? "You are on the <strong>" + pos + "</strong>. What is your action?"
+          : "<strong>" + pos + "</strong> — folds to you. Raise or fold?";
         document.getElementById("t-res").classList.remove("on");
         document.getElementById("t-next").style.display = "none";
         document.querySelectorAll(".t-btn").forEach((b) => {
-          b.classList.remove("ok", "bad", "dis");
+          b.classList.remove("ok", "bad");
           b.style.opacity = "1";
           b.style.pointerEvents = "auto";
         });
@@ -3036,9 +3623,10 @@
           S.trainer.streak++;
           if (S.trainer.streak > S.trainer.best)
             S.trainer.best = S.trainer.streak;
-          const streak = S.trainer.streak > 2 ? " 🔥 ×" + S.trainer.streak : "";
-          res.textContent = "✓ Correct!" + streak;
-          res.className = "t-result ok on";
+          res.textContent =
+            "✓ Correct!" +
+            (S.trainer.streak > 2 ? " 🔥 ×" + S.trainer.streak : "");
+          res.className = "t-res ok on";
           document.getElementById("tb-" + aid)?.classList.add("ok");
         } else {
           S.trainer.wrong++;
@@ -3047,8 +3635,8 @@
             name: corr,
             emoji: "⬛",
           };
-          res.textContent = "✗ GTO: " + ca.emoji + " " + ca.name;
-          res.className = "t-result bad on";
+          res.textContent = "✗ Should be: " + ca.emoji + " " + ca.name;
+          res.className = "t-res bad on";
           document.getElementById("tb-" + aid)?.classList.add("bad");
           if (S.settings.showCorr)
             document.getElementById("tb-" + corr)?.classList.add("ok");
@@ -3082,7 +3670,7 @@
         renderTHist();
         document.getElementById("t-res").textContent =
           "Done! " + acc + "% accuracy 🎉";
-        document.getElementById("t-res").className = "t-result ok on";
+        document.getElementById("t-res").className = "t-res ok on";
         document.getElementById("t-next").style.display = "none";
         document.getElementById("t-prog").style.width = "100%";
         spark();
@@ -3121,23 +3709,27 @@
         el.innerHTML = S.trainer.history
           .slice(0, 6)
           .map(
-            (h) => `
-    <div class="hist-row">
-      <div class="hist-badge" style="background:${
-        h.acc >= 70 ? "var(--gr2)" : "var(--rd2)"
-      };border:1px solid ${h.acc >= 70 ? "var(--gr)" : "var(--rd)"};color:${
-              h.acc >= 70 ? "var(--gr)" : "var(--rd)"
-            };">${h.acc}%</div>
-      <div style="flex:1"><div style="font-size:13px;font-weight:600">${
-        h.correct
-      }/${h.total} correct</div><div style="font-size:11px;color:var(--tx3)">${
-              h.date
-            } · streak ${h.streak}</div></div>
-    </div>`
+            (h) =>
+              '<div class="hist-row"><div class="hbadge" style="background:' +
+              (h.acc >= 70 ? "var(--gr2)" : "var(--rd2)") +
+              ";border:1px solid " +
+              (h.acc >= 70 ? "var(--gr)" : "var(--rd)") +
+              ";color:" +
+              (h.acc >= 70 ? "var(--gr)" : "var(--rd)") +
+              '">' +
+              h.acc +
+              '%</div><div style="flex:1"><div style="font-size:13px;font-weight:600">' +
+              h.correct +
+              "/" +
+              h.total +
+              ' correct</div><div style="font-size:11px;color:var(--tx3)">' +
+              h.date +
+              " · streak " +
+              h.streak +
+              "</div></div></div>"
           )
           .join("");
       }
-
       function parseHand(k) {
         if (k.length === 2) return { type: "pair", r1: k[0], r2: k[1] };
         if (k.endsWith("s")) return { type: "suited", r1: k[0], r2: k[1] };
@@ -3176,15 +3768,125 @@
       }
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // BANKROLL
+      // BANKROLL — multiple bankrolls
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      const cur = () => (S.settings.cur === "BB" ? "BB " : S.settings.cur);
-      function brTotal() {
-        return (
-          S.sessions.reduce((s, x) => s + x.pnl, 0) + (S.settings.startBR || 0)
-        );
+      function getCur() {
+        const br = getActiveBR();
+        return CUR_SYM[br.cur] || br.cur;
       }
+      function brTotal() {
+        const br = getActiveBR();
+        return br.sessions.reduce((s, x) => s + x.pnl, 0) + (br.startBR || 0);
+      }
+
+      function renderBRStrip() {
+        const el = document.getElementById("br-roll-strip");
+        if (!el) return;
+        el.innerHTML = S.bankrolls
+          .map((br) => {
+            const total =
+              br.sessions.reduce((s, x) => s + x.pnl, 0) + (br.startBR || 0);
+            const sym = CUR_SYM[br.cur] || br.cur;
+            return (
+              '<div class="brc' +
+              (br.id === S.activeBRId ? " on" : "") +
+              '" onclick="switchBR(\'' +
+              br.id +
+              "')\">" +
+              '<div class="brc-name">' +
+              br.name +
+              "</div>" +
+              '<div class="brc-val">' +
+              sym +
+              (Math.abs(total) >= 1000
+                ? (Math.abs(total) / 1000).toFixed(1) + "k"
+                : Math.abs(total).toFixed(0)) +
+              "</div>" +
+              '<div class="brc-cur">' +
+              br.cur +
+              " &middot; " +
+              br.sessions.length +
+              " sessions &middot; <span onclick=\"event.stopPropagation();editBR('" +
+              br.id +
+              '\')" style="text-decoration:underline">edit</span></div>' +
+              "</div>"
+            );
+          })
+          .join("");
+      }
+
+      function switchBR(id) {
+        S.activeBRId = id;
+        save();
+        renderBR();
+      }
+
+      // Bankroll modal
+      let mbrCur = "GBP";
+      function openBRModal(editId = null) {
+        S.mbrEditId = editId;
+        const ex = editId ? S.bankrolls.find((b) => b.id === editId) : null;
+        document.getElementById("m-br-t").textContent = editId
+          ? "Edit Bankroll"
+          : "New Bankroll";
+        document.getElementById("mbr-name").value = ex ? ex.name : "";
+        mbrCur = ex ? ex.cur : "GBP";
+        document.getElementById("mbr-start").value = ex ? ex.startBR || "" : "";
+        document.getElementById("mbr-sl").value = ex ? ex.stopLoss || "" : "";
+        const chips = document.getElementById("mbr-cur-chips");
+        chips.innerHTML = CURS.map(
+          (c) =>
+            '<div class="chip' +
+            (c === mbrCur ? " on" : "") +
+            '" onclick="pickBRCur(\'' +
+            c +
+            "',this)\">" +
+            c +
+            "</div>"
+        ).join("");
+        openM("m-br");
+        setTimeout(() => document.getElementById("mbr-name").focus(), 220);
+      }
+      function editBR(id) {
+        openBRModal(id);
+      }
+      function pickBRCur(c, el) {
+        mbrCur = c;
+        document
+          .querySelectorAll("#mbr-cur-chips .chip")
+          .forEach((x) => x.classList.remove("on"));
+        el.classList.add("on");
+      }
+      function saveBRModal() {
+        const name = document.getElementById("mbr-name").value.trim();
+        if (!name) return;
+        const startBR =
+          parseFloat(document.getElementById("mbr-start").value) || 0;
+        const stopLoss =
+          parseFloat(document.getElementById("mbr-sl").value) || 0;
+        if (S.mbrEditId) {
+          const br = S.bankrolls.find((b) => b.id === S.mbrEditId);
+          if (br) {
+            br.name = name;
+            br.cur = mbrCur;
+            br.startBR = startBR;
+            br.stopLoss = stopLoss;
+          }
+        } else {
+          const br = defBR(name, mbrCur);
+          br.startBR = startBR;
+          br.stopLoss = stopLoss;
+          S.bankrolls.push(br);
+          S.activeBRId = br.id;
+        }
+        save();
+        closeM("m-br");
+        renderBR();
+        toast(S.mbrEditId ? "Bankroll updated ✓" : "Bankroll created ✓");
+      }
+
       function logSess() {
+        const br = getActiveBR();
         const name =
           document.getElementById("br-name").value.trim() || "Session";
         const bi = parseFloat(document.getElementById("br-bi").value) || 0;
@@ -3193,7 +3895,7 @@
         const gt = document.getElementById("br-gt").value;
         const notes = document.getElementById("br-notes").value.trim();
         const pnl = co - bi;
-        S.sessions.unshift({
+        br.sessions.unshift({
           id: "s" + Date.now(),
           name,
           bi,
@@ -3213,13 +3915,18 @@
         spark();
         toast(
           (pnl >= 0 ? "📈 +" : "📉 ") +
-            cur() +
+            getCur() +
             Math.abs(pnl).toFixed(2) +
             " logged"
         );
-        if (S.settings.stopLoss && brTotal() < -Math.abs(S.settings.stopLoss))
-          toast("⚠️ Stop-loss hit!");
+        if (br.stopLoss && brTotal() < -Math.abs(br.stopLoss))
+          toast(
+            "⚠️ Stop-loss hit! Down " +
+              getCur() +
+              Math.abs(brTotal()).toFixed(2)
+          );
       }
+
       let brF = "all";
       function filterBR(f) {
         brF = f;
@@ -3229,11 +3936,15 @@
         });
         renderSessList();
       }
+
       function renderBR() {
-        const total = brTotal(),
-          c = cur();
+        renderBRStrip();
+        const br = getActiveBR();
+        if (!br) return;
+        const total = brTotal();
+        const c = getCur();
         document.getElementById("br-sym").textContent =
-          S.settings.cur === "BB" ? "" : S.settings.cur;
+          br.cur === "BB" ? "" : CUR_SYM[br.cur] || br.cur;
         document.getElementById("br-total").textContent =
           Math.abs(total).toFixed(2);
         const sub = document.getElementById("br-sub");
@@ -3242,14 +3953,14 @@
           c +
           Math.abs(total).toFixed(2);
         sub.style.color = total >= 0 ? "var(--gr)" : "var(--rd)";
-        const n = S.sessions.length,
-          wins = S.sessions.filter((s) => s.pnl > 0).length;
+        const n = br.sessions.length,
+          wins = br.sessions.filter((s) => s.pnl > 0).length;
         document.getElementById("brs-n").textContent = n;
         document.getElementById("brs-wr").textContent = n
           ? Math.round((wins / n) * 100) + "%"
           : "—";
-        const best2 = n ? Math.max(...S.sessions.map((s) => s.pnl)) : 0;
-        const avg = n ? S.sessions.reduce((a, s) => a + s.pnl, 0) / n : 0;
+        const best2 = n ? Math.max(...br.sessions.map((s) => s.pnl)) : 0;
+        const avg = n ? br.sessions.reduce((a, s) => a + s.pnl, 0) / n : 0;
         const be = document.getElementById("brs-best");
         be.textContent =
           (best2 >= 0 ? "+" : "") + c + Math.abs(best2).toFixed(0);
@@ -3260,14 +3971,16 @@
         renderChart();
         renderSessList();
       }
+
       function renderChart() {
         const svg = document.getElementById("br-svg");
         if (!svg) return;
         const box = svg.parentElement;
         const W = box.clientWidth || 280,
-          H = box.clientHeight || 110;
+          H = box.clientHeight || 100;
         svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-        if (S.sessions.length < 2) {
+        const br = getActiveBR();
+        if (!br || br.sessions.length < 2) {
           svg.innerHTML =
             '<text x="' +
             W / 2 +
@@ -3276,14 +3989,14 @@
             '" text-anchor="middle" fill="var(--tx3)" font-size="11" font-family="system-ui">Add 2+ sessions to see chart</text>';
           return;
         }
-        const pts = [S.settings.startBR || 0];
-        [...S.sessions]
+        const pts = [br.startBR || 0];
+        [...br.sessions]
           .reverse()
           .forEach((s) => pts.push(pts[pts.length - 1] + s.pnl));
         const mn = Math.min(...pts),
           mx2 = Math.max(...pts),
           rng = mx2 - mn || 1;
-        const pl = { l: 6, r: 6, t: 8, b: 8 };
+        const pl = { l: 5, r: 5, t: 7, b: 7 };
         const tx2 = (i) => ((W - pl.l - pl.r) / (pts.length - 1)) * i + pl.l;
         const ty = (v) => H - pl.b - ((v - mn) / rng) * (H - pl.t - pl.b);
         const pd = pts
@@ -3339,66 +4052,80 @@
             )
             .join("");
       }
+
       function renderSessList() {
         const el = document.getElementById("sess-list");
         if (!el) return;
-        let ss = [...S.sessions];
+        const br = getActiveBR();
+        if (!br) {
+          el.innerHTML = "";
+          return;
+        }
+        let ss = [...br.sessions];
         if (brF === "win") ss = ss.filter((s) => s.pnl > 0);
         if (brF === "loss") ss = ss.filter((s) => s.pnl <= 0);
         if (!ss.length) {
           el.innerHTML =
-            '<div class="empty"><div class="ei">&#128202;</div><div class="es">No sessions</div></div>';
+            '<div class="empty"><div class="ei">&#128202;</div><div class="es">No sessions yet</div></div>';
           return;
         }
-        const c = cur();
+        const c = getCur();
         el.innerHTML = ss
           .map(
-            (s) => `
-    <div class="sess-item" onclick="openSess('${s.id}')">
-      <div class="sess-ic" style="background:${
-        s.pnl >= 0 ? "var(--gr2)" : "var(--rd2)"
-      }">${s.pnl >= 0 ? "📈" : "📉"}</div>
-      <div class="sess-body"><div class="sess-name">${
-        s.name
-      }</div><div class="sess-meta">${s.gt}${
-              s.hr ? " · " + s.hr + "h" : ""
-            } · ${new Date(s.date).toLocaleDateString()}</div></div>
-      <div class="sess-pnl" style="color:${
-        s.pnl >= 0 ? "var(--gr)" : "var(--rd)"
-      }">${s.pnl >= 0 ? "+" : ""}${c}${Math.abs(s.pnl).toFixed(2)}</div>
-    </div>`
+            (s) =>
+              '<div class="sess-it" onclick="openSess(\'' +
+              s.id +
+              '\')"><div class="sess-ic" style="background:' +
+              (s.pnl >= 0 ? "var(--gr2)" : "var(--rd2)") +
+              '">' +
+              (s.pnl >= 0 ? "📈" : "📉") +
+              '</div><div class="sess-bd"><div class="sess-n">' +
+              s.name +
+              '</div><div class="sess-m">' +
+              s.gt +
+              (s.hr ? " · " + s.hr + "h" : "") +
+              " · " +
+              new Date(s.date).toLocaleDateString() +
+              '</div></div><div class="sess-p" style="color:' +
+              (s.pnl >= 0 ? "var(--gr)" : "var(--rd)") +
+              '">' +
+              (s.pnl >= 0 ? "+" : "") +
+              c +
+              Math.abs(s.pnl).toFixed(2) +
+              "</div></div>"
           )
           .join("");
       }
+
       function openSess(id) {
-        const s = S.sessions.find((x) => x.id === id);
+        const br = getActiveBR();
+        const s = br.sessions.find((x) => x.id === id);
         if (!s) return;
-        const c = cur();
+        const c = getCur();
         document.getElementById("ms-title").textContent = s.name;
         document.getElementById("ms-body").innerHTML =
-          '<div class="row2" style="margin-bottom:10px;">' +
-          '<div class="stat-box"><div class="stat-val">' +
+          '<div class="r2" style="margin-bottom:9px;">' +
+          '<div class="sb"><div class="sb-v">' +
           c +
           s.bi.toFixed(2) +
-          '</div><div class="stat-lbl">Buy-in</div></div>' +
-          '<div class="stat-box"><div class="stat-val">' +
+          '</div><div class="sb-l">Buy-in</div></div>' +
+          '<div class="sb"><div class="sb-v">' +
           c +
           s.co.toFixed(2) +
-          '</div><div class="stat-lbl">Cash-out</div></div>' +
+          '</div><div class="sb-l">Cash-out</div></div>' +
           "</div>" +
           '<div style="background:' +
           (s.pnl >= 0 ? "var(--gr2)" : "var(--rd2)") +
           ";border:1px solid " +
           (s.pnl >= 0 ? "var(--gr)" : "var(--rd)") +
-          ';border-radius:var(--r8);padding:14px;text-align:center;margin-bottom:10px;">' +
+          ';border-radius:8px;padding:12px;text-align:center;margin-bottom:9px;">' +
           '<div style="font-size:26px;font-weight:700;color:' +
           (s.pnl >= 0 ? "var(--gr)" : "var(--rd)") +
           ';">' +
           (s.pnl >= 0 ? "+" : "") +
           c +
           Math.abs(s.pnl).toFixed(2) +
-          "</div>" +
-          '<div style="font-size:10px;color:var(--tx3);margin-top:2px">P&L</div></div>' +
+          '</div><div style="font-size:10px;color:var(--tx3);margin-top:2px">P&L</div></div>' +
           '<div style="font-size:13px;color:var(--tx2);line-height:1.9;">' +
           "&#128197; " +
           new Date(s.date).toLocaleDateString(undefined, {
@@ -3416,7 +4143,8 @@
           (s.notes ? "&#128221; " + s.notes : "") +
           "</div>";
         document.getElementById("ms-del").onclick = () => {
-          S.sessions = S.sessions.filter((x) => x.id !== id);
+          const idx = br.sessions.findIndex((x) => x.id === id);
+          if (idx >= 0) br.sessions.splice(idx, 1);
           save();
           closeM("m-sess");
           renderBR();
@@ -3436,7 +4164,7 @@
         const fe =
           (parseFloat(document.getElementById("ev-fe").value) || 0) / 100;
         if (!bet) {
-          toast("Enter bet size");
+          toast("Enter a bet size");
           return;
         }
         const evFold = fe * pot;
@@ -3454,11 +4182,9 @@
           (fe * 100).toFixed(0) +
           "% → +" +
           evFold.toFixed(2) +
-          " bb<br>" +
-          "When called: EV = " +
+          " bb<br>When called: EV = " +
           evCall.toFixed(2) +
-          " bb<br>" +
-          "Break-even equity: " +
+          " bb<br>Break-even equity: " +
           ((bet / (pot + 2 * bet)) * 100).toFixed(1) +
           "%";
       }
@@ -3481,17 +4207,9 @@
         document.getElementById("po-inf").innerHTML =
           "You need ≥" +
           (odds * 100).toFixed(1) +
-          "% equity to call profitably.<br>" +
-          "Villain must bluff " +
+          "% equity to call profitably.<br>Villain must bluff " +
           ((1 - mdf) * 100).toFixed(1) +
-          "% of his range for you to be indifferent.<br>" +
-          "Pot odds: " +
-          pot +
-          ":" +
-          bet +
-          " (" +
-          (pot / bet).toFixed(2) +
-          ":1)";
+          "% of his range for you to be indifferent.";
       }
       function calcSPR() {
         const s = parseFloat(document.getElementById("spr-s").value) || 0;
@@ -3501,66 +4219,63 @@
           return;
         }
         const spr = s / p;
-        let hint = "";
-        if (spr < 2)
-          hint =
-            "Very low SPR — almost pot-committed. Strong value hands benefit most.";
-        else if (spr < 5)
-          hint =
-            "Low SPR — committed territory. Premium hands gain, speculative hands lose value.";
-        else if (spr < 10)
-          hint =
-            "Medium SPR — balanced play. Sets and flushes gain strong implied odds.";
-        else
-          hint =
-            "High SPR — deep stack poker. Speculative hands (suited connectors, small pairs) increase in value significantly.";
+        let hint =
+          spr < 2
+            ? "Very low SPR — almost pot-committed. Strong made hands dominate. Hard to fold TPTK+."
+            : spr < 5
+            ? "Low SPR — premium hands play straightforwardly. Sets/straights/flushes need careful sizing."
+            : spr < 10
+            ? "Medium SPR — sets and flushes gain implied odds. Balanced play important."
+            : "High SPR — speculative hands (suited connectors, small pairs) gain significant implied odds. Deep stack poker.";
         const res = document.getElementById("spr-res");
         res.className = "tool-res on";
-        document.getElementById("spr-val").textContent = spr.toFixed(1);
-        document.getElementById("spr-val").style.color =
+        const vEl = document.getElementById("spr-val");
+        vEl.textContent = spr.toFixed(1);
+        vEl.style.color =
           spr < 3 ? "var(--am)" : spr < 7 ? "var(--ac2)" : "var(--gr)";
         document.getElementById("spr-inf").textContent = hint;
       }
       function calcICM() {
         const my = parseFloat(document.getElementById("icm-my").value) || 0;
-        const vill = parseFloat(document.getElementById("icm-vill").value) || 0;
-        const players = parseInt(document.getElementById("icm-p").value) || 6;
+        const vl = parseFloat(document.getElementById("icm-vl").value) || 0;
+        const pl = parseInt(document.getElementById("icm-p").value) || 6;
         const paid = parseInt(document.getElementById("icm-paid").value) || 3;
-        if (!my || !vill) {
-          toast("Enter stacks");
+        if (!my || !vl) {
+          toast("Enter both stacks");
           return;
         }
-        const bubble = players === paid + 1;
-        const risk = bubble ? Math.round((vill / (my + vill)) * 100) : null;
+        const bubble = pl === paid + 1;
         const res = document.getElementById("icm-res");
         res.className = "tool-res on";
+        const vEl = document.getElementById("icm-val");
         if (bubble) {
-          document.getElementById("icm-val").textContent = risk + "%";
+          const risk = Math.round((vl / (my + vl)) * 100);
+          vEl.textContent = risk + "%";
+          vEl.style.color =
+            risk > 60 ? "var(--rd)" : risk > 40 ? "var(--am)" : "var(--gr)";
           document.getElementById("icm-inf").innerHTML =
-            "You are on the bubble (" +
-            players +
+            "ON THE BUBBLE (" +
+            pl +
             " left, " +
             paid +
-            " paid).<br>Calling this all-in gives villain a " +
+            " paid).<br>Calling this all-in: villain has " +
             risk +
-            "% chance of eliminating you.<br>ICM pressure is maximum — tighten calling range significantly.";
+            "% chance to eliminate you.<br>ICM pressure is MAXIMUM — you need a very strong hand to call off.<br>Villain can profitably shove a very wide range given your ICM pressure.";
         } else {
-          const dist = players - paid;
-          document.getElementById("icm-val").textContent =
-            dist > 0 ? "Far" : "Near";
+          const dist = pl - paid;
+          vEl.textContent = dist + " from $";
+          vEl.style.color = "var(--tx2)";
           document.getElementById("icm-inf").innerHTML =
-            "" +
-            players +
+            pl +
             " players remain, " +
             paid +
-            " get paid.<br>" +
-            (dist > 1
-              ? "Not on bubble yet — standard stack pressure applies."
-              : "Approaching bubble — begin tightening slightly.");
+            " paid. " +
+            (dist > 2
+              ? "Not yet near the bubble — play closer to chip EV."
+              : "Approaching the bubble — begin tightening your calling range by ~10-15%.");
         }
       }
 
-      // Session timer
       let tmrSec = 0,
         tmrOn = false,
         tmrInt = null;
@@ -3586,136 +4301,74 @@
       function updTmr() {
         const h = Math.floor(tmrSec / 3600),
           m = Math.floor((tmrSec % 3600) / 60),
-          s = tmrSec % 60;
+          ss = tmrSec % 60;
         document.getElementById("tmr").textContent =
           String(h).padStart(2, "0") +
           ":" +
           String(m).padStart(2, "0") +
           ":" +
-          String(s).padStart(2, "0");
+          String(ss).padStart(2, "0");
         const rate =
-          parseFloat(document.getElementById("tmr-rate-in")?.value) || 0;
+          parseFloat(document.getElementById("tmr-rate")?.value) || 0;
         if (rate && tmrSec > 0) {
           const hrs = tmrSec / 3600;
-          document.getElementById("tmr-rate").textContent =
-            hrs.toFixed(2) + "h · Expected: " + cur() + (rate * hrs).toFixed(2);
-        } else document.getElementById("tmr-rate").textContent = "";
+          document.getElementById("tmr-info").textContent =
+            hrs.toFixed(2) +
+            "h · Expected: " +
+            getCur() +
+            (rate * hrs).toFixed(2);
+        } else document.getElementById("tmr-info").textContent = "";
       }
 
-      // Equity reference (approximate lookup table)
-      // equity lookup handled inline in lookupEq()
-      function lookupEq() {
-        const hero = document.getElementById("eq-h").value.trim().toUpperCase();
-        const vs = document.getElementById("eq-v").value.trim();
-        const res = document.getElementById("eq-res");
-        res.className = "tool-res on";
-        // Simple known matchup table
-        const table = {
-          "AA vs KK": 81,
-          "AA vs QQ": 82,
-          "AA vs AKs": 93,
-          "AA vs random": 85,
-          "KK vs QQ": 82,
-          "KK vs AKs": 70,
-          "KK vs random": 82,
-          "QQ vs AKs": 57,
-          "QQ vs AKo": 55,
-          "QQ vs random": 79,
-          "JJ vs AKo": 57,
-          "TT vs AKo": 56,
-          "AKs vs AKo": 51,
-          "AKs vs QQ": 46,
-          "AKs vs random": 67,
-          "AKo vs random": 65,
-          "AKo vs KK": 29,
-          "AKo vs QQ": 44,
-          "AQs vs AKo": 28,
-          "AQs vs random": 63,
-          "99 vs AKo": 54,
-          "88 vs AKo": 53,
-          "77 vs AKo": 52,
-          "AKs vs KK": 30,
-          "AQs vs KK": 27,
-        };
-        const key1 = hero + " vs " + vs;
-        const key2 = vs + " vs " + hero;
-        let eq = table[key1] || table[key2] || null;
-        if (eq) {
-          document.getElementById("eq-val").textContent = eq + "%";
-          document.getElementById("eq-val").style.color =
-            eq > 50 ? "var(--gr)" : "var(--rd)";
-          document.getElementById("eq-inf").textContent =
-            "Preflop equity for " + key1;
-        } else {
-          document.getElementById("eq-val").textContent = "—";
-          document.getElementById("eq-val").style.color = "var(--tx3)";
-          document.getElementById("eq-inf").textContent =
-            "Try: AA vs KK, QQ vs AKo, AKs vs random, KK vs AQs etc.";
-        }
+      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      // THEME
+      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      function setTheme(t) {
+        S.settings.theme = t;
+        save();
+        document.body.dataset.theme = t;
+        document
+          .querySelectorAll(".tsw")
+          .forEach((s) => s.classList.remove("on"));
+        const tsw = document.getElementById("tsw-" + t);
+        if (tsw) tsw.classList.add("on");
+        toast("Theme: " + t.charAt(0).toUpperCase() + t.slice(1));
       }
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       // SETTINGS
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       function initSettings() {
-        document.getElementById("st-name").addEventListener("input", (e) => {
-          S.settings.uname = e.target.value;
-          const av = document.getElementById("av");
-          if (av)
-            av.textContent = e.target.value
-              ? e.target.value[0].toUpperCase()
-              : "♠";
-          save();
-        });
-        document.getElementById("st-anim").addEventListener("change", (e) => {
-          S.settings.anim = e.target.checked;
-          save();
-        });
         document
-          .getElementById("st-showcorr")
-          .addEventListener("change", (e) => {
+          .getElementById("st-name")
+          .addEventListener("input", function (e) {
+            S.settings.uname = e.target.value;
+            const av = document.getElementById("av");
+            if (av)
+              av.textContent = e.target.value
+                ? e.target.value[0].toUpperCase()
+                : "♠";
+            save();
+          });
+        document
+          .getElementById("st-anim")
+          .addEventListener("change", function (e) {
+            S.settings.anim = e.target.checked;
+            save();
+          });
+        document
+          .getElementById("st-sc")
+          .addEventListener("change", function (e) {
             S.settings.showCorr = e.target.checked;
             save();
           });
-        document.getElementById("st-q").addEventListener("change", (e) => {
-          S.settings.qcount = parseInt(e.target.value);
-          save();
-        });
-        document.getElementById("st-sbr").addEventListener("change", (e) => {
-          S.settings.startBR = parseFloat(e.target.value) || 0;
-          save();
-        });
-        document.getElementById("st-sl").addEventListener("change", (e) => {
-          S.settings.stopLoss = parseFloat(e.target.value) || 0;
-          save();
-        });
-        // currency chips
-        const CURS = ["£", "$", "€", "¥", "BB"];
-        const cch = document.getElementById("cur-chips");
-        cch.innerHTML = "";
-        const CURLBL = {
-          GBP: "GBP",
-          USD: "USD",
-          EUR: "EUR",
-          JPY: "JPY",
-          BB: "BB",
-        };
-        CURS.forEach((c) => {
-          const ch = document.createElement("div");
-          ch.className = "chip" + (c === S.settings.cur ? " on" : "");
-          ch.textContent = c === "BB" ? "BB" : c + " " + CURLBL[c];
-          ch.onclick = () => {
-            S.settings.cur = c;
+        document
+          .getElementById("st-q")
+          .addEventListener("change", function (e) {
+            S.settings.qcount = parseInt(e.target.value);
             save();
-            document
-              .querySelectorAll("#cur-chips .chip")
-              .forEach((x) => x.classList.toggle("on", x === ch));
-            renderBR();
-          };
-          cch.appendChild(ch);
-        });
-        // danger
-        document.getElementById("btn-clr-ranges").onclick = () => {
+          });
+        document.getElementById("btn-cr").onclick = function () {
           if (confirm("Clear all ranges?")) {
             S.ranges = [];
             S.cs = {};
@@ -3726,46 +4379,44 @@
             toast("Ranges cleared");
           }
         };
-        document.getElementById("btn-clr-br").onclick = () => {
-          if (confirm("Clear all sessions?")) {
-            S.sessions = [];
+        document.getElementById("btn-cb").onclick = function () {
+          if (confirm("Clear ALL bankroll data from all bankrolls?")) {
+            S.bankrolls.forEach((b) => {
+              b.sessions = [];
+            });
             save();
             renderBR();
-            toast("Sessions cleared");
+            toast("Bankroll data cleared");
           }
         };
-        document.getElementById("btn-reset").onclick = () => {
-          if (confirm("Factory reset? All data lost!")) {
+        document.getElementById("btn-rs").onclick = function () {
+          if (confirm("Factory reset? All data will be lost!")) {
             localStorage.clear();
             location.reload();
           }
         };
       }
-      function applySettingsUI() {
+      function applySetUI() {
         const st = S.settings;
         document.getElementById("st-name").value = st.uname || "";
         const av = document.getElementById("av");
         if (av) av.textContent = st.uname ? st.uname[0].toUpperCase() : "♠";
         document.getElementById("st-anim").checked = st.anim !== false;
-        document.getElementById("st-showcorr").checked = st.showCorr !== false;
+        document.getElementById("st-sc").checked = st.showCorr !== false;
         document.getElementById("st-q").value = st.qcount || 20;
-        if (st.startBR) document.getElementById("st-sbr").value = st.startBR;
-        if (st.stopLoss) document.getElementById("st-sl").value = st.stopLoss;
-        document.querySelectorAll("#cur-chips .chip").forEach((ch) => {
-          const c = ch.textContent.split(" ")[0];
-          ch.classList.toggle(
-            "on",
-            c === st.cur || (ch.textContent === "BB" && st.cur === "BB")
-          );
-        });
+        document
+          .querySelectorAll(".tsw")
+          .forEach((s) => s.classList.remove("on"));
+        const tsw = document.getElementById("tsw-" + (st.theme || "pink"));
+        if (tsw) tsw.classList.add("on");
       }
       function exportAll() {
         const d = {
           ranges: S.ranges,
-          sessions: S.sessions,
+          bankrolls: S.bankrolls,
           actions: S.actions,
           settings: S.settings,
-          version: "3.0",
+          version: "4.0",
           date: new Date().toISOString(),
         };
         const a = document.createElement("a");
@@ -3774,31 +4425,31 @@
         );
         a.download = "pokerstudio-" + Date.now() + ".json";
         a.click();
-        toast("Exported");
+        toast("Exported ✓");
       }
       function importAll() {
         const inp = document.createElement("input");
         inp.type = "file";
         inp.accept = ".json";
-        inp.onchange = (e) => {
+        inp.onchange = function (e) {
           const f = e.target.files[0];
           if (!f) return;
           const rd = new FileReader();
-          rd.onload = (ev) => {
+          rd.onload = function (ev) {
             try {
               const d = JSON.parse(ev.target.result);
               if (d.ranges) S.ranges = d.ranges;
-              if (d.sessions) S.sessions = d.sessions;
+              if (d.bankrolls) S.bankrolls = d.bankrolls;
               if (d.actions) S.actions = d.actions;
               if (d.settings) Object.assign(S.settings, d.settings);
               save();
               renderLib();
               renderBR();
               renderAstrip();
-              applySettingsUI();
+              applySetUI();
               spark();
-              toast("Imported!");
-            } catch {
+              toast("Imported ✓");
+            } catch (err) {
               toast("Import failed");
             }
           };
@@ -3816,11 +4467,11 @@
       function closeM(id) {
         document.getElementById(id)?.classList.remove("on");
       }
-      document.querySelectorAll(".overlay").forEach((ov) =>
-        ov.addEventListener("click", (e) => {
+      document.querySelectorAll(".ovl").forEach(function (ov) {
+        ov.addEventListener("click", function (e) {
           if (e.target === ov) ov.classList.remove("on");
-        })
-      );
+        });
+      });
 
       let toastT;
       function toast(msg) {
@@ -3833,13 +4484,13 @@
 
       function spark() {
         if (!S.settings.anim) return;
-        const cs = ["#6c5ce7", "#e060a0", "#00b894", "#fdcb6e", "#ffffff"];
+        const cs = ["#e8438a", "#5b7cf5", "#34c97a", "#f0c040", "#ffffff"];
         for (let i = 0; i < 12; i++)
           setTimeout(() => {
             const s = document.createElement("div");
             s.className = "sp";
             const x = window.innerWidth / 2 + (Math.random() - 0.5) * 180;
-            const y = window.innerHeight * 0.4 + (Math.random() - 0.5) * 80;
+            const y = window.innerHeight * 0.38 + (Math.random() - 0.5) * 80;
             s.style.cssText =
               "left:" +
               x +
@@ -3854,7 +4505,7 @@
               ";--dx:" +
               (Math.random() - 0.5) * 100 +
               "px;--dy:" +
-              (-40 - Math.random() * 70) +
+              (-38 - Math.random() * 70) +
               "px";
             document.body.appendChild(s);
             setTimeout(() => s.remove(), 560);
@@ -3864,20 +4515,22 @@
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
       // INIT
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      document.body.dataset.theme = S.settings.theme || "pink";
       buildMx();
       renderAstrip();
+      renderFstrip();
       updateStats();
       initPosChips();
       initSettings();
-      applySettingsUI();
+      applySetUI();
       renderTHist();
       updTStats();
 
-      // Prevent double-tap zoom
+      // prevent double-tap zoom
       let lt = 0;
       document.addEventListener(
         "touchend",
-        (e) => {
+        function (e) {
           const n = Date.now();
           if (n - lt < 300) e.preventDefault();
           lt = n;
@@ -3885,14 +4538,14 @@
         { passive: false }
       );
 
-      // iOS banner
-      (() => {
+      // iOS PWA
+      (function () {
         const isIOS =
           /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         const isSA =
           window.matchMedia("(display-mode:standalone)").matches ||
           navigator.standalone;
-        function pwa() {
+        function upPWA() {
           document.documentElement.classList.toggle(
             "pwa",
             !!(
@@ -3901,10 +4554,10 @@
             )
           );
         }
-        pwa();
+        upPWA();
         window
           .matchMedia("(display-mode:standalone)")
-          .addEventListener("change", pwa);
+          .addEventListener("change", upPWA);
         if (isIOS && !isSA && !localStorage.getItem("ps_ios"))
           setTimeout(() => {
             document.getElementById("ios-banner")?.classList.add("on");
@@ -3921,16 +4574,15 @@
       }
     </script>
     <script>
-      (() => {
-        const m = {
+      (function () {
+        var m = {
           name: "Poker Studio",
-          short_name: "Poker Studio",
-          description: "Professional Poker Tools",
+          short_name: "PokerStudio",
           start_url: "./",
           display: "standalone",
           orientation: "portrait-primary",
-          background_color: "#0a0a0f",
-          theme_color: "#0a0a0f",
+          background_color: "#110a0e",
+          theme_color: "#110a0e",
           icons: [
             {
               src: "data:image/png;base64,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",
@@ -3949,14 +4601,14 @@
           new Blob([JSON.stringify(m)], { type: "application/manifest+json" })
         );
         if ("serviceWorker" in navigator) {
-          const sw =
-            "const C='ps-v1';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['./'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>{if(c)return c;return fetch(e.request).then(r=>{if(r&&r.status===200){const cl=r.clone();caches.open(C).then(ca=>ca.put(e.request,cl));}return r;}).catch(()=>c);}));});";
-          const url = URL.createObjectURL(
+          var sw =
+            "const C='ps2';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(['./'])).then(()=>self.skipWaiting()));});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(c=>{if(c)return c;return fetch(e.request).then(r=>{if(r&&r.status===200){const cl=r.clone();caches.open(C).then(ca=>ca.put(e.request,cl));}return r;}).catch(()=>c);}));});";
+          var url = URL.createObjectURL(
             new Blob([sw], { type: "application/javascript" })
           );
           navigator.serviceWorker
             .register(url, { scope: "./" })
-            .catch(() => {});
+            .catch(function () {});
         }
       })();
     </script>
