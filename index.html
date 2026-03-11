@@ -861,84 +861,390 @@
       }
 
       /* ━━━ TRAINER ━━━ */
-      .t-hand {
-        background: var(--s2);
-        border: 1px solid var(--bd2);
-        border-radius: 12px;
-        padding: 14px 12px;
+      /* Live stats bar */
+      .t-live {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: var(--s1);
+        border: 1px solid var(--bd);
+        border-radius: 13px;
+        overflow: hidden;
+      }
+      .t-live-c {
+        padding: 10px 6px;
+        text-align: center;
+        border-right: 1px solid var(--bd);
+      }
+      .t-live-c:last-child {
+        border-right: none;
+      }
+      .t-live-v {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ac2);
+        line-height: 1;
+      }
+      .t-live-l {
+        font-size: 8px;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: var(--tx3);
+        margin-top: 3px;
+      }
+      .t-streak-fire {
+        display: inline-block;
+        animation: fireWiggle 0.35s infinite alternate;
+      }
+      @keyframes fireWiggle {
+        from {
+          transform: rotate(-6deg);
+        }
+        to {
+          transform: rotate(6deg);
+        }
+      }
+
+      /* Cards */
+      .t-hand-area {
+        padding: 8px 0 5px;
         text-align: center;
       }
       .t-cards {
         display: flex;
         justify-content: center;
-        gap: 9px;
-        margin: 9px 0;
+        gap: 11px;
+        margin-bottom: 7px;
       }
       .pcard {
-        width: clamp(48px, 12vw, 64px);
-        height: clamp(66px, 17vw, 86px);
+        width: clamp(60px, 15vw, 78px);
+        height: clamp(85px, 22vw, 108px);
         background: #fff;
-        border-radius: 9px;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.25),
+          inset 0 1px 1px rgba(255, 255, 255, 0.8);
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1px;
-        font-weight: 800;
+        justify-content: space-between;
+        padding: 4px 6px 4px;
+        font-weight: 900;
+        position: relative;
+        overflow: hidden;
+        animation: cardDeal 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      .pcard:nth-child(1) {
+        --ci: 0;
+        animation-delay: 0.05s;
+      }
+      .pcard:nth-child(2) {
+        --ci: 1;
+        animation-delay: 0.13s;
+      }
+      @keyframes cardDeal {
+        from {
+          opacity: 0;
+          transform: scale(0.5) translateY(22px)
+            rotate(calc(var(--ci, 0) * 14deg - 7deg));
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0) rotate(0);
+        }
+      }
+      .pcard::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.4) 0%,
+          transparent 55%
+        );
+        pointer-events: none;
+        border-radius: 12px;
+      }
+      .pcard-top {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.05;
+      }
+      .pcard-bot {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.05;
+        align-self: flex-end;
+        transform: rotate(180deg);
       }
       .pcard-r {
-        font-size: clamp(16px, 5vw, 24px);
-        line-height: 1.1;
+        font-size: clamp(15px, 4vw, 21px);
+        font-weight: 900;
       }
-      .pcard-s {
-        font-size: clamp(11px, 3.2vw, 16px);
-        line-height: 1.1;
+      .pcard-ss {
+        font-size: clamp(10px, 2.6vw, 14px);
+        margin-top: -1px;
+      }
+      .pcard-ctr {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -52%);
+        font-size: clamp(28px, 8vw, 40px);
+        pointer-events: none;
       }
       .pcard.red {
-        color: #cc2000;
+        color: #d02020;
       }
       .pcard.blk {
-        color: #0a0a14;
+        color: #14141e;
+      }
+      .pcard.h-hearts,
+      .pcard.h-diamonds {
+        background: linear-gradient(155deg, #fff 45%, #fff3f3);
+      }
+      .pcard.h-spades,
+      .pcard.h-clubs {
+        background: linear-gradient(155deg, #fff 45%, #f3f3ff);
+      }
+
+      /* hand meta */
+      .t-hand-meta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 3px;
       }
       .t-hname {
-        font-size: 12px;
-        color: var(--tx2);
-        margin-top: 2px;
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--tx);
+        font-family: "SF Mono", "Fira Mono", monospace;
       }
-      .t-scen {
+      .t-hand-cat {
+        font-size: 9px;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+      .t-hand-cat.pair {
+        background: var(--am2);
+        color: var(--am);
+      }
+      .t-hand-cat.suited {
+        background: var(--bl2);
+        color: var(--bl);
+      }
+      .t-hand-cat.offsuit {
+        background: var(--s4);
+        color: var(--tx3);
+      }
+
+      /* scenario context */
+      .t-ctx {
+        margin-bottom: 10px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        border-radius: 13px;
+        overflow: hidden;
+      }
+      .t-ctx-top {
+        padding: 9px 13px;
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+        border-bottom: 1px solid var(--bd);
+      }
+      .t-ctx-desc {
         font-size: 13px;
         color: var(--tx);
-        padding: 9px 12px;
-        background: var(--s3);
-        border-radius: 9px;
-        text-align: center;
         line-height: 1.55;
-        margin: 7px 0;
-        border: 1px solid var(--bd);
+        flex: 1;
       }
+      .t-ctx-type {
+        font-size: 8px;
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .t-ctx-type.rfi {
+        background: #e8438a18;
+        border: 1px solid #e8438a55;
+        color: #e8438a;
+      }
+      .t-ctx-type.vs_open {
+        background: #5b7cf518;
+        border: 1px solid #5b7cf555;
+        color: #8fa0ff;
+      }
+      .t-ctx-type.squeeze {
+        background: #9b5df518;
+        border: 1px solid #9b5df555;
+        color: #c090ff;
+      }
+      .t-ctx-type.vs_3bet {
+        background: #f0a02018;
+        border: 1px solid #f0a02055;
+        color: #f0c040;
+      }
+      .t-ctx-type.vs_4bet {
+        background: #e1705518;
+        border: 1px solid #e1705555;
+        color: #e17055;
+      }
+
+      /* felt table */
+      .t-felt-wrap {
+        padding: 8px 12px 10px;
+        position: relative;
+      }
+      .t-felt {
+        position: relative;
+        width: 100%;
+        height: 88px;
+      }
+      .t-felt-bg {
+        position: absolute;
+        inset: 0 10px;
+        background: radial-gradient(
+          ellipse at 50% 40%,
+          #1e5a32 0%,
+          #0d2e18 100%
+        );
+        border-radius: 44px;
+        border: 2.5px solid #225e38;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4),
+          0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      .t-felt-line {
+        position: absolute;
+        inset: 8px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 38px;
+      }
+      .tseat {
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+      .tseat-c {
+        width: 34px;
+        height: 26px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 8.5px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        border: 1.5px solid var(--bd);
+        background: var(--s3);
+        color: var(--tx3);
+        position: relative;
+        transition: all 0.2s;
+      }
+      .tseat.hero .tseat-c {
+        background: var(--ac);
+        border-color: var(--ac2);
+        color: #fff;
+        box-shadow: 0 0 10px var(--ac4);
+        transform: scale(1.1);
+      }
+      .tseat.raiser .tseat-c {
+        background: linear-gradient(135deg, var(--am2), var(--s3));
+        border-color: var(--am);
+        color: var(--am);
+      }
+      .tseat.caller .tseat-c {
+        background: var(--gr2);
+        border-color: var(--gr);
+        color: var(--gr);
+      }
+      .tseat.empty .tseat-c {
+        opacity: 0.25;
+      }
+      .tbadge {
+        position: absolute;
+        top: -9px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 4px;
+        font-size: 6px;
+        font-weight: 800;
+        padding: 1px 4px;
+        white-space: nowrap;
+        letter-spacing: 0.3px;
+      }
+      .tbadge.raise {
+        background: var(--am);
+        color: #000;
+      }
+      .tbadge.call {
+        background: var(--gr);
+        color: #000;
+      }
+      .tbadge.threebet {
+        background: var(--bl);
+        color: #000;
+      }
+
+      /* action buttons */
       .t-btns {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 5px;
+        margin-top: 9px;
       }
       .t-btn {
-        padding: 11px 10px;
-        border-radius: 9px;
+        padding: 12px 14px;
+        border-radius: 11px;
         border: 1.5px solid var(--bd);
         background: var(--s2);
-        font-size: 13px;
-        font-weight: 600;
+        font-size: 14px;
+        font-weight: 700;
         color: var(--tx);
-        text-align: center;
-        transition: all 0.12s;
-        cursor: pointer;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 10px;
+        cursor: pointer;
+        transition: all 0.12s;
+        position: relative;
+        overflow: hidden;
+      }
+      .t-btn::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--bd);
+        transition: background 0.12s;
       }
       .t-btn:active {
         transform: scale(0.97);
+      }
+      .t-btn-ic {
+        font-size: 17px;
+        flex-shrink: 0;
+      }
+      .t-btn-tx {
+        flex: 1;
+        font-size: 13px;
+        letter-spacing: 0.1px;
+      }
+      .t-btn-pct {
+        font-size: 11px;
+        color: var(--tx3);
+        display: none;
+        font-family: "SF Mono", "Fira Mono", monospace;
+        flex-shrink: 0;
       }
       .t-btn.sel {
         border-color: var(--ac);
@@ -965,18 +1271,17 @@
         border-color: var(--rd);
         color: #fff;
       }
-      .t-btn-pct {
-        font-size: 11px;
-        opacity: 0.7;
-      }
+
+      /* result */
       .t-res {
-        padding: 10px 12px;
-        border-radius: 9px;
+        padding: 10px 13px;
+        border-radius: 10px;
         text-align: center;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         display: none;
         line-height: 1.5;
+        margin-top: 8px;
       }
       .t-res.on {
         display: block;
@@ -991,19 +1296,98 @@
         border: 1px solid var(--rd);
         color: var(--rd);
       }
-      .prog-w {
-        height: 3px;
+
+      /* GTO breakdown */
+      .t-gto {
+        margin-top: 8px;
         background: var(--s3);
-        border-radius: 2px;
+        border: 1px solid var(--bd);
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+      .t-gto-title {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 1.3px;
+        color: var(--tx3);
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+      .t-gto-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 5px;
+      }
+      .t-gto-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .t-gto-nm {
+        font-size: 12px;
+        color: var(--tx2);
+        flex: 1;
+      }
+      .t-gto-bw {
+        flex: 2;
+        height: 5px;
+        background: var(--s4);
+        border-radius: 3px;
         overflow: hidden;
-        margin-bottom: 9px;
       }
-      .prog {
+      .t-gto-b {
         height: 100%;
-        background: linear-gradient(90deg, var(--ac), var(--ac2));
-        border-radius: 2px;
-        transition: width 0.28s;
+        border-radius: 3px;
+        transition: width 0.55s cubic-bezier(0.34, 1.2, 0.64, 1) 0.08s;
       }
+      .t-gto-f {
+        font-size: 11px;
+        color: var(--tx);
+        width: 30px;
+        text-align: right;
+        font-family: "SF Mono", "Fira Mono", monospace;
+        font-weight: 700;
+      }
+
+      /* explain */
+      #t-explain {
+        margin-top: 7px;
+        padding: 9px 12px;
+        background: var(--s2);
+        border-radius: 9px;
+        font-size: 12px;
+        color: var(--tx2);
+        line-height: 1.7;
+        border: 1px solid var(--bd);
+        display: none;
+      }
+
+      /* history */
+      .hist-row {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--bd);
+      }
+      .hist-row:last-child {
+        border-bottom: none;
+      }
+      .hbadge {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      /* legacy compat */
       .t3 {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -1028,29 +1412,19 @@
         color: var(--tx3);
         margin-top: 2px;
       }
-      .hist-row {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        padding: 8px 0;
-        border-bottom: 1px solid var(--bd);
+      .prog-w {
+        height: 3px;
+        background: var(--s3);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 9px;
       }
-      .hist-row:last-child {
-        border-bottom: none;
+      .prog {
+        height: 100%;
+        background: linear-gradient(90deg, var(--ac), var(--ac2));
+        border-radius: 2px;
+        transition: width 0.28s;
       }
-      .hbadge {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        font-weight: 700;
-        flex-shrink: 0;
-      }
-
-      /* difficulty bar */
       .diff-bar {
         height: 4px;
         background: var(--s3);
@@ -1700,25 +2074,66 @@
         <!-- ═══ TRAINER ═══ -->
         <div class="scr" id="s-trainer">
           <div class="pg">
-            <div class="card">
-              <div class="ch"><span class="cht">Session Setup</span></div>
+            <div class="t-live">
+              <div class="t-live-c">
+                <div class="t-live-v" id="tl-streak">0</div>
+                <div class="t-live-l">Streak</div>
+              </div>
+              <div class="t-live-c">
+                <div class="t-live-v" id="tl-correct">0</div>
+                <div class="t-live-l">Correct</div>
+              </div>
+              <div class="t-live-c">
+                <div class="t-live-v" id="tl-acc">—</div>
+                <div class="t-live-l">Accuracy</div>
+              </div>
+              <div class="t-live-c">
+                <div class="t-live-v" id="tl-hands">0</div>
+                <div class="t-live-l">Hands</div>
+              </div>
+            </div>
+
+            <div class="card" id="t-setup-card">
+              <div class="ch">
+                <span class="cht">Trainer Setup</span>
+                <div style="display: flex; gap: 5px">
+                  <button class="btn btn-ghost btn-sm" onclick="resetT()">
+                    ↺ Reset
+                  </button>
+                  <button class="btn btn-ac btn-sm" onclick="startT()">
+                    ▶ Start
+                  </button>
+                </div>
+              </div>
               <div
                 class="cb"
-                style="display: flex; flex-direction: column; gap: 8px"
+                style="display: flex; flex-direction: column; gap: 9px"
               >
                 <div>
-                  <label class="ml">Range to Train</label>
-                  <select id="t-rsel">
-                    <option value="">— GTO BTN Open Defaults —</option>
-                  </select>
+                  <label class="ml">Your Position (6-max)</label>
+                  <div
+                    style="
+                      display: flex;
+                      gap: 5px;
+                      overflow-x: auto;
+                      padding-bottom: 2px;
+                      scrollbar-width: none;
+                    "
+                    id="t-pos-chips"
+                  ></div>
                 </div>
                 <div>
-                  <label class="ml">Position / Scenario</label>
+                  <label class="ml">Scenario Type (select multiple)</label>
                   <div
-                    class="chips"
-                    id="t-pos-chips"
-                    style="flex-wrap: wrap; gap: 5px"
+                    style="display: flex; gap: 5px; flex-wrap: wrap"
+                    id="t-scen-chips"
                   ></div>
+                </div>
+                <div>
+                  <label class="ml">Custom Range (optional)</label>
+                  <select id="t-rsel">
+                    <option value="">— Use built-in GTO defaults —</option>
+                  </select>
                 </div>
                 <div>
                   <label class="ml">Difficulty</label>
@@ -1738,132 +2153,85 @@
                     </div>
                   </div>
                 </div>
-                <div>
-                  <label class="ml">Questions</label>
-                  <select id="st-q">
-                    <option>10</option>
-                    <option selected>20</option>
-                    <option>30</option>
-                    <option>50</option>
-                  </select>
-                </div>
-                <div class="r2">
-                  <button class="btn btn-ac" onclick="startT()">▶ Start</button>
-                  <button class="btn btn-ghost" onclick="resetT()">
-                    ↺ Reset Stats
-                  </button>
-                </div>
               </div>
             </div>
 
             <div class="card" id="t-session-card">
               <div class="cb">
-                <div class="prog-w">
-                  <div class="prog" id="t-prog" style="width: 0%"></div>
-                </div>
-                <div
-                  style="
-                    display: flex;
-                    justify-content: space-between;
-                    margin-bottom: 9px;
-                  "
-                >
-                  <span id="t-qnum" style="font-size: 11px; color: var(--tx3)"
-                    >Not started</span
-                  >
-                  <span id="t-streak" style="font-size: 11px; color: var(--tx3)"
-                    >Streak: 0 🔥</span
-                  >
+                <div class="t-ctx" id="t-ctx">
+                  <div class="t-ctx-top">
+                    <div class="t-ctx-desc" id="t-ctx-desc">
+                      Configure setup above and press <strong>▶ Start</strong>
+                    </div>
+                    <div class="t-ctx-type rfi" id="t-ctx-type">RFI</div>
+                  </div>
+                  <div class="t-felt-wrap">
+                    <div class="t-felt" id="t-felt">
+                      <div class="t-felt-bg"></div>
+                      <div class="t-felt-line"></div>
+                      <div id="t-seats"></div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="t-hand">
-                  <div
-                    style="
-                      font-size: 9px;
-                      letter-spacing: 1.5px;
-                      text-transform: uppercase;
-                      color: var(--tx3);
-                    "
-                  >
-                    Hand
-                  </div>
+                <div class="t-hand-area">
                   <div class="t-cards" id="t-cards">
-                    <div class="pcard red">
-                      <div class="pcard-r">A</div>
-                      <div class="pcard-s">♥</div>
+                    <div class="pcard h-hearts red">
+                      <div class="pcard-top">
+                        <div class="pcard-r">A</div>
+                        <div class="pcard-ss">♥</div>
+                      </div>
+                      <div class="pcard-ctr">♥</div>
+                      <div class="pcard-bot">
+                        <div class="pcard-r">A</div>
+                        <div class="pcard-ss">♥</div>
+                      </div>
                     </div>
-                    <div class="pcard blk">
-                      <div class="pcard-r">K</div>
-                      <div class="pcard-s">♠</div>
+                    <div class="pcard h-spades blk">
+                      <div class="pcard-top">
+                        <div class="pcard-r">K</div>
+                        <div class="pcard-ss">♠</div>
+                      </div>
+                      <div class="pcard-ctr">♠</div>
+                      <div class="pcard-bot">
+                        <div class="pcard-r">K</div>
+                        <div class="pcard-ss">♠</div>
+                      </div>
                     </div>
                   </div>
-                  <div class="t-hname" id="t-hname">AK offsuit</div>
+                  <div class="t-hand-meta">
+                    <span class="t-hname" id="t-hname">AKo</span>
+                    <span class="t-hand-cat offsuit" id="t-hand-cat"
+                      >Offsuit</span
+                    >
+                  </div>
                 </div>
 
-                <div class="t-scen" id="t-scen">
-                  Configure a range above and press Start.
-                </div>
-
-                <div
-                  id="t-hint"
-                  style="
-                    display: none;
-                    font-size: 11px;
-                    color: var(--tx3);
-                    text-align: center;
-                    margin: -3px 0 5px;
-                    font-style: italic;
-                  "
-                ></div>
-
-                <div class="t-btns" id="t-btns" style="margin-top: 8px"></div>
-
+                <div class="t-btns" id="t-btns"></div>
                 <div class="t-res" id="t-res"></div>
-                <div
-                  id="t-explain"
-                  style="
-                    display: none;
-                    margin-top: 7px;
-                    padding: 9px 11px;
-                    background: var(--s3);
-                    border-radius: 8px;
-                    font-size: 12px;
-                    color: var(--tx2);
-                    line-height: 1.6;
-                    border: 1px solid var(--bd);
-                  "
-                ></div>
+                <div id="t-gto" class="t-gto" style="display: none"></div>
+                <div id="t-explain"></div>
 
-                <button
-                  class="btn btn-ac btn-w"
-                  id="t-next"
-                  onclick="tNext()"
-                  style="display: none; margin-top: 8px"
+                <div
+                  class="r2"
+                  id="t-nav"
+                  style="display: none; margin-top: 9px"
                 >
-                  Next Hand →
-                </button>
+                  <button class="btn btn-ac" onclick="tNext()">
+                    Next Hand →
+                  </button>
+                  <button class="btn btn-ghost" onclick="endT()">
+                    End Session
+                  </button>
+                </div>
               </div>
             </div>
 
             <div class="card">
-              <div class="ch"><span class="cht">Session Stats</span></div>
-              <div class="cb" style="padding-top: 8px">
-                <div class="t3">
-                  <div class="t3b">
-                    <div class="t3v" id="t-sc">0</div>
-                    <div class="t3l">Correct</div>
-                  </div>
-                  <div class="t3b">
-                    <div class="t3v" id="t-sa">—</div>
-                    <div class="t3l">Accuracy</div>
-                  </div>
-                  <div class="t3b">
-                    <div class="t3v" id="t-sb">0</div>
-                    <div class="t3l">Best Streak</div>
-                  </div>
-                </div>
-                <div id="t-cat-stats" style="margin-top: 9px"></div>
+              <div class="ch">
+                <span class="cht">Accuracy by Category</span>
               </div>
+              <div class="cb" style="padding-top: 8px" id="t-cat-stats"></div>
             </div>
 
             <div class="card">
@@ -2995,6 +3363,8 @@
           updTSel();
           renderTHist();
           updTStats();
+          initTPosChips();
+          initTScenChips();
         }
         if (id === "s-bank") renderBR();
         if (id === "s-files") renderLib();
@@ -3830,458 +4200,9 @@
         toast("Renamed ✓");
       }
 
-      // ━━━ TRAINER (ADVANCED) ━━━
-      let tHands = [],
-        tIdx = 0,
-        tActive = false,
-        tRid = null,
-        tActMap = {},
-        tDiff = "med",
-        tPos = "ALL";
-      const SCENARIOS = {
-        BTN: [
-          "Folds to you on BTN — open or fold?",
-          "CO folds, action on BTN — RFI decision",
-          "HJ folds, you are BTN — raise or fold?",
-        ],
-        SB: [
-          "Folds to SB — complete or raise vs BB?",
-          "SB vs BB — what is your action?",
-        ],
-        CO: [
-          "Folds to CO — what is your action?",
-          "HJ folds, UTG folds, action on CO",
-        ],
-        UTG: [
-          "First to act — UTG open or fold?",
-          "UTG action — tight range required",
-        ],
-        BB: [
-          "SB completes, you are BB — check or raise?",
-          "SB min-raises, you defend or 3-bet?",
-        ],
-        DEFAULT: [
-          "Folds to you — what is your action?",
-          "You are the raiser — action?",
-        ],
-      };
-      const CAT_EXPLAIN = {
-        pair: "Pocket pairs derive value from set-mining and domination. Strong pairs (TT+) are always played, medium pairs mixed, small pairs mostly fold to 4-bets.",
-        suited:
-          "Suited hands have flush draw equity. They play better than their offsuit equivalents by ~3% equity in most spots.",
-        offsuit:
-          "Offsuit hands lose the flush draw equity but can still be played for straight/top pair value when they connect strongly.",
-      };
-
-      function updTSel() {
-        const sel = document.getElementById("t-rsel");
-        if (!sel) return;
-        const cur = sel.value;
-        sel.innerHTML = '<option value="">— GTO BTN Open Defaults —</option>';
-        S.ranges.forEach(
-          (r) =>
-            (sel.innerHTML += `<option value="${r.id}">${r.pos} — ${r.name}</option>`)
-        );
-        if (cur) sel.value = cur;
-      }
-
-      let tPosFilter = "ALL";
-      function initTPosChips() {
-        const el = document.getElementById("t-pos-chips");
-        if (!el) return;
-        el.innerHTML = "";
-        ["ALL", ...POSITIONS.slice(0, 6)].forEach((p) => {
-          const c = document.createElement("div");
-          c.className = "chip" + (p === tPosFilter ? " on" : "");
-          c.textContent = p;
-          c.onclick = () => {
-            document
-              .querySelectorAll("#t-pos-chips .chip")
-              .forEach((x) => x.classList.remove("on"));
-            c.classList.add("on");
-            tPosFilter = p;
-          };
-          el.appendChild(c);
-        });
-      }
-
-      function setDiff(d) {
-        tDiff = d;
-        ["easy", "med", "hard"].forEach((x) => {
-          document
-            .getElementById("tdiff-" + x)
-            ?.classList.toggle("on", x === d);
-        });
-      }
-
-      function getTConfig() {
-        tRid = document.getElementById("t-rsel")?.value || "";
-        tActMap = {};
-        const foldId = getFoldId();
-        if (tRid) {
-          const r = S.ranges.find((x) => x.id === tRid);
-          if (r) {
-            Object.entries(r.state).forEach(([k, v]) => {
-              // tActMap[key] = [{a,f}] — the full mixed strategy
-              const nonFold = v.filter((x) => x.a !== foldId);
-              tActMap[k] = nonFold.length ? v : [{ a: foldId, f: 100 }];
-            });
-            return Object.keys(tActMap);
-          }
-        }
-        GTO.forEach((h) => {
-          tActMap[h] = [{ a: "raise", f: 100 }];
-        });
-        // fold everything else
-        for (let i = 0; i < 13; i++)
-          for (let j = 0; j < 13; j++) {
-            const r1 = RK[i],
-              r2 = RK[j];
-            let key;
-            if (i === j) key = r1 + r2;
-            else if (i < j) key = r1 + r2 + "s";
-            else key = r2 + r1 + "o";
-            if (!tActMap[key]) tActMap[key] = [{ a: foldId, f: 100 }];
-          }
-        return GTO.concat(
-          [...Array(169 - GTO.length).fill(null)]
-            .map((_, i) => {
-              const ri = Math.floor(i / 13),
-                rj = i % 13;
-              if (ri >= 13 || rj >= 13) return null;
-              const r1 = RK[ri],
-                r2 = RK[rj];
-              if (ri === rj) return r1 + r2;
-              if (ri < rj) return r1 + r2 + "s";
-              return r2 + r1 + "o";
-            })
-            .filter(Boolean)
-        );
-      }
-
-      function getDiffHands(allKeys) {
-        const foldId = getFoldId();
-        if (tDiff === "easy") {
-          // Only clearly in-range or clearly fold — exclude mixed
-          return allKeys.filter((k) => {
-            const v = tActMap[k] || [];
-            const nf = v.filter((x) => x.a !== foldId);
-            const maxF = nf.length ? Math.max(...nf.map((x) => x.f)) : 0;
-            return maxF === 0 || maxF === 100;
-          });
-        }
-        if (tDiff === "hard") {
-          // Prefer mixed/borderline hands
-          return allKeys
-            .filter((k) => {
-              const v = tActMap[k] || [];
-              const nf = v.filter((x) => x.a !== foldId);
-              const maxF = nf.length ? Math.max(...nf.map((x) => x.f)) : 0;
-              return nf.length > 1 || (maxF > 0 && maxF < 100);
-            })
-            .concat(allKeys.slice(0, 20));
-        }
-        return allKeys;
-      }
-
-      function getCorrectForHand(key) {
-        // Returns the action with highest frequency (the primary action)
-        const foldId = getFoldId();
-        const v = tActMap[key] || [{ a: foldId, f: 100 }];
-        let best = v[0];
-        v.forEach((x) => {
-          if (x.f > best.f) best = x;
-        });
-        return best.a;
-      }
-
-      function getHandCategory(key) {
-        if (key.length === 2 && key[0] === key[1]) return "pair";
-        if (key.endsWith("s")) return "suited";
-        return "offsuit";
-      }
-
-      function buildTBtns(key) {
-        const el = document.getElementById("t-btns");
-        if (!el) return;
-        const foldId = getFoldId();
-        // Collect all possible actions for this range
-        let aids = new Set();
-        Object.values(tActMap).forEach((v) => v.forEach((x) => aids.add(x.a)));
-        aids = Array.from(aids);
-        if (!aids.includes(foldId)) aids.push(foldId);
-        el.innerHTML = aids
-          .map((id) => {
-            const a = getAction(id);
-            // show frequency for this hand
-            const v = tActMap[key] || [];
-            const entry = v.find((x) => x.a === id);
-            const pct = entry ? entry.f : 0;
-            return `<div class="t-btn" id="tb-${a.id}" onclick="tAns('${a.id}')">${a.emoji} ${a.name}<span class="t-btn-pct" id="tbp-${a.id}" style="display:none">${pct}%</span></div>`;
-          })
-          .join("");
-      }
-
-      function startT() {
-        const nq = parseInt(document.getElementById("st-q")?.value) || 20;
-        const allKeys = getTConfig();
-        let pool = getDiffHands(allKeys);
-        if (tPosFilter !== "ALL") pool = pool.filter((k) => k); // in future: filter by position scenarios
-        if (!pool.length) pool = allKeys;
-        tHands = [];
-        for (let i = 0; i < nq; i++)
-          tHands.push(pool[Math.floor(Math.random() * pool.length)]);
-        tIdx = 0;
-        tActive = true;
-        S.trainer.streak = 0;
-        buildTBtns(tHands[0]);
-        showTHand();
-        toast("Session started!");
-      }
-
-      function showTHand() {
-        if (tIdx >= tHands.length) {
-          endT();
-          return;
-        }
-        const key = tHands[tIdx];
-        document.getElementById("t-prog").style.width =
-          (tIdx / tHands.length) * 100 + "%";
-        document.getElementById("t-qnum").textContent =
-          "Q " + (tIdx + 1) + " / " + tHands.length;
-        document.getElementById("t-streak").textContent =
-          "Streak: " + S.trainer.streak + " 🔥";
-        const cards = genCards(key);
-        const h = parseHand(key);
-        document.getElementById("t-cards").innerHTML = cards
-          .map(
-            (c) =>
-              `<div class="pcard ${SCOL[c.s]}"><div class="pcard-r">${
-                c.r
-              }</div><div class="pcard-s">${SSYM[c.s]}</div></div>`
-          )
-          .join("");
-        document.getElementById("t-hname").textContent =
-          key +
-          " — " +
-          (h.type === "pair"
-            ? "Pocket Pair"
-            : h.type === "suited"
-            ? "Suited"
-            : "Offsuit");
-        // Scenario
-        const posKey =
-          tPosFilter === "ALL"
-            ? POSITIONS[Math.floor(Math.random() * 6)]
-            : tPosFilter;
-        const scenList = SCENARIOS[posKey] || SCENARIOS.DEFAULT;
-        document.getElementById("t-scen").innerHTML =
-          scenList[Math.floor(Math.random() * scenList.length)];
-        // Hint for hard mode
-        const hint = document.getElementById("t-hint");
-        if (tDiff === "hard" && hint) {
-          const cat = getHandCategory(key);
-          hint.textContent =
-            cat === "pair" ? "Pair hand — consider stack depth & position" : "";
-          hint.style.display = tDiff === "hard" ? "block" : "none";
-        }
-        document.getElementById("t-res").classList.remove("on");
-        document.getElementById("t-explain").style.display = "none";
-        document.getElementById("t-next").style.display = "none";
-        document.querySelectorAll(".t-btn").forEach((b) => {
-          b.className = "t-btn";
-          b.style.opacity = "1";
-          b.style.pointerEvents = "auto";
-        });
-        document
-          .querySelectorAll('[id^="tbp-"]')
-          .forEach((b) => (b.style.display = "none"));
-        buildTBtns(key);
-      }
-
-      function tAns(aid) {
-        if (!tActive) return;
-        const key = tHands[tIdx];
-        const corr = getCorrectForHand(key);
-        const ok = aid === corr;
-        const cat = getHandCategory(key);
-        if (!S.trainer.catStats[cat]) S.trainer.catStats[cat] = { c: 0, w: 0 };
-        if (ok) {
-          S.trainer.correct++;
-          S.trainer.streak++;
-          if (S.trainer.streak > S.trainer.best)
-            S.trainer.best = S.trainer.streak;
-          S.trainer.catStats[cat].c++;
-          const res = document.getElementById("t-res");
-          res.textContent =
-            "✓ Correct!" +
-            (S.trainer.streak > 2 ? " 🔥 ×" + S.trainer.streak : "");
-          res.className = "t-res ok on";
-          document.getElementById("tb-" + aid)?.classList.add("ok", "sel");
-        } else {
-          S.trainer.wrong++;
-          S.trainer.streak = 0;
-          S.trainer.catStats[cat].w++;
-          const ca = getAction(corr);
-          const res = document.getElementById("t-res");
-          res.textContent = "✗ Correct action: " + ca.emoji + " " + ca.name;
-          res.className = "t-res bad on";
-          document.getElementById("tb-" + aid)?.classList.add("bad", "sel");
-          if (S.settings.showCorr)
-            document.getElementById("tb-" + corr)?.classList.add("ok");
-        }
-        // Show frequencies
-        document
-          .querySelectorAll('[id^="tbp-"]')
-          .forEach((b) => (b.style.display = "inline"));
-        document.querySelectorAll(".t-btn").forEach((b) => {
-          b.style.opacity = ".4";
-          b.style.pointerEvents = "none";
-        });
-        document.getElementById("tb-" + aid).style.opacity = "1";
-        // Explanation
-        if (S.settings.showExp) {
-          const expEl = document.getElementById("t-explain");
-          const v = tActMap[key] || [];
-          const foldId = getFoldId();
-          const isMixed = v.filter((x) => x.a !== foldId).length > 1;
-          let exp = "";
-          if (isMixed) {
-            exp = "This is a <strong>mixed strategy hand</strong>. In theory: ";
-            v.forEach(({ a, f }) => {
-              const ac = getAction(a);
-              exp += `${ac.emoji} ${ac.name} ${f}% `;
-            });
-          } else {
-            const cat = getHandCategory(key);
-            exp = CAT_EXPLAIN[cat] || "";
-          }
-          expEl.innerHTML = exp;
-          expEl.style.display = exp ? "block" : "none";
-        }
-        document.getElementById("t-next").style.display = "block";
-        updTStats();
-        save();
-      }
-
-      function tNext() {
-        tIdx++;
-        if (tIdx < tHands.length) showTHand();
-        else endT();
-      }
-      function endT() {
-        tActive = false;
-        const total = S.trainer.correct + (S.trainer.wrong || 0);
-        const acc = total ? Math.round((S.trainer.correct / total) * 100) : 0;
-        S.trainer.history.unshift({
-          date: new Date().toLocaleDateString(),
-          correct: S.trainer.correct,
-          total,
-          acc,
-          streak: S.trainer.best,
-          diff: tDiff,
-        });
-        if (S.trainer.history.length > 20)
-          S.trainer.history = S.trainer.history.slice(0, 20);
-        save();
-        renderTHist();
-        document.getElementById("t-res").textContent =
-          "Session done! " + acc + "% accuracy 🎉";
-        document.getElementById("t-res").className = "t-res ok on";
-        document.getElementById("t-next").style.display = "none";
-        document.getElementById("t-prog").style.width = "100%";
-        spark();
-        toast("Done — " + acc + "%");
-        updTCatStats();
-      }
-
-      function updTStats() {
-        const total = S.trainer.correct + (S.trainer.wrong || 0);
-        const acc = total ? Math.round((S.trainer.correct / total) * 100) : 0;
-        document.getElementById("t-sc").textContent = S.trainer.correct;
-        document.getElementById("t-sa").textContent = total ? acc + "%" : "—";
-        document.getElementById("t-sb").textContent = S.trainer.best;
-        document.getElementById("t-streak").textContent =
-          "Streak: " + S.trainer.streak + " 🔥";
-      }
-      function updTCatStats() {
-        const el = document.getElementById("t-cat-stats");
-        if (!el) return;
-        const cats = S.trainer.catStats;
-        if (!Object.keys(cats).length) {
-          el.innerHTML = "";
-          return;
-        }
-        el.innerHTML = Object.entries(cats)
-          .map(([cat, v]) => {
-            const tot = v.c + v.w;
-            const acc = tot ? Math.round((v.c / tot) * 100) : 0;
-            return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span style="font-size:11px;color:var(--tx2);width:52px;text-transform:capitalize">${cat}</span><div class="diff-bar" style="flex:1;margin:0;"><div class="diff-f" style="width:${acc}%;background:${
-              acc >= 70 ? "var(--gr)" : acc >= 50 ? "var(--am)" : "var(--rd)"
-            }"></div></div><span style="font-size:11px;color:var(--tx3);width:28px;text-align:right">${acc}%</span></div>`;
-          })
-          .join("");
-      }
-      function resetT() {
-        S.trainer = {
-          correct: 0,
-          wrong: 0,
-          streak: 0,
-          best: 0,
-          history: [],
-          catStats: {},
-        };
-        save();
-        updTStats();
-        renderTHist();
-        updTCatStats();
-        tHands = [];
-        tIdx = 0;
-        tActive = false;
-        document.getElementById("t-qnum").textContent = "Not started";
-        document.getElementById("t-prog").style.width = "0%";
-        document.getElementById("t-res").classList.remove("on");
-        document.getElementById("t-explain").style.display = "none";
-        toast("Stats reset");
-      }
-      function renderTHist() {
-        const el = document.getElementById("t-hist");
-        if (!el) return;
-        if (!S.trainer.history.length) {
-          el.innerHTML =
-            '<div class="empty" style="padding:12px 0"><div class="ei">🎯</div><div class="es">No sessions yet</div></div>';
-          return;
-        }
-        el.innerHTML = S.trainer.history
-          .slice(0, 8)
-          .map(
-            (h) =>
-              `<div class="hist-row"><div class="hbadge" style="background:${
-                h.acc >= 70 ? "var(--gr2)" : "var(--rd2)"
-              };border:1px solid ${
-                h.acc >= 70 ? "var(--gr)" : "var(--rd)"
-              };color:${h.acc >= 70 ? "var(--gr)" : "var(--rd)"}">${
-                h.acc
-              }%</div><div style="flex:1"><div style="font-size:13px;font-weight:600">${
-                h.correct
-              }/${
-                h.total
-              } correct</div><div style="font-size:11px;color:var(--tx3)">${
-                h.date
-              } · ${h.diff || "med"} · streak ${h.streak}</div></div></div>`
-          )
-          .join("");
-      }
-
-      function parseHand(k) {
-        if (k.length === 2) return { type: "pair" };
-        if (k.endsWith("s")) return { type: "suited", r1: k[0], r2: k[1] };
-        return { type: "offsuit", r1: k[0], r2: k[1] };
-      }
       function genCards(k) {
-        const h = parseHand(k);
         const r = () => SUITS[Math.floor(Math.random() * 4)];
-        if (h.type === "pair") {
+        if (k.length === 2 && k[0] === k[1]) {
           const s1 = r();
           let s2;
           do {
@@ -4292,7 +4213,7 @@
             { r: k[1], s: s2 },
           ];
         }
-        if (h.type === "suited") {
+        if (k.endsWith("s")) {
           const s = r();
           return [
             { r: k[0], s },
@@ -4308,6 +4229,1234 @@
           { r: k[0], s: s1 },
           { r: k[1], s: s2 },
         ];
+      }
+
+      // ━━━ TRAINER ━━━
+      const POS_6MAX = ["UTG", "HJ", "CO", "BTN", "SB", "BB"];
+      const SCEN_DEFS = [
+        { id: "rfi", label: "RFI", desc: "Raise First In", cls: "rfi" },
+        {
+          id: "vs_open",
+          label: "vs Open",
+          desc: "Face a raise",
+          cls: "vs_open",
+        },
+        {
+          id: "squeeze",
+          label: "Squeeze",
+          desc: "Open + caller",
+          cls: "squeeze",
+        },
+        {
+          id: "vs_3bet",
+          label: "vs 3-Bet",
+          desc: "Face a 3-bet",
+          cls: "vs_3bet",
+        },
+        {
+          id: "vs_4bet",
+          label: "vs 4-Bet",
+          desc: "Face a 4-bet",
+          cls: "vs_4bet",
+        },
+      ];
+      const SCEN_ACTIONS = {
+        rfi: [
+          { id: "open", name: "Open/Raise", emoji: "🟢", color: "#34c97a" },
+          { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+        ],
+        vs_open: [
+          { id: "3bet", name: "3-Bet", emoji: "🔵", color: "#5b7cf5" },
+          { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+          { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+        ],
+        squeeze: [
+          { id: "squeeze", name: "Squeeze", emoji: "🟣", color: "#9b5df5" },
+          { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+          { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+        ],
+        vs_3bet: [
+          { id: "4bet", name: "4-Bet", emoji: "🔴", color: "#e17055" },
+          { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+          { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+        ],
+        vs_4bet: [
+          { id: "ship", name: "5-Bet/Ship", emoji: "💥", color: "#e8438a" },
+          { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+          { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+        ],
+      };
+
+      // ─── GTO DEFAULTS ───
+      const GTO_RFI = {
+        UTG: new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "AKs",
+          "AKo",
+          "AQs",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "KQs",
+          "KQo",
+          "QJs",
+          "JTs",
+          "KJs",
+        ]),
+        HJ: new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "AKs",
+          "AKo",
+          "AQs",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "QJs",
+          "QJo",
+          "QTs",
+          "JTs",
+          "T9s",
+          "A8s",
+          "K9s",
+          "98s",
+        ]),
+        CO: new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "55",
+          "AKs",
+          "AKo",
+          "AQs",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "A8s",
+          "A7s",
+          "A6s",
+          "A5s",
+          "A4s",
+          "A3s",
+          "A2s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "KTo",
+          "K9s",
+          "K8s",
+          "QJs",
+          "QJo",
+          "QTs",
+          "Q9s",
+          "JTs",
+          "JTo",
+          "J9s",
+          "T9s",
+          "T8s",
+          "98s",
+          "87s",
+          "76s",
+          "65s",
+        ]),
+        BTN: new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "55",
+          "44",
+          "33",
+          "22",
+          "AKs",
+          "AKo",
+          "AQs",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "A9o",
+          "A8s",
+          "A8o",
+          "A7s",
+          "A7o",
+          "A6s",
+          "A5s",
+          "A4s",
+          "A3s",
+          "A2s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "KTo",
+          "K9s",
+          "K8s",
+          "K7s",
+          "K6s",
+          "K5s",
+          "K4s",
+          "QJs",
+          "QJo",
+          "QTs",
+          "QTo",
+          "Q9s",
+          "Q8s",
+          "JTs",
+          "JTo",
+          "J9s",
+          "J8s",
+          "T9s",
+          "T8s",
+          "T7s",
+          "98s",
+          "97s",
+          "87s",
+          "86s",
+          "76s",
+          "75s",
+          "65s",
+          "64s",
+          "54s",
+        ]),
+        SB: new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "55",
+          "AKs",
+          "AKo",
+          "AQs",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "A8s",
+          "A7s",
+          "A6s",
+          "A5s",
+          "A4s",
+          "A3s",
+          "A2s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "K9s",
+          "K8s",
+          "K7s",
+          "QJs",
+          "QTs",
+          "Q9s",
+          "JTs",
+          "J9s",
+          "T9s",
+          "T8s",
+          "98s",
+          "97s",
+          "87s",
+          "76s",
+          "65s",
+          "A9o",
+          "A8o",
+          "A7o",
+        ]),
+      };
+      const GTO_BB_BTN = {
+        "3bet": new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "AKs",
+          "AKo",
+          "AQs",
+          "A5s",
+          "A4s",
+          "A3s",
+          "K5s",
+          "76s",
+          "65s",
+          "54s",
+        ]),
+        call: new Set([
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "55",
+          "44",
+          "33",
+          "22",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "A9o",
+          "A8s",
+          "A8o",
+          "A7s",
+          "A6s",
+          "A2s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "KTo",
+          "K9s",
+          "K8s",
+          "K7s",
+          "K6s",
+          "K4s",
+          "K3s",
+          "K2s",
+          "QJs",
+          "QJo",
+          "QTs",
+          "QTo",
+          "Q9s",
+          "Q8s",
+          "Q7s",
+          "JTs",
+          "JTo",
+          "J9s",
+          "J8s",
+          "J7s",
+          "T9s",
+          "T8s",
+          "T7s",
+          "98s",
+          "97s",
+          "96s",
+          "87s",
+          "86s",
+          "85s",
+          "75s",
+          "74s",
+          "64s",
+          "53s",
+          "43s",
+        ]),
+      };
+      const GTO_BB_CO = {
+        "3bet": new Set(["AA", "KK", "QQ", "AKs", "AKo", "AQs", "A5s", "A4s"]),
+        call: new Set([
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "55",
+          "44",
+          "33",
+          "22",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "A8s",
+          "A7s",
+          "A6s",
+          "A3s",
+          "A2s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "KTo",
+          "K9s",
+          "K8s",
+          "K7s",
+          "QJs",
+          "QJo",
+          "QTs",
+          "Q9s",
+          "Q8s",
+          "JTs",
+          "J9s",
+          "J8s",
+          "T9s",
+          "T8s",
+          "98s",
+          "97s",
+          "87s",
+          "86s",
+          "76s",
+          "75s",
+          "65s",
+          "64s",
+          "54s",
+        ]),
+      };
+      const GTO_BB_HJ = {
+        "3bet": new Set(["AA", "KK", "QQ", "AKs", "AKo", "A5s"]),
+        call: new Set([
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "55",
+          "AQs",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "A9s",
+          "A8s",
+          "A7s",
+          "A6s",
+          "A4s",
+          "A3s",
+          "A2s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "K9s",
+          "K8s",
+          "QJs",
+          "QJo",
+          "QTs",
+          "Q9s",
+          "JTs",
+          "J9s",
+          "T9s",
+          "T8s",
+          "98s",
+          "87s",
+          "76s",
+          "65s",
+        ]),
+      };
+      const GTO_BB_UTG = {
+        "3bet": new Set(["AA", "KK", "QQ", "AKs", "AKo"]),
+        call: new Set([
+          "JJ",
+          "TT",
+          "99",
+          "88",
+          "77",
+          "AQs",
+          "AQo",
+          "AJs",
+          "ATs",
+          "A9s",
+          "A8s",
+          "A7s",
+          "A6s",
+          "A5s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KTs",
+          "QJs",
+          "JTs",
+          "T9s",
+          "98s",
+        ]),
+      };
+      const GTO_BTN_CO = {
+        "3bet": new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "AKs",
+          "AKo",
+          "AQs",
+          "A5s",
+          "A4s",
+          "76s",
+        ]),
+        call: new Set([
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "AQo",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "A8s",
+          "A3s",
+          "A2s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "K9s",
+          "QJs",
+          "QTs",
+          "Q9s",
+          "JTs",
+          "J9s",
+          "T9s",
+          "T8s",
+          "98s",
+          "97s",
+          "87s",
+          "86s",
+          "76s",
+          "65s",
+        ]),
+      };
+      const GTO_CO_HJ = {
+        "3bet": new Set(["AA", "KK", "QQ", "JJ", "AKs", "AKo", "AQs", "A5s"]),
+        call: new Set([
+          "TT",
+          "99",
+          "88",
+          "77",
+          "66",
+          "55",
+          "AJs",
+          "AJo",
+          "ATs",
+          "ATo",
+          "A9s",
+          "A8s",
+          "A6s",
+          "KQs",
+          "KQo",
+          "KJs",
+          "KJo",
+          "KTs",
+          "QJs",
+          "QTs",
+          "JTs",
+          "J9s",
+          "T9s",
+          "98s",
+          "87s",
+          "76s",
+        ]),
+      };
+      const GTO_SB_BTN = {
+        "3bet": new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "TT",
+          "AKs",
+          "AKo",
+          "AQs",
+          "AQo",
+          "AJs",
+          "A5s",
+          "A4s",
+          "A3s",
+          "KQs",
+          "K9s",
+          "QJs",
+          "98s",
+        ]),
+        call: new Set([
+          "99",
+          "88",
+          "77",
+          "ATs",
+          "A9s",
+          "A8s",
+          "A7s",
+          "A6s",
+          "A2s",
+          "KJs",
+          "KTs",
+          "QTs",
+          "JTs",
+          "T9s",
+          "87s",
+          "76s",
+          "65s",
+        ]),
+      };
+      const GTO_BB_SQZ = {
+        squeeze: new Set([
+          "AA",
+          "KK",
+          "QQ",
+          "JJ",
+          "AKs",
+          "AKo",
+          "AQs",
+          "A5s",
+          "A4s",
+          "K9s",
+        ]),
+        call: new Set([
+          "TT",
+          "99",
+          "88",
+          "AJs",
+          "ATs",
+          "A9s",
+          "A8s",
+          "KQs",
+          "KJs",
+          "QJs",
+          "JTs",
+          "T9s",
+        ]),
+      };
+      const GTO_VS3B = {
+        "4bet": new Set(["AA", "KK", "QQ", "AKs", "AKo", "A5s", "A4s"]),
+        call: new Set([
+          "JJ",
+          "TT",
+          "99",
+          "AQs",
+          "AQo",
+          "KQs",
+          "KJs",
+          "QJs",
+          "JTs",
+        ]),
+      };
+      const GTO_VS4B = {
+        ship: new Set(["AA", "KK", "QQ", "AKs", "AKo"]),
+        call: new Set(["JJ", "TT"]),
+      };
+
+      function getGTOForHand(key, scenId, ctx) {
+        if (scenId === "rfi") {
+          const set = GTO_RFI[ctx.hero] || GTO_RFI.BTN;
+          return set.has(key)
+            ? [{ a: "open", f: 100 }]
+            : [{ a: "fold", f: 100 }];
+        }
+        if (scenId === "vs_open") {
+          const hero = ctx.hero,
+            raiser = ctx.raiserPos;
+          let gto;
+          if (hero === "BB") {
+            if (raiser === "BTN") gto = GTO_BB_BTN;
+            else if (raiser === "CO") gto = GTO_BB_CO;
+            else if (raiser === "HJ") gto = GTO_BB_HJ;
+            else gto = GTO_BB_UTG;
+          } else if (hero === "BTN" && raiser === "CO") gto = GTO_BTN_CO;
+          else if (hero === "CO" && raiser === "HJ") gto = GTO_CO_HJ;
+          else if (hero === "SB" && raiser === "BTN") gto = GTO_SB_BTN;
+          else {
+            gto = {
+              "3bet": new Set(["AA", "KK", "QQ", "AKs", "AKo"]),
+              call: new Set(["JJ", "TT", "99", "AQs", "AQo", "KQs"]),
+            };
+          }
+          if (gto["3bet"].has(key)) return [{ a: "3bet", f: 100 }];
+          if (gto["call"].has(key)) return [{ a: "call", f: 100 }];
+          return [{ a: "fold", f: 100 }];
+        }
+        if (scenId === "squeeze") {
+          if (GTO_BB_SQZ["squeeze"].has(key)) return [{ a: "squeeze", f: 100 }];
+          if (GTO_BB_SQZ["call"].has(key)) return [{ a: "call", f: 100 }];
+          return [{ a: "fold", f: 100 }];
+        }
+        if (scenId === "vs_3bet") {
+          if (GTO_VS3B["4bet"].has(key)) return [{ a: "4bet", f: 100 }];
+          if (GTO_VS3B["call"].has(key)) return [{ a: "call", f: 100 }];
+          return [{ a: "fold", f: 100 }];
+        }
+        if (scenId === "vs_4bet") {
+          if (GTO_VS4B["ship"].has(key)) return [{ a: "ship", f: 100 }];
+          if (GTO_VS4B["call"].has(key)) return [{ a: "call", f: 100 }];
+          return [{ a: "fold", f: 100 }];
+        }
+        return [{ a: "fold", f: 100 }];
+      }
+
+      // Seat layout (% of felt container)
+      const SEAT_XY = {
+        UTG: { x: 9, y: 29 },
+        HJ: { x: 9, y: 72 },
+        CO: { x: 38, y: 92 },
+        BTN: { x: 78, y: 92 },
+        SB: { x: 92, y: 29 },
+        BB: { x: 55, y: 5 },
+      };
+
+      function buildScenContext(scenId, pos) {
+        const P6 = POS_6MAX;
+        const posIdx = P6.indexOf(pos);
+        let ctx = {
+          desc: "",
+          raiser: null,
+          callers: [],
+          hero: pos,
+          type: scenId,
+          raiserPos: null,
+        };
+        if (scenId === "rfi") {
+          const prev = P6.filter((_, i) => i < posIdx);
+          ctx.desc =
+            (prev.length ? prev.join(", ") + " fold. " : "") +
+            "Action on <strong>" +
+            pos +
+            "</strong> — open or fold?";
+          if (pos === "SB")
+            ctx.desc =
+              "Folds to <strong>SB</strong> heads-up vs BB — raise or fold?";
+        } else if (scenId === "vs_open") {
+          const raisers = P6.filter((p, i) => i < posIdx);
+          const raiser =
+            raisers[Math.floor(Math.random() * (raisers.length || 1))] || "UTG";
+          ctx.raiserPos = raiser;
+          ctx.raiser = raiser;
+          const size = raiser === "UTG" ? "3bb" : "2.5bb";
+          const between = P6.filter((p, i) => {
+            const ri = P6.indexOf(raiser);
+            return i > ri && i < posIdx;
+          });
+          ctx.desc =
+            "<strong>" +
+            raiser +
+            "</strong> opens to " +
+            size +
+            "." +
+            (between.length ? " " + between.join(", ") + " fold." : "") +
+            " Action on <strong>" +
+            pos +
+            "</strong>?";
+        } else if (scenId === "squeeze") {
+          const avail = P6.filter((p, i) => i < posIdx - 1);
+          const raiser =
+            avail[Math.floor(Math.random() * (avail.length || 1))] || "CO";
+          const callerPool = P6.filter(
+            (p, i) => i > P6.indexOf(raiser) && i < posIdx
+          );
+          const caller =
+            callerPool[Math.floor(Math.random() * (callerPool.length || 1))] ||
+            P6[P6.indexOf(raiser) + 1] ||
+            "BTN";
+          ctx.raiser = raiser;
+          ctx.raiserPos = raiser;
+          ctx.callers = [caller];
+          ctx.desc =
+            "<strong>" +
+            raiser +
+            "</strong> opens, <strong>" +
+            caller +
+            "</strong> calls. Action on <strong>" +
+            pos +
+            "</strong> — squeeze, call, or fold?";
+        } else if (scenId === "vs_3bet") {
+          const threebet = P6.find((p, i) => i > posIdx) || "BB";
+          ctx.threebet = threebet;
+          ctx.desc =
+            "You open as <strong>" +
+            pos +
+            "</strong>. <strong>" +
+            threebet +
+            "</strong> 3-bets to ~9bb. Your action?";
+        } else if (scenId === "vs_4bet") {
+          ctx.desc = "You 3-bet, villain 4-bets to ~25bb. Action?";
+        }
+        return ctx;
+      }
+
+      function renderTFelt(ctx) {
+        const el = document.getElementById("t-seats");
+        if (!el) return;
+        let html = "";
+        POS_6MAX.forEach((pos) => {
+          const xy = SEAT_XY[pos];
+          if (!xy) return;
+          const isHero = pos === ctx.hero;
+          const isRaiser = pos === ctx.raiser || pos === ctx.raiserPos;
+          const isCaller = (ctx.callers || []).includes(pos);
+          const is3B = pos === ctx.threebet;
+          let cls = "",
+            badge = "";
+          if (isHero) cls = "hero";
+          else if (is3B) {
+            cls = "raiser";
+            badge = '<div class="tbadge threebet">3BET</div>';
+          } else if (isRaiser) {
+            cls = "raiser";
+            badge = '<div class="tbadge raise">RAISE</div>';
+          } else if (isCaller) {
+            cls = "caller";
+            badge = '<div class="tbadge call">CALL</div>';
+          } else cls = "empty";
+          html += `<div class="tseat ${cls}" style="left:${xy.x}%;top:${xy.y}%;"><div class="tseat-c">${badge}${pos}</div></div>`;
+        });
+        el.innerHTML = html;
+      }
+
+      let tActive = false,
+        tScenId = "rfi",
+        tPos = "BTN",
+        tDiff = "med",
+        tCtx = {},
+        tCurKey = "",
+        tScenTypes = ["rfi", "vs_open"];
+      const T_HAND_CATS = {
+        pair: "Pocket Pair",
+        suited: "Suited",
+        offsuit: "Offsuit",
+      };
+
+      function updTSel() {
+        const sel = document.getElementById("t-rsel");
+        if (!sel) return;
+        const cur = sel.value;
+        sel.innerHTML =
+          '<option value="">— Use built-in GTO defaults —</option>';
+        S.ranges.forEach(
+          (r) =>
+            (sel.innerHTML += `<option value="${r.id}">${r.pos} — ${r.name}</option>`)
+        );
+        if (cur) sel.value = cur;
+      }
+
+      function initTPosChips() {
+        const el = document.getElementById("t-pos-chips");
+        if (!el) return;
+        el.innerHTML = "";
+        POS_6MAX.forEach((p) => {
+          const c = document.createElement("div");
+          c.className = "chip" + (p === tPos ? " on" : "");
+          c.style.cssText =
+            'font-family:"SF Mono","Fira Mono",monospace;min-width:42px;justify-content:center;flex-shrink:0;';
+          c.textContent = p;
+          c.onclick = () => {
+            document
+              .querySelectorAll("#t-pos-chips .chip")
+              .forEach((x) => x.classList.remove("on"));
+            c.classList.add("on");
+            tPos = p;
+          };
+          el.appendChild(c);
+        });
+      }
+
+      function initTScenChips() {
+        const el = document.getElementById("t-scen-chips");
+        if (!el) return;
+        el.innerHTML = "";
+        SCEN_DEFS.forEach((sd) => {
+          const c = document.createElement("div");
+          c.className = "chip" + (tScenTypes.includes(sd.id) ? " on" : "");
+          c.style.cssText = "font-size:11px;gap:5px;";
+          c.innerHTML = `<span class="t-ctx-type ${sd.cls}" style="font-size:7px;padding:2px 5px;">${sd.label}</span>${sd.desc}`;
+          c.onclick = () => {
+            if (tScenTypes.includes(sd.id)) {
+              if (tScenTypes.length > 1)
+                tScenTypes = tScenTypes.filter((x) => x !== sd.id);
+            } else tScenTypes.push(sd.id);
+            c.classList.toggle("on", tScenTypes.includes(sd.id));
+          };
+          el.appendChild(c);
+        });
+      }
+
+      function setDiff(d) {
+        tDiff = d;
+        ["easy", "med", "hard"].forEach((x) => {
+          document
+            .getElementById("tdiff-" + x)
+            ?.classList.toggle("on", x === d);
+        });
+      }
+
+      function getAllHandKeys() {
+        const keys = [];
+        for (let i = 0; i < 13; i++)
+          for (let j = 0; j < 13; j++) {
+            const r1 = RK[i],
+              r2 = RK[j];
+            if (i === j) keys.push(r1 + r2);
+            else if (i < j) keys.push(r1 + r2 + "s");
+            else keys.push(r2 + r1 + "o");
+          }
+        return keys;
+      }
+
+      function startT() {
+        tPos =
+          document.querySelector("#t-pos-chips .chip.on")?.textContent.trim() ||
+          "BTN";
+        tActive = true;
+        S.trainer.streak = 0;
+        nextHand();
+        toast("Session started!");
+      }
+
+      function nextHand() {
+        tScenId = tScenTypes[Math.floor(Math.random() * tScenTypes.length)];
+        tCtx = buildScenContext(tScenId, tPos);
+        const pool = getAllHandKeys();
+        if (tDiff === "easy") {
+          // Only include hands where GTO is unambiguous
+          const filtered = pool.filter((k) => {
+            const g = getGTOForHand(k, tScenId, tCtx);
+            return g[0].f === 100;
+          });
+          tCurKey = (filtered.length ? filtered : pool)[
+            Math.floor(Math.random() * (filtered.length || pool.length))
+          ];
+        } else {
+          tCurKey = pool[Math.floor(Math.random() * pool.length)];
+        }
+        showTHand();
+      }
+
+      function showTHand() {
+        const key = tCurKey;
+        updTStats();
+        // context
+        const sd = SCEN_DEFS.find((s) => s.id === tScenId) || SCEN_DEFS[0];
+        document.getElementById("t-ctx-desc").innerHTML = tCtx.desc;
+        const te = document.getElementById("t-ctx-type");
+        te.textContent = sd.label;
+        te.className = "t-ctx-type " + sd.cls;
+        renderTFelt(tCtx);
+        // cards
+        const cards = genCards(key);
+        document.getElementById("t-cards").innerHTML = cards
+          .map((c, i) => {
+            const sc = { h: "hearts", d: "diamonds", s: "spades", c: "clubs" }[
+              c.s
+            ];
+            const cc = c.s === "h" || c.s === "d" ? "red" : "blk";
+            const sym = SSYM[c.s];
+            return `<div class="pcard h-${sc} ${cc}" style="--ci:${i}">
+      <div class="pcard-top"><div class="pcard-r">${c.r}</div><div class="pcard-ss">${sym}</div></div>
+      <div class="pcard-ctr">${sym}</div>
+      <div class="pcard-bot"><div class="pcard-r">${c.r}</div><div class="pcard-ss">${sym}</div></div>
+    </div>`;
+          })
+          .join("");
+        // meta
+        const cat = getHandCat(key);
+        document.getElementById("t-hname").textContent = key;
+        const ce = document.getElementById("t-hand-cat");
+        ce.textContent = T_HAND_CATS[cat];
+        ce.className = "t-hand-cat " + cat;
+        // action buttons
+        const acts = SCEN_ACTIONS[tScenId] || SCEN_ACTIONS.rfi;
+        document.getElementById("t-btns").innerHTML = acts
+          .map(
+            (a) => `
+    <div class="t-btn" id="tb-${a.id}" onclick="tAns('${a.id}')">
+      <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:${a.color};border-radius:11px 0 0 11px;"></div>
+      <span class="t-btn-ic">${a.emoji}</span>
+      <span class="t-btn-tx">${a.name}</span>
+      <span class="t-btn-pct" id="tbp-${a.id}"></span>
+    </div>`
+          )
+          .join("");
+        // reset state
+        document.getElementById("t-res").className = "t-res";
+        document.getElementById("t-gto").style.display = "none";
+        document.getElementById("t-explain").style.display = "none";
+        document.getElementById("t-nav").style.display = "none";
+      }
+
+      function tAns(aid) {
+        if (!tActive) return;
+        const key = tCurKey;
+        const gto = getGTOForHand(key, tScenId, tCtx);
+        const correct = gto[0].a;
+        const ok = aid === correct;
+        const cat = getHandCat(key);
+        if (!S.trainer.catStats[cat]) S.trainer.catStats[cat] = { c: 0, w: 0 };
+        if (ok) {
+          S.trainer.correct++;
+          S.trainer.streak++;
+          if (S.trainer.streak > S.trainer.best)
+            S.trainer.best = S.trainer.streak;
+          S.trainer.catStats[cat].c++;
+          const res = document.getElementById("t-res");
+          res.className = "t-res ok on";
+          res.textContent =
+            "✓ Correct!" +
+            (S.trainer.streak >= 3 ? " 🔥 Streak ×" + S.trainer.streak : "");
+          document.getElementById("tb-" + aid)?.classList.add("ok", "sel");
+        } else {
+          S.trainer.wrong++;
+          S.trainer.streak = 0;
+          S.trainer.catStats[cat].w++;
+          const acts = SCEN_ACTIONS[tScenId] || [];
+          const ca = acts.find((a) => a.id === correct) || {
+            emoji: "?",
+            name: correct,
+          };
+          const res = document.getElementById("t-res");
+          res.className = "t-res bad on";
+          res.textContent = `✗ Correct: ${ca.emoji} ${ca.name}`;
+          document.getElementById("tb-" + aid)?.classList.add("bad", "sel");
+          if (S.settings.showCorr)
+            document.getElementById("tb-" + correct)?.classList.add("ok");
+        }
+        document.querySelectorAll(".t-btn").forEach((b) => {
+          if (b.id !== `tb-${aid}` && b.id !== `tb-${correct}`)
+            b.style.opacity = ".3";
+          b.style.pointerEvents = "none";
+        });
+        // GTO breakdown
+        const acts2 = SCEN_ACTIONS[tScenId] || [];
+        const gtoEl = document.getElementById("t-gto");
+        gtoEl.style.display = "block";
+        gtoEl.innerHTML =
+          `<div class="t-gto-title">GTO for ${key} — ${
+            SCEN_DEFS.find((s) => s.id === tScenId)?.desc || ""
+          }</div>` +
+          acts2
+            .map((a) => {
+              const entry = gto.find((x) => x.a === a.id);
+              const f = entry ? entry.f : 0;
+              return `<div class="t-gto-row">
+        <div class="t-gto-dot" style="background:${a.color}"></div>
+        <div class="t-gto-nm">${a.emoji} ${a.name}</div>
+        <div class="t-gto-bw"><div class="t-gto-b" style="width:${f}%;background:${a.color}"></div></div>
+        <div class="t-gto-f">${f}%</div>
+      </div>`;
+            })
+            .join("");
+        // Explanation
+        if (S.settings.showExp) {
+          const expEl = document.getElementById("t-explain");
+          const exp = buildTExplain(key, tScenId, tCtx, gto, correct);
+          if (exp) {
+            expEl.innerHTML = exp;
+            expEl.style.display = "block";
+          }
+        }
+        document.getElementById("t-nav").style.display = "grid";
+        updTStats();
+        save();
+        updTCatStats();
+      }
+
+      function buildTExplain(key, scenId, ctx, gto, correct) {
+        const cat = getHandCat(key);
+        const catNote =
+          cat === "pair"
+            ? '<br><em style="color:var(--tx3)">Pairs: equity from sets &amp; domination.</em>'
+            : cat === "suited"
+            ? '<br><em style="color:var(--tx3)">Suited hands gain +3-5% equity from backdoor/flush draws.</em>'
+            : "";
+        const e = {
+          rfi: {
+            open: `<strong>${key}</strong> is in your opening range from ${ctx.hero} in 6-max. Raising to ~2.5bb builds the pot, applies fold equity, and gains initiative.`,
+            fold: `<strong>${key}</strong> is too weak to open from ${ctx.hero}. This position requires a tighter range in 6-max.`,
+          },
+          vs_open: {
+            "3bet": `<strong>${key}</strong> is a 3-bet vs ${
+              ctx.raiserPos || "villain"
+            }. You have the equity/blocker value to re-raise and take initiative. Non-nutted hands become "bluff 3-bets" with blockers.`,
+            call: `<strong>${key}</strong> has enough equity to call but isn't strong enough to 3-bet profitably here. Calling keeps villain's bluffing range wide.`,
+            fold: `<strong>${key}</strong> doesn't have the equity or positional advantage to continue profitably facing ${
+              ctx.raiserPos || "villain"
+            }'s open.`,
+          },
+          squeeze: {
+            squeeze: `<strong>${key}</strong> is a squeeze: you re-raise vs an opener + caller. Squeeze ranges are tighter as you face two ranges, but gain more dead money.`,
+            call: `<strong>${key}</strong> has implied odds to continue. Multi-way pots favour high-equity hands that flop well.`,
+            fold: `Against two ranges (opener + caller), <strong>${key}</strong> lacks the equity to continue profitably.`,
+          },
+          vs_3bet: {
+            "4bet": `<strong>${key}</strong> is a 4-bet: either premium value (QQ+/AK) or a polarised bluff using blockers to villain's continuing range.`,
+            call: `<strong>${key}</strong> has strong equity vs a 3-bet range but not enough to 4-bet. Calling in position is profitable with playable SPR.`,
+            fold: `<strong>${key}</strong> lacks the equity or blocker value to continue vs a 3-bet.`,
+          },
+          vs_4bet: {
+            ship: `<strong>${key}</strong> is always committed facing a 4-bet — you have the nuts or blockers at this stage.`,
+            call: `<strong>${key}</strong> has enough equity to call in some stack depths but the SPR post-flop is tricky.`,
+            fold: `<strong>${key}</strong> isn't strong enough to play for stacks vs a 4-bet range.`,
+          },
+        };
+        return ((e[scenId] || {})[correct] || "") + catNote;
+      }
+
+      function tNext() {
+        nextHand();
+      }
+
+      function endT() {
+        tActive = false;
+        const total = S.trainer.correct + (S.trainer.wrong || 0);
+        const acc = total ? Math.round((S.trainer.correct / total) * 100) : 0;
+        S.trainer.history.unshift({
+          date: new Date().toLocaleDateString(),
+          correct: S.trainer.correct,
+          total,
+          acc,
+          streak: S.trainer.best,
+          diff: tDiff,
+          pos: tPos,
+        });
+        if (S.trainer.history.length > 20)
+          S.trainer.history = S.trainer.history.slice(0, 20);
+        save();
+        renderTHist();
+        document.getElementById("t-res").className = "t-res ok on";
+        document.getElementById(
+          "t-res"
+        ).textContent = `Session ended — ${acc}% accuracy over ${total} hands 🎉`;
+        document.getElementById("t-nav").style.display = "none";
+        spark();
+        toast(`${acc}% accuracy · ${total} hands`);
+        updTCatStats();
+        updTStats();
+      }
+
+      function updTStats() {
+        const total = S.trainer.correct + (S.trainer.wrong || 0);
+        const acc = total ? Math.round((S.trainer.correct / total) * 100) : 0;
+        const fire =
+          S.trainer.streak >= 3 ? '<span class="t-streak-fire">🔥</span>' : "";
+        document.getElementById("tl-streak").innerHTML =
+          S.trainer.streak + fire;
+        document.getElementById("tl-correct").textContent = S.trainer.correct;
+        document.getElementById("tl-acc").textContent = total ? acc + "%" : "—";
+        document.getElementById("tl-hands").textContent = total;
+      }
+
+      function updTCatStats() {
+        const el = document.getElementById("t-cat-stats");
+        if (!el) return;
+        const cats = S.trainer.catStats;
+        if (!Object.keys(cats).length) {
+          el.innerHTML =
+            '<div style="font-size:12px;color:var(--tx3);padding:4px 0;">No data yet — start training!</div>';
+          return;
+        }
+        el.innerHTML = Object.entries(cats)
+          .map(([cat, v]) => {
+            const tot = v.c + v.w;
+            const acc = tot ? Math.round((v.c / tot) * 100) : 0;
+            const col =
+              acc >= 70 ? "var(--gr)" : acc >= 50 ? "var(--am)" : "var(--rd)";
+            return `<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+      <span class="t-hand-cat ${cat}" style="width:70px;text-align:center;font-size:8px;">${T_HAND_CATS[cat]}</span>
+      <div style="flex:1;height:7px;background:var(--s3);border-radius:4px;overflow:hidden;">
+        <div style="width:${acc}%;height:100%;background:${col};border-radius:4px;transition:width .5s;"></div>
+      </div>
+      <span style="font-size:13px;color:${col};font-weight:700;width:34px;text-align:right;">${acc}%</span>
+      <span style="font-size:10px;color:var(--tx3);width:38px;">${v.c}/${tot}</span>
+    </div>`;
+          })
+          .join("");
+      }
+
+      function resetT() {
+        S.trainer = {
+          correct: 0,
+          wrong: 0,
+          streak: 0,
+          best: 0,
+          history: [],
+          catStats: {},
+        };
+        save();
+        updTStats();
+        updTCatStats();
+        renderTHist();
+        tActive = false;
+        document.getElementById("t-res").className = "t-res";
+        document.getElementById("t-gto").style.display = "none";
+        document.getElementById("t-nav").style.display = "none";
+        toast("Stats reset");
+      }
+
+      function renderTHist() {
+        const el = document.getElementById("t-hist");
+        if (!el) return;
+        if (!S.trainer.history.length) {
+          el.innerHTML =
+            '<div class="empty" style="padding:12px 0"><div class="ei">🎯</div><div class="es">No sessions yet</div></div>';
+          return;
+        }
+        el.innerHTML = S.trainer.history
+          .slice(0, 8)
+          .map((h) => {
+            const col = h.acc >= 70 ? "var(--gr)" : "var(--rd)";
+            return `<div class="hist-row">
+      <div class="hbadge" style="background:${
+        h.acc >= 70 ? "var(--gr2)" : "var(--rd2)"
+      };border:1px solid ${col};color:${col}">${h.acc}%</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600">${h.correct}/${
+              h.total
+            } correct</div>
+        <div style="font-size:11px;color:var(--tx3)">${h.date} · ${
+              h.pos || ""
+            } · ${h.diff || "med"} · streak ${h.streak}</div>
+      </div>
+    </div>`;
+          })
+          .join("");
+      }
+
+      function getHandCat(k) {
+        if (k.length === 2) return "pair";
+        if (k.endsWith("s")) return "suited";
+        return "offsuit";
       }
 
       // ━━━ BANKROLL ━━━
@@ -5060,6 +6209,8 @@
       updTCatStats();
       renderTHist();
       initTPosChips();
+      initTScenChips();
+      updTSel();
 
       // Prevent double-tap zoom
       let lt = 0;
