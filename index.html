@@ -292,7 +292,9 @@
         -webkit-overflow-scrolling: touch;
         display: none;
         flex-direction: column;
-        padding-bottom: calc(56px + env(safe-area-inset-bottom) + 6px);
+        padding-bottom: calc(
+          64px + max(env(safe-area-inset-bottom), 34px) + 4px
+        );
       }
       .scr.on {
         display: flex;
@@ -309,8 +311,8 @@
         flex-shrink: 0;
         z-index: 200;
         display: flex;
-        height: calc(54px + env(safe-area-inset-bottom));
-        padding-bottom: env(safe-area-inset-bottom);
+        height: calc(58px + max(env(safe-area-inset-bottom), 34px));
+        padding-bottom: max(env(safe-area-inset-bottom), 34px);
         background: rgba(17, 10, 14, 0.97);
         border-top: 1px solid var(--bd);
         backdrop-filter: blur(20px);
@@ -322,16 +324,16 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 2px;
+        gap: 1px;
         color: var(--tx3);
-        font-size: 9px;
-        letter-spacing: 0.2px;
+        font-size: 8px;
+        letter-spacing: 0.1px;
         position: relative;
         transition: color 0.14s;
       }
       .nb svg {
-        width: 19px;
-        height: 19px;
+        width: 17px;
+        height: 17px;
         stroke: currentColor;
         fill: none;
         stroke-width: 1.8;
@@ -349,8 +351,8 @@
         content: "";
         position: absolute;
         top: 0;
-        left: 25%;
-        right: 25%;
+        left: 20%;
+        right: 20%;
         height: 2.5px;
         background: linear-gradient(90deg, var(--ac), var(--ac2));
         border-radius: 0 0 3px 3px;
@@ -1686,7 +1688,256 @@
         background: var(--s4);
       }
 
-      /* ━━━ MODALS ━━━ */
+      /* ━━━ HISTORY ━━━ */
+      .hh-entry {
+        padding: 11px 13px;
+        border-bottom: 1px solid var(--bd);
+        cursor: pointer;
+        transition: background 0.12s;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .hh-entry:last-child {
+        border-bottom: none;
+      }
+      .hh-entry:active {
+        background: var(--s2);
+      }
+      .hh-badge {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 800;
+        flex-shrink: 0;
+        font-family: "SF Mono", "Fira Mono", monospace;
+      }
+      .hh-main {
+        flex: 1;
+        min-width: 0;
+      }
+      .hh-top {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-bottom: 2px;
+      }
+      .hh-hand {
+        font-size: 14px;
+        font-weight: 800;
+        font-family: "SF Mono", "Fira Mono", monospace;
+        color: var(--tx);
+      }
+      .hh-pos {
+        font-size: 9px;
+        padding: 2px 7px;
+        border-radius: 5px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        border: 1px solid var(--bd);
+        color: var(--tx3);
+      }
+      .hh-action {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 5px;
+      }
+      .hh-scen {
+        font-size: 12px;
+        color: var(--tx2);
+        margin-bottom: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hh-note {
+        font-size: 11px;
+        color: var(--tx3);
+        font-style: italic;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .hh-meta {
+        font-size: 10px;
+        color: var(--tx3);
+        margin-left: auto;
+        flex-shrink: 0;
+        text-align: right;
+      }
+      .hh-result {
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .hh-result.win {
+        color: var(--gr);
+      }
+      .hh-result.lose {
+        color: var(--rd);
+      }
+      .hh-result.neutral {
+        color: var(--tx3);
+      }
+      .hh-filter-bar {
+        display: flex;
+        gap: 5px;
+        overflow-x: auto;
+        padding: 8px 13px 4px;
+        scrollbar-width: none;
+        border-bottom: 1px solid var(--bd);
+      }
+      .hh-filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .hh-stats-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-bottom: 1px solid var(--bd);
+      }
+      .hh-stat {
+        padding: 8px 4px;
+        text-align: center;
+        border-right: 1px solid var(--bd);
+      }
+      .hh-stat:last-child {
+        border-right: none;
+      }
+      .hh-stat-v {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ac2);
+      }
+      .hh-stat-l {
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        color: var(--tx3);
+      }
+
+      /* ━━━ NOTES ━━━ */
+      .note-card {
+        padding: 11px 13px;
+        border-bottom: 1px solid var(--bd);
+        cursor: pointer;
+        transition: background 0.12s;
+        display: flex;
+        gap: 9px;
+        align-items: flex-start;
+      }
+      .note-card:last-child {
+        border-bottom: none;
+      }
+      .note-card:active {
+        background: var(--s2);
+      }
+      .note-pin {
+        font-size: 14px;
+        flex-shrink: 0;
+        margin-top: 1px;
+        opacity: 0.6;
+      }
+      .note-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .note-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--tx);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .note-preview {
+        font-size: 12px;
+        color: var(--tx3);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-top: 1px;
+      }
+      .note-meta {
+        font-size: 10px;
+        color: var(--tx3);
+        margin-top: 3px;
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+      .note-tag {
+        padding: 1px 7px;
+        border-radius: 4px;
+        background: var(--s3);
+        border: 1px solid var(--bd);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        color: var(--tx2);
+      }
+      .note-editor {
+        width: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--tx);
+        font-size: 14px;
+        line-height: 1.7;
+        resize: none;
+        font-family: inherit;
+        min-height: 160px;
+        padding: 0;
+      }
+      .note-editor::placeholder {
+        color: var(--tx3);
+      }
+      .hh-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--bd);
+        cursor: pointer;
+        transition: background 0.12s;
+      }
+      .hh-row:active {
+        background: var(--s2);
+      }
+      .hh-row:last-child {
+        border-bottom: none;
+      }
+      .hh-hand-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: var(--s2);
+        border: 1px solid var(--bd);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 800;
+        color: var(--tx);
+        flex-shrink: 0;
+      }
+      .note-row {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--bd);
+        cursor: pointer;
+        transition: background 0.12s;
+      }
+      .note-row:active {
+        background: var(--s2);
+      }
+      .note-row:last-child {
+        border-bottom: none;
+      }
+
       .ovl {
         position: fixed;
         inset: 0;
@@ -1829,7 +2080,7 @@
       /* ━━━ TOAST ━━━ */
       .toast {
         position: fixed;
-        bottom: calc(58px + env(safe-area-inset-bottom) + 10px);
+        bottom: calc(62px + max(env(safe-area-inset-bottom), 34px) + 8px);
         left: 50%;
         transform: translateX(-50%) translateY(12px);
         background: var(--s4);
@@ -2868,6 +3119,58 @@
             </div>
           </div>
         </div>
+
+        <!-- ═══ HISTORY ═══ -->
+        <div class="scr" id="s-history">
+          <div class="pg" style="padding: 0">
+            <div class="hh-stats-strip" id="hh-stats"></div>
+            <div class="hh-filter-bar" id="hh-filters"></div>
+
+            <div
+              class="card"
+              style="
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                margin: 0;
+              "
+            >
+              <div class="ch">
+                <span class="cht">Hand History</span>
+                <button class="btn btn-ac btn-sm" onclick="openHHModal()">
+                  + Log Hand
+                </button>
+              </div>
+              <div id="hh-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ NOTES ═══ -->
+        <div class="scr" id="s-notes">
+          <div class="pg" style="padding: 0">
+            <div
+              class="card"
+              style="
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                margin: 0;
+              "
+            >
+              <div class="ch">
+                <span class="cht">Notes</span>
+                <button
+                  class="btn btn-ac btn-sm"
+                  onclick="openNoteEditor(null)"
+                >
+                  + New
+                </button>
+              </div>
+              <div id="notes-list"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- /content -->
 
@@ -2883,6 +3186,25 @@
             <circle cx="12" cy="12" r="9" />
             <path d="M12 8v4l3 3" /></svg
           >Trainer
+        </button>
+        <button class="nb" id="nb-history" onclick="goTo('s-history')">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 8v4l3 2" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M3.05 11A9 9 0 0 1 12 3" />
+            <path d="M3 3l0 5 5 0" /></svg
+          >History
+        </button>
+        <button class="nb" id="nb-notes" onclick="goTo('s-notes')">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+            />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" /></svg
+          >Notes
         </button>
         <button class="nb" id="nb-bank" onclick="goTo('s-bank')">
           <svg viewBox="0 0 24 24">
@@ -2913,6 +3235,176 @@
     <!-- /app -->
 
     <!-- MODALS -->
+
+    <!-- m-hh: Log Hand -->
+    <div class="ovl" id="m-hh">
+      <div class="modal">
+        <div class="mh"></div>
+        <div class="mt">Log Hand</div>
+        <div class="mb">
+          <div>
+            <label class="ml">Hand</label>
+            <input
+              id="hh-hand"
+              class="inp"
+              placeholder="e.g. AKs, QQ, T9o"
+              oninput="this.value=this.value.toUpperCase()"
+            />
+          </div>
+          <div class="r2">
+            <div>
+              <label class="ml">Position</label>
+              <div
+                style="display: flex; gap: 5px; flex-wrap: wrap"
+                id="hh-pos-chips"
+              ></div>
+            </div>
+            <div>
+              <label class="ml">Scenario</label>
+              <select id="hh-scen" class="inp" style="height: 36px">
+                <option value="RFI">RFI</option>
+                <option value="vs Open">vs Open</option>
+                <option value="3-Bet">3-Bet</option>
+                <option value="vs 3-Bet">vs 3-Bet</option>
+                <option value="Squeeze">Squeeze</option>
+                <option value="vs 4-Bet">vs 4-Bet</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="ml">Action Taken</label>
+            <div
+              style="display: flex; gap: 5px; flex-wrap: wrap"
+              id="hh-act-chips"
+            ></div>
+          </div>
+          <div class="r2">
+            <div>
+              <label class="ml">Result</label>
+              <select id="hh-result" class="inp" style="height: 36px">
+                <option value="neutral">Not played out</option>
+                <option value="win">Won</option>
+                <option value="lose">Lost</option>
+              </select>
+            </div>
+            <div>
+              <label class="ml">Amount (bb)</label>
+              <input
+                id="hh-amount"
+                class="inp"
+                type="number"
+                placeholder="0"
+                min="-999"
+                max="999"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="ml">Notes</label>
+            <textarea
+              id="hh-notes"
+              class="inp"
+              placeholder="What happened? What could you do differently?"
+              style="height: 72px; resize: none"
+            ></textarea>
+          </div>
+          <div class="r2">
+            <button class="btn btn-ghost" onclick="closeM('m-hh')">
+              Cancel
+            </button>
+            <button class="btn btn-ac" onclick="saveHH()">Save Hand</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- m-hh-view: View/Edit Hand -->
+    <div class="ovl" id="m-hh-view">
+      <div class="modal">
+        <div class="mh"></div>
+        <div class="mt" id="m-hh-view-title">Hand Detail</div>
+        <div class="mb" id="m-hh-view-body"></div>
+      </div>
+    </div>
+
+    <!-- m-note: Note Editor -->
+    <div class="ovl" id="m-note">
+      <div class="modal">
+        <div class="mh"></div>
+        <div class="mt">
+          <input
+            id="note-title-in"
+            class="inp"
+            placeholder="Note title..."
+            style="
+              border: none;
+              background: transparent;
+              padding: 0;
+              font-size: 16px;
+              font-weight: 700;
+              color: var(--tx);
+              width: 100%;
+              outline: none;
+            "
+          />
+        </div>
+        <div class="mb">
+          <div>
+            <textarea
+              id="note-body-in"
+              class="note-editor inp"
+              placeholder="Start writing..."
+              style="height: 200px"
+            ></textarea>
+          </div>
+          <div>
+            <label class="ml">Tags (comma separated)</label>
+            <input
+              id="note-tags-in"
+              class="inp"
+              placeholder="e.g. GTO, spots, BTN"
+            />
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px">
+            <label
+              style="
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                font-size: 13px;
+                color: var(--tx2);
+                cursor: pointer;
+              "
+            >
+              <input
+                type="checkbox"
+                id="note-pin-in"
+                style="width: 16px; height: 16px; accent-color: var(--ac)"
+              />
+              Pin to top
+            </label>
+          </div>
+          <div class="r2">
+            <button
+              class="btn btn-ghost"
+              id="note-del-btn"
+              onclick="delNote()"
+              style="color: var(--rd)"
+            >
+              Delete
+            </button>
+            <div class="r2" style="flex: 1">
+              <button class="btn btn-ghost" onclick="closeM('m-note')">
+                Cancel
+              </button>
+              <button class="btn btn-ac" onclick="saveNote()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="ovl" id="m-act">
       <div class="modal">
         <div class="mh"></div>
@@ -3217,9 +3709,41 @@
         return {
           cs: {},
           actions: [
-            { id: "raise", name: "Raise", color: "#e8438a", emoji: "🔴" },
-            { id: "call", name: "Call", color: "#34c97a", emoji: "🟢" },
-            { id: "fold", name: "Fold", color: "#636e72", emoji: "⬛" },
+            {
+              id: "raise",
+              name: "Raise/Open",
+              color: "#e8438a",
+              emoji: "🔴",
+              role: "raise",
+            },
+            {
+              id: "call",
+              name: "Call",
+              color: "#34c97a",
+              emoji: "🟢",
+              role: "call",
+            },
+            {
+              id: "3bet",
+              name: "3-Bet",
+              color: "#5b7cf5",
+              emoji: "🔵",
+              role: "3bet",
+            },
+            {
+              id: "4bet",
+              name: "4-Bet",
+              color: "#f0c040",
+              emoji: "🟡",
+              role: "4bet",
+            },
+            {
+              id: "fold",
+              name: "Fold",
+              color: "#636e72",
+              emoji: "⬛",
+              role: "fold",
+            },
           ],
           ranges: [],
           bankrolls: [],
@@ -3244,6 +3768,8 @@
             history: [],
             catStats: {},
           },
+          handHistory: [],
+          notes: [],
         };
       }
 
@@ -3267,7 +3793,40 @@
             }
           });
           const la = lg("ps_ac", null);
-          if (la) S.actions = la;
+          if (la) {
+            // migrate: add role field to actions that don't have it
+            const ROLE_MAP = {
+              raise: "raise",
+              call: "call",
+              "3bet": "3bet",
+              "4bet": "4bet",
+              fold: "fold",
+              squeeze: "squeeze",
+              ship: "ship",
+            };
+            S.actions = la.map((a) => ({
+              ...a,
+              role: a.role || ROLE_MAP[a.id] || a.id,
+            }));
+            // ensure 3bet/4bet exist (upgrade from old 3-action default)
+            const roleIds = S.actions.map((a) => a.role || a.id);
+            if (!roleIds.includes("3bet"))
+              S.actions.splice(S.actions.length - 1, 0, {
+                id: "3bet",
+                name: "3-Bet",
+                color: "#5b7cf5",
+                emoji: "🔵",
+                role: "3bet",
+              });
+            if (!roleIds.includes("4bet"))
+              S.actions.splice(S.actions.length - 1, 0, {
+                id: "4bet",
+                name: "4-Bet",
+                color: "#f0c040",
+                emoji: "🟡",
+                role: "4bet",
+              });
+          }
           S.ranges = lg("ps_ra", []);
           const brs = lg("ps_brs", null);
           if (brs && brs.length) S.bankrolls = brs;
@@ -3285,6 +3844,8 @@
           if (lst) Object.assign(S.settings, lst);
           const ltr = lg("ps_tr", null);
           if (ltr) Object.assign(S.trainer, ltr);
+          S.handHistory = lg("ps_hh", []);
+          S.notes = lg("ps_nt", []);
           return S;
         } catch {
           return defS();
@@ -3318,6 +3879,11 @@
               catStats: S.trainer.catStats,
             })
           );
+          localStorage.setItem(
+            "ps_hh",
+            JSON.stringify(S.handHistory.slice(0, 500))
+          );
+          localStorage.setItem("ps_nt", JSON.stringify(S.notes));
         } catch {}
       }
 
@@ -3368,6 +3934,12 @@
         }
         if (id === "s-bank") renderBR();
         if (id === "s-files") renderLib();
+        if (id === "s-history") {
+          renderHH();
+          renderHHStats();
+          initHHChips();
+        }
+        if (id === "s-notes") renderNotes();
         if (id === "s-settings") applySetUI();
       }
 
@@ -4287,7 +4859,26 @@
         ],
       };
 
-      // ─── GTO DEFAULTS ───
+      // ─── Role → S.action resolver ───
+      // GTO tables return role strings ('raise','call','3bet','4bet','fold','squeeze','ship')
+      // This maps them to the actual action in S.actions by role field
+      function actionByRole(role) {
+        return (
+          S.actions.find((a) => (a.role || a.id) === role) ||
+          S.actions.find((a) => a.id === role) || {
+            id: role,
+            name: role,
+            color: "#888",
+            emoji: "⬛",
+            role,
+          }
+        );
+      }
+      function getActionForBtns() {
+        // Returns all actions (including fold) for trainer buttons, matching S.actions
+        return S.actions;
+      }
+
       const GTO_RFI = {
         UTG: new Set([
           "AA",
@@ -4882,11 +5473,13 @@
       };
 
       function getGTOForHand(key, scenId, ctx) {
+        // Returns [{a: S.action.id, f: 0-100}] — action IDs from S.actions resolved by role
+        const resolveRole = (role) => actionByRole(role).id;
         if (scenId === "rfi") {
           const set = GTO_RFI[ctx.hero] || GTO_RFI.BTN;
           return set.has(key)
-            ? [{ a: "open", f: 100 }]
-            : [{ a: "fold", f: 100 }];
+            ? [{ a: resolveRole("raise"), f: 100 }]
+            : [{ a: resolveRole("fold"), f: 100 }];
         }
         if (scenId === "vs_open") {
           const hero = ctx.hero,
@@ -4906,26 +5499,32 @@
               call: new Set(["JJ", "TT", "99", "AQs", "AQo", "KQs"]),
             };
           }
-          if (gto["3bet"].has(key)) return [{ a: "3bet", f: 100 }];
-          if (gto["call"].has(key)) return [{ a: "call", f: 100 }];
-          return [{ a: "fold", f: 100 }];
+          if (gto["3bet"].has(key)) return [{ a: resolveRole("3bet"), f: 100 }];
+          if (gto["call"].has(key)) return [{ a: resolveRole("call"), f: 100 }];
+          return [{ a: resolveRole("fold"), f: 100 }];
         }
         if (scenId === "squeeze") {
-          if (GTO_BB_SQZ["squeeze"].has(key)) return [{ a: "squeeze", f: 100 }];
-          if (GTO_BB_SQZ["call"].has(key)) return [{ a: "call", f: 100 }];
-          return [{ a: "fold", f: 100 }];
+          if (GTO_BB_SQZ["squeeze"].has(key))
+            return [{ a: resolveRole("3bet"), f: 100 }]; // squeeze = 3bet role
+          if (GTO_BB_SQZ["call"].has(key))
+            return [{ a: resolveRole("call"), f: 100 }];
+          return [{ a: resolveRole("fold"), f: 100 }];
         }
         if (scenId === "vs_3bet") {
-          if (GTO_VS3B["4bet"].has(key)) return [{ a: "4bet", f: 100 }];
-          if (GTO_VS3B["call"].has(key)) return [{ a: "call", f: 100 }];
-          return [{ a: "fold", f: 100 }];
+          if (GTO_VS3B["4bet"].has(key))
+            return [{ a: resolveRole("4bet"), f: 100 }];
+          if (GTO_VS3B["call"].has(key))
+            return [{ a: resolveRole("call"), f: 100 }];
+          return [{ a: resolveRole("fold"), f: 100 }];
         }
         if (scenId === "vs_4bet") {
-          if (GTO_VS4B["ship"].has(key)) return [{ a: "ship", f: 100 }];
-          if (GTO_VS4B["call"].has(key)) return [{ a: "call", f: 100 }];
-          return [{ a: "fold", f: 100 }];
+          if (GTO_VS4B["ship"].has(key))
+            return [{ a: resolveRole("raise"), f: 100 }]; // ship = raise role (all-in)
+          if (GTO_VS4B["call"].has(key))
+            return [{ a: resolveRole("call"), f: 100 }];
+          return [{ a: resolveRole("fold"), f: 100 }];
         }
-        return [{ a: "fold", f: 100 }];
+        return [{ a: resolveRole("fold"), f: 100 }];
       }
 
       // Seat layout (% of felt container)
@@ -5196,8 +5795,8 @@
         const ce = document.getElementById("t-hand-cat");
         ce.textContent = T_HAND_CATS[cat];
         ce.className = "t-hand-cat " + cat;
-        // action buttons
-        const acts = SCEN_ACTIONS[tScenId] || SCEN_ACTIONS.rfi;
+        // action buttons — use getTrainerActions (mirrors range builder when custom range selected)
+        const acts = getTrainerActions(tScenId);
         document.getElementById("t-btns").innerHTML = acts
           .map(
             (a) => `
@@ -5219,9 +5818,15 @@
       function tAns(aid) {
         if (!tActive) return;
         const key = tCurKey;
-        const gto = getGTOForHand(key, tScenId, tCtx);
+        const gto = getTrainerGTOForKey(key, tScenId, tCtx);
+        // correct = GTO role string (e.g. 'open','3bet','fold')
+        // aid = S.actions id (may differ if user renamed — compare via role)
         const correct = gto[0].a;
-        const ok = aid === correct;
+        const userRole = S.actions.find((a) => a.id === aid)?.role || aid;
+        const ok = userRole === correct;
+        // find the action object whose role matches correct (so button highlight uses right id)
+        const correctAct = actionByRole(correct);
+        const correctId = correctAct.id;
         const cat = getHandCat(key);
         if (!S.trainer.catStats[cat]) S.trainer.catStats[cat] = { c: 0, w: 0 };
         if (ok) {
@@ -5240,34 +5845,31 @@
           S.trainer.wrong++;
           S.trainer.streak = 0;
           S.trainer.catStats[cat].w++;
-          const acts = SCEN_ACTIONS[tScenId] || [];
-          const ca = acts.find((a) => a.id === correct) || {
-            emoji: "?",
-            name: correct,
-          };
+          // use S.actions via role so trainer always mirrors range builder action names/colours
           const res = document.getElementById("t-res");
           res.className = "t-res bad on";
-          res.textContent = `✗ Correct: ${ca.emoji} ${ca.name}`;
+          res.textContent = `✗ Correct: ${correctAct.emoji} ${correctAct.name}`;
           document.getElementById("tb-" + aid)?.classList.add("bad", "sel");
           if (S.settings.showCorr)
-            document.getElementById("tb-" + correct)?.classList.add("ok");
+            document.getElementById("tb-" + correctId)?.classList.add("ok");
         }
         document.querySelectorAll(".t-btn").forEach((b) => {
-          if (b.id !== `tb-${aid}` && b.id !== `tb-${correct}`)
+          if (b.id !== `tb-${aid}` && b.id !== `tb-${correctId}`)
             b.style.opacity = ".3";
           b.style.pointerEvents = "none";
         });
-        // GTO breakdown
-        const acts2 = SCEN_ACTIONS[tScenId] || [];
+        // GTO breakdown — resolve each GTO entry to S.actions via role
+        const tActs = getTrainerActions(tScenId);
         const gtoEl = document.getElementById("t-gto");
         gtoEl.style.display = "block";
         gtoEl.innerHTML =
           `<div class="t-gto-title">GTO for ${key} — ${
             SCEN_DEFS.find((s) => s.id === tScenId)?.desc || ""
           }</div>` +
-          acts2
+          tActs
             .map((a) => {
-              const entry = gto.find((x) => x.a === a.id);
+              const aRole = a.role || a.id;
+              const entry = gto.find((x) => x.a === aRole);
               const f = entry ? entry.f : 0;
               return `<div class="t-gto-row">
         <div class="t-gto-dot" style="background:${a.color}"></div>
@@ -5457,6 +6059,393 @@
         if (k.length === 2) return "pair";
         if (k.endsWith("s")) return "suited";
         return "offsuit";
+      }
+
+      // ━━━ HAND HISTORY ━━━
+      let hhPosFilter = "ALL",
+        hhResultFilter = "ALL";
+
+      function initHHChips() {
+        // position filter chips
+        const pEl = document.getElementById("hh-filters");
+        if (!pEl) return;
+        const posOpts = ["ALL", ...POS_6MAX];
+        const resOpts = [
+          { id: "ALL", label: "All Results" },
+          { id: "win", label: "✓ Win" },
+          { id: "lose", label: "✗ Lose" },
+          { id: "neutral", label: "• Unplayed" },
+        ];
+        pEl.innerHTML = "";
+        posOpts.forEach((p) => {
+          const c = document.createElement("div");
+          c.className = "chip" + (p === hhPosFilter ? " on" : "");
+          c.style.cssText =
+            'font-family:"SF Mono","Fira Mono",monospace;min-width:40px;justify-content:center;flex-shrink:0;font-size:11px;';
+          c.textContent = p;
+          c.onclick = () => {
+            hhPosFilter = p;
+            initHHChips();
+            renderHH();
+          };
+          pEl.appendChild(c);
+        });
+        // separator
+        const sep = document.createElement("div");
+        sep.style.cssText =
+          "width:1px;background:var(--bd);flex-shrink:0;margin:0 2px;";
+        pEl.appendChild(sep);
+        resOpts.forEach((r) => {
+          const c = document.createElement("div");
+          c.className = "chip" + (r.id === hhResultFilter ? " on" : "");
+          c.style.cssText = "flex-shrink:0;font-size:11px;";
+          c.textContent = r.label;
+          c.onclick = () => {
+            hhResultFilter = r.id;
+            initHHChips();
+            renderHH();
+          };
+          pEl.appendChild(c);
+        });
+      }
+
+      function initHHActChips() {
+        const el = document.getElementById("hh-act-chips");
+        if (!el) return;
+        el.innerHTML = "";
+        let sel = el.dataset.sel || S.actions[0]?.id || "";
+        if (!sel) sel = S.actions[0]?.id || "";
+        S.actions.forEach((a) => {
+          const c = document.createElement("div");
+          c.className = "chip" + (a.id === sel ? " on" : "");
+          c.style.cssText = `font-size:11px;border-left:3px solid ${a.color};padding-left:8px;`;
+          c.innerHTML = `${a.emoji} ${a.name}`;
+          c.onclick = () => {
+            el.dataset.sel = a.id;
+            document
+              .querySelectorAll("#hh-act-chips .chip")
+              .forEach((x) => x.classList.remove("on"));
+            c.classList.add("on");
+          };
+          el.appendChild(c);
+        });
+        if (!el.dataset.sel) el.dataset.sel = sel;
+      }
+
+      function initHHPosChips() {
+        const el = document.getElementById("hh-pos-chips");
+        if (!el) return;
+        el.innerHTML = "";
+        let sel = el.dataset.sel || "BTN";
+        POS_6MAX.forEach((p) => {
+          const c = document.createElement("div");
+          c.className = "chip" + (p === sel ? " on" : "");
+          c.style.cssText =
+            'font-family:"SF Mono","Fira Mono",monospace;min-width:38px;justify-content:center;flex-shrink:0;font-size:11px;';
+          c.textContent = p;
+          c.onclick = () => {
+            el.dataset.sel = p;
+            document
+              .querySelectorAll("#hh-pos-chips .chip")
+              .forEach((x) => x.classList.remove("on"));
+            c.classList.add("on");
+          };
+          el.appendChild(c);
+        });
+        if (!el.dataset.sel) el.dataset.sel = sel;
+      }
+
+      function openHHModal() {
+        initHHPosChips();
+        initHHActChips();
+        document.getElementById("hh-hand").value = "";
+        document.getElementById("hh-notes").value = "";
+        document.getElementById("hh-amount").value = "";
+        document.getElementById("hh-result").value = "neutral";
+        document.getElementById("hh-scen").value = "RFI";
+        openM("m-hh");
+      }
+
+      function saveHH() {
+        const hand = document.getElementById("hh-hand").value.trim();
+        if (!hand) {
+          toast("Enter a hand first");
+          return;
+        }
+        const pos =
+          document.getElementById("hh-pos-chips").dataset.sel || "BTN";
+        const actionId =
+          document.getElementById("hh-act-chips").dataset.sel ||
+          S.actions[0]?.id ||
+          "";
+        const scen = document.getElementById("hh-scen").value;
+        const result = document.getElementById("hh-result").value;
+        const amount =
+          parseFloat(document.getElementById("hh-amount").value) || 0;
+        const notes = document.getElementById("hh-notes").value.trim();
+        const entry = {
+          id: "hh" + Date.now(),
+          ts: Date.now(),
+          date: new Date().toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+          }),
+          time: new Date().toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+          hand,
+          pos,
+          actionId,
+          scen,
+          result,
+          amount,
+          notes,
+        };
+        S.handHistory.unshift(entry);
+        save();
+        closeM("m-hh");
+        renderHH();
+        renderHHStats();
+        toast("Hand logged ✓");
+      }
+
+      function renderHHStats() {
+        const el = document.getElementById("hh-stats");
+        if (!el) return;
+        const all = S.handHistory;
+        const wins = all.filter((h) => h.result === "win").length;
+        const played = all.filter((h) => h.result !== "neutral").length;
+        const acc = played ? Math.round((wins / played) * 100) : 0;
+        const net = all.reduce((s, h) => s + (h.amount || 0), 0);
+        el.innerHTML = `
+    <div class="hh-stat"><div class="hh-stat-v">${
+      all.length
+    }</div><div class="hh-stat-l">Logged</div></div>
+    <div class="hh-stat"><div class="hh-stat-v">${wins}</div><div class="hh-stat-l">Wins</div></div>
+    <div class="hh-stat"><div class="hh-stat-v">${
+      played ? acc + "%" : "—"
+    }</div><div class="hh-stat-l">Win%</div></div>
+    <div class="hh-stat"><div class="hh-stat-v" style="color:${
+      net >= 0 ? "var(--gr)" : "var(--rd)"
+    }">${net >= 0 ? "+" : ""}${net.toFixed(
+          1
+        )}</div><div class="hh-stat-l">Net bb</div></div>`;
+      }
+
+      function renderHH() {
+        initHHChips();
+        const el = document.getElementById("hh-list");
+        if (!el) return;
+        let list = S.handHistory;
+        if (hhPosFilter !== "ALL")
+          list = list.filter((h) => h.pos === hhPosFilter);
+        if (hhResultFilter !== "ALL")
+          list = list.filter((h) => h.result === hhResultFilter);
+        if (!list.length) {
+          el.innerHTML =
+            '<div class="empty" style="padding:28px 0"><div class="ei">🃏</div><div class="et">No hands yet</div><div class="es">Tap + Log Hand to add your first entry.</div></div>';
+          return;
+        }
+        el.innerHTML = list
+          .map((h) => {
+            const act = getAction(h.actionId || "");
+            const resLabel =
+              h.result === "win" ? "Win" : h.result === "lose" ? "Lose" : "—";
+            const amtStr = h.amount
+              ? (h.amount > 0 ? "+" : "") + h.amount + "bb"
+              : "";
+            return `<div class="hh-entry" onclick="viewHH('${h.id}')">
+      <div class="hh-badge" style="background:${
+        act.color
+      }22;border:1.5px solid ${act.color}55;color:${act.color}">${
+              h.hand || "?"
+            }</div>
+      <div class="hh-main">
+        <div class="hh-top">
+          <span class="hh-hand">${h.hand}</span>
+          <span class="hh-pos">${h.pos}</span>
+          <span class="hh-action" style="background:${act.color}22;color:${
+              act.color
+            }">${act.emoji} ${act.name}</span>
+        </div>
+        <div class="hh-scen">${h.scen}${h.notes ? ` — ${h.notes}` : ""}</div>
+      </div>
+      <div class="hh-meta">
+        <div class="hh-result ${h.result}">${resLabel}${
+              amtStr ? " · " + amtStr : ""
+            }</div>
+        <div style="font-size:9px;color:var(--tx3);margin-top:2px;">${h.date} ${
+              h.time || ""
+            }</div>
+      </div>
+    </div>`;
+          })
+          .join("");
+      }
+
+      function viewHH(id) {
+        const h = S.handHistory.find((x) => x.id === id);
+        if (!h) return;
+        const act = getAction(h.actionId || "");
+        const body = document.getElementById("m-hh-view-body");
+        body.innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+      <div style="width:54px;height:54px;border-radius:13px;background:${
+        act.color
+      }22;border:2px solid ${
+          act.color
+        }55;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;font-family:'SF Mono','Fira Mono',monospace;color:${
+          act.color
+        }">${h.hand}</div>
+      <div>
+        <div style="font-size:18px;font-weight:800;color:var(--tx)">${
+          h.hand
+        }</div>
+        <div style="font-size:12px;color:var(--tx3)">${h.pos} · ${h.scen} · ${
+          h.date
+        } ${h.time || ""}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+      <div style="background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:9px;text-align:center;">
+        <div style="font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;">Action</div>
+        <div style="font-size:14px;font-weight:700;color:${
+          act.color
+        };margin-top:3px;">${act.emoji} ${act.name}</div>
+      </div>
+      <div style="background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:9px;text-align:center;">
+        <div style="font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.7px;">Result</div>
+        <div class="hh-result ${
+          h.result
+        }" style="font-size:14px;font-weight:700;margin-top:3px;">${
+          h.result === "win" ? "✓ Win" : h.result === "lose" ? "✗ Lose" : "—"
+        }${h.amount ? (h.amount > 0 ? " +" : " ") + h.amount + "bb" : ""}</div>
+      </div>
+    </div>
+    ${
+      h.notes
+        ? `<div style="background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--tx2);line-height:1.6;margin-bottom:10px;">${h.notes}</div>`
+        : ""
+    }
+    <div class="r2">
+      <button class="btn btn-ghost" style="color:var(--rd)" onclick="delHH('${
+        h.id
+      }')">Delete</button>
+      <button class="btn btn-ghost" onclick="closeM('m-hh-view')">Close</button>
+    </div>`;
+        openM("m-hh-view");
+      }
+
+      function delHH(id) {
+        if (!confirm("Delete this hand?")) return;
+        S.handHistory = S.handHistory.filter((h) => h.id !== id);
+        save();
+        closeM("m-hh-view");
+        renderHH();
+        renderHHStats();
+        toast("Deleted");
+      }
+
+      // ━━━ NOTES ━━━
+      let noteEditId = null;
+
+      function openNoteEditor(id) {
+        noteEditId = id;
+        const note = id ? S.notes.find((n) => n.id === id) : null;
+        document.getElementById("note-title-in").value = note?.title || "";
+        document.getElementById("note-body-in").value = note?.content || "";
+        document.getElementById("note-tags-in").value = (note?.tags || []).join(
+          ", "
+        );
+        document.getElementById("note-pin-in").checked = note?.pinned || false;
+        document.getElementById("note-del-btn").style.display = id
+          ? "block"
+          : "none";
+        openM("m-note");
+        setTimeout(() => document.getElementById("note-title-in").focus(), 200);
+      }
+
+      function saveNote() {
+        const title =
+          document.getElementById("note-title-in").value.trim() || "Untitled";
+        const content = document.getElementById("note-body-in").value.trim();
+        const tagsRaw = document.getElementById("note-tags-in").value;
+        const tags = tagsRaw
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean);
+        const pinned = document.getElementById("note-pin-in").checked;
+        if (noteEditId) {
+          const n = S.notes.find((x) => x.id === noteEditId);
+          if (n) {
+            Object.assign(n, {
+              title,
+              content,
+              tags,
+              pinned,
+              updated: Date.now(),
+            });
+          }
+        } else {
+          S.notes.unshift({
+            id: "nt" + Date.now(),
+            ts: Date.now(),
+            updated: Date.now(),
+            title,
+            content,
+            tags,
+            pinned,
+          });
+        }
+        save();
+        closeM("m-note");
+        renderNotes();
+        toast(noteEditId ? "Note updated" : "Note saved ✓");
+      }
+
+      function delNote() {
+        if (!noteEditId || !confirm("Delete this note?")) return;
+        S.notes = S.notes.filter((n) => n.id !== noteEditId);
+        save();
+        closeM("m-note");
+        renderNotes();
+        toast("Note deleted");
+      }
+
+      function renderNotes() {
+        const el = document.getElementById("notes-list");
+        if (!el) return;
+        const sorted = [...S.notes].sort(
+          (a, b) =>
+            (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) ||
+            (b.updated || b.ts) - (a.updated || a.ts)
+        );
+        if (!sorted.length) {
+          el.innerHTML =
+            '<div class="empty" style="padding:28px 0"><div class="ei">📝</div><div class="et">No notes yet</div><div class="es">Tap + New to capture a thought, spot, or concept.</div></div>';
+          return;
+        }
+        el.innerHTML = sorted
+          .map((n) => {
+            const preview = n.content?.split("\n")[0]?.slice(0, 80) || "";
+            const date = new Date(n.updated || n.ts).toLocaleDateString(
+              "en-GB",
+              { day: "2-digit", month: "short" }
+            );
+            const tagsHtml = (n.tags || [])
+              .map((t) => `<span class="note-tag">${t}</span>`)
+              .join("");
+            return `<div class="note-card" onclick="openNoteEditor('${n.id}')">
+      <div class="note-pin">${n.pinned ? "📌" : "📄"}</div>
+      <div class="note-body">
+        <div class="note-title">${n.title}</div>
+        ${preview ? `<div class="note-preview">${preview}</div>` : ""}
+        <div class="note-meta">${date}${tagsHtml ? ` ${tagsHtml}` : ""}</div>
+      </div>
+    </div>`;
+          })
+          .join("");
       }
 
       // ━━━ BANKROLL ━━━
@@ -6196,6 +7185,111 @@
           }, i * 28);
       }
 
+      // ━━━ HAND HISTORY ━━━
+      function initHHChips() {
+        const el = document.getElementById("hh-pos-chips");
+        if (!el) return;
+        el.innerHTML = "";
+        POS_6MAX.forEach((p) => {
+          const c = document.createElement("div");
+          c.className = "chip";
+          c.textContent = p;
+          c.onclick = () => {
+            document
+              .querySelectorAll("#hh-pos-chips .chip")
+              .forEach((x) => x.classList.remove("on"));
+            c.classList.add("on");
+          };
+          el.appendChild(c);
+        });
+        // Action chips from S.actions
+        const al = document.getElementById("hh-act-chips");
+        if (!al) return;
+        al.innerHTML = "";
+        S.actions
+          .filter((a) => a.id !== "fold")
+          .concat([
+            S.actions.find((a) => a.id === "fold") || {
+              id: "fold",
+              name: "Fold",
+              color: "#636e72",
+              emoji: "⬛",
+            },
+          ])
+          .forEach((a) => {
+            const c = document.createElement("div");
+            c.className = "chip";
+            c.innerHTML = `<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:${a.color};margin-right:4px;"></span>${a.emoji} ${a.name}`;
+            c.onclick = () => {
+              document
+                .querySelectorAll("#hh-act-chips .chip")
+                .forEach((x) => x.classList.remove("on"));
+              c.classList.add("on");
+              c.dataset.aid = a.id;
+            };
+            al.appendChild(c);
+          });
+      }
+
+      // ━━━ TRAINER ↔ RANGE LINK ━━━
+      // Build action buttons from the currently-selected custom range if one is loaded;
+      // fall back to the scenario's built-in actions.
+      function getTrainerActions(scenId) {
+        const rid = document.getElementById("t-rsel")?.value || "";
+        if (rid) {
+          // Use S.actions so trainer mirrors range builder exactly
+          const foldId = getFoldId();
+          return S.actions; // Full action set from range builder
+        }
+        // Default scenario actions
+        const map = {
+          rfi: [
+            { id: "open", name: "Raise/Open", emoji: "🟢", color: "#34c97a" },
+            { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+          ],
+          vs_open: [
+            { id: "3bet", name: "3-Bet", emoji: "🔵", color: "#5b7cf5" },
+            { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+            { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+          ],
+          squeeze: [
+            { id: "squeeze", name: "Squeeze", emoji: "🟣", color: "#9b5df5" },
+            { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+            { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+          ],
+          vs_3bet: [
+            { id: "4bet", name: "4-Bet", emoji: "🔴", color: "#e17055" },
+            { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+            { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+          ],
+          vs_4bet: [
+            { id: "ship", name: "5-Bet/Ship", emoji: "💥", color: "#e8438a" },
+            { id: "call", name: "Call", emoji: "🟡", color: "#f0c040" },
+            { id: "fold", name: "Fold", emoji: "⬛", color: "#636e72" },
+          ],
+        };
+        return map[scenId] || map.rfi;
+      }
+
+      // When a custom range is selected, derive the correct action from the range data.
+      function getTrainerGTOForKey(key, scenId, ctx) {
+        const rid = document.getElementById("t-rsel")?.value || "";
+        if (rid) {
+          const range = S.ranges.find((r) => r.id === rid);
+          if (range && range.state && range.state[key]) {
+            const actions = range.state[key]; // [{a,f}]
+            if (actions.length) {
+              // Return as-is — highest f is "correct"
+              return actions;
+            }
+          }
+          // Not in range = fold
+          const foldId = getFoldId();
+          return [{ a: foldId, f: 100 }];
+        }
+        return getGTOForHand(key, scenId, ctx);
+      }
+
       // ━━━ INIT ━━━
       document.body.dataset.theme = S.settings.theme || "pink";
       buildMx();
@@ -6211,6 +7305,10 @@
       initTPosChips();
       initTScenChips();
       updTSel();
+      initHHChips();
+      renderHHStats();
+      renderHH();
+      renderNotes();
 
       // Prevent double-tap zoom
       let lt = 0;
