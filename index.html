@@ -1,538 +1,724 @@
-import { useState, useEffect, useCallback, useRef } from “react”;
+<!DOCTYPE html>
 
-const RANKS = [“A”,“K”,“Q”,“J”,“T”,“9”,“8”,“7”,“6”,“5”,“4”,“3”,“2”];
-const HL = (r,c) => { if(r===c) return `${RANKS[r]}${RANKS[c]}`; if(r<c) return `${RANKS[r]}${RANKS[c]}s`; return `${RANKS[c]}${RANKS[r]}o`; };
-const HT = (r,c) => r===c?“pair”:r<c?“suited”:“offsuit”;
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="RangeStudio">
+<meta name="theme-color" content="#0f0b14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="RangeStudio">
+<title>RangeStudio</title>
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiUmFuZ2VTdHVkaW8iLCJzaG9ydF9uYW1lIjoiUmFuZ2VTdHVkaW8iLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBmMGIxNCIsInRoZW1lX2NvbG9yIjoiIzBmMGIxNCIsImljb25zIjpbXX0=">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230f0b14' width='100' height='100' rx='20'/><text x='50' y='68' text-anchor='middle' font-size='55'>♠</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#0f0b14;--bg2:#16111e;--bg3:#1e1728;--surface:#241c32;
+  --border:#2a2140;--pink:#e8618c;--purple:#b48af5;--green:#5ec69e;
+  --gold:#eda855;--text:#f0e6f6;--text2:#9a8aad;--text3:#5e4f6e;--text4:#3a2f4a;
+  --font:'Avenir Next','SF Pro Display',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+html,body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden;overscroll-behavior:none}
+body{min-height:100vh;min-height:100dvh;padding-bottom:var(--safe-b)}
+input{font-family:var(--font)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 
-const DEFAULT_ACTIONS = [
-{ id:“raise”, color:”#e8618c”, label:“Raise” },
-{ id:“call”, color:”#5ec69e”, label:“Call” },
-{ id:“3bet”, color:”#b48af5”, label:“3-Bet” },
-{ id:“fold”, color:”#6e7191”, label:“Fold” },
-{ id:“allin”, color:”#eda855”, label:“All-In” },
+/* Animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.93)}to{opacity:1;transform:scale(1)}}
+@keyframes cellPop{0%{transform:scale(1)}40%{transform:scale(0.82)}100%{transform:scale(1)}}
+@keyframes barGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes modalIn{from{opacity:0;transform:scale(0.88) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateX(-50%) translateY(0)}to{opacity:0;transform:translateX(-50%) translateY(10px)}}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(232,97,140,0.35)}70%{box-shadow:0 0 0 8px rgba(232,97,140,0)}100%{box-shadow:0 0 0 0 rgba(232,97,140,0)}}
+@keyframes shimmer{from{background-position:-200% 0}to{background-position:200% 0}}
+@keyframes pulse{0%,100%{opacity:0.6}50%{opacity:1}}
+
+.page{animation:fadeIn 0.22s ease both}
+.row-anim{animation:slideRight 0.25s ease both}
+.cell{transition:background 0.12s,transform 0.12s,box-shadow 0.15s;cursor:pointer;-webkit-user-select:none;user-select:none}
+.cell:active{transform:scale(0.86)!important}
+.cell.flash{animation:cellPop 0.22s ease}
+.btn{border:none;cursor:pointer;font-family:var(–font);transition:all 0.18s cubic-bezier(0.4,0,0.2,1);-webkit-user-select:none;user-select:none}
+.btn:active{transform:scale(0.93)!important}
+.preset-btn{transition:all 0.12s;flex-shrink:0;white-space:nowrap}
+.preset-btn:active{transform:scale(0.9)!important}
+.bar-fill{animation:barGrow 0.5s cubic-bezier(0.4,0,0.2,1) both;transform-origin:left}
+.shimmer-row{background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.025) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 3s infinite}
+.modal-overlay{animation:overlayIn 0.18s ease}
+.modal-box{animation:modalIn 0.28s cubic-bezier(0.34,1.56,0.64,1)}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:300;padding:10px 24px;border-radius:14px;background:rgba(30,22,45,0.95);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(12px);color:#fff;font-size:13px;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,0.4);pointer-events:none;animation:toastIn 0.22s ease}
+.toast.out{animation:toastOut 0.22s ease forwards}
+
+/* Grid */
+.grid-wrap{display:grid;grid-template-columns:repeat(13,1fr);gap:1.5px;width:100%;max-width:480px;aspect-ratio:1/1}
+.grid-wrap .cell{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;border-radius:3px;font-size:min(2.5vw,10.5px);letter-spacing:-0.02em}
+
+/* Preset strip */
+.preset-strip{display:flex;gap:5px;padding:0 10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.preset-strip::-webkit-scrollbar{display:none}
+
+/* Mini grid */
+.mini-grid{display:grid;grid-template-columns:repeat(13,1fr);border-radius:8px;overflow:hidden;flex-shrink:0}
+
+/* Glass surface */
+.glass{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.055)}
+
+/* Gradient button */
+.btn-glow{background:linear-gradient(135deg,var(–pink),var(–purple));color:#fff;box-shadow:0 4px 18px rgba(232,97,140,0.25)}
+.btn-glow:active{box-shadow:0 2px 8px rgba(232,97,140,0.2)!important}
+</style>
+
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════════════════
+   RangeStudio PWA — Vanilla JS
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+const RANKS=["A","K","Q","J","T","9","8","7","6","5","4","3","2"];
+const HL=(r,c)=>{if(r===c)return RANKS[r]+RANKS[c];if(r<c)return RANKS[r]+RANKS[c]+"s";return RANKS[c]+RANKS[r]+"o"};
+const HT=(r,c)=>r===c?"pair":r<c?"suited":"offsuit";
+const EG=()=>Array.from({length:13},()=>Array(13).fill(null));
+
+const DEFAULT_ACTIONS=[
+  {id:"raise",color:"#e8618c",label:"Raise"},
+  {id:"call",color:"#5ec69e",label:"Call"},
+  {id:"3bet",color:"#b48af5",label:"3-Bet"},
+  {id:"fold",color:"#6e7191",label:"Fold"},
+  {id:"allin",color:"#eda855",label:"All-In"},
+];
+const PRESET_COLORS=["#e8618c","#f472b6","#f9a8d4","#c084fc","#a78bfa","#818cf8","#60a5fa","#38bdf8","#22d3ee","#34d399","#5ec69e","#a3e635","#facc15","#eda855","#fb923c","#f87171","#6e7191","#d4d4d8"];
+
+const TOP15=new Set(["AA","KK","QQ","JJ","TT","99","88","77","AKs","AQs","AJs","ATs","A9s","A8s","A5s","A4s","A3s","A2s","KQs","KJs","KTs","K9s","QJs","QTs","JTs","T9s","98s","AKo","AQo","AJo","ATo","KQo","KJo","QJo"]);
+const TOP30=new Set([...TOP15,"66","55","44","A7s","A6s","K8s","K7s","Q9s","Q8s","J9s","J8s","T8s","97s","87s","76s","65s","54s","A9o","A8o","KTo","QTo","JTo"]);
+
+const PRESETS=[
+  {label:"Pairs",icon:"♦",fn:(r,c)=>r===c},
+  {label:"Broadway",icon:"♛",fn:(r,c)=>Math.max(r,c)<=4},
+  {label:"Suited Conn.",icon:"↗",fn:(r,c)=>r<c&&c-r===1},
+  {label:"Suited A",icon:"A♠",fn:(r,c)=>r===0&&c>0&&r<c},
+  {label:"Off A",icon:"A♣",fn:(r,c)=>c===0&&r>0},
+  {label:"Top 15%",icon:"⬆",fn:(r,c)=>TOP15.has(HL(r,c))},
+  {label:"Top 30%",icon:"▲",fn:(r,c)=>TOP30.has(HL(r,c))},
+  {label:"All",icon:"■",fn:()=>true},
+  {label:"Clear",icon:"✕",fn:null},
 ];
 
-const PRESET_COLORS = [
-“#e8618c”,”#f472b6”,”#f9a8d4”,”#c084fc”,”#a78bfa”,”#818cf8”,
-“#60a5fa”,”#38bdf8”,”#22d3ee”,”#34d399”,”#5ec69e”,”#a3e635”,
-“#facc15”,”#eda855”,”#fb923c”,”#f87171”,”#6e7191”,”#d4d4d8”,
-];
-
-const EG = () => Array(13).fill(null).map(()=>Array(13).fill(null));
-
-const TOP15 = new Set([“AA”,“KK”,“QQ”,“JJ”,“TT”,“99”,“88”,“77”,“AKs”,“AQs”,“AJs”,“ATs”,“A9s”,“A8s”,“A5s”,“A4s”,“A3s”,“A2s”,“KQs”,“KJs”,“KTs”,“K9s”,“QJs”,“QTs”,“JTs”,“T9s”,“98s”,“AKo”,“AQo”,“AJo”,“ATo”,“KQo”,“KJo”,“QJo”]);
-const TOP30 = new Set([…TOP15,“66”,“55”,“44”,“A7s”,“A6s”,“K8s”,“K7s”,“Q9s”,“Q8s”,“J9s”,“J8s”,“T8s”,“97s”,“87s”,“76s”,“65s”,“54s”,“A9o”,“A8o”,“KTo”,“QTo”,“JTo”]);
-
-const PRESETS = [
-{ label:“Pairs”, icon:“♦”, fn:(r,c)=>r===c },
-{ label:“Broadway”, icon:“♛”, fn:(r,c)=>Math.max(r,c)<=4 },
-{ label:“Suited Conn.”, icon:“↗”, fn:(r,c)=>r<c&&c-r===1 },
-{ label:“Suited A”, icon:“A♠”, fn:(r,c)=>r===0&&c>0&&r<c },
-{ label:“Off A”, icon:“A♣”, fn:(r,c)=>c===0&&r>0 },
-{ label:“Top 15%”, icon:“⬆”, fn:(r,c)=>TOP15.has(HL(r,c)) },
-{ label:“Top 30%”, icon:“▲”, fn:(r,c)=>TOP30.has(HL(r,c)) },
-{ label:“All”, icon:“■”, fn:()=>true },
-{ label:“Clear”, icon:“✕”, fn:null },
-];
-
-const STACKS = [“100bb”,“200bb”];
-
-/* ── CSS Keyframes injected once ── */
-const styleId = “rs-styles”;
-if (typeof document !== “undefined” && !document.getElementById(styleId)) {
-const s = document.createElement(“style”);
-s.id = styleId;
-s.textContent = `@keyframes rs-fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} } @keyframes rs-slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} } @keyframes rs-slideRight { from{opacity:0;transform:translateX(-12px)} to{opacity:1;transform:translateX(0)} } @keyframes rs-scaleIn { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} } @keyframes rs-pop { 0%{transform:scale(1)} 50%{transform:scale(1.15)} 100%{transform:scale(1)} } @keyframes rs-glow { 0%{box-shadow:0 0 0 0 rgba(232,97,140,0.4)} 70%{box-shadow:0 0 0 8px rgba(232,97,140,0)} 100%{box-shadow:0 0 0 0 rgba(232,97,140,0)} } @keyframes rs-barGrow { from{transform:scaleX(0)} to{transform:scaleX(1)} } @keyframes rs-shimmer { from{background-position:-200% 0} to{background-position:200% 0} } @keyframes rs-modalIn { from{opacity:0;transform:scale(0.9) translateY(10px)} to{opacity:1;transform:scale(1) translateY(0)} } @keyframes rs-overlayIn { from{opacity:0} to{opacity:1} } @keyframes rs-cellPop { 0%{transform:scale(1)} 40%{transform:scale(0.85)} 100%{transform:scale(1)} } .rs-cell { transition: background 0.15s, transform 0.15s, box-shadow 0.15s; } .rs-cell:active { transform: scale(0.88) !important; } .rs-row { animation: rs-slideRight 0.3s ease both; } .rs-btn { transition: all 0.2s cubic-bezier(0.4,0,0.2,1); } .rs-btn:active { transform: scale(0.94); } .rs-preset-btn { transition: all 0.15s; } .rs-preset-btn:active { transform: scale(0.9); } .rs-page { animation: rs-fadeIn 0.25s ease both; } .rs-bar-fill { animation: rs-barGrow 0.6s cubic-bezier(0.4,0,0.2,1) both; transform-origin: left; } .rs-shimmer { background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%); background-size: 200% 100%; animation: rs-shimmer 2s infinite; }`;
-document.head.appendChild(s);
-}
-
-export default function RangeStudio() {
-const [grid, setGrid] = useState(EG);
-const [actions, setActions] = useState(DEFAULT_ACTIONS);
-const [activeAction, setActiveAction] = useState(“raise”);
-const [isEraser, setIsEraser] = useState(false);
-const [stackSize, setStackSize] = useState(“100bb”);
-const [view, setView] = useState(“painter”);
-const [folders, setFolders] = useState({name:“Ranges”,children:[],ranges:[]});
-const [currentPath, setCurrentPath] = useState([]);
-const [newName, setNewName] = useState(””);
-const [newFolderName, setNewFolderName] = useState(””);
-const [showNewFolder, setShowNewFolder] = useState(false);
-const [loadedName, setLoadedName] = useState(null);
-const [loadedPath, setLoadedPath] = useState(null);
-const [viewingRange, setViewingRange] = useState(null);
-const [viewingPath, setViewingPath] = useState(null);
-const [editingAction, setEditingAction] = useState(null);
-const [editLabel, setEditLabel] = useState(””);
-const [editColor, setEditColor] = useState(””);
-const [confirmDelete, setConfirmDelete] = useState(null);
-const [flashCells, setFlashCells] = useState(new Set());
-const [toastMsg, setToastMsg] = useState(null);
-const toastTimer = useRef(null);
-
-useEffect(()=>{
-(async()=>{
-try{const r=await window.storage.get(“rs4-folders”);if(r)setFolders(JSON.parse(r.value))}catch{}
-try{const r=await window.storage.get(“rs4-actions”);if(r)setActions(JSON.parse(r.value))}catch{}
-})();
-},[]);
-
-const saveFolders=async f=>{setFolders(f);try{await window.storage.set(“rs4-folders”,JSON.stringify(f))}catch{}};
-const saveActions=async a=>{setActions(a);try{await window.storage.set(“rs4-actions”,JSON.stringify(a))}catch{}};
-const getFolder=useCallback((path=currentPath,root=folders)=>{let n=root;for(const i of path)n=n.children[i];return n},[currentPath,folders]);
-const colorMap={};actions.forEach(a=>{colorMap[a.id]=a.color});
-
-const showToast = (msg) => {
-setToastMsg(msg);
-if(toastTimer.current) clearTimeout(toastTimer.current);
-toastTimer.current = setTimeout(()=>setToastMsg(null), 1800);
+/* ── State ── */
+const S={
+  grid:EG(),
+  actions:JSON.parse(JSON.stringify(DEFAULT_ACTIONS)),
+  activeAction:"raise",
+  isEraser:false,
+  stackSize:"100bb",
+  view:"painter",
+  folders:{name:"Ranges",children:[],ranges:[]},
+  currentPath:[],
+  loadedName:null,
+  loadedPath:null,
+  viewingRange:null,
+  viewingPath:null,
+  newName:"",
+  newFolderName:"",
+  showNewFolder:false,
+  editingAction:null,
+  editLabel:"",
+  editColor:"",
+  confirmDelete:null,
 };
 
-const toggleCell=(r,c)=>{
-setGrid(prev=>{
-const next=prev.map(row=>[…row]);
-if(isEraser) next[r][c]=null;
-else next[r][c]=next[r][c]===activeAction?null:activeAction;
-return next;
-});
-setFlashCells(prev=>{const s=new Set(prev);s.add(`${r}-${c}`);return s});
-setTimeout(()=>setFlashCells(prev=>{const s=new Set(prev);s.delete(`${r}-${c}`);return s}),300);
-};
-
-const applyPreset=(preset)=>{
-if(!preset.fn){setGrid(EG());showToast(“Grid cleared”);return}
-let count=0;
-setGrid(prev=>{
-const next=prev.map(row=>[…row]);
-for(let r=0;r<13;r++)for(let c=0;c<13;c++){
-if(preset.fn(r,c)){next[r][c]=isEraser?null:activeAction;count++}
+/* ── Persistence ── */
+function loadState(){
+  try{const f=localStorage.getItem("rs-pwa-folders");if(f)S.folders=JSON.parse(f)}catch{}
+  try{const a=localStorage.getItem("rs-pwa-actions");if(a)S.actions=JSON.parse(a)}catch{}
 }
-return next;
-});
-showToast(`${preset.label} applied`);
-};
+function saveFolders(){try{localStorage.setItem("rs-pwa-folders",JSON.stringify(S.folders))}catch{}}
+function saveActions(){try{localStorage.setItem("rs-pwa-actions",JSON.stringify(S.actions))}catch{}}
 
-const totalPainted=grid.flat().filter(Boolean).length;
-const pct=((totalPainted/169)*100).toFixed(1);
+/* ── Helpers ── */
+function colorMap(){const m={};S.actions.forEach(a=>{m[a.id]=a.color});return m}
+function getFolder(path,root){path=path||S.currentPath;root=root||S.folders;let n=root;for(const i of path)n=n.children[i];return n}
+function countAll(n){let c=n.ranges.length;n.children.forEach(ch=>{c+=countAll(ch)});return c}
+function cloneGrid(g){return g.map(r=>[...r])}
 
-const saveRange=async(name,path)=>{
-const clone=JSON.parse(JSON.stringify(folders));
-let node=clone;for(const i of path)node=node.children[i];
-const rd={name,grid:JSON.parse(JSON.stringify(grid)),date:new Date().toLocaleDateString(),stackSize,actions:JSON.parse(JSON.stringify(actions))};
-const ex=node.ranges.findIndex(r=>r.name===name);
-if(ex>=0)node.ranges[ex]=rd;else node.ranges.push(rd);
-await saveFolders(clone);
-setLoadedName(name);setLoadedPath([…path]);setView(“painter”);
-showToast(`"${name}" saved`);
-};
-
-const deleteRange=async(path,idx)=>{const clone=JSON.parse(JSON.stringify(folders));let n=clone;for(const i of path)n=n.children[i];n.ranges.splice(idx,1);await saveFolders(clone);setConfirmDelete(null);showToast(“Range deleted”)};
-const createFolder=async name=>{const clone=JSON.parse(JSON.stringify(folders));let n=clone;for(const i of currentPath)n=n.children[i];n.children.push({name,children:[],ranges:[]});await saveFolders(clone);setShowNewFolder(false);setNewFolderName(””);showToast(`"${name}" created`)};
-const deleteFolder=async(path,idx)=>{const clone=JSON.parse(JSON.stringify(folders));let n=clone;for(const i of path)n=n.children[i];n.children.splice(idx,1);await saveFolders(clone);setConfirmDelete(null);showToast(“Folder deleted”)};
-const addAction=async()=>{const newA=[…actions,{id:`a_${Date.now()}`,color:PRESET_COLORS[actions.length%PRESET_COLORS.length],label:`Action ${actions.length+1}`}];await saveActions(newA)};
-const removeAction=async id=>{const newA=actions.filter(a=>a.id!==id);await saveActions(newA);if(activeAction===id)setActiveAction(newA[0]?.id||null);setGrid(p=>p.map(row=>row.map(c=>c===id?null:c)))};
-const updateAction=async(id,label,color)=>{await saveActions(actions.map(a=>a.id===id?{…a,label,color}:a));setEditingAction(null)};
-
-/* ── Tokens ── */
-const P=”#e8618c”,S=”#b48af5”,T1=”#f0e6f6”,T2=”#9a8aad”,T3=”#5e4f6e”,T4=”#3a2f4a”;
-const bgMain=”#0f0b14”;
-const fonts=”‘Avenir Next’,‘SF Pro Display’,-apple-system,system-ui,sans-serif”;
-const B={border:“none”,cursor:“pointer”,fontFamily:“inherit”};
-const G={background:“rgba(255,255,255,0.035)”,border:“1px solid rgba(255,255,255,0.055)”};
-const grad=`linear-gradient(135deg,${P},${S})`;
-
-const MiniGrid=({data,rangeActions,size=48})=>{
-const cm={};(rangeActions||actions).forEach(a=>{cm[a.id]=a.color});
-return(
-<div style={{width:size,height:size,display:“grid”,gridTemplateColumns:“repeat(13,1fr)”,borderRadius:Math.max(6,size/8),overflow:“hidden”,flexShrink:0}}>
-{data.map((row,r)=>row.map((cell,c)=>(
-<div key={`${r}-${c}`} style={{backgroundColor:cell?(cm[cell]||P):“rgba(200,180,220,0.04)”}}/>
-)))}
-</div>
-);
-};
-
-const Header=({left,title,right,sub})=>(
-<div style={{padding:“12px 18px 10px”,display:“flex”,justifyContent:“space-between”,alignItems:“center”,borderBottom:“1px solid rgba(255,255,255,0.04)”,background:“rgba(255,255,255,0.01)”}}>
-<div style={{minWidth:60}}>{left}</div>
-<div style={{textAlign:“center”}}>
-<div style={{fontWeight:700,fontSize:17,color:”#fff”,letterSpacing:”-0.02em”}}>{title}</div>
-{sub&&<div style={{fontSize:11,color:T3,marginTop:1}}>{sub}</div>}
-</div>
-<div style={{minWidth:60,display:“flex”,justifyContent:“flex-end”}}>{right}</div>
-</div>
-);
-
-const Btn=({label,color=P,outline,sm,onClick,disabled,icon,full,glow})=>(
-<button className=“rs-btn” onClick={onClick} disabled={disabled} style={{
-…B,borderRadius:sm?8:12,padding:sm?“5px 12px”:“9px 18px”,fontSize:sm?11:13,fontWeight:600,
-background:outline?“rgba(255,255,255,0.03)”:(glow?grad:color),
-color:outline?(disabled?T4:color):(disabled?”#666”:”#fff”),
-border:outline?`1.5px solid ${disabled?T4+"55":color+"44"}`:“none”,
-opacity:disabled?0.4:1,width:full?“100%”:“auto”,
-boxShadow:glow&&!disabled?`0 4px 20px ${P}33`:“none”,
-…(icon?{display:“flex”,alignItems:“center”,gap:5}:{}),
-}}>{icon&&<span style={{fontSize:sm?13:15}}>{icon}</span>}{label}</button>
-);
-
-/* ── Toast ── */
-const Toast=()=>toastMsg?(
-<div style={{position:“fixed”,bottom:30,left:“50%”,transform:“translateX(-50%)”,zIndex:200,
-animation:“rs-slideUp 0.25s ease”,padding:“10px 22px”,borderRadius:14,
-background:“rgba(30,22,45,0.95)”,border:“1px solid rgba(255,255,255,0.08)”,
-backdropFilter:“blur(12px)”,color:”#fff”,fontSize:13,fontWeight:600,
-boxShadow:“0 8px 30px rgba(0,0,0,0.4)”,pointerEvents:“none”}}>
-{toastMsg}
-</div>
-):null;
-
-const Modal=({children,onClose})=>(
-<div onClick={onClose} style={{position:“fixed”,inset:0,background:“rgba(8,4,12,0.85)”,backdropFilter:“blur(10px)”,zIndex:100,display:“flex”,alignItems:“center”,justifyContent:“center”,padding:20,animation:“rs-overlayIn 0.2s ease”}}>
-<div onClick={e=>e.stopPropagation()} style={{borderRadius:24,padding:24,width:“100%”,maxWidth:360,background:“linear-gradient(160deg,rgba(38,26,52,0.98),rgba(20,14,28,0.98))”,border:“1px solid rgba(255,255,255,0.08)”,boxShadow:“0 24px 60px rgba(0,0,0,0.6)”,animation:“rs-modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1)”}}>
-{children}
-</div>
-</div>
-);
-
-/* ══════════ SETTINGS ══════════ */
-if(view===“settings”){
-return(
-<div className=“rs-page” style={{minHeight:“100vh”,background:bgMain,color:T1,fontFamily:fonts}}>
-<Header left={<Btn label=“← Back” outline sm onClick={()=>setView(“painter”)}/>} title=“Customize Actions” right={<div/>}/>
-<div style={{padding:“16px 18px 8px”}}>
-{actions.map((a,i)=>(
-<div key={a.id} className=“rs-row” style={{…G,borderRadius:14,padding:“12px 14px”,marginBottom:8,display:“flex”,alignItems:“center”,gap:12,animationDelay:`${i*0.05}s`}}>
-<div style={{width:26,height:26,borderRadius:8,background:a.color,flexShrink:0,boxShadow:`0 2px 10px ${a.color}33`}}/>
-<span style={{flex:1,fontSize:14,fontWeight:600}}>{a.label}</span>
-<Btn label=“Edit” outline sm onClick={()=>{setEditingAction(a.id);setEditLabel(a.label);setEditColor(a.color)}}/>
-{actions.length>1&&<Btn label=“✕” color={P} outline sm onClick={()=>removeAction(a.id)}/>}
-</div>
-))}
-{actions.length<8&&<Btn label="+ Add Action" color={S} outline full onClick={addAction}/>}
-</div>
-{editingAction&&(
-<Modal onClose={()=>setEditingAction(null)}>
-<h3 style={{margin:“0 0 14px”,fontSize:17,fontWeight:700,color:”#fff”}}>Edit Action</h3>
-<input value={editLabel} onChange={e=>setEditLabel(e.target.value)} style={{width:“100%”,boxSizing:“border-box”,…G,borderRadius:10,padding:“11px 14px”,color:”#fff”,fontSize:15,outline:“none”,fontFamily:fonts,marginBottom:14}}/>
-<p style={{fontSize:11,color:T2,margin:“0 0 8px”,fontWeight:700,textTransform:“uppercase”,letterSpacing:“0.05em”}}>Color</p>
-<div style={{display:“flex”,flexWrap:“wrap”,gap:7,marginBottom:18}}>
-{PRESET_COLORS.map(c=>(
-<div key={c} onClick={()=>setEditColor(c)} className=“rs-btn” style={{width:30,height:30,borderRadius:9,background:c,cursor:“pointer”,border:editColor===c?“2.5px solid #fff”:“2.5px solid transparent”,boxShadow:editColor===c?`0 0 14px ${c}44`:“none”}}/>
-))}
-</div>
-<div style={{display:“flex”,gap:10}}>
-<Btn label=“Cancel” outline full onClick={()=>setEditingAction(null)}/>
-<Btn label=“Save” glow full onClick={()=>updateAction(editingAction,editLabel,editColor)}/>
-</div>
-</Modal>
-)}
-<Toast/>
-</div>
-);
+let toastTimer=null;
+function showToast(msg){
+  let el=document.getElementById("toast");
+  if(el)el.remove();
+  el=document.createElement("div");el.id="toast";el.className="toast";el.textContent=msg;
+  document.body.appendChild(el);
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{el.className="toast out";setTimeout(()=>el.remove(),250)},1600);
 }
 
-/* ══════════ VIEWER ══════════ */
-if(view===“viewer”&&viewingRange){
-const vr=viewingRange;
-const vcm={};(vr.actions||actions).forEach(a=>{vcm[a.id]=a.color});
-const counts={};vr.grid.flat().forEach(c=>{if(c)counts[c]=(counts[c]||0)+1});
-const vTotal=vr.grid.flat().filter(Boolean).length;
-const vPct=((vTotal/169)*100).toFixed(1);
-return(
-<div className=“rs-page” style={{minHeight:“100vh”,background:bgMain,color:T1,fontFamily:fonts}}>
-<Header left={<Btn label=“←” outline sm onClick={()=>setView(“explorer”)}/>} title={vr.name}
-right={<Btn label=“Edit” icon=“✎” color={P} sm onClick={()=>{
-setGrid(vr.grid);setLoadedName(vr.name);setLoadedPath([…viewingPath]);
-setStackSize(vr.stackSize||“100bb”);
-if(vr.actions){setActions(vr.actions);saveActions(vr.actions)}
-setView(“painter”);
-}}/>}
-/>
-<div style={{padding:“18px 20px 12px”,display:“flex”,alignItems:“baseline”,gap:10,animation:“rs-slideUp 0.3s ease”}}>
-<span style={{fontSize:38,fontWeight:800,color:”#fff”,letterSpacing:”-0.04em”}}>{vPct}%</span>
-<span style={{fontSize:13,color:T2,fontWeight:500}}>{vTotal}/169 combos</span>
-<span style={{marginLeft:“auto”,fontSize:12,color:S,fontWeight:700,background:`${S}14`,padding:“4px 14px”,borderRadius:20,border:`1px solid ${S}22`}}>{vr.stackSize||“100bb”}</span>
-</div>
-<div style={{padding:“0 12px 14px”,display:“flex”,justifyContent:“center”,animation:“rs-scaleIn 0.35s ease”}}>
-<div style={{display:“grid”,gridTemplateColumns:“repeat(13,1fr)”,gap:1.5,width:“100%”,maxWidth:480}}>
-{RANKS.map((*,r)=>RANKS.map((*,c)=>{
-const label=HL(r,c),type=HT(r,c);
-const cc=vr.grid[r][c]?(vcm[vr.grid[r][c]]||P):null;
-return(<div key={`${r}-${c}`} style={{background:cc||(type===“pair”?“rgba(196,166,245,0.10)”:type===“suited”?“rgba(232,97,140,0.05)”:“rgba(255,255,255,0.015)”),borderRadius:3,display:“flex”,alignItems:“center”,justifyContent:“center”,fontSize:“min(2.5vw,10.5px)”,fontWeight:type===“pair”?700:500,color:cc?”#fff”:(type===“pair”?T2:T3),aspectRatio:“1”,letterSpacing:”-0.02em”,textShadow:cc?“0 1px 2px rgba(0,0,0,0.5)”:“none”,boxShadow:cc?`inset 0 -1px 2px rgba(0,0,0,0.12)`:“none”}}>{label}</div>);
-}))}
-</div>
-</div>
-<div style={{padding:“4px 20px 28px”}}>
-<p style={{fontSize:11,fontWeight:700,color:T3,textTransform:“uppercase”,letterSpacing:“0.06em”,margin:“0 0 12px”}}>Breakdown</p>
-{(vr.actions||actions).map((a,ai)=>{
-const cnt=counts[a.id]||0;if(!cnt)return null;const w=(cnt/169)*100;
-return(<div key={a.id} style={{marginBottom:10,animation:“rs-slideRight 0.3s ease both”,animationDelay:`${ai*0.06}s`}}>
-<div style={{display:“flex”,justifyContent:“space-between”,alignItems:“center”,marginBottom:4}}>
-<div style={{display:“flex”,alignItems:“center”,gap:8}}>
-<div style={{width:10,height:10,borderRadius:4,background:a.color,boxShadow:`0 0 6px ${a.color}44`}}/>
-<span style={{fontSize:13,fontWeight:600}}>{a.label}</span>
-</div>
-<span style={{fontSize:12,color:T2,fontWeight:500}}>{cnt} <span style={{color:T3}}>({w.toFixed(1)}%)</span></span>
-</div>
-<div style={{height:6,borderRadius:3,background:“rgba(255,255,255,0.04)”,overflow:“hidden”}}>
-<div className=“rs-bar-fill” style={{height:“100%”,borderRadius:3,width:`${w}%`,background:`linear-gradient(90deg,${a.color},${a.color}cc)`,animationDelay:`${0.2+ai*0.08}s`}}/>
-</div>
-</div>);
-})}
-<div style={{marginTop:16,fontSize:11,color:T4}}>Saved {vr.date}</div>
-</div>
-<Toast/>
-</div>
-);
+/* ── Render Engine ── */
+const $=id=>document.getElementById(id);
+const app=document.getElementById("app");
+
+function h(tag,attrs,...children){
+  const el=document.createElement(tag);
+  if(attrs)for(const[k,v]of Object.entries(attrs)){
+    if(k==="style"&&typeof v==="object"){Object.assign(el.style,v)}
+    else if(k.startsWith("on")){el.addEventListener(k.slice(2).toLowerCase(),v)}
+    else if(k==="className"){el.className=v}
+    else if(k==="innerHTML"){el.innerHTML=v}
+    else el.setAttribute(k,v);
+  }
+  for(const c of children){
+    if(c==null)continue;
+    if(typeof c==="string"||typeof c==="number")el.appendChild(document.createTextNode(c));
+    else if(Array.isArray(c))c.forEach(x=>{if(x)el.appendChild(x)});
+    else el.appendChild(c);
+  }
+  return el;
 }
 
-/* ══════════ PAINTER ══════════ */
-if(view===“painter”){
-return(
-<div className=“rs-page” style={{minHeight:“100vh”,background:bgMain,color:T1,fontFamily:fonts,WebkitUserSelect:“none”,userSelect:“none”,display:“flex”,flexDirection:“column”,overflow:“hidden”}}>
-{/* Top Bar */}
-<div style={{padding:“10px 14px 4px”,display:“flex”,justifyContent:“space-between”,alignItems:“center”}}>
-<div style={{minWidth:0,flex:1}}>
-<div style={{display:“flex”,alignItems:“center”,gap:6}}>
-<span style={{fontSize:17,fontWeight:800,color:”#fff”,letterSpacing:”-0.03em”}}>RangeStudio</span>
-<span style={{fontSize:9,fontWeight:700,color:P,background:`${P}18`,padding:“2px 7px”,borderRadius:5,letterSpacing:“0.02em”}}>♠</span>
-</div>
-<span style={{fontSize:10.5,color:T3}}>{loadedName||“New Range”} · <span style={{color:T2,fontWeight:600}}>{pct}%</span> · {totalPainted} combos</span>
-</div>
-<div style={{display:“flex”,gap:5,flexShrink:0}}>
-<Btn label=“📁” outline sm onClick={()=>{setCurrentPath([]);setView(“explorer”)}}/>
-<Btn label=“Save” glow sm onClick={()=>{setCurrentPath(loadedPath||[]);setNewName(loadedName||””);setView(“saveas”)}}/>
-</div>
-</div>
-
-```
-    {/* Stack + Settings + Clear */}
-    <div style={{padding:"4px 14px 2px",display:"flex",alignItems:"center",gap:6}}>
-      <div style={{...G,borderRadius:20,padding:2,display:"inline-flex"}}>
-        {STACKS.map(s=>(
-          <button key={s} className="rs-btn" onClick={()=>setStackSize(s)}
-            style={{...B,borderRadius:18,padding:"3px 13px",fontSize:10.5,fontWeight:700,
-              background:stackSize===s?`${P}1C`:"transparent",color:stackSize===s?"#fff":T4,
-              border:stackSize===s?`1px solid ${P}33`:"1px solid transparent"}}>{s}</button>
-        ))}
-      </div>
-      <div style={{flex:1}}/>
-      <Btn label="Clear" outline sm color={T2} onClick={()=>{setGrid(EG());setLoadedName(null);setLoadedPath(null);showToast("Cleared")}}/>
-      <Btn label="⚙" outline sm color={T2} onClick={()=>setView("settings")}/>
-    </div>
-
-    {/* Actions */}
-    <div style={{padding:"5px 14px 4px",display:"flex",gap:4,flexWrap:"wrap"}}>
-      {actions.map(a=>{
-        const active=!isEraser&&activeAction===a.id;
-        return(
-          <button key={a.id} className="rs-btn" onClick={()=>{setActiveAction(a.id);setIsEraser(false)}}
-            style={{...B,borderRadius:20,padding:"4px 11px",fontSize:10.5,fontWeight:600,
-              background:active?a.color+"1C":"rgba(255,255,255,0.02)",
-              color:active?a.color:T4,
-              border:active?`1.5px solid ${a.color}44`:"1.5px solid rgba(255,255,255,0.035)",
-              boxShadow:active?`0 0 12px ${a.color}15`:"none"}}>
-            <span style={{display:"inline-block",width:6,height:6,borderRadius:3,background:a.color,marginRight:5,verticalAlign:"middle",boxShadow:active?`0 0 6px ${a.color}66`:"none"}}/>
-            {a.label}
-          </button>
-        );
-      })}
-      <button className="rs-btn" onClick={()=>setIsEraser(true)}
-        style={{...B,borderRadius:20,padding:"4px 11px",fontSize:10.5,fontWeight:600,
-          background:isEraser?"rgba(255,255,255,0.07)":"rgba(255,255,255,0.02)",
-          color:isEraser?"#fff":T4,
-          border:isEraser?"1.5px solid rgba(255,255,255,0.15)":"1.5px solid rgba(255,255,255,0.035)"}}>
-        ✦ Erase
-      </button>
-    </div>
-
-    {/* Grid */}
-    <div style={{padding:"2px 6px 0",display:"flex",justifyContent:"center",flex:"1 0 auto"}}>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(13,1fr)",gap:1.5,width:"100%",maxWidth:480,aspectRatio:"1"}}>
-        {RANKS.map((_,r)=>RANKS.map((_,c)=>{
-          const label=HL(r,c),type=HT(r,c);
-          const cc=grid[r][c]?(colorMap[grid[r][c]]||P):null;
-          const flashing=flashCells.has(`${r}-${c}`);
-          return(
-            <div key={`${r}-${c}`} className="rs-cell" onClick={()=>toggleCell(r,c)}
-              style={{
-                background:cc||(type==="pair"?"rgba(180,138,245,0.09)":type==="suited"?"rgba(232,97,140,0.04)":"rgba(255,255,255,0.015)"),
-                borderRadius:3,display:"flex",alignItems:"center",justifyContent:"center",
-                fontSize:"min(2.5vw,10.5px)",fontWeight:type==="pair"?700:500,
-                color:cc?"#fff":(type==="pair"?T2:T3),
-                cursor:"pointer",aspectRatio:"1",letterSpacing:"-0.02em",
-                textShadow:cc?"0 1px 2px rgba(0,0,0,0.5)":"none",
-                boxShadow:cc?`inset 0 -1px 2px rgba(0,0,0,0.12)`:(flashing?"0 0 8px rgba(232,97,140,0.3)":"none"),
-                animation:flashing?"rs-cellPop 0.25s ease":"none",
-                transform:flashing?"scale(1)":"scale(1)",
-              }}>{label}</div>
-          );
-        }))}
-      </div>
-    </div>
-
-    {/* Presets - always visible, scrollable row */}
-    <div style={{padding:"8px 0 2px",overflow:"visible"}}>
-      <div style={{display:"flex",gap:4,padding:"0 10px",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none",msOverflowStyle:"none"}}>
-        {PRESETS.map((p,i)=>(
-          <button key={i} className="rs-preset-btn" onClick={()=>applyPreset(p)}
-            style={{...B,flexShrink:0,borderRadius:10,padding:"7px 12px",fontSize:10.5,fontWeight:600,
-              display:"flex",alignItems:"center",gap:4,
-              background:p.fn===null?"rgba(232,97,140,0.1)":"rgba(255,255,255,0.03)",
-              color:p.fn===null?P:T2,
-              border:`1px solid ${p.fn===null?P+"33":"rgba(255,255,255,0.05)"}`,
-              whiteSpace:"nowrap"}}>
-            <span style={{fontSize:11,opacity:0.7}}>{p.icon}</span> {p.label}
-          </button>
-        ))}
-      </div>
-    </div>
-
-    {/* Bottom Stats */}
-    <div style={{padding:"6px 14px 18px",display:"flex",justifyContent:"center",gap:12,flexWrap:"wrap"}}>
-      {actions.map(a=>{
-        const cnt=grid.flat().filter(x=>x===a.id).length;
-        if(!cnt)return null;
-        return <span key={a.id} style={{fontSize:10.5,color:a.color,fontWeight:600,opacity:0.85}}>● {a.label} {cnt}</span>;
-      })}
-    </div>
-    <Toast/>
-  </div>
-);
-```
-
+/* ── Components ── */
+function makeBtn(label,opts={}){
+  const{color="var(--pink)",outline,sm,glow,full,icon,onClick,disabled}=opts;
+  const cls=["btn"];
+  if(glow)cls.push("btn-glow");
+  const el=h("button",{className:cls.join(" "),style:{
+    borderRadius:sm?"8px":"12px",padding:sm?"5px 12px":"9px 18px",fontSize:sm?"11px":"13px",fontWeight:"600",
+    background:glow?undefined:(outline?"rgba(255,255,255,0.03)":color),
+    color:outline?color:"#fff",
+    border:outline?`1.5px solid ${color}44`:"none",
+    opacity:disabled?"0.4":"1",width:full?"100%":"auto",
+    display:icon?"flex":"inline-flex",alignItems:"center",gap:"5px",justifyContent:"center",
+  },onClick:disabled?null:onClick});
+  if(icon)el.appendChild(h("span",{style:{fontSize:sm?"13px":"15px"}},icon));
+  el.appendChild(document.createTextNode(label));
+  return el;
 }
 
-/* ══════════ SAVE-AS ══════════ */
-if(view===“saveas”){
-const folder=getFolder(currentPath||[]);
-return(
-<div className=“rs-page” style={{minHeight:“100vh”,background:bgMain,color:T1,fontFamily:fonts}}>
-<Header left={<Btn label=“Cancel” outline sm onClick={()=>setView(“painter”)}/>} title=“Save Range”
-right={<Btn label=“Save” glow sm onClick={()=>{if(newName.trim())saveRange(newName.trim(),currentPath||[])}} disabled={!newName.trim()}/>}/>
-<div style={{padding:“14px 18px”}}>
-<input value={newName} onChange={e=>setNewName(e.target.value)} placeholder=“Range name…” autoFocus
-style={{width:“100%”,boxSizing:“border-box”,…G,borderRadius:12,padding:“13px 16px”,color:”#fff”,fontSize:15,outline:“none”,fontFamily:fonts}}/>
-</div>
-<div style={{padding:“0 18px 8px”,display:“flex”,alignItems:“center”,gap:6}}>
-<span style={{fontSize:11,color:T3,fontWeight:700,textTransform:“uppercase”,letterSpacing:“0.05em”}}>📂 {currentPath.length===0?“Ranges”:getFolder(currentPath).name}</span>
-<span style={{fontSize:11,color:S,fontWeight:600}}>· {stackSize}</span>
-</div>
-{currentPath.length>0&&<div onClick={()=>setCurrentPath(currentPath.slice(0,-1))} className=“rs-btn” style={{padding:“8px 18px”,display:“flex”,alignItems:“center”,gap:6,cursor:“pointer”,color:P,fontSize:13,fontWeight:500}}>← Back</div>}
-{folder.children.map((child,i)=>(
-<div key={i} className=“rs-row” onClick={()=>setCurrentPath([…currentPath,i])} style={{padding:“12px 18px”,display:“flex”,alignItems:“center”,gap:12,cursor:“pointer”,borderBottom:“1px solid rgba(255,255,255,0.025)”,animationDelay:`${i*0.04}s`}}>
-<span style={{fontSize:18,color:S}}>📁</span><span style={{fontSize:14,fontWeight:500,flex:1}}>{child.name}</span><span style={{color:T4,fontSize:16}}>›</span>
-</div>
-))}
-{showNewFolder?(
-<div style={{padding:“10px 18px”,display:“flex”,gap:8,animation:“rs-fadeIn 0.2s ease”}}>
-<input value={newFolderName} onChange={e=>setNewFolderName(e.target.value)} placeholder=“Folder name…” autoFocus
-style={{flex:1,…G,borderRadius:10,padding:“10px 14px”,color:”#fff”,fontSize:14,outline:“none”,fontFamily:fonts}}/>
-<Btn label=“Add” glow sm onClick={()=>{if(newFolderName.trim())createFolder(newFolderName.trim())}}/>
-</div>
-):(
-<div onClick={()=>setShowNewFolder(true)} className=“rs-btn” style={{padding:“12px 18px”,display:“flex”,alignItems:“center”,gap:6,cursor:“pointer”,color:S,fontSize:13,fontWeight:500}}>
-<span style={{fontSize:15}}>+</span> New Folder
-</div>
-)}
-<Toast/>
-</div>
-);
+function makeHeader(left,title,right,sub){
+  const center=h("div",{style:{textAlign:"center"}},
+    h("div",{style:{fontWeight:"700",fontSize:"17px",color:"#fff",letterSpacing:"-0.02em"}},title),
+  );
+  if(sub)center.appendChild(h("div",{style:{fontSize:"11px",color:"var(--text3)",marginTop:"1px"}},sub));
+  return h("div",{style:{padding:"12px 18px 10px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"1px solid rgba(255,255,255,0.04)",background:"rgba(255,255,255,0.01)"}},
+    h("div",{style:{minWidth:"60px"}},left),center,h("div",{style:{minWidth:"60px",display:"flex",justifyContent:"flex-end"}},right)
+  );
 }
 
-/* ══════════ EXPLORER ══════════ */
-const folder=getFolder();
-const totalRanges=(function countR(n){let c=n.ranges.length;n.children.forEach(ch=>{c+=countR(ch)});return c})(folders);
-return(
-<div className=“rs-page” style={{minHeight:“100vh”,background:bgMain,color:T1,fontFamily:fonts}}>
-<Header left={<Btn label=“Done” color={P} outline sm onClick={()=>setView(“painter”)}/>}
-title={currentPath.length===0?“RangeStudio”:folder.name}
-sub={currentPath.length===0?`${totalRanges} range${totalRanges!==1?"s":""} saved`:null}
-right={<div/>}/>
+function makeMiniGrid(data,rangeActions,size){
+  size=size||48;
+  const cm={};(rangeActions||S.actions).forEach(a=>{cm[a.id]=a.color});
+  const el=h("div",{className:"mini-grid",style:{width:size+"px",height:size+"px"}});
+  for(let r=0;r<13;r++)for(let c=0;c<13;c++){
+    const cell=data[r][c];
+    el.appendChild(h("div",{style:{backgroundColor:cell?(cm[cell]||"#e8618c"):"rgba(200,180,220,0.04)"}}));
+  }
+  return el;
+}
 
-```
-  {currentPath.length>0&&(
-    <div onClick={()=>setCurrentPath(currentPath.slice(0,-1))} className="rs-btn" style={{padding:"8px 18px",display:"flex",alignItems:"center",gap:6,cursor:"pointer",color:P,fontSize:13,fontWeight:500}}>← Back</div>
-  )}
+function makeRangeGrid(data,rangeActions,editable){
+  const cm={};(rangeActions||S.actions).forEach(a=>{cm[a.id]=a.color});
+  const wrap=h("div",{className:"grid-wrap"});
+  for(let r=0;r<13;r++)for(let c=0;c<13;c++){
+    const label=HL(r,c),type=HT(r,c);
+    const cv=data[r][c],cc=cv?(cm[cv]||"#e8618c"):null;
+    const cell=h("div",{className:"cell",style:{
+      background:cc||(type==="pair"?"rgba(180,138,245,0.09)":type==="suited"?"rgba(232,97,140,0.04)":"rgba(255,255,255,0.015)"),
+      fontWeight:type==="pair"?"700":"500",
+      color:cc?"#fff":(type==="pair"?"var(--text2)":"var(--text3)"),
+      textShadow:cc?"0 1px 2px rgba(0,0,0,0.5)":"none",
+      boxShadow:cc?"inset 0 -1px 2px rgba(0,0,0,0.12)":"none",
+    },"data-r":r,"data-c":c},label);
+    if(editable){
+      cell.addEventListener("click",()=>{
+        if(S.isEraser)S.grid[r][c]=null;
+        else S.grid[r][c]=S.grid[r][c]===S.activeAction?null:S.activeAction;
+        cell.classList.remove("flash");void cell.offsetWidth;cell.classList.add("flash");
+        const nv=S.grid[r][c],nc=nv?(colorMap()[nv]||"#e8618c"):null;
+        cell.style.background=nc||(type==="pair"?"rgba(180,138,245,0.09)":type==="suited"?"rgba(232,97,140,0.04)":"rgba(255,255,255,0.015)");
+        cell.style.color=nc?"#fff":(type==="pair"?"var(--text2)":"var(--text3)");
+        cell.style.textShadow=nc?"0 1px 2px rgba(0,0,0,0.5)":"none";
+        cell.style.boxShadow=nc?"inset 0 -1px 2px rgba(0,0,0,0.12)":"none";
+        updateStats();
+      });
+    }
+    wrap.appendChild(cell);
+  }
+  return wrap;
+}
 
-  {/* Folders */}
-  {folder.children.map((child,i)=>(
-    <div key={`f-${i}`} className="rs-row" style={{padding:"12px 18px",display:"flex",alignItems:"center",gap:12,borderBottom:"1px solid rgba(255,255,255,0.025)",animationDelay:`${i*0.04}s`}}>
-      <div onClick={()=>setCurrentPath([...currentPath,i])} className="rs-btn" style={{display:"flex",alignItems:"center",gap:12,flex:1,cursor:"pointer"}}>
-        <div style={{width:42,height:42,borderRadius:12,background:`${S}12`,border:`1px solid ${S}22`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20}}>📁</div>
-        <div>
-          <div style={{fontSize:14,fontWeight:600}}>{child.name}</div>
-          <div style={{fontSize:11,color:T3}}>{child.ranges.length} range{child.ranges.length!==1?"s":""} · {child.children.length} folder{child.children.length!==1?"s":""}</div>
-        </div>
-      </div>
-      <Btn label="✕" color={P} outline sm onClick={(e)=>{e.stopPropagation();setConfirmDelete({type:"folder",path:currentPath,idx:i,name:child.name})}}/>
-    </div>
-  ))}
+function makeModal(children,onClose){
+  const overlay=h("div",{className:"modal-overlay",style:{position:"fixed",inset:"0",background:"rgba(8,4,12,0.85)",backdropFilter:"blur(10px)",zIndex:"100",display:"flex",alignItems:"center",justifyContent:"center",padding:"20px"},onClick:onClose});
+  const box=h("div",{className:"modal-box",style:{borderRadius:"24px",padding:"24px",width:"100%",maxWidth:"360px",background:"linear-gradient(160deg,rgba(38,26,52,0.98),rgba(20,14,28,0.98))",border:"1px solid rgba(255,255,255,0.08)",boxShadow:"0 24px 60px rgba(0,0,0,0.6)"},onClick:e=>e.stopPropagation()});
+  if(Array.isArray(children))children.forEach(c=>{if(c)box.appendChild(c)});
+  else if(children)box.appendChild(children);
+  overlay.appendChild(box);
+  return overlay;
+}
 
-  {/* Ranges */}
-  {folder.ranges.map((range,i)=>{
+/* stats label ref */
+let statsEl=null;
+function updateStats(){
+  if(!statsEl)return;
+  const total=S.grid.flat().filter(Boolean).length;
+  const pct=((total/169)*100).toFixed(1);
+  const infoEl=document.getElementById("painter-info");
+  if(infoEl)infoEl.textContent=`${S.loadedName||"New Range"} · ${pct}% · ${total} combos`;
+  // Bottom stats
+  const cm=colorMap();
+  const counts={};S.grid.flat().forEach(c=>{if(c)counts[c]=(counts[c]||0)+1});
+  statsEl.innerHTML="";
+  S.actions.forEach(a=>{
+    const cnt=counts[a.id]||0;if(!cnt)return;
+    statsEl.appendChild(h("span",{style:{fontSize:"10.5px",color:a.color,fontWeight:"600",opacity:"0.85"}},"● "+a.label+" "+cnt));
+  });
+}
+
+/* ══════════ VIEWS ══════════ */
+
+function renderPainter(){
+  const cm=colorMap();
+  const total=S.grid.flat().filter(Boolean).length;
+  const pct=((total/169)*100).toFixed(1);
+
+  const page=h("div",{className:"page",style:{minHeight:"100vh",minHeight:"100dvh",display:"flex",flexDirection:"column",WebkitUserSelect:"none",userSelect:"none"}});
+
+  /* Top bar */
+  const top=h("div",{style:{padding:"10px 14px 4px",display:"flex",justifyContent:"space-between",alignItems:"center"}});
+  const left=h("div",{style:{minWidth:"0",flex:"1"}});
+  const brand=h("div",{style:{display:"flex",alignItems:"center",gap:"6px"}},
+    h("span",{style:{fontSize:"17px",fontWeight:"800",color:"#fff",letterSpacing:"-0.03em"}},"RangeStudio"),
+    h("span",{style:{fontSize:"9px",fontWeight:"700",color:"var(--pink)",background:"rgba(232,97,140,0.12)",padding:"2px 7px",borderRadius:"5px"}},"♠"),
+  );
+  left.appendChild(brand);
+  const info=h("span",{id:"painter-info",style:{fontSize:"10.5px",color:"var(--text3)",display:"block",marginTop:"1px"}},
+    `${S.loadedName||"New Range"} · ${pct}% · ${total} combos`
+  );
+  left.appendChild(info);
+  top.appendChild(left);
+
+  const btns=h("div",{style:{display:"flex",gap:"5px",flexShrink:"0"}});
+  btns.appendChild(makeBtn("📁",{outline:true,sm:true,onClick:()=>{S.currentPath=[];S.view="explorer";render()}}));
+  btns.appendChild(makeBtn("Save",{glow:true,sm:true,onClick:()=>{S.currentPath=S.loadedPath?[...S.loadedPath]:[];S.newName=S.loadedName||"";S.view="saveas";render()}}));
+  top.appendChild(btns);
+  page.appendChild(top);
+
+  /* Stack + Settings + Clear */
+  const row2=h("div",{style:{padding:"4px 14px 2px",display:"flex",alignItems:"center",gap:"6px"}});
+  const stackWrap=h("div",{className:"glass",style:{borderRadius:"20px",padding:"2px",display:"inline-flex"}});
+  ["100bb","200bb"].forEach(s=>{
+    const active=S.stackSize===s;
+    stackWrap.appendChild(h("button",{className:"btn",style:{
+      borderRadius:"18px",padding:"3px 13px",fontSize:"10.5px",fontWeight:"700",
+      background:active?"rgba(232,97,140,0.11)":"transparent",
+      color:active?"#fff":"var(--text4)",border:active?"1px solid rgba(232,97,140,0.2)":"1px solid transparent",
+    },onClick:()=>{S.stackSize=s;render()}},s));
+  });
+  row2.appendChild(stackWrap);
+  row2.appendChild(h("div",{style:{flex:"1"}}));
+  row2.appendChild(makeBtn("Clear",{outline:true,sm:true,color:"var(--text2)",onClick:()=>{S.grid=EG();S.loadedName=null;S.loadedPath=null;showToast("Cleared");render()}}));
+  row2.appendChild(makeBtn("⚙",{outline:true,sm:true,color:"var(--text2)",onClick:()=>{S.view="settings";render()}}));
+  page.appendChild(row2);
+
+  /* Actions */
+  const actRow=h("div",{style:{padding:"5px 14px 4px",display:"flex",gap:"4px",flexWrap:"wrap"}});
+  S.actions.forEach(a=>{
+    const active=!S.isEraser&&S.activeAction===a.id;
+    const btn=h("button",{className:"btn",style:{
+      borderRadius:"20px",padding:"4px 11px",fontSize:"10.5px",fontWeight:"600",
+      background:active?a.color+"1C":"rgba(255,255,255,0.02)",
+      color:active?a.color:"var(--text4)",
+      border:active?`1.5px solid ${a.color}44`:"1.5px solid rgba(255,255,255,0.035)",
+      boxShadow:active?`0 0 12px ${a.color}15`:"none",
+    },onClick:()=>{S.activeAction=a.id;S.isEraser=false;render()}});
+    btn.appendChild(h("span",{style:{display:"inline-block",width:"6px",height:"6px",borderRadius:"3px",background:a.color,marginRight:"5px",verticalAlign:"middle",boxShadow:active?`0 0 6px ${a.color}66`:"none"}}));
+    btn.appendChild(document.createTextNode(a.label));
+    actRow.appendChild(btn);
+  });
+  const eraserBtn=h("button",{className:"btn",style:{
+    borderRadius:"20px",padding:"4px 11px",fontSize:"10.5px",fontWeight:"600",
+    background:S.isEraser?"rgba(255,255,255,0.07)":"rgba(255,255,255,0.02)",
+    color:S.isEraser?"#fff":"var(--text4)",
+    border:S.isEraser?"1.5px solid rgba(255,255,255,0.15)":"1.5px solid rgba(255,255,255,0.035)",
+  },onClick:()=>{S.isEraser=true;render()}},"✦ Erase");
+  actRow.appendChild(eraserBtn);
+  page.appendChild(actRow);
+
+  /* Grid */
+  const gridContainer=h("div",{style:{padding:"2px 6px 0",display:"flex",justifyContent:"center",flex:"1 0 auto",alignItems:"flex-start"}});
+  gridContainer.appendChild(makeRangeGrid(S.grid,null,true));
+  page.appendChild(gridContainer);
+
+  /* Presets - always visible strip */
+  const presetWrap=h("div",{style:{padding:"8px 0 2px"}});
+  const strip=h("div",{className:"preset-strip"});
+  PRESETS.forEach(p=>{
+    const isClear=p.fn===null;
+    const btn=h("button",{className:"btn preset-btn",style:{
+      borderRadius:"10px",padding:"7px 12px",fontSize:"10.5px",fontWeight:"600",
+      display:"flex",alignItems:"center",gap:"4px",
+      background:isClear?"rgba(232,97,140,0.1)":"rgba(255,255,255,0.03)",
+      color:isClear?"var(--pink)":"var(--text2)",
+      border:`1px solid ${isClear?"rgba(232,97,140,0.2)":"rgba(255,255,255,0.05)"}`,
+    },onClick:()=>{
+      if(!p.fn){S.grid=EG();showToast("Grid cleared");render();return}
+      for(let r=0;r<13;r++)for(let c=0;c<13;c++){
+        if(p.fn(r,c))S.grid[r][c]=S.isEraser?null:S.activeAction;
+      }
+      showToast(p.label+" applied");render();
+    }});
+    btn.appendChild(h("span",{style:{fontSize:"11px",opacity:"0.7"}},p.icon));
+    btn.appendChild(document.createTextNode(" "+p.label));
+    strip.appendChild(btn);
+  });
+  presetWrap.appendChild(strip);
+  page.appendChild(presetWrap);
+
+  /* Bottom stats */
+  statsEl=h("div",{style:{padding:"6px 14px 18px",display:"flex",justifyContent:"center",gap:"12px",flexWrap:"wrap"}});
+  const counts={};S.grid.flat().forEach(c=>{if(c)counts[c]=(counts[c]||0)+1});
+  S.actions.forEach(a=>{
+    const cnt=counts[a.id]||0;if(!cnt)return;
+    statsEl.appendChild(h("span",{style:{fontSize:"10.5px",color:a.color,fontWeight:"600",opacity:"0.85"}},"● "+a.label+" "+cnt));
+  });
+  page.appendChild(statsEl);
+  return page;
+}
+
+function renderExplorer(){
+  const folder=getFolder();
+  const totalR=countAll(S.folders);
+  const page=h("div",{className:"page",style:{minHeight:"100vh",minHeight:"100dvh"}});
+
+  page.appendChild(makeHeader(
+    makeBtn("Done",{color:"var(--pink)",outline:true,sm:true,onClick:()=>{S.view="painter";render()}}),
+    S.currentPath.length===0?"RangeStudio":folder.name,
+    h("div"),
+    S.currentPath.length===0?`${totalR} range${totalR!==1?"s":""} saved`:null
+  ));
+
+  if(S.currentPath.length>0){
+    const back=h("div",{className:"btn",style:{padding:"8px 18px",display:"flex",alignItems:"center",gap:"6px",cursor:"pointer",color:"var(--pink)",fontSize:"13px",fontWeight:"500"},onClick:()=>{S.currentPath.pop();render()}},"← Back");
+    page.appendChild(back);
+  }
+
+  /* Folders */
+  folder.children.forEach((child,i)=>{
+    const row=h("div",{className:"row-anim",style:{padding:"12px 18px",display:"flex",alignItems:"center",gap:"12px",borderBottom:"1px solid rgba(255,255,255,0.025)",animationDelay:i*0.04+"s"}});
+    const clickArea=h("div",{className:"btn",style:{display:"flex",alignItems:"center",gap:"12px",flex:"1",cursor:"pointer"},onClick:()=>{S.currentPath.push(i);render()}});
+    clickArea.appendChild(h("div",{style:{width:"42px",height:"42px",borderRadius:"12px",background:"rgba(180,138,245,0.07)",border:"1px solid rgba(180,138,245,0.13)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"20px",flexShrink:"0"}},"📁"));
+    const info=h("div");
+    info.appendChild(h("div",{style:{fontSize:"14px",fontWeight:"600"}},child.name));
+    info.appendChild(h("div",{style:{fontSize:"11px",color:"var(--text3)"}},`${child.ranges.length} range${child.ranges.length!==1?"s":""} · ${child.children.length} folder${child.children.length!==1?"s":""}`));
+    clickArea.appendChild(info);
+    row.appendChild(clickArea);
+    row.appendChild(makeBtn("✕",{color:"var(--pink)",outline:true,sm:true,onClick:()=>{S.confirmDelete={type:"folder",path:[...S.currentPath],idx:i,name:child.name};render()}}));
+    page.appendChild(row);
+  });
+
+  /* Ranges */
+  folder.ranges.forEach((range,i)=>{
     const cnt=range.grid.flat().filter(Boolean).length;
     const rPct=((cnt/169)*100).toFixed(1);
-    return(
-      <div key={`r-${i}`} className="rs-row rs-shimmer" style={{padding:"12px 18px",borderBottom:"1px solid rgba(255,255,255,0.025)",display:"flex",alignItems:"center",gap:12,animationDelay:`${(folder.children.length+i)*0.04}s`}}>
-        <div onClick={()=>{setViewingRange(range);setViewingPath([...currentPath]);setView("viewer")}} className="rs-btn" style={{display:"flex",alignItems:"center",gap:12,flex:1,cursor:"pointer"}}>
-          <MiniGrid data={range.grid} rangeActions={range.actions} size={50}/>
-          <div style={{minWidth:0}}>
-            <div style={{fontSize:14,fontWeight:600,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{range.name}</div>
-            <div style={{fontSize:11,color:T3,marginTop:2}}>{rPct}% · {cnt} combos · {range.stackSize||"100bb"}</div>
-            <div style={{fontSize:10,color:T4,marginTop:1}}>{range.date}</div>
-          </div>
-        </div>
-        <div style={{display:"flex",gap:4,flexShrink:0}}>
-          <Btn label="👁" outline sm color={T2} onClick={()=>{setViewingRange(range);setViewingPath([...currentPath]);setView("viewer")}}/>
-          <Btn label="✎" outline sm color={S} onClick={()=>{
-            setGrid(range.grid);setLoadedName(range.name);setLoadedPath([...currentPath]);
-            setStackSize(range.stackSize||"100bb");
-            if(range.actions){setActions(range.actions);saveActions(range.actions)}
-            setView("painter");
-          }}/>
-          <Btn label="✕" outline sm color={P} onClick={(e)=>{e.stopPropagation();setConfirmDelete({type:"range",path:currentPath,idx:i,name:range.name})}}/>
-        </div>
-      </div>
-    );
-  })}
+    const row=h("div",{className:"row-anim shimmer-row",style:{padding:"12px 18px",borderBottom:"1px solid rgba(255,255,255,0.025)",display:"flex",alignItems:"center",gap:"12px",animationDelay:(folder.children.length+i)*0.04+"s"}});
 
-  {folder.children.length===0&&folder.ranges.length===0&&(
-    <div style={{padding:"50px 20px",textAlign:"center",animation:"rs-fadeIn 0.4s ease"}}>
-      <div style={{fontSize:48,marginBottom:12,opacity:0.4}}>♠</div>
-      <div style={{color:T2,fontSize:15,fontWeight:600}}>No ranges yet</div>
-      <div style={{color:T3,fontSize:13,marginTop:6}}>Paint a range and save it here</div>
-    </div>
-  )}
+    const clickArea=h("div",{className:"btn",style:{display:"flex",alignItems:"center",gap:"12px",flex:"1",cursor:"pointer"},onClick:()=>{S.viewingRange=range;S.viewingPath=[...S.currentPath];S.view="viewer";render()}});
+    clickArea.appendChild(makeMiniGrid(range.grid,range.actions,50));
+    const info=h("div",{style:{minWidth:"0"}});
+    info.appendChild(h("div",{style:{fontSize:"14px",fontWeight:"600",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}},range.name));
+    info.appendChild(h("div",{style:{fontSize:"11px",color:"var(--text3)",marginTop:"2px"}},`${rPct}% · ${cnt} combos · ${range.stackSize||"100bb"}`));
+    info.appendChild(h("div",{style:{fontSize:"10px",color:"var(--text4)",marginTop:"1px"}},range.date));
+    clickArea.appendChild(info);
+    row.appendChild(clickArea);
 
-  <div style={{padding:"14px 18px",borderTop:"1px solid rgba(255,255,255,0.025)",marginTop:4}}>
-    {showNewFolder?(
-      <div style={{display:"flex",gap:8,animation:"rs-fadeIn 0.2s ease"}}>
-        <input value={newFolderName} onChange={e=>setNewFolderName(e.target.value)} placeholder="Folder name..." autoFocus
-          style={{flex:1,...G,borderRadius:10,padding:"11px 14px",color:"#fff",fontSize:14,outline:"none",fontFamily:fonts}}/>
-        <Btn label="Create" glow sm onClick={()=>{if(newFolderName.trim())createFolder(newFolderName.trim())}}/>
-        <Btn label="✕" outline sm color={T2} onClick={()=>{setShowNewFolder(false);setNewFolderName("")}}/>
-      </div>
-    ):(
-      <Btn label="+ New Folder" color={S} outline full onClick={()=>setShowNewFolder(true)}/>
-    )}
-  </div>
+    const btnGroup=h("div",{style:{display:"flex",gap:"4px",flexShrink:"0"}});
+    btnGroup.appendChild(makeBtn("👁",{outline:true,sm:true,color:"var(--text2)",onClick:()=>{S.viewingRange=range;S.viewingPath=[...S.currentPath];S.view="viewer";render()}}));
+    btnGroup.appendChild(makeBtn("✎",{outline:true,sm:true,color:"var(--purple)",onClick:()=>{
+      S.grid=cloneGrid(range.grid);S.loadedName=range.name;S.loadedPath=[...S.currentPath];
+      S.stackSize=range.stackSize||"100bb";
+      if(range.actions){S.actions=JSON.parse(JSON.stringify(range.actions));saveActions()}
+      S.view="painter";render();
+    }}));
+    btnGroup.appendChild(makeBtn("✕",{outline:true,sm:true,color:"var(--pink)",onClick:()=>{S.confirmDelete={type:"range",path:[...S.currentPath],idx:i,name:range.name};render()}}));
+    row.appendChild(btnGroup);
+    page.appendChild(row);
+  });
 
-  {confirmDelete&&(
-    <Modal onClose={()=>setConfirmDelete(null)}>
-      <h3 style={{margin:"0 0 8px",fontSize:17,fontWeight:700,color:"#fff"}}>Delete {confirmDelete.type}?</h3>
-      <p style={{fontSize:14,color:T2,margin:"0 0 20px",lineHeight:1.5}}>
-        "<strong style={{color:T1}}>{confirmDelete.name}</strong>" will be permanently removed.
-      </p>
-      <div style={{display:"flex",gap:10}}>
-        <Btn label="Cancel" outline full onClick={()=>setConfirmDelete(null)}/>
-        <Btn label="Delete" color={P} full onClick={()=>confirmDelete.type==="folder"?deleteFolder(confirmDelete.path,confirmDelete.idx):deleteRange(confirmDelete.path,confirmDelete.idx)}/>
-      </div>
-    </Modal>
-  )}
-  <Toast/>
-</div>
-```
+  /* Empty */
+  if(!folder.children.length&&!folder.ranges.length){
+    const empty=h("div",{style:{padding:"50px 20px",textAlign:"center",animation:"fadeIn 0.4s ease"}});
+    empty.appendChild(h("div",{style:{fontSize:"48px",marginBottom:"12px",opacity:"0.4"}},"♠"));
+    empty.appendChild(h("div",{style:{color:"var(--text2)",fontSize:"15px",fontWeight:"600"}},"No ranges yet"));
+    empty.appendChild(h("div",{style:{color:"var(--text3)",fontSize:"13px",marginTop:"6px"}},"Paint a range and save it here"));
+    page.appendChild(empty);
+  }
 
-);
+  /* New Folder */
+  const footerWrap=h("div",{style:{padding:"14px 18px",borderTop:"1px solid rgba(255,255,255,0.025)",marginTop:"4px"}});
+  if(S.showNewFolder){
+    const row=h("div",{style:{display:"flex",gap:"8px",animation:"fadeIn 0.2s ease"}});
+    const inp=h("input",{className:"glass",style:{flex:"1",borderRadius:"10px",padding:"11px 14px",color:"#fff",fontSize:"14px",outline:"none"},placeholder:"Folder name..."});
+    inp.value=S.newFolderName;
+    inp.addEventListener("input",e=>{S.newFolderName=e.target.value});
+    row.appendChild(inp);
+    row.appendChild(makeBtn("Create",{glow:true,sm:true,onClick:()=>{
+      if(!S.newFolderName.trim())return;
+      getFolder().children.push({name:S.newFolderName.trim(),children:[],ranges:[]});
+      saveFolders();S.showNewFolder=false;S.newFolderName="";showToast("Folder created");render();
+    }}));
+    row.appendChild(makeBtn("✕",{outline:true,sm:true,color:"var(--text2)",onClick:()=>{S.showNewFolder=false;S.newFolderName="";render()}}));
+    footerWrap.appendChild(row);
+    setTimeout(()=>inp.focus(),50);
+  }else{
+    footerWrap.appendChild(makeBtn("+ New Folder",{color:"var(--purple)",outline:true,full:true,onClick:()=>{S.showNewFolder=true;render()}}));
+  }
+  page.appendChild(footerWrap);
+
+  /* Delete modal */
+  if(S.confirmDelete){
+    const d=S.confirmDelete;
+    page.appendChild(makeModal(h("div",null,
+      h("h3",{style:{margin:"0 0 8px",fontSize:"17px",fontWeight:"700",color:"#fff"}},`Delete ${d.type}?`),
+      h("p",{style:{fontSize:"14px",color:"var(--text2)",margin:"0 0 20px",lineHeight:"1.5"},innerHTML:`"<strong style="color:var(--text)">${d.name}</strong>" will be permanently removed.`}),
+      h("div",{style:{display:"flex",gap:"10px"}},
+        makeBtn("Cancel",{outline:true,full:true,onClick:()=>{S.confirmDelete=null;render()}}),
+        makeBtn("Delete",{color:"var(--pink)",full:true,onClick:()=>{
+          const clone=JSON.parse(JSON.stringify(S.folders));
+          let n=clone;for(const i of d.path)n=n.children[i];
+          if(d.type==="folder")n.children.splice(d.idx,1);else n.ranges.splice(d.idx,1);
+          S.folders=clone;saveFolders();S.confirmDelete=null;showToast(d.type+" deleted");render();
+        }}),
+      )
+    ),()=>{S.confirmDelete=null;render()}));
+  }
+  return page;
 }
+
+function renderSaveAs(){
+  const folder=getFolder(S.currentPath);
+  const page=h("div",{className:"page",style:{minHeight:"100vh",minHeight:"100dvh"}});
+
+  page.appendChild(makeHeader(
+    makeBtn("Cancel",{outline:true,sm:true,onClick:()=>{S.view="painter";render()}}),
+    "Save Range",
+    makeBtn("Save",{glow:true,sm:true,disabled:!S.newName.trim(),onClick:()=>{
+      if(!S.newName.trim())return;
+      const name=S.newName.trim();
+      const clone=JSON.parse(JSON.stringify(S.folders));
+      let node=clone;for(const i of S.currentPath)node=node.children[i];
+      const rd={name,grid:cloneGrid(S.grid),date:new Date().toLocaleDateString(),stackSize:S.stackSize,actions:JSON.parse(JSON.stringify(S.actions))};
+      const ex=node.ranges.findIndex(r=>r.name===name);
+      if(ex>=0)node.ranges[ex]=rd;else node.ranges.push(rd);
+      S.folders=clone;saveFolders();S.loadedName=name;S.loadedPath=[...S.currentPath];S.view="painter";showToast(`"${name}" saved`);render();
+    }})
+  ));
+
+  const inpWrap=h("div",{style:{padding:"14px 18px"}});
+  const inp=h("input",{className:"glass",style:{width:"100%",borderRadius:"12px",padding:"13px 16px",color:"#fff",fontSize:"15px",outline:"none"},placeholder:"Range name..."});
+  inp.value=S.newName;
+  inp.addEventListener("input",e=>{S.newName=e.target.value});
+  inpWrap.appendChild(inp);
+  page.appendChild(inpWrap);
+  setTimeout(()=>inp.focus(),50);
+
+  page.appendChild(h("div",{style:{padding:"0 18px 8px",display:"flex",alignItems:"center",gap:"6px"}},
+    h("span",{style:{fontSize:"11px",color:"var(--text3)",fontWeight:"700",textTransform:"uppercase",letterSpacing:"0.05em"}},"📂 "+(S.currentPath.length===0?"Ranges":getFolder(S.currentPath).name)),
+    h("span",{style:{fontSize:"11px",color:"var(--purple)",fontWeight:"600"}},"· "+S.stackSize),
+  ));
+
+  if(S.currentPath.length>0){
+    page.appendChild(h("div",{className:"btn",style:{padding:"8px 18px",display:"flex",alignItems:"center",gap:"6px",cursor:"pointer",color:"var(--pink)",fontSize:"13px",fontWeight:"500"},onClick:()=>{S.currentPath.pop();render()}},"← Back"));
+  }
+
+  folder.children.forEach((child,i)=>{
+    const row=h("div",{className:"row-anim btn",style:{padding:"12px 18px",display:"flex",alignItems:"center",gap:"12px",cursor:"pointer",borderBottom:"1px solid rgba(255,255,255,0.025)",animationDelay:i*0.04+"s"},onClick:()=>{S.currentPath.push(i);render()}});
+    row.appendChild(h("span",{style:{fontSize:"18px",color:"var(--purple)"}},"📁"));
+    row.appendChild(h("span",{style:{fontSize:"14px",fontWeight:"500",flex:"1"}},child.name));
+    row.appendChild(h("span",{style:{color:"var(--text4)",fontSize:"16px"}},"›"));
+    page.appendChild(row);
+  });
+
+  if(S.showNewFolder){
+    const row=h("div",{style:{padding:"10px 18px",display:"flex",gap:"8px",animation:"fadeIn 0.2s ease"}});
+    const fInp=h("input",{className:"glass",style:{flex:"1",borderRadius:"10px",padding:"10px 14px",color:"#fff",fontSize:"14px",outline:"none"},placeholder:"Folder name..."});
+    fInp.value=S.newFolderName;
+    fInp.addEventListener("input",e=>{S.newFolderName=e.target.value});
+    row.appendChild(fInp);
+    row.appendChild(makeBtn("Add",{glow:true,sm:true,onClick:()=>{
+      if(!S.newFolderName.trim())return;
+      getFolder().children.push({name:S.newFolderName.trim(),children:[],ranges:[]});
+      saveFolders();S.showNewFolder=false;S.newFolderName="";showToast("Folder created");render();
+    }}));
+    page.appendChild(row);
+    setTimeout(()=>fInp.focus(),50);
+  }else{
+    page.appendChild(h("div",{className:"btn",style:{padding:"12px 18px",display:"flex",alignItems:"center",gap:"6px",cursor:"pointer",color:"var(--purple)",fontSize:"13px",fontWeight:"500"},onClick:()=>{S.showNewFolder=true;render()}},
+      h("span",{style:{fontSize:"15px"}},"+")," New Folder"
+    ));
+  }
+  return page;
+}
+
+function renderViewer(){
+  const vr=S.viewingRange;if(!vr)return renderExplorer();
+  const cm={};(vr.actions||S.actions).forEach(a=>{cm[a.id]=a.color});
+  const counts={};vr.grid.flat().forEach(c=>{if(c)counts[c]=(counts[c]||0)+1});
+  const vTotal=vr.grid.flat().filter(Boolean).length;
+  const vPct=((vTotal/169)*100).toFixed(1);
+
+  const page=h("div",{className:"page",style:{minHeight:"100vh",minHeight:"100dvh"}});
+
+  page.appendChild(makeHeader(
+    makeBtn("←",{outline:true,sm:true,onClick:()=>{S.view="explorer";render()}}),
+    vr.name,
+    makeBtn("Edit",{color:"var(--pink)",sm:true,icon:"✎",onClick:()=>{
+      S.grid=cloneGrid(vr.grid);S.loadedName=vr.name;S.loadedPath=[...S.viewingPath];
+      S.stackSize=vr.stackSize||"100bb";
+      if(vr.actions){S.actions=JSON.parse(JSON.stringify(vr.actions));saveActions()}
+      S.view="painter";render();
+    }})
+  ));
+
+  /* Stats header */
+  const statsHead=h("div",{style:{padding:"18px 20px 12px",display:"flex",alignItems:"baseline",gap:"10px",animation:"slideUp 0.3s ease"}});
+  statsHead.appendChild(h("span",{style:{fontSize:"38px",fontWeight:"800",color:"#fff",letterSpacing:"-0.04em"}},vPct+"%"));
+  statsHead.appendChild(h("span",{style:{fontSize:"13px",color:"var(--text2)",fontWeight:"500"}},vTotal+"/169 combos"));
+  statsHead.appendChild(h("span",{style:{marginLeft:"auto",fontSize:"12px",color:"var(--purple)",fontWeight:"700",background:"rgba(180,138,245,0.08)",padding:"4px 14px",borderRadius:"20px",border:"1px solid rgba(180,138,245,0.13)"}},vr.stackSize||"100bb"));
+  page.appendChild(statsHead);
+
+  /* Grid */
+  const gridWrap=h("div",{style:{padding:"0 12px 14px",display:"flex",justifyContent:"center",animation:"scaleIn 0.35s ease"}});
+  gridWrap.appendChild(makeRangeGrid(vr.grid,vr.actions,false));
+  page.appendChild(gridWrap);
+
+  /* Breakdown */
+  const breakdown=h("div",{style:{padding:"4px 20px 28px"}});
+  breakdown.appendChild(h("p",{style:{fontSize:"11px",fontWeight:"700",color:"var(--text3)",textTransform:"uppercase",letterSpacing:"0.06em",margin:"0 0 12px"}},"Breakdown"));
+
+  (vr.actions||S.actions).forEach((a,ai)=>{
+    const cnt=counts[a.id]||0;if(!cnt)return;const w=(cnt/169)*100;
+    const row=h("div",{className:"row-anim",style:{marginBottom:"10px",animationDelay:ai*0.06+"s"}});
+    const top=h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"4px"}});
+    const lbl=h("div",{style:{display:"flex",alignItems:"center",gap:"8px"}});
+    lbl.appendChild(h("div",{style:{width:"10px",height:"10px",borderRadius:"4px",background:a.color,boxShadow:`0 0 6px ${a.color}44`}}));
+    lbl.appendChild(h("span",{style:{fontSize:"13px",fontWeight:"600"}},a.label));
+    top.appendChild(lbl);
+    top.appendChild(h("span",{style:{fontSize:"12px",color:"var(--text2)",fontWeight:"500"},innerHTML:`${cnt} <span style="color:var(--text3)">(${w.toFixed(1)}%)</span>`}));
+    row.appendChild(top);
+    const track=h("div",{style:{height:"6px",borderRadius:"3px",background:"rgba(255,255,255,0.04)",overflow:"hidden"}});
+    track.appendChild(h("div",{className:"bar-fill",style:{height:"100%",borderRadius:"3px",width:w+"%",background:`linear-gradient(90deg,${a.color},${a.color}cc)`,animationDelay:0.2+ai*0.08+"s"}}));
+    row.appendChild(track);
+    breakdown.appendChild(row);
+  });
+
+  breakdown.appendChild(h("div",{style:{marginTop:"16px",fontSize:"11px",color:"var(--text4)"}},"Saved "+vr.date));
+  page.appendChild(breakdown);
+  return page;
+}
+
+function renderSettings(){
+  const page=h("div",{className:"page",style:{minHeight:"100vh",minHeight:"100dvh"}});
+  page.appendChild(makeHeader(
+    makeBtn("← Back",{outline:true,sm:true,onClick:()=>{S.view="painter";render()}}),
+    "Customize Actions",
+    h("div")
+  ));
+
+  const list=h("div",{style:{padding:"16px 18px 8px"}});
+  S.actions.forEach((a,i)=>{
+    const row=h("div",{className:"row-anim glass",style:{borderRadius:"14px",padding:"12px 14px",marginBottom:"8px",display:"flex",alignItems:"center",gap:"12px",animationDelay:i*0.05+"s"}});
+    row.appendChild(h("div",{style:{width:"26px",height:"26px",borderRadius:"8px",background:a.color,flexShrink:"0",boxShadow:`0 2px 10px ${a.color}33`}}));
+    row.appendChild(h("span",{style:{flex:"1",fontSize:"14px",fontWeight:"600"}},a.label));
+    row.appendChild(makeBtn("Edit",{outline:true,sm:true,onClick:()=>{S.editingAction=a.id;S.editLabel=a.label;S.editColor=a.color;render()}}));
+    if(S.actions.length>1) row.appendChild(makeBtn("✕",{color:"var(--pink)",outline:true,sm:true,onClick:()=>{
+      S.actions=S.actions.filter(x=>x.id!==a.id);
+      if(S.activeAction===a.id)S.activeAction=S.actions[0]?.id;
+      saveActions();render();
+    }}));
+    list.appendChild(row);
+  });
+  if(S.actions.length<8) list.appendChild(makeBtn("+ Add Action",{color:"var(--purple)",outline:true,full:true,onClick:()=>{
+    S.actions.push({id:"a_"+Date.now(),color:PRESET_COLORS[S.actions.length%PRESET_COLORS.length],label:"Action "+(S.actions.length+1)});
+    saveActions();render();
+  }}));
+  page.appendChild(list);
+
+  /* Edit modal */
+  if(S.editingAction){
+    const modal=h("div");
+    modal.appendChild(h("h3",{style:{margin:"0 0 14px",fontSize:"17px",fontWeight:"700",color:"#fff"}},"Edit Action"));
+    const inp=h("input",{className:"glass",style:{width:"100%",borderRadius:"10px",padding:"11px 14px",color:"#fff",fontSize:"15px",outline:"none",marginBottom:"14px"}});
+    inp.value=S.editLabel;
+    inp.addEventListener("input",e=>{S.editLabel=e.target.value});
+    modal.appendChild(inp);
+    modal.appendChild(h("p",{style:{fontSize:"11px",color:"var(--text2)",margin:"0 0 8px",fontWeight:"700",textTransform:"uppercase",letterSpacing:"0.05em"}},"Color"));
+    const colors=h("div",{style:{display:"flex",flexWrap:"wrap",gap:"7px",marginBottom:"18px"}});
+    PRESET_COLORS.forEach(c=>{
+      colors.appendChild(h("div",{className:"btn",style:{
+        width:"30px",height:"30px",borderRadius:"9px",background:c,cursor:"pointer",
+        border:S.editColor===c?"2.5px solid #fff":"2.5px solid transparent",
+        boxShadow:S.editColor===c?`0 0 14px ${c}44`:"none",
+      },onClick:()=>{S.editColor=c;render()}}));
+    });
+    modal.appendChild(colors);
+    const btns=h("div",{style:{display:"flex",gap:"10px"}});
+    btns.appendChild(makeBtn("Cancel",{outline:true,full:true,onClick:()=>{S.editingAction=null;render()}}));
+    btns.appendChild(makeBtn("Save",{glow:true,full:true,onClick:()=>{
+      S.actions=S.actions.map(a=>a.id===S.editingAction?{...a,label:S.editLabel,color:S.editColor}:a);
+      saveActions();S.editingAction=null;showToast("Action updated");render();
+    }}));
+    modal.appendChild(btns);
+    page.appendChild(makeModal(modal,()=>{S.editingAction=null;render()}));
+    setTimeout(()=>inp.focus(),50);
+  }
+  return page;
+}
+
+/* ── Main Render ── */
+function render(){
+  let content;
+  switch(S.view){
+    case"painter":content=renderPainter();break;
+    case"explorer":content=renderExplorer();break;
+    case"saveas":content=renderSaveAs();break;
+    case"viewer":content=renderViewer();break;
+    case"settings":content=renderSettings();break;
+    default:content=renderPainter();
+  }
+  app.innerHTML="";
+  app.appendChild(content);
+}
+
+/* ── Init ── */
+loadState();
+render();
+
+/* ── Service Worker Registration ── */
+if("serviceWorker"in navigator){
+  const swCode=`
+    const CACHE="rs-v1";
+    self.addEventListener("install",e=>{self.skipWaiting()});
+    self.addEventListener("activate",e=>{e.waitUntil(clients.claim())});
+    self.addEventListener("fetch",e=>{
+      e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{
+        if(resp.status===200){const c=resp.clone();caches.open(CACHE).then(cache=>cache.put(e.request,c))}
+        return resp;
+      }).catch(()=>caches.match(e.request))))
+    });
+  `;
+  const blob=new Blob([swCode],{type:"application/javascript"});
+  navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{});
+}
+</script>
+
+</body>
+</html>
