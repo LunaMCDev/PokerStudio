@@ -1198,8 +1198,65 @@
         display: flex;
         gap: 6px;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
         flex-wrap: wrap;
+      }
+      .files-filter-bar {
+        padding: 4px 10px;
+        background: var(--b2);
+        border: 1px solid var(--bd);
+        border-radius: var(--r1);
+        margin-bottom: 10px;
+        animation: vIn 0.25s;
+      }
+      .ftag-chip {
+        padding: 3px 8px;
+        border-radius: 50px;
+        font-size: 9px;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid var(--bd);
+        color: var(--t3);
+        transition: all 0.2s;
+        user-select: none;
+      }
+      .ftag-chip:hover {
+        border-color: var(--bd2);
+        color: var(--t2);
+      }
+      .ftag-chip.sel {
+        background: rgba(236, 72, 153, 0.12);
+        border-color: var(--pk);
+        color: var(--pk2);
+      }
+      .sort-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--b1);
+        border: 1px solid var(--bd2);
+        border-radius: var(--r1);
+        padding: 4px;
+        min-width: 160px;
+        z-index: 100;
+        box-shadow: var(--gP);
+        animation: mdlIn 0.15s;
+      }
+      .sort-menu div {
+        padding: 8px 12px;
+        font-size: 11px;
+        cursor: pointer;
+        border-radius: 6px;
+        color: var(--t2);
+        transition: all 0.15s;
+      }
+      .sort-menu div:hover {
+        background: rgba(236, 72, 153, 0.06);
+        color: var(--pk2);
+      }
+      .sort-menu div.active {
+        color: var(--pk2);
+        font-weight: 700;
       }
       .files-search {
         width: 100%;
@@ -1963,6 +2020,131 @@
       .hm-d4 {
         background: #a8365a;
       }
+      /* Hand detail popup */
+      .hand-popup {
+        display: none;
+        position: fixed;
+        z-index: 1500;
+        background: var(--b1);
+        border: 1px solid var(--bd2);
+        border-radius: var(--r2);
+        padding: 16px;
+        min-width: 220px;
+        max-width: 300px;
+        box-shadow:
+          var(--gP),
+          0 20px 40px rgba(0, 0, 0, 0.5);
+        animation: mdlIn 0.2s;
+      }
+      .hand-popup.show {
+        display: block;
+      }
+      .hand-popup .hp-title {
+        font-family: var(--fm);
+        font-size: 18px;
+        font-weight: 800;
+        color: var(--pk2);
+        margin-bottom: 4px;
+      }
+      .hand-popup .hp-type {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--t4);
+        margin-bottom: 10px;
+      }
+      .hand-popup .hp-combos {
+        font-size: 11px;
+        color: var(--t2);
+        margin-bottom: 10px;
+      }
+      .hand-popup .hp-act {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--bd);
+      }
+      .hand-popup .hp-act:last-child {
+        border: none;
+      }
+      .hand-popup .hp-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .hand-popup .hp-name {
+        font-size: 12px;
+        font-weight: 600;
+        flex: 1;
+      }
+      .hand-popup .hp-pct {
+        font-family: var(--fm);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--pk2);
+      }
+      .hand-popup .hp-empty {
+        font-size: 11px;
+        color: var(--t4);
+        font-style: italic;
+      }
+      .hand-popup .hp-close {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        font-size: 14px;
+        color: var(--t4);
+        cursor: pointer;
+        padding: 4px;
+        line-height: 1;
+      }
+      .hand-popup .hp-close:hover {
+        color: var(--pk2);
+      }
+      /* Action edit modal */
+      .act-edit-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px;
+        background: var(--b2);
+        border: 1px solid var(--bd);
+        border-radius: var(--r1);
+        margin-bottom: 6px;
+        transition: all 0.25s;
+      }
+      .act-edit-row:hover {
+        border-color: var(--bd2);
+      }
+      .act-edit-dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: transform 0.2s;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+      }
+      .act-edit-dot:hover {
+        transform: scale(1.2);
+      }
+      .act-edit-name {
+        flex: 1;
+        padding: 6px 10px;
+        background: var(--b0);
+        border: 1px solid var(--bd);
+        border-radius: 6px;
+        color: var(--t1);
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .act-edit-name:focus {
+        border-color: var(--pk);
+        box-shadow: 0 0 8px rgba(236, 72, 153, 0.1);
+      }
       /* Confetti */
       .confetti-piece {
         position: fixed;
@@ -2394,7 +2576,7 @@
               id="actTags"
               style="display: flex; gap: 4px; flex-wrap: wrap"
             ></div>
-            <button class="btn btn-s" onclick="openM('actM')">+ Action</button
+            <button class="btn btn-s" onclick="openEditActs()">✎ Actions</button
             ><span style="flex: 1"></span
             ><button class="btn btn-s" onclick="clearR()">Clear</button>
           </div>
@@ -2407,6 +2589,7 @@
               min="0"
               max="100"
               value="100"
+              step="5"
               oninput="onW(this.value)"
             /><span class="wv" id="wVal">100%</span>
           </div>
@@ -2490,16 +2673,133 @@
             <input
               class="files-search"
               id="fSearch"
-              placeholder="Search..."
+              placeholder="Search name, tag, note..."
               oninput="renderFiles()"
             />
           </div>
-          <button class="btn btn-s" id="fSortBtn" onclick="togFSort()">
-            Newest</button
+          <button class="btn btn-s" id="fSortBtn" onclick="openSortMenu()">
+            ↕ Newest</button
+          ><button class="btn btn-s" id="fFilterBtn" onclick="togFilterPanel()">
+            ⚙ Filter</button
           ><button class="btn btn-s" onclick="openM('newFM')">📁+</button
           ><button class="btn btn-s pri" onclick="openM('saveM')">
             ✦ Save
           </button>
+        </div>
+        <div class="files-filter-bar" id="fFilterBar" style="display: none">
+          <div
+            style="
+              display: flex;
+              gap: 6px;
+              flex-wrap: wrap;
+              align-items: center;
+              padding: 8px 0;
+            "
+          >
+            <div
+              style="
+                font-size: 9px;
+                font-weight: 700;
+                color: var(--t4);
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                flex-shrink: 0;
+              "
+            >
+              Sort:
+            </div>
+            <select
+              id="fSortSel"
+              onchange="applySort()"
+              style="
+                padding: 5px 8px;
+                background: var(--b2);
+                border: 1px solid var(--bd);
+                border-radius: 6px;
+                color: var(--t1);
+                font-size: 11px;
+              "
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="a-z">A → Z</option>
+              <option value="z-a">Z → A</option>
+              <option value="most-hands">Most Hands</option>
+              <option value="least-hands">Least Hands</option>
+              <option value="recent-edit">Recently Edited</option>
+            </select>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 6px;
+              flex-wrap: wrap;
+              align-items: center;
+              padding: 4px 0 8px;
+            "
+          >
+            <div
+              style="
+                font-size: 9px;
+                font-weight: 700;
+                color: var(--t4);
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                flex-shrink: 0;
+              "
+            >
+              Tags:
+            </div>
+            <div
+              id="fTagFilter"
+              style="display: flex; gap: 4px; flex-wrap: wrap"
+            ></div>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 6px;
+              align-items: center;
+              padding: 4px 0 4px;
+            "
+          >
+            <label
+              style="
+                font-size: 10px;
+                color: var(--t3);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                cursor: pointer;
+              "
+              ><input
+                type="checkbox"
+                id="fFavOnly"
+                onchange="renderFiles()"
+                style="accent-color: var(--pk)"
+              />
+              Favorites only</label
+            >
+            <label
+              style="
+                font-size: 10px;
+                color: var(--t3);
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                cursor: pointer;
+              "
+              ><input
+                type="checkbox"
+                id="fHasNotes"
+                onchange="renderFiles()"
+                style="accent-color: var(--pk)"
+              />
+              Has notes</label
+            >
+            <span style="flex: 1"></span>
+            <button class="btn btn-xs" onclick="clearFilters()">Clear</button>
+          </div>
         </div>
         <div class="files-bc" id="fBc"></div>
         <div id="fGrid"></div>
@@ -3566,6 +3866,43 @@
         </div>
       </div>
     </div>
+    <div class="hand-popup" id="handPopup">
+      <span class="hp-close" onclick="closeHandPopup()">✕</span>
+      <div class="hp-title" id="hpTitle"></div>
+      <div class="hp-type" id="hpType"></div>
+      <div class="hp-combos" id="hpCombos"></div>
+      <div id="hpActions"></div>
+    </div>
+    <div class="mov" id="editActsM">
+      <div class="mdl" style="max-width: 380px">
+        <h3>Edit Actions</h3>
+        <div id="editActsList"></div>
+        <div class="glow-line"></div>
+        <div class="slbl">Add New Action</div>
+        <div style="display: flex; gap: 8px; align-items: center">
+          <input
+            class="minp"
+            id="newActName"
+            placeholder="Action name..."
+            style="margin: 0; flex: 1"
+          />
+          <div
+            class="cgrid"
+            id="newActColors"
+            style="
+              max-height: 34px;
+              margin: 0;
+              flex-shrink: 0;
+              overflow: hidden;
+            "
+          ></div>
+          <button class="btn pri btn-s" onclick="addActFromEditor()">+</button>
+        </div>
+        <div class="mact" style="margin-top: 16px">
+          <button class="btn" onclick="closeM('editActsM')">Done</button>
+        </div>
+      </div>
+    </div>
     <div class="toast" id="toast"></div>
     <input
       type="file"
@@ -4147,7 +4484,11 @@
           document.addEventListener("pointercancel", () => this.pu());
         },
         pd(e, r, c) {
-          if (viewerMode) return;
+          if (viewerMode) {
+            e.preventDefault();
+            showHandPopup(r, c, e);
+            return;
+          }
           e.preventDefault();
           if (e.target.releasePointerCapture)
             e.target.releasePointerCapture(e.pointerId);
@@ -4453,6 +4794,178 @@
           loadErr();
         },
       };
+      /* Hand popup (viewer mode) */
+      function showHandPopup(r, c, e) {
+        const popup = $("handPopup");
+        const label = hl(r, c);
+        const type = ht(r, c);
+        const combos = hcn(r, c);
+        const cl = S.range[r][c];
+        $("hpTitle").textContent = label;
+        $("hpType").textContent =
+          type === "pair"
+            ? "Pocket Pair (" + combos + " combos)"
+            : type === "suited"
+              ? "Suited (" + combos + " combos)"
+              : "Offsuit (" + combos + " combos)";
+        $("hpCombos").textContent = cl.length
+          ? cl.length + " action" + (cl.length > 1 ? "s" : "") + " assigned"
+          : "";
+        if (cl.length) {
+          $("hpActions").innerHTML = cl
+            .map((a) => {
+              const act = S.acts[a.ai];
+              if (!act) return "";
+              return (
+                '<div class="hp-act"><div class="hp-dot" style="background:' +
+                act.color +
+                '"></div><div class="hp-name">' +
+                act.name +
+                '</div><div class="hp-pct">' +
+                a.w +
+                "%</div></div>"
+              );
+            })
+            .join("");
+        } else {
+          $("hpActions").innerHTML = '<div class="hp-empty">Not in range</div>';
+        }
+        const rect = e.target.closest(".cell").getBoundingClientRect();
+        let x = rect.left + rect.width / 2 - 110;
+        let y = rect.bottom + 8;
+        if (x + 220 > window.innerWidth) x = window.innerWidth - 230;
+        if (x < 10) x = 10;
+        if (y + 200 > window.innerHeight) y = rect.top - 210;
+        if (y < 10) y = 10;
+        popup.style.left = x + "px";
+        popup.style.top = y + "px";
+        popup.classList.add("show");
+        setTimeout(
+          () =>
+            document.addEventListener("pointerdown", _hpOut, { once: true }),
+          50,
+        );
+      }
+      function _hpOut(e) {
+        if ($("handPopup").contains(e.target)) {
+          document.addEventListener("pointerdown", _hpOut, { once: true });
+        } else closeHandPopup();
+      }
+      function closeHandPopup() {
+        $("handPopup").classList.remove("show");
+      }
+      /* Action editing */
+      function openEditActs() {
+        renderEditActsList();
+        renderNewActColors();
+        openM("editActsM");
+      }
+      function renderEditActsList() {
+        const list = $("editActsList");
+        list.innerHTML = S.acts
+          .map(
+            (a, i) =>
+              '<div class="act-edit-row" id="aer_' +
+              i +
+              '"><div class="act-edit-dot" style="background:' +
+              a.color +
+              '" onclick="pickActColor(' +
+              i +
+              ')" title="Change color"></div><input class="act-edit-name" value="' +
+              a.name.replace(/"/g, "&quot;") +
+              '" onchange="updateActName(' +
+              i +
+              ',this.value)"><button class="btn btn-xs btn-d" onclick="removeActFromEditor(' +
+              i +
+              ')"' +
+              (S.acts.length <= 1 ? " disabled" : "") +
+              ' style="flex-shrink:0">✕</button></div>',
+          )
+          .join("");
+      }
+      function updateActName(i, name) {
+        if (!name.trim()) return;
+        S.acts[i].name = name.trim();
+        Ed.renActs();
+        Ed.saveSt();
+        checkDirty();
+      }
+      function pickActColor(i) {
+        const row = $("aer_" + i);
+        if (!row) return;
+        let pk = row.querySelector(".acp");
+        if (pk) {
+          pk.remove();
+          return;
+        }
+        pk = document.createElement("div");
+        pk.className = "acp";
+        pk.style.cssText =
+          "display:flex;flex-wrap:wrap;gap:3px;padding:8px 0;width:100%";
+        COLS.forEach((c) => {
+          const d = document.createElement("div");
+          d.style.cssText =
+            "width:20px;height:20px;border-radius:50%;cursor:pointer;border:2px solid " +
+            (c === S.acts[i].color ? "#fff" : "transparent") +
+            ";background:" +
+            c +
+            ";transition:all .15s";
+          d.onmouseover = () => {
+            d.style.transform = "scale(1.15)";
+          };
+          d.onmouseout = () => {
+            d.style.transform = "";
+          };
+          d.onclick = () => {
+            S.acts[i].color = c;
+            Ed.renActs();
+            Ed.renAll();
+            Ed.saveSt();
+            checkDirty();
+            renderEditActsList();
+          };
+          pk.appendChild(d);
+        });
+        row.appendChild(pk);
+      }
+      function removeActFromEditor(i) {
+        if (S.acts.length <= 1) return toast("Need at least 1 action");
+        Ed.rmAct(i);
+        renderEditActsList();
+      }
+      function renderNewActColors() {
+        const ct = $("newActColors");
+        ct.innerHTML = "";
+        COLS.slice(0, 8).forEach((c, j) => {
+          const d = document.createElement("div");
+          d.className = "cdot2" + (j === 0 ? " sel" : "");
+          d.style.cssText =
+            "width:20px;height:20px;background:" + c + ";color:" + c;
+          d.dataset.color = c;
+          d.onclick = () => {
+            ct.querySelectorAll(".cdot2").forEach((x) =>
+              x.classList.remove("sel"),
+            );
+            d.classList.add("sel");
+          };
+          ct.appendChild(d);
+        });
+      }
+      function addActFromEditor() {
+        const n = $("newActName").value.trim();
+        if (!n) return toast("Enter name");
+        const sel = document.querySelector("#newActColors .cdot2.sel");
+        S.acts.push({
+          name: n,
+          color: sel ? sel.dataset.color : COLS[S.acts.length % COLS.length],
+        });
+        $("newActName").value = "";
+        Ed.renActs();
+        Ed.saveSt();
+        checkDirty();
+        renderEditActsList();
+        toast(n + " added ✦");
+      }
       /* FOLDERS + FILES (compressed) */
       function getFO(p) {
         return (
@@ -4634,18 +5147,51 @@
           d++;
         });
         let ranges = getRInF(f);
+        const favOnly = $("fFavOnly")?.checked;
+        const hasNotes = $("fHasNotes")?.checked;
         if (q)
           ranges = ranges.filter(
             (r) =>
               r.name.toLowerCase().includes(q) ||
-              (r.tags || []).some((t) => t.includes(q)),
+              (r.tags || []).some((t) => t.includes(q)) ||
+              (r.notes || "").toLowerCase().includes(q) ||
+              (r.acts || []).some((a) => a.name.toLowerCase().includes(q)),
           );
+        if (_selTags.size)
+          ranges = ranges.filter((r) =>
+            (r.tags || []).some((t) => _selTags.has(t)),
+          );
+        if (favOnly) ranges = ranges.filter((r) => r.fav);
+        if (hasNotes) ranges = ranges.filter((r) => r.notes && r.notes.trim());
         if (S.fSort === "newest") ranges.sort((a, b) => b.ts - a.ts);
         else if (S.fSort === "oldest") ranges.sort((a, b) => a.ts - b.ts);
         else if (S.fSort === "a-z")
           ranges.sort((a, b) => a.name.localeCompare(b.name));
-        else ranges.sort((a, b) => b.name.localeCompare(a.name));
+        else if (S.fSort === "z-a")
+          ranges.sort((a, b) => b.name.localeCompare(a.name));
+        else if (S.fSort === "most-hands")
+          ranges.sort((a, b) => {
+            const ac = a.range.flat().filter((c) => c.length).length;
+            const bc2 = b.range.flat().filter((c) => c.length).length;
+            return bc2 - ac;
+          });
+        else if (S.fSort === "least-hands")
+          ranges.sort((a, b) => {
+            const ac = a.range.flat().filter((c) => c.length).length;
+            const bc2 = b.range.flat().filter((c) => c.length).length;
+            return ac - bc2;
+          });
+        else if (S.fSort === "recent-edit")
+          ranges.sort((a, b) => (b.ts || 0) - (a.ts || 0));
         ranges.sort((a, b) => (b.fav ? 1 : 0) - (a.fav ? 1 : 0));
+        if (!html && !ranges.length)
+          html =
+            '<div style="text-align:center;padding:40px;color:var(--t4);font-size:12px">' +
+            (q || _selTags.size || favOnly || hasNotes
+              ? "No ranges match your filters"
+              : "Empty — save a range to get started") +
+            "</div>";
+        const totalShown = ranges.length;
         ranges.forEach((r) => {
           const i = S.saved.indexOf(r);
           const dt = new Date(r.ts).toLocaleDateString("en-US", {
@@ -4653,6 +5199,7 @@
             day: "numeric",
           });
           const hcc = r.range.flat().filter((c) => c.length).length;
+          const pct = ((hcc / 169) * 100).toFixed(0);
           const tags = (r.tags || [])
             .map((t) => '<span class="fc-tag">' + t + "</span>")
             .join("");
@@ -4660,6 +5207,7 @@
             r.iconColor && r.iconColor !== "none"
               ? "background:" + r.iconColor
               : "background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(167,139,250,.05))";
+          const hasN = r.notes && r.notes.trim();
           html +=
             '<div class="file-card" style="animation-delay:' +
             d * 40 +
@@ -4673,9 +5221,13 @@
             r.name +
             '</div><div class="fc-meta"><span>' +
             hcc +
-            " hands</span><span>" +
+            " hands (" +
+            pct +
+            "%)</span><span>" +
             dt +
-            "</span></div>" +
+            "</span>" +
+            (hasN ? "<span>📝</span>" : "") +
+            "</div>" +
             (tags ? '<div class="fc-tags">' + tags + "</div>" : "") +
             '</div><span class="fc-fav' +
             (r.fav ? " on" : "") +
@@ -4694,9 +5246,13 @@
             ')">✕</button></div></div>';
           d++;
         });
-        if (!html)
-          html =
-            '<div style="text-align:center;padding:40px;color:var(--t4);font-size:12px">Empty</div>';
+        if (totalShown > 0 && (q || _selTags.size || favOnly || hasNotes))
+          html +=
+            '<div style="text-align:center;padding:8px;font-size:10px;color:var(--t4)">Showing ' +
+            totalShown +
+            " range" +
+            (totalShown !== 1 ? "s" : "") +
+            "</div>";
         $("fGrid").innerHTML = html;
       }
       function saveCur() {
@@ -4791,12 +5347,138 @@
               : S.fSort === "a-z"
                 ? "z-a"
                 : "newest";
-        $("fSortBtn").textContent = {
-          newest: "Newest",
-          oldest: "Oldest",
-          "a-z": "A→Z",
-          "z-a": "Z→A",
-        }[S.fSort];
+        $("fSortBtn").textContent =
+          "↕ " +
+          {
+            newest: "Newest",
+            oldest: "Oldest",
+            "a-z": "A→Z",
+            "z-a": "Z→A",
+            "most-hands": "Most",
+            "least-hands": "Least",
+            "recent-edit": "Recent",
+          }[S.fSort];
+        renderFiles();
+      }
+      function openSortMenu() {
+        const btn = $("fSortBtn");
+        let menu = document.querySelector(".sort-menu");
+        if (menu) {
+          menu.remove();
+          return;
+        }
+        menu = document.createElement("div");
+        menu.className = "sort-menu";
+        btn.parentElement.style.position = "relative";
+        const opts = [
+          ["newest", "Newest First"],
+          ["oldest", "Oldest First"],
+          ["a-z", "A → Z"],
+          ["z-a", "Z → A"],
+          ["most-hands", "Most Hands"],
+          ["least-hands", "Least Hands"],
+          ["recent-edit", "Recently Edited"],
+        ];
+        menu.innerHTML = opts
+          .map(
+            ([v, l]) =>
+              '<div class="' +
+              (S.fSort === v ? "active" : "") +
+              '" data-v="' +
+              v +
+              '">' +
+              l +
+              "</div>",
+          )
+          .join("");
+        menu.querySelectorAll("div").forEach(
+          (d) =>
+            (d.onclick = () => {
+              S.fSort = d.dataset.v;
+              $("fSortBtn").textContent = "↕ " + d.textContent;
+              $("fSortSel").value = S.fSort;
+              menu.remove();
+              renderFiles();
+            }),
+        );
+        btn.parentElement.appendChild(menu);
+        setTimeout(
+          () =>
+            document.addEventListener(
+              "click",
+              function cl(e) {
+                if (!menu.contains(e.target)) {
+                  menu.remove();
+                  document.removeEventListener("click", cl);
+                }
+              },
+              { once: false },
+            ),
+          10,
+        );
+      }
+      function applySort() {
+        S.fSort = $("fSortSel").value;
+        $("fSortBtn").textContent =
+          "↕ " +
+          {
+            newest: "Newest",
+            oldest: "Oldest",
+            "a-z": "A→Z",
+            "z-a": "Z→A",
+            "most-hands": "Most",
+            "least-hands": "Least",
+            "recent-edit": "Recent",
+          }[S.fSort];
+        renderFiles();
+      }
+      let _selTags = new Set();
+      function togFilterPanel() {
+        const p = $("fFilterBar");
+        p.style.display = p.style.display === "none" ? "" : "none";
+        if (p.style.display !== "none") {
+          $("fSortSel").value = S.fSort;
+          buildTagFilter();
+        }
+      }
+      function buildTagFilter() {
+        const allTags = new Set();
+        S.saved.forEach((r) => (r.tags || []).forEach((t) => allTags.add(t)));
+        const ct = $("fTagFilter");
+        ct.innerHTML =
+          [...allTags]
+            .sort()
+            .map(
+              (t) =>
+                '<span class="ftag-chip' +
+                (_selTags.has(t) ? " sel" : "") +
+                '" data-t="' +
+                t +
+                '">' +
+                t +
+                "</span>",
+            )
+            .join("") ||
+          '<span style="font-size:10px;color:var(--t4)">No tags yet</span>';
+        ct.querySelectorAll(".ftag-chip").forEach(
+          (c) =>
+            (c.onclick = () => {
+              const t = c.dataset.t;
+              _selTags.has(t) ? _selTags.delete(t) : _selTags.add(t);
+              c.classList.toggle("sel");
+              renderFiles();
+            }),
+        );
+      }
+      function clearFilters() {
+        _selTags.clear();
+        $("fSearch").value = "";
+        $("fFavOnly").checked = false;
+        $("fHasNotes").checked = false;
+        S.fSort = "newest";
+        $("fSortSel").value = "newest";
+        $("fSortBtn").textContent = "↕ Newest";
+        buildTagFilter();
         renderFiles();
       }
       function onW(v) {
