@@ -1355,8 +1355,37 @@
       }
       .fc-acts {
         display: flex;
-        gap: 3px;
+        gap: 4px;
         flex-shrink: 0;
+      }
+      .fc-acts button {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid var(--bd);
+        background: var(--b3);
+        font-size: 11px;
+        color: var(--t3);
+        transition: all 0.25s;
+        cursor: pointer;
+        padding: 0;
+      }
+      .fc-acts button:hover {
+        background: rgba(236, 72, 153, 0.08);
+        color: var(--pk2);
+        border-color: var(--bd2);
+        transform: scale(1.1);
+      }
+      .fc-acts .del {
+        border-color: rgba(251, 113, 133, 0.12);
+      }
+      .fc-acts .del:hover {
+        background: rgba(251, 113, 133, 0.1);
+        color: var(--rs);
+        border-color: rgba(251, 113, 133, 0.25);
       }
       /* Bankroll */
       .br-sub-nav {
@@ -2392,21 +2421,61 @@
       <!-- TRAINER -->
       <div id="trainerV" class="view">
         <div class="trwrap">
-          <select class="trsel" id="trSel" onchange="onTrSel()">
-            <option value="">✦ Select a range to practice</option>
-          </select>
-          <div class="mode-tabs" id="mTabs" style="display: none">
-            <button class="mode-tab on" data-m="all" onclick="setMode('all')">
-              All Hands</button
-            ><button class="mode-tab" data-m="weak" onclick="setMode('weak')">
-              Weak Spots
+          <div style="display: flex; gap: 4px; width: 100%; margin-bottom: 8px">
+            <button
+              class="mode-tab on"
+              id="trTabTrain"
+              onclick="
+                $('trTrainArea').style.display = '';
+                $('trHistArea').style.display = 'none';
+                this.classList.add('on');
+                $('trTabHist').classList.remove('on');
+              "
+            >
+              🎯 Train</button
+            ><button
+              class="mode-tab"
+              id="trTabHist"
+              onclick="
+                $('trHistArea').style.display = '';
+                $('trTrainArea').style.display = 'none';
+                this.classList.add('on');
+                $('trTabTrain').classList.remove('on');
+                renderTrHistory();
+              "
+            >
+              📜 History
             </button>
           </div>
-          <div id="trContent">
-            <div class="trprompt">
-              <span class="pico">♠️ ♥️</span>Select a saved range to begin
-              training.
+          <div
+            id="trTrainArea"
+            style="
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 14px;
+            "
+          >
+            <select class="trsel" id="trSel" onchange="onTrSel()">
+              <option value="">✦ Select a range to practice</option>
+            </select>
+            <div class="mode-tabs" id="mTabs" style="display: none">
+              <button class="mode-tab on" data-m="all" onclick="setMode('all')">
+                All Hands</button
+              ><button class="mode-tab" data-m="weak" onclick="setMode('weak')">
+                Weak Spots
+              </button>
             </div>
+            <div id="trContent">
+              <div class="trprompt">
+                <span class="pico">♠️ ♥️</span>Select a saved range to begin
+                training.
+              </div>
+            </div>
+          </div>
+          <div id="trHistArea" style="width: 100%; display: none">
+            <div id="trHistContent"></div>
           </div>
         </div>
       </div>
@@ -2578,7 +2647,7 @@
                 <div class="ac-list" id="brLocAC"></div>
               </div>
               <div class="br-fg">
-                <label>Result ($)</label
+                <label id="brResultLabel">Result</label
                 ><input
                   type="number"
                   id="brResult"
@@ -2658,7 +2727,7 @@
             /><input
               class="minp"
               id="brGoalTarget"
-              placeholder="Target $"
+              placeholder="Target amount"
               type="number"
               style="width: 120px; margin: 0"
             /><button class="btn pri" onclick="addBrGoal()">✦ Add</button>
@@ -2774,6 +2843,8 @@
                 onchange="
                   BR.d.settings.currency = this.value;
                   BR.save();
+                  renderBrAll();
+                  updateCurrencyLabels();
                 "
               >
                 <option value="USD">$ USD</option>
@@ -3261,6 +3332,8 @@
         <input class="minp" id="newFN" placeholder="Folder name..." />
         <div class="slbl">Icon</div>
         <div class="emoji-grid" id="fIG"></div>
+        <div class="slbl">Color</div>
+        <div class="cgrid" id="fCG"></div>
         <select class="minp" id="newFP" style="font-size: 11px">
           <option value="/">📁 Root</option>
         </select>
@@ -3307,6 +3380,8 @@
         <h3>Edit Range</h3>
         <div class="slbl">Icon</div>
         <div class="emoji-grid" id="edIG"></div>
+        <div class="slbl">Color</div>
+        <div class="cgrid" id="edCG"></div>
         <input class="minp" id="edName" placeholder="Name..." /><select
           class="minp"
           id="edFolder"
@@ -3330,6 +3405,8 @@
         <input class="minp" id="efName" placeholder="Name..." />
         <div class="slbl">Icon</div>
         <div class="emoji-grid" id="efIG"></div>
+        <div class="slbl">Color</div>
+        <div class="cgrid" id="efCG"></div>
         <div class="mact">
           <button class="btn" onclick="closeM('edFM')">Cancel</button
           ><button class="btn pri" onclick="saveEdF()">Save</button>
@@ -3341,7 +3418,7 @@
         <h3 id="depMTitle">+ Deposit</h3>
         <input type="hidden" id="depSign" value="1" />
         <div style="margin-bottom: 10px">
-          <label class="slbl">Amount ($)</label
+          <label class="slbl" id="depAmtLabel">Amount</label
           ><input
             class="minp"
             id="depAmt"
@@ -3393,7 +3470,7 @@
             />
           </div>
           <div>
-            <label class="slbl">Buy-in ($)</label
+            <label class="slbl" id="liveBuyinLabel">Buy-in</label
             ><input
               class="minp"
               id="liveBuyin"
@@ -3457,7 +3534,7 @@
           How much did you finish with?
         </p>
         <div style="margin-bottom: 10px">
-          <label class="slbl">Final Stack ($)</label
+          <label class="slbl" id="liveEndLabel">Final Stack</label
           ><input
             class="minp"
             id="liveEndStack"
@@ -3694,6 +3771,7 @@
         if (id === "newFM") {
           popFS();
           renderEG("fIG", null, FEM);
+          renderCG("fCG");
         }
         if (id === "editM") popFS();
         if (id === "expM") {
@@ -3862,14 +3940,18 @@
       function saveErr() {
         LS("ps_err", S.errors);
       }
-      function recErr(l, a) {
-        if (!S.errors[l]) S.errors[l] = { t: 0, a: {} };
-        S.errors[l].t++;
-        S.errors[l].a[a] = (S.errors[l].a[a] || 0) + 1;
+      function recErr(l, a, rangeId) {
+        const key = rangeId || "_global";
+        if (!S.errors[key]) S.errors[key] = {};
+        if (!S.errors[key][l]) S.errors[key][l] = { t: 0, a: {} };
+        S.errors[key][l].t++;
+        S.errors[key][l].a[a] = (S.errors[key][l].a[a] || 0) + 1;
         saveErr();
       }
-      function getWeak(n) {
-        return Object.entries(S.errors)
+      function getWeak(n, rangeId) {
+        const key = rangeId || "_global";
+        const errs = S.errors[key] || {};
+        return Object.entries(errs)
           .sort((a, b) => b[1].t - a[1].t)
           .slice(0, n || 20);
       }
@@ -4398,9 +4480,10 @@
         if (!n) return toast("Enter name");
         const p = $("newFP").value;
         const icon = getSelE("fIG");
+        const iconColor = getSelC("fCG");
         const path = p + n + "/";
         if (S.folders.find((f) => f.path === path)) return toast("Exists");
-        S.folders.push({ path, icon, name: n });
+        S.folders.push({ path, icon, iconColor, name: n });
         saveSvd();
         $("newFN").value = "";
         closeM("newFM");
@@ -4444,6 +4527,7 @@
         const fo = getFO(p);
         $("efName").value = fo.name;
         renderEG("efIG", fo.icon, FEM);
+        renderCG("efCG", fo.iconColor || "none");
         openM("edFM");
       }
       function saveEdF() {
@@ -4451,6 +4535,7 @@
         if (fo) {
           fo.name = $("efName").value.trim() || fo.name;
           fo.icon = getSelE("efIG");
+          fo.iconColor = getSelC("efCG");
           saveSvd();
           renderFiles();
           closeM("edFM");
@@ -4522,12 +4607,18 @@
             (r.folder || "/").startsWith(ff.path),
           ).length;
           if (q && !ff.name.toLowerCase().includes(q)) return;
+          const fcs =
+            ff.iconColor && ff.iconColor !== "none"
+              ? "background:" + ff.iconColor
+              : "";
           html +=
             '<div class="file-card" style="animation-delay:' +
             d * 40 +
             'ms" onclick="S.curFolder=\'' +
             ff.path +
-            '\';renderFiles()"><div class="fc-icon">' +
+            '\';renderFiles()"><div class="fc-icon" style="' +
+            fcs +
+            '">' +
             ff.icon +
             '</div><div class="fc-info"><div class="fc-name">' +
             ff.name +
@@ -4535,9 +4626,9 @@
             cnt +
             " range" +
             (cnt !== 1 ? "s" : "") +
-            '</span></div></div><div class="fc-acts"><button class="btn btn-xs" onclick="event.stopPropagation();openEdF(\'' +
+            '</span></div></div><div class="fc-acts"><button onclick="event.stopPropagation();openEdF(\'' +
             ff.path +
-            '\')">✎</button><button class="btn btn-xs btn-d" onclick="event.stopPropagation();delFolder(\'' +
+            '\')">✎</button><button class="del" onclick="event.stopPropagation();delFolder(\'' +
             ff.path +
             "')\">✕</button></div></div>";
           d++;
@@ -4592,13 +4683,13 @@
             i +
             ')">' +
             (r.fav ? "★" : "☆") +
-            '</span><div class="fc-acts"><button class="btn btn-xs" onclick="event.stopPropagation();openMove(' +
+            '</span><div class="fc-acts"><button onclick="event.stopPropagation();openMove(' +
             i +
-            ')">↗</button><button class="btn btn-xs" onclick="event.stopPropagation();dupRange(' +
+            ')">↗</button><button onclick="event.stopPropagation();dupRange(' +
             i +
-            ')">⧉</button><button class="btn btn-xs" onclick="event.stopPropagation();openEdit(' +
+            ')">⧉</button><button onclick="event.stopPropagation();openEdit(' +
             i +
-            ')">✎</button><button class="btn btn-xs btn-d" onclick="event.stopPropagation();delRange(' +
+            ')">✎</button><button class="del" onclick="event.stopPropagation();delRange(' +
             i +
             ')">✕</button></div></div>';
           d++;
@@ -4674,6 +4765,7 @@
         popFS();
         $("edFolder").value = d.folder || "/";
         renderEG("edIG", d.icon || "♠", REM);
+        renderCG("edCG", d.iconColor || "none");
         openM("editM");
       }
       function saveEd() {
@@ -4684,6 +4776,7 @@
         r.tags = [...S.eTags];
         r.folder = $("edFolder").value || "/";
         r.icon = getSelE("edIG");
+        r.iconColor = getSelC("edCG");
         saveSvd();
         closeM("editM");
         renderFiles();
@@ -4753,7 +4846,7 @@
       function buildExportJSON() {
         return JSON.stringify(
           {
-            v: 14,
+            v: 15,
             exported: new Date().toISOString(),
             username: LG("ps_username", ""),
             ranges: S.saved,
@@ -4766,6 +4859,7 @@
               settings: {},
               deposits: [],
             }),
+            trainingHistory: LG("ps_tr_history", []),
             settings: {
               speed: LG("ps_speed", "normal"),
               vibrate: LG("ps_vibrate", "1"),
@@ -4838,6 +4932,7 @@
         }
         if (d.bankroll) LS("ps_br", d.bankroll);
         if (d.username) LS("ps_username", d.username);
+        if (d.trainingHistory) LS("ps_tr_history", d.trainingHistory);
         if (d.settings) {
           if (d.settings.speed) LS("ps_speed", d.settings.speed);
           if (d.settings.vibrate) LS("ps_vibrate", d.settings.vibrate);
@@ -4862,9 +4957,12 @@
         acts: null,
         cur: null,
         stats: { ok: 0, total: 0, streak: 0, best: 0 },
-        start(d) {
+        start(d, rangeId, limit) {
           this.range = d.range;
           this.acts = d.acts;
+          this.rangeId = rangeId || "_global";
+          this.limit = limit || 0;
+          this.paused = false;
           this.stats = {
             ok: 0,
             total: 0,
@@ -4893,7 +4991,14 @@
           this.next();
         },
         buildUI() {
+          const limitInfo =
+            this.limit > 0
+              ? '<div style="text-align:center;font-size:10px;color:var(--t4);margin-bottom:6px">' +
+                this.limit +
+                " hands session</div>"
+              : '<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd);border-color:rgba(251,191,36,.2)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>';
           $("trContent").innerHTML =
+            limitInfo +
             '<div style="perspective:900px;width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div><div id="trStatsToggle" style="width:100%;cursor:pointer;text-align:center;padding:8px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4)" onclick="toggleTrStats()">▼ Detailed Stats</div><div id="trDetailedStats" style="display:none;width:100%"></div>';
           const bc = $("tBtns");
           bc.innerHTML = "";
@@ -4913,7 +5018,7 @@
             const hm = {};
             for (let r = 0; r < 13; r++)
               for (let c = 0; c < 13; c++) hm[hl(r, c)] = [r, c];
-            getWeak(30).forEach(([l]) => {
+            getWeak(30, this.rangeId).forEach(([l]) => {
               if (hm[l]) pool.push(hm[l]);
             });
             pool = pool.filter(([r, c]) => this.range[r][c].length);
@@ -4971,7 +5076,10 @@
           $("tExp").textContent = "";
           $("tExp").className = "texp";
           $("tCard").className = "tcard";
-          $("hCnt").textContent = "#" + (this.stats.total + 1);
+          $("hCnt").textContent =
+            "#" +
+            (this.stats.total + 1) +
+            (this.limit > 0 ? "/" + this.limit : "");
           const sb = $("streakB");
           if (this.stats.streak >= 3) {
             sb.classList.add("show");
@@ -5049,10 +5157,11 @@
             this.stats.byAction[an].ok++;
           } else {
             this.stats.streak = 0;
-            recErr(label, an);
+            recErr(label, an, this.rangeId);
             if (!this.stats.wrongHands[label]) this.stats.wrongHands[label] = 0;
             this.stats.wrongHands[label]++;
-            if (navigator.vibrate) navigator.vibrate(50);
+            if (LG("ps_vibrate", "1") === "1" && navigator.vibrate)
+              navigator.vibrate(50);
           }
           const card = $("tCard"),
             fb = $("tFb"),
@@ -5069,7 +5178,9 @@
           ep.textContent = exp;
           ep.className = "texp show";
           $("trProg").style.width =
-            Math.round((this.stats.ok / this.stats.total) * 100) + "%";
+            (this.limit > 0
+              ? Math.round((this.stats.total / this.limit) * 100)
+              : Math.round((this.stats.ok / this.stats.total) * 100)) + "%";
           document
             .querySelectorAll(".tabtn")
             .forEach((b) => (b.disabled = true));
@@ -5077,7 +5188,70 @@
           const spd = LG("ps_speed", "normal");
           const okMs = spd === "fast" ? 250 : spd === "slow" ? 2500 : 1000;
           const noMs = spd === "fast" ? 500 : spd === "slow" ? 4000 : 2000;
-          setTimeout(() => this.next(), ok ? okMs : noMs);
+          if (this.limit > 0 && this.stats.total >= this.limit) {
+            setTimeout(() => this.endSession(), ok ? okMs : noMs);
+          } else {
+            setTimeout(
+              () => {
+                if (!this.paused) this.next();
+              },
+              ok ? okMs : noMs,
+            );
+          }
+        },
+        togglePause() {
+          this.paused = !this.paused;
+          const btn = $("trPauseBtn");
+          if (btn) {
+            btn.textContent = this.paused ? "▶ Resume" : "⏸ Pause";
+            btn.style.color = this.paused ? "var(--mt)" : "var(--gd)";
+          }
+          if (!this.paused) this.next();
+        },
+        endSession() {
+          this.active = false;
+          const s = this.stats;
+          const acc = s.total ? Math.round((s.ok / s.total) * 100) : 0;
+          const hist = LG("ps_tr_history", []);
+          hist.push({
+            rangeId: this.rangeId,
+            date: new Date().toISOString(),
+            total: s.total,
+            ok: s.ok,
+            accuracy: acc,
+            best: s.best,
+            limit: this.limit || "∞",
+          });
+          LS("ps_tr_history", hist);
+          $("trContent").innerHTML =
+            '<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">' +
+            (acc >= 80 ? "🌟" : acc >= 60 ? "✨" : "💪") +
+            '</div><div style="font-family:var(--fd);font-size:22px;font-style:italic;background:linear-gradient(135deg,var(--pk2),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px">Session Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">' +
+            s.ok +
+            "/" +
+            s.total +
+            '</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">' +
+            acc +
+            '%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">' +
+            s.best +
+            '</div><div class="rsl">Best Streak</div></div></div>' +
+            (Object.keys(s.wrongHands).length
+              ? '<div class="slbl" style="margin-top:14px">Missed Hands</div><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">' +
+                Object.entries(s.wrongHands)
+                  .sort((a, b) => b[1] - a[1])
+                  .slice(0, 12)
+                  .map(
+                    ([h, c]) =>
+                      '<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2)">' +
+                      h +
+                      ' <span style="opacity:.5">' +
+                      c +
+                      "×</span></div>",
+                  )
+                  .join("") +
+                "</div>"
+              : "") +
+            '<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="onTrSel()">Train Again</button><button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>';
         },
         updQ() {
           const s = this.stats;
@@ -5094,7 +5268,8 @@
           const s = this.stats;
           const dp = $("trDetailedStats");
           if (!dp) return;
-          const te = Object.values(S.errors).reduce((a, b) => a + b.t, 0);
+          const rangeErrs = S.errors[Tr.rangeId] || {};
+          const te = Object.values(rangeErrs).reduce((a, b) => a + b.t, 0);
           const acc = s.total ? Math.round((s.ok / s.total) * 100) : 0;
           const avgMs = s.ms.length
             ? Math.round(s.ms.reduce((a, b) => a + b, 0) / s.ms.length)
@@ -5226,7 +5401,7 @@
             h += "</div>";
           }
           /* All-time weakest */
-          const wk = getWeak(10);
+          const wk = getWeak(10, Tr.rangeId);
           if (wk.length) {
             const mx = wk[0][1].t;
             h +=
@@ -5322,6 +5497,63 @@
         btn.style.color = show ? "var(--pk2)" : "var(--t4)";
         if (show) Tr.renderDetailed();
       }
+      function renderTrHistory() {
+        const hist = LG("ps_tr_history", []);
+        const hc = $("trHistContent");
+        if (!hist.length) {
+          hc.innerHTML =
+            '<div style="text-align:center;padding:40px;color:var(--t4);font-size:12px">No training history yet.<br>Complete a session to see results here.</div>';
+          return;
+        }
+        hc.innerHTML =
+          '<div class="slbl">Training Sessions</div>' +
+          hist
+            .slice()
+            .reverse()
+            .map((h, i) => {
+              const dt = new Date(h.date);
+              const dateStr =
+                dt.toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                }) +
+                " " +
+                dt.toLocaleTimeString("en-US", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                });
+              const acc = h.total ? Math.round((h.ok / h.total) * 100) : 0;
+              const col =
+                acc >= 80 ? "var(--mt)" : acc >= 60 ? "var(--gd)" : "var(--rs)";
+              return (
+                '<div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);margin-bottom:4px;animation:cardS ' +
+                (0.2 + i * 0.03) +
+                's backwards"><div style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--b3);border-radius:10px;font-family:var(--fm);font-size:16px;font-weight:800;color:' +
+                col +
+                '">' +
+                acc +
+                '%</div><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' +
+                (h.rangeId || "Range") +
+                '</div><div style="font-size:9px;color:var(--t4)">' +
+                dateStr +
+                " · " +
+                h.total +
+                " hands · Limit: " +
+                h.limit +
+                '</div></div><div style="text-align:right"><div style="font-family:var(--fm);font-size:12px;font-weight:700;color:' +
+                col +
+                '">' +
+                h.ok +
+                "/" +
+                h.total +
+                '</div><div style="font-size:9px;color:var(--t4)">Best: ' +
+                h.best +
+                "🔥</div></div></div>"
+              );
+            })
+            .join("") +
+          "<button class=\"btn btn-s btn-d\" style=\"display:block;margin:12px auto\" onclick=\"confirmAction('Clear training history?','',()=>{LS('ps_tr_history',[]);renderTrHistory();toast('History cleared ✦')})\">Clear History</button>";
+      }
       function popTrSel() {
         loadSvd();
         const sel = $("trSel");
@@ -5361,10 +5593,32 @@
           $("mTabs").style.display = "none";
           return;
         }
-        let d;
-        if (v === "current") d = { acts: S.acts, range: S.range };
-        else d = S.saved[+v];
-        if (d) Tr.start(d);
+        let d, rId;
+        if (v === "current") {
+          d = { acts: S.acts, range: S.range };
+          rId = "_editor";
+        } else {
+          d = S.saved[+v];
+          rId = d?.name || "r_" + v;
+        }
+        $("trContent").innerHTML =
+          '<div style="text-align:center;padding:20px"><div class="slbl" style="margin-bottom:12px">How many hands?</div><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">' +
+          [10, 25, 50, 100, 0]
+            .map(
+              (n) =>
+                '<button class="btn' +
+                (n === 0 ? " pri" : "") +
+                '" style="min-width:60px;padding:10px 16px;font-size:13px;font-weight:700" onclick="Tr.start(window._trData,window._trRangeId,' +
+                n +
+                ')">' +
+                (n === 0 ? "♾ Unlimited" : n) +
+                " </button>",
+            )
+            .join("") +
+          "</div></div>";
+        $("mTabs").style.display = "flex";
+        window._trData = d;
+        window._trRangeId = rId;
       }
       /* ═══ BANKROLL ═══ */
       const BR = {
@@ -5389,10 +5643,15 @@
           );
         },
       };
+      function brSym() {
+        const c = BR.d.settings?.currency || "USD";
+        return { USD: "$", EUR: "€", GBP: "£", CAD: "C$", AUD: "A$" }[c] || "$";
+      }
       function brFmt(cents) {
         const v = cents / 100;
+        const s = brSym();
         return (
-          (v < 0 ? "-$" : "$") +
+          (v < 0 ? "-" + s : s) +
           Math.abs(v).toLocaleString("en-US", {
             minimumFractionDigits: 0,
             maximumFractionDigits: 2,
@@ -5585,7 +5844,7 @@
         $("depDesc").value = "";
         closeM("depM");
         renderBrAll();
-        toast((sign > 0 ? "+$" : "−$") + amt.toFixed(2) + " ✦");
+        toast((sign > 0 ? "+" : "-") + brSym() + amt.toFixed(2) + " ✦");
       }
       /* Live Session */
       let liveData = LG("ps_live", null);
@@ -5657,7 +5916,8 @@
           ":" +
           String(s).padStart(2, "0") +
           "</div>" +
-          '<div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: $' +
+          '<div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: ' +
+          brSym() +
           (liveData.buyin / 100).toFixed(0) +
           (liveData.rebuys
             ? " · " +
@@ -5667,11 +5927,12 @@
             : "") +
           "</div>" +
           '<div class="live-actions">' +
-          '<button class="btn btn-s" style="color:var(--gd);border-color:rgba(251,191,36,.2)" onclick="openLiveInput(\'rebuy\',\'↻ Rebuy Amount ($)\')">↻ Rebuy</button>' +
+          '<button class="btn btn-s" style="color:var(--gd);border-color:rgba(251,191,36,.2)" onclick="openLiveInput(\'rebuy\',\'↻ Rebuy Amount\')">↻ Rebuy</button>' +
           '<button class="btn btn-s" style="color:var(--li);border-color:rgba(167,139,250,.2)" onclick="openLiveInput(\'note\',\'📝 Session Note\')">📝 Note</button>' +
           '<button class="btn btn-s btn-d" onclick="openEndLive()">End Session</button>' +
           "</div>" +
-          '<div class="live-meta"><div class="live-meta-item"><div class="lm-val">$' +
+          '<div class="live-meta"><div class="live-meta-item"><div class="lm-val">' +
+          brSym() +
           (liveData.invested / 100).toFixed(0) +
           '</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val">' +
           brFmtDur(Math.round(elapsed / 60000)) +
@@ -5717,7 +5978,7 @@
           liveData.invested += Math.round(amt * 100);
           liveData.events.push({
             time: ts,
-            text: "↻ Rebuy $" + amt.toFixed(0),
+            text: "↻ Rebuy " + brSym() + amt.toFixed(0),
           });
         } else if (type === "note") {
           if (!val.trim()) return toast("Enter a note");
@@ -5732,19 +5993,22 @@
         $("liveEndStack").value = "";
         const invested = liveData.invested;
         $("liveEndSummary").innerHTML =
-          'Total invested: <strong style="color:var(--pk2)">$' +
+          'Total invested: <strong style="color:var(--pk2)">' +
+          brSym() +
           (invested / 100).toFixed(0) +
           "</strong>";
         $("liveEndStack").oninput = function () {
           const stack = parseFloat(this.value) || 0;
           const pnl = Math.round(stack * 100) - invested;
           $("liveEndSummary").innerHTML =
-            "Invested: $" +
+            "Invested: " +
+            brSym() +
             (invested / 100).toFixed(0) +
             ' → P&L: <strong style="color:' +
             (pnl >= 0 ? "var(--mt)" : "var(--rs)") +
             '">' +
-            (pnl >= 0 ? "+$" : "−$") +
+            (pnl >= 0 ? "+" : "-") +
+            brSym() +
             (Math.abs(pnl) / 100).toFixed(2) +
             "</strong>";
         };
@@ -5797,7 +6061,8 @@
         renderBrAll();
         toast(
           "Session: " +
-            (pnl >= 0 ? "+$" : "−$") +
+            (pnl >= 0 ? "+" : "-") +
+            brSym() +
             (Math.abs(pnl) / 100).toFixed(2) +
             " ✦",
         );
@@ -5833,6 +6098,7 @@
         const name = LG("ps_username", "");
         const bt = $("brTitle");
         if (bt) bt.textContent = name ? name + "'s Bankroll" : "Bankroll";
+        updateCurrencyLabels();
       }
       function renderBrDash() {
         const sorted = BR.sorted;
@@ -5860,7 +6126,8 @@
             : "") +
           '</div><div class="br-stat"><div class="brs-label">Hourly</div><div class="brs-val ' +
           (hourly >= 0 ? "pos" : "neg") +
-          '">$' +
+          '">' +
+          brSym() +
           Math.abs(hourly).toFixed(2) +
           '/hr</div><div class="brs-sub">' +
           totalHrs.toFixed(1) +
@@ -5933,7 +6200,7 @@
                   ticks: {
                     color: CT.tick,
                     font: { size: 10 },
-                    callback: (v) => "$" + v.toLocaleString(),
+                    callback: (v) => brSym() + v.toLocaleString(),
                   },
                   grid: { color: CT.grid },
                 },
@@ -6024,7 +6291,9 @@
                 legend: { display: false },
                 tooltip: {
                   backgroundColor: CT.tbg,
-                  callbacks: { label: (c) => "$" + c.raw.toFixed(2) + "/hr" },
+                  callbacks: {
+                    label: (c) => brSym() + c.raw.toFixed(2) + "/hr",
+                  },
                 },
               },
               scales: {
@@ -6094,7 +6363,8 @@
                         d.date +
                         ": " +
                         (d.has
-                          ? (d.val >= 0 ? "+$" : "-$") +
+                          ? (d.val >= 0 ? "+" : "-") +
+                            brSym() +
                             Math.abs(d.val / 100).toFixed(0)
                           : "—") +
                         '"></div>',
@@ -6286,7 +6556,7 @@
           brCharts.dist = new Chart($("chDist").getContext("2d"), {
             type: "bar",
             data: {
-              labels: bKeys.map((k) => "$" + k),
+              labels: bKeys.map((k) => brSym() + k),
               datasets: [
                 {
                   data: bKeys.map((k) => bk[k]),
@@ -6485,6 +6755,21 @@
         const el = $("headerGreeting");
         if (el) el.textContent = name ? "Hey " + name + " ♡" : "";
       }
+      function updateCurrencyLabels() {
+        const s = brSym();
+        const el = (id) => {
+          const e = $(id);
+          if (e) return e;
+        };
+        const set = (id, txt) => {
+          const e = el(id);
+          if (e) e.textContent = txt;
+        };
+        set("brResultLabel", "Result (" + s + ")");
+        set("depAmtLabel", "Amount (" + s + ")");
+        set("liveBuyinLabel", "Buy-in (" + s + ")");
+        set("liveEndLabel", "Final Stack (" + s + ")");
+      }
       /* INIT */
       Ed.init();
       checkDirty();
@@ -6494,6 +6779,7 @@
       balHidden = LG("ps_balhide", false);
       setTimeout(applyBalHide, 100);
       updateUserGreeting();
+      updateCurrencyLabels();
       try {
         const ic = document.querySelector('link[rel="apple-touch-icon"]');
         const iconUrl = ic ? ic.href : "";
