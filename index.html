@@ -8,7 +8,120 @@
     />
     <meta name="theme-color" content="#08050f" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <title>PokerStudio</title>
+    <script>
+      // Generate iOS homescreen icon
+      !(function () {
+        const c = document.createElement("canvas");
+        c.width = 512;
+        c.height = 512;
+        const x = c.getContext("2d");
+        // Background
+        const bg = x.createRadialGradient(256, 200, 0, 256, 256, 360);
+        bg.addColorStop(0, "#1a1030");
+        bg.addColorStop(0.5, "#110820");
+        bg.addColorStop(1, "#08050f");
+        x.fillStyle = bg;
+        x.beginPath();
+        x.roundRect(0, 0, 512, 512, 96);
+        x.fill();
+        // Glow orbs
+        x.globalAlpha = 0.15;
+        const g1 = x.createRadialGradient(150, 140, 0, 150, 140, 200);
+        g1.addColorStop(0, "#ec4899");
+        g1.addColorStop(1, "transparent");
+        x.fillStyle = g1;
+        x.fillRect(0, 0, 512, 512);
+        const g2 = x.createRadialGradient(380, 350, 0, 380, 350, 180);
+        g2.addColorStop(0, "#a78bfa");
+        g2.addColorStop(1, "transparent");
+        x.fillStyle = g2;
+        x.fillRect(0, 0, 512, 512);
+        x.globalAlpha = 1;
+        // Spade symbol
+        x.save();
+        x.translate(256, 195);
+        x.scale(1.1, 1.1);
+        x.beginPath();
+        x.moveTo(0, -80);
+        x.bezierCurveTo(-10, -70, -75, -20, -75, 30);
+        x.bezierCurveTo(-75, 70, -45, 95, 0, 70);
+        x.bezierCurveTo(45, 95, 75, 70, 75, 30);
+        x.bezierCurveTo(75, -20, 10, -70, 0, -80);
+        x.closePath();
+        const sg = x.createLinearGradient(0, -80, 0, 95);
+        sg.addColorStop(0, "#f9a8d4");
+        sg.addColorStop(0.5, "#ec4899");
+        sg.addColorStop(1, "#be185d");
+        x.fillStyle = sg;
+        x.fill();
+        // Spade stem
+        x.fillStyle = "#ec4899";
+        x.fillRect(-8, 55, 16, 40);
+        x.beginPath();
+        x.ellipse(-20, 95, 20, 8, 0, 0, Math.PI * 2);
+        x.fill();
+        x.beginPath();
+        x.ellipse(20, 95, 20, 8, 0, 0, Math.PI * 2);
+        x.fill();
+        x.restore();
+        // Sparkle dots
+        x.globalAlpha = 0.6;
+        [
+          [120, 100, 3, "#f9a8d4"],
+          [400, 130, 2, "#a78bfa"],
+          [380, 90, 2.5, "#ec4899"],
+          [140, 300, 2, "#d946ef"],
+          [410, 280, 1.5, "#f9a8d4"],
+        ].forEach(([px, py, r, cl]) => {
+          x.beginPath();
+          x.arc(px, py, r, 0, Math.PI * 2);
+          x.fillStyle = cl;
+          x.fill();
+        });
+        x.globalAlpha = 1;
+        // PS text
+        x.font = 'italic 700 90px "Georgia",serif';
+        x.textAlign = "center";
+        x.textBaseline = "middle";
+        x.fillStyle = "rgba(0,0,0,.3)";
+        x.fillText("PS", 258, 402);
+        const tg = x.createLinearGradient(180, 370, 330, 430);
+        tg.addColorStop(0, "#f9a8d4");
+        tg.addColorStop(0.5, "#ec4899");
+        tg.addColorStop(1, "#d946ef");
+        x.fillStyle = tg;
+        x.fillText("PS", 256, 400);
+        // Text glow
+        x.shadowColor = "rgba(236,72,153,.4)";
+        x.shadowBlur = 20;
+        x.fillText("PS", 256, 400);
+        x.shadowBlur = 0;
+        // Border glow
+        x.globalAlpha = 0.12;
+        x.strokeStyle = "#ec4899";
+        x.lineWidth = 2;
+        x.beginPath();
+        x.roundRect(4, 4, 504, 504, 92);
+        x.stroke();
+        x.globalAlpha = 1;
+        // Apply as apple-touch-icon
+        const link = document.createElement("link");
+        link.rel = "apple-touch-icon";
+        link.href = c.toDataURL("image/png");
+        document.head.appendChild(link);
+        // Also set as favicon
+        const fav = document.createElement("link");
+        fav.rel = "icon";
+        fav.type = "image/png";
+        fav.href = c.toDataURL("image/png");
+        document.head.appendChild(fav);
+      })();
+    </script>
     <link
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,700;1,700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -1248,43 +1361,49 @@
       /* Bankroll */
       .br-sub-nav {
         display: flex;
-        gap: 3px;
-        margin-bottom: 14px;
+        gap: 4px;
+        margin-bottom: 16px;
         overflow-x: auto;
         scrollbar-width: none;
-        padding: 2px;
+        padding: 4px;
+        background: var(--b1);
+        border: 1px solid var(--bd);
+        border-radius: 14px;
       }
       .br-sub-nav::-webkit-scrollbar {
         display: none;
       }
       .br-sub-nav button {
-        padding: 8px 16px;
-        border: 1px solid var(--bd);
-        background: var(--b2);
+        padding: 9px 14px;
+        border: none;
+        background: transparent;
         color: var(--t4);
         font-size: 10px;
         font-weight: 700;
-        letter-spacing: 0.8px;
-        text-transform: uppercase;
-        border-radius: var(--r1);
+        letter-spacing: 0.5px;
+        border-radius: 11px;
         white-space: nowrap;
-        transition: all 0.25s;
+        transition: all 0.3s var(--e);
         cursor: pointer;
         flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
       }
       .br-sub-nav button:hover {
         color: var(--t2);
-        border-color: var(--bd2);
+        background: rgba(236, 72, 153, 0.04);
       }
       .br-sub-nav button.on {
         background: linear-gradient(
           135deg,
-          rgba(236, 72, 153, 0.1),
-          rgba(167, 139, 250, 0.06)
+          rgba(236, 72, 153, 0.15),
+          rgba(167, 139, 250, 0.1)
         );
         color: var(--pk2);
-        border-color: var(--bd2);
-        box-shadow: var(--gS);
+        box-shadow:
+          0 0 16px rgba(236, 72, 153, 0.1),
+          inset 0 0 12px rgba(236, 72, 153, 0.04);
       }
       .br-sub {
         display: none;
@@ -2187,6 +2306,15 @@
   <body>
     <header class="hdr">
       <div class="logo">PokerStudio</div>
+      <span
+        id="headerGreeting"
+        style="
+          font-size: 11px;
+          color: var(--t3);
+          font-weight: 500;
+          margin-right: 8px;
+        "
+      ></span>
       <nav class="desk-nav" id="deskNav">
         <button class="dn-t on" data-v="editor" onclick="go('editor')">
           ♠ Editor</button
@@ -2195,7 +2323,9 @@
         ><button class="dn-t" data-v="files" onclick="go('files')">
           📁 Files</button
         ><button class="dn-t" data-v="bankroll" onclick="go('bankroll')">
-          💰 Bankroll
+          💰 Bankroll</button
+        ><button class="dn-t" data-v="settings" onclick="go('settings')">
+          ⚙️ Settings
         </button>
       </nav>
     </header>
@@ -2237,9 +2367,7 @@
             ></div>
             <button class="btn btn-s" onclick="openM('actM')">+ Action</button
             ><span style="flex: 1"></span
-            ><button class="btn btn-s" onclick="clearR()">Clear</button
-            ><button class="btn btn-s" onclick="openM('impM')">Import</button
-            ><button class="btn btn-s" onclick="openM('expM')">Export</button>
+            ><button class="btn btn-s" onclick="clearR()">Clear</button>
           </div>
           <div class="gp wpan">
             <label>Frequency</label
@@ -2311,14 +2439,14 @@
       <div id="bankrollV" class="view" style="max-width: 900px; margin: 0 auto">
         <div class="section-head">
           <span style="font-size: 20px">💰</span>
-          <h2>Bankroll</h2>
+          <h2 id="brTitle">Bankroll</h2>
         </div>
         <nav class="br-sub-nav" id="brNav">
-          <button class="on" data-bp="brDash">Dashboard</button
-          ><button data-bp="brSess">Sessions</button
-          ><button data-bp="brAnal">Analytics</button
-          ><button data-bp="brRisk">Risk</button
-          ><button data-bp="brGoals">Goals</button>
+          <button class="on" data-bp="brDash"><span>📊</span> Dashboard</button
+          ><button data-bp="brSess"><span>🃏</span> Sessions</button
+          ><button data-bp="brAnal"><span>📈</span> Analytics</button
+          ><button data-bp="brRisk"><span>🛡️</span> Risk</button
+          ><button data-bp="brGoals"><span>🎯</span> Goals</button>
         </nav>
         <div class="br-sub on" id="brDash">
           <div id="brLiveArea"></div>
@@ -2538,6 +2666,489 @@
           <div id="brGoalsList"></div>
         </div>
       </div>
+      <!-- SETTINGS -->
+      <div id="settingsV" class="view" style="max-width: 600px; margin: 0 auto">
+        <div class="section-head">
+          <span style="font-size: 20px">⚙️</span>
+          <h2>Settings</h2>
+        </div>
+        <!-- Profile -->
+        <div class="gp" style="margin-bottom: 12px">
+          <div class="slbl">👤 Profile</div>
+          <div style="padding: 10px 0; border-bottom: 1px solid var(--bd)">
+            <div style="font-weight: 600; font-size: 12px; margin-bottom: 6px">
+              Your Name
+            </div>
+            <input
+              type="text"
+              id="setUserName"
+              placeholder="Enter your name..."
+              style="
+                width: 100%;
+                padding: 10px 14px;
+                background: var(--b0);
+                border: 1px solid var(--bd);
+                border-radius: var(--r1);
+                font-size: 13px;
+                color: var(--t1);
+                transition: all 0.25s;
+              "
+              oninput="
+                LS('ps_username', this.value);
+                updateUserGreeting();
+              "
+            />
+          </div>
+        </div>
+        <!-- Bankroll -->
+        <div class="gp" style="margin-bottom: 12px">
+          <div class="slbl">💰 Bankroll</div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">
+                Starting Bankroll
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Your initial bankroll amount
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <input
+                type="number"
+                id="setStartBR"
+                value="0"
+                step="0.01"
+                style="
+                  width: 110px;
+                  padding: 8px 10px;
+                  background: var(--b0);
+                  border: 1px solid var(--bd);
+                  border-radius: var(--r1);
+                  font-size: 12px;
+                  color: var(--t1);
+                  font-family: var(--fm);
+                  text-align: right;
+                "
+                onchange="
+                  BR.d.settings.startBankroll = this.value;
+                  BR.save();
+                  renderBrAll();
+                "
+              />
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">Currency</div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Display currency symbol
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <select
+                id="setCurrency"
+                style="
+                  padding: 8px 10px;
+                  background: var(--b0);
+                  border: 1px solid var(--bd);
+                  border-radius: var(--r1);
+                  font-size: 12px;
+                  color: var(--t1);
+                "
+                onchange="
+                  BR.d.settings.currency = this.value;
+                  BR.save();
+                "
+              >
+                <option value="USD">$ USD</option>
+                <option value="EUR">€ EUR</option>
+                <option value="GBP">£ GBP</option>
+                <option value="CAD">C$ CAD</option>
+                <option value="AUD">A$ AUD</option>
+              </select>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">Hide Balance</div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Blur all monetary values
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button class="btn btn-s" id="setBalToggle" onclick="toggleBal()">
+                👁 Hide
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Trainer -->
+        <div class="gp" style="margin-bottom: 12px">
+          <div class="slbl">🎯 Trainer</div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">
+                Auto-advance Speed
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Time between hands after answering
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <select
+                id="setSpeed"
+                style="
+                  padding: 8px 10px;
+                  background: var(--b0);
+                  border: 1px solid var(--bd);
+                  border-radius: var(--r1);
+                  font-size: 12px;
+                  color: var(--t1);
+                "
+                onchange="LS('ps_speed', this.value)"
+              >
+                <option value="fast">Fast (0.25s)</option>
+                <option value="normal" selected>Normal (1s)</option>
+                <option value="slow">Slow (2.5s)</option>
+              </select>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">
+                Vibrate on Miss
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Haptic feedback on wrong answer
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button
+                class="btn btn-s"
+                id="setVibrate"
+                onclick="
+                  this.dataset.on = this.dataset.on === '1' ? '0' : '1';
+                  this.textContent = this.dataset.on === '1' ? 'On' : 'Off';
+                  LS('ps_vibrate', this.dataset.on);
+                "
+                data-on="1"
+              >
+                On
+              </button>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">
+                Clear Error History
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Reset all-time weak spot tracking
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button
+                class="btn btn-s btn-d"
+                onclick="
+                  confirmAction('Clear all error history?', '', () => {
+                    S.errors = {};
+                    saveErr();
+                    toast('Errors cleared ✦');
+                  })
+                "
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Editor -->
+        <div class="gp" style="margin-bottom: 12px">
+          <div class="slbl">♠ Editor</div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">
+                Reset Default Actions
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Back to Raise / Call / Fold
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button
+                class="btn btn-s"
+                onclick="
+                  confirmAction('Reset editor actions?', '', () => {
+                    S.acts = JSON.parse(JSON.stringify(DACTS));
+                    S.sel = 0;
+                    Ed.renActs();
+                    Ed.saveSt();
+                    toast('Actions reset ✦');
+                  })
+                "
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">
+                Import Range Notation
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                AA,KK,AKs format
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button class="btn btn-s" onclick="openM('impM')">Import</button>
+            </div>
+          </div>
+        </div>
+        <!-- Data -->
+        <div class="gp" style="margin-bottom: 12px">
+          <div class="slbl">🗄️ Data</div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">
+                Export All Data
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Download complete backup (ranges, bankroll, settings)
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button class="btn btn-s pri" onclick="dlJSON()">
+                💾 Export
+              </button>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px">Import Data</div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Restore from .json backup file
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button class="btn btn-s" onclick="$('jfInput').click()">
+                📂 Import
+              </button>
+            </div>
+          </div>
+          <div class="glow-line"></div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px; color: var(--rs)">
+                Delete All Ranges
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Remove all saved ranges & folders
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button
+                class="btn btn-s btn-d"
+                onclick="confirmAction('Delete ALL ranges and folders?','This cannot be undone',()=>{S.saved=[];S.folders=[{path:\'/\',icon:\'📁\',name:\'Root\'}];saveSvd();renderFiles();toast('Ranges deleted')})"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--bd);
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px; color: var(--rs)">
+                Delete Bankroll Data
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Remove all sessions, goals, deposits
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button
+                class="btn btn-s btn-d"
+                onclick="
+                  confirmAction(
+                    'Delete ALL bankroll data?',
+                    'This cannot be undone',
+                    () => {
+                      LS('ps_br', {
+                        sessions: [],
+                        goals: [],
+                        settings: { startBankroll: 0 },
+                        deposits: [],
+                      });
+                      BR._d = null;
+                      renderBrAll();
+                      toast('Bankroll data deleted');
+                    },
+                  )
+                "
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px 0;
+            "
+          >
+            <div style="flex: 1; min-width: 0">
+              <div style="font-weight: 600; font-size: 12px; color: var(--rs)">
+                Factory Reset
+              </div>
+              <div style="font-size: 10px; color: var(--t4)">
+                Delete everything and start fresh
+              </div>
+            </div>
+            <div style="flex-shrink: 0">
+              <button
+                class="btn btn-s btn-d"
+                onclick="
+                  confirmAction(
+                    'FACTORY RESET — Delete ALL data?',
+                    'Everything will be permanently erased',
+                    () => {
+                      localStorage.clear();
+                      location.reload();
+                    },
+                  )
+                "
+              >
+                Reset All
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- About -->
+        <div
+          class="gp"
+          style="margin-bottom: 12px; text-align: center; padding: 20px"
+        >
+          <div
+            style="
+              font-family: var(--fd);
+              font-size: 20px;
+              font-style: italic;
+              background: linear-gradient(
+                135deg,
+                var(--pk),
+                var(--mg),
+                var(--li)
+              );
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              margin-bottom: 4px;
+            "
+          >
+            PokerStudio
+          </div>
+          <div style="font-size: 10px; color: var(--t4)">
+            Range Editor · Trainer · Bankroll Tracker
+          </div>
+          <div style="font-size: 9px; color: var(--t4); margin-top: 4px">
+            All data stored locally on your device ♡
+          </div>
+        </div>
+      </div>
     </div>
     <nav class="bnav">
       <button class="bnav-t on" data-v="editor" onclick="go('editor')">
@@ -2547,7 +3158,9 @@
       ><button class="bnav-t" data-v="files" onclick="go('files')">
         <span class="bi">📁</span>Files</button
       ><button class="bnav-t" data-v="bankroll" onclick="go('bankroll')">
-        <span class="bi">💰</span>Bank
+        <span class="bi">💰</span>Bank</button
+      ><button class="bnav-t" data-v="settings" onclick="go('settings')">
+        <span class="bi">⚙️</span>More
       </button>
     </nav>
     <!-- MODALS -->
@@ -2581,68 +3194,6 @@
         <div class="mact">
           <button class="btn" onclick="closeM('saveM')">Cancel</button
           ><button class="btn pri" onclick="saveCur()">✦ Save</button>
-        </div>
-      </div>
-    </div>
-    <div class="mov" id="expM">
-      <div class="mdl" style="max-width: 440px">
-        <h3>Export</h3>
-        <div class="slbl">Range Notation</div>
-        <div style="position: relative; margin-bottom: 10px">
-          <textarea
-            class="minp"
-            id="expNotText"
-            readonly
-            style="
-              margin: 0;
-              min-height: 50px;
-              font-size: 10px;
-              color: var(--t2);
-            "
-            onclick="this.select()"
-          ></textarea
-          ><button
-            class="btn btn-xs"
-            style="position: absolute; top: 6px; right: 6px"
-            onclick="expCopyNot()"
-          >
-            📋
-          </button>
-        </div>
-        <div class="glow-line"></div>
-        <div class="slbl">Full App Backup (JSON)</div>
-        <div style="position: relative; margin-bottom: 10px">
-          <textarea
-            class="minp"
-            id="expJSONText"
-            readonly
-            style="
-              margin: 0;
-              min-height: 60px;
-              font-size: 9px;
-              color: var(--t3);
-            "
-            onclick="this.select()"
-          ></textarea
-          ><button
-            class="btn btn-xs"
-            style="position: absolute; top: 6px; right: 6px"
-            onclick="copyJSON()"
-          >
-            📋
-          </button>
-        </div>
-        <div class="mact">
-          <button class="btn" onclick="closeM('expM')">Close</button
-          ><button
-            class="btn pri"
-            onclick="
-              dlJSON();
-              closeM('expM');
-            "
-          >
-            💾 Download
-          </button>
         </div>
       </div>
     </div>
@@ -3176,6 +3727,7 @@
         if (v === "files") renderFiles();
         if (v === "bankroll") renderBrAll();
         if (v === "editor" && !viewerMode) showEditorMode();
+        if (v === "settings") loadSettingsUI();
       }
       let _cfCb = null;
       function confirmAction(msg, name, cb) {
@@ -4201,8 +4753,9 @@
       function buildExportJSON() {
         return JSON.stringify(
           {
-            v: 13,
+            v: 14,
             exported: new Date().toISOString(),
+            username: LG("ps_username", ""),
             ranges: S.saved,
             folders: S.folders,
             errors: S.errors,
@@ -4213,6 +4766,10 @@
               settings: {},
               deposits: [],
             }),
+            settings: {
+              speed: LG("ps_speed", "normal"),
+              vibrate: LG("ps_vibrate", "1"),
+            },
           },
           null,
           2,
@@ -4280,7 +4837,14 @@
           checkDirty();
         }
         if (d.bankroll) LS("ps_br", d.bankroll);
+        if (d.username) LS("ps_username", d.username);
+        if (d.settings) {
+          if (d.settings.speed) LS("ps_speed", d.settings.speed);
+          if (d.settings.vibrate) LS("ps_vibrate", d.settings.vibrate);
+        }
+        BR._d = null;
         renderFiles();
+        updateUserGreeting();
         toast("Imported " + c + " ranges ✦");
       }
       /* TRAINER */
@@ -4301,7 +4865,24 @@
         start(d) {
           this.range = d.range;
           this.acts = d.acts;
-          this.stats = { ok: 0, total: 0, streak: 0, best: 0 };
+          this.stats = {
+            ok: 0,
+            total: 0,
+            streak: 0,
+            best: 0,
+            byType: {
+              pair: { ok: 0, t: 0 },
+              suited: { ok: 0, t: 0 },
+              offsuit: { ok: 0, t: 0 },
+            },
+            byAction: {},
+            history: [],
+            ms: [],
+            wrongHands: {},
+          };
+          this.acts.forEach((a) => {
+            this.stats.byAction[a.name] = { ok: 0, t: 0 };
+          });
           this.active = true;
           trMode = "all";
           document
@@ -4313,7 +4894,7 @@
         },
         buildUI() {
           $("trContent").innerHTML =
-            '<div style="perspective:900px;width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div>';
+            '<div style="perspective:900px;width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div><div id="trStatsToggle" style="width:100%;cursor:pointer;text-align:center;padding:8px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4)" onclick="toggleTrStats()">▼ Detailed Stats</div><div id="trDetailedStats" style="display:none;width:100%"></div>';
           const bc = $("tBtns");
           bc.innerHTML = "";
           this.acts.forEach((a, i) => {
@@ -4425,13 +5006,16 @@
           document
             .querySelectorAll(".tabtn")
             .forEach((b) => (b.disabled = false));
+          this._ts = Date.now();
         },
         answer(ai) {
           if (!this.cur) return;
-          const { r, c, label } = this.cur;
+          const { r, c, label, type } = this.cur;
           const ca = this.range[r][c];
           let ok = false,
             exp = "";
+          const ms = Date.now() - (this._ts || Date.now());
+          this._ts = Date.now();
           if (!ca.length) {
             const fi = this.acts.findIndex(
               (a) => a.name.toLowerCase() === "fold",
@@ -4449,14 +5033,25 @@
             }
           }
           this.stats.total++;
+          this.stats.history.push(ok ? 1 : 0);
+          this.stats.ms.push(ms);
+          this.stats.byType[type].t++;
+          if (ok) this.stats.byType[type].ok++;
+          const an = this.acts[ai].name;
+          if (!this.stats.byAction[an])
+            this.stats.byAction[an] = { ok: 0, t: 0 };
+          this.stats.byAction[an].t++;
           if (ok) {
             this.stats.ok++;
             this.stats.streak++;
             if (this.stats.streak > this.stats.best)
               this.stats.best = this.stats.streak;
+            this.stats.byAction[an].ok++;
           } else {
             this.stats.streak = 0;
-            recErr(label, this.acts[ai].name);
+            recErr(label, an);
+            if (!this.stats.wrongHands[label]) this.stats.wrongHands[label] = 0;
+            this.stats.wrongHands[label]++;
             if (navigator.vibrate) navigator.vibrate(50);
           }
           const card = $("tCard"),
@@ -4479,7 +5074,10 @@
             .querySelectorAll(".tabtn")
             .forEach((b) => (b.disabled = true));
           this.updQ();
-          setTimeout(() => this.next(), ok ? 650 : 1400);
+          const spd = LG("ps_speed", "normal");
+          const okMs = spd === "fast" ? 250 : spd === "slow" ? 2500 : 1000;
+          const noMs = spd === "fast" ? 500 : spd === "slow" ? 4000 : 2000;
+          setTimeout(() => this.next(), ok ? okMs : noMs);
         },
         updQ() {
           const s = this.stats;
@@ -4489,8 +5087,241 @@
             : "—";
           $("qStreak").textContent = s.streak;
           $("qBest").textContent = s.best;
+          const dp = $("trDetailedStats");
+          if (dp && dp.style.display !== "none") this.renderDetailed();
+        },
+        renderDetailed() {
+          const s = this.stats;
+          const dp = $("trDetailedStats");
+          if (!dp) return;
+          const te = Object.values(S.errors).reduce((a, b) => a + b.t, 0);
+          const acc = s.total ? Math.round((s.ok / s.total) * 100) : 0;
+          const avgMs = s.ms.length
+            ? Math.round(s.ms.reduce((a, b) => a + b, 0) / s.ms.length)
+            : 0;
+          const l10 = s.history.slice(-10);
+          const l10a = l10.length
+            ? Math.round((l10.filter((x) => x).length / l10.length) * 100)
+            : 0;
+          const l25 = s.history.slice(-25);
+          const l25a = l25.length
+            ? Math.round((l25.filter((x) => x).length / l25.length) * 100)
+            : 0;
+          let h =
+            '<div class="rstats" style="margin-top:6px"><div class="rstat-card"><div class="rsv">' +
+            acc +
+            '%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">' +
+            (avgMs / 1000).toFixed(1) +
+            's</div><div class="rsl">Avg Speed</div></div><div class="rstat-card"><div class="rsv">' +
+            s.best +
+            '</div><div class="rsl">Best Streak</div></div><div class="rstat-card"><div class="rsv">' +
+            te +
+            '</div><div class="rsl">All-time Errors</div></div></div>';
+          /* Accuracy chart (rolling window) */
+          const cd = [];
+          for (let i = 0; i < s.history.length; i++) {
+            const w = s.history.slice(Math.max(0, i - 9), i + 1);
+            cd.push(Math.round((w.filter((x) => x).length / w.length) * 100));
+          }
+          if (cd.length >= 3) {
+            h +=
+              '<div style="margin:8px 0"><canvas id="trAccChart" height="80" style="width:100%"></canvas></div>';
+          }
+          /* By type */
+          h +=
+            '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:8px 0">';
+          ["pair", "suited", "offsuit"].forEach((t) => {
+            const d = s.byType[t];
+            const p = d.t ? Math.round((d.ok / d.t) * 100) : 0;
+            const col =
+              t === "pair"
+                ? "var(--pk)"
+                : t === "suited"
+                  ? "var(--li)"
+                  : "var(--ic)";
+            h +=
+              '<div style="background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:10px;text-align:center"><div style="font-family:var(--fm);font-size:16px;font-weight:700;color:' +
+              col +
+              '">' +
+              (d.t ? p + "%" : "—") +
+              '</div><div style="font-size:8px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;margin-top:2px">' +
+              t +
+              '</div><div style="font-size:9px;color:var(--t3);margin-top:2px">' +
+              d.ok +
+              "/" +
+              d.t +
+              '</div><div style="height:4px;background:var(--b0);border-radius:2px;margin-top:4px;overflow:hidden"><div style="height:100%;width:' +
+              p +
+              "%;background:" +
+              col +
+              ';border-radius:2px;transition:width .3s"></div></div></div>';
+          });
+          h += "</div>";
+          /* By action */
+          if (this.acts) {
+            h += '<div class="slbl" style="margin-top:6px">By Action</div>';
+            this.acts.forEach((a) => {
+              const d = s.byAction[a.name] || { ok: 0, t: 0 };
+              const p = d.t ? Math.round((d.ok / d.t) * 100) : 0;
+              h +=
+                '<div class="act-row"><div class="act-dot" style="background:' +
+                a.color +
+                '"></div><div class="act-name">' +
+                a.name +
+                '</div><div class="act-bar"><div class="act-bar-fill" style="width:' +
+                p +
+                "%;background:" +
+                a.color +
+                '"></div></div><div class="act-pct">' +
+                (d.t ? p + "%" : "—") +
+                " (" +
+                d.ok +
+                "/" +
+                d.t +
+                ")</div></div>";
+            });
+          }
+          /* Recent performance */
+          h +=
+            '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0"><div style="background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:10px;text-align:center"><div style="font-family:var(--fm);font-size:16px;font-weight:700;color:' +
+            (l10a >= 70
+              ? "var(--mt)"
+              : l10a >= 40
+                ? "var(--gd)"
+                : "var(--rs)") +
+            '">' +
+            l10a +
+            '%</div><div style="font-size:8px;font-weight:700;color:var(--t4);text-transform:uppercase;margin-top:2px">Last 10</div></div><div style="background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:10px;text-align:center"><div style="font-family:var(--fm);font-size:16px;font-weight:700;color:' +
+            (l25a >= 70
+              ? "var(--mt)"
+              : l25a >= 40
+                ? "var(--gd)"
+                : "var(--rs)") +
+            '">' +
+            l25a +
+            '%</div><div style="font-size:8px;font-weight:700;color:var(--t4);text-transform:uppercase;margin-top:2px">Last 25</div></div></div>';
+          /* Session weakest hands */
+          const wrongArr = Object.entries(s.wrongHands)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 12);
+          if (wrongArr.length) {
+            h +=
+              '<div class="slbl" style="margin-top:6px">Session Weak Spots</div><div style="display:flex;flex-wrap:wrap;gap:4px">';
+            wrongArr.forEach(([hand, cnt]) => {
+              const ii = Math.min(
+                cnt / Math.max(...wrongArr.map((w) => w[1])),
+                1,
+              );
+              h +=
+                '<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,' +
+                (0.05 + ii * 0.3) +
+                ");border:1px solid rgba(236,72,153," +
+                (0.1 + ii * 0.3) +
+                ');display:flex;gap:4px;align-items:center"><span>' +
+                hand +
+                '</span><span style="font-size:8px;opacity:.5">' +
+                cnt +
+                "×</span></div>";
+            });
+            h += "</div>";
+          }
+          /* All-time weakest */
+          const wk = getWeak(10);
+          if (wk.length) {
+            const mx = wk[0][1].t;
+            h +=
+              '<div class="slbl" style="margin-top:10px">All-time Weakest</div><div style="display:flex;flex-wrap:wrap;gap:4px">';
+            wk.forEach(([l, d]) => {
+              const ii = Math.min(d.t / mx, 1);
+              h +=
+                '<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(167,139,250,' +
+                (0.05 + ii * 0.25) +
+                ");border:1px solid rgba(167,139,250," +
+                (0.1 + ii * 0.25) +
+                ');display:flex;gap:4px;align-items:center"><span>' +
+                l +
+                '</span><span style="font-size:8px;opacity:.5">' +
+                d.t +
+                "×</span></div>";
+            });
+            h += "</div>";
+          }
+          /* Reset button */
+          if (s.total)
+            h +=
+              '<button class="btn btn-s" style="display:block;margin:12px auto 0" onclick="Tr.stats={ok:0,total:0,streak:0,best:0,byType:{pair:{ok:0,t:0},suited:{ok:0,t:0},offsuit:{ok:0,t:0}},byAction:{},history:[],ms:[],wrongHands:{}};Tr.acts.forEach(a=>{Tr.stats.byAction[a.name]={ok:0,t:0}});Tr.updQ();toast(\'Reset ✦\')">Reset Session Stats</button>';
+          dp.innerHTML = h;
+          /* Draw accuracy chart if data exists */
+          if (cd.length >= 3) {
+            const cv = document.getElementById("trAccChart");
+            if (!cv) return;
+            const ctx = cv.getContext("2d");
+            const dpr = window.devicePixelRatio || 1;
+            const pw = cv.parentElement.clientWidth;
+            const ph = 80;
+            cv.width = pw * dpr;
+            cv.height = ph * dpr;
+            cv.style.width = pw + "px";
+            cv.style.height = ph + "px";
+            ctx.scale(dpr, dpr);
+            const pad = { t: 8, b: 8, l: 4, r: 4 };
+            const cw = pw - pad.l - pad.r;
+            const ch = ph - pad.t - pad.b;
+            const sx = cd.length > 1 ? cw / (cd.length - 1) : cw;
+            const gr = ctx.createLinearGradient(0, pad.t, 0, ph - pad.b);
+            gr.addColorStop(0, "rgba(236,72,153,.15)");
+            gr.addColorStop(1, "rgba(167,139,250,.02)");
+            ctx.beginPath();
+            ctx.moveTo(pad.l, pad.t + ch);
+            cd.forEach((v, i) =>
+              ctx.lineTo(pad.l + i * sx, pad.t + ch - (v / 100) * ch),
+            );
+            ctx.lineTo(pad.l + (cd.length - 1) * sx, pad.t + ch);
+            ctx.closePath();
+            ctx.fillStyle = gr;
+            ctx.fill();
+            const lnG = ctx.createLinearGradient(pad.l, 0, pw - pad.r, 0);
+            lnG.addColorStop(0, "#ec4899");
+            lnG.addColorStop(0.5, "#d946ef");
+            lnG.addColorStop(1, "#a78bfa");
+            ctx.beginPath();
+            ctx.strokeStyle = lnG;
+            ctx.lineWidth = 2;
+            ctx.lineJoin = "round";
+            ctx.lineCap = "round";
+            cd.forEach((v, i) => {
+              const x = pad.l + i * sx,
+                y = pad.t + ch - (v / 100) * ch;
+              i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            if (cd.length > 0) {
+              const li = cd.length - 1,
+                x = pad.l + li * sx,
+                y = pad.t + ch - (cd[li] / 100) * ch;
+              ctx.beginPath();
+              ctx.arc(x, y, 3, 0, Math.PI * 2);
+              ctx.fillStyle = "#fff";
+              ctx.fill();
+              ctx.beginPath();
+              ctx.arc(x, y, 5, 0, Math.PI * 2);
+              ctx.strokeStyle = "rgba(236,72,153,.4)";
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
         },
       };
+      function toggleTrStats() {
+        const p = $("trDetailedStats");
+        const btn = $("trStatsToggle");
+        if (!p || !btn) return;
+        const show = p.style.display === "none";
+        p.style.display = show ? "block" : "none";
+        btn.textContent = show ? "▲ Hide Stats" : "▼ Detailed Stats";
+        btn.style.color = show ? "var(--pk2)" : "var(--t4)";
+        if (show) Tr.renderDetailed();
+      }
       function popTrSel() {
         loadSvd();
         const sel = $("trSel");
@@ -4734,7 +5565,7 @@
             ? bv.classList.add("bal-hidden")
             : bv.classList.remove("bal-hidden");
         }
-        $("balToggle").textContent = balHidden ? "👁 Show" : "👁 Hide";
+        syncBalToggles();
       }
       /* Deposit */
       function submitDep() {
@@ -4999,6 +5830,9 @@
         renderBrSessions();
         renderBrGoals();
         if (liveData && !liveTimer) startLiveTimer();
+        const name = LG("ps_username", "");
+        const bt = $("brTitle");
+        if (bt) bt.textContent = name ? name + "'s Bankroll" : "Bankroll";
       }
       function renderBrDash() {
         const sorted = BR.sorted;
@@ -5510,7 +6344,17 @@
           ' sessions</div></div><div class="br-stat"><div class="brs-label">Biggest Loss</div><div class="brs-val neg">' +
           brFmt(Math.abs(biggestLoss)) +
           "</div></div>";
-        const stakes = [
+        const onlineStakes = [
+          { name: "2NL (0.01/0.02)", bi: 2 * 100 },
+          { name: "5NL (0.02/0.05)", bi: 5 * 100 },
+          { name: "10NL (0.05/0.10)", bi: 10 * 100 },
+          { name: "25NL (0.10/0.25)", bi: 25 * 100 },
+          { name: "50NL (0.25/0.50)", bi: 50 * 100 },
+          { name: "100NL (0.50/1.00)", bi: 100 * 100 },
+          { name: "200NL (1/2)", bi: 200 * 100 },
+          { name: "500NL (2.50/5)", bi: 500 * 100 },
+        ];
+        const liveStakes = [
           { name: "1/2 NL", bi: 200 * 100 },
           { name: "1/3 NL", bi: 300 * 100 },
           { name: "2/5 NL", bi: 500 * 100 },
@@ -5518,29 +6362,46 @@
           { name: "10/25 NL", bi: 2500 * 100 },
           { name: "25/50 NL", bi: 5000 * 100 },
         ];
+        function renderStakeSection(title, stakes, bi_rule) {
+          return (
+            '<div class="slbl" style="margin-top:12px">' +
+            title +
+            " (" +
+            bi_rule +
+            "× buy-in)</div>" +
+            stakes
+              .map((s) => {
+                const needed = s.bi * bi_rule;
+                const pct = Math.min(100, (bankroll / needed) * 100);
+                const ready = pct >= 100;
+                return (
+                  '<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:.85rem">' +
+                  s.name +
+                  '</div><div style="font-size:.7rem;color:var(--t4)">' +
+                  bi_rule +
+                  "× " +
+                  brFmt(s.bi) +
+                  " = " +
+                  brFmt(needed) +
+                  '</div></div><div style="display:flex;align-items:center;gap:6px"><div style="width:50px;height:5px;background:var(--b0);border-radius:3px;overflow:hidden"><div style="height:100%;width:' +
+                  pct +
+                  "%;background:" +
+                  (ready ? "var(--mt)" : "var(--pk)") +
+                  ';border-radius:3px;transition:width .6s"></div></div><div style="padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700;font-family:var(--fm);min-width:56px;text-align:center;' +
+                  (ready
+                    ? "background:rgba(110,231,183,.1);color:var(--mt)"
+                    : "background:rgba(236,72,153,.08);color:var(--pk2)") +
+                  '">' +
+                  (ready ? "Ready ♡" : pct.toFixed(0) + "%") +
+                  "</div></div></div>"
+                );
+              })
+              .join("")
+          );
+        }
         $("brRiskContent").innerHTML =
-          '<div class="slbl" style="margin-top:8px">Stake Readiness (30× buy-in)</div>' +
-          stakes
-            .map((s) => {
-              const needed = s.bi * 30;
-              const pct = Math.min(100, (bankroll / needed) * 100);
-              return (
-                '<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:.88rem">' +
-                s.name +
-                '</div><div style="font-size:.72rem;color:var(--t4)">30× ' +
-                brFmt(s.bi) +
-                " = " +
-                brFmt(needed) +
-                '</div></div><div style="padding:4px 12px;border-radius:20px;font-size:.78rem;font-weight:700;font-family:var(--fm);' +
-                (pct >= 100
-                  ? "background:rgba(110,231,183,.1);color:var(--mt)"
-                  : "background:rgba(236,72,153,.1);color:var(--pk2)") +
-                '">' +
-                (pct >= 100 ? "Ready ♡" : pct.toFixed(0) + "%") +
-                "</div></div>"
-              );
-            })
-            .join("");
+          renderStakeSection("🌐 Online Cash", onlineStakes, 30) +
+          renderStakeSection("🎰 Live Cash", liveStakes, 30);
       }
       /* Goals */
       function addBrGoal() {
@@ -5596,6 +6457,34 @@
             .join("") ||
           '<div style="text-align:center;padding:30px;color:var(--t4);font-size:12px">No goals yet ✦</div>';
       }
+      /* Settings */
+      function loadSettingsUI() {
+        $("setStartBR").value = BR.d.settings?.startBankroll || 0;
+        $("setCurrency").value = BR.d.settings?.currency || "USD";
+        const spd = LG("ps_speed", "normal");
+        $("setSpeed").value = spd;
+        const vib = LG("ps_vibrate", "1");
+        $("setVibrate").textContent = vib === "1" ? "On" : "Off";
+        $("setVibrate").dataset.on = vib;
+        $("setUserName").value = LG("ps_username", "") || "";
+        syncBalToggles();
+      }
+      function syncBalToggles() {
+        $("balToggle").textContent = balHidden ? "👁 Show" : "👁 Hide";
+        const sb = $("setBalToggle");
+        if (sb) sb.textContent = balHidden ? "👁 Show" : "👁 Hide";
+      }
+      function updateUserGreeting() {
+        const name = LG("ps_username", "");
+        updateHeaderName(name);
+      }
+      function getUserName() {
+        return LG("ps_username", "") || "Player";
+      }
+      function updateHeaderName(name) {
+        const el = $("headerGreeting");
+        if (el) el.textContent = name ? "Hey " + name + " ♡" : "";
+      }
       /* INIT */
       Ed.init();
       checkDirty();
@@ -5604,6 +6493,26 @@
       if (liveData) startLiveTimer();
       balHidden = LG("ps_balhide", false);
       setTimeout(applyBalHide, 100);
+      updateUserGreeting();
+      try {
+        const ic = document.querySelector('link[rel="apple-touch-icon"]');
+        const iconUrl = ic ? ic.href : "";
+        const m = {
+          name: "PokerStudio",
+          short_name: "PokerStudio",
+          start_url: location.href,
+          display: "standalone",
+          background_color: "#08050f",
+          theme_color: "#08050f",
+          icons: [{ src: iconUrl, sizes: "512x512", type: "image/png" }],
+        };
+        const ml = document.createElement("link");
+        ml.rel = "manifest";
+        ml.href = URL.createObjectURL(
+          new Blob([JSON.stringify(m)], { type: "application/json" }),
+        );
+        document.head.appendChild(ml);
+      } catch (e) {}
     </script>
   </body>
 </html>
