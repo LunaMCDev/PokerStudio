@@ -2617,8 +2617,15 @@
       }
       @media (min-width: 1080px) {
         .main {
-          max-width: 1100px;
-          padding: 24px;
+          max-width: none;
+          width: 100%;
+          padding: 24px 60px;
+          margin: 0 auto;
+        }
+        .view {
+          width: 100% !important;
+          max-width: none !important;
+          margin: 0 auto !important;
         }
         .hdr {
           padding: 0 28px;
