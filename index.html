@@ -449,11 +449,15 @@
         border: none;
         color: #fff;
         font-weight: 700;
-        box-shadow: var(--gS);
+        box-shadow:
+          0 0 20px rgba(236, 72, 153, 0.25),
+          0 4px 15px rgba(236, 72, 153, 0.15);
       }
       .btn.pri:hover {
         filter: brightness(1.15);
-        box-shadow: var(--gP);
+        box-shadow:
+          0 0 30px rgba(236, 72, 153, 0.35),
+          0 6px 20px rgba(236, 72, 153, 0.2);
         transform: translateY(-2px);
       }
       .btn-s {
@@ -503,16 +507,17 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
       }
       .section-head h2 {
         font-family: var(--fd);
-        font-size: 22px;
+        font-size: 24px;
         font-style: italic;
         background: linear-gradient(135deg, var(--pk2), var(--li));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.3));
       }
       .minp {
         width: 100%;
@@ -1290,11 +1295,14 @@
       .files-bc {
         display: flex;
         align-items: center;
-        gap: 4px;
-        padding: 6px 0;
+        gap: 0;
+        padding: 0;
         overflow-x: auto;
         scrollbar-width: none;
-        margin-bottom: 6px;
+        margin-bottom: 10px;
+        background: var(--b1);
+        border: 1px solid var(--bd);
+        border-radius: var(--r1);
       }
       .files-bc::-webkit-scrollbar {
         display: none;
@@ -1304,18 +1312,51 @@
         font-weight: 600;
         color: var(--t3);
         cursor: pointer;
-        padding: 4px 8px;
-        border-radius: 6px;
+        padding: 8px 12px;
         flex-shrink: 0;
         transition: all 0.25s;
+        border-right: 1px solid var(--bd);
       }
       .fbc-i:hover {
         color: var(--pk2);
+        background: rgba(236, 72, 153, 0.06);
       }
       .fbc-i.cur {
         color: var(--pk2);
-        background: rgba(236, 72, 153, 0.08);
+        background: rgba(236, 72, 153, 0.1);
         font-weight: 700;
+      }
+      .fbc-i:last-child {
+        border-right: none;
+      }
+      .fbc-sep {
+        color: var(--t4);
+        font-size: 10px;
+        padding: 0 2px;
+        flex-shrink: 0;
+      }
+      .fc-path {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-family: var(--fm);
+        font-size: 8px;
+        color: var(--t4);
+        background: var(--b0);
+        padding: 2px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.3px;
+        margin-top: 3px;
+        opacity: 0.7;
+      }
+      .fc-path-inline {
+        font-family: var(--fm);
+        font-size: 9px;
+        color: var(--li);
+        background: rgba(167, 139, 250, 0.08);
+        padding: 2px 6px;
+        border-radius: 4px;
+        letter-spacing: 0.3px;
       }
       .fbc-s {
         color: var(--t4);
@@ -1325,20 +1366,22 @@
       .file-card {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 11px 12px;
+        gap: 12px;
+        padding: 12px 14px;
         background: var(--b2);
         border: 1px solid var(--bd);
         border-radius: var(--r2);
         cursor: pointer;
         transition: all 0.3s;
         animation: cardS 0.35s backwards;
-        margin-bottom: 4px;
+        margin-bottom: 5px;
       }
       .file-card:hover {
         border-color: var(--bd2);
         transform: translateX(4px);
-        box-shadow: var(--gS);
+        box-shadow:
+          0 0 18px rgba(236, 72, 153, 0.1),
+          0 4px 16px rgba(0, 0, 0, 0.2);
       }
       @keyframes cardS {
         from {
@@ -1508,15 +1551,17 @@
         background: var(--b2);
         border: 1px solid var(--bd);
         border-radius: var(--r2);
-        padding: 14px;
+        padding: 16px;
         position: relative;
         overflow: hidden;
-        transition: all 0.25s;
+        transition: all 0.3s;
       }
       .br-stat:hover {
         border-color: var(--bd2);
-        transform: translateY(-2px);
-        box-shadow: var(--gS);
+        transform: translateY(-3px);
+        box-shadow:
+          0 0 20px rgba(236, 72, 153, 0.12),
+          0 8px 25px rgba(0, 0, 0, 0.3);
       }
       .br-stat::before {
         content: "";
@@ -1525,8 +1570,8 @@
         left: 0;
         right: 0;
         height: 2px;
-        background: linear-gradient(90deg, var(--pk), var(--li));
-        opacity: 0;
+        background: linear-gradient(90deg, var(--pk), var(--mg), var(--li));
+        opacity: 0.4;
         transition: opacity 0.25s;
       }
       .br-stat:hover::before {
@@ -2444,12 +2489,12 @@
       }
       @media (min-width: 768px) {
         .main {
-          padding: 16px;
-          max-width: 820px;
+          padding: 20px;
+          max-width: 960px;
           margin: 0 auto;
         }
         .matrix {
-          width: min(55vw, 520px);
+          width: min(50vw, 540px);
         }
         .pcard {
           width: 96px;
@@ -2476,23 +2521,32 @@
           padding: 6px 16px;
         }
         .br-chart-h {
-          height: 260px;
+          height: 280px;
         }
         .rstats {
           grid-template-columns: repeat(4, 1fr);
         }
+        .gp {
+          padding: 14px;
+        }
+        .br-stat {
+          padding: 18px;
+        }
+        .file-card {
+          padding: 14px 16px;
+        }
       }
       @media (min-width: 1080px) {
         .main {
-          max-width: 1000px;
-          padding: 20px;
+          max-width: 1100px;
+          padding: 24px;
         }
         .hdr {
-          padding: 0 24px;
-          height: 56px;
+          padding: 0 28px;
+          height: 58px;
         }
         .logo {
-          font-size: 26px;
+          font-size: 28px;
         }
         .bnav {
           height: 0;
@@ -2503,13 +2557,37 @@
           display: flex !important;
         }
         .mdl {
-          max-width: 560px;
+          max-width: 600px;
         }
         .br-stats {
           grid-template-columns: repeat(4, 1fr);
         }
         .matrix {
-          width: min(42vw, 520px);
+          width: min(38vw, 560px);
+        }
+        .br-chart-grid {
+          gap: 14px;
+        }
+        .files-toolbar {
+          gap: 8px;
+        }
+      }
+      @media (min-width: 1400px) {
+        .main {
+          max-width: 1280px;
+          padding: 28px;
+        }
+        .matrix {
+          width: min(32vw, 580px);
+        }
+        .br-chart-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .br-stats {
+          gap: 12px;
+        }
+        .rstats {
+          gap: 10px;
         }
       }
     </style>
@@ -2670,7 +2748,7 @@
         </div>
       </div>
       <!-- FILES -->
-      <div id="filesV" class="view" style="max-width: 540px; margin: 0 auto">
+      <div id="filesV" class="view" style="max-width: 700px; margin: 0 auto">
         <div class="section-head">
           <span style="font-size: 20px">📁</span>
           <h2>My Ranges</h2>
@@ -2812,7 +2890,11 @@
         <div id="fGrid"></div>
       </div>
       <!-- BANKROLL -->
-      <div id="bankrollV" class="view" style="max-width: 900px; margin: 0 auto">
+      <div
+        id="bankrollV"
+        class="view"
+        style="max-width: 1100px; margin: 0 auto"
+      >
         <div class="section-head">
           <span style="font-size: 20px">💰</span>
           <h2 id="brTitle">Bankroll</h2>
@@ -2901,6 +2983,7 @@
             </h3>
             <div class="heatmap-wrap" id="calendarHM"></div>
           </div>
+          <div class="br-chart-box" id="brDepHist"></div>
         </div>
         <div class="br-sub" id="brSess">
           <div class="br-form" id="brFormCard">
@@ -3003,6 +3086,7 @@
                   <th>Location</th>
                   <th>Duration</th>
                   <th>Result</th>
+                  <th>$/hr</th>
                   <th></th>
                 </tr>
               </thead>
@@ -3043,7 +3127,7 @@
         </div>
       </div>
       <!-- SETTINGS -->
-      <div id="settingsV" class="view" style="max-width: 600px; margin: 0 auto">
+      <div id="settingsV" class="view" style="max-width: 700px; margin: 0 auto">
         <div class="section-head">
           <span style="font-size: 20px">⚙️</span>
           <h2>Settings</h2>
@@ -3756,7 +3840,7 @@
       </div>
     </div>
     <div class="mov" id="liveStartM">
-      <div class="mdl" style="max-width: 380px">
+      <div class="mdl" style="max-width: 420px">
         <h3>🔴 Start Live Session</h3>
         <div
           style="
@@ -3787,6 +3871,32 @@
             />
           </div>
         </div>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+          "
+        >
+          <div>
+            <label class="slbl">Game Type</label
+            ><select class="minp" id="liveGT" style="margin: 0">
+              <option>NL Hold'em</option>
+              <option>PLO</option>
+              <option>Mixed</option>
+              <option>MTT</option>
+              <option>S&G</option>
+            </select>
+          </div>
+          <div>
+            <label class="slbl">Format</label
+            ><select class="minp" id="liveFmt" style="margin: 0">
+              <option value="cash">Cash</option>
+              <option value="tourney">Tournament</option>
+            </select>
+          </div>
+        </div>
         <div style="margin-bottom: 10px">
           <label class="slbl">Location</label
           ><input
@@ -3797,13 +3907,31 @@
             autocomplete="off"
           />
         </div>
-        <div style="margin-bottom: 10px">
-          <label class="slbl">Game Type</label
-          ><select class="minp" id="liveGT" style="margin: 0">
-            <option>NL Hold'em</option>
-            <option>PLO</option>
-            <option>Mixed</option>
-          </select>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+          "
+        >
+          <div>
+            <label class="slbl">Table Size</label
+            ><select class="minp" id="liveTable" style="margin: 0">
+              <option>9-max</option>
+              <option>6-max</option>
+              <option>HU</option>
+            </select>
+          </div>
+          <div>
+            <label class="slbl">Notes</label
+            ><input
+              class="minp"
+              id="liveStartNotes"
+              placeholder="Optional..."
+              style="margin: 0"
+            />
+          </div>
         </div>
         <div class="mact">
           <button class="btn" onclick="closeM('liveStartM')">Cancel</button
@@ -3883,13 +4011,40 @@
     <div class="mov" id="memTipsM">
       <div
         class="mdl"
-        style="max-width: 500px; max-height: 85vh; overflow-y: auto"
+        style="
+          max-width: 560px;
+          max-height: 90vh;
+          overflow-y: auto;
+          position: relative;
+          padding-top: 48px;
+        "
       >
-        <h3>💡 Range Memory Guide</h3>
-        <div id="memTipsContent"></div>
-        <div class="mact">
-          <button class="btn" onclick="closeM('memTipsM')">Close</button>
+        <div
+          style="
+            position: sticky;
+            top: -48px;
+            background: var(--b1);
+            z-index: 10;
+            padding: 14px 0 10px;
+            margin: -48px -20px 12px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-bottom: 1px solid var(--bd);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <h3 style="margin: 0">💡 Range Memory Guide</h3>
+          <button
+            class="btn btn-s"
+            onclick="closeM('memTipsM')"
+            style="flex-shrink: 0"
+          >
+            ✕ Close
+          </button>
         </div>
+        <div id="memTipsContent"></div>
       </div>
     </div>
     <div class="mov" id="editActsM">
@@ -4373,7 +4528,12 @@
         Ed.renAll();
         Ed.updInfo();
         $("viewerBar").style.display = "flex";
-        $("vbName").textContent = d.name;
+        const rFolder = d.folder || "/";
+        $("vbName").innerHTML =
+          d.name +
+          '<span style="font-family:var(--fm);font-size:8px;color:var(--li);background:rgba(167,139,250,.08);padding:2px 6px;border-radius:4px;margin-left:6px">' +
+          rFolder +
+          "</span>";
         $("vbIcon").textContent = d.icon || "♠";
         $("editorControls").style.display = "none";
         $("rangeStatsArea").innerHTML = "";
@@ -4958,19 +5118,25 @@
                       ? "Very Loose"
                       : "Extremely Loose";
         const position =
-          pct <= 10
-            ? "UTG/EP"
-            : pct <= 16
-              ? "MP/LJ"
-              : pct <= 22
-                ? "HJ/CO"
-                : pct <= 30
-                  ? "BTN"
-                  : pct <= 45
-                    ? "SB"
-                    : pct > 45
-                      ? "BB defend"
-                      : "";
+          pct <= 8
+            ? "UTG (6-max) / EP (9-max)"
+            : pct <= 12
+              ? "UTG/MP (9-max)"
+              : pct <= 16
+                ? "LJ / MP"
+                : pct <= 20
+                  ? "HJ"
+                  : pct <= 25
+                    ? "CO"
+                    : pct <= 32
+                      ? "BTN"
+                      : pct <= 40
+                        ? "SB open / BTN wide"
+                        : pct <= 55
+                          ? "SB vs BTN / BB defend vs steal"
+                          : pct > 55
+                            ? "BB defend vs small open"
+                            : "";
         const pairCount = allHands.filter((x) => x.type === "pair").length;
         const suitedCount = allHands.filter((x) => x.type === "suited").length;
         const offsuitCount = allHands.filter(
@@ -5980,13 +6146,16 @@
           const sel = $(id);
           if (!sel) return;
           const v = sel.value;
-          sel.innerHTML = '<option value="/">📁 Root</option>';
+          sel.innerHTML = '<option value="/">📁 Root  (/)</option>';
           S.folders
             .filter((f) => f.path !== "/")
             .forEach((f) => {
+              const depth = (f.path.match(/\//g) || []).length - 1;
+              const indent = "  ".repeat(depth);
               const o = document.createElement("option");
               o.value = f.path;
-              o.textContent = "  " + f.icon + " " + f.name;
+              o.textContent =
+                indent + f.icon + " " + f.name + "  (" + f.path + ")";
               sel.appendChild(o);
             });
           sel.value = v || "/";
@@ -6040,11 +6209,13 @@
             (f.path === cur ? " sel" : "") +
             '" data-p="' +
             f.path +
-            "\" onclick=\"this.parentNode.querySelectorAll('.move-target').forEach(t=>t.classList.remove('sel'));this.classList.add('sel')\">" +
+            "\" onclick=\"this.parentNode.querySelectorAll('.move-target').forEach(t=>t.classList.remove('sel'));this.classList.add('sel')\"><span style=\"font-size:16px\">" +
             f.icon +
-            " " +
+            '</span> <span style="font-weight:600">' +
             f.name +
-            "</div>";
+            '</span> <span class="fc-path-inline">' +
+            f.path +
+            "</span></div>";
         });
         openM("moveM");
       }
@@ -6066,15 +6237,13 @@
         let bh =
           '<span class="fbc-i' +
           (f === "/" ? " cur" : "") +
-          '" onclick="S.curFolder=\'/\';renderFiles()">' +
-          getFO("/").icon +
-          " Root</span>";
+          '" onclick="S.curFolder=\'/\';renderFiles()">🏠 Root</span>';
         let acc = "/";
         pts.forEach((p, i) => {
           acc += p + "/";
           const fo = getFO(acc);
           bh +=
-            '<span class="fbc-s">›</span><span class="fbc-i' +
+            '<span class="fbc-i' +
             (i === pts.length - 1 ? " cur" : "") +
             '" onclick="S.curFolder=\'' +
             acc +
@@ -6085,8 +6254,15 @@
             "</span>";
         });
         bc.innerHTML = bh;
-        let html = "",
-          d = 0;
+        /* Current path display */
+        let pathDisplay = f === "/" ? "/ (Root)" : f;
+        let html =
+          '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-family:var(--fm);font-size:10px;color:var(--li);background:rgba(167,139,250,.06);padding:5px 12px;border-radius:6px;border:1px solid rgba(167,139,250,.1)"><span style="color:var(--t4)">📂</span> ' +
+          pathDisplay +
+          '</div><div style="font-size:9px;color:var(--t4)">' +
+          S.saved.filter((r) => (r.folder || "/") === f).length +
+          " ranges here</div></div>";
+        let d = 0;
         getSubs(f).forEach((ff) => {
           const cnt = S.saved.filter((r) =>
             (r.folder || "/").startsWith(ff.path),
@@ -6096,6 +6272,7 @@
             ff.iconColor && ff.iconColor !== "none"
               ? "background:" + ff.iconColor
               : "";
+          const subCount = getSubs(ff.path).length;
           html +=
             '<div class="file-card" style="animation-delay:' +
             d * 40 +
@@ -6105,13 +6282,23 @@
             fcs +
             '">' +
             ff.icon +
-            '</div><div class="fc-info"><div class="fc-name">' +
+            '</div><div class="fc-info"><div class="fc-name" style="display:flex;align-items:center;gap:6px">' +
             ff.name +
+            ' <span style="font-size:16px;color:var(--t4);line-height:1">→</span></div><div class="fc-path">' +
+            ff.path +
             '</div><div class="fc-meta"><span>' +
             cnt +
             " range" +
             (cnt !== 1 ? "s" : "") +
-            '</span></div></div><div class="fc-acts"><button onclick="event.stopPropagation();openEdF(\'' +
+            "</span>" +
+            (subCount
+              ? "<span>" +
+                subCount +
+                " subfolder" +
+                (subCount !== 1 ? "s" : "") +
+                "</span>"
+              : "") +
+            '</div></div><div class="fc-acts"><button onclick="event.stopPropagation();openEdF(\'' +
             ff.path +
             '\')">✎</button><button class="del" onclick="event.stopPropagation();delFolder(\'' +
             ff.path +
@@ -6180,6 +6367,12 @@
               ? "background:" + r.iconColor
               : "background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(167,139,250,.05))";
           const hasN = r.notes && r.notes.trim();
+          const rFolder = r.folder || "/";
+          const folderLabel =
+            rFolder === "/"
+              ? ""
+              : getFO(rFolder).icon + " " + getFO(rFolder).name;
+          const actCount = r.acts ? r.acts.length : 0;
           html +=
             '<div class="file-card" style="animation-delay:' +
             d * 40 +
@@ -6191,11 +6384,17 @@
             (r.icon || "♠") +
             '</div><div class="fc-info"><div class="fc-name">' +
             r.name +
-            '</div><div class="fc-meta"><span>' +
+            "</div>" +
+            (rFolder !== "/" && (q || _selTags.size)
+              ? '<div class="fc-path">' + rFolder + "</div>"
+              : "") +
+            '<div class="fc-meta"><span>' +
             hcc +
             " hands (" +
             pct +
             "%)</span><span>" +
+            actCount +
+            " actions</span><span>" +
             dt +
             "</span>" +
             (hasN ? "<span>📝</span>" : "") +
@@ -6661,7 +6860,7 @@
               : '<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd);border-color:rgba(251,191,36,.2)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>';
           $("trContent").innerHTML =
             limitInfo +
-            '<div style="perspective:900px;width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div><div id="trStatsToggle" style="width:100%;cursor:pointer;text-align:center;padding:8px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4)" onclick="toggleTrStats()">▼ Detailed Stats</div><div id="trDetailedStats" style="display:none;width:100%"></div>';
+            '<div style="perspective:900px;width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div><div id="trStatsToggle" style="width:100%;cursor:pointer;text-align:center;padding:8px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pk2)" onclick="toggleTrStats()">▲ Hide Stats</div><div id="trDetailedStats" style="width:100%"></div>';
           const bc = $("tBtns");
           bc.innerHTML = "";
           this.acts.forEach((a, i) => {
@@ -6923,8 +7122,7 @@
             : "—";
           $("qStreak").textContent = s.streak;
           $("qBest").textContent = s.best;
-          const dp = $("trDetailedStats");
-          if (dp && dp.style.display !== "none") this.renderDetailed();
+          this.renderDetailed();
         },
         renderDetailed() {
           const s = this.stats;
@@ -7519,6 +7717,8 @@
           $("liveLoc").value = last.location || "";
           $("liveBuyin").value = last.buyin || "200";
           $("liveGT").value = last.gameType || "NL Hold'em";
+          $("liveFmt").value = last.format || "cash";
+          if (last.tableSize) $("liveTable").value = last.tableSize;
         } else {
           $("liveBuyin").value = "200";
         }
@@ -7529,16 +7729,29 @@
         const buyin = parseFloat($("liveBuyin").value) || 0;
         const loc = $("liveLoc").value.trim();
         const gt = $("liveGT").value;
+        const fmt = $("liveFmt").value;
+        const table = $("liveTable").value;
+        const notes = $("liveStartNotes").value.trim();
         liveData = {
           start: Date.now(),
           stakes,
           location: loc,
           gameType: gt,
+          format: fmt,
+          tableSize: table,
           buyin: Math.round(buyin * 100),
           invested: Math.round(buyin * 100),
           rebuys: 0,
           events: [],
         };
+        if (notes)
+          liveData.events.push({
+            time:
+              new Date().getHours() +
+              ":" +
+              String(new Date().getMinutes()).padStart(2, "0"),
+            text: "📝 " + notes,
+          });
         LS("ps_live", liveData);
         closeM("liveStartM");
         startLiveTimer();
@@ -7692,12 +7905,14 @@
         const s = {
           id: "bs_" + Date.now(),
           date: new Date(liveData.start).toISOString().slice(0, 10),
-          format: "cash",
+          format: liveData.format || "cash",
           gameType: liveData.gameType || "NL Hold'em",
+          tableSize: liveData.tableSize || "9-max",
           start: new Date(liveData.start).toTimeString().slice(0, 5),
           end: new Date().toTimeString().slice(0, 5),
           duration: Math.round(elapsed / 60000),
           stakes: liveData.stakes,
+          buyin: liveData.buyin / 100,
           location: liveData.location,
           result: pnl / 100,
           resultCents: pnl,
@@ -7780,13 +7995,15 @@
           brFmt(total) +
           '</div><div class="brs-sub">' +
           sorted.length +
-          ' sessions</div></div><div class="br-stat"><div class="brs-label">Bankroll</div><div class="brs-val" style="color:var(--pk)">' +
+          " session" +
+          (sorted.length !== 1 ? "s" : "") +
+          '</div></div><div class="br-stat"><div class="brs-label">Bankroll</div><div class="brs-val" style="color:var(--pk)">' +
           brFmt(bankroll) +
           "</div>" +
           (deps
-            ? '<div class="brs-sub">Deposits: ' + brFmt(deps) + "</div>"
+            ? '<div class="brs-sub">Net deposits: ' + brFmt(deps) + "</div>"
             : "") +
-          '</div><div class="br-stat"><div class="brs-label">Hourly</div><div class="brs-val ' +
+          '</div><div class="br-stat"><div class="brs-label">Hourly Rate</div><div class="brs-val ' +
           (hourly >= 0 ? "pos" : "neg") +
           '">' +
           brSym() +
@@ -7800,6 +8017,54 @@
           "W / " +
           losses +
           "L</div></div>";
+        /* Deposit/Withdraw history */
+        const depHist = (BR.d.deposits || []).slice().reverse();
+        const depArea = $("brDepHist");
+        if (depArea) {
+          if (depHist.length) {
+            depArea.innerHTML =
+              '<div style="font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Recent Transactions</div>' +
+              depHist
+                .slice(0, 8)
+                .map((d) => {
+                  const dt = new Date(d.ts);
+                  const isPos = d.amt > 0;
+                  return (
+                    '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd)"><div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:' +
+                    (isPos
+                      ? "rgba(110,231,183,.08)"
+                      : "rgba(251,113,133,.08)") +
+                    ';font-size:14px">' +
+                    (isPos ? "↓" : "↑") +
+                    '</div><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:12px">' +
+                    d.desc +
+                    '</div><div style="font-size:9px;color:var(--t4)">' +
+                    dt.toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    }) +
+                    " · " +
+                    dt.toLocaleTimeString("en-US", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }) +
+                    '</div></div><div style="font-family:var(--fm);font-size:13px;font-weight:700;color:' +
+                    (isPos ? "var(--mt)" : "var(--rs)") +
+                    '">' +
+                    (isPos ? "+" : "") +
+                    brFmt(d.amt) +
+                    "</div></div>"
+                  );
+                })
+                .join("") +
+              (depHist.length > 8
+                ? '<div style="text-align:center;padding:8px;font-size:10px;color:var(--t4)">+' +
+                  (depHist.length - 8) +
+                  " more</div>"
+                : "");
+          } else depArea.innerHTML = "";
+        }
         destroyBrChart("br");
         const labels = [],
           data = [];
@@ -8046,21 +8311,32 @@
             .map((s) => {
               const p = s.resultCents;
               const cls = p >= 0 ? "pos" : "neg";
+              const dur = s.duration;
+              const hrRate = dur > 15 ? p / 100 / (dur / 60) : 0;
               return (
                 "<tr><td>" +
                 s.date +
-                "</td><td>" +
+                '</td><td><span style="font-size:10px">' +
                 s.gameType +
-                '</td><td style="font-family:var(--fm);font-size:.82rem">' +
+                (s.tableSize && s.tableSize !== "9-max"
+                  ? " · " + s.tableSize
+                  : "") +
+                '</span></td><td style="font-family:var(--fm);font-size:.82rem">' +
                 (s.stakes || "-") +
                 "</td><td>" +
                 (s.location || "-") +
                 "</td><td>" +
-                brFmtDur(s.duration) +
+                brFmtDur(dur) +
                 '</td><td class="profit ' +
                 cls +
                 '">' +
                 brFmt(p) +
+                '</td><td style="font-family:var(--fm);font-size:.78rem;color:' +
+                (hrRate >= 0 ? "var(--mt)" : "var(--rs)") +
+                '">' +
+                (dur > 15
+                  ? brSym() + Math.abs(hrRate).toFixed(0) + "/hr"
+                  : "-") +
                 '</td><td class="actions"><button onclick="editBrSess(\'' +
                 s.id +
                 '\')">✎</button> <button class="del" onclick="delBrSess(\'' +
@@ -8069,7 +8345,7 @@
               );
             })
             .join("") ||
-          '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--t4)">No sessions yet</td></tr>';
+          '<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--t4)">No sessions yet</td></tr>';
       }
       function renderBrAnalytics() {
         const sorted = BR.sorted;
