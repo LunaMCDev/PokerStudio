@@ -403,6 +403,22 @@
         flex-direction: column;
         animation: vIn 0.4s var(--e);
       }
+      #noteFormatBar {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 6px;
+        flex-wrap: wrap;
+        align-items: center;
+        position: sticky;
+        top: 70px;
+        z-index: 20;
+        background: rgba(15, 11, 29, 0.93);
+        border-bottom: 1px solid var(--bd);
+        padding: 4px 4px;
+      }
+      #noteFormatBar button {
+        min-width: 30px;
+      }
       @keyframes vIn {
         from {
           opacity: 0;
@@ -9764,6 +9780,11 @@
             .join("") +
           '<div style="text-align:center;margin-top:12px"><button class="btn" onclick="curNbFilter=\'all\';renderNotes()">← Back to Notes</button></div>';
       }
+      function ensureNoteFormatVisible(show = true) {
+        const fb = $("noteFormatBar");
+        if (!fb) return;
+        fb.style.display = show ? "flex" : "none";
+      }
       function createNewNote() {
         editingNoteId = null;
         $("noteTitle").value = "";
@@ -9779,6 +9800,7 @@
         $("noteListArea").style.display = "none";
         $("noteDelBtn").style.display = "none";
         $("notePinBtn").style.display = "none";
+        ensureNoteFormatVisible(true);
         updateNoteWordCount();
         $("noteTitle").focus();
       }
@@ -9798,6 +9820,7 @@
         $("notePinBtn").style.display = "";
         $("notePinBtn").textContent = n.pinned ? "📌 Pinned" : "📌";
         updateNoteWordCount();
+        ensureNoteFormatVisible(true);
       }
       function saveCurrentNote() {
         const title = $("noteTitle").value.trim() || "Untitled Note";
@@ -9833,6 +9856,7 @@
       function closeNoteEditor() {
         $("noteEditorArea").style.display = "none";
         $("noteListArea").style.display = "";
+        ensureNoteFormatVisible(false);
         renderNotes();
       }
       function deleteCurrentNote() {
@@ -9948,7 +9972,13 @@
       function initNoteTags() {
         initTags("nTagsW", "nTagsI", "nTags");
         const nb = $("noteBody");
-        if (nb) nb.addEventListener("input", updateNoteWordCount);
+        if (nb) {
+          nb.addEventListener("input", updateNoteWordCount);
+          nb.addEventListener("focus", () => ensureNoteFormatVisible(true));
+          nb.addEventListener("blur", () => setTimeout(() => {
+            if (document.activeElement !== nb) ensureNoteFormatVisible(false);
+          }, 140));
+        }
       }
       /* INIT */
       Ed.init();
