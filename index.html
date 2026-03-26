@@ -4301,13 +4301,13 @@
           <textarea
             class="minp"
             id="impSolverText"
-            placeholder="Range 1 - UTG Open&#10;[11.71]Ad5h, As5h...[/11.71], AhKh, AdKd...&#10;&#10;Range 2 - UTG Call&#10;[25.5]Th9h, Td9d...[/25.5], QhJh..."
+            placeholder="Range 1 - Raise&#10;[11.71]Ad5h, As5h...[/11.71], AhKh, AdKd...&#10;&#10;Range 2 - Call&#10;[25.5]Th9h, Td9d...[/25.5], QhJh...&#10;&#10;Each Range header becomes an action."
             style="min-height: 140px; font-size: 9px; line-height: 1.6"
           ></textarea>
           <div style="font-size: 9px; color: var(--t4); margin-bottom: 8px">
-            Supports [freq]combos[/freq] for mixed frequencies. Multiple ranges
-            auto-detected from "Range N - Name" headers and saved to your
-            current folder.
+            Supports [freq]combos[/freq] for mixed frequencies. Multiple "Range
+            N - Name" headers = multiple actions in one range (e.g. Raise + Call
+            + 3bet).
           </div>
           <div class="mact">
             <button class="btn" onclick="closeM('impM')">Cancel</button
@@ -5268,6 +5268,30 @@
         clearTimeout(e._t);
         e._t = setTimeout(() => e.classList.remove("show"), 2200);
       }
+      function copyText(str, msg) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard
+            .writeText(str)
+            .then(() => toast(msg || "Copied ✦"))
+            .catch(() => _copyFallback(str, msg));
+        } else {
+          _copyFallback(str, msg);
+        }
+      }
+      function _copyFallback(str, msg) {
+        const ta = document.createElement("textarea");
+        ta.value = str;
+        ta.style.cssText = "position:fixed;left:-9999px;top:-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          toast(msg || "Copied ✦");
+        } catch (e) {
+          toast("Copy failed");
+        }
+        document.body.removeChild(ta);
+      }
       function openM(id) {
         const el = $(id);
         if (!el) return;
@@ -5650,7 +5674,37 @@
           });
           h += "</div>";
         }
+        h +=
+          '<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap"><button class="btn btn-s" onclick="copyRangeText()">📋 Copy as Text</button><button class="btn btn-s" onclick="copyRangeNotation()">📋 Copy Notation</button></div>';
         $("rangeStatsArea").innerHTML = h;
+      }
+      function copyRangeText() {
+        const a = S.acts,
+          r = S.range;
+        let lines = [];
+        a.forEach((act, ai) => {
+          const hands = [];
+          for (let i = 0; i < 13; i++)
+            for (let j = 0; j < 13; j++) {
+              const cl = r[i][j];
+              const m = cl.find((x) => x.ai === ai);
+              if (m)
+                hands.push(hl(i, j) + (m.w < 100 ? " (" + m.w + "%)" : ""));
+            }
+          if (hands.length) lines.push(act.name + ": " + hands.join(", "));
+        });
+        const foldH = [];
+        for (let i = 0; i < 13; i++)
+          for (let j = 0; j < 13; j++)
+            if (!r[i][j].length) foldH.push(hl(i, j));
+        if (foldH.length && foldH.length < 169)
+          lines.push("Fold: " + foldH.length + " hands");
+        copyText(lines.join("\n"), "Copied ✦");
+      }
+      function copyRangeNotation() {
+        const t = Ed.toNot();
+        if (!t) return toast("Range is empty");
+        copyText(t, "Notation copied ✦");
       }
       /* EDITOR */
       const Ed = {
@@ -7735,10 +7789,7 @@
       function expCopyNot() {
         const n = $("expNotText").value;
         if (!n || n.startsWith("(")) return;
-        navigator.clipboard
-          .writeText(n)
-          .then(() => toast("Copied ✦"))
-          .catch(() => toast("Failed"));
+        copyText(n, "Copied ✦");
       }
       function impNot() {
         const t = $("impText").value.trim();
@@ -7810,26 +7861,21 @@
             });
           return cells;
         }
-        function cellsToRange(cells) {
-          const range = mkR();
-          const ai = 0;
-          Object.values(cells).forEach(({ r, c, freqs }) => {
-            const total =
-              ht(r, c) === "pair" ? 6 : ht(r, c) === "suited" ? 4 : 12;
-            const avgFreq = freqs.reduce((a, b) => a + b, 0) / total;
-            const w = Math.max(
-              5,
-              Math.min(100, Math.round((avgFreq * 100) / 5) * 5),
-            );
-            range[r][c] = [{ ai, w }];
-          });
-          return range;
-        }
-        /* Split into ranges by "Range N - Name" headers */
+        /* Split by "Range N - Name" headers */
         const rangeHeaders = [...raw.matchAll(/^(Range\s*\d*\s*-\s*)(.+)$/gim)];
         if (rangeHeaders.length > 1) {
-          /* Multi-range import */
-          const dacts = getDACTS();
+          /* Multi-action import: each Range header = one action, combined into a single range */
+          const actColors = [
+            "#ec4899",
+            "#6ee7b7",
+            "#60a5fa",
+            "#fbbf24",
+            "#a78bfa",
+            "#f87171",
+            "#34d399",
+            "#f97316",
+          ];
+          const acts = [];
           const blocks = [];
           for (let i = 0; i < rangeHeaders.length; i++) {
             const name = rangeHeaders[i][2].trim();
@@ -7838,40 +7884,38 @@
               i < rangeHeaders.length - 1
                 ? rangeHeaders[i + 1].index
                 : raw.length;
-            const blockText = raw.slice(start, end);
-            blocks.push({ name, text: blockText });
+            blocks.push({ name, text: raw.slice(start, end) });
+            acts.push({ name, color: actColors[i % actColors.length] });
           }
-          let imported = 0;
-          blocks.forEach(({ name, text }) => {
+          const range = mkR();
+          let totalHands = 0;
+          blocks.forEach(({ text }, ai) => {
             const cells = parseSolverBlock(text);
-            if (!Object.keys(cells).length) return;
-            const range = cellsToRange(cells);
-            const rangeObj = {
-              name,
-              icon: "♠",
-              iconColor: "none",
-              folder: S.curFolder || "/",
-              tags: [],
-              notes: "",
-              fav: false,
-              acts: JSON.parse(JSON.stringify(dacts)),
-              range,
-              saved: Date.now(),
-              edited: Date.now(),
-            };
-            S.saved.push(rangeObj);
-            imported++;
+            Object.values(cells).forEach(({ r, c, freqs }) => {
+              const total =
+                ht(r, c) === "pair" ? 6 : ht(r, c) === "suited" ? 4 : 12;
+              const avgFreq = freqs.reduce((a, b) => a + b, 0) / total;
+              const w = Math.max(
+                5,
+                Math.min(100, Math.round((avgFreq * 100) / 5) * 5),
+              );
+              range[r][c].push({ ai, w });
+              totalHands++;
+            });
           });
-          if (!imported) return toast("No valid ranges found");
-          saveSvd();
-          renderFiles();
+          if (!totalHands) return toast("No valid combos found");
+          S.acts = acts;
+          S.sel = 0;
+          S.range = range;
+          Ed.renActs();
+          Ed.renAll();
+          Ed.updInfo();
+          Ed.saveSt();
+          checkDirty();
+          renderRangeStats();
           closeM("impM");
           toast(
-            "Imported " +
-              imported +
-              " range" +
-              (imported > 1 ? "s" : "") +
-              " ✦",
+            "Imported " + acts.length + " actions, " + totalHands + " hands ✦",
           );
         } else {
           /* Single range — load into editor */
@@ -7933,10 +7977,7 @@
         );
       }
       function copyJSON() {
-        navigator.clipboard
-          .writeText($("expJSONText").value)
-          .then(() => toast("JSON copied ✦"))
-          .catch(() => toast("Failed"));
+        copyText($("expJSONText").value, "JSON copied ✦");
       }
       function dlJSON() {
         const ts = new Date().toISOString().slice(0, 10);
