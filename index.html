@@ -328,16 +328,32 @@
         font-size: 24px;
         font-weight: 800;
         font-style: italic;
-        color: var(--pk2);
+        background: linear-gradient(135deg, var(--pk2), var(--pk), var(--li));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(
+          0 0 18px color-mix(in srgb, var(--pk) 30%, transparent)
+        );
         letter-spacing: -0.5px;
         margin-right: auto;
-        text-shadow: 0 0 30px rgba(200, 165, 92, 0.15);
       }
       .logo::after {
-        content: " ♠";
-        font-size: 12px;
-        color: var(--pk);
-        opacity: 0.5;
+        content: " ✦";
+        font-size: 8px;
+        -webkit-text-fill-color: var(--pk);
+        animation: tw 4s ease infinite;
+      }
+      @keyframes tw {
+        0%,
+        100% {
+          opacity: 0.15;
+          transform: scale(0.5);
+        }
+        50% {
+          opacity: 0.9;
+          transform: scale(1.3) rotate(20deg);
+        }
       }
       .desk-nav {
         display: none;
@@ -2479,45 +2495,128 @@
       .emoji-grid {
         display: flex;
         flex-wrap: wrap;
-        gap: 3px;
-        margin: 6px 0;
-        max-height: 200px;
+        gap: 2px;
+        margin: 4px 0;
+        max-height: 140px;
         overflow-y: auto;
         scrollbar-width: thin;
+        padding: 4px;
+        background: var(--b0);
+        border: 1px solid var(--bd);
+        border-radius: var(--r1);
       }
       .emoji-opt {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
-        border-radius: 6px;
+        font-size: 15px;
+        border-radius: 5px;
         cursor: pointer;
         border: 1px solid transparent;
         transition: all 0.15s;
-        background: var(--b3);
       }
       .emoji-opt:hover {
-        transform: scale(1.12);
-        background: var(--b4);
+        transform: scale(1.15);
+        background: var(--b3);
       }
       .emoji-opt.sel {
         border-color: var(--pk);
-        background: rgba(200, 165, 92, 0.06);
+        background: color-mix(in srgb, var(--pk) 8%, transparent);
+      }
+      .icon-picker {
+        margin-bottom: 10px;
+      }
+      .icon-picker .ip-preview {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: var(--b0);
+        border: 1px solid var(--bd);
+        border-radius: var(--r1);
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 4px;
+      }
+      .icon-picker .ip-preview:hover {
+        border-color: var(--bd2);
+      }
+      .icon-picker .ip-sel {
+        font-size: 22px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--b3);
+        border-radius: 6px;
+      }
+      .icon-picker .ip-label {
+        font-size: 10px;
+        color: var(--t3);
+        flex: 1;
+      }
+      .icon-picker .ip-arrow {
+        font-size: 8px;
+        color: var(--t4);
+        transition: transform 0.2s;
+      }
+      .icon-picker.open .ip-arrow {
+        transform: rotate(180deg);
+      }
+      .icon-picker .ip-body {
+        display: none;
+        animation: slideDown 0.2s var(--e);
+      }
+      .icon-picker.open .ip-body {
+        display: block;
+      }
+      .color-picker-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+        padding: 6px 10px;
+        background: var(--b0);
+        border: 1px solid var(--bd);
+        border-radius: var(--r1);
+      }
+      .color-picker-row .cpr-preview {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+      }
+      .color-picker-row .cpr-label {
+        font-size: 10px;
+        color: var(--t3);
+        flex: 1;
+      }
+      .color-picker-row .cpr-dots {
+        display: flex;
+        gap: 3px;
+        flex-wrap: wrap;
+        max-width: 200px;
       }
       .cgrid {
         display: flex;
         gap: 3px;
         flex-wrap: wrap;
-        margin: 8px 0;
-        max-height: 160px;
+        margin: 4px 0;
+        max-height: 120px;
         overflow-y: auto;
         scrollbar-width: thin;
+        padding: 4px;
+        background: var(--b0);
+        border: 1px solid var(--bd);
+        border-radius: var(--r1);
       }
       .cdot2 {
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
         cursor: pointer;
         border: 2px solid transparent;
@@ -2525,11 +2624,11 @@
         flex-shrink: 0;
       }
       .cdot2:hover {
-        transform: scale(1.2);
+        transform: scale(1.25);
       }
       .cdot2.sel {
         border-color: #fff;
-        box-shadow: 0 0 8px currentColor;
+        box-shadow: 0 0 6px currentColor;
       }
       .tags-w {
         display: flex;
@@ -3880,7 +3979,7 @@
                 class="btn btn-s"
                 onclick="
                   confirmAction('Reset editor actions?', '', () => {
-                    S.acts = JSON.parse(JSON.stringify(DACTS));
+                    S.acts = JSON.parse(JSON.stringify(getDACTS()));
                     S.sel = 0;
                     Ed.renActs();
                     Ed.saveSt();
@@ -3905,7 +4004,7 @@
                 Import Range Notation
               </div>
               <div style="font-size: 10px; color: var(--t4)">
-                AA,KK,AKs format
+                AA,KK,AKs or GTO solver format
               </div>
             </div>
             <div style="flex-shrink: 0">
@@ -4136,10 +4235,8 @@
     <div class="mov" id="saveM">
       <div class="mdl">
         <h3>Save Range</h3>
-        <div class="slbl">Icon</div>
         <div id="rIG"></div>
-        <div class="slbl">Color</div>
-        <div class="cgrid" id="rCG"></div>
+        <div id="rCG"></div>
         <input class="minp" id="saveName" placeholder="Range name..." /><select
           class="minp"
           id="saveFolder"
@@ -4158,31 +4255,15 @@
       </div>
     </div>
     <div class="mov" id="impM">
-      <div class="mdl" style="max-width: 440px">
+      <div class="mdl" style="max-width: 480px">
         <h3>Import</h3>
         <div class="mode-tabs" style="margin-bottom: 12px">
-          <button
-            class="mode-tab on"
-            id="impTabN"
-            onclick="
-              $('impPN').style.display = 'block';
-              $('impPJ').style.display = 'none';
-              this.classList.add('on');
-              $('impTabJ').classList.remove('on');
-            "
-          >
+          <button class="mode-tab on" id="impTabN" onclick="impShowTab('N')">
             Notation</button
-          ><button
-            class="mode-tab"
-            id="impTabJ"
-            onclick="
-              $('impPJ').style.display = 'block';
-              $('impPN').style.display = 'none';
-              this.classList.add('on');
-              $('impTabN').classList.remove('on');
-            "
-          >
-            JSON
+          ><button class="mode-tab" id="impTabJ" onclick="impShowTab('J')">
+            JSON</button
+          ><button class="mode-tab" id="impTabS" onclick="impShowTab('S')">
+            Solver
           </button>
         </div>
         <div id="impPN">
@@ -4213,16 +4294,34 @@
             ><button class="btn pri" onclick="impJSONPaste()">Import</button>
           </div>
         </div>
+        <div id="impPS" style="display: none">
+          <p style="font-size: 11px; color: var(--t2); margin-bottom: 8px">
+            Paste GTO solver output with combo notation:
+          </p>
+          <textarea
+            class="minp"
+            id="impSolverText"
+            placeholder="Range 1 - UTG Open&#10;[11.71]Ad5h, As5h...[/11.71], AhKh, AdKd...&#10;&#10;Range 2 - UTG Call&#10;[25.5]Th9h, Td9d...[/25.5], QhJh..."
+            style="min-height: 140px; font-size: 9px; line-height: 1.6"
+          ></textarea>
+          <div style="font-size: 9px; color: var(--t4); margin-bottom: 8px">
+            Supports [freq]combos[/freq] for mixed frequencies. Multiple ranges
+            auto-detected from "Range N - Name" headers and saved to your
+            current folder.
+          </div>
+          <div class="mact">
+            <button class="btn" onclick="closeM('impM')">Cancel</button
+            ><button class="btn pri" onclick="impSolver()">Import</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="mov" id="newFM">
       <div class="mdl" style="max-width: 380px">
         <h3>New Folder</h3>
         <input class="minp" id="newFN" placeholder="Folder name..." />
-        <div class="slbl">Icon</div>
         <div id="fIG"></div>
-        <div class="slbl">Color</div>
-        <div class="cgrid" id="fCG"></div>
+        <div id="fCG"></div>
         <select class="minp" id="newFP" style="font-size: 11px">
           <option value="/">📁 Root</option>
         </select>
@@ -4255,10 +4354,8 @@
     <div class="mov" id="editM">
       <div class="mdl" style="max-width: 400px">
         <h3>Edit Range</h3>
-        <div class="slbl">Icon</div>
         <div id="edIG"></div>
-        <div class="slbl">Color</div>
-        <div class="cgrid" id="edCG"></div>
+        <div id="edCG"></div>
         <input class="minp" id="edName" placeholder="Name..." /><select
           class="minp"
           id="edFolder"
@@ -4280,10 +4377,8 @@
       <div class="mdl" style="max-width: 380px">
         <h3>Edit Folder</h3>
         <input class="minp" id="efName" placeholder="Name..." />
-        <div class="slbl">Icon</div>
         <div id="efIG"></div>
-        <div class="slbl">Color</div>
-        <div class="cgrid" id="efCG"></div>
+        <div id="efCG"></div>
         <div class="mact">
           <button class="btn" onclick="closeM('edFM')">Cancel</button
           ><button class="btn pri" onclick="saveEdF()">Save</button>
@@ -4500,6 +4595,9 @@
         </div>
       </div>
     </div>
+    <div class="mov" id="exclHandsM">
+      <div class="mdl" style="max-width: 520px"></div>
+    </div>
     <div class="mov" id="editActsM">
       <div class="mdl" style="max-width: 420px">
         <h3>Edit Actions</h3>
@@ -4546,10 +4644,8 @@
       <div class="mdl" style="max-width: 380px">
         <h3>New Notebook</h3>
         <input class="minp" id="newNbName" placeholder="Notebook name..." />
-        <div class="slbl">Icon</div>
         <div id="nbIG"></div>
-        <div class="slbl">Color</div>
-        <div class="cgrid" id="nbCG"></div>
+        <div id="nbCG"></div>
         <div class="mact">
           <button class="btn" onclick="closeM('newNbM')">Cancel</button
           ><button class="btn pri" onclick="createNotebook()">Create</button>
@@ -4560,10 +4656,8 @@
       <div class="mdl" style="max-width: 380px">
         <h3>Edit Notebook</h3>
         <input class="minp" id="editNbName" placeholder="Name..." />
-        <div class="slbl">Icon</div>
         <div id="editNbIG"></div>
-        <div class="slbl">Color</div>
-        <div class="cgrid" id="editNbCG"></div>
+        <div id="editNbCG"></div>
         <div class="mact">
           <button class="btn" onclick="closeM('editNbM')">Cancel</button
           ><button class="btn pri" onclick="saveEditNotebook()">Save</button>
@@ -4772,11 +4866,24 @@
         "#db2777",
         "#be185d",
       ];
-      const DACTS = [
-        { name: "Raise", color: "#c8a55c" },
-        { name: "Call", color: "#6ec89b" },
-        { name: "Fold", color: "#8b9cc4" },
-      ];
+      function getDACTS() {
+        const s = getComputedStyle(document.documentElement);
+        return [
+          {
+            name: "Raise",
+            color: s.getPropertyValue("--pk").trim() || "#ec4899",
+          },
+          {
+            name: "Call",
+            color: s.getPropertyValue("--mt").trim() || "#6ec89b",
+          },
+          {
+            name: "Fold",
+            color: s.getPropertyValue("--li").trim() || "#8b9cc4",
+          },
+        ];
+      }
+      const DACTS = getDACTS();
       const FEM = [
         "📁",
         "💜",
@@ -5169,11 +5276,13 @@
           popFS();
           renderEG("rIG", null, REM);
           renderCG("rCG");
+          $("saveFolder").value = S.curFolder || "/";
         }
         if (id === "newFM") {
           popFS();
           renderEG("fIG", null, FEM);
           renderCG("fCG");
+          $("newFP").value = S.curFolder || "/";
         }
         if (id === "editM") popFS();
         if (id === "expM") {
@@ -5181,10 +5290,7 @@
           $("expJSONText").value = buildExportJSON();
         }
         if (id === "impM") {
-          $("impTabN").classList.add("on");
-          $("impTabJ").classList.remove("on");
-          $("impPN").style.display = "block";
-          $("impPJ").style.display = "none";
+          impShowTab("N");
         }
         if (id === "liveStartM") prefillLive();
         if (id === "newNbM") {
@@ -5255,31 +5361,38 @@
       function renderCG(id, sel) {
         const g = $(id);
         if (!g) return;
-        g.innerHTML = "";
+        const cur = sel || "none";
+        g.className = "icon-picker";
+        g.innerHTML =
+          '<div class="ip-preview" onclick="this.parentNode.classList.toggle(\'open\')"><div class="ip-sel" id="' +
+          id +
+          '_cur" style="border-radius:50%;' +
+          (cur !== "none" ? "background:" + cur : "background:var(--b3)") +
+          '"></div><div class="ip-label">Choose colour</div><div class="ip-arrow">▼</div></div><div class="ip-body"><div class="cgrid" id="' +
+          id +
+          '_grid"></div></div>';
+        const grid = $(id + "_grid");
         ["none", ...ICOLS].forEach((c, i) => {
           const d = document.createElement("div");
-          d.className =
-            "cdot2" + ((!sel && i === 0) || sel === c ? " sel" : "");
+          d.className = "cdot2" + (c === cur ? " sel" : "");
           if (c === "none") {
-            d.style.background = "var(--b3)";
+            d.style.cssText =
+              "background:var(--b3);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--t4)";
             d.textContent = "✕";
-            d.style.fontSize = "10px";
-            d.style.display = "flex";
-            d.style.alignItems = "center";
-            d.style.justifyContent = "center";
-            d.style.color = "var(--t4)";
           } else {
             d.style.background = c;
             d.style.color = c;
           }
           d.dataset.c = c;
           d.onclick = () => {
-            g.querySelectorAll(".cdot2").forEach((x) =>
-              x.classList.remove("sel"),
-            );
+            grid
+              .querySelectorAll(".cdot2")
+              .forEach((x) => x.classList.remove("sel"));
             d.classList.add("sel");
+            const prev = $(id + "_cur");
+            if (prev) prev.style.background = c === "none" ? "var(--b3)" : c;
           };
-          g.appendChild(d);
+          grid.appendChild(d);
         });
       }
       function getSelC(id) {
@@ -5462,7 +5575,7 @@
         S.loadedIdx = -1;
         const d = LG("ps_cur", null);
         if (d) {
-          S.acts = d.acts || DACTS;
+          S.acts = d.acts || getDACTS();
           S.range = d.range || mkR();
           S.sel = d.sel || 0;
           Ed.renActs();
@@ -7635,6 +7748,161 @@
         closeM("impM");
         toast("Imported");
       }
+      function impShowTab(t) {
+        ["N", "J", "S"].forEach((x) => {
+          $("impTab" + x).classList.toggle("on", x === t);
+          $("impP" + x).style.display = x === t ? "block" : "none";
+        });
+      }
+      function impSolver() {
+        const raw = $("impSolverText").value.trim();
+        if (!raw) return toast("Paste solver output");
+        const rkIdx = {};
+        RK.forEach((r, i) => (rkIdx[r] = i));
+        function comboToCell(combo) {
+          const c = combo.trim();
+          if (c.length !== 4) return null;
+          const r1 = c[0].toUpperCase(),
+            s1 = c[1].toLowerCase(),
+            r2 = c[2].toUpperCase(),
+            s2 = c[3].toLowerCase();
+          const i1 = rkIdx[r1],
+            i2 = rkIdx[r2];
+          if (i1 === undefined || i2 === undefined) return null;
+          if (!"hdsc".includes(s1) || !"hdsc".includes(s2)) return null;
+          if (i1 === i2) return { r: i1, c: i1 };
+          if (s1 === s2) return { r: Math.min(i1, i2), c: Math.max(i1, i2) };
+          return { r: Math.max(i1, i2), c: Math.min(i1, i2) };
+        }
+        function parseSolverBlock(text) {
+          const cells = {};
+          const freqBlocks = [
+            ...text.matchAll(/\[(\d+\.?\d*)\](.*?)\[\/\1\]/gs),
+          ];
+          freqBlocks.forEach((m) => {
+            const freq = parseFloat(m[1]);
+            m[2]
+              .split(/[,\s]+/)
+              .filter(Boolean)
+              .forEach((cb) => {
+                const pos = comboToCell(cb);
+                if (!pos) return;
+                const key = pos.r + "," + pos.c;
+                if (!cells[key]) cells[key] = { r: pos.r, c: pos.c, freqs: [] };
+                cells[key].freqs.push(freq / 100);
+              });
+          });
+          let plain = text;
+          freqBlocks.forEach((m) => {
+            plain = plain.replace(m[0], "");
+          });
+          plain
+            .replace(/^[^,\[\]]*?(?=[A-Z][hdsc])/i, "")
+            .split(/[,\s]+/)
+            .filter(Boolean)
+            .forEach((cb) => {
+              if (/[\[\]\/]/.test(cb) || /^Range\b/i.test(cb)) return;
+              const pos = comboToCell(cb);
+              if (!pos) return;
+              const key = pos.r + "," + pos.c;
+              if (!cells[key]) cells[key] = { r: pos.r, c: pos.c, freqs: [] };
+              cells[key].freqs.push(1);
+            });
+          return cells;
+        }
+        function cellsToRange(cells) {
+          const range = mkR();
+          const ai = 0;
+          Object.values(cells).forEach(({ r, c, freqs }) => {
+            const total =
+              ht(r, c) === "pair" ? 6 : ht(r, c) === "suited" ? 4 : 12;
+            const avgFreq = freqs.reduce((a, b) => a + b, 0) / total;
+            const w = Math.max(
+              5,
+              Math.min(100, Math.round((avgFreq * 100) / 5) * 5),
+            );
+            range[r][c] = [{ ai, w }];
+          });
+          return range;
+        }
+        /* Split into ranges by "Range N - Name" headers */
+        const rangeHeaders = [...raw.matchAll(/^(Range\s*\d*\s*-\s*)(.+)$/gim)];
+        if (rangeHeaders.length > 1) {
+          /* Multi-range import */
+          const dacts = getDACTS();
+          const blocks = [];
+          for (let i = 0; i < rangeHeaders.length; i++) {
+            const name = rangeHeaders[i][2].trim();
+            const start = rangeHeaders[i].index + rangeHeaders[i][0].length;
+            const end =
+              i < rangeHeaders.length - 1
+                ? rangeHeaders[i + 1].index
+                : raw.length;
+            const blockText = raw.slice(start, end);
+            blocks.push({ name, text: blockText });
+          }
+          let imported = 0;
+          blocks.forEach(({ name, text }) => {
+            const cells = parseSolverBlock(text);
+            if (!Object.keys(cells).length) return;
+            const range = cellsToRange(cells);
+            const rangeObj = {
+              name,
+              icon: "♠",
+              iconColor: "none",
+              folder: S.curFolder || "/",
+              tags: [],
+              notes: "",
+              fav: false,
+              acts: JSON.parse(JSON.stringify(dacts)),
+              range,
+              saved: Date.now(),
+              edited: Date.now(),
+            };
+            S.saved.push(rangeObj);
+            imported++;
+          });
+          if (!imported) return toast("No valid ranges found");
+          saveSvd();
+          renderFiles();
+          closeM("impM");
+          toast(
+            "Imported " +
+              imported +
+              " range" +
+              (imported > 1 ? "s" : "") +
+              " ✦",
+          );
+        } else {
+          /* Single range — load into editor */
+          const cells = parseSolverBlock(raw);
+          if (!Object.keys(cells).length) return toast("No valid combos found");
+          S.range = mkR();
+          const ai = S.sel;
+          Object.values(cells).forEach(({ r, c, freqs }) => {
+            const total =
+              ht(r, c) === "pair" ? 6 : ht(r, c) === "suited" ? 4 : 12;
+            const avgFreq = freqs.reduce((a, b) => a + b, 0) / total;
+            const w = Math.max(
+              5,
+              Math.min(100, Math.round((avgFreq * 100) / 5) * 5),
+            );
+            S.range[r][c] = [{ ai, w }];
+          });
+          Ed.renAll();
+          Ed.updInfo();
+          Ed.saveSt();
+          checkDirty();
+          renderRangeStats();
+          closeM("impM");
+          const nameM = raw.match(/^Range\s*\d*\s*-\s*(.+)$/im);
+          toast(
+            "Imported " +
+              (nameM ? nameM[1].trim() : Object.keys(cells).length + " hands") +
+              " ✦",
+          );
+        }
+      }
       /* Export/Import JSON */
       function buildExportJSON() {
         return JSON.stringify(
@@ -7760,6 +8028,7 @@
           this.rangeId = rangeId || "_global";
           this.limit = limit || 0;
           this.paused = false;
+          this.exclHands = getExclHands();
           this.stats = {
             ok: 0,
             total: 0,
@@ -7788,12 +8057,21 @@
           this.next();
         },
         buildUI() {
+          const exclInfo = this.exclHands.size
+            ? '<div style="text-align:center;font-size:9px;color:var(--t4);margin-bottom:4px">' +
+              this.exclHands.size +
+              " hand" +
+              (this.exclHands.size > 1 ? "s" : "") +
+              " excluded</div>"
+            : "";
           const limitInfo =
             this.limit > 0
               ? '<div style="text-align:center;font-size:10px;color:var(--t4);margin-bottom:6px">' +
                 this.limit +
-                " hands session</div>"
-              : '<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd);border-color:rgba(251,191,36,.2)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>';
+                " hands session</div>" +
+                exclInfo
+              : '<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd);border-color:rgba(251,191,36,.2)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>' +
+                exclInfo;
           $("trContent").innerHTML =
             limitInfo +
             '<div style="perspective:900px;width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div><div id="trStatsToggle" style="width:100%;cursor:pointer;text-align:center;padding:8px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--pk2)" onclick="toggleTrStats()">▲ Hide Stats</div><div id="trDetailedStats" style="width:100%"></div>';
@@ -7832,6 +8110,20 @@
             pool = [];
             for (let r = 0; r < 13; r++)
               for (let c = 0; c < 13; c++) pool.push([r, c]);
+          }
+          if (!pool.length) {
+            toast("No hands match filter");
+            this.endSession();
+            return;
+          }
+          /* Filter out excluded hands */
+          if (this.exclHands.size) {
+            pool = pool.filter(([r, c]) => !this.exclHands.has(hl(r, c)));
+          }
+          if (!pool.length) {
+            toast("All hands excluded");
+            this.endSession();
+            return;
           }
           const [r, c] = pool[Math.floor(Math.random() * pool.length)];
           const t = ht(r, c);
@@ -8973,10 +9265,187 @@
                 " </button>",
             )
             .join("") +
-          "</div></div>";
+          '</div><div style="margin-top:12px"><button class="btn btn-s" onclick="openExcludeHands()" id="trExclBtn" style="font-size:10px">✎ Exclude Hands</button><span id="trExclCount" style="font-size:9px;color:var(--t4);margin-left:6px"></span></div></div>';
+        updateExclCount();
         $("mTabs").style.display = "flex";
         window._trData = d;
         window._trRangeId = rId;
+      }
+      /* ═══ PER-RANGE HAND EXCLUSION ═══ */
+      function getExclKey() {
+        const rId = window._trRangeId;
+        return rId ? "ps_excl_" + rId : null;
+      }
+      function getExclHands() {
+        const k = getExclKey();
+        if (!k) return new Set();
+        const arr = LG(k, []);
+        return new Set(arr);
+      }
+      function saveExclHands(s) {
+        const k = getExclKey();
+        if (!k) return;
+        LS(k, [...s]);
+      }
+      function updateExclCount() {
+        const el = $("trExclCount");
+        if (!el) return;
+        const s = getExclHands();
+        el.textContent = s.size
+          ? s.size + " hand" + (s.size > 1 ? "s" : "") + " excluded"
+          : "";
+      }
+      function openExcludeHands() {
+        const d = window._trData;
+        if (!d) return;
+        const excl = getExclHands();
+        let h =
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><h3 style="margin:0">Exclude Hands</h3><button class="btn btn-xs" onclick="closeM(\'exclHandsM\')" style="flex-shrink:0">✕</button></div>';
+        h +=
+          '<div style="font-size:10px;color:var(--t3);margin-bottom:10px">Click & drag to toggle hands. Excluded hands won\'t appear during training. Saved per range.</div>';
+        h +=
+          '<div style="display:flex;gap:6px;margin-bottom:10px"><button class="btn btn-xs" onclick="exclBulk(\'empty\')">Exclude Folds</button><button class="btn btn-xs" onclick="exclBulk(\'all\')">Exclude All</button><button class="btn btn-xs" onclick="exclBulk(\'none\')">Include All</button></div>';
+        h +=
+          '<div id="exclGrid" style="display:grid;grid-template-columns:repeat(13,1fr);gap:2px;max-width:460px;margin:0 auto;user-select:none;touch-action:none">';
+        for (let r = 0; r < 13; r++)
+          for (let c = 0; c < 13; c++) {
+            const label = hl(r, c);
+            const ca = d.range[r][c];
+            const isEmpty = !ca.length;
+            const isExcl = excl.has(label);
+            const topAct = ca.length ? d.acts[ca[0].ai] : null;
+            const bg = isExcl
+              ? "var(--b0)"
+              : isEmpty
+                ? "var(--b2)"
+                : topAct
+                  ? topAct.color + "44"
+                  : "var(--b3)";
+            const border = isExcl
+              ? "1px solid var(--rs)"
+              : "1px solid var(--bd)";
+            const opacity = isExcl ? ".35" : "1";
+            h +=
+              '<div data-hl="' +
+              label +
+              '" data-r="' +
+              r +
+              '" data-c="' +
+              c +
+              '" class="excl-cell" style="aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(6px,1.2vw,9px);font-weight:700;background:' +
+              bg +
+              ";border:" +
+              border +
+              ";cursor:pointer;opacity:" +
+              opacity +
+              ";border-radius:2px;color:" +
+              (isExcl ? "var(--rs)" : isEmpty ? "var(--t5)" : "var(--t1)") +
+              '">' +
+              label +
+              "</div>";
+          }
+        h += "</div>";
+        h +=
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px"><span id="exclModalCount" style="font-size:10px;color:var(--t4)">' +
+          excl.size +
+          ' excluded</span><button class="btn pri btn-s" onclick="closeM(\'exclHandsM\');updateExclCount()">Done</button></div>';
+        const m = $("exclHandsM");
+        if (!m) return;
+        m.querySelector(".mdl").innerHTML = h;
+        initExclDrag();
+        openM("exclHandsM");
+      }
+      let _exclDrag = false,
+        _exclMode = null,
+        _exclVisited = new Set();
+      function initExclDrag() {
+        const grid = $("exclGrid");
+        if (!grid) return;
+        grid.addEventListener("pointerdown", function (e) {
+          const cell = e.target.closest(".excl-cell");
+          if (!cell) return;
+          e.preventDefault();
+          if (cell.releasePointerCapture)
+            cell.releasePointerCapture(e.pointerId);
+          _exclDrag = true;
+          _exclVisited.clear();
+          const label = cell.dataset.hl;
+          const excl = getExclHands();
+          _exclMode = excl.has(label) ? "include" : "exclude";
+          applyExclCell(label);
+          _exclVisited.add(label);
+        });
+        grid.addEventListener(
+          "pointerenter",
+          function (e) {
+            if (!_exclDrag) return;
+            const cell = e.target.closest(".excl-cell");
+            if (!cell) return;
+            const label = cell.dataset.hl;
+            if (_exclVisited.has(label)) return;
+            _exclVisited.add(label);
+            applyExclCell(label);
+          },
+          true,
+        );
+        document.addEventListener("pointerup", function () {
+          if (_exclDrag) {
+            _exclDrag = false;
+            _exclVisited.clear();
+          }
+        });
+      }
+      function applyExclCell(label) {
+        const excl = getExclHands();
+        if (_exclMode === "exclude") excl.add(label);
+        else excl.delete(label);
+        saveExclHands(excl);
+        refreshExclCell(label);
+        const cnt = $("exclModalCount");
+        if (cnt) cnt.textContent = excl.size + " excluded";
+      }
+      function refreshExclCell(label) {
+        const cell = document.querySelector(
+          '.excl-cell[data-hl="' + label + '"]',
+        );
+        if (!cell) return;
+        const isExcl = getExclHands().has(label);
+        const d = window._trData;
+        const r = +cell.dataset.r,
+          c = +cell.dataset.c;
+        const ca = d.range[r][c];
+        const isEmpty = !ca.length;
+        const topAct = ca.length ? d.acts[ca[0].ai] : null;
+        cell.style.background = isExcl
+          ? "var(--b0)"
+          : isEmpty
+            ? "var(--b2)"
+            : topAct
+              ? topAct.color + "44"
+              : "var(--b3)";
+        cell.style.borderColor = isExcl ? "var(--rs)" : "var(--bd)";
+        cell.style.opacity = isExcl ? ".35" : "1";
+        cell.style.color = isExcl
+          ? "var(--rs)"
+          : isEmpty
+            ? "var(--t5)"
+            : "var(--t1)";
+      }
+      function exclBulk(mode) {
+        const excl = getExclHands();
+        const d = window._trData;
+        if (!d) return;
+        if (mode === "none") excl.clear();
+        else if (mode === "all") {
+          for (let r = 0; r < 13; r++)
+            for (let c = 0; c < 13; c++) excl.add(hl(r, c));
+        } else if (mode === "empty") {
+          for (let r = 0; r < 13; r++)
+            for (let c = 0; c < 13; c++)
+              if (!d.range[r][c].length) excl.add(hl(r, c));
+        }
+        saveExclHands(excl);
+        openExcludeHands();
       }
       /* ═══ BANKROLL ═══ */
       const BR = {
@@ -10590,45 +11059,45 @@
 
       /* Add right-click handler for hand notes */
 
-      /* Enhanced emoji grid with search */
+      /* Icon & color pickers */
       function renderEG(id, sel, list) {
         const g = $(id);
         if (!g) return;
-        g.innerHTML = "";
+        const items = list || FEM;
+        const cur = sel || items[0];
         const searchId = id + "_search";
-        let sh =
-          '<div style="margin-bottom:4px"><input class="minp" id="' +
+        g.className = "icon-picker";
+        g.innerHTML =
+          '<div class="ip-preview" onclick="this.parentNode.classList.toggle(\'open\')"><div class="ip-sel" id="' +
+          id +
+          '_cur">' +
+          cur +
+          '</div><div class="ip-label">Choose icon</div><div class="ip-arrow">▼</div></div><div class="ip-body"><input class="minp" id="' +
           searchId +
-          '" placeholder="Search emoji..." style="margin:0;padding:6px 10px;font-size:10px" oninput="filterEmoji(\'' +
+          '" placeholder="Search..." style="margin:0 0 4px;padding:6px 10px;font-size:10px" oninput="filterEmoji(\'' +
           id +
-          '\',this.value)"></div><div class="emoji-grid-inner" id="' +
+          '\',this.value)"><div class="emoji-grid" id="' +
           id +
-          '_grid" style="display:flex;flex-wrap:wrap;gap:4px;max-height:180px;overflow-y:auto">';
-        (list || FEM).forEach((e, i) => {
-          sh +=
-            '<div class="emoji-opt' +
-            ((!sel && i === 0) || sel === e ? " sel" : "") +
-            '" data-e="' +
-            e +
-            '">' +
-            e +
-            "</div>";
-        });
-        sh += "</div>";
-        g.innerHTML = sh;
-        g.querySelectorAll(".emoji-opt").forEach((d) => {
+          '_grid"></div></div>';
+        const grid = $(id + "_grid");
+        items.forEach((e, i) => {
+          const d = document.createElement("div");
+          d.className = "emoji-opt" + (e === cur ? " sel" : "");
+          d.dataset.e = e;
+          d.textContent = e;
           d.onclick = () => {
-            g.querySelectorAll(".emoji-opt").forEach((x) =>
-              x.classList.remove("sel"),
-            );
+            grid
+              .querySelectorAll(".emoji-opt")
+              .forEach((x) => x.classList.remove("sel"));
             d.classList.add("sel");
+            $(id + "_cur").textContent = e;
           };
+          grid.appendChild(d);
         });
       }
       function filterEmoji(id, q) {
         const grid = $(id + "_grid");
         if (!grid) return;
-        const lq = q.toLowerCase();
         grid.querySelectorAll(".emoji-opt").forEach((d) => {
           d.style.display = !q || d.dataset.e.includes(q) ? "" : "none";
         });
@@ -10703,11 +11172,20 @@
         renderThemeGrid();
       }
       /* INIT */
+      initTheme();
+      /* Refresh DACTS now that theme CSS vars are active */
+      const _freshDacts = getDACTS();
+      DACTS[0] = _freshDacts[0];
+      DACTS[1] = _freshDacts[1];
+      DACTS[2] = _freshDacts[2];
+      /* If no saved editor state, use fresh theme-colored defaults */
+      if (!LG("ps_cur", null)) {
+        S.acts = JSON.parse(JSON.stringify(DACTS));
+      }
       Ed.init();
       checkDirty();
       resetBrForm();
       initNoteTags();
-      initTheme();
       liveData = LG("ps_live", null);
       if (liveData) startLiveTimer();
       balHidden = LG("ps_balhide", false);
