@@ -1551,6 +1551,39 @@
         background: rgba(212, 114, 114, 0.12);
         color: var(--rs);
       }
+      .fc-select {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        padding: 0 8px;
+      }
+      .fc-select input {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        accent-color: var(--pk);
+      }
+      .files-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 10px;
+      }
+      .files-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .files-list .file-card {
+        width: 100%;
+      }
+      .files-list .file-card .fc-info {
+        flex: 1;
+      }
+      .files-list .file-card .fc-acts {
+        width: 100%;
+        justify-content: flex-start;
+      }
       .file-card {
         flex-wrap: wrap;
       }
@@ -3384,7 +3417,11 @@
               oninput="renderFiles()"
             />
           </div>
-          <button class="btn btn-s" id="fSortBtn" onclick="openSortMenu()">Sort</button
+          <button class="btn btn-s" id="previewSelectedBtn" onclick="previewSelectedRanges()" style="display:none">Preview selected</button
+          ><button class="btn btn-s" id="clearSelectedBtn" onclick="clearSelectedRanges()" style="display:none">Clear selection</button
+          ><button class="btn btn-s" id="viewGridBtn" onclick="setFileViewMode('grid')">Grid</button
+          ><button class="btn btn-s" id="viewListBtn" onclick="setFileViewMode('list')">List</button
+          ><button class="btn btn-s" id="fSortBtn" onclick="openSortMenu()">Sort</button
           ><button class="btn btn-s" id="fFilterBtn" onclick="togFilterPanel()">Filter</button
           ><button class="btn btn-s" onclick="openM('newFM')">New Range</button
           ><button class="btn btn-s pri" onclick="openM('saveM')">Save</button>
@@ -5657,6 +5694,8 @@
         snapshot: null,
         moveIdx: -1,
         edFPath: null,
+        previewSelected: new Set(),
+        fileViewMode: LG("ps_fileViewMode", "grid"),
       };
       function loadErr() {
         S.errors = LG("ps_err", {});
@@ -7718,6 +7757,7 @@
         const totalShown = ranges.length;
         ranges.forEach((r) => {
           const i = S.saved.indexOf(r);
+          const isSel = S.previewSelected.has(r);
           const dt = new Date(r.ts).toLocaleDateString("en-US", {
             month: "short",
             day: "numeric",
@@ -7739,11 +7779,17 @@
               : getFO(rFolder).icon + " " + getFO(rFolder).name;
           const actCount = r.acts ? r.acts.length : 0;
           html +=
-            '<div class="file-card" style="animation-delay:' +
+            '<div class="file-card' +
+            (isSel ? " sel" : "") +
+            '" style="animation-delay:' +
             d * 40 +
             'ms" onclick="showViewerMode(' +
             i +
-            ')"><div class="fc-icon" style="' +
+            ')"><label class="fc-select"><input type="checkbox" ' +
+            (isSel ? "checked" : "") +
+            ' onchange="toggleRangeSelection(event,' +
+            i +
+            ')" /><span></span></label><div class="fc-icon" style="' +
             rcs +
             '">' +
             (r.icon || "♠") +
