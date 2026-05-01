@@ -1490,23 +1490,24 @@
       }
       .fc-acts {
         display: flex;
-        gap: 3px;
+        gap: 8px;
+        flex-wrap: wrap;
         flex-shrink: 0;
       }
       .fc-acts button {
-        width: 26px;
-        height: 26px;
-        display: flex;
+        min-width: 32px;
+        min-height: 32px;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 6px;
-        border: 1px solid var(--bd);
+        padding: 0 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(200, 165, 92, 0.1);
         background: var(--b3);
-        font-size: 10px;
-        color: var(--t4);
-        transition: all 0.2s;
+        color: var(--t2);
+        font-size: 11px;
+        transition: all 0.2s var(--e);
         cursor: pointer;
-        padding: 0;
       }
       .fc-acts button:hover {
         background: var(--b4);
@@ -1514,8 +1515,82 @@
         border-color: var(--bd2);
       }
       .fc-acts .del:hover {
-        background: rgba(212, 114, 114, 0.06);
+        background: rgba(212, 114, 114, 0.12);
         color: var(--rs);
+      }
+      .file-card {
+        flex-wrap: wrap;
+      }
+      .file-card .fc-info {
+        min-width: 0;
+      }
+      .fc-meta {
+        gap: 8px;
+      }
+      .fc-meta span {
+        display: inline-flex;
+        align-items: center;
+      }
+      .fc-tags {
+        margin-top: 8px;
+      }
+      .viewer-bar {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .viewer-bar button {
+        min-width: 90px;
+      }
+      @media (max-width: 840px) {
+        .files-toolbar {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .files-toolbar > * {
+          width: 100%;
+        }
+        .files-search {
+          width: 100%;
+        }
+        .files-filter-bar {
+          padding: 10px;
+        }
+        .file-card {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .fc-acts {
+          justify-content: flex-start;
+          gap: 8px;
+          width: 100%;
+          flex-wrap: wrap;
+        }
+        .fc-path,
+        .fc-meta {
+          font-size: 10px;
+        }
+      }
+      @media (max-width: 620px) {
+        .hdr,
+        .main,
+        .bnav {
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+        .logo {
+          font-size: 20px;
+        }
+        .bnav-t {
+          font-size: 10px;
+        }
+        .fc-icon {
+          width: 44px;
+          height: 44px;
+          font-size: 22px;
+        }
+        .file-card {
+          gap: 14px;
+        }
       }
 
       .br-sub-nav {
@@ -3125,6 +3200,8 @@
           <span class="vb-icon" id="vbIcon">♠</span
           ><span class="vb-name" id="vbName"></span
           ><button class="btn btn-s pri" onclick="switchToEdit()">✎ Edit</button
+          ><button class="btn btn-s" onclick="previewRange()">👁 Preview</button
+          ><button class="btn btn-s pri" onclick="showMemoryTips()">🧠 Summary</button
           ><button class="btn btn-s" onclick="trainThis()">🎯 Train</button
           ><button class="btn btn-xs" onclick="closeViewer()">✕</button>
         </div>
@@ -4293,6 +4370,15 @@
         </div>
       </div>
     </div>
+    <div class="mov" id="rangePreviewM">
+      <div class="mdl" style="max-width:520px">
+        <h3>Range Preview</h3>
+        <div id="rangePreviewContent" style="font-size:12px;line-height:1.6;color:var(--t2)"></div>
+        <div class="mact" style="margin-top:18px">
+          <button class="btn" onclick="closeM('rangePreviewM')">Close</button>
+        </div>
+      </div>
+    </div>
     <div class="mov" id="saveM">
       <div class="mdl">
         <h3>Save Range</h3>
@@ -4331,7 +4417,7 @@
           <textarea
             class="minp"
             id="impText"
-            placeholder="AA,KK,QQ,AKs,JTs-76s"
+            placeholder="AA,KK,QQ,AKs,JTs-76s or\nRange 1 - Raise\nAA,KK,AKs\nRange 2 - Call\nQQ,JTs"
           ></textarea>
           <div class="mact">
             <button class="btn" onclick="closeM('impM')">Cancel</button
@@ -5766,6 +5852,91 @@
         const t = Ed.toNot();
         if (!t) return toast("Range is empty");
         copyText(t, "Notation copied ✦");
+      }
+      function previewRange() {
+        $("rangePreviewContent").innerHTML = buildRangePreview({
+          range: S.range,
+          acts: S.acts,
+        });
+        openM("rangePreviewM");
+      }
+      function openPreview(i) {
+        const item = S.saved[i];
+        if (!item) return;
+        $("rangePreviewContent").innerHTML = buildRangePreview(item);
+        openM("rangePreviewM");
+      }
+      function openSummary(i) {
+        const item = S.saved[i];
+        if (!item) return;
+        $("memTipsContent").innerHTML = analyzeRange(item.range, item.acts);
+        openM("memTipsM");
+      }
+      function buildRangePreview(data) {
+        const range = data.range;
+        const acts = data.acts || [];
+        let totalCombos = 0;
+        const actCombo = acts.map(() => 0);
+        for (let r = 0; r < 13; r++)
+          for (let c = 0; c < 13; c++) {
+            const cl = range[r][c];
+            if (!cl.length) continue;
+            const combos = hcn(r, c);
+            totalCombos += combos;
+            cl.forEach((x) => {
+              if (actCombo[x.ai] !== undefined)
+                actCombo[x.ai] += combos * (x.w / 100);
+            });
+          }
+        const lines = [];
+        lines.push(
+          '<div style="margin-bottom:12px;font-size:12px;color:var(--t2);line-height:1.6"><strong>Total combos:</strong> ' +
+            totalCombos +
+            ' · <strong>Range size:</strong> ' +
+            ((totalCombos / TC) * 100).toFixed(1) +
+            '%</div>',
+        );
+        if (acts.length) {
+          lines.push(
+            '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:12px">',
+          );
+          acts.forEach((act, i) => {
+            lines.push(
+              '<div style="background:var(--b0);border:1px solid var(--bd);border-radius:10px;padding:10px"><div style="font-size:11px;font-weight:700;color:' +
+                act.color +
+                '">' +
+                act.name +
+                '</div><div style="font-size:11px;color:var(--t4);margin-top:6px">' +
+                Math.round(actCombo[i]) +
+                ' combo' +
+                (Math.round(actCombo[i]) !== 1 ? 's' : '') +
+                '</div></div>',
+            );
+          });
+          lines.push("</div>");
+        }
+        const note = rangeToNotation(range);
+        lines.push(
+          '<div style="background:var(--b1);border:1px solid var(--bd);border-radius:var(--r1);padding:12px;white-space:pre-wrap;word-break:break-word;font-family:var(--fm);font-size:11px;color:var(--t2);max-height:260px;overflow:auto;">' +
+            escapeHtml(note || "(empty)") +
+            '</div>',
+        );
+        return lines.join("");
+      }
+      function rangeToNotation(range) {
+        const hands = [];
+        for (let r = 0; r < 13; r++)
+          for (let c = 0; c < 13; c++)
+            if (range[r][c].length) hands.push(hl(r, c));
+        return hands.join(",");
+      }
+      function escapeHtml(str) {
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\"/g, "&quot;")
+          .replace(/'/g, "&#39;");
       }
       /* EDITOR */
       const Ed = {
@@ -7546,7 +7717,7 @@
             '</div><div class="fc-info"><div class="fc-name">' +
             r.name +
             "</div>" +
-            (rFolder !== "/" && (q || _selTags.size)
+            (rFolder !== "/"
               ? '<div class="fc-path">' + rFolder + "</div>"
               : "") +
             '<div class="fc-meta"><span>' +
@@ -7567,13 +7738,17 @@
             i +
             ')">' +
             (r.fav ? "★" : "☆") +
-            '</span><div class="fc-acts"><button onclick="event.stopPropagation();openMove(' +
+            '</span><div class="fc-acts"><button class="btn btn-xs" title="Preview" onclick="event.stopPropagation();openPreview(' +
             i +
-            ')">↗</button><button onclick="event.stopPropagation();dupRange(' +
+            ')">👁</button><button class="btn btn-xs" title="Summary" onclick="event.stopPropagation();openSummary(' +
             i +
-            ')">⧉</button><button onclick="event.stopPropagation();openEdit(' +
+            ')">🧠</button><button class="btn btn-xs" title="Move" onclick="event.stopPropagation();openMove(' +
             i +
-            ')">✎</button><button class="del" onclick="event.stopPropagation();delRange(' +
+            ')">↗</button><button class="btn btn-xs" title="Duplicate" onclick="event.stopPropagation();dupRange(' +
+            i +
+            ')">⧉</button><button class="btn btn-xs" title="Edit" onclick="event.stopPropagation();openEdit(' +
+            i +
+            ')">✎</button><button class="btn btn-xs del" title="Delete" onclick="event.stopPropagation();delRange(' +
             i +
             ')">✕</button></div></div>';
           d++;
@@ -7855,6 +8030,33 @@
       function impNot() {
         const t = $("impText").value.trim();
         if (!t) return;
+        const headers = [...t.matchAll(/^(Range\s*\d*\s*-\s*)(.+)$/gim)];
+        if (headers.length > 1) {
+          const blocks = [];
+          for (let i = 0; i < headers.length; i++) {
+            const name = headers[i][2].trim() || "Action " + (i + 1);
+            const start = headers[i].index + headers[i][0].length;
+            const end = i < headers.length - 1 ? headers[i + 1].index : t.length;
+            blocks.push({ name, text: t.slice(start, end).trim() });
+          }
+          S.range = mkR();
+          S.acts = [];
+          blocks.forEach((blk, idx) => {
+            S.acts.push({ name: blk.name, color: COLS[idx % COLS.length] });
+            S.sel = idx;
+            Ed.fromNot(blk.text);
+          });
+          S.sel = 0;
+          Ed.renActs();
+          Ed.renAll();
+          Ed.updInfo();
+          Ed.saveSt();
+          checkDirty();
+          renderRangeStats();
+          closeM("impM");
+          toast("Imported " + blocks.length + " actions ✦");
+          return;
+        }
         Ed.fromNot(t);
         checkDirty();
         closeM("impM");
