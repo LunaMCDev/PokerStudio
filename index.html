@@ -894,11 +894,12 @@
         gap: 8px;
         padding: 10px 14px;
         margin-bottom: 10px;
-        background: var(--b2);
-        border: 1px solid var(--bd);
+        background: rgba(56, 36, 90, 0.92);
+        border: 1px solid rgba(206, 170, 76, 0.14);
         border-left: 3px solid var(--pk);
         border-radius: var(--r1);
         animation: vIn 0.3s;
+        backdrop-filter: blur(10px);
       }
       .viewer-bar .vb-name {
         font-size: 13px;
@@ -912,6 +913,38 @@
       .viewer-bar .vb-icon {
         font-size: 18px;
         margin-right: 4px;
+      }
+      #editorControls {
+        display: grid;
+        gap: 14px;
+      }
+      @media (min-width: 1080px) {
+        #editorV .editor-grid {
+          display: grid;
+          grid-template-columns: minmax(340px, 1.1fr) minmax(300px, 0.9fr);
+          gap: 24px;
+          align-items: start;
+        }
+        #editorV .editor-grid .mwrap {
+          justify-content: flex-start;
+          margin: 0;
+          width: 100%;
+        }
+        #editorV .editor-grid .editor-side {
+          display: grid;
+          gap: 14px;
+        }
+        .matrix {
+          width: min(100%, 580px);
+        }
+        .viewer-bar {
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+        .files-toolbar {
+          justify-content: space-between;
+          align-items: center;
+        }
       }
 
       .trwrap {
@@ -3199,11 +3232,11 @@
         <div class="viewer-bar" id="viewerBar" style="display: none">
           <span class="vb-icon" id="vbIcon">♠</span
           ><span class="vb-name" id="vbName"></span
-          ><button class="btn btn-s pri" onclick="switchToEdit()">✎ Edit</button
-          ><button class="btn btn-s" onclick="previewRange()">👁 Preview</button
-          ><button class="btn btn-s pri" onclick="showMemoryTips()">🧠 Summary</button
-          ><button class="btn btn-s" onclick="trainThis()">🎯 Train</button
-          ><button class="btn btn-xs" onclick="closeViewer()">✕</button>
+          ><button class="btn btn-s pri" onclick="switchToEdit()">Edit</button
+          ><button class="btn btn-s" onclick="previewRange()">Preview</button
+          ><button class="btn btn-s pri" onclick="showMemoryTips()">Summary</button
+          ><button class="btn btn-s" onclick="trainThis()">Train</button
+          ><button class="btn btn-xs" onclick="closeViewer()">Close</button>
         </div>
         <div id="editorControls">
           <div class="loaded-bar" id="loadedBar">
@@ -3255,13 +3288,17 @@
             /><span class="wv" id="wVal">100%</span>
           </div>
         </div>
-        <div class="mwrap"><div class="matrix" id="matrix"></div></div>
-        <div class="gp rbar">
-          <span class="rs">Combos <strong id="cCnt">0</strong></span
-          ><span class="rs">Range <strong id="rPct">0%</strong></span
-          ><span class="rs" id="rWarn"></span>
+        <div class="editor-grid">
+          <div class="mwrap"><div class="matrix" id="matrix"></div></div>
+          <div class="editor-side">
+            <div class="gp rbar">
+              <span class="rs">Combos <strong id="cCnt">0</strong></span
+              ><span class="rs">Range <strong id="rPct">0%</strong></span
+              ><span class="rs" id="rWarn"></span>
+            </div>
+            <div id="rangeStatsArea"></div>
+          </div>
         </div>
-        <div id="rangeStatsArea"></div>
       </div>
       <!-- TRAINER -->
       <div id="trainerV" class="view">
@@ -3347,14 +3384,10 @@
               oninput="renderFiles()"
             />
           </div>
-          <button class="btn btn-s" id="fSortBtn" onclick="openSortMenu()">
-            ↕ Newest</button
-          ><button class="btn btn-s" id="fFilterBtn" onclick="togFilterPanel()">
-            ⚙ Filter</button
-          ><button class="btn btn-s" onclick="openM('newFM')">📁+</button
-          ><button class="btn btn-s pri" onclick="openM('saveM')">
-            ✦ Save
-          </button>
+          <button class="btn btn-s" id="fSortBtn" onclick="openSortMenu()">Sort</button
+          ><button class="btn btn-s" id="fFilterBtn" onclick="togFilterPanel()">Filter</button
+          ><button class="btn btn-s" onclick="openM('newFM')">New Range</button
+          ><button class="btn btn-s pri" onclick="openM('saveM')">Save</button>
         </div>
         <div class="files-filter-bar" id="fFilterBar" style="display: none">
           <div
@@ -7740,17 +7773,17 @@
             (r.fav ? "★" : "☆") +
             '</span><div class="fc-acts"><button class="btn btn-xs" title="Preview" onclick="event.stopPropagation();openPreview(' +
             i +
-            ')">👁</button><button class="btn btn-xs" title="Summary" onclick="event.stopPropagation();openSummary(' +
+            ')">Preview</button><button class="btn btn-xs" title="Summary" onclick="event.stopPropagation();openSummary(' +
             i +
-            ')">🧠</button><button class="btn btn-xs" title="Move" onclick="event.stopPropagation();openMove(' +
+            ')">Summary</button><button class="btn btn-xs" title="Move" onclick="event.stopPropagation();openMove(' +
             i +
-            ')">↗</button><button class="btn btn-xs" title="Duplicate" onclick="event.stopPropagation();dupRange(' +
+            ')">Move</button><button class="btn btn-xs" title="Duplicate" onclick="event.stopPropagation();dupRange(' +
             i +
-            ')">⧉</button><button class="btn btn-xs" title="Edit" onclick="event.stopPropagation();openEdit(' +
+            ')">Duplicate</button><button class="btn btn-xs" title="Edit" onclick="event.stopPropagation();openEdit(' +
             i +
-            ')">✎</button><button class="btn btn-xs del" title="Delete" onclick="event.stopPropagation();delRange(' +
+            ')">Edit</button><button class="btn btn-xs del" title="Delete" onclick="event.stopPropagation();delRange(' +
             i +
-            ')">✕</button></div></div>';
+            ')">Delete</button></div></div>';
           d++;
         });
         if (totalShown > 0 && (q || _selTags.size || favOnly))
