@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0c" />
+    <title>PokerStudio Offline</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        padding: calc(24px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom));
+        background:
+          radial-gradient(ellipse 85% 42% at 50% 0%, rgba(200, 165, 92, 0.18), transparent 70%),
+          #0a0a0c;
+        color: #e8e4dc;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        text-align: center;
+      }
+
+      main {
+        width: min(100%, 380px);
+        padding: 28px 22px;
+        border: 1px solid rgba(200, 165, 92, 0.2);
+        border-radius: 24px;
+        background: rgba(22, 22, 28, 0.86);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      img {
+        width: 86px;
+        height: 86px;
+        border-radius: 20px;
+        margin-bottom: 18px;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        color: #e8c87c;
+        font-size: 26px;
+        line-height: 1.1;
+      }
+
+      p {
+        margin: 0;
+        color: #b8b0a4;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="./icons/icon-192.png" alt="" />
+      <h1>PokerStudio is offline</h1>
+      <p>Reconnect once to refresh the app. If you have opened PokerStudio before, your saved ranges and bankroll data remain stored locally on this device.</p>
+    </main>
+  </body>
+</html>
