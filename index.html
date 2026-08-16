@@ -177,7 +177,6 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .viewer-bar .vb-name{font-size:13px;font-weight:700;color:var(--t1);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* TRAINER */
 .trwrap{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:520px;margin:0 auto;width:100%}
-.trsel{width:100%;padding:12px 16px;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-size:13px;outline:none;cursor:pointer;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c8a55c' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .mode-tabs{display:flex;gap:3px;width:100%}
 .mode-tab{flex:1;padding:10px;border:1px solid rgba(200,165,92,.06);background:var(--b2);color:var(--t4);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-align:center;cursor:pointer;border-radius:var(--r1);transition:all .2s}
 .mode-tab.on{background:rgba(200,165,92,.06);color:var(--pk2);border-color:var(--bd2)}
@@ -199,6 +198,19 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .tfb.show{opacity:1;transform:scale(1)}.tfb.ok{color:var(--mt)}.tfb.no{color:var(--rs)}
 .texp{font-size:11px;color:var(--t4);min-height:16px;opacity:0;transition:all .3s .1s}
 .texp.show{opacity:1}
+.mix-label{font-size:8px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--t5);margin-bottom:5px}
+.mix-chips{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
+.mix-chip{
+  padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;
+  color:var(--mc);background:color-mix(in srgb,var(--mc) 14%,transparent);
+  border:1px solid color-mix(in srgb,var(--mc) 35%,transparent);
+  transition:all .2s;
+}
+.mix-chip.chosen{
+  box-shadow:0 0 0 2px var(--mc),0 0 12px 1px color-mix(in srgb,var(--mc) 55%,transparent);
+  background:color-mix(in srgb,var(--mc) 24%,transparent);
+  transform:scale(1.06);
+}
 .tr-progress{width:85%;height:2px;background:var(--b0);border-radius:1px;overflow:hidden;margin-top:6px}
 .tr-progress-fill{height:100%;background:linear-gradient(90deg,var(--pk),var(--mt));border-radius:1px;transition:width .4s}
 .tbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%}
@@ -254,6 +266,9 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .fs-sb-item:hover{background:rgba(200,165,92,.06);color:var(--t1)}
 .fs-sb-item.on{background:rgba(200,165,92,.1);color:var(--pk2);font-weight:700}
 .fs-sb-item .si{font-size:15px;flex-shrink:0}.fs-sb-item .sc{margin-left:auto;font-size:9px;font-family:var(--fm);color:var(--t5);flex-shrink:0}
+.fs-sb-item .sb-unpin{margin-left:auto;flex-shrink:0;font-size:9px;color:var(--t5);opacity:0;padding:2px 5px;border-radius:5px;transition:opacity .15s,color .15s,background .15s}
+.fs-sb-item:hover .sb-unpin{opacity:1}
+.fs-sb-item .sb-unpin:hover{color:var(--rs);background:rgba(248,113,113,.1)}
 
 /* ── CONTENT ── */
 .fs-content{flex:1;overflow-y:auto;overflow-x:hidden}
@@ -1448,18 +1463,54 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 }
 
 /* ════════════════════════════════════════════════════
-   TRAINER — additional polish
+   TRAINER — range picker
 ════════════════════════════════════════════════════ */
-.trsel{
-  width:100%;padding:12px 16px;
-  background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);
-  color:var(--t1);font-size:13px;font-weight:600;cursor:pointer;
-  -webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c8a55c' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;
-  transition:border-color .18s,box-shadow .18s;
+.tr-picker-btn{
+  width:100%;display:flex;align-items:center;gap:12px;
+  padding:14px 16px;cursor:pointer;
+  background:linear-gradient(145deg,var(--b2),var(--b3));
+  border:1px solid var(--bd2);border-radius:var(--r2);
+  transition:all .2s var(--spring);position:relative;overflow:hidden;
 }
-.trsel:focus{outline:none;border-color:var(--pk);box-shadow:0 0 0 3px rgba(200,165,92,.14)}
+.tr-picker-btn::before{
+  content:"";position:absolute;top:-60%;right:-10%;width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--pk) 10%,transparent),transparent 70%);
+  pointer-events:none;
+}
+.tr-picker-btn:hover{border-color:var(--bd3);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.tr-picker-btn:active{transform:scale(.99)}
+.tpb-icon{
+  width:38px;height:38px;flex-shrink:0;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;font-size:19px;
+  background:linear-gradient(135deg,rgba(200,165,92,.16),rgba(139,156,196,.08));
+  border:1px solid var(--bd2);position:relative;z-index:1;
+}
+.tpb-text{flex:1;min-width:0;text-align:left;display:flex;flex-direction:column;gap:1px;position:relative;z-index:1}
+.tpb-label{font-family:var(--fd);font-size:15px;font-style:italic;font-weight:800;color:var(--pk2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tpb-sub{font-size:9.5px;color:var(--t4);font-weight:600}
+.tpb-chevron{font-size:20px;color:var(--t4);flex-shrink:0;position:relative;z-index:1;transition:transform .2s}
+.tr-picker-btn:hover .tpb-chevron{transform:translateX(3px);color:var(--pk2)}
+
+/* Picker modal list */
+.tr-pick-group{
+  font-size:8.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--t4);padding:12px 4px 6px;
+}
+.tr-pick-item{
+  display:flex;align-items:center;gap:10px;padding:10px 8px;border-radius:var(--r1);
+  cursor:pointer;transition:background .15s;animation:slideUp .25s var(--e) backwards;
+}
+.tr-pick-item:hover{background:rgba(200,165,92,.07)}
+.tr-pick-item:active{background:rgba(200,165,92,.12)}
+.tr-pick-current{background:rgba(200,165,92,.05);border:1px dashed var(--bd2);margin-bottom:6px}
+.tr-pick-ico{
+  width:34px;height:34px;flex-shrink:0;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06));border:1px solid var(--bd);
+}
+.tr-pick-info{flex:1;min-width:0}
+.tr-pick-name{font-size:12.5px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tr-pick-meta{font-size:9.5px;color:var(--t4);margin-top:1px;font-family:var(--fm)}
+.tr-pick-chev{font-size:16px;color:var(--t5);flex-shrink:0}
 
 /* Flop cards in trainer */
 .fl-cards{display:flex;gap:6px;justify-content:center;margin:12px 0;flex-wrap:nowrap}
@@ -1638,7 +1689,14 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       <button class="mode-tab" id="trTabHist" onclick="switchTrTab('hist')">📜 History</button>
     </div>
     <div id="trTrainArea" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:14px">
-      <select class="trsel" id="trSel" onchange="onTrSel()"><option value="">✦ Select a range</option></select>
+      <div class="tr-picker-btn" id="trPickerBtn" onclick="openTrRangePicker()">
+        <span class="tpb-icon" id="trPickerIcon">♠</span>
+        <div class="tpb-text">
+          <span class="tpb-label" id="trPickerLabel">Select a range</span>
+          <span class="tpb-sub" id="trPickerSub">Tap to choose from your saved ranges</span>
+        </div>
+        <span class="tpb-chevron">›</span>
+      </div>
       <div class="mode-tabs" id="mTabs" style="display:none">
         <button class="mode-tab on" data-m="all" onclick="setMode('all')">All Hands</button>
         <button class="mode-tab" data-m="weak" onclick="setMode('weak')">Weak Spots</button>
@@ -1663,11 +1721,11 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <!-- Top bar -->
     <div class="fs-topbar">
       <button class="fs-sidebar-toggle" onclick="toggleFsSidebar()" title="Toggle sidebar">☰</button>
-      <button class="fs-nav-btn fs-hide-mobile" id="fsBackBtn" onclick="fsGoBack()" disabled title="Back">←</button>
+      <button class="fs-nav-btn" id="fsBackBtn" onclick="fsGoBack()" disabled title="Back">←</button>
       <button class="fs-nav-btn fs-hide-mobile" id="fsFwdBtn" onclick="fsGoFwd()" disabled title="Forward">→</button>
-      <button class="fs-nav-btn" onclick="fsGoUp()" title="Up">↑</button>
+      <button class="fs-nav-btn" id="fsUpBtn" onclick="fsGoUp()" title="Up one level" disabled>↑</button>
       <div class="fs-addr" id="fsAddr"></div>
-      <div class="fs-search-box"><input id="fsSearch" placeholder="Search…" oninput="fsRender()"/></div>
+      <div class="fs-search-box"><input id="fsSearch" placeholder="Search all ranges…" oninput="fsRender()"/></div>
       <select id="fsSortSel" class="sel-sm" onchange="fsRender()">
         <option value="newest">Newest</option><option value="oldest">Oldest</option>
         <option value="a-z">A → Z</option><option value="z-a">Z → A</option>
@@ -1687,6 +1745,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
         <div class="fs-sb-item on" data-sp="all" onclick="fsSetSpecial('all',this)"><span class="si">🏠</span>All Ranges<span class="sc" id="siAll"></span></div>
         <div class="fs-sb-item" data-sp="favs" onclick="fsSetSpecial('favs',this)"><span class="si">⭐</span>Favorites<span class="sc" id="siFavs"></span></div>
         <div class="fs-sb-item" data-sp="recent" onclick="fsSetSpecial('recent',this)"><span class="si">🕐</span>Recent</div>
+        <div id="fsSidebarPinnedWrap"></div>
         <div class="fs-sb-divider"></div>
         <div class="fs-sb-section">Folders</div>
         <div id="fsSidebarTree"></div>
@@ -2004,6 +2063,13 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="hud-exploit-row"><b>Overbet 125%+</b><span>Nutted river spots vs overfolders, huge range advantage.</span></div>
   </div>
 </div></div>
+<div class="mov" id="trPickM"><div class="mdl" style="max-width:460px;max-height:82vh;overflow-y:auto;position:relative;padding-top:52px">
+  <div style="position:sticky;top:-52px;background:var(--b1);z-index:10;padding:14px 0 10px;margin:-52px -24px 12px;padding-left:24px;padding-right:24px;border-bottom:1px solid var(--bd)">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px"><h3 style="margin:0">🎯 Select a Range</h3><button class="btn btn-s" onclick="closeM('trPickM')">✕ Close</button></div>
+    <input class="minp" id="trPickSearch" placeholder="🔍 Search ranges…" style="margin:0" oninput="renderTrPickList()"/>
+  </div>
+  <div id="trPickList"></div>
+</div></div>
 <div class="hand-popup" id="handPopup"><span class="hp-close" onclick="closeHandPopup()">✕</span><div class="hp-title" id="hpTitle"></div><div class="hp-type" id="hpType"></div><div class="hp-combos" id="hpCombos"></div><div id="hpActions"></div></div>
 <div class="toast" id="toast"></div>
 <input type="file" id="jfInput" accept=".json" style="display:none" onchange="hdlJSONFile(event)"/>
@@ -2140,7 +2206,7 @@ function showViewerMode(i){const d=S.saved[i];if(!d)return;viewerMode=true;S.act
 function showEditorMode(){viewerMode=false;$("viewerBar").style.display="none";$("editorControls").style.display="";$("rangeStatsArea").innerHTML=""}
 function switchToEdit(){viewerMode=false;$("viewerBar").style.display="none";$("editorControls").style.display="";S.snapshot=JSON.stringify({acts:S.acts,range:S.range});Ed.saveSt();checkDirty();renderRangeStats()}
 function closeViewer(){showEditorMode();S.loadedIdx=-1;const d=LG("ps_cur",null);if(d){S.acts=d.acts||getDACTS();S.range=d.range||mkR();S.sel=d.sel||0;Ed.renActs();Ed.renAll();Ed.updInfo()}}
-function trainThis(){if(S.loadedIdx>=0){go("trainer");$("trSel").value=S.loadedIdx;onTrSel()}}
+function trainThis(){if(S.loadedIdx>=0){go("trainer");pickTrRange(String(S.loadedIdx))}}
 function renderRangeStats(){const r=S.range,a=S.acts;let tot=0,pC=0,sC=0,oC=0,mC=0;const ac=a.map(()=>0);for(let i=0;i<13;i++)for(let j=0;j<13;j++){const cl=r[i][j];if(!cl.length)continue;const cn=hcn(i,j);tot+=cn;if(i===j)pC+=cn;else if(j>i)sC+=cn;else oC+=cn;if(cl.length>1)mC+=cn;cl.forEach(x=>{if(x.ai<ac.length)ac[x.ai]+=cn*(x.w/100)})}
 let h='<div class="rstats"><div class="rstat-card"><div class="rsv">'+tot+'</div><div class="rsl">Combos</div></div><div class="rstat-card"><div class="rsv">'+((tot/TC)*100).toFixed(1)+'%</div><div class="rsl">Range</div></div><div class="rstat-card"><div class="rsv">'+pC+'</div><div class="rsl">Pairs</div></div><div class="rstat-card"><div class="rsv">'+sC+'</div><div class="rsl">Suited</div></div><div class="rstat-card"><div class="rsv">'+oC+'</div><div class="rsl">Offsuit</div></div><div class="rstat-card"><div class="rsv">'+mC+'</div><div class="rsl">Mixed</div></div></div>';
 if(tot>0){h+='<div class="act-breakdown">';a.forEach((act,i)=>{const p=tot>0?(ac[i]/tot)*100:0;h+='<div class="act-row"><div class="act-dot" style="background:'+act.color+'"></div><div class="act-name">'+act.name+'</div><div class="act-bar"><div class="act-bar-fill" style="width:'+p+'%;background:'+act.color+'"></div></div><div class="act-pct">'+Math.round(ac[i])+" ("+p.toFixed(1)+"%)</div></div>"});h+='</div>'}
@@ -2200,19 +2266,25 @@ const Ed={
 let fsView=LG("ps_fsview","detail");
 let fsCurPath="/";
 let fsSpecial=null;
-let fsHistory=["/"];
+let fsHistory=[{special:null,path:"/"}];
 let fsHistIdx=0;
 function getFO(p){return S.folders.find(f=>f.path===p)||{path:p,icon:"📁",name:p.replace(/\/$/,"").split("/").pop()||"Root"}}
 function getSubs(p){return S.folders.filter(f=>f.path!==p&&f.path.startsWith(p)&&f.path.slice(p.length).replace(/\/$/,"").indexOf("/")===-1&&f.path.endsWith("/"))}
-function initFs(){loadSvd();renderFsSidebar();fsRender()}
-function renderFsSidebar(){const tree=$("fsSidebarTree");if(!tree)return;const siAll=$("siAll");if(siAll)siAll.textContent=S.saved.length;const siFavs=$("siFavs");if(siFavs)siFavs.textContent=S.saved.filter(r=>r.fav).length;let h="";function renderSubFolders(path,depth){getSubs(path).forEach(f=>{const on=!fsSpecial&&fsCurPath===f.path;const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-sb-item'+(on?" on":"")+'" onclick="fsNavPush(\''+f.path+'\')" style="padding-left:'+(12+depth*14)+'px"><span class="si">'+f.icon+'</span>'+f.name+'<span class="sc">'+cnt+'</span></div>';renderSubFolders(f.path,depth+1)})}renderSubFolders("/",0);tree.innerHTML=h;document.querySelectorAll(".fs-sb-item[data-sp]").forEach(el=>{const sp=el.dataset.sp;if(sp==="all")el.classList.toggle("on",!fsSpecial);else if(sp==="favs")el.classList.toggle("on",fsSpecial==="favs");else if(sp==="recent")el.classList.toggle("on",fsSpecial==="recent")})}
-function fsSetSpecial(sp,el){fsSpecial=sp==="all"?null:sp;renderFsSidebar();fsRender()}
-function setFsView(v){fsView=v;LS("ps_fsview",v);["grid","list","detail"].forEach(x=>{const b=$("fsVb"+x.charAt(0).toUpperCase()+x.slice(1));if(b)b.classList.toggle("on",x===v)});fsRender()}
-function fsNavPush(path){if(window.innerWidth<=520){var _sb=document.getElementById("fsSidebar");if(_sb)_sb.classList.remove("open");var _ov=document.getElementById("fsSidebarOverlay");if(_ov)_ov.style.display="none"}fsHistory=fsHistory.slice(0,fsHistIdx+1);fsHistory.push(path);fsHistIdx=fsHistory.length-1;fsSpecial=null;fsCurPath=path;const bb=$("fsBackBtn");const fb=$("fsFwdBtn");if(bb)bb.disabled=fsHistIdx<=0;if(fb)fb.disabled=fsHistIdx>=fsHistory.length-1;renderFsSidebar();fsRender()}
+function initFs(){loadSvd();renderFsSidebar();fsRender();updateFsNavButtons()}
+function renderFsSidebar(){const tree=$("fsSidebarTree");if(!tree)return;const siAll=$("siAll");if(siAll)siAll.textContent=S.saved.length;const siFavs=$("siFavs");if(siFavs)siFavs.textContent=S.saved.filter(r=>r.fav).length;
+const pinWrap=$("fsSidebarPinnedWrap");if(pinWrap){let pins=LG("ps_pinned",[]);const validPaths=new Set(S.folders.map(f=>f.path));const pruned=pins.filter(p=>validPaths.has(p));if(pruned.length!==pins.length)LS("ps_pinned",pruned);pins=pruned;if(pins.length){let ph='<div class="fs-sb-divider"></div><div class="fs-sb-section">📌 Pinned</div>';pins.forEach(p=>{const fo=getFO(p);const on=!fsSpecial&&fsCurPath===p;ph+='<div class="fs-sb-item'+(on?" on":"")+'" onclick="fsNavPush(\''+p+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+p+'\')"><span class="si">'+fo.icon+'</span>'+fo.name+'<span class="sb-unpin" onclick="event.stopPropagation();pinFolder(\''+p+'\')" title="Unpin">✕</span></div>'});pinWrap.innerHTML=ph}else pinWrap.innerHTML=""}
+let h="";function renderSubFolders(path,depth){getSubs(path).forEach(f=>{const on=!fsSpecial&&fsCurPath===f.path;const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-sb-item'+(on?" on":"")+'" onclick="fsNavPush(\''+f.path+'\')" style="padding-left:'+(12+depth*14)+'px"><span class="si">'+f.icon+'</span>'+f.name+'<span class="sc">'+cnt+'</span></div>';renderSubFolders(f.path,depth+1)})}renderSubFolders("/",0);tree.innerHTML=h;document.querySelectorAll(".fs-sb-item[data-sp]").forEach(el=>{const sp=el.dataset.sp;if(sp==="all")el.classList.toggle("on",!fsSpecial);else if(sp==="favs")el.classList.toggle("on",fsSpecial==="favs");else if(sp==="recent")el.classList.toggle("on",fsSpecial==="recent")})}
+/* ── UNIFIED NAVIGATION STATE: Back/Forward/Up all traverse one logical history ── */
+function clearFsSearch(){const si=$("fsSearch");if(si&&si.value)si.value=""}
+function applyFsState(st){fsSpecial=st.special;fsCurPath=st.path}
+function updateFsNavButtons(){const bb=$("fsBackBtn");const fb=$("fsFwdBtn");const ub=$("fsUpBtn");if(bb)bb.disabled=fsHistIdx<=0;if(fb)fb.disabled=fsHistIdx>=fsHistory.length-1;if(ub)ub.disabled=!fsSpecial&&fsCurPath==="/"}
+function pushFsState(st){clearFsSearch();fsHistory=fsHistory.slice(0,fsHistIdx+1);fsHistory.push(st);fsHistIdx=fsHistory.length-1;applyFsState(st);if(window.innerWidth<=520){const _sb=$("fsSidebar");if(_sb)_sb.classList.remove("open");const _ov=$("fsSidebarOverlay");if(_ov)_ov.style.display="none"}renderFsSidebar();fsRender();updateFsNavButtons()}
+function fsSetSpecial(sp,el){pushFsState({special:sp==="all"?null:sp,path:"/"})}
+function fsNavPush(path){pushFsState({special:null,path:path})}
 function fsNav(path){fsNavPush(path)}
-function fsGoBack(){if(fsHistIdx>0){fsHistIdx--;fsCurPath=fsHistory[fsHistIdx];fsSpecial=null;const bb=$("fsBackBtn");const fb=$("fsFwdBtn");if(bb)bb.disabled=fsHistIdx<=0;if(fb)fb.disabled=false;renderFsSidebar();fsRender()}}
-function fsGoFwd(){if(fsHistIdx<fsHistory.length-1){fsHistIdx++;fsCurPath=fsHistory[fsHistIdx];fsSpecial=null;const bb=$("fsBackBtn");const fb=$("fsFwdBtn");if(bb)bb.disabled=false;if(fb)fb.disabled=fsHistIdx>=fsHistory.length-1;renderFsSidebar();fsRender()}}
-function fsGoUp(){const p=fsCurPath;if(p==="/")return;const up=p.slice(0,p.slice(0,-1).lastIndexOf("/")+1)||"/";fsNavPush(up)}
+function fsGoBack(){if(fsHistIdx<=0)return;fsHistIdx--;clearFsSearch();applyFsState(fsHistory[fsHistIdx]);renderFsSidebar();fsRender();updateFsNavButtons()}
+function fsGoFwd(){if(fsHistIdx>=fsHistory.length-1)return;fsHistIdx++;clearFsSearch();applyFsState(fsHistory[fsHistIdx]);renderFsSidebar();fsRender();updateFsNavButtons()}
+function fsGoUp(){if(fsSpecial){pushFsState({special:null,path:"/"});return}const p=fsCurPath;if(p==="/")return;const up=p.slice(0,p.slice(0,-1).lastIndexOf("/")+1)||"/";pushFsState({special:null,path:up})}
 function toggleFsSidebar(){
   var sb=document.getElementById("fsSidebar");
   var ov=document.getElementById("fsSidebarOverlay");
@@ -2222,25 +2294,28 @@ function toggleFsSidebar(){
 }
 
 function fsRender(){if(!$("fsContent"))return;loadSvd();const q=$("fsSearch")?.value?.toLowerCase()||"";const sort=$("fsSortSel")?.value||"newest";
-const addr=$("fsAddr");if(addr){if(fsSpecial==="favs")addr.innerHTML='<span>⭐ Favorites</span>';else if(fsSpecial==="recent")addr.innerHTML='<span>🕐 Recent</span>';else{const pts=fsCurPath.split("/").filter(Boolean);let h='<span onclick="fsNavPush(\'/\')">🏠</span>';let acc="/";pts.forEach(p=>{acc+=p+"/";h+='<span class="sep"> / </span><span onclick="fsNavPush(\''+acc+'\')">'+p+'</span>'});addr.innerHTML=h}}
+const globalSearch=!fsSpecial&&!!q;
+const addr=$("fsAddr");if(addr){if(fsSpecial==="favs")addr.innerHTML='<span>⭐ Favorites</span>';else if(fsSpecial==="recent")addr.innerHTML='<span>🕐 Recent</span>';else if(globalSearch)addr.innerHTML='<span>🔍 Search results</span>';else{const pts=fsCurPath.split("/").filter(Boolean);let h='<span onclick="fsNavPush(\'/\')">🏠</span>';let acc="/";pts.forEach(p=>{acc+=p+"/";h+='<span class="sep"> / </span><span onclick="fsNavPush(\''+acc+'\')">'+p+'</span>'});addr.innerHTML=h}}
 let ranges=[...S.saved];
 if(fsSpecial==="favs")ranges=ranges.filter(r=>r.fav);
 else if(fsSpecial==="recent")ranges=[...S.saved].sort((a,b)=>b.ts-a.ts).slice(0,20);
-else ranges=ranges.filter(r=>(r.folder||"/")===fsCurPath);
+else if(!q)ranges=ranges.filter(r=>(r.folder||"/")===fsCurPath);
 if(q)ranges=ranges.filter(r=>r.name.toLowerCase().includes(q)||(r.tags||[]).some(t=>t.includes(q))||(r.notes||"").toLowerCase().includes(q));
 if(sort==="newest")ranges.sort((a,b)=>b.ts-a.ts);else if(sort==="oldest")ranges.sort((a,b)=>a.ts-b.ts);else if(sort==="a-z")ranges.sort((a,b)=>a.name.localeCompare(b.name));else if(sort==="z-a")ranges.sort((a,b)=>b.name.localeCompare(a.name));else if(sort==="most")ranges.sort((a,b)=>b.range.flat().filter(c=>c.length).length-a.range.flat().filter(c=>c.length).length);else if(sort==="least")ranges.sort((a,b)=>a.range.flat().filter(c=>c.length).length-b.range.flat().filter(c=>c.length).length);else if(sort==="pct"){ranges.sort((a,b)=>b.range.flat().filter(c=>c.length).length-a.range.flat().filter(c=>c.length).length)}
 ranges.sort((a,b)=>(b.fav?1:0)-(a.fav?1:0));
 const subFolders=(!fsSpecial&&!q)?getSubs(fsCurPath):[];
 const ct=$("fsContent");
 const total=subFolders.length+ranges.length;
-const st=$("fsStatus");if(st)st.textContent=total===0?"Empty":`${total} item${total!==1?"s":""}${q?" (filtered)":""}`;
+const st=$("fsStatus");if(st)st.textContent=total===0?"Empty":`${total} item${total!==1?"s":""}${q?" · "+ranges.length+" match"+(ranges.length!==1?"es":"")+(globalSearch?" (all folders)":""):""}`;
 if(!total){var _ei=q?'🔍':fsSpecial==='favs'?'⭐':fsSpecial==='recent'?'🕐':'📁';var _et=q?'No results for "'+q+'"':fsSpecial?'Nothing here yet':'This folder is empty';var _es=q?'Try a different search term.':fsSpecial==='favs'?'Star ranges to see them here.':fsSpecial==='recent'?'Open ranges to see them here.':'Save from the Editor or create a subfolder.';ct.innerHTML='<div class="empty-state"><span class="es-icon">'+_ei+'</span><div class="es-title">'+_et+'</div><div class="es-sub">'+_es+'</div>'+(!q&&!fsSpecial?'<button class="btn pri" onclick="openM(\'saveM\')">+ Save Range</button>':'')+'</div>';return}
-if(fsView==="grid")renderFsGrid(ct,subFolders,ranges);
-else if(fsView==="list")renderFsList(ct,subFolders,ranges);
-else renderFsDetail(ct,subFolders,ranges)}
-function renderFsGrid(ct,folders,ranges){let h='<div class="fs-grid">';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-gi" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="gi-ico" style="'+(f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"")+'">'+f.icon+'</div><div class="gi-name">'+f.name+'</div><div class="gi-meta">'+cnt+' ranges</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;h+='<div class="fs-gi" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="gi-ico" style="background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06))">'+(r.icon||"♠")+'</div><div class="gi-name">'+r.name+'</div><div class="gi-meta">'+hcc+' hands</div></div>'});h+='</div>';ct.innerHTML=h}
-function renderFsList(ct,folders,ranges){let h='<div class="fs-list-wrap"><div class="fs-list-hdr"><span>Name</span><span>Hands</span><span>Modified</span></div>';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-li" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="li-name"><span class="li-ico">'+f.icon+'</span><span class="li-nm">'+f.name+'</span></div><div class="li-cell">'+cnt+' ranges</div><div class="li-cell">—</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;const pct=((hcc/169)*100).toFixed(0);const dt=new Date(r.ts).toLocaleDateString("en-US",{month:"short",day:"numeric"});h+='<div class="fs-li" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="li-name"><span class="li-ico">'+(r.icon||"♠")+'</span><span class="li-nm">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+r.name+'</span></div><div class="li-cell">'+hcc+' ('+pct+'%)</div><div class="li-cell">'+dt+'</div></div>'});h+='</div>';ct.innerHTML=h}
-function renderFsDetail(ct,folders,ranges){
+if(fsView==="grid")renderFsGrid(ct,subFolders,ranges,globalSearch);
+else if(fsView==="list")renderFsList(ct,subFolders,ranges,globalSearch);
+else renderFsDetail(ct,subFolders,ranges,globalSearch)}
+function setFsView(v){fsView=v;LS("ps_fsview",v);const map={grid:"fsVbGrid",list:"fsVbList",detail:"fsVbDetail"};Object.values(map).forEach(id=>{const el=$(id);if(el)el.classList.remove("on")});const btn=$(map[v]);if(btn)btn.classList.add("on");fsRender()}
+function fsFolderChip(path){const fo=getFO(path);return '<span class="fs-path-chip" onclick="event.stopPropagation();fsNavPush(\''+path+'\')" title="Jump to '+fo.name+'">'+fo.icon+' '+fo.name+'</span>'}
+function renderFsGrid(ct,folders,ranges,globalSearch){let h='<div class="fs-grid">';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-gi" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="gi-ico" style="'+(f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"")+'">'+f.icon+'</div><div class="gi-name">'+f.name+'</div><div class="gi-meta">'+cnt+' ranges</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;h+='<div class="fs-gi" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="gi-ico" style="background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06))">'+(r.icon||"♠")+'</div><div class="gi-name">'+r.name+'</div><div class="gi-meta">'+hcc+' hands</div>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div>'});h+='</div>';ct.innerHTML=h}
+function renderFsList(ct,folders,ranges,globalSearch){let h='<div class="fs-list-wrap"><div class="fs-list-hdr"><span>Name</span><span>Hands</span><span>Modified</span></div>';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-li" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="li-name"><span class="li-ico">'+f.icon+'</span><span class="li-nm">'+f.name+'</span></div><div class="li-cell">'+cnt+' ranges</div><div class="li-cell">—</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;const pct=((hcc/169)*100).toFixed(0);const dt=new Date(r.ts).toLocaleDateString("en-US",{month:"short",day:"numeric"});h+='<div class="fs-li" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="li-name"><span class="li-ico">'+(r.icon||"♠")+'</span><span class="li-nm">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+r.name+'</span>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div><div class="li-cell">'+hcc+' ('+pct+'%)</div><div class="li-cell">'+dt+'</div></div>'});h+='</div>';ct.innerHTML=h}
+function renderFsDetail(ct,folders,ranges,globalSearch){
 var h='<div class="fs-detail-list">';
 folders.forEach(function(f){
   var cnt=S.saved.filter(function(r){return(r.folder||"/")===f.path}).length;
@@ -2276,7 +2351,7 @@ ranges.forEach(function(r){
   row+='<div class="di-ico" style="'+rcs+'">'+(r.icon||"♠")+'</div>';
   row+='<div class="di-info">';
   row+='<div class="di-name">'+(r.fav?'<span class="di-fav-star">★</span>':"")+r.name+'</div>';
-  row+='<div class="di-sub">'+hcc+' hands ('+pct+'%) · '+(r.acts?r.acts.length:0)+' action'+(r.acts&&r.acts.length!==1?"s":"")+" · "+dt+'</div>';
+  row+='<div class="di-sub">'+hcc+' hands ('+pct+'%) · '+(r.acts?r.acts.length:0)+' action'+(r.acts&&r.acts.length!==1?"s":"")+" · "+dt+(globalSearch?' · ':'')+'</div>'+(globalSearch?'<div style="margin-top:3px">'+fsFolderChip(r.folder||"/")+'</div>':'');
   if(tags)row+='<div class="di-tags">'+tags+'</div>';
   row+='</div>';
   row+='<div class="di-acts">';
@@ -2322,9 +2397,11 @@ function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.leng
 // ═══ TRAINER ═══
 let trMode="all";
 function setMode(m){trMode=m;document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m===m));if(Tr.active)Tr.next()}
-const Tr={active:false,range:null,acts:null,cur:null,stats:{ok:0,total:0,streak:0,best:0},
-  start(d,rangeId,limit){this.range=d.range;this.acts=d.acts;this.rangeId=rangeId||"_global";this.limit=limit||0;this.paused=false;this.exclHands=getExclHands();this.stats={ok:0,total:0,streak:0,best:0,byType:{pair:{ok:0,t:0},suited:{ok:0,t:0},offsuit:{ok:0,t:0}},byAction:{},history:[],wrongHands:{}};this.acts.forEach(a=>{this.stats.byAction[a.name]={ok:0,t:0}});this.active=true;trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"));$("mTabs").style.display="flex";this.buildUI();this.next()},
-  buildUI(){const li=this.limit>0?'<div style="text-align:center;font-size:10px;color:var(--t4);margin-bottom:6px">'+this.limit+' hands</div>':'<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>';$("trContent").innerHTML=li+'<div style="width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div>';const bc=$("tBtns");bc.innerHTML="";this.acts.forEach((a,i)=>{const b=document.createElement("button");b.className="tabtn";b.style.borderColor=a.color;b.style.color=a.color;b.textContent=a.name;b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(i));bc.appendChild(b)})},
+const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,total:0,streak:0,best:0},
+  usedActIdx(){const used=new Set();let hasEmpty=false;for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cell=this.range[r][c];if(!cell.length)hasEmpty=true;else cell.forEach(a=>used.add(a.ai))}if(hasEmpty){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");if(fi>=0)used.add(fi)}const arr=[...used].sort((a,b)=>a-b);return arr.length?arr:this.acts.map((a,i)=>i)},
+  mixHtml(cell,chosenAi){if(!cell.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");const name=fi>=0?this.acts[fi].name:"Fold";const color=fi>=0?this.acts[fi].color:"var(--li)";const isChosen=fi>=0&&fi===chosenAi;return'<span class="mix-chip'+(isChosen?" chosen":"")+'" style="--mc:'+color+'">'+name+' 100%</span>'}return[...cell].sort((a,b)=>b.w-a.w).map(a=>{const act=this.acts[a.ai];const isChosen=a.ai===chosenAi;return'<span class="mix-chip'+(isChosen?" chosen":"")+'" style="--mc:'+act.color+'">'+act.name+' '+a.w+'%</span>'}).join("")},
+  start(d,rangeId,limit){this.range=d.range;this.acts=d.acts;this.rangeId=rangeId||"_global";this.limit=limit||0;this.paused=false;this.exclHands=getExclHands();this.trainIdx=this.usedActIdx();this.stats={ok:0,total:0,streak:0,best:0,byType:{pair:{ok:0,t:0},suited:{ok:0,t:0},offsuit:{ok:0,t:0}},byAction:{},history:[],wrongHands:{}};this.acts.forEach(a=>{this.stats.byAction[a.name]={ok:0,t:0}});this.active=true;trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"));$("mTabs").style.display="flex";this.buildUI();this.next()},
+  buildUI(){const li=this.limit>0?'<div style="text-align:center;font-size:10px;color:var(--t4);margin-bottom:6px">'+this.limit+' hands</div>':'<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>';$("trContent").innerHTML=li+'<div style="width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div>';const bc=$("tBtns");bc.innerHTML="";this.trainIdx.forEach((ai,i)=>{const a=this.acts[ai];const b=document.createElement("button");b.className="tabtn";b.style.borderColor=a.color;b.style.color=a.color;b.textContent=a.name;b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(ai));bc.appendChild(b)})},
   next(){let pool=[];if(trMode==="weak"){const hm={};for(let r=0;r<13;r++)for(let c=0;c<13;c++)hm[hl(r,c)]=[r,c];getWeak(30,this.rangeId).forEach(([l])=>{if(hm[l])pool.push(hm[l])});pool=pool.filter(([r,c])=>this.range[r][c].length);if(!pool.length){trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"))}}
   if(!pool.length){pool=[];for(let r=0;r<13;r++)for(let c=0;c<13;c++)pool.push([r,c])}
   if(this.exclHands.size)pool=pool.filter(([r,c])=>!this.exclHands.has(hl(r,c)));
@@ -2332,16 +2409,49 @@ const Tr={active:false,range:null,acts:null,cur:null,stats:{ok:0,total:0,streak:
   const[r,c]=pool[Math.floor(Math.random()*pool.length)];const t=ht(r,c);const ss=[...SU].sort(()=>Math.random()-.5);let cards;if(t==="pair")cards=[{rank:RK[r],suit:ss[0]},{rank:RK[r],suit:ss[1]}];else if(t==="suited"){const s=ss[0];cards=[{rank:RK[r],suit:s},{rank:RK[c],suit:s}]}else cards=[{rank:RK[c],suit:ss[0]},{rank:RK[r],suit:ss[1]}];
   this.cur={r,c,cards,label:hl(r,c),type:t};$("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").textContent="";$("tExp").className="texp";$("tCard").className="tcard";$("hCnt").textContent="#"+(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");$("streakN").textContent=this.stats.streak}else sb.classList.remove("show");
   const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));document.querySelectorAll(".tabtn").forEach(b=>b.disabled=false);this._ts=Date.now()},
-  answer(ai){if(!this.cur)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];let ok=false,exp="";if(!ca.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");ok=fi>=0&&ai===fi;if(!ok)exp="Expected: Fold"}else{if(ca.some(a=>a.ai===ai))ok=true;else exp="Expected: "+ca.map(a=>this.acts[a.ai].name+" "+a.w+"%").join(" / ")}
+  answer(ai){if(!this.cur)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];let ok=false;if(!ca.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");ok=fi>=0&&ai===fi}else{if(ca.some(a=>a.ai===ai))ok=true}const mixHtml=this.mixHtml(ca,ai);
   this.stats.total++;this.stats.history.push(ok?1:0);this.stats.byType[type].t++;if(ok)this.stats.byType[type].ok++;const an=this.acts[ai].name;if(!this.stats.byAction[an])this.stats.byAction[an]={ok:0,t:0};this.stats.byAction[an].t++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak;this.stats.byAction[an].ok++}else{this.stats.streak=0;recErr(label,an,this.rangeId);if(!this.stats.wrongHands[label])this.stats.wrongHands[label]=0;this.stats.wrongHands[label]++}
-  const card=$("tCard"),fb=$("tFb"),ep=$("tExp");if(ok){card.className="tcard fb-ok";fb.textContent="✦ CORRECT";fb.className="tfb ok show";const ms=this.stats.streak>0&&this.stats.streak%10===0;playSound(ms?"win":"correct");haptic(ms?"success":"light");if(ms)celebrate()}else{card.className="tcard fb-no";fb.textContent="✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}ep.textContent=exp;ep.className="texp show";$("trProg").style.width=(this.limit>0?Math.round((this.stats.total/this.limit)*100):Math.round(this.stats.total>0?(this.stats.ok/this.stats.total)*100:0))+"%";document.querySelectorAll(".tabtn").forEach(b=>b.disabled=true);this.updQ();const spd=LG("ps_speed","fast");const okMs=spd==="fast"?250:spd==="slow"?2500:1000;const noMs=spd==="fast"?500:spd==="slow"?4000:2000;if(this.limit>0&&this.stats.total>=this.limit){setTimeout(()=>this.endSession(),ok?okMs:noMs)}else setTimeout(()=>{if(!this.paused)this.next()},ok?okMs:noMs)},
+  const card=$("tCard"),fb=$("tFb"),ep=$("tExp");if(ok){card.className="tcard fb-ok";fb.textContent="✦ CORRECT";fb.className="tfb ok show";const ms=this.stats.streak>0&&this.stats.streak%10===0;playSound(ms?"win":"correct");haptic(ms?"success":"light");if(ms)celebrate()}else{card.className="tcard fb-no";fb.textContent="✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}ep.innerHTML='<div class="mix-label">'+(ok?"This hand's range":"Correct mix")+'</div><div class="mix-chips">'+mixHtml+'</div>';ep.className="texp show";$("trProg").style.width=(this.limit>0?Math.round((this.stats.total/this.limit)*100):Math.round(this.stats.total>0?(this.stats.ok/this.stats.total)*100:0))+"%";document.querySelectorAll(".tabtn").forEach(b=>b.disabled=true);this.updQ();const spd=LG("ps_speed","fast");const okMs=spd==="fast"?250:spd==="slow"?2500:1000;const noMs=spd==="fast"?500:spd==="slow"?4000:2000;if(this.limit>0&&this.stats.total>=this.limit){setTimeout(()=>this.endSession(),ok?okMs:noMs)}else setTimeout(()=>{if(!this.paused)this.next()},ok?okMs:noMs)},
   togglePause(){this.paused=!this.paused;const btn=$("trPauseBtn");if(btn){btn.textContent=this.paused?"▶ Resume":"⏸ Pause";btn.style.color=this.paused?"var(--mt)":"var(--gd)"}if(!this.paused)this.next()},
-  endSession(){this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;const hist=LG("ps_tr_history",[]);hist.push({rangeId:this.rangeId,date:new Date().toISOString(),total:s.total,ok:s.ok,accuracy:acc,best:s.best,limit:this.limit||"∞"});LS("ps_tr_history",hist);if(acc>=90&&s.total>=5){setTimeout(celebrate,200);playSound("win");haptic("success")}const wh=Object.entries(s.wrongHands).sort((a,b)=>b[1]-a[1]).slice(0,12);$("trContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">'+(acc>=80?"🌟":acc>=60?"✨":"💪")+'</div><div style="font-family:var(--fd);font-size:22px;font-style:italic;color:var(--pk2);margin-bottom:14px">Session Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div>'+(wh.length?'<div class="slbl" style="margin-top:14px">Missed Hands</div><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">'+wh.map(([h,c])=>'<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2)">'+h+' <span style="opacity:.5">'+c+"×</span></div>").join("")+"</div>":"")+'<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="onTrSel()">Train Again</button><button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>'},
+  endSession(){this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;const hist=LG("ps_tr_history",[]);hist.push({rangeId:this.rangeId,date:new Date().toISOString(),total:s.total,ok:s.ok,accuracy:acc,best:s.best,limit:this.limit||"∞"});LS("ps_tr_history",hist);if(acc>=90&&s.total>=5){setTimeout(celebrate,200);playSound("win");haptic("success")}const wh=Object.entries(s.wrongHands).sort((a,b)=>b[1]-a[1]).slice(0,12);$("trContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">'+(acc>=80?"🌟":acc>=60?"✨":"💪")+'</div><div style="font-family:var(--fd);font-size:22px;font-style:italic;color:var(--pk2);margin-bottom:14px">Session Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div>'+(wh.length?'<div class="slbl" style="margin-top:14px">Missed Hands</div><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">'+wh.map(([h,c])=>'<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2)">'+h+' <span style="opacity:.5">'+c+"×</span></div>").join("")+"</div>":"")+'<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="pickTrRange(window._trPickedVal)">Train Again</button><button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>'},
   updQ(){const s=this.stats;$("qScore").textContent=s.ok+"/"+s.total;$("qAcc").textContent=s.total?Math.round((s.ok/s.total)*100)+"%":"—";$("qStreak").textContent=s.streak;$("qBest").textContent=s.best},
 };
 function switchTrTab(tab){["train","flop","hist"].forEach(t=>{const area=$("tr"+t.charAt(0).toUpperCase()+t.slice(1)+"Area");const btn=$("trTab"+t.charAt(0).toUpperCase()+t.slice(1));if(area)area.style.display=t===tab?"":"none";if(btn)btn.classList.toggle("on",t===tab)});if(tab==="hist")renderTrHistory();if(tab==="train")$("trTrainArea").style.display="flex"}
-function popTrSel(){loadSvd();const sel=$("trSel");const cv=sel.value;sel.innerHTML='<option value="">✦ Select a range</option><option value="current">⟨ Current Editor ⟩</option>';const byF={};S.saved.forEach((r,i)=>{const f=r.folder||"/";if(!byF[f])byF[f]=[];byF[f].push({r,i})});Object.keys(byF).sort().forEach(f=>{const fo=getFO(f);const grp=document.createElement("optgroup");grp.label=fo.icon+" "+(f==="/"?"Root":fo.name);byF[f].forEach(({r,i})=>{const o=document.createElement("option");o.value=i;o.textContent="  "+(r.icon||"♠")+" "+r.name;grp.appendChild(o)});sel.appendChild(grp)});if(cv)sel.value=cv}
-function onTrSel(){var v=$("trSel").value;if(v===""){$("trContent").innerHTML='<div class="trprompt"><span class="pico">♠️ ♥️</span>Select a range above to begin training.</div>';$("mTabs").style.display="none";return}var d,rId;if(v==="current"){d={acts:S.acts,range:S.range};rId="_editor"}else{d=S.saved[+v];rId=d?.name||"r_"+v}window._trD=d;window._trId=rId;window._trLen=0;var _lname=(d&&d.name)||"Range";var _lb=[10,25,50,100,0].map(function(n){return'<button class="len-chip'+(n===0?' sel':'')+'" data-n="'+n+'" onclick="setTrLen(this,'+n+')">'+(n===0?"♾ Free":n+" hands")+'</button>'}).join("");$("trContent").innerHTML='<div class="tr-session-card"><div class="tsc-title">'+_lname+'</div><div style="font-size:11px;color:var(--t3);margin-bottom:10px">Choose session length:</div><div class="len-chips">'+_lb+'</div><button class="btn pri" style="width:100%;margin-top:14px;padding:13px;font-size:13px;font-weight:800" onclick="startTrSession()">&#9654; Start Training</button><div style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px"><button class="btn btn-s" onclick="openExcludeHands()">&#x270E; Exclude Hands</button><span id="trExclCount" style="font-size:9px;color:var(--t4)"></span></div></div>';updateExclCount();$("mTabs").style.display="flex";}
+function popTrSel(){loadSvd()}
+function openTrRangePicker(){loadSvd();$("trPickSearch").value="";renderTrPickList();openM("trPickM")}
+function renderTrPickList(){
+  const q=($("trPickSearch")?.value||"").toLowerCase();
+  const ct=$("trPickList");if(!ct)return;
+  let h="";
+  if(!q){
+    const hcCur=S.range.flat().filter(c=>c.length).length;
+    h+='<div class="tr-pick-item tr-pick-current" onclick="pickTrRange(\'current\')"><div class="tr-pick-ico">✎</div><div class="tr-pick-info"><div class="tr-pick-name">Current Editor</div><div class="tr-pick-meta">'+hcCur+' hands assigned</div></div><span class="tr-pick-chev">›</span></div>';
+  }
+  const byF={};S.saved.forEach((r,i)=>{if(q&&!r.name.toLowerCase().includes(q))return;const f=r.folder||"/";if(!byF[f])byF[f]=[];byF[f].push({r,i})});
+  const keys=Object.keys(byF).sort();
+  if(!keys.length&&q){h+='<div class="empty-state" style="padding:30px 10px"><span class="es-icon">🔍</span><div class="es-title">No matches</div><div class="es-sub">Try a different search term.</div></div>'}
+  keys.forEach(f=>{const fo=getFO(f);h+='<div class="tr-pick-group">'+fo.icon+' '+(f==="/"?"Root":fo.name)+'</div>';byF[f].forEach(({r,i})=>{const hcc=r.range.flat().filter(c=>c.length).length;const pct=((hcc/169)*100).toFixed(0);h+='<div class="tr-pick-item" onclick="pickTrRange(\''+i+'\')"><div class="tr-pick-ico" style="'+(r.iconColor&&r.iconColor!=="none"?"background:"+r.iconColor:"")+'">'+(r.icon||"♠")+'</div><div class="tr-pick-info"><div class="tr-pick-name">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+r.name+'</div><div class="tr-pick-meta">'+hcc+' hands · '+pct+'% coverage</div></div><span class="tr-pick-chev">›</span></div>'});
+  });
+  if(!keys.length&&!q&&!S.saved.length)h+='<div class="empty-state" style="padding:30px 10px"><span class="es-icon">📁</span><div class="es-title">No saved ranges yet</div><div class="es-sub">Save a range from the Editor to train it here.</div></div>';
+  ct.innerHTML=h;
+}
+function pickTrRange(v){
+  window._trPickedVal=v;
+  closeM("trPickM");
+  if(v===""){$("trContent").innerHTML='<div class="trprompt"><span class="pico">♠️ ♥️</span>Select a range above to begin training.</div>';$("mTabs").style.display="none";$("trPickerLabel").textContent="Select a range";$("trPickerSub").textContent="Tap to choose from your saved ranges";$("trPickerIcon").textContent="♠";return}
+  var d,rId,icon="♠";
+  if(v==="current"){d={acts:S.acts,range:S.range};rId="_editor";icon="✎"}
+  else{d=S.saved[+v];rId=d?.name||"r_"+v;icon=(d&&d.icon)||"♠"}
+  window._trD=d;window._trId=rId;window._trLen=0;
+  var _lname=(d&&d.name)||"Range";
+  $("trPickerLabel").textContent=_lname;
+  $("trPickerIcon").textContent=icon;
+  var hcc=d?d.range.flat().filter(c=>c.length).length:0;
+  $("trPickerSub").textContent=hcc+" hands assigned · tap to change";
+  var _lb=[10,25,50,100,0].map(function(n){return'<button class="len-chip'+(n===0?' sel':'')+'" data-n="'+n+'" onclick="setTrLen(this,'+n+')">'+(n===0?"♾ Free":n+" hands")+'</button>'}).join("");
+  $("trContent").innerHTML='<div class="tr-session-card"><div class="tsc-title">'+_lname+'</div><div style="font-size:11px;color:var(--t3);margin-bottom:10px">Choose session length:</div><div class="len-chips">'+_lb+'</div><button class="btn pri" style="width:100%;margin-top:14px;padding:13px;font-size:13px;font-weight:800" onclick="startTrSession()">&#9654; Start Training</button><div style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px"><button class="btn btn-s" onclick="openExcludeHands()">&#x270E; Exclude Hands</button><span id="trExclCount" style="font-size:9px;color:var(--t4)"></span></div></div>';
+  updateExclCount();$("mTabs").style.display="flex";
+}
 function getExclKey(){const rid=window._trId;return rid?"ps_excl_"+rid:null}
 function getExclHands(){const k=getExclKey();if(!k)return new Set();return new Set(LG(k,[]))}
 function saveExclHands(s){const k=getExclKey();if(!k)return;LS(k,[...s])}
@@ -2679,7 +2789,7 @@ window.addEventListener("click",()=>closeCtxMenu());
 document.addEventListener("keydown",function(e){if(e.code==="Escape"){document.querySelectorAll(".mov.open,.cfov.open").forEach(function(m){m.classList.remove("open")});closeCtxMenu();return}
   if(document.activeElement.tagName==="INPUT"||document.activeElement.tagName==="TEXTAREA")return;
   const n=parseInt(e.key,10);if(!n||n<1||n>9)return;
-  if(Tr.active&&!Tr.paused&&Tr.cur&&Tr.acts&&n<=Tr.acts.length){e.preventDefault();const btns=document.querySelectorAll(".tabtn");const b=btns[n-1];if(b&&!b.disabled)b.click()}
+  if(Tr.active&&!Tr.paused&&Tr.cur&&Tr.trainIdx&&n<=Tr.trainIdx.length){e.preventDefault();const btns=document.querySelectorAll(".tabtn");const b=btns[n-1];if(b&&!b.disabled)b.click()}
   else if(FlopTr.active&&FlopTr.answer&&n<=5){e.preventDefault();const btns=document.querySelectorAll("#flopBtns .btn");const b=btns[n-1];if(b&&!b.disabled)b.click()}
 });
 // Keyboard hint badges (desktop only)
