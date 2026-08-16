@@ -99,6 +99,42 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .mov.open{display:flex;animation:overlayIn .25s var(--e) forwards}
 .mdl{background:var(--b1);border:1px solid var(--bd2);border-radius:var(--r2);padding:24px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,.5);animation:mdlIn .25s var(--spring)}
 .mdl h3{font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;margin-bottom:14px;color:var(--pk2)}
+
+/* ── TOAST NOTIFICATION ── */
+.toast{
+  position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(20px);
+  background:var(--b1);border:1px solid var(--bd3);border-radius:50px;
+  padding:11px 22px;font-size:12px;font-weight:700;color:var(--t1);
+  box-shadow:0 12px 40px rgba(0,0,0,.45);
+  opacity:0;pointer-events:none;z-index:4000;white-space:nowrap;
+  transition:opacity .25s var(--e),transform .25s var(--spring);
+  max-width:88vw;overflow:hidden;text-overflow:ellipsis;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+@media(min-width:769px){.toast{bottom:28px}}
+
+/* ── HAND DETAIL POPUP (range editor cell click) ── */
+.hand-popup{
+  display:none;position:fixed;z-index:2500;width:220px;
+  background:var(--b1);border:1px solid var(--bd3);border-radius:var(--r2);
+  padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);
+  animation:mdlIn .18s var(--spring);
+}
+.hand-popup.show{display:block}
+.hand-popup .hp-close{
+  position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--b3);color:var(--t3);font-size:9px;cursor:pointer;transition:all .15s;
+}
+.hand-popup .hp-close:hover{background:var(--rs);color:#fff}
+.hand-popup .hp-title{font-family:var(--fm);font-size:20px;font-weight:800;color:var(--pk2);margin-bottom:2px}
+.hand-popup .hp-type{font-size:9.5px;color:var(--t3);font-weight:600;margin-bottom:4px}
+.hand-popup .hp-combos{font-size:9px;color:var(--t4);margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--bd)}
+.hand-popup .hp-act{display:flex;align-items:center;gap:8px;padding:6px 0}
+.hand-popup .hp-dot{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+.hand-popup .hp-name{font-size:11px;font-weight:600;color:var(--t1);flex:1}
+.hand-popup .hp-pct{font-size:10.5px;font-weight:800;color:var(--pk2);font-family:var(--fm)}
+.hand-popup .hp-empty{font-size:11px;color:var(--t4);text-align:center;padding:8px 0}
 /* EDITOR */
 .toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
 .loaded-bar{display:none;align-items:center;gap:8px;padding:8px 14px;margin-bottom:8px;background:rgba(110,200,155,.04);border:1px solid rgba(110,200,155,.1);border-radius:var(--r2)}
@@ -280,6 +316,45 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .fs-gi:hover .gi-ico{transform:scale(1.08)}
 .fs-gi .gi-name{font-size:9.5px;font-weight:600;color:var(--t2);width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fs-gi .gi-meta{font-size:8px;color:var(--t5);font-family:var(--fm)}
+
+/* ── LIST VIEW ── */
+.fs-list-wrap{display:flex;flex-direction:column;border:1px solid var(--bd);border-radius:var(--r1);overflow:hidden}
+.fs-list-hdr{
+  display:grid;grid-template-columns:1fr 90px 90px;gap:8px;
+  padding:8px 12px;background:var(--b2);
+  font-size:8px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);
+  border-bottom:1px solid var(--bd);
+}
+.fs-li{
+  display:grid;grid-template-columns:1fr 90px 90px;gap:8px;align-items:center;
+  padding:9px 12px;cursor:pointer;transition:background .15s;
+  border-bottom:1px solid var(--bd);animation:slideUp .25s var(--e) backwards;
+}
+.fs-li:last-child{border-bottom:none}
+.fs-li:hover{background:rgba(200,165,92,.06)}
+.fs-li:active{background:rgba(200,165,92,.1)}
+.fs-li .li-name{display:flex;align-items:center;gap:8px;min-width:0}
+.fs-li .li-ico{font-size:16px;flex-shrink:0}
+.fs-li .li-nm{font-size:11.5px;font-weight:600;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fs-li .li-cell{font-size:10px;color:var(--t3);font-family:var(--fm);white-space:nowrap}
+@media(max-width:480px){.fs-list-hdr,.fs-li{grid-template-columns:1fr 60px}.fs-list-hdr span:last-child,.fs-li .li-cell:last-child{display:none}}
+
+/* ── CONTEXT MENU (right-click) ── */
+.fs-ctx{
+  position:fixed;z-index:5000;min-width:180px;
+  background:var(--b1);border:1px solid var(--bd3);border-radius:var(--r2);
+  box-shadow:0 16px 48px rgba(0,0,0,.5);overflow:hidden;padding:5px;
+  animation:mdlIn .16s var(--e);
+}
+.fs-ctx-i{
+  padding:9px 12px;font-size:11.5px;font-weight:600;color:var(--t2);
+  border-radius:7px;cursor:pointer;transition:background .13s,color .13s;
+  white-space:nowrap;
+}
+.fs-ctx-i:hover{background:rgba(200,165,92,.1);color:var(--pk2)}
+.fs-ctx-i.del{color:var(--rs)}
+.fs-ctx-i.del:hover{background:rgba(248,113,113,.1);color:var(--rs)}
+.fs-ctx-sep{height:1px;background:var(--bd);margin:5px 2px}
 
 /* ── BULK SELECT ── */
 .fs-bulk-bar{position:sticky;bottom:0;left:0;right:0;display:none;align-items:center;justify-content:space-between;padding:10px 14px;gap:10px;background:linear-gradient(135deg,var(--b2),var(--b3));border-top:2px solid var(--pk);z-index:20;font-size:12px;font-weight:700;color:var(--pk2)}
@@ -638,6 +713,64 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 }
 .minp:focus{outline:none;border-color:var(--pk);box-shadow:0 0 0 3px rgba(200,165,92,.14)}
 .slbl{font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);margin-bottom:6px;display:block}
+
+/* ══ LIVE SESSION START MODAL — fully styled ══ */
+#liveStartM .mdl h3{
+  display:flex;align-items:center;gap:10px;
+}
+#liveStartM .mdl h3::before{
+  content:"";width:9px;height:9px;border-radius:50%;background:var(--rs);flex-shrink:0;
+  animation:liveDotPulse 1.6s ease infinite;
+}
+@keyframes liveDotPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(248,113,113,.55)}
+  70%{box-shadow:0 0 0 8px rgba(248,113,113,0)}
+}
+.live-sec{
+  background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);
+  padding:14px 14px 10px;margin-bottom:12px;
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+  animation:liveSecIn .4s var(--e) backwards;
+}
+#liveStartM .live-sec:nth-of-type(1){animation-delay:.03s}
+#liveStartM .live-sec:nth-of-type(2){animation-delay:.08s}
+#liveStartM .live-sec:nth-of-type(3){animation-delay:.13s}
+#liveStartM .live-sec:nth-of-type(4){animation-delay:.18s}
+@keyframes liveSecIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.live-sec:hover{border-color:var(--bd2)}
+.live-sec:focus-within{border-color:var(--bd3);box-shadow:0 0 0 3px rgba(200,165,92,.06)}
+.live-sec-title{
+  display:flex;align-items:center;gap:7px;
+  font-size:9px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--pk2);margin-bottom:12px;
+}
+.live-sec-title::before{
+  content:"";width:3px;height:12px;border-radius:2px;
+  background:linear-gradient(180deg,var(--pk),var(--mg));flex-shrink:0;
+}
+.lqs-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-height:150px;overflow-y:auto;padding-right:2px}
+.lqs{
+  padding:5px 11px;border-radius:20px;font-size:10px;font-weight:700;
+  background:var(--b0);border:1px solid var(--bd2);color:var(--t3);
+  cursor:pointer;transition:all .2s var(--spring);user-select:none;
+  animation:slideUp .3s var(--e) backwards;
+}
+.lqs:nth-child(4n+1){animation-delay:0ms}.lqs:nth-child(4n+2){animation-delay:20ms}.lqs:nth-child(4n+3){animation-delay:40ms}.lqs:nth-child(4n+4){animation-delay:60ms}
+.lqs:hover{border-color:var(--bd3);color:var(--t1);transform:translateY(-1px)}
+.lqs:active{transform:scale(.94)}
+.lqs.on{
+  background:var(--pk);border-color:var(--pk);color:var(--b0);
+  box-shadow:0 3px 14px color-mix(in srgb,var(--pk) 45%,transparent);
+  transform:translateY(-1px) scale(1.04);
+}
+#liveStartM .btn.pri{
+  position:relative;overflow:hidden;
+  animation:liveBtnGlow 2.4s ease-in-out infinite;
+}
+@keyframes liveBtnGlow{
+  0%,100%{box-shadow:0 2px 12px rgba(200,165,92,.2)}
+  50%{box-shadow:0 4px 24px rgba(200,165,92,.5)}
+}
 
 /* Move target in folder move modal */
 .fmov-targets .move-target{
@@ -1013,6 +1146,48 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .br-goal-bar-wrap{flex:1;height:7px;background:var(--b3);border-radius:4px;overflow:hidden}
 .br-goal-bar{height:100%;border-radius:4px;transition:width .6s var(--spring);box-shadow:0 0 10px 1px color-mix(in srgb,var(--pk) 50%,transparent)}
 
+/* ── GOALS TAB (actual markup: goal-card/goal-bar/fill) ── */
+.goal-card{
+  background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);
+  padding:14px 16px;margin-bottom:10px;
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+  animation:slideUp .3s var(--e) backwards;
+}
+.goal-card:hover{border-color:var(--bd2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.goal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.goal-title{font-size:13px;font-weight:700;color:var(--t1)}
+.goal-pct{
+  font-family:var(--fm);font-size:14px;font-weight:800;color:var(--pk2);
+  text-shadow:0 0 12px color-mix(in srgb,var(--pk2) 40%,transparent);
+}
+.goal-bar{height:8px;background:var(--b0);border:1px solid var(--bd);border-radius:5px;overflow:hidden;margin-bottom:8px}
+.goal-bar .fill{
+  height:100%;border-radius:5px;
+  background:linear-gradient(90deg,var(--pk),var(--pk2));
+  box-shadow:0 0 12px 1px color-mix(in srgb,var(--pk) 55%,transparent);
+  transition:width .7s var(--spring);
+}
+.goal-bar .fill.done{background:linear-gradient(90deg,var(--mt),#8ff0c0);box-shadow:0 0 14px 1px color-mix(in srgb,var(--mt) 60%,transparent)}
+.goal-meta{display:flex;justify-content:space-between;font-size:9.5px;color:var(--t4);font-family:var(--fm)}
+
+/* ── LIVE SESSION PANEL — action buttons ── */
+.live-action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.live-action-btn{
+  padding:9px 4px;border-radius:var(--r1);font-size:10.5px;font-weight:700;
+  background:var(--b0);border:1px solid var(--bd2);color:var(--t2);cursor:pointer;
+  transition:all .18s var(--spring);
+}
+.live-action-btn:hover{background:var(--b3);border-color:var(--bd3);transform:translateY(-2px)}
+.live-action-btn:active{transform:scale(.95)}
+.live-timer{
+  font-family:var(--fm);font-size:26px;font-weight:800;text-align:center;
+  color:var(--mt);letter-spacing:1px;margin:6px 0;
+  text-shadow:0 0 18px color-mix(in srgb,var(--mt) 40%,transparent);
+}
+
+/* ── CALENDAR HEATMAP WRAPPER ── */
+.heatmap-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+
 /* ── SESSIONS TAB — form card ── */
 .br-form{
   background:linear-gradient(160deg,var(--b2),var(--b3));
@@ -1088,6 +1263,37 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .br-hist-hdr{display:flex;align-items:center;gap:10px;margin:18px 0 10px}
 .br-hist-hdr h3{font-family:var(--fd);font-size:15px;font-style:italic;font-weight:800;color:var(--pk2)}
 .br-hist-count{font-size:9.5px;font-weight:700;color:var(--t4);background:var(--b2);border:1px solid var(--bd);padding:2px 9px;border-radius:20px}
+
+/* ── LIVE SESSION CTA (moved to Log Session tab) ── */
+.live-cta-card{margin-bottom:16px}
+.live-start-cta{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  background:linear-gradient(135deg,var(--b2),var(--b3));
+  border:1px solid var(--bd2);border-radius:var(--r3);
+  padding:16px 18px;position:relative;overflow:hidden;
+}
+.live-start-cta::before{
+  content:"";position:absolute;top:-50%;right:-8%;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(248,113,113,.12),transparent 70%);pointer-events:none;
+}
+.lsc-icon{
+  font-size:26px;flex-shrink:0;position:relative;z-index:1;
+  animation:liveDotPulse 1.8s ease infinite;border-radius:50%;
+}
+.lsc-text{flex:1;min-width:160px;position:relative;z-index:1}
+.lsc-title{font-family:var(--fd);font-size:15px;font-style:italic;font-weight:800;color:var(--t1)}
+.lsc-sub{font-size:10.5px;color:var(--t3);margin-top:2px;line-height:1.4}
+.live-start-cta .btn.pri{position:relative;z-index:1;flex-shrink:0;animation:liveBtnGlow 2.4s ease-in-out infinite}
+
+/* ── HISTORY TAB — search/filter/sort toolbar ── */
+.br-hist-toolbar{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  margin:16px 0 6px;
+}
+.br-hist-toolbar-left,.br-hist-toolbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.br-hist-toolbar select{min-width:0}
+#brHistDirBtn{white-space:nowrap;font-weight:700}
+
 .br-table-card{
   background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);
   overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.12);
@@ -1201,6 +1407,37 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .nc-title{font-size:13px;font-weight:700;color:var(--t1);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nc-body{font-size:11px;color:var(--t3);line-height:1.55;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
 .nc-meta{font-size:8.5px;color:var(--t5);font-family:var(--fm);margin-top:2px}
+.nc-preview{font-size:11px;color:var(--t3);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.fc-tags{display:flex;flex-wrap:wrap;gap:4px}
+.sep{color:var(--t5);margin:0 1px}
+.fs-sb-divider{height:1px;background:var(--bd);margin:8px 10px}
+.di-fav-star{color:var(--gd);margin-right:4px}
+.act-edit-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--bd)}
+.act-edit-row:last-child{border-bottom:none}
+.act-edit-dot{width:22px;height:22px;border-radius:7px;flex-shrink:0;cursor:pointer;border:2px solid rgba(255,255,255,.15);transition:transform .15s}
+.act-edit-dot:hover{transform:scale(1.12)}
+.act-edit-name{flex:1;padding:8px 10px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-size:12px;transition:border-color .2s}
+.act-edit-name:focus{outline:none;border-color:var(--pk);box-shadow:0 0 0 3px rgba(200,165,92,.1)}
+
+/* ── EDIT ACTIONS MODAL — inline colour picker ── */
+#editActsM .mdl{max-height:85vh}
+#editActsList{max-height:38vh;overflow-y:auto;padding-right:2px;margin-bottom:4px}
+.acp{
+  width:100%;background:var(--b0);border:1px solid var(--bd2);border-radius:var(--r2);
+  padding:12px;margin:8px 0 4px;
+  animation:acpOpen .22s var(--spring);
+}
+@keyframes acpOpen{from{opacity:0;transform:translateY(-6px) scaleY(.9);transform-origin:top}to{opacity:1;transform:translateY(0) scaleY(1)}}
+.acp-grid{grid-template-columns:repeat(10,1fr);margin-bottom:10px}
+.acp-custom{
+  display:flex;align-items:center;gap:8px;padding-top:10px;border-top:1px dashed var(--bd);
+}
+.acp-custom input[type="color"]{
+  width:32px;height:32px;border:2px solid var(--bd2);background:none;cursor:pointer;
+  padding:0;border-radius:8px;flex-shrink:0;transition:transform .15s,border-color .15s;
+}
+.acp-custom input[type="color"]:hover{transform:scale(1.08);border-color:var(--pk)}
+.acp-custom span{font-size:10px;font-weight:600;color:var(--t3)}
 .nc-nb-chip{
   display:inline-flex;align-items:center;gap:3px;
   padding:2px 7px;border-radius:50px;font-size:8px;font-weight:700;
@@ -1226,7 +1463,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 
 /* Flop cards in trainer */
 .fl-cards{display:flex;gap:6px;justify-content:center;margin:12px 0;flex-wrap:nowrap}
-.flopcard{
+.flopcard,.comm-card{
   width:clamp(52px,14vw,72px);height:clamp(74px,20vw,102px);
   background:linear-gradient(160deg,#fefdfa,#f0e8d0);
   border-radius:clamp(6px,2vw,9px);
@@ -1236,8 +1473,8 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   box-shadow:0 5px 16px rgba(0,0,0,.35),0 2px 5px rgba(0,0,0,.18);
   flex-shrink:0;
 }
-.flopcard.red{color:#c0282a}.flopcard.blk{color:#1a1a2e}
-.flopcard .mc-suit{font-size:clamp(13px,3.5vw,19px);line-height:1;margin-top:2px}
+.flopcard.red,.comm-card.red{color:#c0282a}.flopcard.blk,.comm-card.blk{color:#1a1a2e}
+.flopcard .mc-suit,.comm-card .mc-suit{font-size:clamp(13px,3.5vw,19px);line-height:1;margin-top:2px}
 .flop-btn-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-top:8px}
 .flop-btn{
   padding:12px 6px;border-radius:var(--r2);font-size:12px;font-weight:800;
@@ -1473,20 +1710,18 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div class="section-head"><span style="font-size:20px">💰</span><h2 id="brTitle">Bankroll</h2></div>
   <nav class="br-sub-nav" id="brNav">
     <button class="on" data-bp="brDash">📊 Dashboard</button>
-    <button data-bp="brSess">🃏 Sessions</button>
+    <button data-bp="brSess">🃏 Log Session</button>
+    <button data-bp="brHistory">📜 History</button>
     <button data-bp="brAnal">📈 Analytics</button>
     <button data-bp="brRisk">🛡️ Risk</button>
     <button data-bp="brGoals">🎯 Goals</button>
   </nav>
   <div class="br-sub on" id="brDash">
-    <div id="brLiveArea"></div>
     <div id="brHero"></div>
     <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
       <button class="btn" style="color:var(--mt);border-color:rgba(110,231,183,.2)" onclick="openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit'">+ Deposit</button>
       <button class="btn" style="color:var(--rs);border-color:rgba(248,113,113,.15)" onclick="openM('depM');$('depSign').value='-1';$('depMTitle').textContent='− Withdraw'">− Withdraw</button>
       <button class="btn btn-s" id="balToggle" onclick="toggleBal()">👁 Hide</button>
-      <span style="flex:1"></span>
-      <button class="btn pri btn-s" id="brLiveBtn" onclick="openM('liveStartM')">🔴 Start Live</button>
     </div>
     <div class="br-stats" id="brDashStats"></div>
     <div class="br-chart-box"><h3><span class="cdot" style="background:var(--pk)"></span>Bankroll Over Time</h3><div class="br-chart-h"><canvas id="chBR"></canvas></div></div>
@@ -1498,6 +1733,9 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="br-chart-box" id="brDepHist"></div>
   </div>
   <div class="br-sub" id="brSess">
+    <div class="live-cta-card" id="liveCtaCard">
+      <div id="brLiveArea"></div>
+    </div>
     <div class="br-form" id="brFormCard">
       <h3 id="brFormTitle">✦ Log Session</h3>
       <input type="hidden" id="brEditId" value=""/>
@@ -1518,6 +1756,30 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       <div style="display:flex;gap:8px;margin-top:12px">
         <button class="btn pri" onclick="saveBrSess()">✦ Save</button>
         <button class="btn" onclick="resetBrForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="br-sub" id="brHistory">
+    <div class="br-stats" id="brHistStats"></div>
+    <div class="br-hist-toolbar">
+      <div class="br-hist-toolbar-left">
+        <div class="ac-wrap" style="min-width:150px"><input type="text" class="minp" id="brHistSearch" placeholder="🔍 Search stakes, location, notes…" style="margin:0" oninput="renderBrSessions()"/></div>
+        <select id="brHistFmtFilter" class="sel-sm" onchange="renderBrSessions()">
+          <option value="">All formats</option>
+          <option value="cash">Cash Game</option>
+          <option value="tourney">Tournament</option>
+        </select>
+      </div>
+      <div class="br-hist-toolbar-right">
+        <select id="brHistSort" class="sel-sm" onchange="renderBrSessions()">
+          <option value="date">Sort: Date</option>
+          <option value="result">Sort: Result</option>
+          <option value="duration">Sort: Duration</option>
+          <option value="hourly">Sort: Hourly Rate</option>
+          <option value="stakes">Sort: Stakes</option>
+          <option value="location">Sort: Location</option>
+        </select>
+        <button class="btn btn-s" id="brHistDirBtn" onclick="toggleBrHistDir()" title="Toggle sort direction">⬇ Newest</button>
       </div>
     </div>
     <div class="br-hist-hdr"><h3>📜 Session History</h3><span class="br-hist-count" id="brHistCount"></span></div>
@@ -1653,7 +1915,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 <!-- ENHANCED LIVE SESSION MODAL -->
 <div class="mov" id="liveStartM">
   <div class="mdl" style="max-width:500px">
-    <h3>🔴 Start Live Session</h3>
+    <h3>Start Live Session</h3>
     <div class="live-sec">
       <div class="live-sec-title">Format</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
@@ -1668,14 +1930,22 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
         <div><label class="slbl" id="liveBuyinLabel">Buy-in</label><input class="minp" id="liveBuyin" type="number" placeholder="200" style="margin:0"/></div>
       </div>
       <div class="lqs-row" id="liveQuickStakes">
+        <span class="lqs" onclick="setLiveStakes(this,'0.01/0.02')">0.01/0.02</span>
+        <span class="lqs" onclick="setLiveStakes(this,'0.02/0.05')">0.02/0.05</span>
+        <span class="lqs" onclick="setLiveStakes(this,'0.05/0.10')">0.05/0.10</span>
+        <span class="lqs" onclick="setLiveStakes(this,'0.10/0.25')">0.10/0.25</span>
         <span class="lqs" onclick="setLiveStakes(this,'0.25/0.50')">0.25/0.50</span>
         <span class="lqs" onclick="setLiveStakes(this,'0.50/1')">0.50/1</span>
         <span class="lqs" onclick="setLiveStakes(this,'1/2')">1/2</span>
         <span class="lqs" onclick="setLiveStakes(this,'1/3')">1/3</span>
         <span class="lqs" onclick="setLiveStakes(this,'2/5')">2/5</span>
+        <span class="lqs" onclick="setLiveStakes(this,'3/5')">3/5</span>
         <span class="lqs" onclick="setLiveStakes(this,'5/10')">5/10</span>
+        <span class="lqs" onclick="setLiveStakes(this,'10/20')">10/20</span>
         <span class="lqs" onclick="setLiveStakes(this,'10/25')">10/25</span>
         <span class="lqs" onclick="setLiveStakes(this,'25/50')">25/50</span>
+        <span class="lqs" onclick="setLiveStakes(this,'50/100')">50/100</span>
+        <span class="lqs" onclick="setLiveStakes(this,'100/200')">100/200</span>
       </div>
     </div>
     <div class="live-sec">
@@ -1900,7 +2170,7 @@ document.addEventListener("pointerdown",function(e){if($("handPopup").classList.
 function openEditActs(){renderEditActsList();openM("editActsM")}
 function renderEditActsList(){$("editActsList").innerHTML=S.acts.map((a,i)=>'<div class="act-edit-row"><div class="act-edit-dot" style="background:'+a.color+'" onclick="pickActColor('+i+')" title="Change color"></div><input class="act-edit-name" value="'+a.name.replace(/"/g,"&quot;")+'" onchange="updateActName('+i+',this.value)"><button class="btn btn-xs btn-d" onclick="removeActFromEditor('+i+')"'+(S.acts.length<=1?" disabled":"")+' style="flex-shrink:0">✕</button></div>').join("")}
 function updateActName(i,name){if(!name.trim())return;S.acts[i].name=name.trim();Ed.renActs();Ed.saveSt();checkDirty()}
-function pickActColor(i){const rows=document.querySelectorAll(".act-edit-row");const row=rows[i];if(!row)return;let pk=row.querySelector(".acp");if(pk){pk.remove();return}pk=document.createElement("div");pk.className="acp";pk.style.cssText="display:flex;flex-wrap:wrap;gap:4px;padding:8px 0;width:100%";const picker=document.createElement("input");picker.type="color";picker.value=S.acts[i].color;picker.style.cssText="width:36px;height:36px;border:none;background:none;cursor:pointer;padding:0;border-radius:6px";picker.addEventListener("input",function(){S.acts[i].color=this.value;Ed.renActs();Ed.renAll();Ed.saveSt();checkDirty();const dot=row.querySelector(".act-edit-dot");if(dot)dot.style.background=this.value});pk.appendChild(picker);const lbl=document.createElement("span");lbl.style.cssText="font-size:10px;color:var(--t3);margin-left:4px";lbl.textContent="Pick colour";pk.appendChild(lbl);row.appendChild(pk)}
+function pickActColor(i){const rows=document.querySelectorAll(".act-edit-row");const row=rows[i];if(!row)return;let pk=row.querySelector(".acp");if(pk){pk.remove();return}document.querySelectorAll(".acp").forEach(p=>p.remove());pk=document.createElement("div");pk.className="acp";const grid=document.createElement("div");grid.className="cgrid acp-grid";COLS.forEach(c=>{const d=document.createElement("div");d.className="cdot2"+(c.toLowerCase()===S.acts[i].color.toLowerCase()?" sel":"");d.style.background=c;d.title=c;d.onclick=()=>{S.acts[i].color=c;Ed.renActs();Ed.renAll();Ed.saveSt();checkDirty();const dot=row.querySelector(".act-edit-dot");if(dot)dot.style.background=c;grid.querySelectorAll(".cdot2").forEach(x=>x.classList.remove("sel"));d.classList.add("sel")};grid.appendChild(d)});pk.appendChild(grid);const customRow=document.createElement("div");customRow.className="acp-custom";const picker=document.createElement("input");picker.type="color";picker.value=S.acts[i].color;picker.addEventListener("input",function(){S.acts[i].color=this.value;Ed.renActs();Ed.renAll();Ed.saveSt();checkDirty();const dot=row.querySelector(".act-edit-dot");if(dot)dot.style.background=this.value;grid.querySelectorAll(".cdot2").forEach(x=>x.classList.remove("sel"))});customRow.appendChild(picker);const lbl=document.createElement("span");lbl.textContent="Custom colour";customRow.appendChild(lbl);pk.appendChild(customRow);row.appendChild(pk)}
 function removeActFromEditor(i){if(S.acts.length<=1)return toast("Need at least 1 action");Ed.rmAct(i);renderEditActsList()}
 function addActFromEditor(){const n=$("newActName").value.trim();if(!n)return toast("Enter name");const color=$("newActColor").value||COLS[S.acts.length%COLS.length];S.acts.push({name:n,color});$("newActName").value="";Ed.renActs();Ed.saveSt();checkDirty();renderEditActsList();toast(n+" added ✦")}
 // ═══ EDITOR ═══
@@ -2193,7 +2463,8 @@ function updateBrResultLive(){const buyin=parseFloat($("brBuyin").value)||0;cons
 function setBrFmt(f){brFmt_=f;$("brFmtTog").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.f===f));$("brStakesG").style.display=f==="cash"?"":"none"}
 function saveBrSess(){const date=$("brDate").value;if(!date)return toast("Enter date");const buyin=parseFloat($("brBuyin").value)||0;const cashout=parseFloat($("brCashout").value)||0;const result=cashout-buyin;const start=$("brStart").value,end=$("brEnd").value;const s={id:$("brEditId").value||"bs_"+Date.now(),date,format:brFmt_,gameType:$("brGT").value,tableSize:$("brTable").value,start,end,duration:brParseDur(start,end),stakes:$("brStakes").value,location:$("brLoc").value,buyin,cashout,buyinCents:Math.round(buyin*100),cashoutCents:Math.round(cashout*100),result,resultCents:Math.round(result*100),notes:$("brNotes").value,created:new Date().toISOString()};const ss=[...BR.d.sessions];const ei=ss.findIndex(x=>x.id===s.id);if(ei>=0)ss[ei]=s;else ss.push(s);BR.d.sessions=ss;BR.save();resetBrForm();renderBrAll();playSound(result>=0?"save":"wrong");haptic("light");toast("Session saved ✦")}
 function resetBrForm(){$("brEditId").value="";$("brFormTitle").textContent="✦ Log Session";["brDate","brStart","brEnd","brStakes","brBuyin","brCashout","brNotes","brLoc"].forEach(id=>$(id).value="");$("brDate").value=new Date().toISOString().slice(0,10);$("brTable").value="9-max";updateBrResultLive();setBrFmt("cash")}
-function editBrSess(id){const s=BR.d.sessions.find(x=>x.id===id);if(!s)return;$("brEditId").value=s.id;$("brFormTitle").textContent="✦ Edit Session";$("brDate").value=s.date;$("brGT").value=s.gameType;$("brTable").value=s.tableSize||"9-max";$("brStart").value=s.start||"";$("brEnd").value=s.end||"";$("brStakes").value=s.stakes||"";$("brLoc").value=s.location||"";$("brBuyin").value=s.buyin!=null?s.buyin:"";$("brCashout").value=s.cashout!=null?s.cashout:(s.buyin!=null?"":(s.result!=null?s.result:""));$("brNotes").value=s.notes||"";updateBrResultLive();setBrFmt(s.format||"cash");$("brFormCard").scrollIntoView({behavior:"smooth"})}
+function editBrSess(id){const s=BR.d.sessions.find(x=>x.id===id);if(!s)return;switchBrTab("brSess");$("brEditId").value=s.id;$("brFormTitle").textContent="✦ Edit Session";$("brDate").value=s.date;$("brGT").value=s.gameType;$("brTable").value=s.tableSize||"9-max";$("brStart").value=s.start||"";$("brEnd").value=s.end||"";$("brStakes").value=s.stakes||"";$("brLoc").value=s.location||"";$("brBuyin").value=s.buyin!=null?s.buyin:"";$("brCashout").value=s.cashout!=null?s.cashout:(s.buyin!=null?"":(s.result!=null?s.result:""));$("brNotes").value=s.notes||"";updateBrResultLive();setBrFmt(s.format||"cash");setTimeout(()=>$("brFormCard").scrollIntoView({behavior:"smooth"}),80)}
+function switchBrTab(bp){const btn=$("brNav")?.querySelector('button[data-bp="'+bp+'"]');if(!btn)return;$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");document.querySelectorAll(".br-sub").forEach(p=>p.classList.remove("on"));const pg=$(bp);if(pg)pg.classList.add("on")}
 function delBrSess(id){confirmAction("Delete session?","",()=>{BR.d.sessions=BR.d.sessions.filter(s=>s.id!==id);BR.save();renderBrAll();toast("Deleted")})}
 function setupAC(inputId,acId,getList){const inp=$(inputId),ac=$(acId);if(!inp||!ac)return;inp.addEventListener("input",()=>{const v=inp.value.toLowerCase();if(!v){ac.classList.remove("show");return}const m=getList().filter(x=>x.toLowerCase().includes(v));if(!m.length){ac.classList.remove("show");return}ac.innerHTML=m.slice(0,6).map(x=>"<div>"+x+"</div>").join("");ac.classList.add("show");ac.querySelectorAll("div").forEach(d=>d.onclick=()=>{inp.value=d.textContent;ac.classList.remove("show")})});inp.addEventListener("blur",()=>setTimeout(()=>ac.classList.remove("show"),200))}
 let balHidden=LG("ps_balhide",false);
@@ -2208,7 +2479,7 @@ function setLiveStakes(el,val){document.querySelectorAll(".lqs").forEach(x=>x.cl
 function prefillLive(){const ss=BR.d.sessions;if(ss.length){const last=ss[ss.length-1];$("liveStakes").value=last.stakes||"";$("liveLoc").value=last.location||"";$("liveBuyin").value=last.buyin||"200";$("liveGT").value=last.gameType||"NL Hold'em";$("liveFmt").value=last.format||"cash";if(last.tableSize)$("liveTable").value=last.tableSize}else $("liveBuyin").value="200"}
 function submitStartLive(){const stakes=$("liveStakes").value.trim();if(!stakes)return toast("Enter stakes");const buyin=parseFloat($("liveBuyin").value)||0;liveData={start:Date.now(),stakes,location:$("liveLoc").value.trim(),gameType:$("liveGT").value,format:$("liveFmt").value,tableSize:$("liveTable").value,seat:$("liveSeat").value,goal:$("liveGoal").value,goalVal:$("liveGoalVal")?.value||"",buyin:Math.round(buyin*100),invested:Math.round(buyin*100),rebuys:0,events:[]};const notes=$("liveStartNotes").value.trim();if(notes)liveData.events.push({time:new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}),text:"📝 "+notes});LS("ps_live",liveData);closeM("liveStartM");startLiveTimer();renderBrAll();toast("🔴 Live session started")}
 function startLiveTimer(){if(liveTimer)clearInterval(liveTimer);liveTimer=setInterval(()=>{if(liveData)renderLivePanel()},1000)}
-function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML="";$("brLiveBtn").textContent="🔴 Start Live";$("brLiveBtn").disabled=false;$("brLiveBtn").onclick=()=>openM("liveStartM");return}$("brLiveBtn").textContent="🟢 Live";$("brLiveBtn").disabled=true;const elapsed=Date.now()-liveData.start;const h=Math.floor(elapsed/3600000);const m=Math.floor((elapsed%3600000)/60000);const s=Math.floor((elapsed%60000)/1000);la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div><div class=\"live-action-grid\"><button class=\"live-action-btn\" onclick=\"openLiveInput(\'rebuy\',\'↻ Rebuy\')\">↻ Rebuy</button><button class=\"live-action-btn\" onclick=\"openLiveInput(\'note\',\'📝 Note\')\">📝 Note</button><button class=\"live-action-btn\" style=\"color:var(--rs)\" onclick=\"openEndLive()\">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>"}
+function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML='<div class="live-start-cta"><div class="lsc-icon">🔴</div><div class="lsc-text"><div class="lsc-title">Ready to play?</div><div class="lsc-sub">Start a live session to track buy-ins, rebuys, and time in real time.</div></div><button class="btn pri" onclick="openM(\'liveStartM\')">🔴 Start Live Session</button></div>';return}const elapsed=Date.now()-liveData.start;const h=Math.floor(elapsed/3600000);const m=Math.floor((elapsed%3600000)/60000);const s=Math.floor((elapsed%60000)/1000);la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div><div class=\"live-action-grid\"><button class=\"live-action-btn\" onclick=\"openLiveInput(\'rebuy\',\'↻ Rebuy\')\">↻ Rebuy</button><button class=\"live-action-btn\" onclick=\"openLiveInput(\'note\',\'📝 Note\')\">📝 Note</button><button class=\"live-action-btn\" style=\"color:var(--rs)\" onclick=\"openEndLive()\">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>"}
 function openLiveInput(type,title){$("liveInputTitle").textContent=title;$("liveInputType").value=type;$("liveInputVal").value="";$("liveInputVal").type=type==="note"?"text":"number";$("liveInputVal").placeholder=type==="note"?"Type your note...":"0.00";openM("liveInputM");setTimeout(()=>$("liveInputVal").focus(),100)}
 function submitLiveInput(){if(!liveData)return;const type=$("liveInputType").value;const val=$("liveInputVal").value;const ts=new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"});if(type==="rebuy"){const amt=parseFloat(val)||liveData.buyin/100;if(amt<=0)return toast("Enter amount");liveData.rebuys++;liveData.invested+=Math.round(amt*100);liveData.events.push({time:ts,text:"↻ Rebuy "+brSym()+amt.toFixed(0)})}else if(type==="note"){if(!val.trim())return toast("Enter a note");liveData.events.push({time:ts,text:"📝 "+val.trim()})}LS("ps_live",liveData);closeM("liveInputM");renderLivePanel()}
 function openEndLive(){if(!liveData)return;$("liveEndStack").value="";const inv=liveData.invested;$("liveEndSummary").innerHTML="Total invested: <strong style='color:var(--pk2)'>"+brSym()+(inv/100).toFixed(0)+"</strong>";$("liveEndStack").oninput=function(){const st=parseFloat(this.value)||0;const pnl=Math.round(st*100)-inv;$("liveEndSummary").innerHTML="Invested: "+brSym()+(inv/100).toFixed(0)+' → P&L: <strong style="color:'+(pnl>=0?"var(--mt)":"var(--rs)")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(2)+"</strong>"};openM("liveEndM");setTimeout(()=>$("liveEndStack").focus(),100)}
@@ -2236,7 +2507,53 @@ function renderBrDash(){const CT=getCT();const sorted=BR.sorted;const total=sort
   destroyBrChart("hourly");const hrD=[],hrL=[];sorted.forEach((s,i)=>{if(!s.duration)return;const recent=sorted.slice(Math.max(0,i-49),i+1).filter(x=>x.duration>0);const avgHr=recent.reduce((a,x)=>a+x.resultCents/100/(x.duration/60),0)/recent.length;hrD.push(avgHr);hrL.push(s.date)});if(hrD.length){brCharts.hourly=new Chart($("chHourly").getContext("2d"),{type:"line",data:{labels:hrL,datasets:[{data:hrD,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.4,pointRadius:0,pointHoverRadius:4,borderWidth:2.5}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,cornerRadius:10,displayColors:false,callbacks:{label:c=>brSym()+c.raw.toFixed(2)+"/hr"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
   renderBrHeatmap()}
 function renderBrHeatmap(){const c=$("calendarHM");const sorted=BR.sorted;const dayMap={};sorted.forEach(s=>{dayMap[s.date]=(dayMap[s.date]||0)+s.resultCents});const today=new Date();const start=new Date(today.getFullYear(),0,1);const weeks=[];let cw=[];for(let i=0;i<start.getDay();i++)cw.push(null);const d=new Date(start);while(d<=today){const ds=d.toISOString().slice(0,10);cw.push({date:ds,val:dayMap[ds]||0,has:!!dayMap[ds]});if(cw.length===7){weeks.push(cw);cw=[]}d.setDate(d.getDate()+1)}if(cw.length)weeks.push(cw);const gc=v=>{const cv=v/100;if(cv>=500)return"hm-l4";if(cv>=200)return"hm-l3";if(cv>=50)return"hm-l2";if(cv>0)return"hm-l1";if(cv<=-500)return"hm-d4";if(cv<=-200)return"hm-d3";if(cv<=-50)return"hm-d2";return"hm-d1"};const legend='<div class="heatmap-legend"><span>Loss</span><span class="hml-box" style="background:var(--rs)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--rs) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--b3);border:1px solid var(--bd)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--mt) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--mt)"></span><span>Profit</span></div>';c.innerHTML='<div class="heatmap">'+weeks.map(w=>'<div class="heatmap-week">'+w.map(d=>!d?'<div class="heatmap-day" style="visibility:hidden"></div>':'<div class="heatmap-day '+(d.has?gc(d.val):'')+'\" data-tip="'+d.date+": "+(d.has?(d.val>=0?"+":"-")+brSym()+Math.abs(d.val/100).toFixed(0):"—")+'"></div>').join("")+"</div>").join("")+"</div>"+legend}
-function renderBrSessions(){const ss=[...BR.d.sessions].sort((a,b)=>new Date(b.date)-new Date(a.date));const hc=$("brHistCount");if(hc)hc.textContent=ss.length+" session"+(ss.length!==1?"s":"");$("brSBody").innerHTML=ss.map((s,i)=>{const p=s.resultCents;const cls=p>=0?"pos":"neg";const dur=s.duration;const hrRate=dur>15?p/100/(dur/60):0;return'<tr style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openSessDetail(\''+s.id+'\')">'+"<td>"+s.date+'</td><td><span style="font-size:10px">'+s.gameType+(s.tableSize&&s.tableSize!=="9-max"?" · "+s.tableSize:"")+'</span></td><td style="font-family:var(--fm);font-size:.82rem">'+(s.stakes||"-")+"</td><td>"+(s.location||"-")+"</td><td>"+brFmtDur(dur)+'</td><td class="profit '+cls+'">'+brFmt(p)+'</td><td style="font-family:var(--fm);font-size:.78rem;color:'+(hrRate>=0?"var(--mt)":"var(--rs)")+'">'+(dur>15?brSym()+Math.abs(hrRate).toFixed(0)+"/hr":"-")+'</td><td class="actions"><button onclick="event.stopPropagation();editBrSess(\''+s.id+'\')">✎</button> <button class="del" onclick="event.stopPropagation();delBrSess(\''+s.id+'\')">✕</button></td></tr>'}).join("")||'<tr><td colspan="8" style="text-align:center;padding:0;border:none"><div class="empty-state" style="padding:40px 20px"><span class="es-icon">🃏</span><div class="es-title">No sessions logged yet</div><div class="es-sub">Log your first session above to start tracking your bankroll.</div></div></td></tr>'}
+let brHistDir=LG("ps_brhist_dir","desc");
+function toggleBrHistDir(){brHistDir=brHistDir==="desc"?"asc":"desc";LS("ps_brhist_dir",brHistDir);renderBrSessions()}
+function brHistDirLabel(){const f=$("brHistSort")?.value||"date";const asc=brHistDir==="asc";const arrow=asc?"⬆":"⬇";const word={date:asc?"Oldest":"Newest",result:asc?"Lowest":"Highest",duration:asc?"Shortest":"Longest",hourly:asc?"Lowest":"Highest",stakes:asc?"A→Z":"Z→A",location:asc?"A→Z":"Z→A"}[f]||"";return arrow+" "+word}
+function renderBrSessions(){
+  const q=($("brHistSearch")?.value||"").toLowerCase();
+  const fmtFilter=$("brHistFmtFilter")?.value||"";
+  const sortField=$("brHistSort")?.value||"date";
+  const dirBtn=$("brHistDirBtn");if(dirBtn)dirBtn.textContent=brHistDirLabel();
+  let ss=[...BR.d.sessions];
+  if(fmtFilter)ss=ss.filter(s=>(s.format||"cash")===fmtFilter);
+  if(q)ss=ss.filter(s=>(s.stakes||"").toLowerCase().includes(q)||(s.location||"").toLowerCase().includes(q)||(s.notes||"").toLowerCase().includes(q)||(s.gameType||"").toLowerCase().includes(q));
+  const mul=brHistDir==="asc"?1:-1;
+  ss.sort((a,b)=>{
+    if(sortField==="stakes")return mul*(a.stakes||"").localeCompare(b.stakes||"");
+    if(sortField==="location")return mul*(a.location||"").localeCompare(b.location||"");
+    let av,bv;
+    if(sortField==="result"){av=a.resultCents;bv=b.resultCents}
+    else if(sortField==="duration"){av=a.duration||0;bv=b.duration||0}
+    else if(sortField==="hourly"){av=a.duration>15?a.resultCents/100/(a.duration/60):0;bv=b.duration>15?b.resultCents/100/(b.duration/60):0}
+    else{av=new Date(a.date).getTime();bv=new Date(b.date).getTime()}
+    return mul*(av-bv);
+  });
+  const hc=$("brHistCount");if(hc)hc.textContent=ss.length+" session"+(ss.length!==1?"s":"")+((q||fmtFilter)?" · filtered":"");
+  $("brSBody").innerHTML=ss.map((s,i)=>{const p=s.resultCents;const cls=p>=0?"pos":"neg";const dur=s.duration;const hrRate=dur>15?p/100/(dur/60):0;return'<tr style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openSessDetail(\''+s.id+'\')">'+"<td>"+s.date+'</td><td><span style="font-size:10px">'+s.gameType+(s.tableSize&&s.tableSize!=="9-max"?" · "+s.tableSize:"")+'</span></td><td style="font-family:var(--fm);font-size:.82rem">'+(s.stakes||"-")+"</td><td>"+(s.location||"-")+"</td><td>"+brFmtDur(dur)+'</td><td class="profit '+cls+'">'+brFmt(p)+'</td><td style="font-family:var(--fm);font-size:.78rem;color:'+(hrRate>=0?"var(--mt)":"var(--rs)")+'">'+(dur>15?brSym()+Math.abs(hrRate).toFixed(0)+"/hr":"-")+'</td><td class="actions"><button onclick="event.stopPropagation();editBrSess(\''+s.id+'\')">✎</button> <button class="del" onclick="event.stopPropagation();delBrSess(\''+s.id+'\')">✕</button></td></tr>'}).join("")||'<tr><td colspan="8" style="text-align:center;padding:0;border:none"><div class="empty-state" style="padding:40px 20px"><span class="es-icon">🃏</span><div class="es-title">'+(q||fmtFilter?"No matching sessions":"No sessions logged yet")+'</div><div class="es-sub">'+(q||fmtFilter?"Try a different search or filter.":"Log your first session to start tracking your bankroll.")+'</div></div></td></tr>';
+  renderBrHistStats(ss);
+}
+function renderBrHistStats(ss){
+  const el=$("brHistStats");if(!el)return;
+  const total=ss.reduce((a,s)=>a+s.resultCents,0);
+  const wins=ss.filter(s=>s.resultCents>0).length;
+  const losses=ss.filter(s=>s.resultCents<0).length;
+  const totalMins=ss.reduce((a,s)=>a+(s.duration||0),0);
+  const totalHrs=totalMins/60;
+  const avgResult=ss.length?total/ss.length:0;
+  const best=ss.length?Math.max(...ss.map(s=>s.resultCents)):0;
+  const worst=ss.length?Math.min(...ss.map(s=>s.resultCents)):0;
+  const avgDurMin=ss.length?totalMins/ss.length:0;
+  const winRate=ss.length?(wins/ss.length*100):0;
+  const avgHourly=totalHrs>0?total/100/totalHrs:0;
+  el.innerHTML=
+    '<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Total Profit</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+ss.length+' session'+(ss.length!==1?"s":"")+'</div></div>'+
+    '<div class="br-stat"><div class="brs-label">Avg / Session</div><div class="brs-val '+(avgResult>=0?"pos":"neg")+'">'+brFmt(Math.round(avgResult))+'</div><div class="brs-sub">'+winRate.toFixed(0)+'% win rate</div></div>'+
+    '<div class="br-stat"><div class="brs-label">Best Session</div><div class="brs-val pos">'+brFmt(best)+'</div><div class="brs-sub">'+wins+'W / '+losses+'L</div></div>'+
+    '<div class="br-stat"><div class="brs-label">Worst Session</div><div class="brs-val neg">'+brFmt(worst)+'</div><div class="brs-sub">largest downswing</div></div>'+
+    '<div class="br-stat"><div class="brs-label">Avg Duration</div><div class="brs-val" style="color:var(--li)">'+brFmtDur(Math.round(avgDurMin))+'</div><div class="brs-sub">'+totalHrs.toFixed(1)+'h total</div></div>'+
+    '<div class="br-stat '+(avgHourly>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Avg Hourly</div><div class="brs-val '+(avgHourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(avgHourly).toFixed(2)+'/hr</div><div class="brs-sub">across all sessions</div></div>';
+}
 function openSessDetail(id){const s=BR.d.sessions.find(x=>x.id===id);if(!s)return;const p=s.resultCents;const pos=p>=0;const dur=s.duration;const hrRate=dur>15?p/100/(dur/60):0;const hasBI=s.buyinCents!=null&&s.cashoutCents!=null;
   let h='<div class="sd-hdr"><div class="sd-hdr-top"><span class="sd-format-pill">'+(s.format==="tourney"?"🏆 Tournament":"🃏 Cash Game")+'</span><button class="sd-close" onclick="closeM(\'sessDetailM\')">✕</button></div>';
   h+='<div class="sd-result '+(pos?"pos":"neg")+'">'+brFmt(p)+'</div><div class="sd-date">'+new Date(s.date+"T00:00:00").toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"})+'</div></div>';
@@ -2346,7 +2663,7 @@ const FlopTr={active:false,flop:null,answer:null,stats:{ok:0,total:0,streak:0,be
 const fd=getDACTS();DACTS[0]=fd[0];DACTS[1]=fd[1];DACTS[2]=fd[2];if(!LG("ps_cur",null))S.acts=JSON.parse(JSON.stringify(DACTS));
 Ed.init();checkDirty();resetBrForm();initNoteTags();
 // Wire up delegated nav listeners
-$("brNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));e.target.classList.add("on");document.querySelectorAll(".br-sub").forEach(p=>p.classList.remove("on"));const pg=$(e.target.dataset.bp);if(pg)pg.classList.add("on");if(e.target.dataset.bp==="brAnal")renderBrAnalytics();if(e.target.dataset.bp==="brRisk")renderBrRisk()});
+$("brNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));e.target.classList.add("on");document.querySelectorAll(".br-sub").forEach(p=>p.classList.remove("on"));const pg=$(e.target.dataset.bp);if(pg)pg.classList.add("on");if(e.target.dataset.bp==="brAnal")renderBrAnalytics();if(e.target.dataset.bp==="brRisk")renderBrRisk();if(e.target.dataset.bp==="brHistory")renderBrSessions()});
 setupAC("brStakes","brStakesAC",()=>[...new Set(BR.d.sessions.filter(s=>s.stakes).map(s=>s.stakes))]);
 setupAC("brLoc","brLocAC",()=>[...new Set(BR.d.sessions.filter(s=>s.location).map(s=>s.location))]);
 liveData=LG("ps_live",null);if(liveData)startLiveTimer();
