@@ -12,6 +12,9 @@
 [data-theme="emerald"]{--b0:#060d0a;--b1:#0a140e;--b2:#101c16;--b3:#18261e;--b4:#203028;--bd:rgba(110,231,183,0.08);--bd2:rgba(110,231,183,0.18);--bd3:rgba(110,231,183,0.35);--pk:#34d399;--pk2:#6ee7b7;--pk3:#a7f3d0;--mg:#059669;--li:#67e8f9;--mt:#6ee7b7;--ic:#67e8f9;--gd:#fbbf24;--gd2:#fde68a;--rs:#f87171;--t1:#e8f5ee;--t2:#a8c8b4;--t3:#6a8c78;--t4:#4a6458;--t5:#2e4038;--gP:0 0 40px rgba(52,211,153,0.06)}
 [data-theme="ocean"]{--b0:#060a10;--b1:#0a1018;--b2:#101822;--b3:#18222e;--b4:#202e3c;--bd:rgba(96,165,250,0.08);--bd2:rgba(96,165,250,0.18);--bd3:rgba(96,165,250,0.35);--pk:#3b82f6;--pk2:#60a5fa;--pk3:#93c5fd;--mg:#2563eb;--li:#a78bfa;--mt:#6ee7b7;--ic:#67e8f9;--gd:#fbbf24;--gd2:#fde68a;--rs:#f87171;--t1:#e8eef8;--t2:#a4b8d4;--t3:#6a82a6;--t4:#4a5c78;--t5:#2e3c50;--gP:0 0 40px rgba(59,130,246,0.06)}
 [data-theme="royale"]{--b0:#0c080e;--b1:#140e18;--b2:#1e1624;--b3:#2a2034;--b4:#362c44;--bd:rgba(167,139,250,0.08);--bd2:rgba(167,139,250,0.18);--bd3:rgba(167,139,250,0.35);--pk:#a78bfa;--pk2:#c4b5fd;--pk3:#ddd6fe;--mg:#7c3aed;--li:#f472b6;--mt:#6ee7b7;--ic:#67e8f9;--gd:#fbbf24;--gd2:#fde68a;--rs:#f87171;--t1:#f0eaff;--t2:#c0b4dc;--t3:#887ca8;--t4:#5e5280;--t5:#3e3460;--gP:0 0 40px rgba(167,139,250,0.06)}
+[data-theme="daylight"]{--b0:#f6f4f0;--b1:#ffffff;--b2:#ffffff;--b3:#f1eee8;--b4:#e6e1d8;--bd:rgba(30,20,10,0.09);--bd2:rgba(30,20,10,0.16);--bd3:rgba(30,20,10,0.28);--pk:#b8863f;--pk2:#96692a;--pk3:#7a541e;--mg:#8a6a2e;--li:#4a5fc0;--mt:#1f9d68;--ic:#0891b2;--gd:#b8863f;--gd2:#96692a;--rs:#d33f3f;--t1:#1c1712;--t2:#453d33;--t3:#726858;--t4:#9a8f80;--t5:#c2b8aa;--gP:0 0 30px rgba(30,20,10,0.06);--gS:0 0 14px rgba(30,20,10,0.05)}
+[data-theme="daylight"] body::before{opacity:.4}
+[data-theme="daylight"] .pcard,[data-theme="daylight"] .comm-card{background:linear-gradient(160deg,#fefdfa,#f0e8d0)}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
 body{display:flex;flex-direction:column;background:var(--b0);color:var(--t1);font-family:var(--ff);-webkit-font-smoothing:antialiased;font-size:13px;transition:background-color .4s var(--e),color .4s var(--e)}
@@ -70,6 +73,52 @@ body.nav-hamburger .hamburger-btn{display:flex}
 .hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger-btn.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Global search trigger */
+.search-btn{
+  width:32px;height:32px;border-radius:8px;font-size:14px;flex-shrink:0;
+  background:transparent;transition:all .2s var(--spring);margin-right:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.search-btn:hover{background:rgba(200,165,92,.08);transform:scale(1.08)}
+
+/* Global search modal */
+.gs-modal{max-width:560px;max-height:80vh;padding:0;overflow:hidden;display:flex;flex-direction:column}
+.gs-input-wrap{
+  display:flex;align-items:center;gap:10px;padding:16px 18px;
+  border-bottom:1px solid var(--bd2);flex-shrink:0;
+}
+.gs-icon{font-size:16px;opacity:.6;flex-shrink:0}
+.gs-input-wrap input{flex:1;font-size:15px;background:transparent;color:var(--t1)}
+.gs-input-wrap input::placeholder{color:var(--t4)}
+.gs-close{
+  width:26px;height:26px;border-radius:50%;background:var(--b2);border:1px solid var(--bd2);
+  color:var(--t3);font-size:10px;cursor:pointer;transition:all .18s;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.gs-close:hover{background:var(--rs);color:#fff;transform:rotate(90deg)}
+.gs-results{overflow-y:auto;padding:8px;min-height:120px}
+.gs-empty{
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  padding:50px 30px;text-align:center;font-size:12px;color:var(--t4);line-height:1.6;
+}
+.gs-empty-ico{font-size:32px;opacity:.5}
+.gs-section{margin-bottom:6px}
+.gs-section-title{
+  font-size:9px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--pk2);padding:10px 12px 6px;
+}
+.gs-item{
+  display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r1);
+  cursor:pointer;transition:background .15s;animation:slideUp .25s var(--e) backwards;
+}
+.gs-item:hover{background:rgba(200,165,92,.08)}
+.gs-item:active{background:rgba(200,165,92,.14)}
+.gs-item-icon{font-size:18px;flex-shrink:0;width:26px;text-align:center}
+.gs-item-text{flex:1;min-width:0}
+.gs-item-label{font-size:12.5px;font-weight:700;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gs-item-sub{font-size:10px;color:var(--t4);margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gs-item-chev{font-size:16px;color:var(--t5);flex-shrink:0}
 
 /* Hamburger overlay + drawer */
 .hamburger-overlay{
@@ -195,6 +244,21 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
 @media(min-width:769px){.toast{bottom:28px}}
 
+/* ── Quick Capture floating button ── */
+.qc-fab{
+  position:fixed;right:18px;bottom:20px;z-index:800;
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pk),var(--pk2));
+  color:var(--b0);font-size:20px;font-weight:800;
+  box-shadow:0 8px 24px -4px color-mix(in srgb,var(--pk) 60%,transparent),0 0 0 0 color-mix(in srgb,var(--pk) 40%,transparent);
+  transition:all .3s var(--spring);
+  animation:qcPulse 3s ease-in-out infinite;
+}
+body.nav-bottom .qc-fab{bottom:72px}
+.qc-fab:hover{transform:scale(1.1) rotate(8deg);box-shadow:0 10px 30px -4px color-mix(in srgb,var(--pk) 70%,transparent)}
+.qc-fab:active{transform:scale(.92)}
+@keyframes qcPulse{0%,100%{box-shadow:0 8px 24px -4px color-mix(in srgb,var(--pk) 60%,transparent),0 0 0 0 color-mix(in srgb,var(--pk) 45%,transparent)}50%{box-shadow:0 8px 24px -4px color-mix(in srgb,var(--pk) 60%,transparent),0 0 0 10px color-mix(in srgb,var(--pk) 0%,transparent)}}
+
 /* ── HAND DETAIL POPUP (range editor cell click) ── */
 .hand-popup{
   display:none;position:fixed;z-index:2500;width:220px;
@@ -290,6 +354,25 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .act-pct{font-size:10px;font-weight:700;font-family:var(--fm);color:var(--pk2)}
 .act-bar{flex:2;height:4px;background:var(--b0);border-radius:3px;overflow:hidden}
 .act-bar-fill{height:100%;border-radius:3px;transition:width .5s var(--spring);box-shadow:0 0 8px 0 currentColor}
+
+/* ── Study reminder banner ── */
+.srb{
+  display:none;align-items:center;gap:12px;padding:13px 16px;margin-bottom:12px;
+  background:linear-gradient(135deg,rgba(251,146,60,.12),rgba(236,72,153,.05));
+  border:1px solid rgba(251,146,60,.25);border-radius:var(--r2);
+  animation:vIn .4s var(--spring);box-shadow:0 0 24px -12px rgba(251,146,60,.4);
+}
+.srb-icon{font-size:24px;flex-shrink:0;animation:fireA 1.2s ease-in-out infinite alternate}
+.srb-text{flex:1;min-width:0}
+.srb-title{font-size:12.5px;font-weight:800;color:var(--t1)}
+.srb-sub{font-size:10px;color:var(--t3);margin-top:1px}
+.srb-close{
+  width:24px;height:24px;border-radius:50%;background:var(--b0);border:1px solid var(--bd2);
+  color:var(--t4);font-size:9px;cursor:pointer;transition:all .18s;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.srb-close:hover{background:var(--rs);color:#fff;transform:rotate(90deg)}
+
 .viewer-bar{
   display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 16px;margin-bottom:12px;
   background:linear-gradient(135deg,rgba(56,36,90,.95),rgba(38,24,60,.95));
@@ -323,7 +406,9 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 /* TRAINER */
 .trwrap{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:520px;margin:0 auto;width:100%}
 .mode-tabs{display:flex;gap:3px;width:100%}
-.mode-tab{flex:1;padding:10px;border:1px solid rgba(200,165,92,.06);background:var(--b2);color:var(--t4);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-align:center;cursor:pointer;border-radius:var(--r1);transition:all .2s}
+.mode-tab{flex:1;padding:10px;border:1px solid rgba(200,165,92,.06);background:var(--b2);color:var(--t4);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-align:center;cursor:pointer;border-radius:var(--r1);transition:all .2s;position:relative}
+.weak-due-badge{display:none;position:absolute;top:-6px;right:-6px;min-width:16px;height:16px;padding:0 4px;border-radius:20px;background:var(--rs);color:#fff;font-size:9px;font-weight:800;align-items:center;justify-content:center;box-shadow:0 0 8px 1px rgba(248,113,113,.5)}
+.weak-due-badge.show{display:flex;animation:liveDotPulse 1.6s ease-in-out infinite}
 .mode-tab.on{background:rgba(200,165,92,.06);color:var(--pk2);border-color:var(--bd2)}
 .tcard{width:100%;min-height:280px;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;transition:all .4s;padding:24px 16px}
 .tcard.fb-ok{border-color:var(--mt);box-shadow:0 0 40px -8px rgba(110,231,183,.35),inset 0 0 30px -20px rgba(110,231,183,.4);animation:cardGlowOk .5s var(--e)}
@@ -1788,6 +1873,33 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 }
 .nb-tab:hover{color:var(--t2);background:var(--b3)}
 .nb-tab.on{background:rgba(200,165,92,.1);border-color:var(--pk);color:var(--pk2)}
+
+/* ── Note templates ── */
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:6px}
+.tpl-card{
+  background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);
+  padding:16px 10px;text-align:center;cursor:pointer;transition:all .2s var(--spring);
+}
+.tpl-card:hover{border-color:var(--pk);transform:translateY(-2px);box-shadow:0 6px 18px -8px color-mix(in srgb,var(--pk) 45%,transparent)}
+.tpl-ico{font-size:26px;margin-bottom:8px}
+.tpl-name{font-size:10.5px;font-weight:700;color:var(--t2)}
+
+/* ── Note live preview ── */
+.note-preview-pane{
+  min-height:300px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);
+  padding:14px 16px;font-size:13px;line-height:1.7;color:var(--t2);overflow-y:auto;
+}
+.note-preview-pane h2{font-family:var(--fd);font-size:19px;color:var(--pk2);margin:10px 0 6px;font-style:italic}
+.note-preview-pane h3{font-family:var(--fd);font-size:16px;color:var(--pk2);margin:10px 0 6px;font-style:italic}
+.note-preview-pane h4{font-size:13px;color:var(--pk2);margin:8px 0 4px;font-weight:800}
+.note-preview-pane strong{color:var(--t1)}
+.note-preview-pane code{background:var(--b2);padding:1px 6px;border-radius:4px;font-family:var(--fm);font-size:11.5px;color:var(--li)}
+.note-preview-pane blockquote{border-left:3px solid var(--pk);padding-left:12px;color:var(--t3);font-style:italic;margin:6px 0}
+.note-preview-pane hr{border:none;border-top:1px solid var(--bd);margin:10px 0}
+.note-preview-pane ul{margin:4px 0 4px 20px}
+.note-preview-pane .np-check{padding:2px 0;color:var(--t3)}
+.note-preview-pane .np-check.done{text-decoration:line-through;opacity:.6}
+.note-preview-pane p{margin:4px 0}
 .note-cards{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
   gap:10px;
@@ -1887,6 +1999,132 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .ar-dot.on{background:var(--pk);box-shadow:0 0 8px 1px color-mix(in srgb,var(--pk) 60%,transparent);transform:scale(1.4)}
 .teach-nav{display:flex;justify-content:space-between;gap:8px}
 .teach-nav .btn{flex:1;text-align:center}
+
+/* ── Range Comparison Tool ── */
+.cmp-header{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.cmp-vs{font-size:12px;color:var(--t2)}
+.cmp-vs b{color:var(--pk2)}
+.cmp-agree-banner{
+  text-align:center;font-size:13px;font-weight:800;color:var(--pk2);
+  background:linear-gradient(135deg,rgba(200,165,92,.1),rgba(200,165,92,.02));
+  border:1px solid var(--bd2);border-radius:var(--r2);padding:10px;margin-bottom:12px;
+  text-shadow:0 0 12px color-mix(in srgb,var(--pk2) 35%,transparent);
+}
+.cmp-grid-wrap{display:flex;justify-content:center;margin-bottom:12px}
+.cmp-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:1.5px;width:min(85vw,400px);aspect-ratio:1;border-radius:var(--r1);overflow:hidden;box-shadow:0 0 0 1px rgba(0,0,0,.2) inset}
+.cmp-cell{display:flex;align-items:center;justify-content:center;font-size:clamp(5px,1.2vw,8px);font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6);transition:transform .15s}
+.cmp-cell:hover{transform:scale(1.25);z-index:2}
+.cmp-neutral{background:var(--b2)}
+.cmp-agree{background:color-mix(in srgb,var(--mt) 55%,var(--b2))}
+.cmp-differ{background:color-mix(in srgb,var(--rs) 60%,var(--b2))}
+.cmp-onlyA{background:color-mix(in srgb,var(--li) 55%,var(--b2))}
+.cmp-onlyB{background:color-mix(in srgb,var(--pk) 55%,var(--b2))}
+.cmp-legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;font-size:9.5px;color:var(--t3)}
+.cmp-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.cmp-legend i.cmp-agree{background:var(--mt)}
+.cmp-legend i.cmp-differ{background:var(--rs)}
+.cmp-legend i.cmp-onlyA{background:var(--li)}
+.cmp-legend i.cmp-onlyB{background:var(--pk)}
+
+/* ══ PRO TOOLS ══ */
+.tool-card{
+  background:linear-gradient(145deg,var(--b2),var(--b3));border:1px solid var(--bd2);border-radius:var(--r2);
+  padding:16px;margin-bottom:12px;animation:slideUp .3s var(--e) backwards;
+}
+.tool-card h3{font-family:var(--fd);font-size:15px;font-style:italic;font-weight:800;color:var(--pk2);margin-bottom:10px}
+.tool-optional{font-size:9.5px;color:var(--t4);font-weight:400;font-style:normal}
+.tool-card-input{margin-bottom:8px;font-family:var(--fm)}
+.tool-card-preview{
+  min-height:56px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  background:var(--b0);border:1px dashed var(--bd2);border-radius:var(--r1);padding:8px;
+}
+.tool-card-preview .comm-card{width:clamp(32px,8vw,42px);height:clamp(46px,11vw,58px);font-size:clamp(12px,3vw,16px)}
+
+/* ── Card slot trigger (opens picker) ── */
+.card-slot-trigger{
+  min-height:70px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+  background:var(--b0);border:1.5px dashed var(--bd2);border-radius:var(--r1);padding:10px;
+  cursor:pointer;transition:all .2s var(--spring);
+}
+.card-slot-trigger:hover{border-color:var(--pk);box-shadow:0 0 16px -6px color-mix(in srgb,var(--pk) 45%,transparent)}
+.card-slot-trigger:active{transform:scale(.98)}
+.card-slot-trigger .comm-card{width:clamp(34px,9vw,44px);height:clamp(48px,12vw,60px);font-size:clamp(13px,3vw,17px)}
+.cst-placeholder{font-size:11px;color:var(--t4);font-weight:600}
+
+/* ── Card picker modal ── */
+.cp-modal{max-width:520px;max-height:82vh;overflow-y:auto}
+.cp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cp-selected-row{
+  min-height:66px;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--b0);border:1px dashed var(--bd2);border-radius:var(--r1);padding:8px;margin-bottom:14px;
+}
+.cp-selected-row .comm-card{width:36px;height:50px;font-size:14px}
+.cp-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;margin-bottom:6px}
+.cp-cell{
+  aspect-ratio:.72;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(8px,2.2vw,11px);font-weight:800;border-radius:5px;cursor:pointer;
+  background:linear-gradient(160deg,#fefdfa,#f0e8d0);
+  border:1.5px solid rgba(255,255,255,.3);
+  transition:all .15s var(--spring);
+  box-shadow:0 2px 6px rgba(0,0,0,.25);
+}
+.cp-cell.red{color:#c0282a}
+.cp-cell.blk{color:#1a1a2e}
+.cp-cell:hover{transform:scale(1.15);z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.cp-cell.sel{
+  outline:2.5px solid var(--pk);box-shadow:0 0 14px 2px color-mix(in srgb,var(--pk) 60%,transparent);
+  transform:scale(1.08);
+}
+.cp-cell.disabled{opacity:.15;cursor:not-allowed;filter:grayscale(1)}
+.cp-cell.disabled:hover{transform:none;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.tool-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tool-error{
+  background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);border-radius:var(--r1);
+  padding:12px;font-size:11.5px;color:var(--rs);text-align:center;
+}
+.tool-loading{text-align:center;padding:20px;font-size:12px;color:var(--t3);animation:vIn .3s}
+
+/* Equity result */
+.eq-result-card{background:var(--b2);border:1px solid var(--bd2);border-radius:var(--r2);padding:16px;animation:vIn .35s var(--spring)}
+.eq-bar-wrap{display:flex;height:14px;border-radius:8px;overflow:hidden;background:var(--b0);border:1px solid var(--bd);margin-bottom:14px;box-shadow:0 0 16px -6px color-mix(in srgb,var(--pk) 40%,transparent)}
+.eq-bar-hero{background:linear-gradient(90deg,var(--mt),#8ff0c0);transition:width .6s var(--spring)}
+.eq-bar-tie{background:var(--gd);transition:width .6s var(--spring)}
+.eq-pct-row{display:flex;justify-content:space-around;margin-bottom:12px}
+.eq-pct-item{text-align:center}
+.eq-pct-val{font-family:var(--fm);font-size:22px;font-weight:800;text-shadow:0 0 14px currentColor}
+.eq-pct-val.hero{color:var(--mt)}
+.eq-pct-val.tie{color:var(--gd)}
+.eq-pct-val.vill{color:var(--rs)}
+.eq-pct-lbl{font-size:9px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.eq-showdown{text-align:center;font-size:11px;color:var(--t3);padding-top:10px;border-top:1px dashed var(--bd)}
+.eq-showdown b{color:var(--pk2)}
+
+/* Pot odds */
+.po-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.po-stat{background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);padding:12px;text-align:center}
+.po-stat-val{font-family:var(--fm);font-size:19px;font-weight:800;color:var(--pk2);text-shadow:0 0 12px color-mix(in srgb,var(--pk2) 40%,transparent)}
+.po-stat-lbl{font-size:8.5px;color:var(--t4);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:3px}
+.po-verdict{border-radius:var(--r1);padding:14px;text-align:center;font-size:15px;font-weight:800;animation:vIn .3s var(--spring)}
+.po-verdict.good{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);color:var(--mt)}
+.po-verdict.bad{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:var(--rs)}
+.po-verdict-sub{font-size:10px;font-weight:500;color:var(--t3);margin-top:4px}
+
+/* SPR / bet sizing */
+.spr-result,.bs-result,.combo-result{text-align:center}
+.spr-val{font-family:var(--fm);font-size:32px;font-weight:800;text-shadow:0 0 18px currentColor}
+.spr-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin:4px 0 10px}
+.spr-advice{font-size:11px;color:var(--t3);line-height:1.6;max-width:340px;margin:0 auto}
+.bs-val{font-family:var(--fm);font-size:28px;font-weight:800;color:var(--pk2);text-shadow:0 0 16px color-mix(in srgb,var(--pk2) 40%,transparent)}
+.bs-label{font-size:10px;color:var(--t4);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.bs-sub{font-size:10px;color:var(--t3);margin-top:8px}
+.combo-val{font-family:var(--fm);font-size:26px;font-weight:800;color:var(--pk2);text-shadow:0 0 16px color-mix(in srgb,var(--pk2) 40%,transparent)}
+.combo-label{font-size:9.5px;color:var(--t4);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin:4px 0 10px}
+.combo-bar-wrap{height:8px;background:var(--b0);border:1px solid var(--bd);border-radius:5px;overflow:hidden;max-width:240px;margin:0 auto}
+.combo-bar-fill{height:100%;background:linear-gradient(90deg,var(--pk),var(--pk2));box-shadow:0 0 10px 1px color-mix(in srgb,var(--pk) 55%,transparent);border-radius:5px;transition:width .5s var(--spring)}
+.combo-ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.combo-ref-item{background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);padding:10px;text-align:center}
+.combo-ref-item b{display:block;font-family:var(--fm);font-size:17px;color:var(--pk2);margin-bottom:2px}
+.combo-ref-item span{font-size:9px;color:var(--t4);line-height:1.3}
 .nc-nb-chip{
   display:inline-flex;align-items:center;gap:3px;
   padding:2px 7px;border-radius:50px;font-size:8px;font-weight:700;
@@ -2063,6 +2301,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <span></span><span></span><span></span>
   </button>
   <div class="logo">PokerStudio</div>
+  <button class="search-btn" onclick="openGlobalSearch()" title="Search everything (Ctrl+K)">🔍</button>
   <span id="headerGreeting" style="font-size:11px;color:var(--t3);font-weight:500;margin-right:8px"></span>
   <nav class="desk-nav" id="deskNav">
     <div class="nav-indicator" id="deskNavIndicator"></div>
@@ -2072,6 +2311,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <button class="dn-t" data-v="bankroll" onclick="go('bankroll')">💰 Bankroll</button>
     <button class="dn-t" data-v="notes" onclick="go('notes')">📝 Notes</button>
     <button class="dn-t" data-v="settings" onclick="go('settings')">⚙ Settings</button>
+    <button class="dn-t" data-v="tools" onclick="go('tools')">🛠 Tools</button>
   </nav>
 </header>
 <div class="hamburger-overlay" id="hamburgerOverlay" onclick="closeHamburgerMenu()"></div>
@@ -2086,10 +2326,12 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <button class="hd-item" data-v="bankroll" onclick="go('bankroll')"><span class="hdi-ico">💰</span>Bankroll</button>
   <button class="hd-item" data-v="notes" onclick="go('notes')"><span class="hdi-ico">📝</span>Notes</button>
   <button class="hd-item" data-v="settings" onclick="go('settings')"><span class="hdi-ico">⚙</span>Settings</button>
+  <button class="hd-item" data-v="tools" onclick="go('tools')"><span class="hdi-ico">🛠</span>Tools</button>
 </nav>
 <div class="main">
 <!-- EDITOR -->
 <div id="editorV" class="view on">
+  <div class="srb" id="studyReminderBanner" style="display:none"></div>
   <div class="viewer-bar" id="viewerBar" style="display:none">
     <span style="font-size:18px;margin-right:4px" id="vbIcon">♠</span>
     <span class="vb-name" id="vbName"></span>
@@ -2151,7 +2393,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       </div>
       <div class="mode-tabs" id="mTabs" style="display:none">
         <button class="mode-tab on" data-m="all" onclick="setMode('all')">All Hands</button>
-        <button class="mode-tab" data-m="weak" onclick="setMode('weak')">Weak Spots</button>
+        <button class="mode-tab" data-m="weak" onclick="setMode('weak')">Weak Spots<span class="weak-due-badge" id="weakDueBadge"></span></button>
       </div>
       <div id="trContent"><div class="trprompt"><span class="pico">♠️ ♥️</span>Select a saved range to begin training.</div></div>
     </div>
@@ -2332,9 +2574,13 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   </nav>
   <div class="br-sub on" id="notesMain">
   <div id="noteEditorArea" style="display:none">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
       <button class="btn btn-s" onclick="closeNoteEditor()">← Back</button>
       <span style="flex:1"></span>
+      <button class="btn btn-s" onclick="openNoteTemplateM()" title="Insert template">📋 Template</button>
+      <button class="btn btn-s" id="noteDupBtn" onclick="duplicateCurrentNote()" style="display:none" title="Duplicate note">⧉ Duplicate</button>
+      <button class="btn btn-s" onclick="exportCurrentNote()" title="Export as file">⬇ Export</button>
+      <button class="btn btn-s" id="notePreviewBtn" onclick="toggleNotePreview()" title="Toggle preview">👁 Preview</button>
       <button class="btn btn-s" id="notePinBtn" onclick="toggleNotePin()">📌</button>
       <button class="btn btn-s btn-d" id="noteDelBtn" onclick="deleteCurrentNote()">🗑️</button>
       <button class="btn pri btn-s" onclick="saveCurrentNote()">💾 Save</button>
@@ -2354,7 +2600,8 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       <button class="btn btn-xs" onclick="noteFmt('> ','')">"</button>
       <button class="btn btn-xs" onclick="noteFmt('---\n','')">—</button>
     </div>
-    <textarea class="minp" id="noteBody" placeholder="Write your study notes here..." style="min-height:300px;font-size:13px;line-height:1.7;resize:vertical"></textarea>
+    <textarea class="minp" id="noteBody" placeholder="Write your study notes here..." style="min-height:300px;font-size:13px;line-height:1.7;resize:vertical" oninput="updateNoteWordCount();syncNotePreview()"></textarea>
+    <div class="note-preview-pane" id="notePreviewPane" style="display:none"></div>
     <div style="font-size:9px;color:var(--t4);text-align:right;margin-top:4px" id="noteWordCount"></div>
   </div>
   <div id="noteListArea">
@@ -2459,6 +2706,106 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="pl-grid" id="plGrid"></div>
   </div>
 </div>
+<!-- TOOLS -->
+<div id="toolsV" class="view" style="max-width:900px;margin:0 auto">
+  <div class="section-head"><span style="font-size:20px">🛠</span><h2>Pro Tools</h2></div>
+  <nav class="br-sub-nav" id="toolsNav">
+    <button class="on" data-tl="tlEquity">🎲 Equity</button>
+    <button data-tl="tlPotOdds">💰 Pot Odds</button>
+    <button data-tl="tlSpr">📐 SPR &amp; Sizing</button>
+    <button data-tl="tlCombo">🔢 Combos</button>
+  </nav>
+
+  <!-- Equity Calculator -->
+  <div class="br-sub on" id="tlEquity">
+    <div class="tool-card">
+      <h3>Hero</h3>
+      <div class="card-slot-trigger" onclick="openCardPicker('hero')" id="eqHeroSlot"><span class="cst-placeholder">🎴 Tap to select 2 cards</span></div>
+    </div>
+    <div class="tool-card">
+      <h3>Villain</h3>
+      <div class="card-slot-trigger" onclick="openCardPicker('villain')" id="eqVillainSlot"><span class="cst-placeholder">🎴 Tap to select 2 cards</span></div>
+    </div>
+    <div class="tool-card">
+      <h3>Board <span class="tool-optional">(optional)</span></h3>
+      <div class="card-slot-trigger" onclick="openCardPicker('board')" id="eqBoardSlot"><span class="cst-placeholder">🎴 Tap to select 0-5 cards</span></div>
+    </div>
+    <button class="btn pri" style="width:100%;padding:14px;font-size:13px;font-weight:800" onclick="runEquityCalc()">▶ Calculate Equity</button>
+    <div id="eqResult"></div>
+  </div>
+
+  <!-- Pot Odds -->
+  <div class="br-sub" id="tlPotOdds">
+    <div class="tool-card">
+      <h3>Pot Odds</h3>
+      <div class="tool-grid-2">
+        <div><label class="slbl">Pot Size (incl. their bet)</label><input class="minp" id="poPot" type="number" placeholder="e.g. 100" oninput="runPotOdds()" style="margin:0"/></div>
+        <div><label class="slbl">Amount to Call</label><input class="minp" id="poCall" type="number" placeholder="e.g. 25" oninput="runPotOdds()" style="margin:0"/></div>
+      </div>
+      <div style="margin-top:10px"><label class="slbl">Your Estimated Equity % <span class="tool-optional">(optional)</span></label><input class="minp" id="poEquity" type="number" placeholder="e.g. 35" oninput="runPotOdds()" style="margin:0"/></div>
+    </div>
+    <div id="poResult"></div>
+  </div>
+
+  <!-- SPR & Bet Sizing -->
+  <div class="br-sub" id="tlSpr">
+    <div class="tool-card">
+      <h3>Stack-to-Pot Ratio</h3>
+      <div class="tool-grid-2">
+        <div><label class="slbl">Effective Stack</label><input class="minp" id="sprStack" type="number" placeholder="e.g. 200" oninput="runSprCalc()" style="margin:0"/></div>
+        <div><label class="slbl">Current Pot</label><input class="minp" id="sprPot" type="number" placeholder="e.g. 20" oninput="runSprCalc()" style="margin:0"/></div>
+      </div>
+    </div>
+    <div id="sprResult"></div>
+    <div class="tool-card">
+      <h3>Bet Sizing</h3>
+      <div style="margin-bottom:8px"><label class="slbl">Pot Size</label><input class="minp" id="bsPot" type="number" placeholder="e.g. 60" oninput="runBetSizing()" style="margin:0"/></div>
+      <div class="seg-row" id="bsPresetRow">
+        <button data-pct="33">33%</button>
+        <button data-pct="50" class="sel">50%</button>
+        <button data-pct="66">66%</button>
+        <button data-pct="75">75%</button>
+        <button data-pct="100">100%</button>
+        <button data-pct="150">150%</button>
+      </div>
+    </div>
+    <div id="bsResult"></div>
+  </div>
+
+  <!-- Combo Counter -->
+  <div class="br-sub" id="tlCombo">
+    <div class="tool-card">
+      <h3>Combo Counter</h3>
+      <div class="setting-desc" style="margin-bottom:10px">See how many combinations remain after removing blocker cards.</div>
+      <div class="seg-row" id="comboTypeRow">
+        <button data-ct="pair" class="sel">Pocket Pair</button>
+        <button data-ct="suited">Suited</button>
+        <button data-ct="offsuit">Offsuit</button>
+      </div>
+      <div style="margin-top:10px"><label class="slbl">Cards of this hand already visible/blocked (0-4)</label>
+        <div class="seg-row" id="comboBlockRow">
+          <button data-bl="0" class="sel">0</button>
+          <button data-bl="1">1</button>
+          <button data-bl="2">2</button>
+          <button data-bl="3">3</button>
+          <button data-bl="4">4</button>
+        </div>
+      </div>
+    </div>
+    <div id="comboResult"></div>
+    <div class="tool-card">
+      <h3 style="margin-bottom:6px">Quick Reference</h3>
+      <div class="combo-ref-grid">
+        <div class="combo-ref-item"><b>6</b><span>combos per pocket pair</span></div>
+        <div class="combo-ref-item"><b>4</b><span>combos per suited hand</span></div>
+        <div class="combo-ref-item"><b>12</b><span>combos per offsuit hand</span></div>
+        <div class="combo-ref-item"><b>16</b><span>combos per non-paired hand (total)</span></div>
+        <div class="combo-ref-item"><b>1,326</b><span>total starting hand combos</span></div>
+        <div class="combo-ref-item"><b>169</b><span>unique starting hands</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- SETTINGS -->
 <div id="settingsV" class="view" style="max-width:800px;margin:0 auto">
   <div class="section-head"><span style="font-size:20px">⚙</span><h2>Settings</h2></div>
@@ -2467,45 +2814,14 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="ql-grid">
       <div class="tr-picker-btn" onclick="go('notes')"><span class="tpb-icon">📝</span><div class="tpb-text"><span class="tpb-label">Notes</span><span class="tpb-sub">Study notebooks &amp; freeform notes</span></div><span class="tpb-chevron">›</span></div>
       <div class="tr-picker-btn" onclick="go('notes');switchNotesHub('hhHands')"><span class="tpb-icon">📔</span><div class="tpb-text"><span class="tpb-label">Hand History &amp; Players</span><span class="tpb-sub">Log hands &amp; track opponent reads</span></div><span class="tpb-chevron">›</span></div>
-      <div class="tr-picker-btn" onclick="go('bankroll')"><span class="tpb-icon">💰</span><div class="tpb-text"><span class="tpb-label">Bankroll Settings</span><span class="tpb-sub">Starting amount &amp; currency are set per-bankroll — tap 💰 name ▾ then ✎</span></div><span class="tpb-chevron">›</span></div>
+      <div class="tr-picker-btn" onclick="go('tools')"><span class="tpb-icon">🛠</span><div class="tpb-text"><span class="tpb-label">Pro Tools</span><span class="tpb-sub">Equity, pot odds, SPR &amp; combo calculators</span></div><span class="tpb-chevron">›</span></div>
     </div>
   </div>
-  <div class="settings-category"><span class="sc-icon">✨</span>Personalization</div>
-  <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">👤 Profile</div>
-    <div style="padding:10px 0">
-      <div style="font-weight:600;font-size:12px;margin-bottom:6px">Your Name</div>
-      <input type="text" id="setUserName" placeholder="Enter your name..." style="width:100%;padding:10px 14px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);font-size:13px;color:var(--t1)" oninput="LS('ps_username',this.value);updateUserGreeting()"/>
-    </div>
-    <div style="padding:0 0 6px">
-      <div style="font-weight:600;font-size:12px;margin-bottom:6px">Your Icon</div>
-      <div id="profIconGrid"></div>
-    </div>
-  </div>
-  <div class="gp" style="margin-bottom:12px"><div class="slbl">🎨 Theme</div><div class="theme-grid" id="themeGrid"></div></div>
-  <div class="settings-category"><span class="sc-icon">🎮</span>Gameplay &amp; Training</div>
-  <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🎯 Trainer</div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Auto-advance Speed</span><span class="setting-desc">How fast correct answers auto-advance</span></div><select id="setSpeed" onchange="LS('ps_speed',this.value)"><option value="fast" selected>Fast (0.5s)</option><option value="normal">Normal (1s)</option><option value="slow">Slow (2.5s)</option></select></div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Haptic Feedback</span><span class="setting-desc">Vibrate on correct / missed answers</span></div><button class="btn btn-s" id="setVibrate" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_vibrate',this.dataset.on);if(this.dataset.on==='1')haptic('light')" data-on="1">On</button></div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Sound Effects</span><span class="setting-desc">Chimes on correct / wrong answers</span></div><button class="btn btn-s" id="setSound" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_sound',this.dataset.on);if(this.dataset.on==='1')playSound('correct')" data-on="1">On</button></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Clear Error History</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear all error history?','',()=>{S.errors={};saveErr();toast('Errors cleared ✦')})">Clear</button></div>
-  </div>
-  <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🚀 App Behaviour</div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Default Tab on Launch</span><span class="setting-desc">Which screen opens the app</span></div><select id="setDefaultTab" onchange="LS('ps_default_tab',this.value)" style="font-size:12px"><option value="editor">♠️ Editor</option><option value="trainer">🎯 Train</option><option value="files">📁 Files</option><option value="bankroll">💰 Bank</option></select></div>
-    <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Study Streak</span><span class="setting-desc" id="setStreakDesc">Keep training daily to build your streak</span></div><div class="streak-chip" id="setStreakChip"><span class="fire">🔥</span><span id="setStreakVal">0</span></div></div>
-  </div>
-  <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🎮 Progress</div>
-    <div class="xp-card" id="xpCard"></div>
-    <div class="setting-row" style="border-bottom:none;margin-top:10px"><div class="setting-info"><span class="setting-label">Achievements</span><span class="setting-desc">Badges you've unlocked through training, playing &amp; logging</span></div><button class="btn btn-s pri" id="setAchvBtn" onclick="openAchvModal()"><span id="setAchvChip">0/21</span> 🏆</button></div>
-  </div>
-  <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">📖 Pro Reference</div>
-    <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">HUD Stat &amp; Exploit Cheat Sheet</span><span class="setting-desc">VPIP/PFR reads, population tendencies, quick exploits</span></div><button class="btn btn-s pri" onclick="openHudRef()">📖 Open</button></div>
-  </div>
-  <div class="gp" style="margin-bottom:12px">
+  
+<div class="settings-category"><span class="sc-icon">🎨</span>Appearance &amp; Navigation</div>
+<div class="gp" style="margin-bottom:12px"><div class="slbl">🎨 Theme</div><div class="theme-grid" id="themeGrid"></div></div>
+  
+<div class="gp" style="margin-bottom:12px">
     <div class="slbl">🧭 Navigation Style</div>
     <div class="setting-row" style="border-bottom:none;flex-direction:column;align-items:stretch;gap:8px">
       <div class="setting-info"><span class="setting-label">How you move around the app</span><span class="setting-desc">Applies instantly, no restart needed</span></div>
@@ -2516,8 +2832,42 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       </div>
     </div>
   </div>
-  <div class="settings-category"><span class="sc-icon">♠</span>Your Content</div>
-  <div class="gp" style="margin-bottom:12px">
+  
+<div class="gp" style="margin-bottom:12px">
+    <div class="slbl">🚀 App Behaviour</div>
+    <div class="setting-row"><div class="setting-info"><span class="setting-label">Default Tab on Launch</span><span class="setting-desc">Which screen opens the app</span></div><select id="setDefaultTab" onchange="LS('ps_default_tab',this.value)" style="font-size:12px"><option value="editor">♠️ Editor</option><option value="trainer">🎯 Train</option><option value="files">📁 Files</option><option value="bankroll">💰 Bank</option></select></div>
+    <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Study Streak</span><span class="setting-desc" id="setStreakDesc">Keep training daily to build your streak</span></div><div class="streak-chip" id="setStreakChip"><span class="fire">🔥</span><span id="setStreakVal">0</span></div></div>
+  </div>
+  
+<div class="settings-category"><span class="sc-icon">👤</span>Profile &amp; Progress</div>
+<div class="gp" style="margin-bottom:12px">
+    <div class="slbl">👤 Profile</div>
+    <div style="padding:10px 0">
+      <div style="font-weight:600;font-size:12px;margin-bottom:6px">Your Name</div>
+      <input type="text" id="setUserName" placeholder="Enter your name..." style="width:100%;padding:10px 14px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);font-size:13px;color:var(--t1)" oninput="LS('ps_username',this.value);updateUserGreeting()"/>
+    </div>
+    <div style="padding:0 0 6px">
+      <div style="font-weight:600;font-size:12px;margin-bottom:6px">Your Icon</div>
+      <div id="profIconGrid"></div>
+    </div>
+  </div>
+  
+<div class="gp" style="margin-bottom:12px">
+    <div class="slbl">🎮 Progress</div>
+    <div class="xp-card" id="xpCard"></div>
+    <div class="setting-row" style="border-bottom:none;margin-top:10px"><div class="setting-info"><span class="setting-label">Achievements</span><span class="setting-desc">Badges you've unlocked through training, playing &amp; logging</span></div><button class="btn btn-s pri" id="setAchvBtn" onclick="openAchvModal()"><span id="setAchvChip">0/21</span> 🏆</button></div>
+  </div>
+  
+<div class="settings-category"><span class="sc-icon">🎮</span>Training</div>
+<div class="gp" style="margin-bottom:12px">
+    <div class="slbl">🎯 Trainer</div>
+    <div class="setting-row"><div class="setting-info"><span class="setting-label">Auto-advance Speed</span><span class="setting-desc">How fast correct answers auto-advance</span></div><select id="setSpeed" onchange="LS('ps_speed',this.value)"><option value="fast" selected>Fast (0.5s)</option><option value="normal">Normal (1s)</option><option value="slow">Slow (2.5s)</option></select></div>
+    <div class="setting-row"><div class="setting-info"><span class="setting-label">Haptic Feedback</span><span class="setting-desc">Vibrate on correct / missed answers</span></div><button class="btn btn-s" id="setVibrate" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_vibrate',this.dataset.on);if(this.dataset.on==='1')haptic('light')" data-on="1">On</button></div>
+    <div class="setting-row"><div class="setting-info"><span class="setting-label">Sound Effects</span><span class="setting-desc">Chimes on correct / wrong answers</span></div><button class="btn btn-s" id="setSound" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_sound',this.dataset.on);if(this.dataset.on==='1')playSound('correct')" data-on="1">On</button></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Clear Error History</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear all error history?','',()=>{S.errors={};saveErr();toast('Errors cleared ✦')})">Clear</button></div>
+  </div>
+  
+<div class="gp" style="margin-bottom:12px">
     <div class="slbl">🎛 Range Editor Appearance</div>
     <div class="setting-row" style="border-bottom:none;flex-direction:column;align-items:stretch;gap:8px">
       <div class="setting-info"><span class="setting-label">Grid Size</span><span class="setting-desc">How big the range grid appears — applies everywhere instantly</span></div>
@@ -2537,13 +2887,21 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       </div>
     </div>
   </div>
-  <div class="gp" style="margin-bottom:12px">
+  
+<div class="gp" style="margin-bottom:12px">
+    <div class="slbl">📖 Pro Reference</div>
+    <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">HUD Stat &amp; Exploit Cheat Sheet</span><span class="setting-desc">VPIP/PFR reads, population tendencies, quick exploits</span></div><button class="btn btn-s pri" onclick="openHudRef()">📖 Open</button></div>
+  </div>
+  
+<div class="settings-category"><span class="sc-icon">♠</span>Content Management</div>
+<div class="gp" style="margin-bottom:12px">
     <div class="slbl">♠ Editor</div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Reset Default Actions</div></div><button class="btn btn-s" onclick="confirmAction('Reset editor actions?','',()=>{S.acts=JSON.parse(JSON.stringify(getDACTS()));S.sel=0;Ed.renActs();Ed.saveSt();toast('Actions reset ✦')})">Reset</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Import Range Notation</div></div><button class="btn btn-s" onclick="openM('impM')">Import</button></div>
   </div>
-  <div class="settings-category"><span class="sc-icon">🗄️</span>Data &amp; Backup</div>
-  <div class="gp" style="margin-bottom:12px">
+  
+<div class="settings-category"><span class="sc-icon">🗄️</span>Data &amp; Backup</div>
+<div class="gp" style="margin-bottom:12px">
     <div class="slbl">🗄️ Data</div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Export All Data</div></div><button class="btn btn-s pri" onclick="dlJSON()">💾 Export</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Import Data</div></div><button class="btn btn-s" onclick="$('jfInput').click()">📂 Import</button></div>
@@ -2558,6 +2916,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
   </div>
 </div>
+
 </div><!-- end .main -->
 <nav class="bnav">
   <button class="bnav-t on" data-v="editor" onclick="go('editor')"><span class="bi">♠️</span>Editor</button>
@@ -2597,7 +2956,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div><label class="slbl">Starting Amount</label><input class="minp" id="newBrStart" type="number" placeholder="0.00" step="0.01" style="margin:0"/></div>
     <div><label class="slbl">Currency</label><select class="minp" id="newBrCurrency" style="margin:0"><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="CAD">C$ CAD</option><option value="AUD">A$ AUD</option></select></div>
   </div>
-  <div class="mact"><button class="btn" onclick="closeM('newBrM')">Cancel</button><button class="btn pri" onclick="submitNewBr()">✦ Save</button></div>
+  <div class="mact"><button class="btn" onclick="closeM('newBrM');if(_brSwitcherWasOpen){renderBrSwitcherList();openM('brSwitcherM')}">Cancel</button><button class="btn pri" onclick="submitNewBr()">✦ Save</button></div>
 </div></div>
 <div class="mov" id="brViewFilterM"><div class="mdl" style="max-width:400px;max-height:80vh;overflow-y:auto">
   <h3>👁 Viewing</h3>
@@ -2670,6 +3029,28 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 <div class="mov" id="actM"><div class="mdl" style="max-width:360px"><h3>New Action</h3><input class="minp" id="actName" placeholder="Action name..."/><div class="slbl">Color</div><div class="cgrid" id="cOpts"></div><div class="mact"><button class="btn" onclick="closeM('actM')">Cancel</button><button class="btn pri" onclick="addAct()">Add</button></div></div></div>
 <div class="mov" id="editActsM"><div class="mdl" style="max-width:420px"><h3>Edit Actions</h3><div style="font-size:10px;color:var(--t4);margin-bottom:10px">Click colour dot to change.</div><div id="editActsList"></div><div class="glow-line"></div><div class="slbl">Add New Action</div><div style="display:flex;gap:8px;align-items:center"><input class="minp" id="newActName" placeholder="Action name..." style="margin:0;flex:1"/><input type="color" id="newActColor" value="#ec4899" style="width:36px;height:36px;border:none;background:none;cursor:pointer;padding:0;border-radius:6px;flex-shrink:0"/><button class="btn pri btn-s" onclick="addActFromEditor()" style="border-radius:var(--r1);padding:8px 14px;font-size:11px">+ Add</button></div><div class="mact" style="margin-top:16px"><button class="btn pri" onclick="closeM('editActsM')">✦ Done</button></div></div></div>
 <div class="mov" id="newNbM"><div class="mdl" style="max-width:380px"><h3>New Notebook</h3><input class="minp" id="newNbName" placeholder="Notebook name..."/><div id="nbIG"></div><div id="nbCG"></div><div class="mact"><button class="btn" onclick="closeM('newNbM')">Cancel</button><button class="btn pri" onclick="createNotebook()">Create</button></div></div></div>
+<div class="mov" id="noteTemplateM"><div class="mdl" style="max-width:420px">
+  <h3>📋 Insert Template</h3>
+  <div class="tpl-grid" id="tplGrid"></div>
+  <div class="mact"><button class="btn" onclick="closeM('noteTemplateM')">Cancel</button></div>
+</div></div>
+<div class="mov" id="globalSearchM"><div class="mdl gs-modal">
+  <div class="gs-input-wrap">
+    <span class="gs-icon">🔍</span>
+    <input type="text" id="globalSearchInput" placeholder="Search ranges, notes, hands, players…" oninput="runGlobalSearch()"/>
+    <button class="gs-close" onclick="closeM('globalSearchM')">✕</button>
+  </div>
+  <div class="gs-results" id="globalSearchResults"></div>
+</div></div>
+<div class="mov" id="cardPickerM"><div class="mdl cp-modal">
+  <div class="cp-header">
+    <h3 id="cardPickerTitle" style="margin:0;border:none;padding:0">Select Cards</h3>
+    <button class="gs-close" onclick="closeM('cardPickerM')">✕</button>
+  </div>
+  <div class="cp-selected-row" id="cpSelectedRow"></div>
+  <div class="cp-grid" id="cpGrid"></div>
+  <div class="mact"><button class="btn btn-d" onclick="clearCardSlot()">Clear Slot</button><button class="btn pri" onclick="closeM('cardPickerM')">Done</button></div>
+</div></div>
 <div class="mov" id="editNbM"><div class="mdl" style="max-width:380px"><h3>Edit Notebook</h3><input class="minp" id="editNbName" placeholder="Name..."/><div id="editNbIG"></div><div id="editNbCG"></div><div class="mact"><button class="btn" onclick="closeM('editNbM')">Cancel</button><button class="btn pri" onclick="saveEditNotebook()">Save</button></div></div></div>
 <div class="mov" id="exclHandsM"><div class="mdl" style="max-width:520px"></div></div>
 <div class="mov" id="memTipsM"><div class="mdl" style="max-width:580px;max-height:90vh;overflow-y:auto;position:relative;padding-top:48px"><div style="position:sticky;top:-48px;background:var(--b1);z-index:10;padding:14px 0 10px;margin:-48px -24px 12px;padding-left:24px;padding-right:24px;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between"><h3 style="margin:0">💡 Range Analysis</h3><button class="btn btn-s" onclick="closeM('memTipsM')">✕ Close</button></div><div id="memTipsContent"></div></div></div>
@@ -2717,10 +3098,220 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 </div></div>
 <div class="hand-popup" id="handPopup"><span class="hp-close" onclick="closeHandPopup()">✕</span><div class="hp-title" id="hpTitle"></div><div class="hp-type" id="hpType"></div><div class="hp-combos" id="hpCombos"></div><div id="hpActions"></div></div>
 <div class="toast" id="toast"></div>
+<button class="qc-fab" id="qcFab" onclick="openQuickCapture()" title="Quick capture a thought">✎</button>
+<div class="mov" id="quickCaptureM"><div class="mdl" style="max-width:420px">
+  <h3>✎ Quick Capture</h3>
+  <textarea class="minp" id="qcBody" placeholder="Jot a thought — a hand, a read, an idea for later…" style="min-height:140px;font-size:13px;line-height:1.6;resize:vertical"></textarea>
+  <div class="setting-desc" style="margin:6px 0 4px">Saved straight to your Notes inbox</div>
+  <div class="mact"><button class="btn" onclick="closeM('quickCaptureM')">Cancel</button><button class="btn pri" onclick="saveQuickCapture()">💾 Save to Notes</button></div>
+</div></div>
 <input type="file" id="jfInput" accept=".json" style="display:none" onchange="hdlJSONFile(event)"/>
 <script>
 // ═══ CONSTANTS ═══
 const RK="AKQJT98765432".split(""),SU=["s","h","d","c"],SYM={s:"♠",h:"♥",d:"♦",c:"♣"},TC=1326;
+
+/* ══════════════════════ HAND EVALUATOR & EQUITY ENGINE ══════════════════════ */
+function cardRankVal(ch){return 14-RK.indexOf(ch)}
+function combinations(arr,k){const result=[];function helper(start,combo){if(combo.length===k){result.push([...combo]);return}for(let i=start;i<arr.length;i++){combo.push(arr[i]);helper(i+1,combo);combo.pop()}}helper(0,[]);return result}
+const C75=combinations([0,1,2,3,4,5,6],5);
+function evaluate5(cards){
+  const ranks=cards.map(c=>cardRankVal(c.rank)).sort((a,b)=>b-a);
+  const suits=cards.map(c=>c.suit);
+  const isFlush=suits.every(s=>s===suits[0]);
+  const counts={};ranks.forEach(r=>counts[r]=(counts[r]||0)+1);
+  const groups=Object.entries(counts).map(([r,c])=>({r:+r,c})).sort((a,b)=>b.c-a.c||b.r-a.r);
+  const distinct=[...new Set(ranks)].sort((a,b)=>b-a);
+  let straightHigh=0;
+  if(distinct.length>=5){
+    for(let i=0;i<=distinct.length-5;i++){if(distinct[i]-distinct[i+4]===4){straightHigh=distinct[i];break}}
+    if(!straightHigh&&distinct.includes(14)&&distinct.includes(5)&&distinct.includes(4)&&distinct.includes(3)&&distinct.includes(2))straightHigh=5;
+  }
+  let category,tiebreak;
+  if(isFlush&&straightHigh){category=8;tiebreak=[straightHigh]}
+  else if(groups[0].c===4){category=7;tiebreak=[groups[0].r,groups[1].r]}
+  else if(groups[0].c===3&&groups[1]&&groups[1].c===2){category=6;tiebreak=[groups[0].r,groups[1].r]}
+  else if(isFlush){category=5;tiebreak=ranks}
+  else if(straightHigh){category=4;tiebreak=[straightHigh]}
+  else if(groups[0].c===3){category=3;tiebreak=[groups[0].r,...ranks.filter(r=>r!==groups[0].r)]}
+  else if(groups[0].c===2&&groups[1]&&groups[1].c===2){const pr=[groups[0].r,groups[1].r].sort((a,b)=>b-a);const kicker=ranks.find(r=>r!==pr[0]&&r!==pr[1]);category=2;tiebreak=[...pr,kicker]}
+  else if(groups[0].c===2){category=1;tiebreak=[groups[0].r,...ranks.filter(r=>r!==groups[0].r)]}
+  else{category=0;tiebreak=ranks}
+  return{category,tiebreak};
+}
+function compareHands(a,b){if(a.category!==b.category)return a.category-b.category;for(let i=0;i<Math.max(a.tiebreak.length,b.tiebreak.length);i++){const av=a.tiebreak[i]||0,bv=b.tiebreak[i]||0;if(av!==bv)return av-bv}return 0}
+const HAND_NAMES=["High Card","Pair","Two Pair","Trips","Straight","Flush","Full House","Quads","Straight Flush"];
+function best5of7(cards7){let best=null;C75.forEach(comboIdx=>{const hand=comboIdx.map(i=>cards7[i]);const score=evaluate5(hand);if(!best||compareHands(score,best)>0)best=score});return best}
+function buildDeck(){const deck=[];RK.forEach(r=>SU.forEach(s=>deck.push({rank:r,suit:s})));return deck}
+function cardKey(c){return c.rank+c.suit}
+function removeCards(deck,used){const usedKeys=new Set(used.map(cardKey));return deck.filter(c=>!usedKeys.has(cardKey(c)))}
+function shuffleDeck(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=arr[i];arr[i]=arr[j];arr[j]=t}return arr}
+function calcEquity(heroCards,villainCards,boardCards,iterations){
+  iterations=iterations||10000;
+  const known=[...heroCards,...villainCards,...boardCards];
+  const deck=removeCards(buildDeck(),known);
+  const needed=5-boardCards.length;
+  if(needed===0){
+    const heroScore=best5of7([...heroCards,...boardCards]);
+    const villainScore=best5of7([...villainCards,...boardCards]);
+    const cmp=compareHands(heroScore,villainScore);
+    return{win:cmp>0?100:0,tie:cmp===0?100:0,lose:cmp<0?100:0,iterations:1,heroBest:HAND_NAMES[heroScore.category],villainBest:HAND_NAMES[villainScore.category],exact:true};
+  }
+  if(needed===1){
+    let wins=0,ties=0,losses=0;
+    deck.forEach(card=>{
+      const runoutBoard=[...boardCards,card];
+      const heroScore=best5of7([...heroCards,...runoutBoard]);
+      const villainScore=best5of7([...villainCards,...runoutBoard]);
+      const cmp=compareHands(heroScore,villainScore);
+      if(cmp>0)wins++;else if(cmp===0)ties++;else losses++;
+    });
+    const total=deck.length;
+    return{win:wins/total*100,tie:ties/total*100,lose:losses/total*100,iterations:total,exact:true};
+  }
+  let wins=0,ties=0,losses=0;const heroCats={},villainCats={};
+  for(let i=0;i<iterations;i++){
+    shuffleDeck(deck);
+    const runoutBoard=[...boardCards,...deck.slice(0,needed)];
+    const heroScore=best5of7([...heroCards,...runoutBoard]);
+    const villainScore=best5of7([...villainCards,...runoutBoard]);
+    heroCats[heroScore.category]=(heroCats[heroScore.category]||0)+1;
+    villainCats[villainScore.category]=(villainCats[villainScore.category]||0)+1;
+    const cmp=compareHands(heroScore,villainScore);
+    if(cmp>0)wins++;else if(cmp===0)ties++;else losses++;
+  }
+  return{win:wins/iterations*100,tie:ties/iterations*100,lose:losses/iterations*100,iterations,heroCats,villainCats};
+}
+
+/* ══════════════════════ PRO TOOLS UI ══════════════════════ */
+function initTools(){$("toolsNav")?.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tl==="tlEquity"));document.querySelectorAll("#toolsV .br-sub").forEach(p=>p.classList.toggle("on",p.id==="tlEquity"));eqPreview();runSprCalc();runBetSizing();runComboCalc();runPotOdds()}
+function switchToolsTab(tab){$("toolsNav").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tl===tab));document.querySelectorAll("#toolsV .br-sub").forEach(p=>p.classList.toggle("on",p.id===tab))}
+
+/* ── Equity Calculator ── */
+let eqCards={hero:[],villain:[],board:[]};
+let eqPickerTarget=null;
+const CP_MAX={hero:2,villain:2,board:5};
+function openCardPicker(target){eqPickerTarget=target;const label=target==="hero"?"Hero":target==="villain"?"Villain":"Board";const range=target==="board"?"0-5":"2";$("cardPickerTitle").textContent=label+" — select "+range+" card"+(range==="2"?"s":"");renderCardPickerGrid();openM("cardPickerM")}
+function allUsedEqCards(){return[...eqCards.hero,...eqCards.villain,...eqCards.board]}
+function renderCardPickerGrid(){
+  const usedKeys=new Set(allUsedEqCards().map(cardKey));
+  const targetKeys=new Set(eqCards[eqPickerTarget].map(cardKey));
+  let h="";
+  SU.forEach(suit=>{
+    RK.forEach(rank=>{
+      const key=rank+suit;
+      const isSelected=targetKeys.has(key);
+      const isUsedElsewhere=usedKeys.has(key)&&!isSelected;
+      const red=suit==="h"||suit==="d";
+      h+='<div class="cp-cell '+(red?"red":"blk")+(isSelected?" sel":"")+(isUsedElsewhere?" disabled":"")+'" '+(isUsedElsewhere?"":'onclick="toggleCardPick(\''+rank+"','"+suit+"')\"")+'>'+rank+SYM[suit]+"</div>";
+    });
+  });
+  $("cpGrid").innerHTML=h;
+  renderCpSelectedRow();
+}
+function toggleCardPick(rank,suit){
+  const arr=eqCards[eqPickerTarget];const max=CP_MAX[eqPickerTarget];
+  const idx=arr.findIndex(c=>c.rank===rank&&c.suit===suit);
+  if(idx>=0)arr.splice(idx,1);
+  else{if(arr.length>=max){toast("Max "+max+" card"+(max!==1?"s":"")+" for this slot");haptic("warn");return}arr.push({rank,suit})}
+  renderCardPickerGrid();
+  updateEqSlotDisplay(eqPickerTarget);
+  playSound("tick");haptic("light");
+}
+function renderCpSelectedRow(){const arr=eqCards[eqPickerTarget];$("cpSelectedRow").innerHTML=arr.length?renderCommCardsHtml(arr,true):'<span class="hh-preview-empty">No cards selected yet</span>'}
+function clearCardSlot(){eqCards[eqPickerTarget]=[];renderCardPickerGrid();updateEqSlotDisplay(eqPickerTarget)}
+function updateEqSlotDisplay(target){
+  const el=$("eq"+target.charAt(0).toUpperCase()+target.slice(1)+"Slot");if(!el)return;
+  const arr=eqCards[target];
+  el.innerHTML=arr.length?renderCommCardsHtml(arr,true):'<span class="cst-placeholder">🎴 Tap to select '+(target==="board"?"0-5":"2")+" card"+(target==="board"?"s":"s")+"</span>";
+}
+function eqPreview(){updateEqSlotDisplay("hero");updateEqSlotDisplay("villain");updateEqSlotDisplay("board")}
+function runEquityCalc(){
+  const hero=eqCards.hero,villain=eqCards.villain,board=eqCards.board;
+  const ct=$("eqResult");
+  if(hero.length!==2||villain.length!==2){ct.innerHTML='<div class="tool-error">Select exactly 2 hole cards for both Hero and Villain.</div>';return}
+  const allCards=[...hero,...villain,...board];const keys=allCards.map(cardKey);
+  if(new Set(keys).size!==keys.length){ct.innerHTML='<div class="tool-error">Duplicate card detected — check your selections.</div>';return}
+  ct.innerHTML='<div class="tool-loading">🎲 Running the numbers…</div>';
+  playSound("tick");haptic("light");
+  setTimeout(()=>{
+    const iterations=board.length===0?15000:10000;
+    const eq=calcEquity(hero,villain,board,iterations);
+    const heroPct=(eq.win+eq.tie/2).toFixed(1);
+    const villPct=(eq.lose+eq.tie/2).toFixed(1);
+    let h='<div class="eq-result-card">';
+    h+='<div class="eq-bar-wrap"><div class="eq-bar-hero" style="width:'+heroPct+'%"></div><div class="eq-bar-tie" style="width:'+eq.tie.toFixed(1)+'%"></div></div>';
+    h+='<div class="eq-pct-row"><div class="eq-pct-item"><div class="eq-pct-val hero">'+heroPct+'%</div><div class="eq-pct-lbl">Hero</div></div>'+(eq.tie>0.5?'<div class="eq-pct-item"><div class="eq-pct-val tie">'+eq.tie.toFixed(1)+'%</div><div class="eq-pct-lbl">Tie</div></div>':"")+'<div class="eq-pct-item"><div class="eq-pct-val vill">'+villPct+'%</div><div class="eq-pct-lbl">Villain</div></div></div>';
+    if(eq.heroBest)h+='<div class="eq-showdown">River: Hero has <b>'+eq.heroBest+"</b> vs Villain's <b>"+eq.villainBest+'</b></div>';
+    else h+='<div class="eq-showdown">'+(eq.exact?"Calculated exactly over "+eq.iterations.toLocaleString()+" possible river cards":"Simulated over "+eq.iterations.toLocaleString()+" runouts")+'</div>';
+    h+='</div>';
+    ct.innerHTML=h;playSound(heroPct>=50?"win":"tick");haptic("success");
+  },30);
+}
+
+/* ── Pot Odds ── */
+function runPotOdds(){
+  const pot=parseFloat($("poPot").value)||0,call=parseFloat($("poCall").value)||0;
+  const ct=$("poResult");
+  if(pot<=0||call<=0){ct.innerHTML="";return}
+  const totalPot=pot+call;
+  const breakeven=(call/totalPot*100);
+  const ratio=(pot/call);
+  const yourEq=parseFloat($("poEquity").value);
+  const hasEq=!isNaN(yourEq)&&$("poEquity").value!=="";
+  let h='<div class="tool-card"><h3>Result</h3>';
+  h+='<div class="po-stat-row"><div class="po-stat"><div class="po-stat-val">'+ratio.toFixed(2)+' : 1</div><div class="po-stat-lbl">Pot Odds</div></div><div class="po-stat"><div class="po-stat-val">'+breakeven.toFixed(1)+'%</div><div class="po-stat-lbl">Breakeven Equity Needed</div></div></div>';
+  if(hasEq){
+    const isProfit=yourEq>=breakeven;
+    h+='<div class="po-verdict '+(isProfit?"good":"bad")+'">'+(isProfit?"✓ CALL is +EV":"✗ FOLD is better")+'<div class="po-verdict-sub">Your '+yourEq+'% equity vs '+breakeven.toFixed(1)+'% needed ('+(isProfit?"+":"")+(yourEq-breakeven).toFixed(1)+'% margin)</div></div>';
+  }
+  h+='</div>';
+  ct.innerHTML=h;
+}
+
+/* ── SPR & Bet Sizing ── */
+function runSprCalc(){
+  const stack=parseFloat($("sprStack").value)||0,pot=parseFloat($("sprPot").value)||0;
+  const ct=$("sprResult");
+  if(stack<=0||pot<=0){ct.innerHTML="";return}
+  const spr=stack/pot;
+  let label,color,advice;
+  if(spr<3){label="Low SPR";color="var(--rs)";advice="Commitment territory — top pair+ good kicker is often good enough to stack off."}
+  else if(spr<=7){label="Medium SPR";color="var(--gd)";advice="Most postflop skill lives here — multi-street planning and thinner value matter most."}
+  else{label="High SPR";color="var(--mt)";advice="Speculative hands gain value; be more willing to fold overpairs to heavy aggression."}
+  ct.innerHTML='<div class="tool-card"><div class="spr-result"><div class="spr-val" style="color:'+color+'">'+spr.toFixed(1)+'</div><div class="spr-label" style="color:'+color+'">'+label+'</div><div class="spr-advice">'+advice+'</div></div></div>';
+}
+function runBetSizing(){
+  const pot=parseFloat($("bsPot").value)||0;
+  const ct=$("bsResult");
+  const selBtn=$("bsPresetRow").querySelector(".sel");
+  const pct=selBtn?+selBtn.dataset.pct:50;
+  if(pot<=0){ct.innerHTML="";return}
+  const bet=pot*(pct/100);
+  const potAfter=pot+bet;
+  ct.innerHTML='<div class="tool-card"><div class="bs-result"><div class="bs-val">'+bet.toLocaleString(undefined,{maximumFractionDigits:1})+'</div><div class="bs-label">Bet Size ('+pct+'% pot)</div><div class="bs-sub">Pot after bet + call: '+(potAfter+bet).toLocaleString(undefined,{maximumFractionDigits:1})+'</div></div></div>';
+}
+
+/* ── Combo Counter ── */
+function runComboCalc(){
+  const ct=$("comboResult");
+  const type=$("comboTypeRow").querySelector(".sel")?.dataset.ct||"pair";
+  const blocked=+($("comboBlockRow").querySelector(".sel")?.dataset.bl||0);
+  const maxCombos={pair:6,suited:4,offsuit:12}[type];
+  let remaining;
+  if(type==="pair"){
+    // pair combos: C(4,2)=6 total; each blocked card of that rank removes combos containing it
+    const avail=4-blocked;
+    remaining=avail>=2?(avail*(avail-1))/2:0;
+  }else if(type==="suited"){
+    // 4 suited combos (one per suit); each blocked card removes exactly 1 combo (that suit)
+    remaining=Math.max(0,4-blocked);
+  }else{
+    // offsuit: 12 combos; blocking one specific card removes 3 combos (pairs with 3 other-rank suits)
+    remaining=Math.max(0,12-blocked*3);
+  }
+  const pct=(remaining/maxCombos*100).toFixed(0);
+  ct.innerHTML='<div class="tool-card"><div class="combo-result"><div class="combo-val">'+remaining+' / '+maxCombos+'</div><div class="combo-label">Combos Remaining</div><div class="combo-bar-wrap"><div class="combo-bar-fill" style="width:'+pct+'%"></div></div></div></div>';
+}
 const COLS=["#c8a55c","#e8c87c","#d4a574","#b08840","#a07a3a","#806428","#ec4899","#f472b6","#fb7185","#f43f5e","#e11d48","#be185d","#a855f7","#8b5cf6","#7c3aed","#6d28d9","#6366f1","#818cf8","#3b82f6","#2563eb","#0ea5e9","#06b6d4","#14b8a6","#10b981","#22c55e","#84cc16","#eab308","#f59e0b","#f97316","#ef4444"];
 const ICOLS=["#fce7f3","#fbcfe8","#f9a8d4","#f472b6","#ec4899","#db2777","#be185d","#9d174d","#e9d5ff","#d8b4fe","#c084fc","#a855f7","#9333ea","#7e22ce","#6b21a8","#cffafe","#a5f3fc","#67e8f9","#22d3ee","#06b6d4","#0891b2","#ccfbf1","#5eead4","#14b8a6","#0d9488","#0f766e","#d1fae5","#a7f3d0","#6ee7b7","#34d399","#10b981","#059669","#fef3c7","#fde68a","#fcd34d","#fbbf24","#f59e0b","#d97706","#fee2e2","#fca5a5","#f87171","#ef4444","#dc2626","#b91c1c","#eff6ff","#dbeafe","#bfdbfe","#93c5fd","#60a5fa","#3b82f6","#2563eb","#1d4ed8","#f5f3ff","#ede9fe","#ddd6fe","#c4b5fd","#a78bfa","#8b5cf6","#7c3aed","#6d28d9","#fdf2f8","#fbcfe8","#f9a8d4","#f472b6","#ec4899","#db2777","#be185d","#fef9c3","#fef08a","#fde047","#facc15","#eab308","#ca8a04","#fff7ed","#ffedd5","#fed7aa","#fdba74","#fb923c","#f97316","#ea580c"];
 const FEM=["📁","💜","🃏","♠️","♥️","♦️","♣️","🎯","🔥","⭐","💎","👑","🌸","🦋","✨","🎀","💅","🌺","🍒","💫","🧸","🪄","🔮","🌙","🌈","🍭","🧁","🎵","💌","🪩","🫧","🩷","🩵","📂","📑","🗂️","📋","📊","📈","📉","🏷️","🔖","📌","📎","✏️","📝","💰","💵","🪙","💳","🏦","🎰","🎲","🏅","🥇","🥈","🥉","🏆","⚡","💥","🌟","⭕","❌","✅","💯","🔴","🟠","🟡","🟢","🔵","🟣","⚫","⚪","🟤","🔶","🔷","🔸","🔹","🐱","🐶","🐻","🦊","🐼","🦁","🦄","🐲","🦅","🦈","🐬","🐙","🦋","🌻","🌷","🌹","🌴","🌿","☘️","🍀","🍎","🍊","🍋","🍇","🍑","☕","🧋","🍷","🍸","🍹","🥂","🌍","🌎","🏔️","🌊","🌅","🏙️","🚀","✈️","🛸","🏎️","💻","📱","💡","🔬","🔭","📷","🧩","♟️","⛳","🏋️","🧘","⚽","🏀","🏈","⚾","🎾","🏐","🏓","🥊"];
@@ -2875,7 +3466,7 @@ function escapeHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").repla
 function openM(id){const el=$(id);if(!el)return;el.classList.remove("closing");el.classList.add("open");if(id==="saveM"){popFS();renderEG("rIG",null,REM);renderCG("rCG");const sf=$("saveFolder");if(sf)sf.value=fsCurPath||"/"}if(id==="newFM"){popFS();renderEG("fIG",null,FEM);renderCG("fCG");const np=$("newFP");if(np)np.value=fsCurPath||"/";const sl=$("newFLocSpan");if(sl)sl.textContent=fsCurPath||"/"}if(id==="editM")popFS();if(id==="impM")impShowTab("N");if(id==="liveStartM")prefillLive();if(id==="newNbM"){renderEG("nbIG",null,FEM);renderCG("nbCG")}}
 function closeM(id){const el=$(id);if(!el||!el.classList.contains("open"))return;el.classList.add("closing");setTimeout(()=>{if(el.classList.contains("closing"))el.classList.remove("open","closing")},190)}
 let viewerMode=false;
-function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor();initHH()}}
+function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="editor")renderStudyReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor();initHH()}if(v==="tools"){initTools()}}
 let _cfCb=null;
 function confirmAction(msg,name,cb){$("cfMsg").innerHTML=msg+(name?'<br><span class="cfn">'+name+"</span>":"");_cfCb=cb;$("cfOv").classList.add("open")}
 function closeCf(){$("cfOv").classList.remove("open");_cfCb=null}
@@ -2965,11 +3556,12 @@ function getSelC(id){const s=$(id)?.querySelector(".cdot2.sel");return s?s.datas
 function initTags(w,i,k){const ww=$(w),ii=$(i);if(!ww||!ii)return;ww.onclick=()=>ii.focus();ii.onkeydown=(e)=>{if(e.key==="Enter"&&ii.value.trim()){e.preventDefault();S[k].push(ii.value.trim().toLowerCase());renTags(w,i,k);ii.value=""}if(e.key==="Backspace"&&!ii.value&&S[k].length){S[k].pop();renTags(w,i,k)}}}
 function renTags(w,i,k){const ww=$(w),ii=$(i);ww.querySelectorAll(".tchip").forEach(c=>c.remove());S[k].forEach((t,j)=>{const ch=document.createElement("span");ch.className="tchip";ch.innerHTML=t+'<span class="tx">&times;</span>';ch.querySelector(".tx").onclick=(e)=>{e.stopPropagation();S[k].splice(j,1);renTags(w,i,k)};ww.insertBefore(ch,ii)})}
 // ═══ STATE ═══
-const S={acts:JSON.parse(JSON.stringify(DACTS)),sel:0,wt:100,range:mkR(),saved:[],folders:[{path:"/",icon:"📁",name:"Root"}],drag:false,dm:null,dc:new Set(),sTags:[],eTags:[],eIdx:-1,curFolder:"/",errors:{},loadedIdx:-1,snapshot:null,moveIdx:-1,edFPath:null,hhTags:[],plTags:[]};
+const S={acts:JSON.parse(JSON.stringify(DACTS)),sel:0,wt:100,range:mkR(),saved:[],folders:[{path:"/",icon:"📁",name:"Root"}],drag:false,dm:null,dc:new Set(),sTags:[],eTags:[],eIdx:-1,curFolder:"/",errors:{},loadedIdx:-1,snapshot:null,moveIdx:-1,edFPath:null,hhTags:[],plTags:[],nTags:[]};
 function loadErr(){S.errors=LG("ps_err",{})}
 function saveErr(){LS("ps_err",S.errors)}
-function recErr(l,a,rid){const k=rid||"_global";if(!S.errors[k])S.errors[k]={};if(!S.errors[k][l])S.errors[k][l]={t:0,a:{}};S.errors[k][l].t++;S.errors[k][l].a[a]=(S.errors[k][l].a[a]||0)+1;saveErr()}
-function getWeak(n,rid){const k=rid||"_global";const e=S.errors[k]||{};return Object.entries(e).sort((a,b)=>b[1].t-a[1].t).slice(0,n||20)}
+function recErr(l,a,rid){const k=rid||"_global";if(!S.errors[k])S.errors[k]={};if(!S.errors[k][l])S.errors[k][l]={t:0,a:{}};S.errors[k][l].t++;S.errors[k][l].a[a]=(S.errors[k][l].a[a]||0)+1;S.errors[k][l].interval=4;S.errors[k][l].dueAt=Date.now()+4*3600000;S.errors[k][l].lastSeen=Date.now();saveErr()}
+function recCorrectWeak(l,rid){const k=rid||"_global";if(!S.errors[k]||!S.errors[k][l])return;const e=S.errors[k][l];e.interval=Math.min((e.interval||4)*2,720);e.dueAt=Date.now()+e.interval*3600000;e.lastSeen=Date.now();saveErr()}
+function getWeak(n,rid){const k=rid||"_global";const e=S.errors[k]||{};const now=Date.now();return Object.entries(e).sort((a,b)=>{const aDue=(a[1].dueAt||0)<=now?1:0,bDue=(b[1].dueAt||0)<=now?1:0;if(aDue!==bDue)return bDue-aDue;return b[1].t-a[1].t}).slice(0,n||20)}
 function loadSvd(){S.saved=LG("ps_saved",[]);const f=LG("ps_folders",null);if(f&&Array.isArray(f)&&f.length&&typeof f[0]==="object")S.folders=f;else S.folders=[{path:"/",icon:"📁",name:"Root"}];if(!S.folders.find(f=>f.path==="/"))S.folders.unshift({path:"/",icon:"📁",name:"Root"})}
 function saveSvd(){LS("ps_saved",S.saved);LS("ps_folders",S.folders)}
 function checkDirty(){if(S.loadedIdx<0){$("loadedBar").classList.remove("show");$("saveBackBtn").style.display="none";return}$("loadedBar").classList.add("show");const sv=S.saved[S.loadedIdx];$("loadedName").textContent=sv?.name||"";$("saveBackBtn").style.display=JSON.stringify({acts:S.acts,range:S.range})!==S.snapshot?"inline-flex":"none"}
@@ -3046,7 +3638,7 @@ function openRangeAnalysis(range,acts,savedIdx){AR={range,acts,savedIdx,insights
 function renderAnalysisSummary(){
   AR.mode="summary";
   const ins=AR.insights;
-  let h='<div class="ar-tabs"><button class="ar-tab on" onclick="renderAnalysisSummary()">📊 Analysis</button><button class="ar-tab" onclick="startTeachMode()">🎓 Teach Me This Range</button></div>';
+  let h='<div class="ar-tabs"><button class="ar-tab on" onclick="renderAnalysisSummary()">📊 Analysis</button><button class="ar-tab" onclick="startTeachMode()">🎓 Teach</button><button class="ar-tab" onclick="startCompareMode()">⚖ Compare</button></div>';
   h+='<div class="ar-hero"><div class="ar-hero-row"><span class="ar-hero-tight">'+ins.tight+'</span><span class="ar-hero-pct">'+ins.pct+'%</span></div><div class="ar-hero-sub">'+ins.tot.toFixed(0)+' combos · Typical position: <b>'+ins.positionGuess+'</b></div><div class="ar-combo-bar"><div class="ar-combo-seg" style="width:'+(ins.pairCount/ins.allH.length*100||0)+'%;background:var(--gd)" title="Pairs"></div><div class="ar-combo-seg" style="width:'+(ins.suitedCount/ins.allH.length*100||0)+'%;background:var(--mt)" title="Suited"></div><div class="ar-combo-seg" style="width:'+(ins.offsuitCount/ins.allH.length*100||0)+'%;background:var(--li)" title="Offsuit"></div></div><div class="ar-combo-legend"><span><i style="background:var(--gd)"></i>'+ins.pairCount+' pairs</span><span><i style="background:var(--mt)"></i>'+ins.suitedCount+' suited</span><span><i style="background:var(--li)"></i>'+ins.offsuitCount+' offsuit</span></div><div class="ar-shape">💭 '+ins.rangeShape+'</div></div>';
   ins.actionsData.forEach(ad=>{
     const pairsS=ad.pairs.map(h=>h.label).join(", "),suitedS=ad.suited.map(h=>h.label).slice(0,15).join(", "),offsuitS=ad.offsuit.map(h=>h.label).slice(0,12).join(", ");
@@ -3087,7 +3679,7 @@ function startTeachMode(){AR.mode="teach";AR.teachStep=0;AR.teachSteps=buildTeac
 function renderTeachStep(){
   const steps=AR.teachSteps;const i=AR.teachStep;const s=steps[i];
   const dots=steps.map((_,di)=>'<span class="ar-dot'+(di===i?" on":"")+'"></span>').join("");
-  let h='<div class="ar-tabs"><button class="ar-tab" onclick="renderAnalysisSummary()">📊 Analysis</button><button class="ar-tab on">🎓 Teach Me This Range</button></div>';
+  let h='<div class="ar-tabs"><button class="ar-tab" onclick="renderAnalysisSummary()">📊 Analysis</button><button class="ar-tab on">🎓 Teach</button><button class="ar-tab" onclick="startCompareMode()">⚖ Compare</button></div>';
   h+='<div class="teach-card"><div class="teach-step-num">Step '+(i+1)+' of '+steps.length+'</div><div class="teach-title" style="'+(s.color?"color:"+s.color:"")+'"><span class="teach-icon">'+s.icon+'</span>'+s.title+'</div><div class="teach-body">'+s.body+'</div></div>';
   h+='<div class="teach-dots">'+dots+'</div>';
   h+='<div class="teach-nav"><button class="btn'+(i===0?" btn-s":"")+'" '+(i===0?"disabled":"")+' onclick="teachPrev()">← Back</button>'+(i<steps.length-1?'<button class="btn pri" onclick="teachNext()">Next →</button>':'<button class="btn pri" onclick="renderAnalysisSummary()">✦ Done</button>')+'</div>';
@@ -3095,6 +3687,49 @@ function renderTeachStep(){
 }
 function teachNext(){if(AR.teachStep<AR.teachSteps.length-1){AR.teachStep++;renderTeachStep()}}
 function teachPrev(){if(AR.teachStep>0){AR.teachStep--;renderTeachStep()}}
+
+/* ── Range Comparison Tool ── */
+function startCompareMode(){
+  AR.mode="compare";
+  const candidates=S.saved.map((r,i)=>({r,i})).filter(({i})=>i!==AR.savedIdx);
+  let h='<div class="ar-tabs"><button class="ar-tab" onclick="renderAnalysisSummary()">📊 Analysis</button><button class="ar-tab" onclick="startTeachMode()">🎓 Teach</button><button class="ar-tab on">⚖ Compare</button></div>';
+  if(!candidates.length){
+    h+='<div class="empty-state" style="padding:40px 20px"><span class="es-icon">⚖</span><div class="es-title">Nothing to compare yet</div><div class="es-sub">Save at least one other range to compare it against this one.</div></div>';
+  }else{
+    h+='<div class="slbl" style="margin-bottom:8px">Compare against…</div><div id="compareList">'+candidates.map(({r,i})=>'<div class="tr-pick-item" onclick="renderCompareResult('+i+')"><div class="tr-pick-ico">'+(r.icon||"♠")+'</div><div class="tr-pick-info"><div class="tr-pick-name">'+r.name+'</div><div class="tr-pick-meta">'+(r.folder||"/")+' · '+r.range.flat().filter(c=>c.length).length+' hands</div></div><span class="tr-pick-chev">›</span></div>').join("")+'</div>';
+  }
+  $("memTipsContent").innerHTML=h;
+}
+function diffPrimaryAction(cell){if(!cell||!cell.length)return null;return[...cell].sort((a,b)=>b.w-a.w)[0].ai}
+function renderCompareResult(otherIdx){
+  const other=S.saved[otherIdx];if(!other)return;
+  const rangeA=AR.range,actsA=AR.acts,rangeB=other.range,actsB=other.acts;
+  const nameA=AR.savedIdx!=null?S.saved[AR.savedIdx].name:"Current Range";
+  const cats={agree:0,differ:0,onlyA:0,onlyB:0};
+  let grid="";
+  for(let r=0;r<13;r++){
+    for(let c=0;c<13;c++){
+      const cellA=rangeA[r][c],cellB=rangeB[r][c];
+      const aiA=diffPrimaryAction(cellA),aiB=diffPrimaryAction(cellB);
+      let cls="neutral",title=hl(r,c)+": both fold";
+      if(aiA!=null&&aiB!=null){
+        const nameActA=actsA[aiA]?.name,nameActB=actsB[aiB]?.name;
+        if(nameActA===nameActB){cls="agree";cats.agree++;title=hl(r,c)+": both "+nameActA}
+        else{cls="differ";cats.differ++;title=hl(r,c)+": "+nameActA+" vs "+nameActB}
+      }else if(aiA!=null){cls="onlyA";cats.onlyA++;title=hl(r,c)+": only in "+nameA+" ("+actsA[aiA]?.name+")"}
+      else if(aiB!=null){cls="onlyB";cats.onlyB++;title=hl(r,c)+": only in "+other.name+" ("+actsB[aiB]?.name+")"}
+      grid+='<div class="cmp-cell cmp-'+cls+'" title="'+title+'">'+hl(r,c)+'</div>';
+    }
+  }
+  const totalDiff=cats.differ+cats.onlyA+cats.onlyB;
+  const agreePct=((cats.agree/(cats.agree+totalDiff||1))*100).toFixed(0);
+  let h='<div class="ar-tabs"><button class="ar-tab" onclick="renderAnalysisSummary()">📊 Analysis</button><button class="ar-tab" onclick="startTeachMode()">🎓 Teach</button><button class="ar-tab on">⚖ Compare</button></div>';
+  h+='<div class="cmp-header"><button class="btn btn-s" onclick="startCompareMode()">← Pick different range</button><div class="cmp-vs"><b>'+nameA+'</b> vs <b>'+other.name+'</b></div></div>';
+  h+='<div class="cmp-agree-banner">'+agreePct+'% of hands played the same way</div>';
+  h+='<div class="cmp-grid-wrap"><div class="cmp-grid">'+grid+'</div></div>';
+  h+='<div class="cmp-legend"><span><i class="cmp-agree"></i>Agree ('+cats.agree+')</span><span><i class="cmp-differ"></i>Differs ('+cats.differ+')</span><span><i class="cmp-onlyA"></i>Only '+escapeHtml(nameA)+' ('+cats.onlyA+')</span><span><i class="cmp-onlyB"></i>Only '+escapeHtml(other.name)+' ('+cats.onlyB+')</span></div>';
+  $("memTipsContent").innerHTML=h;
+}
 function showHandPopup(r,c,e){const popup=$("handPopup");closeHandPopup();const label=hl(r,c),type=ht(r,c),combos=hcn(r,c),cl=S.range[r][c];$("hpTitle").textContent=label;$("hpType").textContent=type==="pair"?"Pocket Pair ("+combos+" combos)":type==="suited"?"Suited ("+combos+" combos)":"Offsuit ("+combos+" combos)";$("hpCombos").textContent=cl.length?cl.length+" action"+(cl.length>1?"s":"")+" assigned":"";$("hpActions").innerHTML=cl.length?cl.map(a=>{const act=S.acts[a.ai];if(!act)return"";return'<div class="hp-act"><div class="hp-dot" style="background:'+act.color+'"></div><div class="hp-name">'+act.name+'</div><div class="hp-pct">'+a.w+'%</div></div>'}).join(""):'<div class="hp-empty">Not in range</div>';const rect=e.target.closest(".cell").getBoundingClientRect();let x=rect.left+rect.width/2-110,y=rect.bottom+8;if(x+220>window.innerWidth)x=window.innerWidth-230;if(x<10)x=10;if(y+200>window.innerHeight)y=rect.top-210;if(y<10)y=10;popup.style.left=x+"px";popup.style.top=y+"px";popup.classList.add("show")}
 function closeHandPopup(){$("handPopup").classList.remove("show")}
 document.addEventListener("pointerdown",function(e){if($("handPopup").classList.contains("show")&&!$("handPopup").contains(e.target)&&!e.target.closest(".cell"))closeHandPopup()});
@@ -3262,10 +3897,11 @@ function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.leng
 // ═══ TRAINER ═══
 let trMode="all";
 function setMode(m){trMode=m;document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m===m));if(Tr.active)Tr.next()}
+function updWeakDueBadge(rangeId){const badge=$("weakDueBadge");if(!badge)return;const k=rangeId||"_global";const e=S.errors[k]||{};const now=Date.now();const due=Object.values(e).filter(x=>(x.dueAt||0)<=now).length;badge.textContent=due>0?due:"";badge.classList.toggle("show",due>0)}
 const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,total:0,streak:0,best:0},
   usedActIdx(){const used=new Set();let hasEmpty=false;for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cell=this.range[r][c];if(!cell.length)hasEmpty=true;else cell.forEach(a=>used.add(a.ai))}if(hasEmpty){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");if(fi>=0)used.add(fi)}const arr=[...used].sort((a,b)=>a-b);return arr.length?arr:this.acts.map((a,i)=>i)},
   mixHtml(cell,chosenAi){if(!cell.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");const name=fi>=0?this.acts[fi].name:"Fold";const color=fi>=0?this.acts[fi].color:"var(--li)";const isChosen=fi>=0&&fi===chosenAi;return'<span class="mix-chip'+(isChosen?" chosen":"")+'" style="--mc:'+color+'">'+name+' 100%</span>'}return[...cell].sort((a,b)=>b.w-a.w).map(a=>{const act=this.acts[a.ai];const isChosen=a.ai===chosenAi;return'<span class="mix-chip'+(isChosen?" chosen":"")+'" style="--mc:'+act.color+'">'+act.name+' '+a.w+'%</span>'}).join("")},
-  start(d,rangeId,limit){this.range=d.range;this.acts=d.acts;this.rangeId=rangeId||"_global";this.limit=limit||0;this.paused=false;this.exclHands=getExclHands();this.trainIdx=this.usedActIdx();this.stats={ok:0,total:0,streak:0,best:0,byType:{pair:{ok:0,t:0},suited:{ok:0,t:0},offsuit:{ok:0,t:0}},byAction:{},history:[],wrongHands:{}};this.acts.forEach(a=>{this.stats.byAction[a.name]={ok:0,t:0}});this.active=true;trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"));$("mTabs").style.display="flex";this.buildUI();this.next()},
+  start(d,rangeId,limit){this.range=d.range;this.acts=d.acts;this.rangeId=rangeId||"_global";this.limit=limit||0;this.paused=false;this.exclHands=getExclHands();this.trainIdx=this.usedActIdx();this.stats={ok:0,total:0,streak:0,best:0,byType:{pair:{ok:0,t:0},suited:{ok:0,t:0},offsuit:{ok:0,t:0}},byAction:{},history:[],wrongHands:{}};this.acts.forEach(a=>{this.stats.byAction[a.name]={ok:0,t:0}});this.active=true;trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"));$("mTabs").style.display="flex";this.buildUI();updWeakDueBadge(this.rangeId);this.next()},
   buildUI(){const li=this.limit>0?'<div style="text-align:center;font-size:10px;color:var(--t4);margin-bottom:6px">'+this.limit+' hands</div>':'<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>';$("trContent").innerHTML=li+'<div style="width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div>';const bc=$("tBtns");bc.innerHTML="";this.trainIdx.forEach((ai,i)=>{const a=this.acts[ai];const b=document.createElement("button");b.className="tabtn";b.style.borderColor=a.color;b.style.color=a.color;b.textContent=a.name;b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(ai));bc.appendChild(b)})},
   next(){let pool=[];if(trMode==="weak"){const hm={};for(let r=0;r<13;r++)for(let c=0;c<13;c++)hm[hl(r,c)]=[r,c];getWeak(30,this.rangeId).forEach(([l])=>{if(hm[l])pool.push(hm[l])});pool=pool.filter(([r,c])=>this.range[r][c].length);if(!pool.length){trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"))}}
   if(!pool.length){pool=[];for(let r=0;r<13;r++)for(let c=0;c<13;c++)pool.push([r,c])}
@@ -3275,7 +3911,7 @@ const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,t
   this.cur={r,c,cards,label:hl(r,c),type:t};$("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").textContent="";$("tExp").className="texp";$("tCard").className="tcard";$("hCnt").textContent="#"+(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");$("streakN").textContent=this.stats.streak}else sb.classList.remove("show");
   const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));document.querySelectorAll(".tabtn").forEach(b=>{b.disabled=false;b.classList.remove("tabtn-correct","tabtn-wrong")});this._ts=Date.now()},
   answer(ai){if(!this.cur)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];let ok=false;if(!ca.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");ok=fi>=0&&ai===fi}else{if(ca.some(a=>a.ai===ai))ok=true}const mixHtml=this.mixHtml(ca,ai);
-  this.stats.total++;this.stats.history.push(ok?1:0);this.stats.byType[type].t++;if(ok)this.stats.byType[type].ok++;const an=this.acts[ai].name;if(!this.stats.byAction[an])this.stats.byAction[an]={ok:0,t:0};this.stats.byAction[an].t++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak;this.stats.byAction[an].ok++}else{this.stats.streak=0;recErr(label,an,this.rangeId);if(!this.stats.wrongHands[label])this.stats.wrongHands[label]=0;this.stats.wrongHands[label]++}
+  this.stats.total++;this.stats.history.push(ok?1:0);this.stats.byType[type].t++;if(ok)this.stats.byType[type].ok++;const an=this.acts[ai].name;if(!this.stats.byAction[an])this.stats.byAction[an]={ok:0,t:0};this.stats.byAction[an].t++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak;this.stats.byAction[an].ok++;if(trMode==="weak")recCorrectWeak(label,this.rangeId)}else{this.stats.streak=0;recErr(label,an,this.rangeId);if(!this.stats.wrongHands[label])this.stats.wrongHands[label]=0;this.stats.wrongHands[label]++}
   bumpLifetimeHand();bumpLifetimeStreak(this.stats.streak);trackDailyHand();trackDailyStreak(this.stats.streak);const mult=getMultiplier(ok?this.stats.streak:0);const xpGain=ok?Math.round(10*mult):2;const xpInfo=addXp(xpGain);
   const card=$("tCard"),fb=$("tFb"),ep=$("tExp");if(ok){card.className="tcard fb-ok";fb.textContent="✦ CORRECT";fb.className="tfb ok show";const ms=this.stats.streak>0&&this.stats.streak%10===0;playSound(ms?"win":"correct");haptic(ms?"success":"light");if(ms)celebrate()}else{card.className="tcard fb-no";fb.textContent="✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}ep.innerHTML='<div class="mix-label">'+(ok?"This hand's range":"Correct mix")+'</div><div class="mix-chips">'+mixHtml+'</div>'+(ok&&mult>1?'<div class="xp-gain-chip">+'+xpGain+' XP · '+mult+'x streak bonus</div>':'<div class="xp-gain-chip sub">+'+xpGain+' XP</div>');ep.className="texp show";$("trProg").style.width=(this.limit>0?Math.round((this.stats.total/this.limit)*100):Math.round(this.stats.total>0?(this.stats.ok/this.stats.total)*100:0))+"%";const correctAis=ca.length?ca.map(a=>a.ai):[this.acts.findIndex(a=>a.name.toLowerCase()==="fold")];document.querySelectorAll(".tabtn").forEach((b,i)=>{const bai=this.trainIdx[i];b.disabled=true;if(correctAis.includes(bai))b.classList.add("tabtn-correct");if(!ok&&bai===ai)b.classList.add("tabtn-wrong")});this.updQ();checkAchievements();const spd=LG("ps_speed","fast");const okMs=spd==="fast"?500:spd==="slow"?2500:1000;const noMs=spd==="fast"?800:spd==="slow"?4000:2000;if(this.limit>0&&this.stats.total>=this.limit){setTimeout(()=>this.endSession(),ok?okMs:noMs)}else setTimeout(()=>{if(!this.paused)this.next()},ok?okMs:noMs)},
   togglePause(){this.paused=!this.paused;const btn=$("trPauseBtn");if(btn){btn.textContent=this.paused?"▶ Resume":"⏸ Pause";btn.style.color=this.paused?"var(--mt)":"var(--gd)"}if(!this.paused)this.next()},
@@ -3480,11 +4116,12 @@ function openBrSwitcher(){renderBrSwitcherList();openM("brSwitcherM")}
 function getBankrollBalance(b){const sessTotal=(b.sessions||[]).reduce((a,s)=>a+s.resultCents,0);const depTotal=(b.deposits||[]).reduce((a,d)=>a+d.amt,0);const start=(parseFloat(b.settings?.startBankroll)||0)*100;return start+sessTotal+depTotal}
 function renderBrSwitcherList(){const list=getBankrollsList();const activeId=getActiveBankrollId();$("brSwitcherList").innerHTML=list.map(b=>{const on=b.id===activeId;const bal=getBankrollBalance(b);return'<div class="brsw-row'+(on?" on":"")+'" onclick="switchActiveBankroll(\''+b.id+'\')"><span class="brsw-row-icon">'+b.icon+'</span><div class="brsw-row-info"><div class="brsw-row-name">'+b.name+(on?' <span class="brsw-active-tag">Active</span>':"")+'</div><div class="brsw-row-meta">'+b.sessions.length+' sessions · <span class="'+(bal>=0?"brsw-bal-pos":"brsw-bal-neg")+'">'+brFmtGeneric(bal,b.settings.currency)+'</span></div></div><button class="btn btn-xs" onclick="event.stopPropagation();openEditBr(\''+b.id+'\')">✎</button>'+(list.length>1?'<button class="btn btn-xs btn-d" onclick="event.stopPropagation();deleteBankroll(\''+b.id+'\')">✕</button>':"")+'</div>'}).join("")}
 function brFmtGeneric(cents,curr){const sym=curr==="EUR"?"€":curr==="GBP"?"£":curr==="CAD"?"C$":"$";const v=cents/100;return(v<0?"-":"")+sym+Math.abs(v).toLocaleString(undefined,{maximumFractionDigits:0})}
-function openNewBr(){$("newBrEditId").value="";$("newBrTitle").textContent="+ New Bankroll";$("newBrName").value="";$("newBrStart").value="0";$("newBrCurrency").value="USD";renderBrIconGrid("💰");openM("newBrM")}
-function openEditBr(id){const b=getBankrollsList().find(x=>x.id===id);if(!b)return;closeM("brSwitcherM");$("newBrEditId").value=id;$("newBrTitle").textContent="✎ Edit Bankroll";$("newBrName").value=b.name;$("newBrStart").value=b.settings?.startBankroll||0;$("newBrCurrency").value=b.settings?.currency||"USD";renderBrIconGrid(b.icon);openM("newBrM")}
+let _brSwitcherWasOpen=false;
+function openNewBr(){_brSwitcherWasOpen=$("brSwitcherM")?.classList.contains("open")||false;closeM("brSwitcherM");$("newBrEditId").value="";$("newBrTitle").textContent="+ New Bankroll";$("newBrName").value="";$("newBrStart").value="0";$("newBrCurrency").value="USD";renderBrIconGrid("💰");openM("newBrM")}
+function openEditBr(id){const b=getBankrollsList().find(x=>x.id===id);if(!b)return;_brSwitcherWasOpen=$("brSwitcherM")?.classList.contains("open")||false;closeM("brSwitcherM");$("newBrEditId").value=id;$("newBrTitle").textContent="✎ Edit Bankroll";$("newBrName").value=b.name;$("newBrStart").value=b.settings?.startBankroll||0;$("newBrCurrency").value=b.settings?.currency||"USD";renderBrIconGrid(b.icon);openM("newBrM")}
 function renderBrIconGrid(sel){$("newBrIconGrid").innerHTML=BR_ICONS.map(ic=>'<div class="cdot2 br-icon-opt'+(ic===sel?" sel":"")+'" data-ic="'+ic+'" onclick="selectBrIcon(this)">'+ic+'</div>').join("")}
 function selectBrIcon(el){$("newBrIconGrid").querySelectorAll(".br-icon-opt").forEach(d=>d.classList.remove("sel"));el.classList.add("sel")}
-function submitNewBr(){const name=$("newBrName").value.trim();if(!name)return toast("Enter a name");const selEl=$("newBrIconGrid").querySelector(".br-icon-opt.sel")||$("newBrIconGrid").querySelector(".br-icon-opt");const icon=selEl?selEl.dataset.ic:"💰";const startBankroll=parseFloat($("newBrStart").value)||0;const currency=$("newBrCurrency").value||"USD";const editId=$("newBrEditId").value;const list=getBankrollsList();if(editId){const b=list.find(x=>x.id===editId);if(b){b.name=name;b.icon=icon;b.settings.startBankroll=startBankroll;b.settings.currency=currency}}else{list.push({id:"br_"+Date.now(),name,icon,sessions:[],goals:[],deposits:[],settings:{startBankroll,currency}});LS("ps_active_bankroll",list[list.length-1].id)}saveBankrollsList();closeM("newBrM");renderBrAll();renderBankrollSwitcher();updateCurrencyLabels();toast(editId?"Updated ✦":"Bankroll created ✦");if(!editId)celebrate()}
+function submitNewBr(){const name=$("newBrName").value.trim();if(!name)return toast("Enter a name");const selEl=$("newBrIconGrid").querySelector(".br-icon-opt.sel")||$("newBrIconGrid").querySelector(".br-icon-opt");const icon=selEl?selEl.dataset.ic:"💰";const startBankroll=parseFloat($("newBrStart").value)||0;const currency=$("newBrCurrency").value||"USD";const editId=$("newBrEditId").value;const list=getBankrollsList();if(editId){const b=list.find(x=>x.id===editId);if(b){b.name=name;b.icon=icon;b.settings.startBankroll=startBankroll;b.settings.currency=currency}}else{list.push({id:"br_"+Date.now(),name,icon,sessions:[],goals:[],deposits:[],settings:{startBankroll,currency}});LS("ps_active_bankroll",list[list.length-1].id)}saveBankrollsList();closeM("newBrM");renderBrAll();renderBankrollSwitcher();updateCurrencyLabels();toast(editId?"Updated ✦":"Bankroll created ✦");if(!editId)celebrate();if(_brSwitcherWasOpen){renderBrSwitcherList();openM("brSwitcherM")}}
 function deleteBankroll(id){const list=getBankrollsList();if(list.length<=1)return toast("You need at least one bankroll");const b=list.find(x=>x.id===id);confirmAction("Delete \""+(b?.name||"")+"\"?","All its sessions, goals, and deposits will be lost.",()=>{const wasActive=getActiveBankrollId()===id;_bankrollsCache=list.filter(x=>x.id!==id);saveBankrollsList();if(wasActive)LS("ps_active_bankroll",_bankrollsCache[0].id);renderBrSwitcherList();renderBrAll();renderBankrollSwitcher();toast("Deleted")})}
 
 const BR={get d(){return getActiveBankrollObj()},save(){saveBankrollsList()},get sorted(){return[...this.d.sessions].sort((a,b)=>new Date(a.date)-new Date(b.date))}};
@@ -3863,7 +4500,7 @@ function openPlDetail(id){
 }
 
 const Notes={_d:null,get d(){if(!this._d)this._d=LG("ps_notes",{notebooks:[{id:"nb_default",name:"General",icon:"📓",color:"none"}],notes:[]});if(!this._d.notebooks||!this._d.notebooks.length)this._d.notebooks=[{id:"nb_default",name:"General",icon:"📓",color:"none"}];return this._d},save(){LS("ps_notes",this._d)}};
-let curNbFilter="all",noteSort="newest",editingNoteId=null,nTags=[];
+let curNbFilter="all",noteSort="newest",editingNoteId=null;
 function renderNotes(){const d=Notes.d;const q=$("noteSearch")?.value?.toLowerCase()||"";const tabs=$("nbTabs");if(tabs){let th='<div class="nb-tab'+(curNbFilter==="all"?" on":"")+'" onclick="curNbFilter=\'all\';renderNotes()">📚 All</div>';d.notebooks.forEach(nb=>{const cnt=d.notes.filter(n=>n.nbId===nb.id).length;const cs=nb.color&&nb.color!=="none"?"background:"+nb.color:"";th+='<div class="nb-tab'+(curNbFilter===nb.id?" on":"")+'" onclick="curNbFilter=\''+nb.id+'\';renderNotes()" style="display:flex;align-items:center;gap:4px">'+(cs?'<span style="width:6px;height:6px;border-radius:50%;'+cs+'"></span>':"")+nb.icon+" "+nb.name+' <span style="opacity:.4">'+cnt+"</span></div>"});th+='<div class="nb-tab" onclick="curNbFilter=\'__manage\';renderNotes()" style="color:var(--t4)">⚙</div>';tabs.innerHTML=th}
   if(curNbFilter==="__manage"){renderNotebookManager();return}
   let notes=d.notes.filter(n=>{if(curNbFilter!=="all"&&n.nbId!==curNbFilter)return false;if(q){const match=n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)||(n.tags||[]).some(t=>t.includes(q));if(!match)return false}return true});
@@ -3872,15 +4509,51 @@ function renderNotes(){const d=Notes.d;const q=$("noteSearch")?.value?.toLowerCa
   const grid=$("noteGrid");if(!notes.length){grid.innerHTML='<div class="empty-state"><span class="es-icon">📝</span><div class="es-title">'+(q?"No notes match your search":"No notes yet")+'</div><div class="es-sub">'+(q?"Try a different search term.":"Create your first study note to get started.")+'</div></div>';return}
   grid.innerHTML=notes.map((n,idx)=>{const nb=Notes.d.notebooks.find(x=>x.id===n.nbId)||Notes.d.notebooks[0];const dt=new Date(n.updated);const dateStr=dt.toLocaleDateString("en-US",{month:"short",day:"numeric"});const preview=n.body.replace(/[#*`>\-\[\]]/g,"").slice(0,100);const tags=(n.tags||[]).slice(0,3).map(t=>'<span class="fs-tag">'+t+"</span>").join("");const wc=n.body.trim().split(/\s+/).filter(Boolean).length;return'<div class="note-card'+(n.pinned?" pinned":"")+'" style="animation-delay:'+idx*30+'ms" onclick="openNote(\''+n.id+'\')"><div class="nc-icon" style="'+(nb.color&&nb.color!=="none"?"background:"+nb.color:"")+'"">'+nb.icon+'</div><div style="flex:1;min-width:0"><div class="nc-title">'+(n.pinned?"📌 ":"")+n.title+'</div><div class="nc-preview">'+preview+'</div><div class="nc-meta"><span>'+dateStr+'</span><span>'+wc+" words</span><span>"+nb.name+'</span></div>'+(tags?'<div class="fc-tags" style="margin-top:3px">'+tags+"</div>":"")+"</div></div>"}).join("")}
 function renderNotebookManager(){const d=Notes.d;$("noteGrid").innerHTML='<div class="slbl">Manage Notebooks</div>'+d.notebooks.map(nb=>{const cnt=d.notes.filter(n=>n.nbId===nb.id).length;const cs=nb.color&&nb.color!=="none"?"background:"+nb.color:"";return'<div class="fs-di" style="cursor:default"><div class="di-ico" style="'+cs+'">'+nb.icon+'</div><div class="di-info"><div class="di-name">'+nb.name+'</div><div class="di-sub">'+cnt+" note"+(cnt!==1?"s":"")+'</div></div><div class="di-acts">'+(nb.id!=="nb_default"?"<button onclick=\"openEditNb('"+nb.id+"')\">✎</button><button class='del' onclick=\"deleteNotebook('"+nb.id+"')\">✕</button>":'<span style="font-size:9px;color:var(--t4)">Default</span>')+'</div></div>'}).join("")+'<div style="text-align:center;margin-top:12px"><button class="btn" onclick="curNbFilter=\'all\';renderNotes()">← Back to Notes</button></div>'}
-function createNewNote(){editingNoteId=null;$("noteTitle").value="";$("noteBody").value="";nTags=[];renTags("nTagsW","nTagsI","nTags");populateNbSelect("noteNotebook");$("noteNotebook").value=curNbFilter!=="all"&&curNbFilter!=="__manage"?curNbFilter:Notes.d.notebooks[0].id;$("noteEditorArea").style.display="";$("noteListArea").style.display="none";$("noteDelBtn").style.display="none";$("notePinBtn").style.display="none";updateNoteWordCount();$("noteTitle").focus()}
-function openNote(id){const n=Notes.d.notes.find(x=>x.id===id);if(!n)return;editingNoteId=id;$("noteTitle").value=n.title;$("noteBody").value=n.body;nTags=[...(n.tags||[])];renTags("nTagsW","nTagsI","nTags");populateNbSelect("noteNotebook");$("noteNotebook").value=n.nbId;$("noteEditorArea").style.display="";$("noteListArea").style.display="none";$("noteDelBtn").style.display="";$("notePinBtn").style.display="";$("notePinBtn").textContent=n.pinned?"📌 Pinned":"📌";updateNoteWordCount()}
-function saveCurrentNote(){const title=$("noteTitle").value.trim()||"Untitled Note";const body=$("noteBody").value;const nbId=$("noteNotebook").value;const now=Date.now();if(editingNoteId){const n=Notes.d.notes.find(x=>x.id===editingNoteId);if(n){n.title=title;n.body=body;n.nbId=nbId;n.tags=[...nTags];n.updated=now}}else{Notes.d.notes.push({id:"note_"+now,title,body,nbId,tags:[...nTags],pinned:false,created:now,updated:now});editingNoteId="note_"+now}Notes.save();toast("Note saved ✦");updateNoteWordCount()}
+function createNewNote(){editingNoteId=null;$("noteTitle").value="";$("noteBody").value="";S.nTags=[];renTags("nTagsW","nTagsI","nTags");populateNbSelect("noteNotebook");$("noteNotebook").value=curNbFilter!=="all"&&curNbFilter!=="__manage"?curNbFilter:Notes.d.notebooks[0].id;$("noteEditorArea").style.display="";$("noteListArea").style.display="none";$("noteDelBtn").style.display="none";$("notePinBtn").style.display="none";$("noteDupBtn").style.display="none";resetNotePreview();updateNoteWordCount();$("noteTitle").focus()}
+function openNote(id){const n=Notes.d.notes.find(x=>x.id===id);if(!n)return;editingNoteId=id;$("noteTitle").value=n.title;$("noteBody").value=n.body;S.nTags=[...(n.tags||[])];renTags("nTagsW","nTagsI","nTags");populateNbSelect("noteNotebook");$("noteNotebook").value=n.nbId;$("noteEditorArea").style.display="";$("noteListArea").style.display="none";$("noteDelBtn").style.display="";$("notePinBtn").style.display="";$("noteDupBtn").style.display="";$("notePinBtn").textContent=n.pinned?"📌 Pinned":"📌";resetNotePreview();updateNoteWordCount()}
+function saveCurrentNote(){const title=$("noteTitle").value.trim()||"Untitled Note";const body=$("noteBody").value;const nbId=$("noteNotebook").value;const now=Date.now();if(editingNoteId){const n=Notes.d.notes.find(x=>x.id===editingNoteId);if(n){n.title=title;n.body=body;n.nbId=nbId;n.tags=[...S.nTags];n.updated=now}}else{Notes.d.notes.push({id:"note_"+now,title,body,nbId,tags:[...S.nTags],pinned:false,created:now,updated:now});editingNoteId="note_"+now}Notes.save();$("noteDelBtn").style.display="";$("notePinBtn").style.display="";$("noteDupBtn").style.display="";toast("Note saved ✦");updateNoteWordCount()}
 function closeNoteEditor(){$("noteEditorArea").style.display="none";$("noteListArea").style.display="";renderNotes()}
 function deleteCurrentNote(){if(!editingNoteId)return;confirmAction("Delete this note?","",()=>{Notes.d.notes=Notes.d.notes.filter(n=>n.id!==editingNoteId);Notes.save();editingNoteId=null;closeNoteEditor();toast("Note deleted")})}
 function toggleNotePin(){if(!editingNoteId)return;const n=Notes.d.notes.find(x=>x.id===editingNoteId);if(n){n.pinned=!n.pinned;Notes.save();$("notePinBtn").textContent=n.pinned?"📌 Pinned":"📌";toast(n.pinned?"Pinned ✦":"Unpinned")}}
 function populateNbSelect(id){const sel=$(id);if(!sel)return;sel.innerHTML="";Notes.d.notebooks.forEach(nb=>{const o=document.createElement("option");o.value=nb.id;o.textContent=nb.icon+" "+nb.name;sel.appendChild(o)})}
 function togNoteSort(){noteSort=noteSort==="newest"?"oldest":noteSort==="oldest"?"a-z":noteSort==="a-z"?"z-a":"newest";$("noteSortBtn").textContent="↕ "+{newest:"Newest",oldest:"Oldest","a-z":"A→Z","z-a":"Z→A"}[noteSort];renderNotes()}
-function noteFmt(pre,suf){const ta=$("noteBody");const s=ta.selectionStart,e=ta.selectionEnd;const sel=ta.value.slice(s,e);ta.setRangeText(pre+sel+suf,s,e,"end");ta.focus()}
+function noteFmt(pre,suf){const ta=$("noteBody");const s=ta.selectionStart,e=ta.selectionEnd;const sel=ta.value.slice(s,e);ta.setRangeText(pre+sel+suf,s,e,"end");ta.focus();syncNotePreview()}
+
+/* ── Note Templates ── */
+const NOTE_TEMPLATES=[
+  {icon:"📊",name:"Session Review",body:"## Session Review — {date}\n\n**Stakes:** \n**Duration:** \n**Result:** \n\n### What went well\n- \n\n### What to improve\n- \n\n### Key hands to revisit\n- \n"},
+  {icon:"🃏",name:"Hand Analysis",body:"## Hand Analysis\n\n**Position:** \n**Hero cards:** \n**Board:** \n**Villain type:** \n\n### Preflop\n\n\n### Flop\n\n\n### Turn\n\n\n### River\n\n\n### Takeaway\n> \n"},
+  {icon:"👤",name:"Villain Read",body:"## Villain Read — {date}\n\n**Name/Seat:** \n**Stakes usually seen:** \n\n### Tendencies\n- \n\n### Exploits to use\n- \n\n### Sizing tells\n- \n"},
+  {icon:"🎯",name:"Range Study",body:"## Range Study — {date}\n\n**Range:** \n**Position:** \n\n### Shape / key hands to memorize\n- \n\n### Common mistakes I make\n- \n\n### Drill plan\n- [ ] \n- [ ] \n"},
+  {icon:"📚",name:"Concept Notes",body:"## Concept: \n\n### Definition\n\n\n### Why it matters\n\n\n### Examples\n1. \n\n### Questions to revisit\n- [ ] \n"},
+  {icon:"🗓️",name:"Study Plan",body:"## Weekly Study Plan — {date}\n\n### Goals this week\n- [ ] \n- [ ] \n- [ ] \n\n### Ranges to drill\n- \n\n### Notes to review\n- \n"},
+];
+function openNoteTemplateM(){$("tplGrid").innerHTML=NOTE_TEMPLATES.map((t,i)=>'<div class="tpl-card" onclick="insertNoteTemplate('+i+')"><div class="tpl-ico">'+t.icon+'</div><div class="tpl-name">'+t.name+'</div></div>').join("");openM("noteTemplateM")}
+function insertNoteTemplate(i){const t=NOTE_TEMPLATES[i];if(!t)return;const dateStr=new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});const body=t.body.replace(/\{date\}/g,dateStr);const ta=$("noteBody");const cur=ta.value;ta.value=cur?(cur.replace(/\s+$/,"")+"\n\n"+body):body;if(!$("noteTitle").value.trim())$("noteTitle").value=t.name;updateNoteWordCount();syncNotePreview();closeM("noteTemplateM");playSound("tick");haptic("light");toast(t.icon+" Template inserted")}
+
+/* ── Duplicate / Export ── */
+function duplicateCurrentNote(){if(!editingNoteId)return;const n=Notes.d.notes.find(x=>x.id===editingNoteId);if(!n)return;const now=Date.now();const copy={id:"note_"+now,title:n.title+" (Copy)",body:n.body,nbId:n.nbId,tags:[...(n.tags||[])],pinned:false,created:now,updated:now};Notes.d.notes.push(copy);Notes.save();editingNoteId=copy.id;$("noteTitle").value=copy.title;$("noteDelBtn").style.display="";$("notePinBtn").style.display="";$("notePinBtn").textContent="📌";playSound("save");haptic("light");toast("Note duplicated ✦")}
+function exportCurrentNote(){const title=$("noteTitle").value.trim()||"Untitled Note";const body=$("noteBody").value;const blob=new Blob([("# "+title+"\n\n"+body)],{type:"text/markdown"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=title.replace(/[^a-z0-9\-_ ]/gi,"").trim().replace(/\s+/g,"_")+".md";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);playSound("tick");haptic("light");toast("Note exported ✦")}
+
+/* ── Live Markdown-ish Preview ── */
+function renderNoteMarkdown(src){
+  let h=escapeHtml(src||"");
+  h=h.replace(/^### (.*)$/gm,"<h4>$1</h4>").replace(/^## (.*)$/gm,"<h3>$1</h3>").replace(/^# (.*)$/gm,"<h2>$1</h2>");
+  h=h.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
+  h=h.replace(/\*(.+?)\*/g,"<em>$1</em>");
+  h=h.replace(/`(.+?)`/g,"<code>$1</code>");
+  h=h.replace(/^&gt; (.*)$/gm,"<blockquote>$1</blockquote>");
+  h=h.replace(/^- \[ \] (.*)$/gm,'<div class="np-check">☐ $1</div>');
+  h=h.replace(/^- \[x\] (.*)$/gmi,'<div class="np-check done">☑ $1</div>');
+  h=h.replace(/^- (.*)$/gm,"<li>$1</li>");
+  h=h.replace(/(<li>.*<\/li>\n?)+/g,m=>"<ul>"+m+"</ul>");
+  h=h.replace(/^---$/gm,"<hr>");
+  h=h.replace(/\n{2,}/g,"</p><p>").replace(/\n/g,"<br>");
+  return "<p>"+h+"</p>";
+}
+function toggleNotePreview(){const pane=$("notePreviewPane");const ta=$("noteBody");const btn=$("notePreviewBtn");const on=pane.style.display!=="none";if(on){pane.style.display="none";ta.style.display="";btn.classList.remove("pri")}else{pane.style.display="block";ta.style.display="none";btn.classList.add("pri");syncNotePreview()}}
+function syncNotePreview(){const pane=$("notePreviewPane");if(pane.style.display==="none"||!pane.style.display)return;pane.innerHTML=renderNoteMarkdown($("noteBody").value)}
+function resetNotePreview(){const pane=$("notePreviewPane");const ta=$("noteBody");const btn=$("notePreviewBtn");if(pane)pane.style.display="none";if(ta)ta.style.display="";if(btn)btn.classList.remove("pri")}
 function updateNoteWordCount(){const b=$("noteBody")?.value||"";const wc=b.trim().split(/\s+/).filter(Boolean).length;const el=$("noteWordCount");if(el)el.textContent=wc+" words · "+b.length+" chars"}
 function createNotebook(){const name=$("newNbName").value.trim();if(!name)return toast("Enter name");const icon=getSelE("nbIG");const color=getSelC("nbCG");Notes.d.notebooks.push({id:"nb_"+Date.now(),name,icon,color});Notes.save();$("newNbName").value="";closeM("newNbM");renderNotes();toast(icon+" "+name+" created ✦")}
 let editNbId=null;
@@ -3890,7 +4563,7 @@ function deleteNotebook(id){if(id==="nb_default")return toast("Cannot delete def
 function initNoteTags(){initTags("nTagsW","nTagsI","nTags");const nb=$("noteBody");if(nb)nb.addEventListener("input",updateNoteWordCount)}
 
 // ═══ SETTINGS & THEME ═══
-const THEMES=[{id:"obsidian",name:"Obsidian Gold",icon:"🌑",sub:"Dark & classic",dots:["#c8a55c","#8b9cc4","#6ec89b"]},{id:"rose",name:"Midnight Rose",icon:"🌸",sub:"Soft & vibrant",dots:["#ec4899","#a78bfa","#6ee7b7"]},{id:"emerald",name:"Emerald Felt",icon:"🌿",sub:"Casino green",dots:["#34d399","#67e8f9","#fbbf24"]},{id:"ocean",name:"Deep Ocean",icon:"🌊",sub:"Cool blue",dots:["#3b82f6","#a78bfa","#6ee7b7"]},{id:"royale",name:"Royal Purple",icon:"👑",sub:"Regal & rich",dots:["#a78bfa","#f472b6","#6ee7b7"]}];
+const THEMES=[{id:"obsidian",name:"Obsidian Gold",icon:"🌑",sub:"Dark & classic",dots:["#c8a55c","#8b9cc4","#6ec89b"]},{id:"rose",name:"Midnight Rose",icon:"🌸",sub:"Soft & vibrant",dots:["#ec4899","#a78bfa","#6ee7b7"]},{id:"emerald",name:"Emerald Felt",icon:"🌿",sub:"Casino green",dots:["#34d399","#67e8f9","#fbbf24"]},{id:"ocean",name:"Deep Ocean",icon:"🌊",sub:"Cool blue",dots:["#3b82f6","#a78bfa","#6ee7b7"]},{id:"royale",name:"Royal Purple",icon:"👑",sub:"Regal & rich",dots:["#a78bfa","#f472b6","#6ee7b7"]},{id:"daylight",name:"Daylight",icon:"☀️",sub:"Clean & bright",dots:["#b8863f","#4a5fc0","#1f9d68"]}];
 function applyTheme(id){document.documentElement.setAttribute("data-theme",id);LS("ps_theme",id);renderThemeGrid();renderBrAll();toast(THEMES.find(t=>t.id===id)?.icon+" Theme applied")}
 function renderThemeGrid(){
   var cur=LG("ps_theme","rose");
@@ -3919,6 +4592,54 @@ function renderThemeGrid(){
 function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI()}
 /* ── Editor appearance (grid size / cell corners) ── */
 function applyEditorAppearance(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);document.documentElement.style.setProperty("--mtx-max",sz+"px");document.documentElement.style.setProperty("--mtx-radius",rad+"px")}
+
+/* ══ GLOBAL SEARCH (Ctrl/Cmd+K) ══ */
+function openGlobalSearch(){$("globalSearchInput").value="";openM("globalSearchM");setTimeout(()=>$("globalSearchInput").focus(),80);runGlobalSearch()}
+
+/* ══ QUICK CAPTURE (floating button) ══ */
+function openQuickCapture(){$("qcBody").value="";openM("quickCaptureM");setTimeout(()=>$("qcBody").focus(),80)}
+function saveQuickCapture(){
+  const body=$("qcBody").value.trim();
+  if(!body)return toast("Nothing to save");
+  const now=Date.now();
+  const nb=Notes.d.notebooks[0]?.id||"nb_default";
+  const title=body.split("\n")[0].slice(0,50)||"Quick Note";
+  Notes.d.notes.push({id:"note_"+now,title,body,nbId:nb,tags:["quick-capture"],pinned:false,created:now,updated:now});
+  Notes.save();
+  closeM("quickCaptureM");
+  playSound("save");haptic("success");celebrate();
+  toast("📝 Captured — find it in Notes ✦");
+}
+
+/* ══ STUDY REMINDER BANNER ══ */
+function hasTrainedToday(){const today=new Date().toISOString().slice(0,10);const hist=LG("ps_tr_history",[]);return hist.some(h=>h.date&&h.date.slice(0,10)===today)}
+function shouldShowReminder(){const today=new Date().toISOString().slice(0,10);const dismissed=LG("ps_reminder_dismissed","");if(dismissed===today)return false;return!hasTrainedToday()}
+function renderStudyReminder(){
+  const el=$("studyReminderBanner");if(!el)return;
+  if(!shouldShowReminder()){el.style.display="none";return}
+  const streak=getStreak();
+  el.style.display="flex";
+  el.innerHTML=streak.count>0
+    ?'<span class="srb-icon">🔥</span><div class="srb-text"><div class="srb-title">Keep your '+streak.count+'-day streak alive!</div><div class="srb-sub">You haven\'t trained today yet.</div></div><button class="btn pri btn-s" onclick="go(\'trainer\')">Train Now</button><button class="srb-close" onclick="dismissReminder()">✕</button>'
+    :'<span class="srb-icon">🎯</span><div class="srb-text"><div class="srb-title">Ready to build a streak?</div><div class="srb-sub">Train today to get started.</div></div><button class="btn pri btn-s" onclick="go(\'trainer\')">Train Now</button><button class="srb-close" onclick="dismissReminder()">✕</button>';
+}
+function dismissReminder(){LS("ps_reminder_dismissed",new Date().toISOString().slice(0,10));const el=$("studyReminderBanner");if(el)el.style.display="none"}
+function runGlobalSearch(){
+  const q=$("globalSearchInput").value.trim().toLowerCase();
+  const ct=$("globalSearchResults");
+  if(!q){ct.innerHTML='<div class="gs-empty"><span class="gs-empty-ico">🔍</span>Search across your saved ranges, notes, hand history, and players — all in one place.</div>';return}
+  const sections=[];
+  const rangeMatches=S.saved.map((r,i)=>({r,i})).filter(({r})=>r.name.toLowerCase().includes(q)||(r.tags||[]).some(t=>t.includes(q))||(r.notes||"").toLowerCase().includes(q)).slice(0,6);
+  if(rangeMatches.length)sections.push({title:"♠ Ranges",items:rangeMatches.map(({r,i})=>({icon:r.icon||"♠",label:r.name,sub:(r.folder||"/")+" · "+r.range.flat().filter(c=>c.length).length+" hands",action:"showViewerMode("+i+")"}))});
+  const noteMatches=Notes.d.notes.filter(n=>n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)||(n.tags||[]).some(t=>t.includes(q))).slice(0,6);
+  if(noteMatches.length)sections.push({title:"📝 Notes",items:noteMatches.map(n=>({icon:"📝",label:n.title,sub:(n.body||"").replace(/\n/g," ").slice(0,64)||"(empty note)",action:"go('notes');switchNotesHub('notesMain');openNote('"+n.id+"')"}))});
+  const handMatches=HH.d.hands.filter(h=>(h.stakes||"").toLowerCase().includes(q)||(h.villain||"").toLowerCase().includes(q)||(h.notes||"").toLowerCase().includes(q)||(h.tags||[]).some(t=>t.includes(q))).slice(0,6);
+  if(handMatches.length)sections.push({title:"📔 Hand History",items:handMatches.map(h=>({icon:"📔",label:(h.stakes||"Hand")+(h.villain?" vs "+h.villain:""),sub:h.date+" · "+brFmt(h.resultCents),action:"go('notes');switchNotesHub('hhHands');openHhDetail('"+h.id+"')"}))});
+  const playerMatches=HH.d.players.filter(p=>p.name.toLowerCase().includes(q)||(p.notes||"").toLowerCase().includes(q)||(p.tags||[]).some(t=>t.includes(q))||(p.type||"").toLowerCase().includes(q)).slice(0,6);
+  if(playerMatches.length)sections.push({title:"👤 Players",items:playerMatches.map(p=>({icon:"👤",label:p.name,sub:(p.type||"Unknown type")+(p.venue?" · "+p.venue:""),action:"go('notes');switchNotesHub('hhPlayers');openPlDetail('"+p.id+"')"}))});
+  if(!sections.length){ct.innerHTML='<div class="gs-empty"><span class="gs-empty-ico">🃏</span>No results for "'+escapeHtml(q)+'"</div>';return}
+  ct.innerHTML=sections.map(sec=>'<div class="gs-section"><div class="gs-section-title">'+sec.title+'</div>'+sec.items.map((it,i)=>'<div class="gs-item" style="animation-delay:'+(i*20)+'ms" onclick="closeM(\'globalSearchM\');'+it.action+'"><span class="gs-item-icon">'+it.icon+'</span><div class="gs-item-text"><div class="gs-item-label">'+escapeHtml(it.label)+'</div><div class="gs-item-sub">'+escapeHtml(it.sub)+'</div></div><span class="gs-item-chev">›</span></div>').join("")+'</div>').join("");
+}
 function setEditorSize(px){LS("ps_editor_size",px);applyEditorAppearance();renderEditorSizeUI();playSound("tick");haptic("light")}
 function setEditorRadius(px){LS("ps_editor_radius",px);applyEditorAppearance();renderEditorSizeUI();playSound("tick");haptic("light")}
 function renderEditorSizeUI(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);const szr=$("editorSizeRow");if(szr){szr.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.sz===sz))}const radr=$("editorRadiusRow");if(radr){radr.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.rad===rad))}}
@@ -3972,6 +4693,10 @@ $("brNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$(
 $("notesHubNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;switchNotesHub(e.target.dataset.nh)});
 $("editorSizeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setEditorSize(+e.target.dataset.sz)});
 $("navStyleRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setNavStyle(e.target.dataset.nav)});
+$("toolsNav")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;switchToolsTab(e.target.dataset.tl)});
+$("bsPresetRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("bsPresetRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runBetSizing()});
+$("comboTypeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("comboTypeRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runComboCalc()});
+$("comboBlockRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("comboBlockRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runComboCalc()});
 applyNavStyle();
 $("editorRadiusRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setEditorRadius(+e.target.dataset.rad)});
 applyEditorAppearance();
@@ -3987,7 +4712,7 @@ setFsView(LG("ps_fsview","detail"));
 
 // Window click to close context menu
 window.addEventListener("click",()=>closeCtxMenu());
-document.addEventListener("keydown",function(e){if(e.code==="Escape"){document.querySelectorAll(".mov.open,.cfov.open").forEach(function(m){m.classList.remove("open")});closeCtxMenu();closeHamburgerMenu();return}
+document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openGlobalSearch();return}if(e.code==="Escape"){document.querySelectorAll(".mov.open,.cfov.open").forEach(function(m){m.classList.remove("open")});closeCtxMenu();closeHamburgerMenu();return}
   if(document.activeElement.tagName==="INPUT"||document.activeElement.tagName==="TEXTAREA")return;
   const n=parseInt(e.key,10);if(!n||n<1||n>9)return;
   if(Tr.active&&!Tr.paused&&Tr.cur&&Tr.trainIdx&&n<=Tr.trainIdx.length){e.preventDefault();const btns=document.querySelectorAll(".tabtn");const b=btns[n-1];if(b&&!b.disabled)b.click()}
@@ -3997,6 +4722,7 @@ document.addEventListener("keydown",function(e){if(e.code==="Escape"){document.q
 if(window.matchMedia&&window.matchMedia("(hover:hover) and (pointer:fine)").matches)document.documentElement.classList.add("kb-hints");
 bumpStreak();
 checkAchievements();
+renderStudyReminder();
 const _dt=LG("ps_default_tab","editor");if(_dt&&_dt!=="editor")setTimeout(()=>go(_dt),0);
 })();
 </script>
