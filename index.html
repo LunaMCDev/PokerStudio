@@ -2452,6 +2452,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-card:hover{border-color:var(--pk);transform:translateY(-2px);box-shadow:0 8px 22px -6px color-mix(in srgb,var(--pk) 45%,transparent)}
 .flow-card-icon{font-size:28px;margin-bottom:10px}
 .flow-card-name{font-size:12px;font-weight:800;color:var(--t1);margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flow-card-desc{font-size:9.5px;color:var(--t4);margin-bottom:6px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .flow-card-meta{font-size:9px;color:var(--t4)}
 .flow-card-del{
   position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;
@@ -2465,15 +2466,23 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-back-btn{padding:9px 14px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:11px;font-weight:700;flex-shrink:0}
 .flow-title-input{flex:1;min-width:0;background:transparent;border:none;border-bottom:1.5px dashed var(--bd2);color:var(--t1);font-size:15px;font-weight:800;padding:6px 4px;font-family:var(--fd);font-style:italic}
 .flow-icon-btn{width:36px;height:36px;border-radius:50%;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:16px;flex-shrink:0}
-.flow-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;justify-content:space-between}
-.flow-toolbar-actions{display:flex;gap:6px}
+.flow-toolbar{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
+.flow-toolbar-row{display:flex;gap:6px;align-items:center}
 .flow-tool-btn{
-  width:36px;height:36px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
-  font-size:14px;transition:all .2s var(--spring);
+  flex:1;display:flex;align-items:center;justify-content:center;gap:5px;
+  height:38px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
+  font-size:11px;font-weight:700;color:var(--t2);transition:all .2s var(--spring);
 }
-.flow-tool-btn:hover{border-color:var(--pk);transform:translateY(-1px)}
-.flow-tool-btn.active{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;box-shadow:0 3px 12px -2px color-mix(in srgb,var(--pk) 55%,transparent)}
-.flow-tool-btn.flow-tool-danger:hover{border-color:var(--rs);color:var(--rs)}
+.flow-tool-btn span{font-size:14px}
+.flow-tool-btn:hover{border-color:var(--pk);transform:translateY(-1px);color:var(--t1)}
+.flow-tool-btn.active{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;color:var(--b0);box-shadow:0 3px 12px -2px color-mix(in srgb,var(--pk) 55%,transparent)}
+.flow-tool-btn.flow-tool-pri{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;color:var(--b0)}
+.flow-tool-icon-btn{
+  width:36px;height:36px;flex-shrink:0;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
+  font-size:13px;transition:all .2s var(--spring);
+}
+.flow-tool-icon-btn:hover{border-color:var(--pk);transform:translateY(-1px)}
+.flow-tool-icon-btn.flow-tool-danger:hover{border-color:var(--rs);color:var(--rs)}
 .flow-hint{font-size:10.5px;color:var(--t4);text-align:center;margin-bottom:10px;padding:6px 10px;background:var(--b0);border-radius:var(--r1);border:1px dashed var(--bd)}
 
 /* ── Canvas ── */
@@ -2511,11 +2520,11 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-node-wrap.dragging{z-index:10}
 .flow-node-wrap.dragging .flow-node{transform:scale(1.06);box-shadow:0 14px 34px -8px rgba(0,0,0,.55),0 0 0 3px color-mix(in srgb,var(--node-color) 60%,transparent)!important;transition:box-shadow .15s,transform .15s var(--spring)}
 .flow-node{
-  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;
-  padding:8px;background:color-mix(in srgb,var(--node-color) 18%,var(--b2));
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1px;
+  padding:10px 12px;background:color-mix(in srgb,var(--node-color) 18%,var(--b2));
   border:2px solid var(--node-color);color:var(--t1);overflow:hidden;
   box-shadow:0 4px 14px -4px color-mix(in srgb,var(--node-color) 50%,transparent);
-  transition:box-shadow .2s,border-radius .2s,transform .2s var(--spring);
+  transition:box-shadow .2s,transform .2s var(--spring);
 }
 .flow-node-handle{
   position:absolute;right:-14px;bottom:-14px;width:26px;height:26px;border-radius:50%;
@@ -2526,15 +2535,28 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 }
 .flow-node-handle:hover{transform:scale(1.2)}
 .flow-node-handle:active{cursor:grabbing}
-.flow-node-text{font-size:12px;font-weight:700;line-height:1.25;word-break:break-word;pointer-events:none;max-width:100%;overflow:hidden}
-.flow-node-subtitle{font-size:9.5px;font-weight:600;line-height:1.2;color:color-mix(in srgb,var(--t1) 70%,transparent);word-break:break-word;pointer-events:none;max-width:100%;overflow:hidden;font-style:italic}
-.flow-node-body{font-size:8.5px;font-weight:500;line-height:1.2;color:color-mix(in srgb,var(--t1) 55%,transparent);word-break:break-word;pointer-events:none;max-width:100%;overflow:hidden}
-.flow-shape-diamond .flow-node-subtitle,.flow-shape-diamond .flow-node-body{max-width:55%}
-.flow-shape-rect{border-radius:10px}
-.flow-shape-oval{border-radius:50%/50%}
-.flow-shape-circle{border-radius:50%}
-.flow-shape-diamond{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
-.flow-shape-diamond .flow-node-text{max-width:60%}
+.flow-node-text{
+  font-size:12.5px;font-weight:800;line-height:1.3;word-break:break-word;pointer-events:none;max-width:100%;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.flow-node-subtitle{
+  font-size:10px;font-weight:600;line-height:1.25;color:color-mix(in srgb,var(--t1) 75%,transparent);
+  word-break:break-word;pointer-events:none;max-width:100%;font-style:italic;margin-top:1px;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+}
+.flow-node-body{
+  font-size:9.5px;font-weight:500;line-height:1.3;color:color-mix(in srgb,var(--t1) 60%,transparent);
+  word-break:break-word;pointer-events:none;max-width:100%;margin-top:4px;padding-top:4px;
+  border-top:1px solid color-mix(in srgb,var(--node-color) 35%,transparent);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.flow-shape-rect{border-radius:12px}
+.flow-size-sm .flow-node-text{font-size:10.5px}
+.flow-size-sm .flow-node-subtitle{font-size:9px}
+.flow-size-sm .flow-node-body{font-size:8.5px}
+.flow-size-lg .flow-node-text{font-size:15px}
+.flow-size-lg .flow-node-subtitle{font-size:11.5px}
+.flow-size-lg .flow-node-body{font-size:10.5px}
 
 /* ── Node editor modal ── */
 .flow-color-row{display:flex;flex-wrap:wrap;gap:8px}
@@ -3286,17 +3308,17 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       <button class="flow-icon-btn" onclick="openFlowManageM()" title="Manage">⋯</button>
     </div>
     <div class="flow-toolbar">
-      <div class="seg-row" id="flowShapeRow">
-        <button data-shape="rect" class="sel">▭ Box</button>
-        <button data-shape="diamond">◆ Decision</button>
+      <div class="flow-toolbar-row">
+        <button class="flow-tool-btn flow-tool-pri" id="flowAddBtn" onclick="flowAddNode()" title="Add node"><span>➕</span>Add</button>
+        <button class="flow-tool-btn" onclick="flowAutoLayout()" title="Auto layout"><span>✨</span>Layout</button>
+        <button class="flow-tool-btn" onclick="flowFitToScreen(true)" title="Fit to screen"><span>⛶</span>Fit</button>
+        <button class="flow-tool-btn" id="flowSnapBtn" onclick="flowToggleSnap()" title="Snap to grid"><span>▦</span>Snap</button>
       </div>
-      <div class="flow-toolbar-actions">
-        <button class="flow-tool-btn" id="flowAddBtn" onclick="flowAddNode()" title="Add node">➕</button>
-        <button class="flow-tool-btn" onclick="flowAutoLayout()" title="Auto layout">✨</button>
-        <button class="flow-tool-btn" onclick="flowFitToScreen(true)" title="Fit to screen">⛶</button>
-        <button class="flow-tool-btn" onclick="flowZoom(0.1)" title="Zoom in">🔍+</button>
-        <button class="flow-tool-btn" onclick="flowZoom(-0.1)" title="Zoom out">🔍−</button>
-        <button class="flow-tool-btn flow-tool-danger" onclick="flowClearCanvas()" title="Clear all">🗑️</button>
+      <div class="flow-toolbar-row">
+        <button class="flow-tool-icon-btn" onclick="flowZoom(0.1)" title="Zoom in">🔍+</button>
+        <button class="flow-tool-icon-btn" onclick="flowZoom(-0.1)" title="Zoom out">🔍−</button>
+        <span style="flex:1"></span>
+        <button class="flow-tool-icon-btn flow-tool-danger" onclick="flowClearCanvas()" title="Clear all">🗑️</button>
       </div>
     </div>
     <div class="flow-hint" id="flowModeHint">Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.</div>
@@ -3461,14 +3483,15 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <input class="minp" id="flowNodeSubtitle" placeholder="A short subtitle…"/>
   <label class="slbl" style="margin-top:8px">Body <span class="tool-optional">(optional)</span></label>
   <textarea class="minp" id="flowNodeBody" placeholder="Extra detail or notes…" style="min-height:60px;font-size:12px"></textarea>
-  <div class="slbl" style="margin-top:10px">Shape</div>
-  <div class="seg-row" id="flowNodeShapeRow">
-    <button data-shape="rect">▭ Box</button>
-    <button data-shape="diamond">◆ Decision</button>
+  <label class="slbl" style="margin-top:8px">Text Size</label>
+  <div class="seg-row" id="flowNodeSizeRow">
+    <button data-size="sm">S</button>
+    <button data-size="md">M</button>
+    <button data-size="lg">L</button>
   </div>
   <div class="slbl" style="margin-top:10px">Color</div>
   <div class="flow-color-row" id="flowNodeColorRow"></div>
-  <div class="mact"><button class="btn btn-d" onclick="flowDeleteSelectedNode()">🗑️ Delete Node</button><button class="btn pri" onclick="closeM('flowNodeM')">Done</button></div>
+  <div class="mact"><button class="btn btn-d" onclick="flowDeleteSelectedNode()">🗑️ Delete</button><button class="btn btn-s" onclick="flowDuplicateSelectedNode()">⧉ Duplicate</button><button class="btn pri" onclick="closeM('flowNodeM')">Done</button></div>
 </div></div>
 <div class="mov" id="flowConnM"><div class="mdl" style="max-width:380px">
   <h3>🔗 Arrow</h3>
@@ -3480,7 +3503,9 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 </div></div>
 <div class="mov" id="flowManageM"><div class="mdl" style="max-width:420px">
   <h3>⋯ Manage Flowchart</h3>
-  <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Duplicate</span><span class="setting-desc">Make a copy to branch off from</span></div><button class="btn btn-s" onclick="duplicateFlowchart()">⧉ Duplicate</button></div>
+  <label class="slbl">Description <span class="tool-optional">(optional)</span></label>
+  <textarea class="minp" id="flowDescInput" placeholder="What's this flowchart for?" style="min-height:50px;font-size:12px" oninput="flowSaveDescription(this.value)"></textarea>
+  <div class="setting-row" style="border-bottom:none;margin-top:6px"><div class="setting-info"><span class="setting-label">Duplicate</span><span class="setting-desc">Make a copy to branch off from</span></div><button class="btn btn-s" onclick="duplicateFlowchart()">⧉ Duplicate</button></div>
   <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Delete</span><span class="setting-desc">Remove this flowchart permanently</span></div><button class="btn btn-s btn-d" onclick="deleteCurrentFlowchart()">🗑️ Delete</button></div>
   <div class="mact"><button class="btn pri" onclick="closeM('flowManageM')">Close</button></div>
 </div></div>
@@ -3760,6 +3785,15 @@ function calcEquity(heroCards,villainCards,boardCards,iterations){
 /* ══════════════════════ FLOWCHART EDITOR ══════════════════════ */
 const Flow={d:[],load(){this.d=LG("ps_flowcharts",[])},save(){LS("ps_flowcharts",this.d)}};
 let flowState=null,flowSelectedNodeId=null,flowSelectedConnId=null,flowZoomLevel=1,flowDragState=null,flowConnectDrag=null;
+const FLOW_GRID_SIZE=20;
+let flowSnapEnabled=LG("ps_flow_snap",false);
+function flowToggleSnap(){
+  flowSnapEnabled=!flowSnapEnabled;
+  LS("ps_flow_snap",flowSnapEnabled);
+  $("flowSnapBtn")?.classList.toggle("active",flowSnapEnabled);
+  playSound("tick");haptic("light");
+  toast(flowSnapEnabled?"▦ Snap to grid on":"Snap to grid off");
+}
 const FLOW_COLORS=["#c8a55c","#ec4899","#34d399","#3b82f6","#a78bfa","#f87171","#fbbf24","#67e8f9"];
 function initFlow(){
   Flow.load();
@@ -3771,7 +3805,7 @@ function renderFlowGrid(){
   const ct=$("flowGrid");if(!ct)return;
   if(!Flow.d.length){ct.innerHTML='<div class="empty-state"><span class="es-icon">🧠</span><div class="es-title">No flowcharts yet</div><div class="es-sub">Create one to start mapping out your thinking.</div></div>';return}
   ct.innerHTML=[...Flow.d].sort((a,b)=>b.updated-a.updated).map(f=>{
-    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><div class="flow-card-icon">🧠</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div><div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
+    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><div class="flow-card-icon">🧠</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
   }).join("");
 }
 function createNewFlowchart(){
@@ -3790,6 +3824,7 @@ function openFlowchart(id){
   $("flowListArea").style.display="none";
   $("flowEditorArea").style.display="";
   $("flowTitleInput").value=flowState.name;
+  $("flowSnapBtn")?.classList.toggle("active",flowSnapEnabled);
   $("flowModeHint").textContent="Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
   renderFlowCanvas();
   if(flowState.nodes.length)requestAnimationFrame(()=>flowFitToScreen(false));
@@ -3809,7 +3844,8 @@ function flowSaveCurrent(){
   Flow.save();
 }
 function flowRenameCurrent(name){if(!flowState)return;flowState.name=name||"Untitled Flowchart";flowSaveCurrent()}
-function openFlowManageM(){openM("flowManageM")}
+function openFlowManageM(){$("flowDescInput").value=flowState.description||"";openM("flowManageM")}
+function flowSaveDescription(val){if(!flowState)return;flowState.description=val;flowSaveCurrent()}
 function duplicateFlowchart(){
   const copy=JSON.parse(JSON.stringify(flowState));
   copy.id="flow_"+Date.now();copy.name=flowState.name+" (Copy)";copy.created=Date.now();copy.updated=Date.now();
@@ -3828,10 +3864,9 @@ function deleteCurrentFlowchart(){
 /* ── Nodes ── */
 function flowAddNode(){
   if(!flowState)return;
-  const shape=$("flowShapeRow").querySelector(".sel")?.dataset.shape||"rect";
   const n=flowState.nodes.length;
   const col=n%5,row=Math.floor(n/5);
-  const node={id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:80+col*180,y:80+row*130,w:150,h:72,text:"New idea",subtitle:"",body:"",shape,color:FLOW_COLORS[0]};
+  const node={id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:80+col*180,y:80+row*140,w:160,h:84,text:"New idea",subtitle:"",body:"",shape:"rect",size:"md",color:FLOW_COLORS[0]};
   flowState.nodes.push(node);
   flowSaveCurrent();
   renderFlowCanvas();
@@ -3844,10 +3879,20 @@ function flowOpenNodeEditor(id){
   $("flowNodeText").value=node.text;
   $("flowNodeSubtitle").value=node.subtitle||"";
   $("flowNodeBody").value=node.body||"";
-  $("flowNodeShapeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.shape===node.shape));
+  $("flowNodeSizeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.size===(node.size||"md")));
   renderFlowColorRow(node.color);
   renderFlowCanvas();
   openM("flowNodeM");
+}
+function flowDuplicateSelectedNode(){
+  const node=flowState.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;
+  const copy={...node,id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:node.x+30,y:node.y+30};
+  flowState.nodes.push(copy);
+  flowSaveCurrent();renderFlowCanvas();
+  closeM("flowNodeM");
+  playSound("save");haptic("light");
+  toast("Node duplicated ✦");
+  flowOpenNodeEditor(copy.id);
 }
 function renderFlowColorRow(current){
   $("flowNodeColorRow").innerHTML=FLOW_COLORS.map(c=>'<button class="flow-color-opt'+(c===current?" sel":"")+'" style="background:'+c+'" onclick="flowSetNodeColor(\''+c+"')\"></button>").join("");
@@ -3921,44 +3966,112 @@ function flowFitToScreen(showToast){
 function flowAutoLayout(){
   if(!flowState||!flowState.nodes.length){toast("Add some nodes first");return}
   const nodes=flowState.nodes,connections=flowState.connections;
-  const outgoing={},incoming={};
-  nodes.forEach(n=>{outgoing[n.id]=[];incoming[n.id]=0});
+  const nodeById={};nodes.forEach(n=>nodeById[n.id]=n);
+  const outgoing={},incoming={},undirected={};
+  nodes.forEach(n=>{outgoing[n.id]=[];incoming[n.id]=[];undirected[n.id]=new Set()});
   connections.forEach(c=>{
-    if(outgoing[c.from]!=null&&incoming[c.to]!=null){outgoing[c.from].push(c.to);incoming[c.to]++}
+    if(outgoing[c.from]==null||incoming[c.to]==null)return;
+    outgoing[c.from].push(c.to);incoming[c.to].push(c.from);
+    undirected[c.from].add(c.to);undirected[c.to].add(c.from);
   });
-  const level={};
-  nodes.forEach(n=>level[n.id]=0);
-  function assignLevel(id,lvl,stack){
-    if(stack.has(id))return;
-    if(level[id]<lvl)level[id]=lvl;
-    stack.add(id);
-    (outgoing[id]||[]).forEach(childId=>assignLevel(childId,lvl+1,stack));
-    stack.delete(id);
+
+  // Group nodes into connected components (undirected) so unrelated trees don't get tangled together
+  const visited=new Set(),components=[];
+  nodes.forEach(n=>{
+    if(visited.has(n.id))return;
+    const comp=[];const queue=[n.id];visited.add(n.id);
+    while(queue.length){
+      const cur=queue.shift();comp.push(cur);
+      undirected[cur].forEach(nb=>{if(!visited.has(nb)){visited.add(nb);queue.push(nb)}});
+    }
+    components.push(comp);
+  });
+  const treeComponents=components.filter(c=>c.length>1);
+  const isolated=components.filter(c=>c.length===1).map(c=>c[0]);
+
+  function computeLevels(compIds){
+    const idSet=new Set(compIds);
+    const level={};compIds.forEach(id=>level[id]=0);
+    function assignLevel(id,lvl,stack){
+      if(stack.has(id))return;
+      if(level[id]<lvl)level[id]=lvl;
+      stack.add(id);
+      (outgoing[id]||[]).filter(cid=>idSet.has(cid)).forEach(childId=>assignLevel(childId,lvl+1,stack));
+      stack.delete(id);
+    }
+    const localInDeg={};compIds.forEach(id=>localInDeg[id]=(incoming[id]||[]).filter(pid=>idSet.has(pid)).length);
+    const roots=compIds.filter(id=>localInDeg[id]===0);
+    (roots.length?roots:compIds).forEach(id=>assignLevel(id,0,new Set()));
+    const levels={};
+    compIds.forEach(id=>{const lvl=level[id];if(!levels[lvl])levels[lvl]=[];levels[lvl].push(id)});
+    return levels;
   }
-  const roots=nodes.filter(n=>incoming[n.id]===0);
-  const rootSet=roots.length?roots:nodes;
-  rootSet.forEach(n=>assignLevel(n.id,0,new Set()));
-  const levels={};
-  nodes.forEach(n=>{const lvl=level[n.id];if(!levels[lvl])levels[lvl]=[];levels[lvl].push(n)});
-  const levelKeys=Object.keys(levels).map(Number).sort((a,b)=>a-b);
-  const vGap=110,hGap=36,margin=50;
-  let maxRowWidth=0;
-  levelKeys.forEach(lvl=>{
-    const rowNodes=levels[lvl];
-    const totalWidth=rowNodes.reduce((sum,n)=>sum+n.w,0)+hGap*Math.max(0,rowNodes.length-1);
-    maxRowWidth=Math.max(maxRowWidth,totalWidth);
-  });
-  levelKeys.forEach(lvl=>{
-    const rowNodes=levels[lvl];
-    const totalWidth=rowNodes.reduce((sum,n)=>sum+n.w,0)+hGap*Math.max(0,rowNodes.length-1);
-    let startX=margin+(maxRowWidth-totalWidth)/2;
-    const maxH=Math.max(...rowNodes.map(n=>n.h));
-    rowNodes.forEach(n=>{
-      n.x=Math.round(startX);
-      n.y=margin+lvl*(maxH+vGap);
-      startX+=n.w+hGap;
+
+  // Barycenter ordering: repeatedly reorder each level by the average position of its
+  // connected neighbors in the adjacent level, alternating sweep direction, to reduce arrow crossings.
+  function orderLevels(levels){
+    const levelKeys=Object.keys(levels).map(Number).sort((a,b)=>a-b);
+    let order={};levelKeys.forEach(lvl=>order[lvl]=[...levels[lvl]]);
+    if(levelKeys.length<2)return order;
+    for(let pass=0;pass<4;pass++){
+      const downward=pass%2===0;
+      const seq=downward?levelKeys:[...levelKeys].reverse();
+      for(let i=1;i<seq.length;i++){
+        const lvl=seq[i],prevLvl=seq[i-1];
+        const prevOrder=order[prevLvl];
+        const posInPrev={};prevOrder.forEach((id,idx)=>posInPrev[id]=idx);
+        const rel=downward?incoming:outgoing;
+        const scored=order[lvl].map((id,origIdx)=>{
+          const neighbors=(rel[id]||[]).filter(nid=>posInPrev[nid]!=null);
+          const avg=neighbors.length?neighbors.reduce((s,nid)=>s+posInPrev[nid],0)/neighbors.length:origIdx+1000;
+          return{id,avg};
+        });
+        scored.sort((a,b)=>a.avg-b.avg);
+        order[lvl]=scored.map(s=>s.id);
+      }
+    }
+    return order;
+  }
+
+  const vGap=110,hGap=40,margin=50,componentGapX=90;
+  let cursorX=margin,maxOverallY=margin;
+  treeComponents.forEach(compIds=>{
+    const levels=computeLevels(compIds);
+    const order=orderLevels(levels);
+    const levelKeys=Object.keys(order).map(Number).sort((a,b)=>a-b);
+    let compWidth=0;
+    levelKeys.forEach(lvl=>{
+      const ids=order[lvl];
+      const rowW=ids.reduce((s,id)=>s+nodeById[id].w,0)+hGap*Math.max(0,ids.length-1);
+      compWidth=Math.max(compWidth,rowW);
     });
+    levelKeys.forEach(lvl=>{
+      const ids=order[lvl];
+      const rowW=ids.reduce((s,id)=>s+nodeById[id].w,0)+hGap*Math.max(0,ids.length-1);
+      let startX=cursorX+(compWidth-rowW)/2;
+      const maxH=Math.max(...ids.map(id=>nodeById[id].h));
+      ids.forEach(id=>{
+        const node=nodeById[id];
+        node.x=Math.round(startX);
+        node.y=margin+lvl*(maxH+vGap);
+        startX+=node.w+hGap;
+      });
+      maxOverallY=Math.max(maxOverallY,margin+lvl*(maxH+vGap)+maxH);
+    });
+    cursorX+=compWidth+componentGapX;
   });
+
+  if(isolated.length){
+    const maxRowW=Math.max(600,cursorX-componentGapX);
+    let ix=margin,iy=maxOverallY+vGap,rowMaxH=0,rowWidth=0;
+    isolated.forEach(id=>{
+      const node=nodeById[id];
+      if(rowWidth+node.w>maxRowW&&rowWidth>0){ix=margin;iy+=rowMaxH+hGap;rowMaxH=0;rowWidth=0}
+      node.x=ix;node.y=iy;
+      ix+=node.w+hGap;rowWidth+=node.w+hGap;rowMaxH=Math.max(rowMaxH,node.h);
+    });
+  }
+
   flowSaveCurrent();
   renderFlowCanvas();
   flowFitToScreen(false);
@@ -3984,7 +4097,7 @@ function renderFlowCanvas(){
   if(!layer||!svg||!canvas)return;
   canvas.style.transform="scale("+flowZoomLevel+")";
   layer.innerHTML=flowState.nodes.map(n=>{
-    return'<div class="flow-node-wrap'+(n.id===flowSelectedNodeId?" sel":"")+'" data-id="'+n.id+'" style="left:'+n.x+"px;top:"+n.y+"px;width:"+n.w+"px;height:"+n.h+'px" onmousedown="flowNodePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowNodePointerDown(event,'"+n.id+'\')"><div class="flow-node flow-shape-'+n.shape+'" style="--node-color:'+n.color+'"><span class="flow-node-text">'+escapeHtml(n.text)+"</span>"+(n.subtitle?'<span class="flow-node-subtitle">'+escapeHtml(n.subtitle)+"</span>":"")+(n.body?'<span class="flow-node-body">'+escapeHtml(n.body)+"</span>":"")+'</div><div class="flow-node-handle" title="Drag to connect" onmousedown="flowHandlePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowHandlePointerDown(event,'"+n.id+"')\">➜</div></div>";
+    return'<div class="flow-node-wrap'+(n.id===flowSelectedNodeId?" sel":"")+'" data-id="'+n.id+'" style="left:'+n.x+"px;top:"+n.y+"px;width:"+n.w+"px;height:"+n.h+'px" onmousedown="flowNodePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowNodePointerDown(event,'"+n.id+'\')"><div class="flow-node flow-shape-rect flow-size-'+(n.size||"md")+'" style="--node-color:'+n.color+'"><span class="flow-node-text">'+escapeHtml(n.text)+"</span>"+(n.subtitle?'<span class="flow-node-subtitle">'+escapeHtml(n.subtitle)+"</span>":"")+(n.body?'<span class="flow-node-body">'+escapeHtml(n.body)+"</span>":"")+'</div><div class="flow-node-handle" title="Drag to connect" onmousedown="flowHandlePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowHandlePointerDown(event,'"+n.id+"')\">➜</div></div>";
   }).join("");
   const markerDefs=flowState.connections.map(c=>'<marker id="flowArrow_'+c.id+'" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="'+(c.color||"#c8a55c")+'"/></marker>').join("");
   const svgLines=flowState.connections.map(c=>{
@@ -4041,7 +4154,10 @@ function flowNodePointerDown(e,id){
     if(rafId!=null){cancelAnimationFrame(rafId);rafId=null}
     wrapEl?.classList.remove("dragging");
     if(flowDragState&&!flowDragState.moved)flowNodeTapped(id);
-    else{flowSaveCurrent();renderFlowCanvas()}
+    else{
+      if(flowSnapEnabled){node.x=Math.round(node.x/FLOW_GRID_SIZE)*FLOW_GRID_SIZE;node.y=Math.round(node.y/FLOW_GRID_SIZE)*FLOW_GRID_SIZE}
+      flowSaveCurrent();renderFlowCanvas();
+    }
     flowDragState=null;
   };
   document.addEventListener("mousemove",onMove);
@@ -6404,8 +6520,7 @@ $("comboBlockRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")
 $("hhPresetRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhApplyPreset(+e.target.dataset.preset)});
 $("hhCurrencyRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setHhCurrency(e.target.dataset.cur)});
 $("hhbStreetTabs")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhSwitchStreetTab(e.target.dataset.street)});
-$("flowShapeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("flowShapeRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel")});
-$("flowNodeShapeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.shape=e.target.dataset.shape;$("flowNodeShapeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeSizeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.size=e.target.dataset.size;$("flowNodeSizeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));renderFlowCanvas();flowSaveCurrent()});
 $("flowNodeText")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.text=e.target.value;renderFlowCanvas();flowSaveCurrent()});
 $("flowNodeSubtitle")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.subtitle=e.target.value;renderFlowCanvas();flowSaveCurrent()});
 $("flowNodeBody")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.body=e.target.value;renderFlowCanvas();flowSaveCurrent()});
