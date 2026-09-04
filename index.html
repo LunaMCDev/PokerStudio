@@ -1588,7 +1588,14 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .goal-meta{display:flex;justify-content:space-between;font-size:9.5px;color:var(--t4);font-family:var(--fm)}
 
 /* ── LIVE SESSION PANEL — action buttons ── */
-.live-action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.live-action-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.live-stack-block{background:rgba(200,165,92,.08);border:1px solid rgba(200,165,92,.25);border-radius:var(--r1);padding:8px 12px;margin-bottom:4px}
+.live-stack-row{display:flex;justify-content:space-between;align-items:center}
+.live-stack-lbl{font-size:10px;font-weight:700;color:var(--t3)}
+.live-stack-val{font-size:15px;font-weight:800;color:var(--pk2);font-family:var(--fm)}
+.live-stack-pnl{text-align:center;font-size:10.5px;font-weight:700;margin-top:2px}
+.live-stack-pnl.pos{color:var(--mt)}
+.live-stack-pnl.neg{color:var(--rs)}
 .live-action-btn{
   padding:9px 4px;border-radius:var(--r1);font-size:10.5px;font-weight:700;
   background:var(--b0);border:1px solid var(--bd2);color:var(--t2);cursor:pointer;
@@ -1828,6 +1835,13 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .hh-row-cards .comm-card{width:26px;height:36px;font-size:11px;border-radius:4px}
 .hh-row-cards .comm-card .mc-suit{font-size:9px}
 .hh-row-nocard{font-size:22px;opacity:.25;width:60px;text-align:center}
+.hh-row-replay-btn{
+  width:32px;height:32px;border-radius:50%;background:var(--b0);border:1px solid var(--bd2);
+  font-size:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  transition:all .2s var(--spring);
+}
+.hh-row-replay-btn:hover{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;transform:scale(1.12);box-shadow:0 4px 14px -3px color-mix(in srgb,var(--pk) 60%,transparent)}
+.hh-row-replay-btn:active{transform:scale(.94)}
 .hh-row-mid{flex:1;min-width:0}
 .hh-row-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:4px}
 .hh-row-stakes{font-family:var(--fm);font-size:11.5px;font-weight:700;color:var(--t1)}
@@ -1837,6 +1851,296 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .hh-row-right{text-align:right;flex-shrink:0}
 .hh-row-date{font-size:8.5px;color:var(--t4);margin-top:2px;font-family:var(--fm)}
 .hh-villain-link{color:var(--pk2);cursor:pointer;font-weight:700;text-decoration:underline;text-decoration-style:dotted}
+.hh-row-players{font-size:9px;font-weight:700;color:var(--li);background:rgba(139,156,196,.1);padding:1px 7px;border-radius:20px}
+
+/* ── Hand Log: players & board ── */
+.hh-board-row{display:flex;gap:8px}
+.hh-board-slot-wrap{flex:1;display:flex;flex-direction:column;gap:4px;align-items:center}
+.hh-board-slot-lbl{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t4)}
+.hh-board-slot{width:100%;min-height:60px;padding:8px}
+.hh-board-slot .comm-card{width:28px;height:40px;font-size:11px}
+
+/* ── Hand Log: sections ── */
+.hh-section{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px;animation:slideUp .3s var(--e) backwards}
+.hh-section-hdr{
+  display:flex;align-items:center;gap:8px;font-family:var(--fd);font-size:14px;font-style:italic;font-weight:800;
+  color:var(--pk2);margin-bottom:12px;
+}
+.hh-section-hdr span:first-child{font-size:16px;font-style:normal}
+.hh-player-count-badge{
+  margin-left:auto;font-size:10px;font-weight:800;color:var(--b0);background:var(--pk2);
+  padding:2px 9px;border-radius:20px;font-family:var(--fm);
+}
+.hh-collapse-toggle{cursor:pointer;user-select:none}
+.hh-collapse-arrow{margin-left:auto;font-size:12px;color:var(--t4);transition:transform .2s}
+
+/* ── Player rows ── */
+.hh-player-row{
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;
+  padding:10px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);
+}
+.hh-seat-badge{
+  width:26px;height:26px;border-radius:50%;background:var(--b2);border:1px solid var(--bd2);
+  display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--t3);flex-shrink:0;
+}
+.hh-seat-badge.hero{background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--b0);border-color:transparent;box-shadow:0 0 10px -2px color-mix(in srgb,var(--pk) 60%,transparent)}
+.hh-player-name-fixed{
+  flex:1;min-width:70px;padding:9px 12px;background:rgba(200,165,92,.08);border:1px solid rgba(200,165,92,.25);
+  border-radius:var(--r1);font-size:12px;font-weight:800;color:var(--pk2);
+}
+.hh-player-name-input{margin:0}
+.hh-player-row .ac-wrap{flex:1;min-width:70px}
+.hh-player-slot{flex:1 1 100%;order:5;min-height:auto;padding:8px 10px;margin-top:2px}
+.hh-player-slot .comm-card{width:30px;height:42px;font-size:12px}
+.hh-player-remove{
+  width:26px;height:26px;border-radius:50%;background:var(--b2);border:1px solid var(--bd2);
+  color:var(--t4);font-size:11px;cursor:pointer;transition:all .18s;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.hh-player-remove:hover{background:var(--rs);color:#fff;border-color:transparent;transform:rotate(90deg)}
+
+/* ── Action sequence ── */
+.hh-action-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.hh-action-row label{width:56px;flex-shrink:0;font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.5px}
+.hh-action-list{display:flex;flex-direction:column;gap:6px}
+.hh-action-item{font-size:11.5px;color:var(--t2);line-height:1.5}
+.hh-action-item b{color:var(--pk2)}
+.hh-action-note{font-size:10px;color:var(--t4);margin-top:2px;padding-left:12px}
+.hhr-action-text{
+  margin:0 20px 8px;padding:9px 12px;background:var(--b0);border:1px dashed var(--bd2);
+  border-radius:var(--r1);font-size:11px;color:var(--t3);text-align:center;
+}
+
+/* ══ HAND LOG WIZARD ══ */
+.hhw-dots{display:flex;justify-content:center;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.hhw-dot{width:9px;height:9px;border-radius:50%;background:var(--bd2);cursor:pointer;transition:all .25s var(--spring)}
+.hhw-dot:hover{transform:scale(1.3)}
+.hhw-dot.on{background:var(--pk);box-shadow:0 0 10px 1px color-mix(in srgb,var(--pk) 60%,transparent);transform:scale(1.4)}
+.hhw-dot.done{background:var(--mt)}
+.hhw-step{animation:vIn .3s var(--e)}
+.hhw-hint{font-size:10.5px;color:var(--t4);line-height:1.5;margin-bottom:12px;padding:8px 10px;background:var(--b0);border-radius:var(--r1);border:1px dashed var(--bd)}
+.hhw-hero-slot{min-height:90px}
+.hhw-hero-slot .comm-card{width:44px;height:62px;font-size:17px}
+.hhw-street-note{margin-top:10px;min-height:50px}
+.hhw-nav{display:flex;gap:8px;margin-top:14px}
+.hhw-nav .btn{flex:1;text-align:center}
+
+/* ── Per-street action rows ── */
+.hha-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:9px 10px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);margin-bottom:6px}
+.hha-name{font-size:11px;font-weight:700;color:var(--t1);min-width:70px;flex-shrink:0}
+.hha-btns{display:flex;gap:3px;flex-wrap:wrap}
+.hha-btn{padding:5px 9px;border-radius:20px;font-size:9.5px;font-weight:700;background:var(--b2);border:1px solid var(--bd2);color:var(--t4);cursor:pointer;transition:all .18s var(--spring)}
+.hha-btn:hover{color:var(--t1)}
+.hha-btn.sel.hha-fold{background:rgba(248,113,113,.18);border-color:var(--rs);color:var(--rs)}
+.hha-btn.sel.hha-check{background:rgba(139,156,196,.18);border-color:var(--li);color:var(--li)}
+.hha-btn.sel.hha-call{background:rgba(110,231,183,.18);border-color:var(--mt);color:var(--mt)}
+.hha-btn.sel.hha-bet{background:rgba(251,191,36,.18);border-color:var(--gd);color:var(--gd)}
+.hha-btn.sel.hha-raise{background:rgba(200,165,92,.22);border-color:var(--pk);color:var(--pk2);box-shadow:0 0 8px -2px color-mix(in srgb,var(--pk) 60%,transparent)}
+.hha-amt{width:64px;flex-shrink:0;margin:0;padding:5px 8px;font-size:11px}
+.hha-done-note{font-size:11px;color:var(--t4);text-align:center;padding:16px;font-style:italic}
+
+/* ── BB toggle ── */
+.hh-bb-btn{
+  width:30px;height:26px;border-radius:6px;font-size:9px;font-weight:800;flex-shrink:0;
+  background:var(--b0);border:1px solid var(--bd2);color:var(--t4);cursor:pointer;transition:all .2s var(--spring);
+}
+.hh-bb-btn:hover{color:var(--t2)}
+.hh-bb-btn.sel{background:linear-gradient(135deg,var(--gd),var(--gd2));color:var(--b0);border-color:transparent;box-shadow:0 0 10px -2px color-mix(in srgb,var(--gd) 60%,transparent)}
+
+/* ── Sequential action log + builder ── */
+.hha-log{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.hha-log-empty{font-size:10.5px;color:var(--t5);text-align:center;font-style:italic;padding:8px}
+.hha-log-item{
+  display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--b0);
+  border:1px solid var(--bd);border-radius:var(--r1);font-size:11px;animation:slideUp .2s var(--e);
+}
+.hha-log-num{
+  width:16px;height:16px;border-radius:50%;background:var(--b2);color:var(--t4);font-size:8px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.hha-log-text{flex:1;color:var(--t2)}
+.hha-log-text b{color:var(--pk2)}
+.hha-log-note{font-size:9.5px;color:var(--t4);font-style:italic}
+.hha-log-undo{width:20px;height:20px;border-radius:50%;background:transparent;border:1px solid var(--bd2);color:var(--t4);font-size:9px;cursor:pointer;flex-shrink:0;transition:all .18s}
+.hha-log-undo:hover{background:var(--rs);color:#fff;border-color:transparent}
+.hha-builder{background:var(--b0);border:1px dashed var(--bd2);border-radius:var(--r2);padding:12px}
+.hha-next-label{font-size:10.5px;font-weight:700;color:var(--t3);margin-bottom:8px;text-align:center}
+.hha-next-label.hha-auto{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--t1)}
+.hha-tocall-hint{text-align:center;font-size:10.5px;color:var(--t3);margin-bottom:8px}
+.hha-tocall-hint b{color:var(--gd2)}
+.hha-turn-dot{width:8px;height:8px;border-radius:50%;background:var(--mt);box-shadow:0 0 8px 1px color-mix(in srgb,var(--mt) 60%,transparent);animation:liveDotPulse 1.4s ease-in-out infinite;flex-shrink:0}
+.hha-player-picker{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.hha-player-pick-btn{
+  padding:8px 14px;border-radius:20px;font-size:11px;font-weight:700;background:var(--b2);
+  border:1px solid var(--bd2);color:var(--t2);cursor:pointer;transition:all .2s var(--spring);
+}
+.hha-player-pick-btn:hover{border-color:var(--pk);color:var(--pk2);transform:translateY(-1px)}
+.hha-complete{font-size:11px;color:var(--mt);text-align:center;padding:10px;font-weight:700}
+.hha-input-row{display:flex;gap:6px;margin-top:10px}
+.hha-input-row input{margin:0;font-size:11px}
+.hha-amt-wrap{display:flex;align-items:center;flex:1;background:var(--b0);border:1px solid var(--bd2);border-radius:var(--r1);padding:0 4px 0 10px;transition:all .2s}
+.hha-amt-wrap:focus-within{border-color:var(--pk);box-shadow:0 0 0 2px color-mix(in srgb,var(--pk) 20%,transparent)}
+.hha-amt-prefix{font-size:12px;font-weight:800;color:var(--pk2);flex-shrink:0}
+.hha-amt-wrap .hha-amt{border:none;background:transparent;flex:1}
+.hha-amt-error{animation:hhaShake .4s var(--e)}
+.hha-amt-wrap:has(.hha-amt-error){border-color:var(--rs);box-shadow:0 0 8px -2px color-mix(in srgb,var(--rs) 55%,transparent)}
+@keyframes hhaShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.hha-btn.hha-allin{background:rgba(248,113,113,.06)}
+.hha-btn.sel.hha-allin,.hha-btn.hha-allin:hover{background:rgba(248,113,113,.22);border-color:var(--rs);color:var(--rs);box-shadow:0 0 8px -2px color-mix(in srgb,var(--rs) 55%,transparent)}
+.hha-pos-tag{font-size:8px;color:var(--t5);font-weight:600;margin-left:2px}
+
+/* ══════════════════════ HAND BUILDER — SOLVER-STYLE TABLE ══════════════════════ */
+.hhb-workspace{background:transparent;padding:0}
+.hhb-topbar{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px}
+.hhb-topbar h3{margin-bottom:10px}
+.hhb-meta-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.hhb-toggle-sm{flex-shrink:0}
+.hhb-toggle-sm button{padding:8px 12px!important;font-size:10px!important}
+.hhb-meta-input{flex:1;min-width:90px;margin:0!important}
+
+/* ── The Table ── */
+.hhb-table-outer{margin-bottom:12px}
+.hhb-table-felt{
+  position:relative;width:100%;aspect-ratio:1.5/1;border-radius:50%/40%;
+  background:radial-gradient(ellipse at center,color-mix(in srgb,var(--pk) 10%,var(--b2)) 0%,var(--b1) 75%);
+  border:3px solid var(--bd3);box-shadow:0 0 0 6px var(--b0),0 20px 50px -14px rgba(0,0,0,.6),inset 0 0 60px -20px rgba(0,0,0,.5);
+  margin-bottom:10px;overflow:visible;
+}
+.hhb-seats{position:absolute;inset:0}
+.hhb-seat{
+  position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;
+  width:64px;transition:all .3s var(--e);z-index:2;
+}
+.hhb-seat.folded{opacity:.35;filter:grayscale(.7)}
+.hhb-seat-pos{font-size:7.5px;font-weight:800;letter-spacing:.5px;color:var(--pk2);text-shadow:0 0 8px color-mix(in srgb,var(--pk2) 40%,transparent)}
+.hhb-seat-avatar{
+  width:30px;height:30px;border-radius:50%;background:var(--b2);border:1.5px solid var(--bd2);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.hhb-seat.hero .hhb-seat-avatar{border-color:var(--pk);box-shadow:0 0 14px -2px color-mix(in srgb,var(--pk) 65%,transparent);background:linear-gradient(135deg,rgba(200,165,92,.2),rgba(200,165,92,.05))}
+.hhb-seat-name{font-size:8.5px;font-weight:700;color:var(--t2);max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+.hhb-seat.hero .hhb-seat-name{color:var(--pk2)}
+.hhb-seat-status{
+  font-size:7.5px;font-weight:800;color:var(--mt);background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.3);
+  padding:1px 6px;border-radius:20px;white-space:nowrap;animation:vIn .25s var(--spring);
+}
+.hhb-seat-status.folded{color:var(--rs);background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.3)}
+.hhb-seat-cards{display:flex;gap:2px;margin-top:2px}
+.hhb-seat-cards .comm-card{width:20px;height:28px;font-size:8px;border-radius:3px}
+.hhb-center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;
+}
+.hhb-pot{
+  font-size:10px;font-weight:800;color:var(--gd2);background:rgba(0,0,0,.35);border:1px solid color-mix(in srgb,var(--gd) 40%,transparent);
+  padding:4px 12px;border-radius:20px;text-shadow:0 0 10px color-mix(in srgb,var(--gd2) 50%,transparent);font-family:var(--fm);
+}
+.hhb-sidepot-badge{font-size:8px;font-weight:800;color:var(--rs);margin-left:3px;text-shadow:none}
+.hh-pots-breakdown{padding:12px 22px;border-bottom:1px solid var(--bd)}
+.hh-pot-layer{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);margin-bottom:6px;font-size:11px}
+.hh-pot-layer b{color:var(--gd2);font-family:var(--fm)}
+.hh-pot-layer span{color:var(--t4);font-size:9.5px}
+.hh-pot-layer.hh-pot-returned{border-style:dashed;opacity:.8}
+.hh-pot-layer.hh-pot-returned b{color:var(--t3)}
+.hhb-board{display:flex;gap:4px;min-height:44px;align-items:center}
+.hhb-board .comm-card{width:32px;height:45px;font-size:13px}
+.hhb-board-empty{font-size:9px;color:var(--t4);font-style:italic}
+.hhb-manage-btn{width:100%}
+
+/* ── Street tabs ── */
+.hhb-street-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px;background:var(--b2);border:1px solid var(--bd);border-radius:50px;padding:4px}
+.hhb-street-tabs::-webkit-scrollbar{display:none}
+.hhb-street-tabs button{
+  flex:1;min-width:64px;padding:9px 10px;border-radius:50px;font-size:10.5px;font-weight:700;
+  background:transparent;color:var(--t4);cursor:pointer;transition:all .22s var(--spring);white-space:nowrap;
+}
+.hhb-street-tabs button.on{background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--b0);box-shadow:0 3px 12px -2px color-mix(in srgb,var(--pk) 55%,transparent)}
+.hhb-street-tabs button{position:relative}
+.hhb-tab-dot{display:none;position:absolute;top:2px;right:4px;width:6px;height:6px;border-radius:50%}
+.hhb-tab-dot.active{display:block;background:var(--gd);box-shadow:0 0 6px 1px color-mix(in srgb,var(--gd) 70%,transparent)}
+.hhb-tab-dot.done{display:block;background:var(--mt);box-shadow:0 0 6px 1px color-mix(in srgb,var(--mt) 70%,transparent)}
+
+/* ── Flow hint & continue CTA ── */
+.hhb-flow-hint{
+  display:none;align-items:center;gap:8px;padding:10px 14px;margin-bottom:10px;
+  background:rgba(200,165,92,.08);border:1px dashed rgba(200,165,92,.35);border-radius:var(--r2);
+  font-size:11.5px;color:var(--t2);animation:vIn .3s var(--e);
+}
+.hhb-flow-hint span:first-child{font-size:15px;flex-shrink:0}
+.hha-continue-btn{
+  display:block;width:100%;margin-top:10px;padding:11px;border-radius:var(--r2);
+  background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--b0);
+  font-size:12px;font-weight:800;transition:all .2s var(--spring);
+}
+.hha-continue-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px -4px color-mix(in srgb,var(--pk) 55%,transparent)}
+
+/* ── Hero seat: tappable for cards ── */
+.hhb-seat.hero{cursor:pointer}
+.hhb-seat-tap-hint{
+  font-size:7px;font-weight:700;color:var(--pk2);background:rgba(200,165,92,.12);
+  border:1px dashed rgba(200,165,92,.4);padding:2px 6px;border-radius:20px;
+  margin-top:2px;white-space:nowrap;animation:liveDotPulse 1.8s ease-in-out infinite;
+}
+.hhb-seat-unknown-tag{
+  font-size:7px;font-weight:700;color:var(--t4);background:var(--b0);
+  border:1px dashed var(--bd2);padding:2px 6px;border-radius:20px;margin-top:2px;white-space:nowrap;
+}
+.hh-unknown-btn{
+  display:block;width:100%;margin:10px 0;padding:10px;border-radius:var(--r1);
+  background:var(--b0);border:1px dashed var(--bd2);color:var(--t3);font-size:11px;font-weight:700;
+  transition:all .2s;
+}
+.hh-unknown-btn:hover{border-color:var(--t4);color:var(--t2)}
+.hh-unknown-btn.active{background:rgba(139,156,196,.1);border-color:var(--li);border-style:solid;color:var(--li)}
+
+.hhb-panel{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px;animation:vIn .3s var(--e)}
+
+/* ── Notes toggle/panel ── */
+.hhb-notes-toggle{
+  display:flex;align-items:center;gap:8px;width:100%;padding:12px 16px;margin-bottom:8px;
+  background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);color:var(--t2);font-size:12px;font-weight:700;cursor:pointer;
+}
+.hhb-notes-toggle .hh-collapse-arrow{margin-left:auto}
+.hhb-notes-panel{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px;animation:vIn .25s var(--e)}
+.hhb-actions-bar{
+  display:flex;gap:8px;position:sticky;bottom:8px;z-index:40;
+  padding:10px;margin-top:4px;background:color-mix(in srgb,var(--b1) 92%,transparent);
+  backdrop-filter:blur(10px);border-radius:var(--r2);border:1px solid var(--bd2);
+  box-shadow:0 -8px 24px -8px rgba(0,0,0,.4);
+}
+.hhb-actions-bar .btn{flex:1;text-align:center}
+
+/* ── Read-only position badge in player manager ── */
+.hh-pos-badge{
+  width:56px;flex-shrink:0;padding:7px 4px;font-size:10px;font-weight:800;background:var(--b0);
+  border:1px solid var(--bd2);border-radius:6px;color:var(--t3);text-align:center;
+}
+.hh-pos-badge.hero{color:var(--pk2);border-color:rgba(200,165,92,.35);background:rgba(200,165,92,.06)}
+/* ── Showdown step reuse hh-player-row styling ── */
+
+/* ── Hand detail: player list ── */
+.hh-detail-players{display:flex;flex-wrap:wrap;gap:8px;padding:14px 22px;border-bottom:1px solid var(--bd)}
+.hhd-player-card{
+  flex:1;min-width:100px;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);
+  padding:8px;text-align:center;
+}
+.hhd-player-name{font-size:10px;font-weight:700;color:var(--t2);margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hhd-player-cards{display:flex;justify-content:center;gap:3px}
+.hhd-player-cards .comm-card{width:28px;height:40px;font-size:11px}
+
+/* ── Hand Replay Viewer ── */
+.hhr-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--bd2);background:linear-gradient(135deg,var(--b2),var(--b3))}
+.hhr-title{font-family:var(--fd);font-size:16px;font-style:italic;font-weight:800;color:var(--pk2)}
+.hhr-table-wrap{padding:16px 16px 4px}
+.hhr-felt{aspect-ratio:1.35/1}
+.hhr-street-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pk2);margin:14px 20px 8px;text-align:center}
+.hhr-dots{display:flex;justify-content:center;gap:7px;padding:10px 0 12px}
+.hhr-dot{width:7px;height:7px;border-radius:50%;background:var(--bd2);transition:all .25s}
+.hhr-dot.on{background:var(--pk);box-shadow:0 0 8px 1px color-mix(in srgb,var(--pk) 60%,transparent);transform:scale(1.3)}
+.hhr-dot.na{opacity:.3}
+.hhr-nav{display:flex;gap:8px;padding:0 20px 20px}
+.hhr-nav .btn{flex:1;text-align:center}
+.hhr-nav .hha-log,.hhr-nav .hha-log-empty{margin:0 20px}
 
 .pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
 .pl-card{
@@ -2125,6 +2429,117 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .combo-ref-item{background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);padding:10px;text-align:center}
 .combo-ref-item b{display:block;font-family:var(--fm);font-size:17px;color:var(--pk2);margin-bottom:2px}
 .combo-ref-item span{font-size:9px;color:var(--t4);line-height:1.3}
+
+/* ══════════════════════ FLOWCHART EDITOR ══════════════════════ */
+.flow-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+
+/* ══ Tools Hub ══ */
+.tools-hub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tools-hub-card{
+  display:flex;align-items:center;gap:10px;background:var(--b2);border:1px solid var(--bd);
+  border-radius:var(--r2);padding:14px 12px;cursor:pointer;transition:all .2s var(--spring);
+  animation:slideUp .3s var(--e) backwards;
+}
+.tools-hub-card:hover{border-color:var(--pk);transform:translateY(-2px);box-shadow:0 8px 22px -6px color-mix(in srgb,var(--pk) 45%,transparent)}
+.tools-hub-card:active{transform:scale(.97)}
+.thc-icon{font-size:22px;flex-shrink:0}
+.thc-label{font-size:12px;font-weight:800;color:var(--t1);line-height:1.25}
+.flow-card{
+  position:relative;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);
+  padding:20px 14px;text-align:center;cursor:pointer;transition:all .2s var(--spring);
+  animation:slideUp .3s var(--e) backwards;
+}
+.flow-card:hover{border-color:var(--pk);transform:translateY(-2px);box-shadow:0 8px 22px -6px color-mix(in srgb,var(--pk) 45%,transparent)}
+.flow-card-icon{font-size:28px;margin-bottom:10px}
+.flow-card-name{font-size:12px;font-weight:800;color:var(--t1);margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.flow-card-meta{font-size:9px;color:var(--t4)}
+.flow-card-del{
+  position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;
+  background:var(--b0);border:1px solid var(--bd2);color:var(--t4);font-size:9px;
+  display:flex;align-items:center;justify-content:center;transition:all .18s;
+}
+.flow-card-del:hover{background:var(--rs);color:#fff;border-color:transparent}
+
+/* ── Editor top bar & toolbar ── */
+.flow-editor-topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.flow-back-btn{padding:9px 14px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:11px;font-weight:700;flex-shrink:0}
+.flow-title-input{flex:1;min-width:0;background:transparent;border:none;border-bottom:1.5px dashed var(--bd2);color:var(--t1);font-size:15px;font-weight:800;padding:6px 4px;font-family:var(--fd);font-style:italic}
+.flow-icon-btn{width:36px;height:36px;border-radius:50%;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:16px;flex-shrink:0}
+.flow-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px;justify-content:space-between}
+.flow-toolbar-actions{display:flex;gap:6px}
+.flow-tool-btn{
+  width:36px;height:36px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
+  font-size:14px;transition:all .2s var(--spring);
+}
+.flow-tool-btn:hover{border-color:var(--pk);transform:translateY(-1px)}
+.flow-tool-btn.active{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;box-shadow:0 3px 12px -2px color-mix(in srgb,var(--pk) 55%,transparent)}
+.flow-tool-btn.flow-tool-danger:hover{border-color:var(--rs);color:var(--rs)}
+.flow-hint{font-size:10.5px;color:var(--t4);text-align:center;margin-bottom:10px;padding:6px 10px;background:var(--b0);border-radius:var(--r1);border:1px dashed var(--bd)}
+
+/* ── Canvas ── */
+.flow-canvas-wrap{
+  width:100%;height:calc(100vh - 340px);min-height:360px;overflow:auto;
+  background:var(--b0);border:1px solid var(--bd2);border-radius:var(--r2);
+  background-image:radial-gradient(circle,var(--bd2) 1px,transparent 1px);background-size:22px 22px;
+  position:relative;
+}
+.flow-canvas{position:relative;transform-origin:0 0;min-width:100%;min-height:100%}
+.flow-svg{position:absolute;left:0;top:0;pointer-events:none;z-index:1}
+#flowNodesLayer{position:relative;z-index:2}
+#flowConnLabelsLayer{position:absolute;left:0;top:0;z-index:2;pointer-events:none}
+.flow-arrow-opt{
+  position:absolute;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;
+  background:var(--conn-color,#c8a55c);border:2px solid var(--b1);
+  pointer-events:auto;opacity:.75;transition:all .18s var(--spring);z-index:4;
+  box-shadow:0 2px 8px -2px rgba(0,0,0,.5);
+}
+.flow-arrow-opt:hover{opacity:1;transform:translate(-50%,-50%) scale(1.4)}
+.flow-arrow-label{
+  position:absolute;transform:translate(-50%,-50%);font-size:9.5px;font-weight:700;color:var(--t2);
+  background:var(--b1);padding:2px 8px;border-radius:20px;border:1px solid var(--bd2);
+  white-space:nowrap;pointer-events:none;z-index:4;
+}
+
+/* ── Nodes ── */
+.flow-node-wrap{
+  position:absolute;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;
+  will-change:left,top;
+}
+.flow-node-wrap:active{cursor:grabbing}
+.flow-node-wrap.sel .flow-node{box-shadow:0 0 0 3px color-mix(in srgb,var(--node-color) 45%,transparent),0 4px 18px -4px color-mix(in srgb,var(--node-color) 70%,transparent)}
+.flow-node-wrap.hover-target .flow-node{box-shadow:0 0 0 4px var(--mt),0 0 24px -2px var(--mt)!important;transform:scale(1.05)}
+.flow-node-wrap.dragging{z-index:10}
+.flow-node-wrap.dragging .flow-node{transform:scale(1.06);box-shadow:0 14px 34px -8px rgba(0,0,0,.55),0 0 0 3px color-mix(in srgb,var(--node-color) 60%,transparent)!important;transition:box-shadow .15s,transform .15s var(--spring)}
+.flow-node{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2px;
+  padding:8px;background:color-mix(in srgb,var(--node-color) 18%,var(--b2));
+  border:2px solid var(--node-color);color:var(--t1);overflow:hidden;
+  box-shadow:0 4px 14px -4px color-mix(in srgb,var(--node-color) 50%,transparent);
+  transition:box-shadow .2s,border-radius .2s,transform .2s var(--spring);
+}
+.flow-node-handle{
+  position:absolute;right:-14px;bottom:-14px;width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--b0);font-size:12px;
+  display:flex;align-items:center;justify-content:center;cursor:grab;
+  box-shadow:0 3px 10px -2px color-mix(in srgb,var(--pk) 60%,transparent);
+  border:2px solid var(--b1);z-index:3;transition:transform .2s var(--spring);
+}
+.flow-node-handle:hover{transform:scale(1.2)}
+.flow-node-handle:active{cursor:grabbing}
+.flow-node-text{font-size:12px;font-weight:700;line-height:1.25;word-break:break-word;pointer-events:none;max-width:100%;overflow:hidden}
+.flow-node-subtitle{font-size:9.5px;font-weight:600;line-height:1.2;color:color-mix(in srgb,var(--t1) 70%,transparent);word-break:break-word;pointer-events:none;max-width:100%;overflow:hidden;font-style:italic}
+.flow-node-body{font-size:8.5px;font-weight:500;line-height:1.2;color:color-mix(in srgb,var(--t1) 55%,transparent);word-break:break-word;pointer-events:none;max-width:100%;overflow:hidden}
+.flow-shape-diamond .flow-node-subtitle,.flow-shape-diamond .flow-node-body{max-width:55%}
+.flow-shape-rect{border-radius:10px}
+.flow-shape-oval{border-radius:50%/50%}
+.flow-shape-circle{border-radius:50%}
+.flow-shape-diamond{clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%)}
+.flow-shape-diamond .flow-node-text{max-width:60%}
+
+/* ── Node editor modal ── */
+.flow-color-row{display:flex;flex-wrap:wrap;gap:8px}
+.flow-color-opt{width:32px;height:32px;border-radius:50%;border:2px solid transparent;transition:all .2s var(--spring)}
+.flow-color-opt.sel{border-color:var(--t1);transform:scale(1.15);box-shadow:0 0 0 2px var(--b1),0 0 10px 1px rgba(255,255,255,.3)}
 .nc-nb-chip{
   display:inline-flex;align-items:center;gap:3px;
   padding:2px 7px;border-radius:50px;font-size:8px;font-weight:700;
@@ -2309,7 +2724,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <button class="dn-t" data-v="trainer" onclick="go('trainer')">🎯 Train</button>
     <button class="dn-t" data-v="files" onclick="go('files')">📁 Files</button>
     <button class="dn-t" data-v="bankroll" onclick="go('bankroll')">💰 Bankroll</button>
-    <button class="dn-t" data-v="notes" onclick="go('notes')">📝 Notes</button>
     <button class="dn-t" data-v="settings" onclick="go('settings')">⚙ Settings</button>
     <button class="dn-t" data-v="tools" onclick="go('tools')">🛠 Tools</button>
   </nav>
@@ -2324,7 +2738,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <button class="hd-item" data-v="trainer" onclick="go('trainer')"><span class="hdi-ico">🎯</span>Train</button>
   <button class="hd-item" data-v="files" onclick="go('files')"><span class="hdi-ico">📁</span>Files</button>
   <button class="hd-item" data-v="bankroll" onclick="go('bankroll')"><span class="hdi-ico">💰</span>Bankroll</button>
-  <button class="hd-item" data-v="notes" onclick="go('notes')"><span class="hdi-ico">📝</span>Notes</button>
   <button class="hd-item" data-v="settings" onclick="go('settings')"><span class="hdi-ico">⚙</span>Settings</button>
   <button class="hd-item" data-v="tools" onclick="go('tools')"><span class="hdi-ico">🛠</span>Tools</button>
 </nav>
@@ -2566,6 +2979,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 </div>
 <!-- NOTES -->
 <div id="notesV" class="view" style="max-width:900px;margin:0 auto">
+  <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
   <div class="section-head"><span style="font-size:20px">📓</span><h2>Notes &amp; Hand History</h2></div>
   <nav class="br-sub-nav" id="notesHubNav">
     <button class="on" data-nh="notesMain">📝 My Notes</button>
@@ -2618,37 +3032,61 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 
   <!-- ══ HAND HISTORY SUB-TAB ══ -->
   <div class="br-sub" id="hhHands">
-    <div class="br-form" id="hhFormCard">
-      <h3 id="hhFormTitle">✦ Log a Hand</h3>
-      <input type="hidden" id="hhEditId"/>
-      <div class="br-toggle" id="hhFmtTog">
-        <button class="on" data-f="cash" onclick="setHhFmt('cash')">🃏 Cash Game</button>
-        <button data-f="tourney" onclick="setHhFmt('tourney')">🏆 Tournament</button>
+    <div class="hhb-workspace" id="hhFormCard">
+      <div class="hhb-topbar">
+        <h3 id="hhFormTitle">✦ Hand Builder</h3>
+        <input type="hidden" id="hhEditId"/>
+        <div class="hhb-meta-row">
+          <div class="br-toggle hhb-toggle-sm" id="hhFmtTog">
+            <button class="on" data-f="cash" onclick="setHhFmt('cash')">🃏 Cash</button>
+            <button data-f="tourney" onclick="setHhFmt('tourney')">🏆 MTT</button>
+          </div>
+          <input type="date" id="hhDate" class="minp hhb-meta-input"/>
+          <div class="ac-wrap hhb-meta-input"><input class="minp" id="hhStakes" placeholder="Stakes" style="margin:0"/><div class="ac-list" id="hhStakesAC"></div></div>
+          <select id="hhTable" class="hhb-meta-input" onchange="hhSyncPlayersFromTableSize()"><option>8-max</option><option>7-max</option><option>6-max</option><option>5-max</option><option>4-max</option><option>3-max</option><option>HU</option></select>
+        </div>
       </div>
-      <div class="br-fgrid">
-        <div class="br-fg"><label>Date</label><input type="date" id="hhDate"/></div>
-        <div class="br-fg"><label>Stakes</label><div class="ac-wrap"><input class="minp" id="hhStakes" placeholder="e.g. 1/2" style="margin:0"/><div class="ac-list" id="hhStakesAC"></div></div></div>
-        <div class="br-fg"><label>Position</label><select id="hhPos"><option value="">—</option><option>UTG</option><option>UTG+1</option><option>MP</option><option>HJ</option><option>CO</option><option>BTN</option><option>SB</option><option>BB</option></select></div>
-        <div class="br-fg"><label>Table Size</label><select id="hhTable"><option>9-max</option><option>8-max</option><option>7-max</option><option>6-max</option><option>5-max</option><option>4-max</option><option>3-max</option><option>HU</option></select></div>
-        <div class="br-fg"><label>Hero Cards</label><input class="minp" id="hhHero" placeholder="e.g. AhKs" style="margin:0;font-family:var(--fm);text-transform:none" oninput="hhPreviewCards()"/></div>
-        <div class="br-fg"><label>Result</label><input type="number" id="hhResult" placeholder="e.g. 450 or -120" step="0.01" style="margin:0"/></div>
-        <div class="br-fg"><label>Flop</label><input class="minp" id="hhFlop" placeholder="e.g. Kh7d2s" style="margin:0;font-family:var(--fm)" oninput="hhPreviewCards()"/></div>
-        <div class="br-fg"><label>Turn</label><input class="minp" id="hhTurn" placeholder="e.g. 9c" style="margin:0;font-family:var(--fm)" oninput="hhPreviewCards()"/></div>
-        <div class="br-fg"><label>River</label><input class="minp" id="hhRiver" placeholder="e.g. Qh" style="margin:0;font-family:var(--fm)" oninput="hhPreviewCards()"/></div>
-        <div class="br-fg full"><label>Villain / Opponent</label><div class="ac-wrap"><input class="minp" id="hhVillain" placeholder="Name or table alias…" style="margin:0" oninput="hhVillainAC()"/><div class="ac-list" id="hhVillainAC"></div></div></div>
-        <div class="br-fg full"><label>Preview</label><div class="hh-card-preview" id="hhCardPreview"><span class="hh-preview-empty">Cards will appear here</span></div></div>
-        <div class="br-fg full">
+
+      <div class="hhb-table-outer">
+        <div class="hhb-table-felt" id="hhbTableFelt">
+          <div class="hhb-seats" id="hhbSeats"></div>
+          <div class="hhb-center">
+            <div class="hhb-pot" id="hhbPot">Pot 0</div>
+            <div class="hhb-board" id="hhbBoard"></div>
+          </div>
+        </div>
+        <button class="btn btn-s hhb-manage-btn" onclick="openHhPlayerManager()">👥 Manage Table (<span id="hhbPlayerCountLbl">2</span>)</button>
+      </div>
+
+      <div class="hhb-street-tabs" id="hhbStreetTabs">
+        <button class="on" data-street="preflop">Preflop<span class="hhb-tab-dot" id="hhbTabDotPreflop"></span></button>
+        <button data-street="flop">Flop<span class="hhb-tab-dot" id="hhbTabDotFlop"></span></button>
+        <button data-street="turn">Turn<span class="hhb-tab-dot" id="hhbTabDotTurn"></span></button>
+        <button data-street="river">River<span class="hhb-tab-dot" id="hhbTabDotRiver"></span></button>
+        <button data-street="showdown">Showdown</button>
+      </div>
+      <div class="hhb-flow-hint" id="hhbFlowHint"></div>
+
+      <div id="hhbStreetContent"></div>
+
+      <button class="hhb-notes-toggle" onclick="hhToggleNotesPanel()"><span>📝</span>Result, Tags &amp; Notes<span class="hh-collapse-arrow" id="hhbNotesArrow">▸</span></button>
+      <div class="hhb-notes-panel" id="hhbNotesPanel" style="display:none">
+        <div class="br-fg full"><label>Result</label><input type="number" id="hhResult" placeholder="e.g. 450 or -120 (net for this hand)" step="0.01" style="margin:0"/></div>
+        <div class="br-fg full" style="margin-top:8px">
           <label>Tags</label>
           <div class="tags-w" id="hhTagsW"><input class="tinp" id="hhTagsI" placeholder="bluff, value bet, cooler, hero call…"/></div>
         </div>
-        <div class="br-fg full"><label>Action / Analysis Notes</label><textarea class="rnote" id="hhNotes" placeholder="What happened, why you played it this way, what you'd do differently…" style="min-height:80px"></textarea></div>
+        <div class="br-fg full" style="margin-top:8px"><label>Overall Analysis</label><textarea class="rnote" id="hhNotes" placeholder="Why you played it this way, what you'd do differently…" style="min-height:70px"></textarea></div>
       </div>
-      <div style="display:flex;gap:8px;margin-top:12px">
+
+      <div class="hhb-actions-bar">
         <button class="btn pri" onclick="saveHhHand()">✦ Save Hand</button>
-        <button class="btn" onclick="resetHhForm()">Cancel</button>
+        <button class="btn" onclick="hhCancelWithConfirm()">Cancel</button>
       </div>
     </div>
     <div class="br-stats" id="hhStats"></div>
+
+
     <div class="br-hist-toolbar">
       <div class="br-hist-toolbar-left">
         <div class="ac-wrap" style="min-width:150px"><input type="text" class="minp" id="hhSearch" placeholder="🔍 Search stakes, villain, tags, notes…" style="margin:0" oninput="renderHhHands()"/></div>
@@ -2708,7 +3146,29 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 </div>
 <!-- TOOLS -->
 <div id="toolsV" class="view" style="max-width:900px;margin:0 auto">
-  <div class="section-head"><span style="font-size:20px">🛠</span><h2>Pro Tools</h2></div>
+  <!-- HUB -->
+  <div id="toolsHub">
+    <div class="section-head"><span style="font-size:20px">🛠</span><h2>Tools</h2></div>
+    <div class="setting-desc" style="margin-bottom:14px">Calculators, notes, hand history, and flowcharts — all in one place.</div>
+    <div class="slbl" style="margin-bottom:8px">🧮 Calculators</div>
+    <div class="tools-hub-grid">
+      <div class="tools-hub-card" onclick="showToolsSection('tlEquity')"><span class="thc-icon">🎲</span><span class="thc-label">Equity Calculator</span></div>
+      <div class="tools-hub-card" onclick="showToolsSection('tlPotOdds')"><span class="thc-icon">💰</span><span class="thc-label">Pot Odds</span></div>
+      <div class="tools-hub-card" onclick="showToolsSection('tlSpr')"><span class="thc-icon">📐</span><span class="thc-label">SPR &amp; Sizing</span></div>
+      <div class="tools-hub-card" onclick="showToolsSection('tlCombo')"><span class="thc-icon">🔢</span><span class="thc-label">Combos</span></div>
+    </div>
+    <div class="slbl" style="margin:16px 0 8px">📝 Study &amp; Records</div>
+    <div class="tools-hub-grid">
+      <div class="tools-hub-card" onclick="go('notes')"><span class="thc-icon">📝</span><span class="thc-label">Notes</span></div>
+      <div class="tools-hub-card" onclick="go('notes');switchNotesHub('hhHands')"><span class="thc-icon">📔</span><span class="thc-label">Hand History</span></div>
+      <div class="tools-hub-card" onclick="go('notes');switchNotesHub('hhPlayers')"><span class="thc-icon">👤</span><span class="thc-label">Player Notes</span></div>
+      <div class="tools-hub-card" onclick="go('flow')"><span class="thc-icon">🧠</span><span class="thc-label">Flowcharts</span></div>
+    </div>
+  </div>
+
+  <!-- CALCULATORS SUB-AREA -->
+  <div id="toolsCalcArea" style="display:none">
+    <button class="flow-back-btn" style="margin-bottom:12px" onclick="showToolsHub()">← Back to Tools</button>
   <nav class="br-sub-nav" id="toolsNav">
     <button class="on" data-tl="tlEquity">🎲 Equity</button>
     <button data-tl="tlPotOdds">💰 Pot Odds</button>
@@ -2805,6 +3265,49 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       </div>
     </div>
   </div>
+  </div>
+</div>
+<!-- FLOWCHARTS -->
+<div id="flowV" class="view">
+  <!-- LIST VIEW -->
+  <div id="flowListArea">
+    <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
+    <div class="section-head"><span style="font-size:20px">🧠</span><h2>Flowcharts</h2></div>
+    <div class="setting-desc" style="margin-bottom:14px">Map out decision trees, study plans, or any thought process visually.</div>
+    <button class="btn pri" style="width:100%;padding:14px;font-weight:800;margin-bottom:16px" onclick="createNewFlowchart()">+ New Flowchart</button>
+    <div id="flowGrid" class="flow-grid"></div>
+  </div>
+
+  <!-- EDITOR VIEW -->
+  <div id="flowEditorArea" style="display:none">
+    <div class="flow-editor-topbar">
+      <button class="flow-back-btn" onclick="closeFlowEditor()">← Back</button>
+      <input class="flow-title-input" id="flowTitleInput" placeholder="Untitled Flowchart" oninput="flowRenameCurrent(this.value)"/>
+      <button class="flow-icon-btn" onclick="openFlowManageM()" title="Manage">⋯</button>
+    </div>
+    <div class="flow-toolbar">
+      <div class="seg-row" id="flowShapeRow">
+        <button data-shape="rect" class="sel">▭ Box</button>
+        <button data-shape="diamond">◆ Decision</button>
+      </div>
+      <div class="flow-toolbar-actions">
+        <button class="flow-tool-btn" id="flowAddBtn" onclick="flowAddNode()" title="Add node">➕</button>
+        <button class="flow-tool-btn" onclick="flowAutoLayout()" title="Auto layout">✨</button>
+        <button class="flow-tool-btn" onclick="flowFitToScreen(true)" title="Fit to screen">⛶</button>
+        <button class="flow-tool-btn" onclick="flowZoom(0.1)" title="Zoom in">🔍+</button>
+        <button class="flow-tool-btn" onclick="flowZoom(-0.1)" title="Zoom out">🔍−</button>
+        <button class="flow-tool-btn flow-tool-danger" onclick="flowClearCanvas()" title="Clear all">🗑️</button>
+      </div>
+    </div>
+    <div class="flow-hint" id="flowModeHint">Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.</div>
+    <div class="flow-canvas-wrap" id="flowCanvasWrap">
+      <div class="flow-canvas" id="flowCanvas">
+        <svg class="flow-svg" id="flowSvg"></svg>
+        <div id="flowNodesLayer"></div>
+        <div id="flowConnLabelsLayer"></div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- SETTINGS -->
 <div id="settingsV" class="view" style="max-width:800px;margin:0 auto">
@@ -2812,9 +3315,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div class="gp" style="margin-bottom:12px">
     <div class="slbl">🚪 Quick Links</div>
     <div class="ql-grid">
-      <div class="tr-picker-btn" onclick="go('notes')"><span class="tpb-icon">📝</span><div class="tpb-text"><span class="tpb-label">Notes</span><span class="tpb-sub">Study notebooks &amp; freeform notes</span></div><span class="tpb-chevron">›</span></div>
-      <div class="tr-picker-btn" onclick="go('notes');switchNotesHub('hhHands')"><span class="tpb-icon">📔</span><div class="tpb-text"><span class="tpb-label">Hand History &amp; Players</span><span class="tpb-sub">Log hands &amp; track opponent reads</span></div><span class="tpb-chevron">›</span></div>
-      <div class="tr-picker-btn" onclick="go('tools')"><span class="tpb-icon">🛠</span><div class="tpb-text"><span class="tpb-label">Pro Tools</span><span class="tpb-sub">Equity, pot odds, SPR &amp; combo calculators</span></div><span class="tpb-chevron">›</span></div>
+      <div class="tr-picker-btn" onclick="go('tools')"><span class="tpb-icon">🛠</span><div class="tpb-text"><span class="tpb-label">Tools</span><span class="tpb-sub">Calculators, notes, hand history &amp; flowcharts</span></div><span class="tpb-chevron">›</span></div>
     </div>
   </div>
   
@@ -2892,6 +3393,20 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="slbl">📖 Pro Reference</div>
     <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">HUD Stat &amp; Exploit Cheat Sheet</span><span class="setting-desc">VPIP/PFR reads, population tendencies, quick exploits</span></div><button class="btn btn-s pri" onclick="openHudRef()">📖 Open</button></div>
   </div>
+  <div class="gp" style="margin-bottom:12px">
+    <div class="slbl">📔 Hand History Currency</div>
+    <div class="setting-row" style="border-bottom:none;flex-direction:column;align-items:stretch;gap:8px">
+      <div class="setting-info"><span class="setting-label">Currency for bets, pots &amp; raises</span><span class="setting-desc">Used when logging and replaying hands — independent of your bankroll currency</span></div>
+      <div class="seg-row" id="hhCurrencyRow">
+        <button data-cur="USD" class="sel">$ USD</button>
+        <button data-cur="EUR">€ EUR</button>
+        <button data-cur="GBP">£ GBP</button>
+        <button data-cur="CAD">C$ CAD</button>
+        <button data-cur="AUD">A$ AUD</button>
+        <button data-cur="JPY">¥ JPY</button>
+      </div>
+    </div>
+  </div>
   
 <div class="settings-category"><span class="sc-icon">♠</span>Content Management</div>
 <div class="gp" style="margin-bottom:12px">
@@ -2923,6 +3438,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <button class="bnav-t" data-v="trainer" onclick="go('trainer')"><span class="bi">🎯</span>Train</button>
   <button class="bnav-t" data-v="files" onclick="go('files')"><span class="bi">📁</span>Files</button>
   <button class="bnav-t" data-v="bankroll" onclick="go('bankroll')"><span class="bi">💰</span>Bank</button>
+  <button class="bnav-t" data-v="tools" onclick="go('tools')"><span class="bi">🛠</span>Tools</button>
   <button class="bnav-t" data-v="settings" onclick="go('settings')"><span class="bi">⚙️</span>More</button>
 </nav>
 <!-- MODALS -->
@@ -2937,6 +3453,64 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 <div class="mov" id="depM"><div class="mdl" style="max-width:340px"><h3 id="depMTitle">+ Deposit</h3><input type="hidden" id="depSign" value="1"/><div style="margin-bottom:10px"><label class="slbl" id="depAmtLabel">Amount</label><input class="minp" id="depAmt" type="number" placeholder="0.00" step="0.01" style="margin:0;font-size:16px;text-align:center;font-family:var(--fm)"/></div><div style="margin-bottom:10px"><label class="slbl">Description</label><input class="minp" id="depDesc" placeholder="Optional..." style="margin:0"/></div><div class="mact"><button class="btn" onclick="closeM('depM')">Cancel</button><button class="btn pri" onclick="submitDep()">Confirm</button></div></div></div>
 <div class="mov" id="sessDetailM"><div class="mdl sess-detail-mdl" id="sessDetailContent"></div></div>
 <div class="mov" id="hhDetailM"><div class="mdl sess-detail-mdl" id="hhDetailContent"></div></div>
+<div class="mov" id="flowNodeM"><div class="mdl" style="max-width:420px;max-height:85vh;overflow-y:auto">
+  <h3>✎ Edit Node</h3>
+  <label class="slbl">Title</label>
+  <textarea class="minp" id="flowNodeText" placeholder="Node text…" style="min-height:50px;font-size:14px"></textarea>
+  <label class="slbl" style="margin-top:8px">Subtitle <span class="tool-optional">(optional)</span></label>
+  <input class="minp" id="flowNodeSubtitle" placeholder="A short subtitle…"/>
+  <label class="slbl" style="margin-top:8px">Body <span class="tool-optional">(optional)</span></label>
+  <textarea class="minp" id="flowNodeBody" placeholder="Extra detail or notes…" style="min-height:60px;font-size:12px"></textarea>
+  <div class="slbl" style="margin-top:10px">Shape</div>
+  <div class="seg-row" id="flowNodeShapeRow">
+    <button data-shape="rect">▭ Box</button>
+    <button data-shape="diamond">◆ Decision</button>
+  </div>
+  <div class="slbl" style="margin-top:10px">Color</div>
+  <div class="flow-color-row" id="flowNodeColorRow"></div>
+  <div class="mact"><button class="btn btn-d" onclick="flowDeleteSelectedNode()">🗑️ Delete Node</button><button class="btn pri" onclick="closeM('flowNodeM')">Done</button></div>
+</div></div>
+<div class="mov" id="flowConnM"><div class="mdl" style="max-width:380px">
+  <h3>🔗 Arrow</h3>
+  <label class="slbl">Label <span class="tool-optional">(optional)</span></label>
+  <input class="minp" id="flowConnLabel" placeholder="e.g. Yes / No / Fold…"/>
+  <div class="slbl" style="margin-top:10px">Color</div>
+  <div class="flow-color-row" id="flowConnColorRow"></div>
+  <div class="mact"><button class="btn btn-d" onclick="flowDeleteSelectedConnection()">🗑️ Remove Arrow</button><button class="btn pri" onclick="closeM('flowConnM')">Done</button></div>
+</div></div>
+<div class="mov" id="flowManageM"><div class="mdl" style="max-width:420px">
+  <h3>⋯ Manage Flowchart</h3>
+  <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Duplicate</span><span class="setting-desc">Make a copy to branch off from</span></div><button class="btn btn-s" onclick="duplicateFlowchart()">⧉ Duplicate</button></div>
+  <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Delete</span><span class="setting-desc">Remove this flowchart permanently</span></div><button class="btn btn-s btn-d" onclick="deleteCurrentFlowchart()">🗑️ Delete</button></div>
+  <div class="mact"><button class="btn pri" onclick="closeM('flowManageM')">Close</button></div>
+</div></div>
+<div class="mov" id="hhPlayerManagerM"><div class="mdl" style="max-width:480px;max-height:82vh;overflow-y:auto">
+  <h3>👥 Table &amp; Players</h3>
+  <div class="seg-row" id="hhPresetRow">
+    <button data-preset="2" class="sel">🆚 Heads-Up</button>
+    <button data-preset="6">6-Max</button>
+    <button data-preset="8">8-Max</button>
+  </div>
+  <div class="slbl" style="margin-top:12px">🎯 Where is Hero sitting?</div>
+  <div class="seg-row" id="hhHeroPosRow"></div>
+  <div class="hhw-hint" style="margin-top:10px">Everyone else's position is set automatically based on seat order around the table — just add players in the order they sit, going clockwise from Hero.</div>
+  <div id="hhPlayersArea" style="margin-top:6px"></div>
+  <button class="btn btn-s" style="width:100%;margin-top:6px" onclick="hhAddPlayer()" id="hhAddPlayerBtn">+ Add Player</button>
+  <div class="mact"><button class="btn pri" onclick="closeM('hhPlayerManagerM')">Done</button></div>
+</div></div>
+<div class="mov" id="hhCardPickerM"><div class="mdl cp-modal">
+  <div class="cp-header">
+    <h3 id="hhCardPickerTitle" style="margin:0;border:none;padding:0">Select Cards</h3>
+    <button class="gs-close" onclick="closeM('hhCardPickerM')">✕</button>
+  </div>
+  <div class="cp-selected-row" id="hhCpSelectedRow"></div>
+  <div class="cp-grid" id="hhCpGrid"></div>
+  <button class="hh-unknown-btn" id="hhUnknownBtn" onclick="hhToggleCardsUnknown()">🤷 Hand won't be shown / cards unknown</button>
+  <div class="mact"><button class="btn btn-d" onclick="clearHhCardSlot()">Clear Slot</button><button class="btn pri" onclick="closeM('hhCardPickerM')">Done</button></div>
+</div></div>
+<div class="mov" id="hhReplayM"><div class="mdl" style="max-width:480px;padding:0;overflow:hidden">
+  <div id="hhReplayContent"></div>
+</div></div>
 <div class="mov" id="brSwitcherM"><div class="mdl" style="max-width:400px;max-height:80vh;overflow-y:auto">
   <h3>💰 Your Bankrolls</h3>
   <div id="brSwitcherList"></div>
@@ -3183,7 +3757,398 @@ function calcEquity(heroCards,villainCards,boardCards,iterations){
 }
 
 /* ══════════════════════ PRO TOOLS UI ══════════════════════ */
-function initTools(){$("toolsNav")?.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tl==="tlEquity"));document.querySelectorAll("#toolsV .br-sub").forEach(p=>p.classList.toggle("on",p.id==="tlEquity"));eqPreview();runSprCalc();runBetSizing();runComboCalc();runPotOdds()}
+/* ══════════════════════ FLOWCHART EDITOR ══════════════════════ */
+const Flow={d:[],load(){this.d=LG("ps_flowcharts",[])},save(){LS("ps_flowcharts",this.d)}};
+let flowState=null,flowSelectedNodeId=null,flowSelectedConnId=null,flowZoomLevel=1,flowDragState=null,flowConnectDrag=null;
+const FLOW_COLORS=["#c8a55c","#ec4899","#34d399","#3b82f6","#a78bfa","#f87171","#fbbf24","#67e8f9"];
+function initFlow(){
+  Flow.load();
+  $("flowListArea").style.display="";
+  $("flowEditorArea").style.display="none";
+  renderFlowGrid();
+}
+function renderFlowGrid(){
+  const ct=$("flowGrid");if(!ct)return;
+  if(!Flow.d.length){ct.innerHTML='<div class="empty-state"><span class="es-icon">🧠</span><div class="es-title">No flowcharts yet</div><div class="es-sub">Create one to start mapping out your thinking.</div></div>';return}
+  ct.innerHTML=[...Flow.d].sort((a,b)=>b.updated-a.updated).map(f=>{
+    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><div class="flow-card-icon">🧠</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div><div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
+  }).join("");
+}
+function createNewFlowchart(){
+  const f={id:"flow_"+Date.now(),name:"Untitled Flowchart",nodes:[],connections:[],created:Date.now(),updated:Date.now()};
+  Flow.d.push(f);Flow.save();
+  openFlowchart(f.id);
+}
+function quickDeleteFlowchart(id){
+  const f=Flow.d.find(x=>x.id===id);if(!f)return;
+  if(!confirm('Delete "'+f.name+'"? This can\'t be undone.'))return;
+  Flow.d=Flow.d.filter(x=>x.id!==id);Flow.save();renderFlowGrid();toast("Flowchart deleted");
+}
+function openFlowchart(id){
+  flowState=Flow.d.find(f=>f.id===id);if(!flowState)return;
+  flowSelectedNodeId=null;flowZoomLevel=1;
+  $("flowListArea").style.display="none";
+  $("flowEditorArea").style.display="";
+  $("flowTitleInput").value=flowState.name;
+  $("flowModeHint").textContent="Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
+  renderFlowCanvas();
+  if(flowState.nodes.length)requestAnimationFrame(()=>flowFitToScreen(false));
+  playSound("tick");haptic("light");
+}
+function closeFlowEditor(){
+  flowSaveCurrent();
+  $("flowEditorArea").style.display="none";
+  $("flowListArea").style.display="";
+  renderFlowGrid();
+}
+function flowSaveCurrent(){
+  if(!flowState)return;
+  flowState.updated=Date.now();
+  const idx=Flow.d.findIndex(f=>f.id===flowState.id);
+  if(idx>=0)Flow.d[idx]=flowState;
+  Flow.save();
+}
+function flowRenameCurrent(name){if(!flowState)return;flowState.name=name||"Untitled Flowchart";flowSaveCurrent()}
+function openFlowManageM(){openM("flowManageM")}
+function duplicateFlowchart(){
+  const copy=JSON.parse(JSON.stringify(flowState));
+  copy.id="flow_"+Date.now();copy.name=flowState.name+" (Copy)";copy.created=Date.now();copy.updated=Date.now();
+  Flow.d.push(copy);Flow.save();
+  closeM("flowManageM");toast("Duplicated ✦");
+  openFlowchart(copy.id);
+}
+function deleteCurrentFlowchart(){
+  if(!confirm('Delete "'+flowState.name+'"? This can\'t be undone.'))return;
+  Flow.d=Flow.d.filter(f=>f.id!==flowState.id);Flow.save();
+  closeM("flowManageM");flowState=null;
+  $("flowEditorArea").style.display="none";$("flowListArea").style.display="";
+  renderFlowGrid();toast("Flowchart deleted");
+}
+
+/* ── Nodes ── */
+function flowAddNode(){
+  if(!flowState)return;
+  const shape=$("flowShapeRow").querySelector(".sel")?.dataset.shape||"rect";
+  const n=flowState.nodes.length;
+  const col=n%5,row=Math.floor(n/5);
+  const node={id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:80+col*180,y:80+row*130,w:150,h:72,text:"New idea",subtitle:"",body:"",shape,color:FLOW_COLORS[0]};
+  flowState.nodes.push(node);
+  flowSaveCurrent();
+  renderFlowCanvas();
+  flowOpenNodeEditor(node.id);
+  playSound("tick");haptic("light");
+}
+function flowOpenNodeEditor(id){
+  flowSelectedNodeId=id;
+  const node=flowState.nodes.find(n=>n.id===id);if(!node)return;
+  $("flowNodeText").value=node.text;
+  $("flowNodeSubtitle").value=node.subtitle||"";
+  $("flowNodeBody").value=node.body||"";
+  $("flowNodeShapeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.shape===node.shape));
+  renderFlowColorRow(node.color);
+  renderFlowCanvas();
+  openM("flowNodeM");
+}
+function renderFlowColorRow(current){
+  $("flowNodeColorRow").innerHTML=FLOW_COLORS.map(c=>'<button class="flow-color-opt'+(c===current?" sel":"")+'" style="background:'+c+'" onclick="flowSetNodeColor(\''+c+"')\"></button>").join("");
+}
+function flowSetNodeColor(c){
+  const node=flowState.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;
+  node.color=c;renderFlowColorRow(c);renderFlowCanvas();flowSaveCurrent();
+}
+function flowDeleteSelectedNode(){
+  if(!flowSelectedNodeId)return;
+  flowState.nodes=flowState.nodes.filter(n=>n.id!==flowSelectedNodeId);
+  flowState.connections=flowState.connections.filter(c=>c.from!==flowSelectedNodeId&&c.to!==flowSelectedNodeId);
+  flowSelectedNodeId=null;
+  closeM("flowNodeM");
+  renderFlowCanvas();flowSaveCurrent();
+  toast("Node deleted");
+}
+function flowClearCanvas(){
+  if(!flowState||!flowState.nodes.length)return;
+  if(!confirm("Clear all nodes and connections from this flowchart?"))return;
+  flowState.nodes=[];flowState.connections=[];
+  flowSaveCurrent();renderFlowCanvas();
+  toast("Canvas cleared");
+}
+function flowZoom(delta){flowZoomLevel=Math.max(0.4,Math.min(2,+(flowZoomLevel+delta).toFixed(2)));renderFlowCanvas()}
+function flowDeleteConnection(id){
+  flowState.connections=flowState.connections.filter(c=>c.id!==id);
+  flowSaveCurrent();renderFlowCanvas();
+  playSound("tick");haptic("light");
+  toast("Arrow removed");
+}
+function flowOpenConnEditor(id){
+  flowSelectedConnId=id;
+  const conn=flowState.connections.find(c=>c.id===id);if(!conn)return;
+  $("flowConnLabel").value=conn.label||"";
+  renderFlowConnColorRow(conn.color||FLOW_COLORS[0]);
+  openM("flowConnM");
+}
+function renderFlowConnColorRow(current){
+  $("flowConnColorRow").innerHTML=FLOW_COLORS.map(c=>'<button class="flow-color-opt'+(c===current?" sel":"")+'" style="background:'+c+'" onclick="flowSetConnColor(\''+c+"')\"></button>").join("");
+}
+function flowSetConnColor(c){
+  const conn=flowState.connections.find(x=>x.id===flowSelectedConnId);if(!conn)return;
+  conn.color=c;renderFlowConnColorRow(c);renderFlowCanvas();flowSaveCurrent();
+}
+function flowDeleteSelectedConnection(){
+  if(!flowSelectedConnId)return;
+  closeM("flowConnM");
+  flowDeleteConnection(flowSelectedConnId);
+  flowSelectedConnId=null;
+}
+function flowFitToScreen(showToast){
+  if(!flowState||!flowState.nodes.length)return;
+  const wrap=$("flowCanvasWrap");if(!wrap)return;
+  const minX=Math.min(...flowState.nodes.map(n=>n.x));
+  const minY=Math.min(...flowState.nodes.map(n=>n.y));
+  const maxX=Math.max(...flowState.nodes.map(n=>n.x+n.w));
+  const maxY=Math.max(...flowState.nodes.map(n=>n.y+n.h));
+  const contentW=Math.max(1,maxX-minX+80);
+  const contentH=Math.max(1,maxY-minY+80);
+  const availW=wrap.clientWidth||300,availH=wrap.clientHeight||300;
+  const scale=Math.max(0.4,Math.min(2,Math.min(availW/contentW,availH/contentH)*0.94));
+  flowZoomLevel=+scale.toFixed(2);
+  renderFlowCanvas();
+  requestAnimationFrame(()=>{
+    wrap.scrollLeft=Math.max(0,(minX-40)*flowZoomLevel);
+    wrap.scrollTop=Math.max(0,(minY-40)*flowZoomLevel);
+  });
+  if(showToast){playSound("tick");haptic("light");toast("⛶ Fit to screen")}
+}
+function flowAutoLayout(){
+  if(!flowState||!flowState.nodes.length){toast("Add some nodes first");return}
+  const nodes=flowState.nodes,connections=flowState.connections;
+  const outgoing={},incoming={};
+  nodes.forEach(n=>{outgoing[n.id]=[];incoming[n.id]=0});
+  connections.forEach(c=>{
+    if(outgoing[c.from]!=null&&incoming[c.to]!=null){outgoing[c.from].push(c.to);incoming[c.to]++}
+  });
+  const level={};
+  nodes.forEach(n=>level[n.id]=0);
+  function assignLevel(id,lvl,stack){
+    if(stack.has(id))return;
+    if(level[id]<lvl)level[id]=lvl;
+    stack.add(id);
+    (outgoing[id]||[]).forEach(childId=>assignLevel(childId,lvl+1,stack));
+    stack.delete(id);
+  }
+  const roots=nodes.filter(n=>incoming[n.id]===0);
+  const rootSet=roots.length?roots:nodes;
+  rootSet.forEach(n=>assignLevel(n.id,0,new Set()));
+  const levels={};
+  nodes.forEach(n=>{const lvl=level[n.id];if(!levels[lvl])levels[lvl]=[];levels[lvl].push(n)});
+  const levelKeys=Object.keys(levels).map(Number).sort((a,b)=>a-b);
+  const vGap=110,hGap=36,margin=50;
+  let maxRowWidth=0;
+  levelKeys.forEach(lvl=>{
+    const rowNodes=levels[lvl];
+    const totalWidth=rowNodes.reduce((sum,n)=>sum+n.w,0)+hGap*Math.max(0,rowNodes.length-1);
+    maxRowWidth=Math.max(maxRowWidth,totalWidth);
+  });
+  levelKeys.forEach(lvl=>{
+    const rowNodes=levels[lvl];
+    const totalWidth=rowNodes.reduce((sum,n)=>sum+n.w,0)+hGap*Math.max(0,rowNodes.length-1);
+    let startX=margin+(maxRowWidth-totalWidth)/2;
+    const maxH=Math.max(...rowNodes.map(n=>n.h));
+    rowNodes.forEach(n=>{
+      n.x=Math.round(startX);
+      n.y=margin+lvl*(maxH+vGap);
+      startX+=n.w+hGap;
+    });
+  });
+  flowSaveCurrent();
+  renderFlowCanvas();
+  flowFitToScreen(false);
+  playSound("save");haptic("success");celebrate();
+  toast("✨ Auto-layout applied");
+}
+
+/* ── Rendering ── */
+function flowEdgePoint(node,other){
+  const cx=node.x+node.w/2,cy=node.y+node.h/2;
+  const ocx=other.x+other.w/2,ocy=other.y+other.h/2;
+  const dx=ocx-cx,dy=ocy-cy;
+  if(dx===0&&dy===0)return{x:cx,y:cy};
+  const halfW=node.w/2,halfH=node.h/2;
+  const scaleX=dx!==0?halfW/Math.abs(dx):Infinity;
+  const scaleY=dy!==0?halfH/Math.abs(dy):Infinity;
+  const scale=Math.min(scaleX,scaleY);
+  return{x:cx+dx*scale,y:cy+dy*scale};
+}
+function renderFlowCanvas(){
+  if(!flowState)return;
+  const layer=$("flowNodesLayer"),svg=$("flowSvg"),canvas=$("flowCanvas");
+  if(!layer||!svg||!canvas)return;
+  canvas.style.transform="scale("+flowZoomLevel+")";
+  layer.innerHTML=flowState.nodes.map(n=>{
+    return'<div class="flow-node-wrap'+(n.id===flowSelectedNodeId?" sel":"")+'" data-id="'+n.id+'" style="left:'+n.x+"px;top:"+n.y+"px;width:"+n.w+"px;height:"+n.h+'px" onmousedown="flowNodePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowNodePointerDown(event,'"+n.id+'\')"><div class="flow-node flow-shape-'+n.shape+'" style="--node-color:'+n.color+'"><span class="flow-node-text">'+escapeHtml(n.text)+"</span>"+(n.subtitle?'<span class="flow-node-subtitle">'+escapeHtml(n.subtitle)+"</span>":"")+(n.body?'<span class="flow-node-body">'+escapeHtml(n.body)+"</span>":"")+'</div><div class="flow-node-handle" title="Drag to connect" onmousedown="flowHandlePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowHandlePointerDown(event,'"+n.id+"')\">➜</div></div>";
+  }).join("");
+  const markerDefs=flowState.connections.map(c=>'<marker id="flowArrow_'+c.id+'" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="'+(c.color||"#c8a55c")+'"/></marker>').join("");
+  const svgLines=flowState.connections.map(c=>{
+    const from=flowState.nodes.find(n=>n.id===c.from),to=flowState.nodes.find(n=>n.id===c.to);
+    if(!from||!to)return"";
+    const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
+    return'<line data-cid="'+c.id+'" x1="'+p1.x+'" y1="'+p1.y+'" x2="'+p2.x+'" y2="'+p2.y+'" stroke="'+(c.color||"#c8a55c")+'" stroke-width="2" marker-end="url(#flowArrow_'+c.id+')"/>';
+  }).join("");
+  svg.innerHTML="<defs>"+markerDefs+"</defs>"+svgLines;
+  const labelsLayer=$("flowConnLabelsLayer");
+  if(labelsLayer){
+    labelsLayer.innerHTML=flowState.connections.map(c=>{
+      const from=flowState.nodes.find(n=>n.id===c.from),to=flowState.nodes.find(n=>n.id===c.to);
+      if(!from||!to)return"";
+      const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
+      const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
+      return(c.label?'<div class="flow-arrow-label" data-cid-lbl="'+c.id+'" style="left:'+mx+"px;top:"+(my-16)+'px">'+escapeHtml(c.label)+"</div>":"")+'<button class="flow-arrow-opt" data-cid="'+c.id+'" style="left:'+mx+"px;top:"+my+'px;--conn-color:'+(c.color||"#c8a55c")+'" onclick="flowOpenConnEditor(\''+c.id+"')\" title=\"Arrow options\"></button>";
+    }).join("");
+  }
+  const maxX=Math.max(800,...flowState.nodes.map(n=>n.x+n.w+100),1);
+  const maxY=Math.max(600,...flowState.nodes.map(n=>n.y+n.h+100),1);
+  canvas.style.width=maxX+"px";canvas.style.height=maxY+"px";
+  svg.setAttribute("width",maxX);svg.setAttribute("height",maxY);
+  svg.style.width=maxX+"px";svg.style.height=maxY+"px";
+}
+
+/* ── Node drag / tap interaction ── */
+function flowNodePointerDown(e,id){
+  e.preventDefault();e.stopPropagation();
+  const point=e.touches?e.touches[0]:e;
+  const node=flowState.nodes.find(n=>n.id===id);if(!node)return;
+  const wrapEl=document.querySelector('.flow-node-wrap[data-id="'+id+'"]');
+  flowDragState={id,startX:point.clientX,startY:point.clientY,origX:node.x,origY:node.y,moved:false};
+  let rafId=null;
+  const onMove=(ev)=>{
+    if(!flowDragState)return;
+    if(ev.cancelable)ev.preventDefault();
+    const p=ev.touches?ev.touches[0]:ev;
+    const dx=(p.clientX-flowDragState.startX)/flowZoomLevel;
+    const dy=(p.clientY-flowDragState.startY)/flowZoomLevel;
+    if(!flowDragState.moved&&(Math.abs(dx)>4||Math.abs(dy)>4)){
+      flowDragState.moved=true;
+      wrapEl?.classList.add("dragging");
+    }
+    node.x=Math.max(0,flowDragState.origX+dx);
+    node.y=Math.max(0,flowDragState.origY+dy);
+    if(rafId==null)rafId=requestAnimationFrame(()=>{flowUpdateNodePositionDOM(id);rafId=null});
+  };
+  const onUp=()=>{
+    document.removeEventListener("mousemove",onMove);
+    document.removeEventListener("mouseup",onUp);
+    document.removeEventListener("touchmove",onMove);
+    document.removeEventListener("touchend",onUp);
+    if(rafId!=null){cancelAnimationFrame(rafId);rafId=null}
+    wrapEl?.classList.remove("dragging");
+    if(flowDragState&&!flowDragState.moved)flowNodeTapped(id);
+    else{flowSaveCurrent();renderFlowCanvas()}
+    flowDragState=null;
+  };
+  document.addEventListener("mousemove",onMove);
+  document.addEventListener("mouseup",onUp);
+  document.addEventListener("touchmove",onMove,{passive:false});
+  document.addEventListener("touchend",onUp);
+}
+function flowUpdateNodePositionDOM(id){
+  const node=flowState.nodes.find(n=>n.id===id);if(!node)return;
+  const wrapEl=document.querySelector('.flow-node-wrap[data-id="'+id+'"]');
+  if(wrapEl){wrapEl.style.left=node.x+"px";wrapEl.style.top=node.y+"px"}
+  flowState.connections.forEach(c=>{
+    if(c.from!==id&&c.to!==id)return;
+    const from=flowState.nodes.find(n=>n.id===c.from),to=flowState.nodes.find(n=>n.id===c.to);
+    if(!from||!to)return;
+    const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
+    const lineEl=document.querySelector('#flowSvg line[data-cid="'+c.id+'"]');
+    if(lineEl){lineEl.setAttribute("x1",p1.x);lineEl.setAttribute("y1",p1.y);lineEl.setAttribute("x2",p2.x);lineEl.setAttribute("y2",p2.y)}
+    const optBtn=document.querySelector('.flow-arrow-opt[data-cid="'+c.id+'"]');
+    const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
+    if(optBtn){optBtn.style.left=mx+"px";optBtn.style.top=my+"px"}
+    const lblEl=document.querySelector('.flow-arrow-label[data-cid-lbl="'+c.id+'"]');
+    if(lblEl){lblEl.style.left=mx+"px";lblEl.style.top=(my-16)+"px"}
+  });
+  const canvas=$("flowCanvas"),svg=$("flowSvg");
+  if(canvas&&svg){
+    const maxX=Math.max(800,...flowState.nodes.map(n=>n.x+n.w+100),1);
+    const maxY=Math.max(600,...flowState.nodes.map(n=>n.y+n.h+100),1);
+    if(parseInt(canvas.style.width)!==maxX){canvas.style.width=maxX+"px";svg.setAttribute("width",maxX);svg.style.width=maxX+"px"}
+    if(parseInt(canvas.style.height)!==maxY){canvas.style.height=maxY+"px";svg.setAttribute("height",maxY);svg.style.height=maxY+"px"}
+  }
+}
+function flowNodeTapped(id){
+  flowOpenNodeEditor(id);
+}
+function flowHandlePointerDown(e,fromId){
+  e.preventDefault();e.stopPropagation();
+  const point=e.touches?e.touches[0]:e;
+  const canvas=$("flowCanvas");
+  const fromNode=flowState.nodes.find(n=>n.id===fromId);if(!fromNode)return;
+  let tempLine=document.getElementById("flowTempLine");
+  if(!tempLine){
+    tempLine=document.createElementNS("http://www.w3.org/2000/svg","line");
+    tempLine.setAttribute("id","flowTempLine");
+    tempLine.setAttribute("stroke","var(--pk2)");
+    tempLine.setAttribute("stroke-width","2.5");
+    tempLine.setAttribute("stroke-dasharray","6,5");
+    $("flowSvg").appendChild(tempLine);
+  }
+  const startX=fromNode.x+fromNode.w/2,startY=fromNode.y+fromNode.h/2;
+  tempLine.setAttribute("x1",startX);tempLine.setAttribute("y1",startY);
+  tempLine.setAttribute("x2",startX);tempLine.setAttribute("y2",startY);
+  tempLine.style.display="block";
+  document.querySelectorAll(".flow-node-wrap").forEach(el=>{if(el.dataset.id!==fromId)el.classList.add("flow-connect-target")});
+  flowConnectDrag={fromId};
+  const onMove=(ev)=>{
+    ev.preventDefault();
+    const p=ev.touches?ev.touches[0]:ev;
+    const canvasRect=canvas.getBoundingClientRect();
+    const x=(p.clientX-canvasRect.left)/flowZoomLevel;
+    const y=(p.clientY-canvasRect.top)/flowZoomLevel;
+    tempLine.setAttribute("x2",x);tempLine.setAttribute("y2",y);
+    const hoveredEl=document.elementFromPoint(p.clientX,p.clientY);
+    const hoveredNodeEl=hoveredEl&&hoveredEl.closest?hoveredEl.closest(".flow-node-wrap"):null;
+    document.querySelectorAll(".flow-node-wrap.hover-target").forEach(el=>el.classList.remove("hover-target"));
+    if(hoveredNodeEl&&hoveredNodeEl.dataset.id!==fromId)hoveredNodeEl.classList.add("hover-target");
+  };
+  const onUp=(ev)=>{
+    document.removeEventListener("mousemove",onMove);
+    document.removeEventListener("mouseup",onUp);
+    document.removeEventListener("touchmove",onMove);
+    document.removeEventListener("touchend",onUp);
+    tempLine.style.display="none";
+    document.querySelectorAll(".flow-node-wrap").forEach(el=>el.classList.remove("flow-connect-target","hover-target"));
+    const p=ev.changedTouches?ev.changedTouches[0]:ev;
+    const targetEl=document.elementFromPoint(p.clientX,p.clientY);
+    const targetNodeEl=targetEl&&targetEl.closest?targetEl.closest(".flow-node-wrap"):null;
+    if(targetNodeEl&&targetNodeEl.dataset.id!==fromId){
+      const toId=targetNodeEl.dataset.id;
+      const exists=flowState.connections.some(c=>c.from===fromId&&c.to===toId);
+      if(!exists){
+        flowState.connections.push({id:"c"+Date.now(),from:fromId,to:toId,color:FLOW_COLORS[0],label:""});
+        flowSaveCurrent();
+        playSound("tick");haptic("success");
+      }
+    }
+    flowConnectDrag=null;
+    renderFlowCanvas();
+  };
+  document.addEventListener("mousemove",onMove);
+  document.addEventListener("mouseup",onUp);
+  document.addEventListener("touchmove",onMove,{passive:false});
+  document.addEventListener("touchend",onUp);
+}
+function initTools(){
+  showToolsHub();
+  $("toolsNav")?.querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tl==="tlEquity"));
+  document.querySelectorAll("#toolsV .br-sub").forEach(p=>p.classList.toggle("on",p.id==="tlEquity"));
+  eqPreview();runSprCalc();runBetSizing();runComboCalc();runPotOdds();
+}
+function showToolsHub(){$("toolsHub").style.display="";$("toolsCalcArea").style.display="none"}
+function showToolsSection(tab){
+  $("toolsHub").style.display="none";
+  $("toolsCalcArea").style.display="";
+  switchToolsTab(tab);
+  playSound("tick");haptic("light");
+}
 function switchToolsTab(tab){$("toolsNav").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tl===tab));document.querySelectorAll("#toolsV .br-sub").forEach(p=>p.classList.toggle("on",p.id===tab))}
 
 /* ── Equity Calculator ── */
@@ -3466,7 +4431,7 @@ function escapeHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").repla
 function openM(id){const el=$(id);if(!el)return;el.classList.remove("closing");el.classList.add("open");if(id==="saveM"){popFS();renderEG("rIG",null,REM);renderCG("rCG");const sf=$("saveFolder");if(sf)sf.value=fsCurPath||"/"}if(id==="newFM"){popFS();renderEG("fIG",null,FEM);renderCG("fCG");const np=$("newFP");if(np)np.value=fsCurPath||"/";const sl=$("newFLocSpan");if(sl)sl.textContent=fsCurPath||"/"}if(id==="editM")popFS();if(id==="impM")impShowTab("N");if(id==="liveStartM")prefillLive();if(id==="newNbM"){renderEG("nbIG",null,FEM);renderCG("nbCG")}}
 function closeM(id){const el=$(id);if(!el||!el.classList.contains("open"))return;el.classList.add("closing");setTimeout(()=>{if(el.classList.contains("closing"))el.classList.remove("open","closing")},190)}
 let viewerMode=false;
-function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="editor")renderStudyReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor();initHH()}if(v==="tools"){initTools()}}
+function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="editor")renderStudyReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor();initHH()}if(v==="tools"){initTools()}if(v==="flow"){initFlow()}}
 let _cfCb=null;
 function confirmAction(msg,name,cb){$("cfMsg").innerHTML=msg+(name?'<br><span class="cfn">'+name+"</span>":"");_cfCb=cb;$("cfOv").classList.add("open")}
 function closeCf(){$("cfOv").classList.remove("open");_cfCb=null}
@@ -4126,6 +5091,17 @@ function deleteBankroll(id){const list=getBankrollsList();if(list.length<=1)retu
 
 const BR={get d(){return getActiveBankrollObj()},save(){saveBankrollsList()},get sorted(){return[...this.d.sessions].sort((a,b)=>new Date(a.date)-new Date(b.date))}};
 function brSym(){const c=BR.d.settings?.currency||"USD";return{USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[c]||"$"}
+function getHhCurrency(){return LG("ps_hh_currency","USD")}
+function setHhCurrency(c){LS("ps_hh_currency",c);renderHhCurrencyUI();hhRefreshCurrencyDisplays();toast("Hand History currency set to "+c+" ("+hhSym()+")");playSound("tick");haptic("light")}
+function hhSym(){const c=getHhCurrency();return{USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$",JPY:"¥"}[c]||"$"}
+function renderHhCurrencyUI(){const row=$("hhCurrencyRow");if(!row)return;const cur=getHhCurrency();row.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.cur===cur))}
+function hhRefreshCurrencyDisplays(){
+  ["Preflop","Flop","Turn","River"].forEach(cap=>{
+    const street=cap.toLowerCase();
+    if($("hhLog"+cap))renderStreetActions(street);
+  });
+  document.querySelectorAll(".hha-amt-prefix").forEach(el=>el.textContent=hhSym());
+}
 function brFmt(cents){const v=cents/100;const s=brSym();return(v<0?"-"+s:s)+Math.abs(v).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2})}
 function brParseDur(start,end){if(!start||!end)return 0;const[sh,sm]=start.split(":").map(Number);const[eh,em]=end.split(":").map(Number);let m=eh*60+em-(sh*60+sm);if(m<0)m+=1440;return m}
 function brFmtDur(m){if(!m)return"-";const h=Math.floor(m/60);return h>0?h+"h "+(m%60)+"m":(m%60)+"m"}
@@ -4173,10 +5149,15 @@ function populateLiveBankrollSelect(){const sel=$("liveBankroll");if(!sel)return
 function getBankrollById(id){return getBankrollsList().find(b=>b.id===id)}
 function submitStartLive(){const stakes=$("liveStakes").value.trim();if(!stakes)return toast("Enter stakes");const buyin=parseFloat($("liveBuyin").value)||0;const bankrollId=$("liveBankroll").value||getActiveBankrollId();liveData={bankrollId,start:Date.now(),stakes,location:$("liveLoc").value.trim(),gameType:$("liveGT").value,format:$("liveFmt").value,tableSize:$("liveTable").value,seat:$("liveSeat").value,goal:$("liveGoal").value,goalVal:$("liveGoalVal")?.value||"",buyin:Math.round(buyin*100),invested:Math.round(buyin*100),rebuys:0,events:[]};const notes=$("liveStartNotes").value.trim();if(notes)liveData.events.push({time:new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}),text:"📝 "+notes});LS("ps_live",liveData);closeM("liveStartM");startLiveTimer();renderBrAll();const b=getBankrollById(bankrollId);toast("🔴 Live session started"+(b?" · "+b.icon+" "+b.name:""))}
 function startLiveTimer(){if(liveTimer)clearInterval(liveTimer);liveTimer=setInterval(()=>{if(liveData)renderLivePanel()},1000)}
-function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML='<div class="live-start-cta"><div class="lsc-icon">🔴</div><div class="lsc-text"><div class="lsc-title">Ready to play?</div><div class="lsc-sub">Start a live session to track buy-ins, rebuys, and time in real time.</div></div><button class="btn pri" onclick="openM(\'liveStartM\')">🔴 Start Live Session</button></div>';return}const elapsed=Date.now()-liveData.start;const h=Math.floor(elapsed/3600000);const m=Math.floor((elapsed%3600000)/60000);const s=Math.floor((elapsed%60000)/1000);const lb=liveData.bankrollId?getBankrollById(liveData.bankrollId):null;la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION'+(lb?' <span class="live-bankroll-tag">'+lb.icon+" "+lb.name+"</span>":"")+'</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div><div class=\"live-action-grid\"><button class=\"live-action-btn\" onclick=\"openLiveInput(\'rebuy\',\'↻ Rebuy\')\">↻ Rebuy</button><button class=\"live-action-btn\" onclick=\"openLiveInput(\'note\',\'📝 Note\')\">📝 Note</button><button class=\"live-action-btn\" style=\"color:var(--rs)\" onclick=\"openEndLive()\">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>"}
-function openLiveInput(type,title){$("liveInputTitle").textContent=title;$("liveInputType").value=type;$("liveInputVal").value="";$("liveInputVal").type=type==="note"?"text":"number";$("liveInputVal").placeholder=type==="note"?"Type your note...":"0.00";openM("liveInputM");setTimeout(()=>$("liveInputVal").focus(),100)}
-function submitLiveInput(){if(!liveData)return;const type=$("liveInputType").value;const val=$("liveInputVal").value;const ts=new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"});if(type==="rebuy"){const amt=parseFloat(val)||liveData.buyin/100;if(amt<=0)return toast("Enter amount");liveData.rebuys++;liveData.invested+=Math.round(amt*100);liveData.events.push({time:ts,text:"↻ Rebuy "+brSym()+amt.toFixed(0)})}else if(type==="note"){if(!val.trim())return toast("Enter a note");liveData.events.push({time:ts,text:"📝 "+val.trim()})}LS("ps_live",liveData);closeM("liveInputM");renderLivePanel()}
-function openEndLive(){if(!liveData)return;$("liveEndStack").value="";const inv=liveData.invested;$("liveEndSummary").innerHTML="Total invested: <strong style='color:var(--pk2)'>"+brSym()+(inv/100).toFixed(0)+"</strong>";$("liveEndStack").oninput=function(){const st=parseFloat(this.value)||0;const pnl=Math.round(st*100)-inv;$("liveEndSummary").innerHTML="Invested: "+brSym()+(inv/100).toFixed(0)+' → P&L: <strong style="color:'+(pnl>=0?"var(--mt)":"var(--rs)")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(2)+"</strong>"};openM("liveEndM");setTimeout(()=>$("liveEndStack").focus(),100)}
+function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML='<div class="live-start-cta"><div class="lsc-icon">🔴</div><div class="lsc-text"><div class="lsc-title">Ready to play?</div><div class="lsc-sub">Start a live session to track buy-ins, rebuys, and time in real time.</div></div><button class="btn pri" onclick="openM(\'liveStartM\')">🔴 Start Live Session</button></div>';return}
+  const elapsed=Date.now()-liveData.start;const h=Math.floor(elapsed/3600000);const m=Math.floor((elapsed%3600000)/60000);const s=Math.floor((elapsed%60000)/1000);const lb=liveData.bankrollId?getBankrollById(liveData.bankrollId):null;
+  const hasStack=liveData.currentStack!=null;
+  const pnl=hasStack?liveData.currentStack-liveData.invested:0;
+  const stackBlock=hasStack?'<div class="live-stack-block"><div class="live-stack-row"><span class="live-stack-lbl">💰 Current Stack</span><span class="live-stack-val">'+brSym()+(liveData.currentStack/100).toFixed(0)+'</span></div><div class="live-stack-pnl '+(pnl>=0?"pos":"neg")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(0)+" so far</div></div>":"";
+  la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION'+(lb?' <span class="live-bankroll-tag">'+lb.icon+" "+lb.name+"</span>":"")+'</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div>'+stackBlock+'<div class="live-action-grid"><button class="live-action-btn" onclick="openLiveInput(\'stack\',\'💰 Update Stack\')">💰 Stack</button><button class="live-action-btn" onclick="openLiveInput(\'rebuy\',\'↻ Rebuy\')">↻ Rebuy</button><button class="live-action-btn" onclick="openLiveInput(\'note\',\'📝 Note\')">📝 Note</button><button class="live-action-btn" style="color:var(--rs)" onclick="openEndLive()">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>"}
+function openLiveInput(type,title){$("liveInputTitle").textContent=title;$("liveInputType").value=type;$("liveInputVal").value=type==="stack"&&liveData.currentStack!=null?(liveData.currentStack/100).toFixed(0):"";$("liveInputVal").type=type==="note"?"text":"number";$("liveInputVal").placeholder=type==="note"?"Type your note...":type==="stack"?"Current chip count":"0.00";openM("liveInputM");setTimeout(()=>$("liveInputVal").focus(),100)}
+function submitLiveInput(){if(!liveData)return;const type=$("liveInputType").value;const val=$("liveInputVal").value;const ts=new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"});if(type==="rebuy"){const amt=parseFloat(val)||liveData.buyin/100;if(amt<=0)return toast("Enter amount");liveData.rebuys++;liveData.invested+=Math.round(amt*100);liveData.events.push({time:ts,text:"↻ Rebuy "+brSym()+amt.toFixed(0)})}else if(type==="note"){if(!val.trim())return toast("Enter a note");liveData.events.push({time:ts,text:"📝 "+val.trim()})}else if(type==="stack"){const amt=parseFloat(val);if(isNaN(amt))return toast("Enter your current stack");liveData.currentStack=Math.round(amt*100);liveData.events.push({time:ts,text:"💰 Stack: "+brSym()+amt.toFixed(0)})}LS("ps_live",liveData);closeM("liveInputM");renderLivePanel()}
+function openEndLive(){if(!liveData)return;$("liveEndStack").value=liveData.currentStack!=null?(liveData.currentStack/100).toFixed(0):"";const inv=liveData.invested;$("liveEndSummary").innerHTML="Total invested: <strong style='color:var(--pk2)'>"+brSym()+(inv/100).toFixed(0)+"</strong>";$("liveEndStack").oninput=function(){const st=parseFloat(this.value)||0;const pnl=Math.round(st*100)-inv;$("liveEndSummary").innerHTML="Invested: "+brSym()+(inv/100).toFixed(0)+' → P&L: <strong style="color:'+(pnl>=0?"var(--mt)":"var(--rs)")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(2)+"</strong>"};openM("liveEndM");if(liveData.currentStack!=null)$("liveEndStack").oninput();setTimeout(()=>$("liveEndStack").focus(),100)}
 function submitEndLive(){if(!liveData)return;const stack=parseFloat($("liveEndStack").value);if(isNaN(stack))return toast("Enter your final stack");const inv=liveData.invested;const pnl=Math.round(stack*100)-inv;const elapsed=Date.now()-liveData.start;const hrs=Math.floor(elapsed/3600000);const mins=Math.floor((elapsed%3600000)/60000);const s={id:"bs_"+Date.now(),date:new Date(liveData.start).toISOString().slice(0,10),format:liveData.format||"cash",gameType:liveData.gameType||"NL Hold'em",tableSize:liveData.tableSize||"6-max",start:new Date(liveData.start).toTimeString().slice(0,5),end:new Date().toTimeString().slice(0,5),duration:Math.round(elapsed/60000),stakes:liveData.stakes,buyin:liveData.buyin/100,location:liveData.location,result:pnl/100,resultCents:pnl,notes:"Live: "+hrs+"h "+mins+"m"+(liveData.rebuys?" · "+liveData.rebuys+" rebuys":""),created:new Date().toISOString()};const targetB=liveData.bankrollId?getBankrollById(liveData.bankrollId):BR.d;const b=targetB||BR.d;b.sessions.push(s);saveBankrollsList();liveData=null;LS("ps_live",null);if(liveTimer){clearInterval(liveTimer);liveTimer=null}closeM("liveEndM");renderBrAll();
   bumpLifetimeLive();const xpGain=pnl>=0?60:30;addXp(xpGain);checkAchievements();
   const _bSym={USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[b.settings?.currency||"USD"]||"$";playSound(pnl>=0?"win":"wrong");haptic(pnl>=0?"success":"warn");toast("Session: "+(pnl>=0?"+":"-")+_bSym+(Math.abs(pnl)/100).toFixed(2)+" · +"+xpGain+" XP ✦"+(b!==BR.d?" → "+b.icon+" "+b.name:""))}
@@ -4360,39 +5341,637 @@ function parseCardStr(str){
 }
 function renderPCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+(dealt?" dealt":"")+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+'</span></div></div>'}).join("")}
 function renderCommCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="comm-card '+(red?"red":"blk")+(dealt?" dealt":"")+'"><span>'+c.rank+'</span><div class="mc-suit">'+SYM[c.suit]+'</div></div>'}).join("")}
-function hhPreviewCards(){
-  const hero=parseCardStr($("hhHero").value);
-  const board=[...parseCardStr($("hhFlop").value),...parseCardStr($("hhTurn").value),...parseCardStr($("hhRiver").value)];
-  const el=$("hhCardPreview");if(!el)return;
-  if(!hero.length&&!board.length){el.innerHTML='<span class="hh-preview-empty">Cards will appear here</span>';return}
-  let h="";
-  if(hero.length)h+='<div class="hh-preview-grp"><span class="hh-preview-lbl">Hero</span><div class="hh-preview-cards hh-preview-mini">'+renderCommCardsHtml(hero,true)+'</div></div>';
-  if(board.length)h+='<div class="hh-preview-grp"><span class="hh-preview-lbl">Board</span><div class="hh-preview-cards hh-preview-mini">'+renderCommCardsHtml(board,true)+'</div></div>';
-  el.innerHTML=h;
+/* ── New Hand Log: multi-player + card-picker state ── */
+let hhPlayersState=[];
+let hhBoardState={flop:[],turn:[],river:[]};
+let hhCardTarget=null;
+const HH_POS_SETS={
+  2:["BTN/SB","BB"],
+  3:["BTN","SB","BB"],
+  4:["CO","BTN","SB","BB"],
+  5:["HJ","CO","BTN","SB","BB"],
+  6:["LJ","HJ","CO","BTN","SB","BB"],
+  7:["UTG","LJ","HJ","CO","BTN","SB","BB"],
+  8:["UTG","UTG+1","LJ","HJ","CO","BTN","SB","BB"]
+};
+const HH_PREFLOP_ORDER=["UTG","UTG+1","LJ","HJ","CO","BTN","SB","BB"];
+const HH_POSTFLOP_ORDER=["SB","BB","UTG","UTG+1","LJ","HJ","CO","BTN"];
+const HH_PREFLOP_ORDER_HU=["BTN/SB","BB"];
+const HH_POSTFLOP_ORDER_HU=["BB","BTN/SB"];
+function hhPosRank(pos,order){const idx=order.indexOf(pos);return idx===-1?99:idx}
+function hhGetOrderList(street){
+  const isHU=hhPlayersState.length===2;
+  if(street==="preflop")return isHU?HH_PREFLOP_ORDER_HU:HH_PREFLOP_ORDER;
+  return isHU?HH_POSTFLOP_ORDER_HU:HH_POSTFLOP_ORDER;
 }
+function hhAutoAssignPositions(){
+  const n=hhPlayersState.length;const set=HH_POS_SETS[n]||HH_POS_SETS[8];
+  const taken=new Set(hhPlayersState.filter(p=>p.position&&set.includes(p.position)).map(p=>p.position));
+  const available=set.filter(pos=>!taken.has(pos));
+  let ai=0;
+  hhPlayersState.forEach(p=>{if(!p.position||!set.includes(p.position))p.position=available[ai++]});
+}
+function hhTableSizeToCount(val){if(val==="HU")return 2;const n=parseInt(val);return isNaN(n)?8:Math.max(2,Math.min(8,n))}
+function hhCountToTableSize(n){if(n===2)return"HU";if(n>=3&&n<=8)return n+"-max";return"8-max"}
+function hhSyncTableSizeSelect(){const el=$("hhTable");if(el)el.value=hhCountToTableSize(hhPlayersState.length)}
+function hhSyncPlayersFromTableSize(){
+  const n=hhTableSizeToCount($("hhTable").value);
+  if(n===hhPlayersState.length)return;
+  hhSetNumPlayers(n);
+  $("hhPresetRow")?.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.preset===n));
+  playSound("tick");haptic("light");
+}
+function hhResetActionsIfAny(){
+  const hasAny=HH_STREETS.some(s=>hhStreetActions[s].length>0);
+  if(hasAny){
+    hhStreetActions={preflop:[],flop:[],turn:[],river:[]};
+    toast("⚠️ Table changed — action log was cleared to avoid mismatches");
+  }
+}
+function hhSetNumPlayers(n){
+  n=Math.max(2,Math.min(8,n));
+  hhResetActionsIfAny();
+  const hero=hhPlayersState[0]||{name:"Hero",cards:[],position:null};
+  const next=[hero];
+  for(let i=1;i<n;i++)next.push(hhPlayersState[i]||{name:"Player "+(i+1),cards:[],position:null});
+  hhPlayersState=next;
+  hhAutoAssignPositions();
+  renderHhPlayersArea();renderHhbTable();renderHhStreetContent();renderHeroPosRow();hhSyncTableSizeSelect();
+}
+function hhAddPlayer(){
+  if(hhPlayersState.length>=8){toast("Max 8 players");return}
+  hhResetActionsIfAny();
+  hhPlayersState.push({name:"Player "+(hhPlayersState.length+1),cards:[],position:null});
+  hhAutoAssignPositions();
+  renderHhPlayersArea();renderHhbTable();renderHhStreetContent();renderHeroPosRow();hhSyncTableSizeSelect();
+  playSound("tick");haptic("light");
+}
+function hhRemovePlayer(i){
+  if(hhPlayersState.length<=2){toast("Need at least 2 players");return}
+  hhResetActionsIfAny();
+  hhPlayersState.splice(i,1);
+  hhAutoAssignPositions();
+  renderHhPlayersArea();renderHhbTable();renderHhStreetContent();renderHeroPosRow();hhSyncTableSizeSelect();
+  playSound("tick");haptic("light");
+}
+function hhSetHeroPosition(pos){
+  hhRotateTableAroundHero(pos);
+  renderHhPlayersArea();renderHhbTable();renderHhStreetContent();renderHeroPosRow();hhSyncTableSizeSelect();hhSaveDraft();
+  playSound("tick");haptic("light");
+}
+function hhRotateTableAroundHero(newPos){
+  const posSet=HH_POS_SETS[hhPlayersState.length]||HH_POS_SETS[8];
+  const n=posSet.length;
+  const oldIdx=posSet.indexOf(hhPlayersState[0].position);
+  const newIdx=posSet.indexOf(newPos);
+  if(oldIdx===-1||newIdx===-1){hhPlayersState[0].position=newPos;return}
+  const shift=newIdx-oldIdx;
+  hhPlayersState.forEach(p=>{
+    const curIdx=posSet.indexOf(p.position);
+    if(curIdx===-1)return;
+    p.position=posSet[((curIdx+shift)%n+n)%n];
+  });
+}
+function hhApplyPreset(n){
+  $("hhPresetRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.preset===n));
+  hhSetNumPlayers(n);
+  playSound("tick");haptic("light");
+}
+function openHhPlayerManager(){renderHeroPosRow();renderHhPlayersArea();openM("hhPlayerManagerM")}
+function renderHeroPosRow(){
+  const ct=$("hhHeroPosRow");if(!ct)return;
+  const posSet=HH_POS_SETS[hhPlayersState.length]||HH_POS_SETS[8];
+  const heroPos=hhPlayersState[0]?.position;
+  ct.innerHTML=posSet.map(ps=>'<button class="'+(heroPos===ps?"sel":"")+'" onclick="hhSetHeroPosition(\''+ps+'\')">'+ps+"</button>").join("");
+}
+function renderHhPlayersArea(){
+  const ct=$("hhPlayersArea");if(!ct)return;
+  const lbl=$("hhbPlayerCountLbl");if(lbl)lbl.textContent=hhPlayersState.length;
+  const addBtn=$("hhAddPlayerBtn");if(addBtn)addBtn.style.display=hhPlayersState.length>=8?"none":"";
+  const seatOrder=hhTableSeatOrder();
+  ct.innerHTML=seatOrder.map(i=>{
+    const p=hhPlayersState[i];
+    const seatBadge='<div class="hh-seat-badge'+(i===0?" hero":"")+'">'+(i===0?"🎯":i+1)+'</div>';
+    const nameField=i===0
+      ?'<div class="hh-player-name-fixed">Hero</div>'
+      :'<div class="ac-wrap" style="flex:1"><input class="minp hh-player-name-input" value="'+escapeHtml(p.name)+'" oninput="hhUpdatePlayerName('+i+',this.value)" onfocus="hhPlayerAC('+i+')" placeholder="Player name/alias" style="margin:0"/><div class="ac-list" id="hhPlayerAC'+i+'"></div></div>';
+    const removeBtn=i>0?'<button class="hh-player-remove" onclick="hhRemovePlayer('+i+')" title="Remove player">✕</button>':"";
+    const posBadge='<div class="hh-pos-badge'+(i===0?" hero":"")+'">'+(p.position||"?")+"</div>";
+    return'<div class="hh-player-row">'+seatBadge+posBadge+nameField+'<div class="card-slot-trigger hh-player-slot" onclick="openHhCardPicker(\'player'+i+'\',2,\''+(i===0?"Hero":escapeHtml(p.name))+' — select up to 2 cards\')" id="hhPlayerSlot'+i+'">'+(p.cards.length?renderCommCardsHtml(p.cards,true):p.cardsUnknown?'<span class="cst-placeholder">🤷 Unknown</span>':'<span class="cst-placeholder">🎴 '+(i===0?"Hero":"")+'</span>')+'</div>'+removeBtn+'</div>';
+  }).join("");
+}
+function hhUpdatePlayerName(i,val){if(hhPlayersState[i])hhPlayersState[i].name=val||"Player "+(i+1);renderHhbTable();hhSaveDraft()}
+function hhPlayerAC(i){
+  const el=document.getElementById("hhPlayerAC"+i);if(!el)return;
+  const v=(hhPlayersState[i]?.name||"").toLowerCase();
+  const m=HH.d.players.filter(p=>v.length<2||p.name.toLowerCase().includes(v));
+  if(!m.length){el.classList.remove("show");return}
+  el.innerHTML=m.slice(0,6).map(p=>"<div>"+escapeHtml(p.name)+"</div>").join("");
+  el.classList.add("show");
+  el.querySelectorAll("div").forEach((d,j)=>{d.onmousedown=(e)=>{e.preventDefault();hhPlayersState[i].name=m[j].name;renderHhPlayersArea();el.classList.remove("show")}});
+  setTimeout(()=>{const closeHandler=(ev)=>{if(!el.contains(ev.target))
+    {el.classList.remove("show");document.removeEventListener("click",closeHandler)}};document.addEventListener("click",closeHandler)},50);
+}
+function hhToggleActionSection(){}
+
+/* ══════════════════════ HAND BUILDER — SOLVER-STYLE TABLE ══════════════════════ */
+const HH_STREETS=["preflop","flop","turn","river"];
+let hhStreetActions={preflop:[],flop:[],turn:[],river:[]};
+let hhStreetNotesDraft={preflop:"",flop:"",turn:"",river:""};
+let hhCurrentStreetTab="preflop";
+
+function hhSwitchStreetTab(street){
+  hhCurrentStreetTab=street;
+  document.querySelectorAll("#hhbStreetTabs button").forEach(b=>b.classList.toggle("on",b.dataset.street===street));
+  renderHhStreetContent();
+  renderHhbTable();
+  renderHhFlowHint();
+  playSound("tick");haptic("light");
+}
+function updateHhwTabProgress(){
+  HH_STREETS.forEach(street=>{
+    const dot=$("hhbTabDot"+street.charAt(0).toUpperCase()+street.slice(1));
+    if(!dot)return;
+    const acts=hhStreetActions[street]||[];
+    if(!acts.length){dot.className="hhb-tab-dot";return}
+    const state=hhComputeStreetState(street);
+    const complete=state.activeAtStart.length<=1||hhNextActor(street)===null;
+    dot.className="hhb-tab-dot "+(complete?"done":"active");
+  });
+}
+function renderHhFlowHint(){
+  const el=$("hhbFlowHint");if(!el)return;
+  const anyActions=HH_STREETS.some(s=>(hhStreetActions[s]||[]).length>0);
+  if(anyActions){el.style.display="none";return}
+  const heroHasCards=hhPlayersState[0]&&hhPlayersState[0].cards.length>0;
+  el.style.display="flex";
+  if(!heroHasCards){
+    el.innerHTML='<span>👆</span> Tap Hero\'s seat on the table above to set your hole cards';
+  }else if(hhCurrentStreetTab==="preflop"){
+    el.innerHTML='<span>👆</span> Tap the glowing action for whoever\'s turn it is — the app tracks the order for you';
+  }else{
+    el.style.display="none";
+  }
+}
+function renderHhStreetContent(){
+  const street=hhCurrentStreetTab;
+  const ct=$("hhbStreetContent");if(!ct)return;
+  if(street==="showdown"){
+    ct.innerHTML='<div class="hhb-panel"><div class="hh-section-hdr"><span>👁</span>Showdown</div><div class="hhw-hint" id="hhShowdownHint"></div><div id="hhShowdownArea"></div></div>';
+    renderHhShowdownStep();
+    return;
+  }
+  const cap=street.charAt(0).toUpperCase()+street.slice(1);
+  const boardCfg={flop:[3,"Flop — select up to 3 cards"],turn:[1,"Turn — select 1 card"],river:[1,"River — select 1 card"]}[street];
+  let html='<div class="hhb-panel">';
+  if(boardCfg){
+    html+='<div class="hh-section-hdr" style="font-size:12px"><span>🃏</span>'+cap+' Board</div>'
+      +'<div class="card-slot-trigger hh-board-slot" onclick="openHhCardPicker(\''+street+"',"+boardCfg[0]+",'"+boardCfg[1]+'\')" id="hh'+cap+'Slot"><span class="cst-placeholder">🎴 Tap to select</span></div>';
+  }
+  html+='<div class="hh-section-hdr" style="font-size:12px;margin-top:'+(boardCfg?"14":"0")+'px"><span>🎬</span>'+cap+' Action</div>'
+    +'<div class="hha-log" id="hhLog'+cap+'"></div><div class="hha-builder" id="hhBuilder'+cap+'"></div>'
+    +'<textarea class="rnote hhw-street-note" id="hhStreetNote'+cap+'" placeholder="'+cap+' notes (optional)…" oninput="hhStreetNotesDraft.'+street+'=this.value;hhSaveDraft()">'+escapeHtml(hhStreetNotesDraft[street]||"")+'</textarea>';
+  html+="</div>";
+  ct.innerHTML=html;
+  if(boardCfg)hhUpdateSlotDisplay(street);
+  renderStreetActions(street);
+}
+
+/* ── Derived hand-state helpers ── */
+function hhFoldedBefore(playerIdx,uptoStreetIdx){for(let s=0;s<uptoStreetIdx;s++){if((hhStreetActions[HH_STREETS[s]]||[]).some(a=>a.playerIdx===playerIdx&&a.action==="fold"))return true}return false}
+function hhIsFoldedBefore(playerIdx,uptoStreetIdx){return hhFoldedBefore(playerIdx,uptoStreetIdx)}
+function hhAllInBefore(playerIdx,uptoStreetIdx){for(let s=0;s<uptoStreetIdx;s++){if((hhStreetActions[HH_STREETS[s]]||[]).some(a=>a.playerIdx===playerIdx&&a.action==="allin"))return true}return false}
+function hhPlayersStillInHand(uptoStreetIdx){return hhPlayersState.map((p,i)=>i).filter(i=>!hhFoldedBefore(i,uptoStreetIdx))}
+function hhActivePlayersForStreet(street){return hhPlayersStillInHand(HH_STREETS.indexOf(street))}
+function hhComputeStreetState(street){
+  const streetIdx=HH_STREETS.indexOf(street);
+  const activeAtStart=hhPlayersStillInHand(streetIdx).filter(i=>!hhAllInBefore(i,streetIdx));
+  const actions=hhStreetActions[street]||[];
+  let folded=new Set(),allIn=new Set(),settled=new Set(),hasBet=false,lastAggressor=null;
+  actions.forEach(a=>{
+    if(a.action==="fold"){folded.add(a.playerIdx);settled.delete(a.playerIdx)}
+    else if(a.action==="allin"){allIn.add(a.playerIdx);hasBet=true;lastAggressor=a.playerIdx;settled=new Set([a.playerIdx])}
+    else if(a.action==="check"||a.action==="call"){settled.add(a.playerIdx)}
+    else if(a.action==="bet"||a.action==="raise"){hasBet=true;lastAggressor=a.playerIdx;settled=new Set([a.playerIdx])}
+  });
+  const stillActive=activeAtStart.filter(i=>!folded.has(i)&&!allIn.has(i));
+  const stillNeedsToAct=stillActive.filter(i=>!settled.has(i));
+  return{activeAtStart,folded,allIn,settled,stillActive,stillNeedsToAct,hasBet,lastAggressor,actions};
+}
+function hhSeatOrderForStreet(street){
+  const order=hhGetOrderList(street);
+  return hhPlayersState.map((p,i)=>i).sort((a,b)=>hhPosRank(hhPlayersState[a].position,order)-hhPosRank(hhPlayersState[b].position,order));
+}
+function hhTableSeatOrder(playersArr){
+  const arr=playersArr||hhPlayersState;
+  const posSet=HH_POS_SETS[arr.length]||HH_POS_SETS[8];
+  const idxs=arr.map((p,i)=>i);
+  const sorted=idxs.sort((a,b)=>posSet.indexOf(arr[a].position)-posSet.indexOf(arr[b].position));
+  const heroSlot=sorted.indexOf(0);
+  return heroSlot<=0?sorted:[...sorted.slice(heroSlot),...sorted.slice(0,heroSlot)];
+}
+function hhNextActor(street){
+  const state=hhComputeStreetState(street);
+  if(!state.stillNeedsToAct.length)return null;
+  const seatOrder=hhSeatOrderForStreet(street);
+  let startFrom=0;
+  if(state.actions.length){
+    const lastActorIdx=state.actions[state.actions.length-1].playerIdx;
+    const posInSeatOrder=seatOrder.indexOf(lastActorIdx);
+    startFrom=posInSeatOrder===-1?0:(posInSeatOrder+1)%seatOrder.length;
+  }
+  for(let k=0;k<seatOrder.length;k++){
+    const idx=seatOrder[(startFrom+k)%seatOrder.length];
+    if(state.stillNeedsToAct.includes(idx))return idx;
+  }
+  return state.stillNeedsToAct[0];
+}
+function hhComputePot(){
+  let total=0;
+  HH_STREETS.forEach(street=>{(hhStreetActions[street]||[]).forEach(a=>{if((a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null)total+=a.amount})});
+  return total;
+}
+/* ── Side pot calculator (standard main+side pot algorithm) ── */
+function hhComputeSidePots(streetActionsObj,playersArr){
+  const n=playersArr.length;
+  const contributed=new Array(n).fill(0);
+  const folded=new Set();
+  HH_STREETS.forEach(street=>{
+    (streetActionsObj[street]||[]).forEach(a=>{
+      if(a.action==="fold")folded.add(a.playerIdx);
+      if((a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null)contributed[a.playerIdx]+=a.amount;
+    });
+  });
+  const contributors=contributed.map((amt,idx)=>({idx,amt,folded:folded.has(idx)})).filter(c=>c.amt>0);
+  if(!contributors.length)return{pots:[],returns:[]};
+  const levels=[...new Set(contributors.map(c=>c.amt))].sort((a,b)=>a-b);
+  const pots=[],returns=[];
+  let prevLevel=0;
+  levels.forEach(level=>{
+    const atOrAbove=contributors.filter(c=>c.amt>=level);
+    const layerSize=(level-prevLevel)*atOrAbove.length;
+    if(layerSize>0){
+      if(atOrAbove.length===1){
+        // Nobody else contributed this much — it's an uncalled bet, returned to its owner, not a contested pot.
+        returns.push({playerIdx:atOrAbove[0].idx,amount:layerSize});
+      }else{
+        const eligible=atOrAbove.filter(c=>!c.folded).map(c=>c.idx);
+        if(eligible.length>0)pots.push({amount:layerSize,eligible});
+      }
+    }
+    prevLevel=level;
+  });
+  return{pots,returns};
+}
+function hhAmountToCall(street){
+  const acts=(hhStreetActions[street]||[]);
+  const lastAggro=[...acts].reverse().find(a=>a.action==="bet"||a.action==="raise"||a.action==="allin");
+  return lastAggro&&lastAggro.amount!=null?lastAggro.amount:null;
+}
+function hhFormatPotDisplay(streetActionsObj,playersArr){
+  const{pots}=hhComputeSidePots(streetActionsObj,playersArr);
+  const total=pots.reduce((a,p)=>a+p.amount,0);
+  if(pots.length<=1)return"Pot ~"+hhSym()+total;
+  return"Pot ~"+hhSym()+total+' <span class="hhb-sidepot-badge">+'+(pots.length-1)+" side pot"+(pots.length>2?"s":"")+"</span>";
+}
+
+/* ── Sequential action engine ── */
+function hhRecordAction(street,playerIdx,action){
+  const needsAmt=action==="call"||action==="bet"||action==="raise"||action==="allin";
+  const requiresAmt=action==="bet"||action==="raise"||action==="allin";
+  const amtInput=$("hhAmtInput"+street);const noteInput=$("hhNoteInput"+street);
+  const amountRaw=amtInput?amtInput.value:"";
+  if(requiresAmt&&(amountRaw===""||isNaN(parseFloat(amountRaw)))){
+    toast("Enter an amount for that "+action);
+    haptic("warn");
+    if(amtInput){amtInput.focus();amtInput.classList.add("hha-amt-error");setTimeout(()=>amtInput.classList.remove("hha-amt-error"),600)}
+    return;
+  }
+  const amount=needsAmt&&amountRaw!==""?parseFloat(amountRaw):null;
+  const note=noteInput?noteInput.value.trim():"";
+  hhStreetActions[street].push({playerIdx,action,amount,note});
+  renderStreetActions(street);
+  renderHhbTable();
+  renderHhFlowHint();
+  hhSaveDraft();
+  playSound(action==="fold"?"wrong":"tick");haptic(action==="raise"||action==="allin"?"success":"light");
+}
+function hhUndoAction(street,idx){hhStreetActions[street].splice(idx,1);renderStreetActions(street);renderHhbTable();renderHhFlowHint();hhSaveDraft();playSound("tick");haptic("light")}
+const HH_NEXT_STREET_MAP={preflop:["flop","Flop"],flop:["turn","Turn"],turn:["river","River"],river:["showdown","Showdown"]};
+function hhNextStreetCTA(street){
+  const next=HH_NEXT_STREET_MAP[street];
+  if(!next)return"";
+  return '<button class="hha-continue-btn" onclick="hhSwitchStreetTab(\''+next[0]+'\')">Continue to '+next[1]+' →</button>';
+}
+function renderStreetActions(street){
+  const key=street.charAt(0).toUpperCase()+street.slice(1);
+  const logCt=$("hhLog"+key);const builderCt=$("hhBuilder"+key);
+  if(!logCt||!builderCt)return;
+  const state=hhComputeStreetState(street);
+  logCt.innerHTML=state.actions.length?state.actions.map((a,idx)=>{
+    const p=hhPlayersState[a.playerIdx];const name=a.playerIdx===0?"Hero":(p?p.name:"?");
+    const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhSym()+a.amount:"";
+    return'<div class="hha-log-item"><span class="hha-log-num">'+(idx+1)+'</span><span class="hha-log-text"><b>'+escapeHtml(name)+"</b> "+a.action+amt+"</span>"+(a.note?'<span class="hha-log-note">💬 '+escapeHtml(a.note)+"</span>":"")+'<button class="hha-log-undo" onclick="hhUndoAction(\''+street+"',"+idx+')">✕</button></div>';
+  }).join(""):'<div class="hha-log-empty">No actions recorded yet</div>';
+  if(state.activeAtStart.length<=1){
+    builderCt.innerHTML='<div class="hha-done-note">'+(state.activeAtStart.length===1?"Only "+escapeHtml(hhPlayersState[state.activeAtStart[0]].name)+" is still live — nothing left to act on.":"Everyone has folded.")+"</div>"+hhNextStreetCTA(street);
+    updateHhwTabProgress();
+    return;
+  }
+  const nextActor=hhNextActor(street);
+  if(nextActor==null){
+    builderCt.innerHTML='<div class="hha-complete">✓ Action is complete for this street — everyone has matched the bet, folded, or is all-in.</div>'+hhNextStreetCTA(street);
+    updateHhwTabProgress();
+    return;
+  }
+  updateHhwTabProgress();
+  const p=hhPlayersState[nextActor];
+  const canCheck=!state.hasBet&&(street!=="preflop"||p.position==="BB");
+  const toCall=hhAmountToCall(street);
+  const lastAggro=[...state.actions].reverse().find(a=>a.action==="bet"||a.action==="raise"||a.action==="allin");
+  const callIsAllin=lastAggro&&lastAggro.action==="allin";
+  builderCt.innerHTML='<div class="hha-next-label hha-auto"><span class="hha-turn-dot"></span>'+(nextActor===0?"🎯 ":"")+escapeHtml(p.name)+' <span class="hha-pos-tag">'+(p.position||"?")+"</span> to act</div>"
+    +(state.hasBet?'<div class="hha-tocall-hint">Facing '+(callIsAllin?"an all-in of ":"a bet of ")+"<b>"+hhSym()+toCall+"</b>"+(callIsAllin?" — calling for less than a full raise is fine":"")+"</div>":"")
+    +'<div class="hha-btns">'
+    +'<button class="hha-btn hha-fold" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'fold\')">Fold</button>'
+    +(canCheck?'<button class="hha-btn hha-check" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'check\')">Check</button>':"")
+    +(state.hasBet?'<button class="hha-btn hha-call" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'call\')">Call'+(toCall!=null?" "+hhSym()+toCall:"")+"</button>":"")
+    +'<button class="hha-btn hha-bet" onclick="hhRecordAction(\''+street+"',"+nextActor+",'"+(state.hasBet?"raise":"bet")+'\')">'+(state.hasBet?"Raise":"Bet")+"</button>"
+    +'<button class="hha-btn hha-allin" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'allin\')">All-In</button>'
+    +"</div>"
+    +'<div class="hha-input-row"><div class="hha-amt-wrap"><span class="hha-amt-prefix">'+hhSym()+'</span><input type="number" class="minp hha-amt" id="hhAmtInput'+street+'" placeholder="Amount" value="'+(toCall!=null?toCall:"")+'"/></div><input class="minp hha-note-input" id="hhNoteInput'+street+'" placeholder="Note (optional)"/></div>';
+}
+function hhFormatStreetActions(h,street){
+  const acts=(h.streetActions&&h.streetActions[street])||[];
+  if(!acts.length)return"";
+  const players=h.players||[];
+  const verbs={fold:"folds",check:"checks",call:"calls",bet:"bets",raise:"raises to",allin:"goes all-in"};
+  return acts.map(a=>{
+    const p=players[a.playerIdx];if(!p)return"";
+    const name=a.playerIdx===0?"Hero":p.name;
+    const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhSym()+a.amount:"";
+    const note=a.note?" ("+escapeHtml(a.note)+")":"";
+    return escapeHtml(name)+" "+(verbs[a.action]||a.action)+amt+note;
+  }).filter(Boolean).join(", ");
+}
+
+/* ── Showdown ── */
+function renderHhShowdownStep(){
+  const activeIdxs=hhPlayersStillInHand(4);
+  const ct=$("hhShowdownArea");const hint=$("hhShowdownHint");
+  const revealable=activeIdxs.filter(i=>i>0);
+  if(!revealable.length){
+    hint.textContent=activeIdxs.length<=1?"Hand ended before showdown — everyone else folded, no cards to reveal.":"Only Hero reached the end — nothing to reveal.";
+    ct.innerHTML="";
+    return;
+  }
+  hint.textContent="These players reached showdown. Add their cards if you saw them.";
+  ct.innerHTML=activeIdxs.map(i=>{
+    const p=hhPlayersState[i];
+    return'<div class="hh-player-row"><div class="hh-seat-badge'+(i===0?" hero":"")+'">'+(i===0?"🎯":i+1)+'</div>'
+      +'<div class="hh-player-name-fixed" style="flex:1">'+escapeHtml(p.name)+" ("+(p.position||"?")+')</div>'
+      +'<div class="card-slot-trigger hh-player-slot" onclick="openHhCardPicker(\'player'+i+"',2,'"+escapeHtml(p.name)+' — select up to 2 cards\')" id="hhPlayerSlot'+i+'">'+(p.cards.length?renderCommCardsHtml(p.cards,true):p.cardsUnknown?'<span class="cst-placeholder">🤷 Unknown</span>':'<span class="cst-placeholder">🎴 Cards</span>')+"</div></div>";
+  }).join("");
+}
+
+/* ── The visual table ── */
+function renderHhbTable(){
+  const ct=$("hhbSeats");if(!ct)return;
+  const n=hhPlayersState.length;
+  const streetIdx=HH_STREETS.indexOf(hhCurrentStreetTab);
+  const effIdx=streetIdx===-1?3:streetIdx; // showdown treated like river for status purposes
+  const seatOrder=hhTableSeatOrder();
+  let html="";
+  seatOrder.forEach((i,slot)=>{
+    const angle=(Math.PI/2)+(slot/n)*2*Math.PI;
+    const rx=40,ry=36;
+    const x=50+rx*Math.cos(angle);
+    const y=50+ry*Math.sin(angle);
+    const p=hhPlayersState[i];
+    const folded=hhFoldedBefore(i,effIdx+1);
+    const allIn=hhAllInBefore(i,effIdx+1);
+    let statusTxt="";
+    if(streetIdx>=0&&!folded){
+      const acts=hhStreetActions[hhCurrentStreetTab]||[];
+      const last=[...acts].reverse().find(a=>a.playerIdx===i);
+      if(last){const verbs={fold:"Folded",check:"Checks",call:"Calls",bet:"Bets",raise:"Raises",allin:"All-In"};statusTxt=verbs[last.action]+(last.amount!=null?" "+hhSym()+last.amount:"")}
+    }
+    const cardLabel=i===0?"Hero":escapeHtml(p.name);
+    html+='<div class="hhb-seat'+(i===0?" hero":"")+(folded?" folded":"")+'" style="left:'+x+'%;top:'+y+'%" onclick="openHhCardPicker(\'player'+i+"',2,'"+cardLabel+' — select up to 2 cards\')">'
+      +'<div class="hhb-seat-pos">'+(p.position||"")+'</div>'
+      +'<div class="hhb-seat-avatar">'+(i===0?"🎯":allIn?"💰":"👤")+'</div>'
+      +'<div class="hhb-seat-name">'+escapeHtml(p.name)+'</div>'
+      +(folded?'<div class="hhb-seat-status folded">Folded</div>':statusTxt?'<div class="hhb-seat-status">'+statusTxt+"</div>":"")
+      +(p.cards.length?'<div class="hhb-seat-cards">'+renderCommCardsHtml(p.cards,true)+"</div>":p.cardsUnknown?'<div class="hhb-seat-unknown-tag">🤷 Unknown</div>':'<div class="hhb-seat-tap-hint">🎴 Tap for cards</div>')
+      +"</div>";
+  });
+  ct.innerHTML=html;
+  const potEl=$("hhbPot");if(potEl)potEl.innerHTML=hhFormatPotDisplay(hhStreetActions,hhPlayersState);
+  const boardEl=$("hhbBoard");
+  if(boardEl){
+    let board=[];
+    const show=hhCurrentStreetTab==="showdown"?3:streetIdx;
+    if(show>=1)board=board.concat(hhBoardState.flop);
+    if(show>=2)board=board.concat(hhBoardState.turn);
+    if(show>=3)board=board.concat(hhBoardState.river);
+    boardEl.innerHTML=board.length?renderCommCardsHtml(board,true):'<span class="hhb-board-empty">No board yet</span>';
+  }
+}
+/* ── HH-specific card picker (mirrors equity's, kept separate for safety) ── */
+function openHhCardPicker(target,max,label){hhCardTarget=target;hhCardMax=max;$("hhCardPickerTitle").textContent=label;renderHhCardPickerGrid();updateHhUnknownBtn();openM("hhCardPickerM")}
+let hhCardMax=2;
+function hhIsPlayerTarget(target){return target!=="flop"&&target!=="turn"&&target!=="river"}
+function updateHhUnknownBtn(){
+  const btn=$("hhUnknownBtn");if(!btn)return;
+  if(!hhIsPlayerTarget(hhCardTarget)){btn.style.display="none";return}
+  btn.style.display="";
+  const idx=+hhCardTarget.replace("player","");
+  const p=hhPlayersState[idx];
+  btn.classList.toggle("active",!!p.cardsUnknown);
+  btn.textContent=p.cardsUnknown?"✓ Marked as unknown — tap to undo":"🤷 Hand won't be shown / cards unknown";
+}
+function hhToggleCardsUnknown(){
+  if(!hhIsPlayerTarget(hhCardTarget))return;
+  const idx=+hhCardTarget.replace("player","");
+  const p=hhPlayersState[idx];
+  p.cardsUnknown=!p.cardsUnknown;
+  if(p.cardsUnknown)p.cards=[];
+  renderHhCardPickerGrid();updateHhUnknownBtn();hhUpdateSlotDisplay(hhCardTarget);hhSaveDraft();
+  playSound("tick");haptic("light");
+}
+function hhGetTargetArr(target){
+  if(target==="flop")return hhBoardState.flop;
+  if(target==="turn")return hhBoardState.turn;
+  if(target==="river")return hhBoardState.river;
+  const idx=+target.replace("player","");
+  return hhPlayersState[idx].cards;
+}
+function hhAllUsedCards(){
+  const arr=[...hhBoardState.flop,...hhBoardState.turn,...hhBoardState.river];
+  hhPlayersState.forEach(p=>arr.push(...p.cards));
+  return arr;
+}
+function renderHhCardPickerGrid(){
+  const usedKeys=new Set(hhAllUsedCards().map(cardKey));
+  const targetArr=hhGetTargetArr(hhCardTarget);
+  const targetKeys=new Set(targetArr.map(cardKey));
+  let h="";
+  SU.forEach(suit=>{
+    RK.forEach(rank=>{
+      const key=rank+suit;
+      const isSelected=targetKeys.has(key);
+      const isUsedElsewhere=usedKeys.has(key)&&!isSelected;
+      const red=suit==="h"||suit==="d";
+      h+='<div class="cp-cell '+(red?"red":"blk")+(isSelected?" sel":"")+(isUsedElsewhere?" disabled":"")+'" '+(isUsedElsewhere?"":'onclick="toggleHhCardPick(\''+rank+"','"+suit+"')\"")+'>'+rank+SYM[suit]+"</div>";
+    });
+  });
+  $("hhCpGrid").innerHTML=h;
+  const idxForUnknown=hhIsPlayerTarget(hhCardTarget)?hhPlayersState[+hhCardTarget.replace("player","")]:null;
+  $("hhCpSelectedRow").innerHTML=targetArr.length?renderCommCardsHtml(targetArr,true):(idxForUnknown&&idxForUnknown.cardsUnknown?'<span class="hh-preview-empty">🤷 Marked as unknown / won\'t be shown</span>':'<span class="hh-preview-empty">No cards selected yet</span>');
+}
+function toggleHhCardPick(rank,suit){
+  const arr=hhGetTargetArr(hhCardTarget);
+  if(hhIsPlayerTarget(hhCardTarget)){const p=hhPlayersState[+hhCardTarget.replace("player","")];if(p.cardsUnknown){p.cardsUnknown=false;updateHhUnknownBtn()}}
+  const idx=arr.findIndex(c=>c.rank===rank&&c.suit===suit);
+  if(idx>=0)arr.splice(idx,1);
+  else{if(arr.length>=hhCardMax){toast("Max "+hhCardMax+" card"+(hhCardMax!==1?"s":"")+" for this slot");haptic("warn");return}arr.push({rank,suit})}
+  renderHhCardPickerGrid();
+  hhUpdateSlotDisplay(hhCardTarget);
+  hhSaveDraft();
+  playSound("tick");haptic("light");
+}
+function clearHhCardSlot(){
+  if(hhCardTarget==="flop")hhBoardState.flop=[];
+  else if(hhCardTarget==="turn")hhBoardState.turn=[];
+  else if(hhCardTarget==="river")hhBoardState.river=[];
+  else{const idx=+hhCardTarget.replace("player","");hhPlayersState[idx].cards=[];hhPlayersState[idx].cardsUnknown=false}
+  renderHhCardPickerGrid();hhUpdateSlotDisplay(hhCardTarget);updateHhUnknownBtn();hhSaveDraft();
+}
+function hhUpdateSlotDisplay(target){
+  if(target==="flop"){const el=$("hhFlopSlot");if(el)el.innerHTML=hhBoardState.flop.length?renderCommCardsHtml(hhBoardState.flop,true):'<span class="cst-placeholder">🎴 Tap to select</span>';renderHhbTable();return}
+  if(target==="turn"){const el=$("hhTurnSlot");if(el)el.innerHTML=hhBoardState.turn.length?renderCommCardsHtml(hhBoardState.turn,true):'<span class="cst-placeholder">🎴 Tap to select</span>';renderHhbTable();return}
+  if(target==="river"){const el=$("hhRiverSlot");if(el)el.innerHTML=hhBoardState.river.length?renderCommCardsHtml(hhBoardState.river,true):'<span class="cst-placeholder">🎴 Tap to select</span>';renderHhbTable();return}
+  renderHhPlayersArea();renderHhbTable();renderHhFlowHint();
+}
+let hhDraftChecked=false;
 function initHH(){
   loadSvd();
   if(!$("hhDate").value)$("hhDate").value=new Date().toISOString().slice(0,10);
+  if(!hhPlayersState.length){hhSetNumPlayers(2);hhSwitchStreetTab("preflop")}
+  if(!hhDraftChecked){hhDraftChecked=true;hhRestoreDraftIfAny()}
   setupAC("hhStakes","hhStakesAC",()=>[...new Set(HH.d.hands.map(h=>h.stakes).filter(Boolean))]);
   renderHhHands();renderPlayers();
 }
+function hhHasUnsavedProgress(){
+  const anyActions=HH_STREETS.some(s=>(hhStreetActions[s]||[]).length>0);
+  const heroHasCards=hhPlayersState[0]&&hhPlayersState[0].cards.length>0;
+  const boardHasCards=hhBoardState.flop.length||hhBoardState.turn.length||hhBoardState.river.length;
+  const hasNotes=(($("hhNotes")&&$("hhNotes").value)||"").trim().length>0;
+  return!!(anyActions||heroHasCards||boardHasCards||hasNotes);
+}
+function hhSaveDraft(){
+  if($("hhEditId")&&$("hhEditId").value)return;
+  const draft={
+    date:$("hhDate")?$("hhDate").value:"",stakes:$("hhStakes")?$("hhStakes").value:"",table:$("hhTable")?$("hhTable").value:"",fmt:hhFmt_,
+    players:hhPlayersState,board:hhBoardState,actions:hhStreetActions,streetNotes:hhStreetNotesDraft,
+    result:$("hhResult")?$("hhResult").value:"",tags:S.hhTags,notes:$("hhNotes")?$("hhNotes").value:"",
+    savedAt:Date.now()
+  };
+  LS("ps_hh_draft",draft);
+}
+function hhClearDraft(){LS("ps_hh_draft",null)}
+function hhRestoreDraftIfAny(){
+  const draft=LG("ps_hh_draft",null);
+  if(!draft||!draft.players)return;
+  const hasContent=(draft.actions&&HH_STREETS.some(s=>(draft.actions[s]||[]).length>0))||(draft.players[0]&&draft.players[0].cards&&draft.players[0].cards.length)||(draft.notes&&draft.notes.trim());
+  if(!hasContent)return;
+  hhPlayersState=draft.players;
+  hhBoardState=draft.board||{flop:[],turn:[],river:[]};
+  hhStreetActions=draft.actions||{preflop:[],flop:[],turn:[],river:[]};
+  hhStreetNotesDraft=draft.streetNotes||{preflop:"",flop:"",turn:"",river:""};
+  if($("hhDate"))$("hhDate").value=draft.date||new Date().toISOString().slice(0,10);
+  if($("hhStakes"))$("hhStakes").value=draft.stakes||"";
+  if($("hhTable"))$("hhTable").value=draft.table||"8-max";
+  if($("hhResult"))$("hhResult").value=draft.result||"";
+  if($("hhNotes"))$("hhNotes").value=draft.notes||"";
+  S.hhTags=draft.tags||[];renTags("hhTagsW","hhTagsI","hhTags");
+  setHhFmt(draft.fmt||"cash");
+  renderHhPlayersArea();renderHhbTable();hhSwitchStreetTab("preflop");
+  toast("📝 Restored your unsaved hand ✦");
+}
+function hhCancelWithConfirm(){
+  if(hhHasUnsavedProgress()){
+    if(!confirm("Discard this hand? Everything you've entered will be lost."))return;
+  }
+  hhClearDraft();
+  resetHhForm();
+}
 function switchNotesHub(tab){$("notesHubNav").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.nh===tab));document.querySelectorAll("#notesV .br-sub").forEach(p=>p.classList.toggle("on",p.id===tab));if(tab==="hhHands")renderHhHands();if(tab==="hhPlayers")renderPlayers();if(tab==="notesMain")renderNotes()}
 function setHhFmt(f){hhFmt_=f;$("hhFmtTog").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.f===f))}
+function hhToggleNotesPanel(){
+  const panel=$("hhbNotesPanel");const arrow=$("hhbNotesArrow");
+  const open=panel.style.display!=="none";
+  panel.style.display=open?"none":"block";
+  arrow.textContent=open?"▸":"▾";
+}
 
 /* ── Hand History CRUD ── */
-function hhVillainAC(){const v=$("hhVillain").value.toLowerCase();const ac=$("hhVillainAC");if(!v){ac.classList.remove("show");return}const m=HH.d.players.filter(p=>p.name.toLowerCase().includes(v));if(!m.length){ac.classList.remove("show");return}ac.innerHTML=m.slice(0,6).map(p=>"<div>"+p.name+"</div>").join("");ac.classList.add("show");ac.querySelectorAll("div").forEach((d,i)=>d.onclick=()=>{$("hhVillain").value=m[i].name;ac.classList.remove("show")})}
 function saveHhHand(){
   const date=$("hhDate").value;if(!date)return toast("Enter a date");
   const result=parseFloat($("hhResult").value)||0;
-  const h={id:$("hhEditId").value||"hh_"+Date.now(),date,format:hhFmt_,stakes:$("hhStakes").value.trim(),position:$("hhPos").value,tableSize:$("hhTable").value,
-    hero:$("hhHero").value.trim(),flop:$("hhFlop").value.trim(),turn:$("hhTurn").value.trim(),river:$("hhRiver").value.trim(),
-    villain:$("hhVillain").value.trim(),result,resultCents:Math.round(result*100),tags:[...S.hhTags],notes:$("hhNotes").value.trim(),ts:Date.now()};
+  const players=hhPlayersState.map(p=>({name:p.name,cards:[...p.cards],position:p.position,cardsUnknown:!!p.cardsUnknown}));
+  const h={id:$("hhEditId").value||"hh_"+Date.now(),date,format:hhFmt_,stakes:$("hhStakes").value.trim(),position:players[0]?.position||"",tableSize:$("hhTable").value,
+    numPlayers:players.length,players,
+    streetActions:JSON.parse(JSON.stringify(hhStreetActions)),streetNotes:{...hhStreetNotesDraft},
+    flopCards:[...hhBoardState.flop],turnCards:[...hhBoardState.turn],riverCards:[...hhBoardState.river],
+    hero:players[0]?players[0].cards.map(c=>c.rank+c.suit).join(""):"",
+    villain:players.slice(1).map(p=>p.name).filter(n=>n&&!/^Player \d+$/.test(n)).join(", "),
+    result,resultCents:Math.round(result*100),tags:[...S.hhTags],notes:$("hhNotes").value.trim(),ts:Date.now()};
   const hands=[...HH.d.hands];const ei=hands.findIndex(x=>x.id===h.id);const isNew=ei<0;if(ei>=0)hands[ei]=h;else hands.push(h);
-  HH.d.hands=hands;HH.save();resetHhForm();renderHhHands();playSound("save");haptic("light");
+  HH.d.hands=hands;HH.save();hhClearDraft();resetHhForm();renderHhHands();playSound("save");haptic("light");celebrate();
   if(isNew){addXp(15);checkAchievements();toast("Hand saved · +15 XP ✦")}else toast("Hand updated ✦")
 }
-function resetHhForm(){$("hhEditId").value="";$("hhFormTitle").textContent="✦ Log a Hand";["hhStakes","hhHero","hhResult","hhFlop","hhTurn","hhRiver","hhVillain","hhNotes"].forEach(id=>$(id).value="");$("hhPos").value="";$("hhTable").value="9-max";$("hhDate").value=new Date().toISOString().slice(0,10);S.hhTags=[];renTags("hhTagsW","hhTagsI","hhTags");hhPreviewCards();setHhFmt("cash")}
-function editHhHand(id){const h=HH.d.hands.find(x=>x.id===id);if(!h)return;closeM("hhDetailM");switchNotesHub("hhHands");$("hhEditId").value=h.id;$("hhFormTitle").textContent="✦ Edit Hand";$("hhDate").value=h.date;$("hhStakes").value=h.stakes||"";$("hhPos").value=h.position||"";$("hhTable").value=h.tableSize||"9-max";$("hhHero").value=h.hero||"";$("hhResult").value=h.result;$("hhFlop").value=h.flop||"";$("hhTurn").value=h.turn||"";$("hhRiver").value=h.river||"";$("hhVillain").value=h.villain||"";$("hhNotes").value=h.notes||"";S.hhTags=[...(h.tags||[])];renTags("hhTagsW","hhTagsI","hhTags");hhPreviewCards();setHhFmt(h.format||"cash");setTimeout(()=>$("hhFormCard").scrollIntoView({behavior:"smooth"}),80)}
+function resetHhForm(){
+  $("hhEditId").value="";$("hhFormTitle").textContent="✦ Hand Builder";
+  ["hhStakes","hhResult","hhNotes"].forEach(id=>$(id).value="");
+  $("hhDate").value=new Date().toISOString().slice(0,10);
+  S.hhTags=[];renTags("hhTagsW","hhTagsI","hhTags");
+  hhBoardState={flop:[],turn:[],river:[]};hhPlayersState=[];hhStreetActions={preflop:[],flop:[],turn:[],river:[]};hhStreetNotesDraft={preflop:"",flop:"",turn:"",river:""};
+  $("hhPresetRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.preset==="2"));
+  hhSetNumPlayers(2);
+  setHhFmt("cash");
+  $("hhbNotesPanel").style.display="none";$("hhbNotesArrow").textContent="▸";
+  hhSwitchStreetTab("preflop");
+}
+function editHhHand(id){
+  const h=HH.d.hands.find(x=>x.id===id);if(!h)return;
+  closeM("hhDetailM");switchNotesHub("hhHands");
+  $("hhEditId").value=h.id;$("hhFormTitle").textContent="✎ Edit Hand";
+  $("hhDate").value=h.date;$("hhStakes").value=h.stakes||"";$("hhTable").value=h.tableSize||"8-max";
+  $("hhResult").value=h.result;$("hhNotes").value=h.notes||"";
+  S.hhTags=[...(h.tags||[])];renTags("hhTagsW","hhTagsI","hhTags");
+  // Migrate legacy hands (single hero/villain strings) or load new player-array format
+  if(h.players&&h.players.length){
+    hhPlayersState=h.players.map(p=>({name:p.name,cards:[...(p.cards||[])],position:p.position||null,cardsUnknown:!!p.cardsUnknown}));
+  }else{
+    const heroCards=parseCardStr(h.hero||"");
+    hhPlayersState=[{name:"Hero",cards:heroCards,position:h.position||null},{name:h.villain||"Player 2",cards:[],position:null}];
+  }
+  hhAutoAssignPositions();
+  $("hhPresetRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.preset===hhPlayersState.length));
+  renderHhPlayersArea();
+  hhSyncTableSizeSelect();
+  hhBoardState={
+    flop:h.flopCards?[...h.flopCards]:parseCardStr(h.flop||""),
+    turn:h.turnCards?[...h.turnCards]:parseCardStr(h.turn||""),
+    river:h.riverCards?[...h.riverCards]:parseCardStr(h.river||"")
+  };
+  hhStreetActions=h.streetActions?JSON.parse(JSON.stringify(h.streetActions)):{preflop:[],flop:[],turn:[],river:[]};
+  hhStreetNotesDraft={...{preflop:"",flop:"",turn:"",river:""},...(h.streetNotes||{})};
+  setHhFmt(h.format||"cash");
+  hhSwitchStreetTab("preflop");
+  $("hhFormCard")?.scrollIntoView?.({behavior:"smooth",block:"start"});
+}
 function delHhHand(id){confirmAction("Delete this hand?","",()=>{HH.d.hands=HH.d.hands.filter(x=>x.id!==id);HH.save();closeM("hhDetailM");renderHhHands();haptic("warn");toast("Deleted")})}
 function toggleHhDir(){hhHistDir=hhHistDir==="desc"?"asc":"desc";LS("ps_hh_dir",hhHistDir);renderHhHands()}
 function renderHhHands(){
@@ -4407,8 +5986,8 @@ function renderHhHands(){
   const cnt=$("hhCount");if(cnt)cnt.textContent=hands.length+" hand"+(hands.length!==1?"s":"")+((q||fmtFilter)?" · filtered":"");
   const list=$("hhList");
   list.innerHTML=hands.map((h,i)=>{
-    const hero=parseCardStr(h.hero);const cls=h.resultCents>=0?"pos":"neg";
-    return'<div class="hh-row" style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openHhDetail(\''+h.id+'\')"><div class="hh-row-cards">'+(hero.length?renderCommCardsHtml(hero,true):'<span class="hh-row-nocard">🂠</span>')+'</div><div class="hh-row-mid"><div class="hh-row-top"><span class="hh-row-stakes">'+(h.stakes||"—")+'</span>'+(h.position?'<span class="hh-row-pos">'+h.position+'</span>':"")+(h.villain?'<span class="hh-row-villain">vs '+h.villain+'</span>':"")+'</div><div class="hh-row-tags">'+(h.tags||[]).slice(0,4).map(t=>'<span class="hh-tag-chip">'+t+'</span>').join("")+'</div></div><div class="hh-row-right"><div class="profit '+cls+'">'+brFmt(h.resultCents)+'</div><div class="hh-row-date">'+h.date+'</div></div></div>';
+    const hero=(h.players&&h.players[0])?h.players[0].cards:parseCardStr(h.hero);const cls=h.resultCents>=0?"pos":"neg";
+    return'<div class="hh-row" style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openHhDetail(\''+h.id+'\')"><div class="hh-row-cards">'+(hero.length?renderCommCardsHtml(hero,true):'<span class="hh-row-nocard">🂠</span>')+'</div><div class="hh-row-mid"><div class="hh-row-top"><span class="hh-row-stakes">'+(h.stakes||"—")+'</span>'+(h.position?'<span class="hh-row-pos">'+h.position+'</span>':"")+(h.numPlayers?'<span class="hh-row-players">👥 '+h.numPlayers+'</span>':"")+(h.villain?'<span class="hh-row-villain">vs '+h.villain+'</span>':"")+'</div><div class="hh-row-tags">'+(h.tags||[]).slice(0,4).map(t=>'<span class="hh-tag-chip">'+t+'</span>').join("")+'</div></div><button class="hh-row-replay-btn" onclick="event.stopPropagation();openHhReplay(\''+h.id+'\')" title="Replay hand">🎬</button><div class="hh-row-right"><div class="profit '+cls+'">'+brFmt(h.resultCents)+'</div><div class="hh-row-date">'+h.date+'</div></div></div>';
   }).join("")||'<div class="empty-state"><span class="es-icon">📔</span><div class="es-title">'+(q||fmtFilter?"No matching hands":"No hands logged yet")+'</div><div class="es-sub">'+(q||fmtFilter?"Try a different search or filter.":"Log a hand above to start building your history.")+'</div></div>';
   renderHhStats(hands);
 }
@@ -4425,30 +6004,155 @@ function renderHhStats(hands){
     +'<div class="br-stat"><div class="brs-label">Biggest Pot Won</div><div class="brs-val pos">'+brFmt(Math.max(0,biggest))+'</div><div class="brs-sub">best logged hand</div></div>'
     +'<div class="br-stat"><div class="brs-label">Most Played Spot</div><div class="brs-val" style="color:var(--li)">'+(topPos?topPos[0]:"—")+'</div><div class="brs-sub">'+(topPos?topPos[1]+" hands":"no data yet")+'</div></div>';
 }
+function hhFormatStreetActions(h,street){
+  const acts=(h.streetActions&&h.streetActions[street])||[];
+  if(!acts.length)return"";
+  const players=h.players||[];
+  const verbs={fold:"folds",check:"checks",call:"calls",bet:"bets",raise:"raises to",allin:"goes all-in"};
+  return acts.map(a=>{
+    const p=players[a.playerIdx];if(!p)return"";
+    const name=a.playerIdx===0?"Hero":p.name;
+    const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhSym()+a.amount:"";
+    const note=a.note?" ("+escapeHtml(a.note)+")":"";
+    return escapeHtml(name)+" "+(verbs[a.action]||a.action)+amt+note;
+  }).filter(Boolean).join(", ");
+}
 function openHhDetail(id){
   const h=HH.d.hands.find(x=>x.id===id);if(!h)return;
-  const hero=parseCardStr(h.hero);const flop=parseCardStr(h.flop);const turn=parseCardStr(h.turn);const river=parseCardStr(h.river);
+  const players=h.players&&h.players.length?h.players:[{name:"Hero",cards:parseCardStr(h.hero||"")},...(h.villain?[{name:h.villain,cards:[]}]:[])];
+  const flop=h.flopCards||parseCardStr(h.flop||"");const turn=h.turnCards||parseCardStr(h.turn||"");const river=h.riverCards||parseCardStr(h.river||"");
   const pos=h.resultCents>=0;
-  const linkedPlayer=h.villain?HH.d.players.find(p=>p.name.toLowerCase()===h.villain.toLowerCase()):null;
   let hh='<div class="sd-hdr"><div class="sd-hdr-top"><span class="sd-format-pill">'+(h.format==="tourney"?"🏆 Tournament":"🃏 Cash Game")+'</span><button class="sd-close" onclick="closeM(\'hhDetailM\')">✕</button></div>';
   hh+='<div class="sd-result '+(pos?"pos":"neg")+'">'+brFmt(h.resultCents)+'</div><div class="sd-date">'+new Date(h.date+"T00:00:00").toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"})+'</div></div>';
-  hh+='<div style="padding:16px 22px;border-bottom:1px solid var(--bd)">';
-  if(hero.length)hh+='<div class="hh-preview-grp"><span class="hh-preview-lbl">Hero</span><div class="hh-preview-cards">'+renderCommCardsHtml(hero,true)+'</div></div>';
+  hh+='<div class="hh-detail-players">'+players.map(p=>{
+    const linked=HH.d.players.find(pl=>pl.name.toLowerCase()===p.name.toLowerCase()&&p.name.toLowerCase()!=="hero");
+    return'<div class="hhd-player-card"><div class="hhd-player-name">'+(linked?'<span class="hh-villain-link" onclick="closeM(\'hhDetailM\');openPlDetail(\''+linked.id+'\')">'+escapeHtml(p.name)+' 👤</span>':escapeHtml(p.name))+'</div><div class="hhd-player-cards">'+(p.cards&&p.cards.length?renderCommCardsHtml(p.cards,true):p.cardsUnknown?'<span class="hh-row-nocard" style="font-size:11px">🤷 Unknown</span>':'<span class="hh-row-nocard" style="font-size:16px">🂠🂠</span>')+'</div></div>';
+  }).join("")+'</div>';
   const board=[...flop,...turn,...river];
-  if(board.length)hh+='<div class="hh-preview-grp" style="margin-top:10px"><span class="hh-preview-lbl">Board</span><div class="hh-preview-cards">'+renderCommCardsHtml(board,true)+'</div></div>';
-  if(!hero.length&&!board.length)hh+='<div style="font-size:11px;color:var(--t4);text-align:center">No cards recorded for this hand.</div>';
-  hh+='</div>';
+  if(board.length)hh+='<div style="padding:14px 22px;border-bottom:1px solid var(--bd)"><div class="hh-preview-grp"><span class="hh-preview-lbl">Board</span><div class="hh-preview-cards">'+renderCommCardsHtml(board,true)+'</div></div></div>';
+  if(h.streetActions){
+    const{pots,returns}=hhComputeSidePots(h.streetActions,players);
+    if(pots.length>1||returns.length){
+      hh+='<div class="hh-pots-breakdown"><div class="hh-preview-lbl" style="margin-bottom:8px">Pots</div>'+pots.map((pot,i)=>{
+        const names=pot.eligible.map(idx=>idx===0?"Hero":(players[idx]?players[idx].name:"?")).join(", ");
+        return'<div class="hh-pot-layer"><b>'+(i===0?"Main Pot":"Side Pot "+i)+": "+hhSym()+pot.amount+'</b><span>'+escapeHtml(names)+"</span></div>";
+      }).join("")+returns.map(r=>{
+        const name=r.playerIdx===0?"Hero":(players[r.playerIdx]?players[r.playerIdx].name:"?");
+        return'<div class="hh-pot-layer hh-pot-returned"><b>Returned: '+hhSym()+r.amount+'</b><span>uncalled, back to '+escapeHtml(name)+"</span></div>";
+      }).join("")+"</div>";
+    }
+  }
   hh+='<div class="sd-grid">';
   hh+='<div class="sd-item"><div class="sd-lbl">Stakes</div><div class="sd-val" style="font-family:var(--fm)">'+(h.stakes||"-")+'</div></div>';
   hh+='<div class="sd-item"><div class="sd-lbl">Position</div><div class="sd-val">'+(h.position||"-")+'</div></div>';
   hh+='<div class="sd-item"><div class="sd-lbl">Table Size</div><div class="sd-val">'+(h.tableSize||"-")+'</div></div>';
-  hh+='<div class="sd-item"><div class="sd-lbl">Villain</div><div class="sd-val">'+(h.villain?(linkedPlayer?'<span class="hh-villain-link" onclick="closeM(\'hhDetailM\');openPlDetail(\''+linkedPlayer.id+'\')">'+h.villain+' 👤</span>':h.villain):"-")+'</div></div>';
+  hh+='<div class="sd-item"><div class="sd-lbl">Players</div><div class="sd-val">'+(h.numPlayers||players.length)+'</div></div>';
   hh+='</div>';
+  if(h.streetActions){
+    const streetLabels={preflop:"Preflop",flop:"Flop",turn:"Turn",river:"River"};
+    const actLines=[];
+    HH_STREETS.forEach(street=>{
+      const acts=(h.streetActions[street]||[]);
+      const sn=(h.streetNotes||{})[street];
+      if(acts.length||sn){
+        const summary=hhFormatStreetActions(h,street);
+        actLines.push('<div class="hh-action-item"><b>'+streetLabels[street]+':</b> '+(summary||"<i>no actions recorded</i>")+(sn?'<div class="hh-action-note">💬 '+escapeHtml(sn)+"</div>":"")+"</div>");
+      }
+    });
+    if(actLines.length)hh+='<div class="sd-notes"><div class="sd-lbl">Action Sequence</div><div class="hh-action-list">'+actLines.join("")+"</div></div>";
+  }
   if((h.tags||[]).length)hh+='<div style="padding:12px 22px;border-bottom:1px solid var(--bd)">'+h.tags.map(t=>'<span class="hh-tag-chip">'+t+'</span>').join(" ")+'</div>';
   if(h.notes)hh+='<div class="sd-notes"><div class="sd-lbl">Action / Analysis</div><div class="sd-notes-body">'+escapeHtml(h.notes)+'</div></div>';
-  hh+='<div class="sd-acts"><button class="btn" onclick="editHhHand(\''+h.id+'\')">✎ Edit</button><button class="btn btn-d" onclick="delHhHand(\''+h.id+'\')">✕ Delete</button></div>';
+  hh+='<div class="sd-acts"><button class="btn pri" onclick="openHhReplay(\''+h.id+'\')">🎬 Replay</button><button class="btn" onclick="editHhHand(\''+h.id+'\')">✎ Edit</button><button class="btn btn-d" onclick="delHhHand(\''+h.id+'\')">✕ Delete</button></div>';
   $("hhDetailContent").innerHTML=hh;openM("hhDetailM");
 }
+
+/* ── Hand Replay Viewer ── */
+let hhReplayHand=null,hhReplayStreet=0,hhReplayAutoTimer=null;
+function openHhReplay(id){const h=HH.d.hands.find(x=>x.id===id);if(!h)return;hhReplayHand=h;hhReplayStreet=0;hhReplayStopAuto();closeM("hhDetailM");renderHhReplay();openM("hhReplayM")}
+function hhReplayClose(){hhReplayStopAuto();closeM("hhReplayM")}
+function hhReplayStopAuto(){if(hhReplayAutoTimer){clearInterval(hhReplayAutoTimer);hhReplayAutoTimer=null}}
+function hhReplayMaxStreet(h){
+  const flop=h.flopCards||parseCardStr(h.flop||"");const turn=h.turnCards||parseCardStr(h.turn||"");const river=h.riverCards||parseCardStr(h.river||"");
+  return flop.length?(turn.length?(river.length?3:2):1):0;
+}
+function hhReplayToggleAuto(){
+  if(hhReplayAutoTimer){hhReplayStopAuto();renderHhReplay();return}
+  hhReplayAutoTimer=setInterval(()=>{
+    const maxStreet=hhReplayMaxStreet(hhReplayHand);
+    if(hhReplayStreet>=maxStreet){hhReplayStopAuto();renderHhReplay();return}
+    hhReplayStreet++;renderHhReplay();playSound("tick");haptic("light");
+  },1800);
+  renderHhReplay();
+}
+function renderHhReplay(){
+  const h=hhReplayHand;
+  const players=h.players&&h.players.length?h.players:[{name:"Hero",cards:parseCardStr(h.hero||""),position:null}];
+  const flop=h.flopCards||parseCardStr(h.flop||"");const turn=h.turnCards||parseCardStr(h.turn||"");const river=h.riverCards||parseCardStr(h.river||"");
+  const streetNames=["Preflop","Flop","Turn","River"];
+  const maxStreet=hhReplayMaxStreet(h);
+  let board=[];
+  if(hhReplayStreet>=1)board=board.concat(flop);
+  if(hhReplayStreet>=2)board=board.concat(turn);
+  if(hhReplayStreet>=3)board=board.concat(river);
+  const foldedNow=(idx)=>{for(let s=0;s<=hhReplayStreet;s++){const acts=(h.streetActions&&h.streetActions[HH_STREETS[s]])||[];if(acts.some(a=>a.playerIdx===idx&&a.action==="fold"))return true}return false};
+  const allInNow=(idx)=>{for(let s=0;s<=hhReplayStreet;s++){const acts=(h.streetActions&&h.streetActions[HH_STREETS[s]])||[];if(acts.some(a=>a.playerIdx===idx&&a.action==="allin"))return true}return false};
+  const actionsUpToNow={preflop:[],flop:[],turn:[],river:[]};
+  for(let s=0;s<=hhReplayStreet;s++){actionsUpToNow[HH_STREETS[s]]=(h.streetActions&&h.streetActions[HH_STREETS[s]])||[]}
+  const replayPlayers=h.players&&h.players.length?h.players:players;
+  const{pots}=hhComputeSidePots(actionsUpToNow,replayPlayers);
+  const pot=pots.reduce((a,p)=>a+p.amount,0);
+  const curStreetKey=HH_STREETS[hhReplayStreet];
+  const curStreetActs=(h.streetActions&&h.streetActions[curStreetKey])||[];
+  const cursym=hhSym();
+
+  let hh='<div class="hhr-header"><div class="hhr-title">🎬 '+(h.stakes||"Hand")+' Replay</div><button class="sd-close" onclick="hhReplayClose()">✕</button></div>';
+
+  hh+='<div class="hhr-table-wrap"><div class="hhb-table-felt hhr-felt"><div class="hhb-seats">';
+  const n=players.length;
+  const seatOrder=hhTableSeatOrder(players);
+  seatOrder.forEach((i,slot)=>{
+    const angle=(Math.PI/2)+(slot/n)*2*Math.PI;
+    const rx=40,ry=36;
+    const x=50+rx*Math.cos(angle);
+    const y=50+ry*Math.sin(angle);
+    const p=players[i];
+    const folded=foldedNow(i);
+    const allIn=allInNow(i);
+    const lastAct=[...curStreetActs].reverse().find(a=>a.playerIdx===i);
+    const verbs={fold:"Folded",check:"Checks",call:"Calls",bet:"Bets",raise:"Raises",allin:"All-In"};
+    let statusTxt="";
+    if(lastAct)statusTxt=verbs[lastAct.action]+((lastAct.action==="call"||lastAct.action==="bet"||lastAct.action==="raise"||lastAct.action==="allin")&&lastAct.amount!=null?" "+cursym+lastAct.amount:"");
+    const showCards=i===0||(!folded&&p.cards&&p.cards.length);
+    hh+='<div class="hhb-seat'+(i===0?" hero":"")+(folded?" folded":"")+'" style="left:'+x+'%;top:'+y+'%">'
+      +'<div class="hhb-seat-pos">'+(p.position||"")+'</div>'
+      +'<div class="hhb-seat-avatar">'+(i===0?"🎯":allIn?"💰":"👤")+'</div>'
+      +'<div class="hhb-seat-name">'+escapeHtml(p.name)+'</div>'
+      +(folded?'<div class="hhb-seat-status folded">Folded</div>':statusTxt?'<div class="hhb-seat-status">'+statusTxt+'</div>':"")
+      +(showCards&&p.cards&&p.cards.length?'<div class="hhb-seat-cards">'+renderCommCardsHtml(p.cards,true)+"</div>":!folded&&p.cardsUnknown?'<div class="hhb-seat-unknown-tag">🤷 Unknown</div>':"")
+      +"</div>";
+  });
+  hh+='</div><div class="hhb-center"><div class="hhb-pot">Pot ~'+cursym+pot+(pots.length>1?' <span class="hhb-sidepot-badge">+'+(pots.length-1)+" side pot"+(pots.length>2?"s":"")+"</span>":"")+'</div><div class="hhb-board">'+(board.length?renderCommCardsHtml(board,true):'<span class="hhb-board-empty">No board yet</span>')+"</div></div></div></div>";
+
+  hh+='<div class="hhr-street-label">'+streetNames[hhReplayStreet]+"</div>";
+  if(curStreetActs.length){
+    hh+='<div class="hha-log">'+curStreetActs.map((a,idx)=>{
+      const p=players[a.playerIdx];const name=a.playerIdx===0?"Hero":(p?p.name:"?");
+      const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+cursym+a.amount:"";
+      return'<div class="hha-log-item"><span class="hha-log-num">'+(idx+1)+'</span><span class="hha-log-text"><b>'+escapeHtml(name)+"</b> "+a.action+amt+"</span>"+(a.note?'<span class="hha-log-note">💬 '+escapeHtml(a.note)+"</span>":"")+"</div>";
+    }).join("")+"</div>";
+  }else{
+    hh+='<div class="hha-log-empty">No actions recorded for this street</div>';
+  }
+  const streetNote=(h.streetNotes||{})[curStreetKey];
+  if(streetNote)hh+='<div class="hhr-action-text">💬 '+escapeHtml(streetNote)+"</div>";
+
+  hh+='<div class="hhr-dots">'+streetNames.map((s,i)=>'<span class="hhr-dot'+(i===hhReplayStreet?" on":"")+(i>maxStreet?" na":"")+'"></span>').join("")+"</div>";
+  hh+='<div class="hhr-nav"><button class="btn btn-s'+(hhReplayStreet===0?"":"")+'" '+(hhReplayStreet===0?"disabled":"")+' onclick="hhReplayPrev()">← Back</button><button class="btn btn-s'+(hhReplayAutoTimer?" pri":"")+'" onclick="hhReplayToggleAuto()">'+(hhReplayAutoTimer?"⏸ Pause":"▶ Auto")+'</button><button class="btn pri" '+(hhReplayStreet>=maxStreet?"disabled":"")+' onclick="hhReplayNext()">'+(hhReplayStreet>=maxStreet?"End of hand":"Next →")+"</button></div>";
+  $("hhReplayContent").innerHTML=hh;
+}
+function hhReplayNext(){if(hhReplayStreet<hhReplayMaxStreet(hhReplayHand)){hhReplayStreet++;renderHhReplay();playSound("tick");haptic("light")}}
+function hhReplayPrev(){if(hhReplayStreet>0){hhReplayStreet--;renderHhReplay();playSound("tick");haptic("light")}}
 
 /* ── Player Notes CRUD ── */
 const PL_TYPE_COLOR={"Calling Station":"var(--li)","Nit / Rock":"var(--t3)","Maniac":"var(--rs)","Straightforward Reg":"var(--mt)","Thinking Reg":"var(--pk2)","Unknown":"var(--t4)"};
@@ -4470,7 +6174,7 @@ function renderPlayers(){
   const cnt=$("plCount");if(cnt)cnt.textContent=players.length+" player"+(players.length!==1?"s":"")+(q?" · filtered":"");
   const grid=$("plGrid");
   grid.innerHTML=players.map((p,i)=>{
-    const handCount=HH.d.hands.filter(h=>h.villain&&h.villain.toLowerCase()===p.name.toLowerCase()).length;
+    const handCount=HH.d.hands.filter(h=>{if(h.players&&h.players.length)return h.players.some(pl=>pl.name.toLowerCase()===p.name.toLowerCase());return h.villain&&h.villain.toLowerCase().split(",").map(s=>s.trim()).includes(p.name.toLowerCase())}).length;
     const color=PL_TYPE_COLOR[p.type]||"var(--t4)";
     return'<div class="pl-card" style="animation-delay:'+Math.min(i*25,300)+'ms;border-left-color:'+color+'" onclick="openPlDetail(\''+p.id+'\')"><div class="pl-card-hdr"><span class="pl-card-name">'+p.name+'</span>'+(p.type?'<span class="pl-type-badge" style="--tc:'+color+'">'+p.type+'</span>':"")+'</div><div class="pl-card-meta">'+[p.venue,p.stakes].filter(Boolean).join(" · ")+'</div>'+(p.notes?'<div class="pl-card-notes">'+escapeHtml(p.notes)+'</div>':"")+'<div class="pl-card-foot">'+(p.tags||[]).slice(0,3).map(t=>'<span class="hh-tag-chip">'+t+'</span>').join("")+(handCount?'<span class="pl-hand-count">📔 '+handCount+'</span>':"")+'</div></div>';
   }).join("")||'<div class="empty-state"><span class="es-icon">👤</span><div class="es-title">'+(q?"No matching players":"No players logged yet")+'</div><div class="es-sub">'+(q?"Try a different search term.":"Add reads on opponents as you play to build your player book.")+'</div></div>';
@@ -4489,7 +6193,7 @@ function renderPlStats(players){
 function openPlDetail(id){
   const p=HH.d.players.find(x=>x.id===id);if(!p)return;
   const color=PL_TYPE_COLOR[p.type]||"var(--t4)";
-  const linkedHands=HH.d.hands.filter(h=>h.villain&&h.villain.toLowerCase()===p.name.toLowerCase()).sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const linkedHands=HH.d.hands.filter(h=>{if(h.players&&h.players.length)return h.players.some(pl=>pl.name.toLowerCase()===p.name.toLowerCase());return h.villain&&h.villain.toLowerCase().split(",").map(s=>s.trim()).includes(p.name.toLowerCase())}).sort((a,b)=>new Date(b.date)-new Date(a.date));
   let hh='<div class="sd-hdr"><div class="sd-hdr-top"><span class="sd-format-pill" style="color:'+color+';border-color:'+color+'55;background:'+color+'1a">'+(p.type||"Unknown")+'</span><button class="sd-close" onclick="closeM(\'plDetailM\')">✕</button></div>';
   hh+='<div class="sd-result" style="color:'+color+'">'+p.name+'</div><div class="sd-date">'+[p.venue,p.stakes].filter(Boolean).join(" · ")+'</div></div>';
   if((p.tags||[]).length)hh+='<div style="padding:12px 22px;border-bottom:1px solid var(--bd)">'+p.tags.map(t=>'<span class="hh-tag-chip">'+t+'</span>').join(" ")+'</div>';
@@ -4589,7 +6293,7 @@ function renderThemeGrid(){
   }).join("");
 }
 
-function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI()}
+function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI();renderHhCurrencyUI()}
 /* ── Editor appearance (grid size / cell corners) ── */
 function applyEditorAppearance(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);document.documentElement.style.setProperty("--mtx-max",sz+"px");document.documentElement.style.setProperty("--mtx-radius",rad+"px")}
 
@@ -4697,6 +6401,15 @@ $("toolsNav")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")retur
 $("bsPresetRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("bsPresetRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runBetSizing()});
 $("comboTypeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("comboTypeRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runComboCalc()});
 $("comboBlockRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("comboBlockRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runComboCalc()});
+$("hhPresetRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhApplyPreset(+e.target.dataset.preset)});
+$("hhCurrencyRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setHhCurrency(e.target.dataset.cur)});
+$("hhbStreetTabs")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhSwitchStreetTab(e.target.dataset.street)});
+$("flowShapeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("flowShapeRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel")});
+$("flowNodeShapeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.shape=e.target.dataset.shape;$("flowNodeShapeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeText")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.text=e.target.value;renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeSubtitle")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.subtitle=e.target.value;renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeBody")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.body=e.target.value;renderFlowCanvas();flowSaveCurrent()});
+$("flowConnLabel")?.addEventListener("input",e=>{const conn=flowState?.connections.find(c=>c.id===flowSelectedConnId);if(!conn)return;conn.label=e.target.value;renderFlowCanvas();flowSaveCurrent()});
 applyNavStyle();
 $("editorRadiusRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setEditorRadius(+e.target.dataset.rad)});
 applyEditorAppearance();
