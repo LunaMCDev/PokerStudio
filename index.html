@@ -2520,9 +2520,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-node-wrap.dragging{z-index:10}
 .flow-node-wrap.dragging .flow-node{transform:scale(1.06);box-shadow:0 14px 34px -8px rgba(0,0,0,.55),0 0 0 3px color-mix(in srgb,var(--node-color) 60%,transparent)!important;transition:box-shadow .15s,transform .15s var(--spring)}
 .flow-node{
-  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1px;
-  padding:10px 12px;background:color-mix(in srgb,var(--node-color) 18%,var(--b2));
-  border:2px solid var(--node-color);color:var(--t1);overflow:hidden;
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1px;
+  width:fit-content;max-width:230px;min-width:110px;min-height:56px;
+  padding:12px 14px;background:color-mix(in srgb,var(--node-color) 18%,var(--b2));
+  border:2px solid var(--node-color);color:var(--t1);
   box-shadow:0 4px 14px -4px color-mix(in srgb,var(--node-color) 50%,transparent);
   transition:box-shadow .2s,transform .2s var(--spring);
 }
@@ -2537,18 +2538,15 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-node-handle:active{cursor:grabbing}
 .flow-node-text{
   font-size:12.5px;font-weight:800;line-height:1.3;word-break:break-word;pointer-events:none;max-width:100%;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
 }
 .flow-node-subtitle{
   font-size:10px;font-weight:600;line-height:1.25;color:color-mix(in srgb,var(--t1) 75%,transparent);
   word-break:break-word;pointer-events:none;max-width:100%;font-style:italic;margin-top:1px;
-  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
 }
 .flow-node-body{
   font-size:9.5px;font-weight:500;line-height:1.3;color:color-mix(in srgb,var(--t1) 60%,transparent);
   word-break:break-word;pointer-events:none;max-width:100%;margin-top:4px;padding-top:4px;
   border-top:1px solid color-mix(in srgb,var(--node-color) 35%,transparent);
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
 }
 .flow-shape-rect{border-radius:12px}
 .flow-size-sm .flow-node-text{font-size:10.5px}
@@ -4097,8 +4095,14 @@ function renderFlowCanvas(){
   if(!layer||!svg||!canvas)return;
   canvas.style.transform="scale("+flowZoomLevel+")";
   layer.innerHTML=flowState.nodes.map(n=>{
-    return'<div class="flow-node-wrap'+(n.id===flowSelectedNodeId?" sel":"")+'" data-id="'+n.id+'" style="left:'+n.x+"px;top:"+n.y+"px;width:"+n.w+"px;height:"+n.h+'px" onmousedown="flowNodePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowNodePointerDown(event,'"+n.id+'\')"><div class="flow-node flow-shape-rect flow-size-'+(n.size||"md")+'" style="--node-color:'+n.color+'"><span class="flow-node-text">'+escapeHtml(n.text)+"</span>"+(n.subtitle?'<span class="flow-node-subtitle">'+escapeHtml(n.subtitle)+"</span>":"")+(n.body?'<span class="flow-node-body">'+escapeHtml(n.body)+"</span>":"")+'</div><div class="flow-node-handle" title="Drag to connect" onmousedown="flowHandlePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowHandlePointerDown(event,'"+n.id+"')\">➜</div></div>";
+    return'<div class="flow-node-wrap'+(n.id===flowSelectedNodeId?" sel":"")+'" data-id="'+n.id+'" style="left:'+n.x+"px;top:"+n.y+'px" onmousedown="flowNodePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowNodePointerDown(event,'"+n.id+'\')"><div class="flow-node flow-shape-rect flow-size-'+(n.size||"md")+'" style="--node-color:'+n.color+'"><span class="flow-node-text">'+escapeHtml(n.text)+"</span>"+(n.subtitle?'<span class="flow-node-subtitle">'+escapeHtml(n.subtitle)+"</span>":"")+(n.body?'<span class="flow-node-body">'+escapeHtml(n.body)+"</span>":"")+'</div><div class="flow-node-handle" title="Drag to connect" onmousedown="flowHandlePointerDown(event,\''+n.id+"')\" ontouchstart=\"flowHandlePointerDown(event,'"+n.id+"')\">➜</div></div>";
   }).join("");
+  // Measure each node's actual rendered size (content-based) and store it back onto the
+  // data model, since connector math, drag clamping, and auto-layout all rely on n.w/n.h.
+  flowState.nodes.forEach(n=>{
+    const el=layer.querySelector('.flow-node-wrap[data-id="'+n.id+'"] .flow-node');
+    if(el){n.w=el.offsetWidth;n.h=el.offsetHeight}
+  });
   const markerDefs=flowState.connections.map(c=>'<marker id="flowArrow_'+c.id+'" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="'+(c.color||"#c8a55c")+'"/></marker>').join("");
   const svgLines=flowState.connections.map(c=>{
     const from=flowState.nodes.find(n=>n.id===c.from),to=flowState.nodes.find(n=>n.id===c.to);
