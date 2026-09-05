@@ -2318,6 +2318,8 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .ar-ab-name{font-weight:700;color:var(--t2);flex:1}
 .ar-ab-nums{color:var(--t4);font-size:10px;font-family:var(--fm)}
 .ar-shape{font-size:10.5px;color:var(--t3);margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd);position:relative;z-index:1;line-height:1.5}
+.flow-analysis-tip{font-size:11.5px;line-height:1.5;color:var(--t2);background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:10px 12px;margin-bottom:8px}
+.flow-analysis-tip.flow-analysis-tip-good{color:var(--mt);background:rgba(110,231,183,.08);border-color:rgba(110,231,183,.25)}
 
 .ar-action-card{background:var(--b2);border:1px solid var(--bd);border-left:3px solid;border-radius:var(--r1);padding:12px;margin-bottom:8px}
 .ar-action-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px;font-weight:800;font-size:13px;margin-bottom:8px}
@@ -3390,6 +3392,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="flow-editor-topbar">
       <button class="flow-back-btn" onclick="closeFlowEditor()">← Back</button>
       <input class="flow-title-input" id="flowTitleInput" placeholder="Untitled Flowchart" oninput="flowRenameCurrent(this.value)"/>
+      <button class="flow-icon-btn" onclick="openFlowAnalysis()" title="Analyze">📊</button>
       <button class="flow-icon-btn" onclick="openFlowManageM()" title="Manage">⋯</button>
     </div>
     <div class="flow-toolbar">
@@ -3600,6 +3603,11 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <h3>📊 BB/hr by Stake</h3>
   <div id="bbHrBreakdownContent"></div>
   <div class="mact"><button class="btn pri" onclick="closeM('bbHrBreakdownM')">Close</button></div>
+</div></div>
+<div class="mov" id="flowAnalysisM"><div class="mdl" style="max-width:460px;max-height:85vh;overflow-y:auto">
+  <h3>📊 Flowchart Analysis</h3>
+  <div id="flowAnalysisContent"></div>
+  <div class="mact"><button class="btn pri" onclick="closeM('flowAnalysisM')">Close</button></div>
 </div></div>
 <div class="mov" id="flowManageM"><div class="mdl" style="max-width:420px">
   <h3>⋯ Manage Flowchart</h3>
@@ -4077,6 +4085,79 @@ function flowFitToScreen(showToast){
     wrap.scrollTop=Math.max(0,(minY-40)*flowZoomLevel);
   });
   if(showToast){playSound("tick");haptic("light");toast("⛶ Fit to screen")}
+}
+function computeFlowAnalysis(){
+  const nodes=flowState.nodes,connections=flowState.connections;
+  const outgoing={},incoming={},undirected={};
+  nodes.forEach(n=>{outgoing[n.id]=[];incoming[n.id]=[];undirected[n.id]=new Set()});
+  connections.forEach(c=>{
+    if(outgoing[c.from]==null||incoming[c.to]==null)return;
+    outgoing[c.from].push(c.to);incoming[c.to].push(c.from);
+    undirected[c.from].add(c.to);undirected[c.to].add(c.from);
+  });
+  const visited=new Set(),components=[];
+  nodes.forEach(n=>{
+    if(visited.has(n.id))return;
+    const comp=[];const queue=[n.id];visited.add(n.id);
+    while(queue.length){
+      const cur=queue.shift();comp.push(cur);
+      undirected[cur].forEach(nb=>{if(!visited.has(nb)){visited.add(nb);queue.push(nb)}});
+    }
+    components.push(comp);
+  });
+  const isolatedNodes=nodes.filter(n=>outgoing[n.id].length===0&&incoming[n.id].length===0);
+  const branchPoints=nodes.filter(n=>outgoing[n.id].length>=2);
+  const convergePoints=nodes.filter(n=>incoming[n.id].length>=2);
+  const deadEnds=nodes.filter(n=>incoming[n.id].length>0&&outgoing[n.id].length===0);
+  const treeComponents=components.filter(c=>c.length>1);
+  let maxDepth=0;
+  treeComponents.forEach(compIds=>{
+    const idSet=new Set(compIds);
+    const level={};compIds.forEach(id=>level[id]=0);
+    function assignLevel(id,lvl,stack){
+      if(stack.has(id))return;
+      if(level[id]<lvl)level[id]=lvl;
+      stack.add(id);
+      (outgoing[id]||[]).filter(cid=>idSet.has(cid)).forEach(childId=>assignLevel(childId,lvl+1,stack));
+      stack.delete(id);
+    }
+    const localInDeg={};compIds.forEach(id=>localInDeg[id]=(incoming[id]||[]).filter(pid=>idSet.has(pid)).length);
+    const roots=compIds.filter(id=>localInDeg[id]===0);
+    (roots.length?roots:compIds).forEach(id=>assignLevel(id,0,new Set()));
+    maxDepth=Math.max(maxDepth,Math.max(...compIds.map(id=>level[id])));
+  });
+  let hasCycle=false;
+  const visitState={};nodes.forEach(n=>visitState[n.id]=0);
+  function dfsCycle(id){
+    visitState[id]=1;
+    for(const next of outgoing[id]||[]){
+      if(visitState[next]===1){hasCycle=true;return}
+      if(visitState[next]===0)dfsCycle(next);
+    }
+    visitState[id]=2;
+  }
+  nodes.forEach(n=>{if(visitState[n.id]===0)dfsCycle(n.id)});
+  return{nodeCount:nodes.length,connCount:connections.length,componentCount:components.length,
+    treeComponentCount:treeComponents.length,isolatedCount:isolatedNodes.length,isolatedNodes,
+    branchPoints,convergePoints,deadEnds,maxDepth:maxDepth+1,hasCycle};
+}
+function openFlowAnalysis(){
+  if(!flowState||!flowState.nodes.length){
+    $("flowAnalysisContent").innerHTML='<div class="empty-state" style="padding:20px"><span class="es-icon">📊</span><div class="es-title">Nothing to analyze yet</div><div class="es-sub">Add some nodes first.</div></div>';
+    openM("flowAnalysisM");return;
+  }
+  const a=computeFlowAnalysis();
+  let html='<div class="ar-hero"><div class="ar-hero-row"><span class="ar-hero-tight">'+a.nodeCount+" node"+(a.nodeCount!==1?"s":"")+'</span><span class="ar-hero-pct">'+a.connCount+" arrow"+(a.connCount!==1?"s":"")+'</span></div><div class="ar-hero-sub">'+a.maxDepth+" level"+(a.maxDepth!==1?"s":"")+" deep · "+a.treeComponentCount+" connected group"+(a.treeComponentCount!==1?"s":"")+(a.isolatedCount?" · "+a.isolatedCount+" isolated":"")+'</div></div>';
+  html+='<div class="ar-quickstats"><div class="ar-qs-item"><span class="ar-qs-lbl">Branch Points</span><span class="ar-qs-val">'+a.branchPoints.length+'</span></div><div class="ar-qs-item"><span class="ar-qs-lbl">Converge Points</span><span class="ar-qs-val">'+a.convergePoints.length+"</span></div></div>";
+  const tips=[];
+  if(a.isolatedCount>0)tips.push("🔌 <b>"+a.isolatedCount+(a.isolatedCount!==1?" nodes aren't":" node isn't")+" connected to anything.</b> Either link "+(a.isolatedCount!==1?"them":"it")+" in, or remove "+(a.isolatedCount!==1?"them":"it")+" if it's no longer needed.");
+  if(a.treeComponentCount>1)tips.push("🧩 This flowchart has <b>"+a.treeComponentCount+" separate sections</b> that don't connect to each other. If they're genuinely different topics, splitting them into their own flowcharts may be clearer.");
+  if(a.hasCycle)tips.push("🔁 This flowchart contains a <b>loop</b> — a path eventually leads back to an earlier node. Worth double-checking that's intentional.");
+  if(a.deadEnds.length>a.nodeCount*0.4&&a.nodeCount>4)tips.push("🚧 A lot of branches (<b>"+a.deadEnds.length+"</b>) end without leading anywhere further. That's normal for final outcomes, but worth a check that none were left unfinished.");
+  if(a.nodeCount>=6)tips.push("✨ Tip: use <b>Auto Layout</b> to automatically organize this into a clean hierarchy with minimal crossing arrows.");
+  html+=tips.length?'<div class="slbl" style="margin-top:14px">💭 Suggestions</div>'+tips.map(t=>'<div class="flow-analysis-tip">'+t+"</div>").join(""):'<div class="flow-analysis-tip flow-analysis-tip-good">✅ This flowchart looks clean — no isolated nodes, no disconnected sections, nothing obviously incomplete.</div>';
+  $("flowAnalysisContent").innerHTML=html;
+  openM("flowAnalysisM");
 }
 function flowAutoLayout(){
   if(!flowState||!flowState.nodes.length){toast("Add some nodes first");return}
@@ -6173,6 +6254,29 @@ function hhComputeStreetState(street){
   const stillNeedsToAct=stillActive.filter(i=>!settled.has(i));
   return{activeAtStart,folded,allIn,settled,stillActive,stillNeedsToAct,hasBet,lastAggressor,actions};
 }
+function hhMinLegalBet(street){
+  // Standard poker minimum-bet/raise rules:
+  //  - No opening bet on any street may be smaller than one big blind.
+  //  - Preflop, the big blind itself counts as the opening "bet", so the first raise must be
+  //    to at least 2x the big blind (i.e. its own size, doubled).
+  //  - Any later raise must increase the bet by at least as much as the previous raise did
+  //    (the "minimum raise = size of the last raise" rule), not just any amount above it.
+  const blinds=hhGetLiveBlinds();
+  const bb=(blinds&&blinds.bb)||null;
+  const state=hhComputeStreetState(street);
+  if(!state.hasBet)return bb;
+  const levels=[];
+  if(street==="preflop"&&bb)levels.push(bb);
+  state.actions.forEach(a=>{
+    if((a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null){
+      if(!levels.length||a.amount>levels[levels.length-1])levels.push(a.amount);
+    }
+  });
+  if(!levels.length)return bb;
+  if(levels.length===1)return levels[0]*2;
+  const lastRaiseSize=levels[levels.length-1]-levels[levels.length-2];
+  return levels[levels.length-1]+lastRaiseSize;
+}
 function hhSeatOrderForStreet(street){
   const order=hhGetOrderList(street);
   return hhPlayersState.map((p,i)=>i).sort((a,b)=>hhPosRank(hhPlayersState[a].position,order)-hhPosRank(hhPlayersState[b].position,order));
@@ -6296,6 +6400,19 @@ function hhRecordAction(street,playerIdx,action){
     return;
   }
   const amount=needsAmt&&amountRaw!==""?parseFloat(amountRaw):null;
+  // Minimum-bet/raise validation. All-in is exempt — you can always go all-in for less than a
+  // full legal raise, it just won't reopen the action for players who already acted.
+  if((action==="bet"||action==="raise")&&amount!=null){
+    const minLegal=hhMinLegalBet(street);
+    if(minLegal!=null&&amount<minLegal){
+      const bb=hhGetLiveBlinds()?.bb;
+      const asBb=bb?" ("+(Math.round((minLegal/bb)*10)/10)+"bb)":"";
+      toast("Minimum "+(action==="bet"?"bet":"raise")+" is "+hhSym()+minLegal+asBb);
+      haptic("warn");
+      if(amtInput){amtInput.focus();amtInput.classList.add("hha-amt-error");setTimeout(()=>amtInput.classList.remove("hha-amt-error"),600)}
+      return;
+    }
+  }
   const note=noteInput?noteInput.value.trim():"";
   hhStreetActions[street].push({playerIdx,action,amount,note});
   renderStreetActions(street);
