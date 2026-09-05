@@ -306,6 +306,8 @@ body.nav-bottom .qc-fab{bottom:72px}
 }
 .pill .pdot{width:7px;height:7px;border-radius:50%;box-shadow:0 0 7px 1px currentColor}
 .pill .prm{margin-left:2px;opacity:.3;cursor:pointer;font-size:12px;transition:opacity .15s}
+.pill .pmv{margin:0 2px;opacity:.35;cursor:pointer;font-size:13px;font-weight:800;transition:opacity .15s}
+.pill .pmv:hover{opacity:.9}
 .pill .prm:hover{opacity:1;color:var(--rs)}
 .wpan{display:flex;align-items:center;gap:12px;padding:12px 16px;margin-bottom:8px;position:relative;overflow:hidden}
 .wpan label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t4)}
@@ -478,6 +480,12 @@ body.nav-bottom .qc-fab{bottom:72px}
 /* ── Achievements grid ── */
 .achv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
 .achv-card{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 10px;text-align:center;opacity:.45;filter:grayscale(1);transition:all .25s}
+.achv-card.achv-next{opacity:.8;filter:none;border-color:rgba(200,165,92,.3)}
+.achv-progress-bar{width:100%;height:4px;background:var(--b0);border-radius:4px;overflow:hidden;margin-top:6px}
+.achv-progress-fill{height:100%;background:linear-gradient(90deg,var(--pk),var(--pk2));border-radius:4px;transition:width .4s var(--e)}
+.achv-progress-pct{font-size:8.5px;color:var(--t4);margin-top:3px;font-family:var(--fm)}
+.storage-bar-track{width:100%;height:8px;background:var(--b0);border-radius:8px;overflow:hidden;border:1px solid var(--bd2)}
+.storage-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--pk),var(--pk2));border-radius:8px;transition:width .5s var(--e),background .3s}
 .achv-card.on{opacity:1;filter:none;border-color:var(--bd2);background:linear-gradient(145deg,var(--b2),var(--b3));box-shadow:0 4px 16px rgba(0,0,0,.15),0 0 22px -6px color-mix(in srgb,var(--gd2) 55%,transparent);animation:achvGlow 3s ease-in-out infinite}
 @keyframes achvGlow{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,.15),0 0 16px -6px color-mix(in srgb,var(--gd2) 40%,transparent)}50%{box-shadow:0 4px 16px rgba(0,0,0,.15),0 0 28px -4px color-mix(in srgb,var(--gd2) 65%,transparent)}}
 .achv-ico{font-size:26px;margin-bottom:6px;filter:drop-shadow(0 0 8px rgba(251,191,36,.4))}
@@ -551,7 +559,7 @@ body.nav-bottom .qc-fab{bottom:72px}
 /* ════════════════════════════════════════════════════
    FILE SYSTEM — MOBILE-FIRST
 ════════════════════════════════════════════════════ */
-.fs-shell{display:flex;flex-direction:column;height:calc(100dvh - 118px);min-height:300px;background:var(--b1);border:1px solid var(--bd);border-radius:var(--r2);overflow:hidden}
+.fs-shell{display:flex;flex-direction:column;height:calc(100dvh - 132px);min-height:340px;background:var(--b1);border:none;border-top:1px solid var(--bd);border-radius:0;overflow:hidden;margin:0 -16px -16px}
 
 /* ── TOP BAR ── */
 .fs-topbar{display:flex;align-items:center;gap:4px;padding:6px 8px;background:var(--b2);border-bottom:1px solid var(--bd);flex-shrink:0;flex-wrap:nowrap;overflow:hidden}
@@ -1429,6 +1437,17 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 }
 .br-hero-val.pos{color:var(--mt)}.br-hero-val.neg{color:var(--rs)}
 .br-hero-sub{font-size:10.5px;color:var(--t3);margin-top:6px;position:relative;z-index:1;font-weight:600}
+.br-mixed-warning{font-size:11px;color:var(--gd2);margin-top:8px;padding:8px 12px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);border-radius:var(--r1);line-height:1.4}
+.br-currency-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.br-curr-tab{padding:8px 16px;border-radius:20px;background:var(--b2);border:1px solid var(--bd);font-size:12px;font-weight:700;color:var(--t3);transition:all .2s var(--spring)}
+.br-curr-tab.on{background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--b0);border-color:transparent;box-shadow:0 3px 12px -2px color-mix(in srgb,var(--pk) 55%,transparent)}
+.br-currency-breakdown{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.br-curr-group{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px;text-align:center}
+.bcg-hdr{font-size:10px;font-weight:800;color:var(--t3);letter-spacing:.5px;margin-bottom:6px}
+.bcg-val{font-size:20px;font-weight:800;font-family:var(--fm)}
+.bcg-val.pos{color:var(--mt)}
+.bcg-val.neg{color:var(--rs)}
+.bcg-sub{font-size:9.5px;color:var(--t4);margin-top:4px}
 .br-hero-spark{position:relative;z-index:1;margin-top:10px;height:44px}
 
 /* Stat tiles — glowing */
@@ -1977,6 +1996,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 }
 .hha-player-pick-btn:hover{border-color:var(--pk);color:var(--pk2);transform:translateY(-1px)}
 .hha-complete{font-size:11px;color:var(--mt);text-align:center;padding:10px;font-weight:700}
+.hha-complete.hha-autowin{background:rgba(200,165,92,.1);border:1px solid rgba(200,165,92,.3);border-radius:var(--r1);color:var(--gd2);font-size:12px}
 .hha-input-row{display:flex;gap:6px;margin-top:10px}
 .hha-input-row input{margin:0;font-size:11px}
 .hha-amt-wrap{display:flex;align-items:center;flex:1;background:var(--b0);border:1px solid var(--bd2);border-radius:var(--r1);padding:0 4px 0 10px;transition:all .2s}
@@ -2048,10 +2068,20 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .hh-pot-layer span{color:var(--t4);font-size:9.5px}
 .hh-pot-layer.hh-pot-returned{border-style:dashed;opacity:.8}
 .hh-pot-layer.hh-pot-returned b{color:var(--t3)}
+.hh-attach-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.hh-attach-chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;width:76px}
+.hh-attach-thumb{width:64px;height:64px;object-fit:cover;border-radius:var(--r1);border:1px solid var(--bd2);cursor:pointer;transition:transform .18s var(--spring)}
+.hh-attach-thumb:hover{transform:scale(1.05)}
+.hh-attach-icon{width:64px;height:64px;display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--b2);border:1px solid var(--bd2);border-radius:var(--r1);cursor:pointer}
+.hh-attach-name{font-size:8.5px;color:var(--t4);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.hh-attach-remove{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--rs);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;border:2px solid var(--b1)}
+.hh-attach-list-view .hh-attach-chip{width:70px}
 .hhb-board{display:flex;gap:4px;min-height:44px;align-items:center}
 .hhb-board .comm-card{width:32px;height:45px;font-size:13px}
 .hhb-board-empty{font-size:9px;color:var(--t4);font-style:italic}
 .hhb-manage-btn{width:100%}
+#hhBBViewBtn{flex-shrink:0;width:44px;font-weight:800;font-size:11px}
+#hhBBViewBtn.active{background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--b0);border-color:transparent}
 
 /* ── Street tabs ── */
 .hhb-street-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px;background:var(--b2);border:1px solid var(--bd);border-radius:50px;padding:4px}
@@ -2653,6 +2683,18 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 }
 .flopcard.red,.comm-card.red{color:#c0282a}.flopcard.blk,.comm-card.blk{color:#1a1a2e}
 .flopcard .mc-suit,.comm-card .mc-suit{font-size:clamp(13px,3.5vw,19px);line-height:1;margin-top:2px}
+
+/* ══ Deck Designs ══ */
+[data-deck="fourcolor"] .comm-card[data-suit="h"],[data-deck="fourcolor"] .flopcard[data-suit="h"],[data-deck="fourcolor"] .pcard[data-suit="h"]{color:#c0282a}
+[data-deck="fourcolor"] .comm-card[data-suit="d"],[data-deck="fourcolor"] .flopcard[data-suit="d"],[data-deck="fourcolor"] .pcard[data-suit="d"]{color:#2563eb}
+[data-deck="fourcolor"] .comm-card[data-suit="c"],[data-deck="fourcolor"] .flopcard[data-suit="c"],[data-deck="fourcolor"] .pcard[data-suit="c"]{color:#16a34a}
+[data-deck="fourcolor"] .comm-card[data-suit="s"],[data-deck="fourcolor"] .flopcard[data-suit="s"],[data-deck="fourcolor"] .pcard[data-suit="s"]{color:#1a1a2e}
+[data-deck="highcontrast"] .comm-card,[data-deck="highcontrast"] .flopcard,[data-deck="highcontrast"] .pcard{background:linear-gradient(160deg,#1c1c26,#0d0d12)!important;border-color:rgba(255,255,255,.18)!important}
+[data-deck="highcontrast"] .comm-card[data-suit="h"],[data-deck="highcontrast"] .flopcard[data-suit="h"],[data-deck="highcontrast"] .pcard[data-suit="h"]{color:#ff3b5c}
+[data-deck="highcontrast"] .comm-card[data-suit="d"],[data-deck="highcontrast"] .flopcard[data-suit="d"],[data-deck="highcontrast"] .pcard[data-suit="d"]{color:#00d4ff}
+[data-deck="highcontrast"] .comm-card[data-suit="c"],[data-deck="highcontrast"] .flopcard[data-suit="c"],[data-deck="highcontrast"] .pcard[data-suit="c"]{color:#00ff88}
+[data-deck="highcontrast"] .comm-card[data-suit="s"],[data-deck="highcontrast"] .flopcard[data-suit="s"],[data-deck="highcontrast"] .pcard[data-suit="s"]{color:#f4f4f5}
+[data-deck="minimal"] .comm-card,[data-deck="minimal"] .flopcard,[data-deck="minimal"] .pcard{background:#fff!important;box-shadow:0 1px 5px rgba(0,0,0,.18)!important;border:1.5px solid #e5e5e5!important}
 .flop-btn-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-top:8px}
 .flop-btn{
   padding:12px 6px;border-radius:var(--r2);font-size:12px;font-weight:800;
@@ -2830,7 +2872,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div class="trwrap">
     <div style="display:flex;gap:4px;width:100%;margin-bottom:8px">
       <button class="mode-tab on" id="trTabTrain" onclick="switchTrTab('train')">🎯 Ranges</button>
-      <button class="mode-tab" id="trTabFlop" onclick="switchTrTab('flop')">🌊 Flop</button>
       <button class="mode-tab" id="trTabGaunt" onclick="switchTrTab('gaunt')">⚔️ Gauntlet</button>
       <button class="mode-tab" id="trTabHist" onclick="switchTrTab('hist')">📜 History</button>
     </div>
@@ -2860,7 +2901,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <span style="font-size:20px">📁</span>
     <h2>My Ranges</h2>
     <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
-<button class="btn btn-s" id="fsSelBtn" onclick="toggleFsSelect()">Select</button> <button class="btn btn-s" onclick="openM('newFM')">+ Folder</button>
+<button class="btn btn-s" onclick="openTrainingResults()" title="View training results">🎯 Results</button> <button class="btn btn-s" id="fsSelBtn" onclick="toggleFsSelect()">Select</button> <button class="btn btn-s" onclick="openM('newFM')">+ Folder</button>
       <button class="btn btn-s pri" onclick="openM('saveM')">+ Range</button>
     </div>
   </div>
@@ -3112,7 +3153,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
             <div class="hhb-board" id="hhbBoard"></div>
           </div>
         </div>
-        <button class="btn btn-s hhb-manage-btn" onclick="openHhPlayerManager()">👥 Manage Table (<span id="hhbPlayerCountLbl">2</span>)</button>
+        <div style="display:flex;gap:6px;margin-top:0">
+          <button class="btn btn-s hhb-manage-btn" style="flex:1" onclick="openHhPlayerManager()">👥 Manage Table (<span id="hhbPlayerCountLbl">2</span>)</button>
+          <button class="btn btn-s" id="hhBBViewBtn" onclick="hhToggleBBView()" title="Show amounts in Big Blinds">BB</button>
+        </div>
       </div>
 
       <div class="hhb-street-tabs" id="hhbStreetTabs">
@@ -3134,6 +3178,12 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
           <div class="tags-w" id="hhTagsW"><input class="tinp" id="hhTagsI" placeholder="bluff, value bet, cooler, hero call…"/></div>
         </div>
         <div class="br-fg full" style="margin-top:8px"><label>Overall Analysis</label><textarea class="rnote" id="hhNotes" placeholder="Why you played it this way, what you'd do differently…" style="min-height:70px"></textarea></div>
+        <div class="br-fg full" style="margin-top:8px">
+          <label>Attachments <span class="tool-optional">(optional — screenshots, HUD stats, etc.)</span></label>
+          <input type="file" id="hhFileInput" accept="image/*,.pdf,.txt" multiple style="display:none" onchange="hhHandleFileSelect(this.files)"/>
+          <button class="btn btn-s" style="width:100%" onclick="document.getElementById('hhFileInput').click()">📎 Attach File</button>
+          <div id="hhAttachmentsList" class="hh-attach-list"></div>
+        </div>
       </div>
 
       <div class="hhb-actions-bar">
@@ -3369,15 +3419,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 <!-- SETTINGS -->
 <div id="settingsV" class="view" style="max-width:800px;margin:0 auto">
   <div class="section-head"><span style="font-size:20px">⚙</span><h2>Settings</h2></div>
-  <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🚪 Quick Links</div>
-    <div class="ql-grid">
-      <div class="tr-picker-btn" onclick="go('tools')"><span class="tpb-icon">🛠</span><div class="tpb-text"><span class="tpb-label">Tools</span><span class="tpb-sub">Calculators, notes, hand history &amp; flowcharts</span></div><span class="tpb-chevron">›</span></div>
-    </div>
-  </div>
   
 <div class="settings-category"><span class="sc-icon">🎨</span>Appearance &amp; Navigation</div>
 <div class="gp" style="margin-bottom:12px"><div class="slbl">🎨 Theme</div><div class="theme-grid" id="themeGrid"></div></div>
+<div class="gp" style="margin-bottom:12px"><div class="slbl">🃏 Deck Design</div><div class="theme-grid" id="deckGrid"></div></div>
   
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">🧭 Navigation Style</div>
@@ -3474,6 +3519,11 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   
 <div class="settings-category"><span class="sc-icon">🗄️</span>Data &amp; Backup</div>
 <div class="gp" style="margin-bottom:12px">
+    <div class="slbl">📊 Storage</div>
+    <div id="storageUsageWrap" style="margin-bottom:12px">
+      <div class="storage-bar-track"><div class="storage-bar-fill" id="storageUsageBar"></div></div>
+      <div class="setting-desc" id="storageUsageTxt" style="margin-top:5px">Calculating…</div>
+    </div>
     <div class="slbl">🗄️ Data</div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Export All Data</div></div><button class="btn btn-s pri" onclick="dlJSON()">💾 Export</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Import Data</div></div><button class="btn btn-s" onclick="$('jfInput').click()">📂 Import</button></div>
@@ -3536,6 +3586,21 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div class="flow-color-row" id="flowConnColorRow"></div>
   <div class="mact"><button class="btn btn-d" onclick="flowDeleteSelectedConnection()">🗑️ Remove Arrow</button><button class="btn pri" onclick="closeM('flowConnM')">Done</button></div>
 </div></div>
+<div class="mov" id="trainResultsM"><div class="mdl" style="max-width:480px;max-height:80vh;overflow-y:auto">
+  <h3>🎯 Training Results</h3>
+  <div id="trainResultsContent"></div>
+  <div class="mact"><button class="btn pri" onclick="closeM('trainResultsM')">Close</button></div>
+</div></div>
+<div class="mov" id="trSessionDetailM"><div class="mdl" style="max-width:440px;max-height:80vh;overflow-y:auto">
+  <h3>📜 Session Detail</h3>
+  <div id="trSessionDetailContent"></div>
+  <div class="mact"><button class="btn pri" onclick="closeM('trSessionDetailM')">Close</button></div>
+</div></div>
+<div class="mov" id="bbHrBreakdownM"><div class="mdl" style="max-width:420px;max-height:80vh;overflow-y:auto">
+  <h3>📊 BB/hr by Stake</h3>
+  <div id="bbHrBreakdownContent"></div>
+  <div class="mact"><button class="btn pri" onclick="closeM('bbHrBreakdownM')">Close</button></div>
+</div></div>
 <div class="mov" id="flowManageM"><div class="mdl" style="max-width:420px">
   <h3>⋯ Manage Flowchart</h3>
   <label class="slbl">Description <span class="tool-optional">(optional)</span></label>
@@ -3561,6 +3626,11 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <button class="btn btn-s" style="width:100%;margin-top:6px" onclick="hhAddPlayer()" id="hhAddPlayerBtn">+ Add Player</button>
   <div class="mact"><button class="btn pri" onclick="closeM('hhPlayerManagerM')">Done</button></div>
 </div></div>
+<div class="mov" id="hhAttachViewM"><div class="mdl" style="max-width:min(90vw,500px);padding:14px;text-align:center">
+  <img id="hhAttachViewImg" style="max-width:100%;max-height:65vh;border-radius:10px;display:none"/>
+  <div id="hhAttachViewOther"></div>
+  <div class="mact"><button class="btn pri" onclick="closeM('hhAttachViewM')">Close</button></div>
+</div></div>
 <div class="mov" id="hhCardPickerM"><div class="mdl cp-modal">
   <div class="cp-header">
     <h3 id="hhCardPickerTitle" style="margin:0;border:none;padding:0">Select Cards</h3>
@@ -3571,7 +3641,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <button class="hh-unknown-btn" id="hhUnknownBtn" onclick="hhToggleCardsUnknown()">🤷 Hand won't be shown / cards unknown</button>
   <div class="mact"><button class="btn btn-d" onclick="clearHhCardSlot()">Clear Slot</button><button class="btn pri" onclick="closeM('hhCardPickerM')">Done</button></div>
 </div></div>
-<div class="mov" id="hhReplayM"><div class="mdl" style="max-width:480px;padding:0;overflow:hidden">
+<div class="mov" id="hhReplayM"><div class="mdl" style="max-width:480px;padding:0;overflow-y:auto;overflow-x:hidden;max-height:90vh">
   <div id="hhReplayContent"></div>
 </div></div>
 <div class="mov" id="brSwitcherM"><div class="mdl" style="max-width:400px;max-height:80vh;overflow-y:auto">
@@ -3740,7 +3810,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   </div>
   <div class="achv-grid" id="achvGrid"></div>
 </div></div>
-<div class="hand-popup" id="handPopup"><span class="hp-close" onclick="closeHandPopup()">✕</span><div class="hp-title" id="hpTitle"></div><div class="hp-type" id="hpType"></div><div class="hp-combos" id="hpCombos"></div><div id="hpActions"></div></div>
+<div class="hand-popup" id="handPopup"><span class="hp-close" onclick="closeHandPopup()">✕</span><div class="hp-title" id="hpTitle"></div><div class="hp-type" id="hpType"></div><div class="hp-combos" id="hpCombos"></div><div id="hpActions"></div><button class="btn btn-s btn-d" id="hpClearBtn" style="width:100%;margin-top:8px;display:none" onclick="clearHandActions()">🗑️ Clear Actions</button></div>
 <div class="toast" id="toast"></div>
 <button class="qc-fab" id="qcFab" onclick="openQuickCapture()" title="Quick capture a thought">✎</button>
 <div class="mov" id="quickCaptureM"><div class="mdl" style="max-width:420px">
@@ -4161,26 +4231,7 @@ function flowCurveHitsNode(p1,p2,ctrl,node,pad){
   return false;
 }
 function flowConnPathD(p1,p2,fromId,toId){
-  const obstacles=flowState.nodes.filter(n=>n.id!==fromId&&n.id!==toId&&flowSegmentHitsNode(p1,p2,n,16));
-  if(!obstacles.length)return"M"+p1.x+","+p1.y+" L"+p2.x+","+p2.y;
-  const dx=p2.x-p1.x,dy=p2.y-p1.y;
-  const len=Math.hypot(dx,dy)||1;
-  const perpX=-dy/len,perpY=dx/len;
-  const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
-  // Bow away from the (first) obstacle's center, growing the bow until the actual curve clears every obstacle.
-  const primary=obstacles[0];
-  const ocx=primary.x+primary.w/2,ocy=primary.y+primary.h/2;
-  const dot=(ocx-mx)*perpX+(ocy-my)*perpY;
-  const dir=dot>0?-1:1;
-  let bowAmt=Math.max(primary.w,primary.h)/2+40;
-  let cx=mx+perpX*bowAmt*dir,cy=my+perpY*bowAmt*dir;
-  for(let tries=0;tries<4;tries++){
-    const stillHits=obstacles.some(n=>flowCurveHitsNode(p1,p2,{x:cx,y:cy},n,16));
-    if(!stillHits)break;
-    bowAmt+=40;
-    cx=mx+perpX*bowAmt*dir;cy=my+perpY*bowAmt*dir;
-  }
-  return"M"+p1.x+","+p1.y+" Q"+cx+","+cy+" "+p2.x+","+p2.y;
+  return"M"+p1.x+","+p1.y+" L"+p2.x+","+p2.y;
 }
 function renderFlowCanvas(){
   if(!flowState)return;
@@ -4500,7 +4551,22 @@ function ht(r,c){return r===c?"pair":c>r?"suited":"offsuit"}
 function hcn(r,c){return r===c?6:c>r?4:12}
 function mkR(){return Array.from({length:13},()=>Array.from({length:13},()=>[]))}
 function $(id){return document.getElementById(id)}
-function LS(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let _storageQuotaWarned=false;
+function LS(k,v){
+  try{
+    localStorage.setItem(k,JSON.stringify(v));
+  }catch(e){
+    // Silently swallowing this used to mean data could just stop saving with zero warning —
+    // the single worst failure mode for an app meant to be used for years. Surface it instead.
+    if(!_storageQuotaWarned){
+      _storageQuotaWarned=true;
+      setTimeout(()=>{
+        toast("⚠️ Storage is full — this last change may not have saved. Free up space in Settings › Storage.");
+        _storageQuotaWarned=false;
+      },50);
+    }
+  }
+}
 function LG(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
 function toast(m){const e=$("toast");e.textContent=m;e.classList.add("show");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("show"),2200)}
 function haptic(type){if(LG("ps_vibrate","1")!=="1"||!navigator.vibrate)return;const P={light:10,med:22,success:[14,35,14],warn:55,error:[35,30,35]};try{navigator.vibrate(P[type]||12)}catch(e){}}
@@ -4567,6 +4633,29 @@ const ACHIEVEMENTS=[
   {id:"player_book_10",icon:"👤",name:"Player Book",desc:"Log 10 players in your Player Notes"},
 ];
 function getAchvStore(){return LG("ps_achv",{unlocked:{}})}
+function getMilestoneTracks(){
+  const l=getLifetime(),st=getStreak(),lvl=getLevelInfo(getXp()).level,ds=LG("ps_daily_stats",{completed:0});
+  const hhHandCount=HH.d.hands.length,plCount=HH.d.players.length,liveCount=l.liveSessions||0;
+  return[
+    {prefix:"hands_",icon:"🏔️",label:"Hand Milestone",unit:"hands trained",value:l.hands,base:10000,step:10000},
+    {prefix:"streak_",icon:"⚡",label:"Streak Milestone",unit:"answer streak",value:st.best,base:50,step:25},
+    {prefix:"level_",icon:"🌌",label:"Level Milestone",unit:"level reached",value:lvl,base:20,step:10},
+    {prefix:"live_session_",icon:"🏟️",label:"Road Warrior",unit:"live sessions",value:liveCount,base:10,step:25},
+    {prefix:"hand_log_",icon:"📚",label:"Hand Historian",unit:"hands logged",value:hhHandCount,base:100,step:100},
+    {prefix:"daily_",icon:"🏅",label:"Challenger",unit:"daily challenges",value:ds.completed,base:7,step:30},
+    {prefix:"perfect_",icon:"✨",label:"Precision Player",unit:"perfect sessions",value:l.perfectSessions,base:5,step:10},
+    {prefix:"player_book_",icon:"👤",label:"Player Book",unit:"players logged",value:plCount,base:10,step:25},
+  ];
+}
+function getAllUnlockedMilestones(){
+  const tracks=getMilestoneTracks();const out=[];
+  tracks.forEach(t=>{let n=t.base+t.step;while(n<=t.value){out.push({id:t.prefix+n,icon:t.icon,name:t.label+" "+n.toLocaleString(),desc:"Reach "+n.toLocaleString()+" "+t.unit,threshold:n});n+=t.step}});
+  return out;
+}
+function getNextMilestones(){
+  const tracks=getMilestoneTracks();
+  return tracks.map(t=>{let n=t.base+t.step;while(n<=t.value)n+=t.step;return{id:t.prefix+n,icon:t.icon,name:t.label+" "+n.toLocaleString(),desc:"Reach "+n.toLocaleString()+" "+t.unit,threshold:n,progress:Math.max(0,Math.min(100,Math.round((t.value/n)*100)))}});
+}
 function checkAchievements(){
   const l=getLifetime(),st=getStreak(),lvl=getLevelInfo(getXp()).level,ds=LG("ps_daily_stats",{completed:0});
   const anyMastered=S.saved.some(r=>getRangeMastery(r.name).tier==="Mastered");
@@ -4583,14 +4672,32 @@ function checkAchievements(){
     hand_log_10:ctx.hh10,hand_log_100:ctx.hh100,player_book_10:ctx.pl10};
   const store=getAchvStore();let newly=[];
   ACHIEVEMENTS.forEach(a=>{if(store.unlocked[a.id])return;if(map[a.id]){store.unlocked[a.id]=Date.now();newly.push(a)}});
-  if(newly.length){LS("ps_achv",store);newly.forEach((a,i)=>setTimeout(()=>{toast(a.icon+" Achievement Unlocked: "+a.name);playSound("win");haptic("success");if(i===0)celebrate()},i*1500))}
+  // Procedural milestones — these never run out. As lifetime stats keep growing past the fixed
+  // achievement list, new milestones (10k hands, 20k, 30k... level 30, 40... and so on) keep unlocking.
+  const newMilestones=[];
+  getAllUnlockedMilestones().forEach(m=>{if(store.unlocked[m.id])return;store.unlocked[m.id]=Date.now();newMilestones.push(m)});
+  if(newly.length||newMilestones.length){
+    LS("ps_achv",store);
+    const all=[...newly.map(a=>({...a,isMilestone:false})),...newMilestones.map(a=>({...a,isMilestone:true}))];
+    all.forEach((a,i)=>setTimeout(()=>{toast(a.icon+" "+(a.isMilestone?"Milestone":"Achievement")+" Unlocked: "+a.name);playSound("win");haptic("success");if(i===0)celebrate()},i*1500))
+  }
   renderAchvChip();
-  return newly;
+  return[...newly,...newMilestones];
 }
 function openAchvModal(){renderAchvGrid();openM("achvM")}
-function renderAchvGrid(){const store=getAchvStore();const n=Object.keys(store.unlocked).length;const el=$("achvGrid");if(!el)return;const cnt=$("achvCount");if(cnt)cnt.textContent=n+" / "+ACHIEVEMENTS.length+" unlocked";
-  el.innerHTML=ACHIEVEMENTS.map(a=>{const on=!!store.unlocked[a.id];const ts=on?new Date(store.unlocked[a.id]).toLocaleDateString("en-US",{month:"short",day:"numeric"}):"";return'<div class="achv-card'+(on?" on":"")+'"><div class="achv-ico">'+(on?a.icon:"🔒")+'</div><div class="achv-name">'+a.name+'</div><div class="achv-desc">'+a.desc+'</div>'+(on?'<div class="achv-date">Unlocked '+ts+'</div>':"")+'</div>'}).join("")}
-function renderAchvChip(){const store=getAchvStore();const n=Object.keys(store.unlocked).length;const el=$("setAchvChip");if(el)el.textContent=n+"/"+ACHIEVEMENTS.length}
+function renderAchvGrid(){
+  const store=getAchvStore();
+  const n=Object.keys(store.unlocked).length;
+  const el=$("achvGrid");if(!el)return;
+  const cnt=$("achvCount");if(cnt)cnt.textContent=n+" unlocked";
+  const fixedHtml=ACHIEVEMENTS.map(a=>{const on=!!store.unlocked[a.id];const ts=on?new Date(store.unlocked[a.id]).toLocaleDateString("en-US",{month:"short",day:"numeric"}):"";return'<div class="achv-card'+(on?" on":"")+'"><div class="achv-ico">'+(on?a.icon:"🔒")+'</div><div class="achv-name">'+a.name+'</div><div class="achv-desc">'+a.desc+'</div>'+(on?'<div class="achv-date">Unlocked '+ts+'</div>':"")+'</div>'}).join("");
+  const unlockedMilestones=getAllUnlockedMilestones().filter(m=>store.unlocked[m.id]);
+  const milestoneHtml=unlockedMilestones.length?'<div class="slbl" style="margin-top:16px">⭐ Milestones Unlocked</div>'+unlockedMilestones.map(a=>{const ts=new Date(store.unlocked[a.id]).toLocaleDateString("en-US",{month:"short",day:"numeric"});return'<div class="achv-card on"><div class="achv-ico">'+a.icon+'</div><div class="achv-name">'+a.name+'</div><div class="achv-desc">'+a.desc+'</div><div class="achv-date">Unlocked '+ts+"</div></div>"}).join(""):"";
+  const nextUp=getNextMilestones();
+  const nextHtml='<div class="slbl" style="margin-top:16px">🔓 Next Up — always more to chase</div>'+nextUp.map(m=>'<div class="achv-card achv-next"><div class="achv-ico">'+m.icon+'</div><div class="achv-name">'+m.name+'</div><div class="achv-desc">'+m.desc+'</div><div class="achv-progress-bar"><div class="achv-progress-fill" style="width:'+m.progress+'%"></div></div><div class="achv-progress-pct">'+m.progress+"%</div></div>").join("");
+  el.innerHTML='<div class="slbl">🏆 Achievements</div>'+fixedHtml+milestoneHtml+nextHtml;
+}
+function renderAchvChip(){const store=getAchvStore();const n=Object.keys(store.unlocked).length;const el=$("setAchvChip");if(el)el.textContent=n+" unlocked"}
 
 /* ── Range Mastery ── */
 function getRangeMastery(rangeId){
@@ -4797,7 +4904,7 @@ function computeRangeInsights(range,acts){
   const tight=pct<=8?"Ultra Tight":pct<=14?"Very Tight":pct<=19?"Tight":pct<=26?"Standard":pct<=35?"Loose":pct<=50?"Very Loose":"Extremely Loose";
   const pairCount=allH.filter(x=>x.type==="pair").length,suitedCount=allH.filter(x=>x.type==="suited").length,offsuitCount=allH.filter(x=>x.type==="offsuit").length;
   const mixedHands=allH.filter(x=>x.mixed);
-  const sortedByStrength=[...allH].sort((a,b)=>rangeScore(a.r,a.c)-rangeScore(b.r,b.c));
+  const sortedByStrength=[...allH].sort((a,b)=>rangeScore(b.r,b.c)-rangeScore(a.r,a.c));
   const strongestHand=sortedByStrength[0]||null,weakestHand=sortedByStrength[sortedByStrength.length-1]||null;
   const actionsData=acts.map((act,ai)=>{
     const hands=allH.filter(h=>h.cl.some(x=>x.ai===ai));
@@ -4913,7 +5020,16 @@ function renderCompareResult(otherIdx){
   h+='<div class="cmp-legend"><span><i class="cmp-agree"></i>Agree ('+cats.agree+')</span><span><i class="cmp-differ"></i>Differs ('+cats.differ+')</span><span><i class="cmp-onlyA"></i>Only '+escapeHtml(nameA)+' ('+cats.onlyA+')</span><span><i class="cmp-onlyB"></i>Only '+escapeHtml(other.name)+' ('+cats.onlyB+')</span></div>';
   $("memTipsContent").innerHTML=h;
 }
-function showHandPopup(r,c,e){const popup=$("handPopup");closeHandPopup();const label=hl(r,c),type=ht(r,c),combos=hcn(r,c),cl=[...S.range[r][c]].sort((a,b)=>a.ai-b.ai);$("hpTitle").textContent=label;$("hpType").textContent=type==="pair"?"Pocket Pair ("+combos+" combos)":type==="suited"?"Suited ("+combos+" combos)":"Offsuit ("+combos+" combos)";$("hpCombos").textContent=cl.length?cl.length+" action"+(cl.length>1?"s":"")+" assigned":"";$("hpActions").innerHTML=cl.length?cl.map(a=>{const act=S.acts[a.ai];if(!act)return"";return'<div class="hp-act"><div class="hp-dot" style="background:'+act.color+'"></div><div class="hp-name">'+act.name+'</div><div class="hp-pct">'+a.w+'%</div></div>'}).join(""):'<div class="hp-empty">Not in range</div>';const rect=e.target.closest(".cell").getBoundingClientRect();let x=rect.left+rect.width/2-110,y=rect.bottom+8;if(x+220>window.innerWidth)x=window.innerWidth-230;if(x<10)x=10;if(y+200>window.innerHeight)y=rect.top-210;if(y<10)y=10;popup.style.left=x+"px";popup.style.top=y+"px";popup.classList.add("show")}
+function showHandPopup(r,c,e){const popup=$("handPopup");closeHandPopup();S.hpR=r;S.hpC=c;const label=hl(r,c),type=ht(r,c),combos=hcn(r,c),cl=[...S.range[r][c]].sort((a,b)=>a.ai-b.ai);$("hpTitle").textContent=label;$("hpType").textContent=type==="pair"?"Pocket Pair ("+combos+" combos)":type==="suited"?"Suited ("+combos+" combos)":"Offsuit ("+combos+" combos)";$("hpCombos").textContent=cl.length?cl.length+" action"+(cl.length>1?"s":"")+" assigned":"";$("hpActions").innerHTML=cl.length?cl.map(a=>{const act=S.acts[a.ai];if(!act)return"";return'<div class="hp-act"><div class="hp-dot" style="background:'+act.color+'"></div><div class="hp-name">'+act.name+'</div><div class="hp-pct">'+a.w+'%</div></div>'}).join(""):'<div class="hp-empty">Not in range</div>';$("hpClearBtn").style.display=cl.length?"":"none";const rect=e.target.closest(".cell").getBoundingClientRect();let x=rect.left+rect.width/2-110,y=rect.bottom+8;if(x+220>window.innerWidth)x=window.innerWidth-230;if(x<10)x=10;if(y+200>window.innerHeight)y=rect.top-210;if(y<10)y=10;popup.style.left=x+"px";popup.style.top=y+"px";popup.classList.add("show")}
+function clearHandActions(){
+  if(S.hpR==null||S.hpC==null)return;
+  S.range[S.hpR][S.hpC]=[];
+  Ed.renCell(S.hpR,S.hpC);
+  Ed.saveSt();checkDirty();
+  closeHandPopup();
+  playSound("tick");haptic("light");
+  toast("Actions cleared for "+hl(S.hpR,S.hpC));
+}
 function closeHandPopup(){$("handPopup").classList.remove("show")}
 document.addEventListener("pointerdown",function(e){if($("handPopup").classList.contains("show")&&!$("handPopup").contains(e.target)&&!e.target.closest(".cell"))closeHandPopup()});
 function openEditActs(){renderEditActsList();openM("editActsM")}
@@ -4933,7 +5049,19 @@ const Ed={
   highlightBadCells(){for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cl=S.range[r][c];const el=document.querySelector('.cell[data-r="'+r+'"][data-c="'+c+'"]');if(!el)continue;if(cl.length){const t=cl.reduce((s,a)=>s+a.w,0);el.style.outline=t!==100?"2px solid var(--rs)":"";el.title=t!==100?hl(r,c)+": "+t+"%":""}else{el.style.outline="";el.title=""}}},
   renCell(r,c){const el=document.querySelector('.cell[data-r="'+r+'"][data-c="'+c+'"]'),d=S.range[r][c],bg=el.querySelector(".cbg");if(!d.length){bg.innerHTML="";el.classList.add("mt");return}el.classList.remove("mt");const sorted=[...d].sort((a,b)=>a.ai-b.ai);bg.innerHTML=sorted.map(a=>'<div class="cbgs" style="width:'+a.w+'%;background:'+(S.acts[a.ai]?.color||"#555")+'"></div>').join("")},
   renAll(){for(let r=0;r<13;r++)for(let c=0;c<13;c++)this.renCell(r,c)},
-  renActs(){const ct=$("actTags");ct.innerHTML="";S.acts.forEach((a,i)=>{const p=document.createElement("div");p.className="pill"+(i===S.sel?" sel":"");p.style.setProperty("--pc",a.color);p.style.background=a.color+"14";p.style.color=a.color;p.style.borderColor=i===S.sel?a.color+"88":"transparent";p.innerHTML='<span class="pdot" style="background:'+a.color+'"></span>'+a.name+(S.acts.length>1?'<span class="prm" data-i="'+i+'">&times;</span>':"");p.onclick=(e)=>{if(e.target.classList.contains("prm")){this.rmAct(+e.target.dataset.i);return}S.sel=i;this.renActs()};ct.appendChild(p)});this.initCP()},
+  renActs(){const ct=$("actTags");ct.innerHTML="";S.acts.forEach((a,i)=>{const p=document.createElement("div");p.className="pill"+(i===S.sel?" sel":"");p.style.setProperty("--pc",a.color);p.style.background=a.color+"14";p.style.color=a.color;p.style.borderColor=i===S.sel?a.color+"88":"transparent";p.innerHTML=(i>0?'<span class="pmv" data-i="'+i+'" data-dir="-1">‹</span>':"")+'<span class="pdot" style="background:'+a.color+'"></span>'+a.name+(i<S.acts.length-1?'<span class="pmv" data-i="'+i+'" data-dir="1">›</span>':"")+(S.acts.length>1?'<span class="prm" data-i="'+i+'">&times;</span>':"");p.onclick=(e)=>{if(e.target.classList.contains("prm")){this.rmAct(+e.target.dataset.i);return}if(e.target.classList.contains("pmv")){this.moveAct(+e.target.dataset.i,+e.target.dataset.dir);return}S.sel=i;this.renActs()};ct.appendChild(p)});this.initCP()},
+  moveAct(i,dir){
+    const j=i+dir;if(j<0||j>=S.acts.length)return;
+    [S.acts[i],S.acts[j]]=[S.acts[j],S.acts[i]];
+    // Actions are referenced by array index (ai) in every range cell — swapping their
+    // positions must also swap those references so each cell still points at the same
+    // logical action rather than silently reassigning to whatever now sits at that index.
+    for(let r=0;r<13;r++)for(let c=0;c<13;c++){
+      S.range[r][c].forEach(a=>{if(a.ai===i)a.ai=j;else if(a.ai===j)a.ai=i});
+    }
+    if(S.sel===i)S.sel=j;else if(S.sel===j)S.sel=i;
+    this.renActs();this.renAll();this.saveSt();checkDirty();
+  },
   rmAct(i){if(S.acts.length<=1)return;for(let r=0;r<13;r++)for(let c=0;c<13;c++){S.range[r][c]=S.range[r][c].filter(a=>a.ai!==i).map(a=>({...a,ai:a.ai>i?a.ai-1:a.ai}))}S.acts.splice(i,1);if(S.sel>=S.acts.length)S.sel=S.acts.length-1;this.renActs();this.renAll();this.updInfo();this.saveSt();checkDirty();this.highlightBadCells()},
   initCP(){const ct=$("cOpts");if(!ct)return;ct.innerHTML="";COLS.forEach((c,i)=>{const d=document.createElement("div");d.className="cdot2"+(i===0?" sel":"");d.style.background=c;d.style.color=c;d.dataset.color=c;d.onclick=()=>{ct.querySelectorAll(".cdot2").forEach(x=>x.classList.remove("sel"));d.classList.add("sel")};ct.appendChild(d)})},
   updInfo(){let wc=0,bad=0;for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cl=S.range[r][c];if(cl.length){wc+=hcn(r,c);const t=cl.reduce((s,a)=>s+a.w,0);if(t!==100)bad++}}$("cCnt").textContent=wc;$("rPct").textContent=((wc/TC)*100).toFixed(1)+"%";const warn=$("rWarn");if(warn)warn.innerHTML=bad?'<span style="color:var(--rs);font-weight:700">⚠ '+bad+" cells ≠ 100%</span>":""},
@@ -5072,11 +5200,11 @@ function clearR(){S.range=mkR();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty(
 function impNot(){const t=$("impText").value.trim();if(!t)return;const headers=[...t.matchAll(/^(Range\s*\d*\s*-\s*)(.+)$/gim)];if(headers.length>1){const blocks=[];for(let i=0;i<headers.length;i++){const name=headers[i][2].trim()||"Action "+(i+1);const start=headers[i].index+headers[i][0].length;const end=i<headers.length-1?headers[i+1].index:t.length;blocks.push({name,text:t.slice(start,end).trim()})}S.range=mkR();S.acts=[];blocks.forEach((blk,idx)=>{S.acts.push({name:blk.name,color:COLS[idx%COLS.length]});S.sel=idx;Ed.fromNot(blk.text)});S.sel=0;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty();renderRangeStats();closeM("impM");toast("Imported "+blocks.length+" actions ✦");return}Ed.fromNot(t);checkDirty();closeM("impM");toast("Imported")}
 function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle("on",x===t);$("impP"+x).style.display=x===t?"block":"none"})}
 function impSolver(){toast("Use Notation tab for multi-action import")}
-function buildExportJSON(){return JSON.stringify({v:21,exported:new Date().toISOString(),username:LG("ps_username",""),ranges:S.saved,folders:S.folders,errors:S.errors,current:{acts:S.acts,range:S.range},bankrolls:getBankrollsList(),activeBankroll:getActiveBankrollId(),trainingHistory:LG("ps_tr_history",[]),flopHistory:LG("ps_flop_history",[]),notes:LG("ps_notes",{notebooks:[],notes:[]}),handHistory:LG("ps_hh",{hands:[],players:[]})},null,2)}
+function buildExportJSON(){return JSON.stringify({v:22,exported:new Date().toISOString(),username:LG("ps_username",""),ranges:S.saved,folders:S.folders,errors:S.errors,current:{acts:S.acts,range:S.range},bankrolls:getBankrollsList(),activeBankroll:getActiveBankrollId(),trainingHistory:LG("ps_tr_history",[]),flopHistory:LG("ps_flop_history",[]),notes:LG("ps_notes",{notebooks:[],notes:[]}),handHistory:LG("ps_hh",{hands:[],players:[]}),flowcharts:LG("ps_flowcharts",[]),xp:getXp(),achievements:LG("ps_achv",{unlocked:{}}),streak:getStreak(),lifetime:getLifetime(),dailyStats:LG("ps_daily_stats",{completed:0}),hhCurrency:getHhCurrency(),brViewFilter:getBrViewFilter()},null,2)}
 function dlJSON(){const ts=new Date().toISOString().slice(0,10);const b=new Blob([buildExportJSON()],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pokerstudio-"+ts+".json";a.click();toast("Downloaded ✦")}
 function impJSONPaste(){const txt=$("impJSONText").value.trim();if(!txt)return toast("Paste JSON first");try{importJSONData(JSON.parse(txt));closeM("impM")}catch(e){toast("Invalid JSON")}}
 function hdlJSONFile(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{importJSONData(JSON.parse(ev.target.result));closeM("impM")}catch(err){toast("Invalid JSON")}};r.readAsText(f);e.target.value=""}
-function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.length}if(d.folders)S.folders=d.folders;if(d.errors){S.errors=d.errors;saveErr()}saveSvd();if(d.current){S.acts=d.current.acts||S.acts;S.range=d.current.range||S.range;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty()}if(d.bankrolls&&d.bankrolls.length){LS("ps_bankrolls",d.bankrolls);_bankrollsCache=null;if(d.activeBankroll)LS("ps_active_bankroll",d.activeBankroll)}else if(d.bankroll){const list=getBankrollsList();const active=getActiveBankrollObj();active.sessions=d.bankroll.sessions||[];active.goals=d.bankroll.goals||[];active.deposits=d.bankroll.deposits||[];active.settings=d.bankroll.settings||active.settings;saveBankrollsList()}if(d.username)LS("ps_username",d.username);if(d.trainingHistory)LS("ps_tr_history",d.trainingHistory);if(d.flopHistory)LS("ps_flop_history",d.flopHistory);if(d.notes)LS("ps_notes",d.notes);if(d.handHistory){LS("ps_hh",d.handHistory);HH._d=null}fsRender();renderFsSidebar();updateUserGreeting();renderBankrollSwitcher();toast("Imported "+c+" ranges ✦")}
+function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.length}if(d.folders)S.folders=d.folders;if(d.errors){S.errors=d.errors;saveErr()}saveSvd();if(d.current){S.acts=d.current.acts||S.acts;S.range=d.current.range||S.range;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty()}if(d.bankrolls&&d.bankrolls.length){LS("ps_bankrolls",d.bankrolls);_bankrollsCache=null;if(d.activeBankroll)LS("ps_active_bankroll",d.activeBankroll)}else if(d.bankroll){const list=getBankrollsList();const active=getActiveBankrollObj();active.sessions=d.bankroll.sessions||[];active.goals=d.bankroll.goals||[];active.deposits=d.bankroll.deposits||[];active.settings=d.bankroll.settings||active.settings;saveBankrollsList()}if(d.username)LS("ps_username",d.username);if(d.trainingHistory)LS("ps_tr_history",d.trainingHistory);if(d.flopHistory)LS("ps_flop_history",d.flopHistory);if(d.notes)LS("ps_notes",d.notes);if(d.handHistory){LS("ps_hh",d.handHistory);HH._d=null}if(d.flowcharts){LS("ps_flowcharts",d.flowcharts);Flow.d=d.flowcharts}if(d.xp!=null)LS("ps_xp",d.xp);if(d.achievements)LS("ps_achv",d.achievements);if(d.streak)LS("ps_streak",d.streak);if(d.lifetime)LS("ps_lifetime",d.lifetime);if(d.dailyStats)LS("ps_daily_stats",d.dailyStats);if(d.hhCurrency)setHhCurrency(d.hhCurrency);if(d.brViewFilter)LS("ps_br_view_filter",d.brViewFilter);fsRender();renderFsSidebar();updateUserGreeting();renderBankrollSwitcher();renderXpUI();renderAchvChip();toast("Imported "+c+" ranges ✦")}
 // ═══ TRAINER ═══
 let trMode="all";
 function setMode(m){trMode=m;document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m===m));if(Tr.active)Tr.next()}
@@ -5092,13 +5220,13 @@ const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,t
   if(!pool.length){toast("All hands excluded");this.endSession();return}
   const[r,c]=pool[Math.floor(Math.random()*pool.length)];const t=ht(r,c);const ss=[...SU].sort(()=>Math.random()-.5);let cards;if(t==="pair")cards=[{rank:RK[r],suit:ss[0]},{rank:RK[r],suit:ss[1]}];else if(t==="suited"){const s=ss[0];cards=[{rank:RK[r],suit:s},{rank:RK[c],suit:s}]}else cards=[{rank:RK[c],suit:ss[0]},{rank:RK[r],suit:ss[1]}];
   this.cur={r,c,cards,label:hl(r,c),type:t};$("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").textContent="";$("tExp").className="texp";$("tCard").className="tcard";$("hCnt").textContent="#"+(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");$("streakN").textContent=this.stats.streak}else sb.classList.remove("show");
-  const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));document.querySelectorAll(".tabtn").forEach(b=>{b.disabled=false;b.classList.remove("tabtn-correct","tabtn-wrong")});this._ts=Date.now()},
+  const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));document.querySelectorAll(".tabtn").forEach(b=>{b.disabled=false;b.classList.remove("tabtn-correct","tabtn-wrong")});this._ts=Date.now()},
   answer(ai){if(!this.cur)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];let ok=false;if(!ca.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");ok=fi>=0&&ai===fi}else{if(ca.some(a=>a.ai===ai))ok=true}const mixHtml=this.mixHtml(ca,ai);
   this.stats.total++;this.stats.history.push(ok?1:0);this.stats.byType[type].t++;if(ok)this.stats.byType[type].ok++;const an=this.acts[ai].name;if(!this.stats.byAction[an])this.stats.byAction[an]={ok:0,t:0};this.stats.byAction[an].t++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak;this.stats.byAction[an].ok++;if(trMode==="weak")recCorrectWeak(label,this.rangeId)}else{this.stats.streak=0;recErr(label,an,this.rangeId);if(!this.stats.wrongHands[label])this.stats.wrongHands[label]=0;this.stats.wrongHands[label]++}
   bumpLifetimeHand();bumpLifetimeStreak(this.stats.streak);trackDailyHand();trackDailyStreak(this.stats.streak);const mult=getMultiplier(ok?this.stats.streak:0);const xpGain=ok?Math.round(10*mult):2;const xpInfo=addXp(xpGain);
   const card=$("tCard"),fb=$("tFb"),ep=$("tExp");if(ok){card.className="tcard fb-ok";fb.textContent="✦ CORRECT";fb.className="tfb ok show";const ms=this.stats.streak>0&&this.stats.streak%10===0;playSound(ms?"win":"correct");haptic(ms?"success":"light");if(ms)celebrate()}else{card.className="tcard fb-no";fb.textContent="✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}ep.innerHTML='<div class="mix-label">'+(ok?"This hand's range":"Correct mix")+'</div><div class="mix-chips">'+mixHtml+'</div>'+(ok&&mult>1?'<div class="xp-gain-chip">+'+xpGain+' XP · '+mult+'x streak bonus</div>':'<div class="xp-gain-chip sub">+'+xpGain+' XP</div>');ep.className="texp show";$("trProg").style.width=(this.limit>0?Math.round((this.stats.total/this.limit)*100):Math.round(this.stats.total>0?(this.stats.ok/this.stats.total)*100:0))+"%";const correctAis=ca.length?ca.map(a=>a.ai):[this.acts.findIndex(a=>a.name.toLowerCase()==="fold")];document.querySelectorAll(".tabtn").forEach((b,i)=>{const bai=this.trainIdx[i];b.disabled=true;if(correctAis.includes(bai))b.classList.add("tabtn-correct");if(!ok&&bai===ai)b.classList.add("tabtn-wrong")});this.updQ();checkAchievements();const spd=LG("ps_speed","fast");const okMs=spd==="fast"?500:spd==="slow"?2500:1000;const noMs=spd==="fast"?800:spd==="slow"?4000:2000;if(this.limit>0&&this.stats.total>=this.limit){setTimeout(()=>this.endSession(),ok?okMs:noMs)}else setTimeout(()=>{if(!this.paused)this.next()},ok?okMs:noMs)},
   togglePause(){this.paused=!this.paused;const btn=$("trPauseBtn");if(btn){btn.textContent=this.paused?"▶ Resume":"⏸ Pause";btn.style.color=this.paused?"var(--mt)":"var(--gd)"}if(!this.paused)this.next()},
-  endSession(){this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;const hist=LG("ps_tr_history",[]);hist.push({rangeId:this.rangeId,date:new Date().toISOString(),total:s.total,ok:s.ok,accuracy:acc,best:s.best,limit:this.limit||"∞"});LS("ps_tr_history",hist);bumpLifetimeSession(acc,s.total);trackDailySession(acc,s.total);const newAchv=checkAchievements();if(acc>=90&&s.total>=5){setTimeout(celebrate,200);playSound("win");haptic("success")}const wh=Object.entries(s.wrongHands).sort((a,b)=>b[1]-a[1]).slice(0,12);const masteryHtml=this.rangeId&&this.rangeId!=="_editor"&&this.rangeId!=="_global"?'<div class="slbl" style="margin-top:14px">Range Mastery</div><div style="display:flex;justify-content:center">'+(masteryChipHtml(this.rangeId)||'<span class="mastery-chip" style="--mc:var(--t4)">⬡ Unranked</span>')+'</div>':"";$("trContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">'+(acc>=80?"🌟":acc>=60?"✨":"💪")+'</div><div style="font-family:var(--fd);font-size:22px;font-style:italic;color:var(--pk2);margin-bottom:14px">Session Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div>'+masteryHtml+(wh.length?'<div class="slbl" style="margin-top:14px">Missed Hands</div><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">'+wh.map(([h,c])=>'<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2)">'+h+' <span style="opacity:.5">'+c+"×</span></div>").join("")+"</div>":"")+'<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="pickTrRange(window._trPickedVal)">Train Again</button><button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>'},
+  endSession(){this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;const hist=LG("ps_tr_history",[]);const id="th_"+Date.now();hist.push({id,rangeId:this.rangeId,date:new Date().toISOString(),total:s.total,ok:s.ok,accuracy:acc,best:s.best,limit:this.limit||"∞",wrongHands:s.wrongHands||{}});LS("ps_tr_history",hist);bumpLifetimeSession(acc,s.total);trackDailySession(acc,s.total);const newAchv=checkAchievements();if(acc>=90&&s.total>=5){setTimeout(celebrate,200);playSound("win");haptic("success")}const wh=Object.entries(s.wrongHands).sort((a,b)=>b[1]-a[1]).slice(0,12);const masteryHtml=this.rangeId&&this.rangeId!=="_editor"&&this.rangeId!=="_global"?'<div class="slbl" style="margin-top:14px">Range Mastery</div><div style="display:flex;justify-content:center">'+(masteryChipHtml(this.rangeId)||'<span class="mastery-chip" style="--mc:var(--t4)">⬡ Unranked</span>')+'</div>':"";$("trContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">'+(acc>=80?"🌟":acc>=60?"✨":"💪")+'</div><div style="font-family:var(--fd);font-size:22px;font-style:italic;color:var(--pk2);margin-bottom:14px">Session Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div>'+masteryHtml+(wh.length?'<div class="slbl" style="margin-top:14px">Missed Hands</div><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">'+wh.map(([h,c])=>'<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2)">'+h+' <span style="opacity:.5">'+c+"×</span></div>").join("")+"</div>":"")+'<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="pickTrRange(window._trPickedVal)">Train Again</button><button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>'},
   updQ(){const s=this.stats;$("qScore").textContent=s.ok+"/"+s.total;$("qAcc").textContent=s.total?Math.round((s.ok/s.total)*100)+"%":"—";$("qStreak").textContent=s.streak;$("qBest").textContent=s.best},
 };
 /* ── GAUNTLET MODE (boss-fight cross-range trainer with a timer) ── */
@@ -5112,7 +5240,7 @@ const Gauntlet={active:false,pool:[],cur:null,timer:null,timeLeft:5,stats:{ok:0,
     this.cur={r:p.r,c:p.c,cards,label:hl(p.r,p.c),type:t,acts:p.acts,range:p.range,rangeName:p.rangeName,trainIdx};
     $("gRangeName").textContent=p.rangeName;$("gFb").textContent="";$("gFb").className="tfb";$("gExp").textContent="";$("gExp").className="texp";$("gCard").className="tcard gaunt-card";$("gCnt").textContent="#"+(this.stats.total+1);
     const sb=$("gStreakB");if(this.stats.streak>=3){sb.classList.add("show");$("gStreakN").textContent=this.stats.streak}else sb.classList.remove("show");
-    const ct=$("gCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p2,i)=>setTimeout(()=>p2.classList.add("dealt"),40+i*100));
+    const ct=$("gCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p2,i)=>setTimeout(()=>p2.classList.add("dealt"),40+i*100));
     const bc=$("gBtns");bc.innerHTML="";trainIdx.forEach((ai,i)=>{const a=p.acts[ai];const b=document.createElement("button");b.className="tabtn";b.style.borderColor=a.color;b.style.color=a.color;b.textContent=a.name;b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(ai));bc.appendChild(b)});
     this.timeLeft=5;const tf=$("gTimer");tf.style.transition="none";tf.style.width="100%";requestAnimationFrame(()=>{tf.style.transition="width .1s linear"});
     this.timer=setInterval(()=>{this.timeLeft-=0.1;const pct=Math.max(0,this.timeLeft/5*100);tf.style.width=pct+"%";tf.style.background=pct<30?"var(--rs)":pct<60?"var(--gd)":"var(--mt)";if(this.timeLeft<=0){clearInterval(this.timer);this.answer(-1)}},100)},
@@ -5130,7 +5258,7 @@ const Gauntlet={active:false,pool:[],cur:null,timer:null,timeLeft:5,stats:{ok:0,
   updQ(){const s=this.stats;$("gScore").textContent=s.ok+"/"+s.total;$("gAcc").textContent=s.total?Math.round((s.ok/s.total)*100)+"%":"—";$("gStreak").textContent=s.streak;$("gBest").textContent=s.best},
   end(){clearInterval(this.timer);this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;if(s.total>0){bumpLifetimeSession(acc,s.total);trackDailySession(acc,s.total);checkAchievements()}$("trGauntContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">⚔️</div><div class="gaunt-title">Gauntlet Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div><div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="Gauntlet.start()">⚔️ Again</button><button class="btn" onclick="renderGauntIntro()">Back</button></div></div>'},
 };
-function switchTrTab(tab){["train","flop","gaunt","hist"].forEach(t=>{const area=$("tr"+t.charAt(0).toUpperCase()+t.slice(1)+"Area");const btn=$("trTab"+t.charAt(0).toUpperCase()+t.slice(1));if(area)area.style.display=t===tab?"":"none";if(btn)btn.classList.toggle("on",t===tab)});if(tab==="hist")renderTrHistory();if(tab==="train")$("trTrainArea").style.display="flex";if(tab==="gaunt"&&!Gauntlet.active)renderGauntIntro()}
+function switchTrTab(tab){["train","gaunt","hist"].forEach(t=>{const area=$("tr"+t.charAt(0).toUpperCase()+t.slice(1)+"Area");const btn=$("trTab"+t.charAt(0).toUpperCase()+t.slice(1));if(area)area.style.display=t===tab?"":"none";if(btn)btn.classList.toggle("on",t===tab)});if(tab==="hist")renderTrHistory();if(tab==="train")$("trTrainArea").style.display="flex";if(tab==="gaunt"&&!Gauntlet.active)renderGauntIntro()}
 function popTrSel(){loadSvd();renderDailyUI()}
 function openTrRangePicker(){loadSvd();$("trPickSearch").value="";renderTrPickList();openM("trPickM")}
 function renderTrPickList(){
@@ -5178,7 +5306,34 @@ function initExclDrag(){const grid=document.getElementById("exclGrid");if(!grid)
 function applyExclCell(label){const excl=getExclHands();if(_exclMode==="exclude")excl.add(label);else excl.delete(label);saveExclHands(excl);const cell=document.querySelector('.excl-cell[data-hl="'+label+'"]');if(cell){const isExcl=excl.has(label);cell.style.opacity=isExcl?".35":"1";cell.style.borderColor=isExcl?"var(--rs)":"var(--bd)";cell.style.color=isExcl?"var(--rs)":"var(--t1)";cell.style.background=isExcl?"var(--b0)":cell.style.background}const cnt=document.getElementById("exclModalCount");if(cnt)cnt.textContent=excl.size+" excluded"}
 function exclBulk(mode){const excl=getExclHands();const d=window._trD;if(!d)return;if(mode==="none")excl.clear();else if(mode==="all"){for(let r=0;r<13;r++)for(let c=0;c<13;c++)excl.add(hl(r,c))}else if(mode==="empty"){for(let r=0;r<13;r++)for(let c=0;c<13;c++)if(!d.range[r][c].length)excl.add(hl(r,c))}saveExclHands(excl);openExcludeHands()}
 
-function renderTrHistory(){const hist=LG("ps_tr_history",[]);const fh=LG("ps_flop_history",[]);const hc=$("trHistContent");if(!hist.length&&!fh.length){hc.innerHTML='<div class="trprompt"><span class="pico">📜</span>No training history yet.</div>';return}let html="";if(hist.length){html+='<div class="slbl">🎯 Range Training</div>'+hist.slice().reverse().map((h,i)=>{const acc=h.total?Math.round((h.ok/h.total)*100):0;const col=acc>=80?"var(--mt)":acc>=60?"var(--gd)":"var(--rs)";return'<div class="dh-item" style="animation-delay:'+i*30+'ms"><div class="dh-badge ok" style="background:color-mix(in srgb,'+col+' 12%,transparent);color:'+col+'">'+acc+'%</div><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+h.rangeId+'</div><div style="font-size:9px;color:var(--t4)">'+new Date(h.date).toLocaleDateString("en-US",{month:"short",day:"numeric"})+" · "+h.total+" hands"+'</div></div><div style="text-align:right;font-family:var(--fm);font-size:12px;font-weight:700;color:'+col+'">'+h.ok+"/"+h.total+'</div></div>'}).join("")}if(fh.length){html+='<div class="slbl" style="margin-top:14px">🌊 Flop Texture</div>'+fh.slice().reverse().map((h,i)=>{const acc=h.total?Math.round((h.ok/h.total)*100):0;const col=acc>=80?"var(--mt)":acc>=60?"var(--gd)":"var(--rs)";return'<div class="dh-item" style="animation-delay:'+i*30+'ms"><div class="dh-badge ok" style="background:color-mix(in srgb,'+col+' 12%,transparent);color:'+col+'">'+acc+'%</div><div style="flex:1"><div style="font-weight:700;font-size:12px">🌊 Flop Texture</div><div style="font-size:9px;color:var(--t4)">'+new Date(h.date).toLocaleDateString("en-US",{month:"short",day:"numeric"})+" · "+h.total+" flops"+'</div></div><div style="text-align:right;font-family:var(--fm);font-size:12px;font-weight:700;color:'+col+'">'+h.ok+"/"+h.total+'</div></div>'}).join("")}html+='<div style="text-align:center;margin-top:12px"><button class="btn btn-s" onclick="confirmAction(\'Clear training history?\',\'\',()=>{LS(\'ps_tr_history\',[]);LS(\'ps_flop_history\',[]);renderTrHistory();toast(\'Cleared ✦\')})">Clear History</button></div>';hc.innerHTML=html}
+function renderTrHistory(targetId){
+  const hist=LG("ps_tr_history",[]);
+  const hc=$(targetId||"trHistContent");if(!hc)return;
+  if(!hist.length){hc.innerHTML='<div class="trprompt"><span class="pico">📜</span>No training history yet.</div>';return}
+  let html='<div class="slbl">🎯 Range Training</div>'+hist.slice().reverse().map((h,i)=>{
+    const origIdx=hist.length-1-i;
+    const acc=h.total?Math.round((h.ok/h.total)*100):0;const col=acc>=80?"var(--mt)":acc>=60?"var(--gd)":"var(--rs)";
+    return'<div class="dh-item" style="animation-delay:'+i*30+'ms;cursor:pointer" onclick="openTrSessionDetail('+origIdx+')"><div class="dh-badge ok" style="background:color-mix(in srgb,'+col+' 12%,transparent);color:'+col+'">'+acc+'%</div><div style="flex:1;min-width:0"><div style="font-weight:700;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+h.rangeId+'</div><div style="font-size:9px;color:var(--t4)">'+new Date(h.date).toLocaleDateString("en-US",{month:"short",day:"numeric"})+" · "+h.total+" hands"+'</div></div><div style="text-align:right;font-family:var(--fm);font-size:12px;font-weight:700;color:'+col+'">'+h.ok+"/"+h.total+'</div><span style="opacity:.4;margin-left:6px;flex-shrink:0">›</span></div>';
+  }).join("");
+  html+='<div style="text-align:center;margin-top:12px"><button class="btn btn-s" onclick="confirmAction(\'Clear training history?\',\'\',()=>{LS(\'ps_tr_history\',[]);renderTrHistory(\''+(targetId||"trHistContent")+'\');toast(\'Cleared ✦\')})">Clear History</button></div>';
+  hc.innerHTML=html;
+}
+function openTrSessionDetail(idx){
+  const hist=LG("ps_tr_history",[]);
+  const h=hist[idx];if(!h)return;
+  const acc=h.total?Math.round((h.ok/h.total)*100):0;
+  const wh=Object.entries(h.wrongHands||{}).sort((a,b)=>b[1]-a[1]);
+  let html='<div class="rstats"><div class="rstat-card"><div class="rsv">'+h.ok+"/"+h.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+(h.best||0)+'</div><div class="rsl">Best Streak</div></div></div>';
+  html+='<div class="slbl" style="margin-top:14px">'+escapeHtml(h.rangeId)+'</div><div class="setting-desc" style="margin-bottom:10px">'+new Date(h.date).toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"})+'</div>';
+  if(wh.length){
+    html+='<div class="slbl">❌ Hands Missed</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">'+wh.map(([hand,cnt])=>'<div style="padding:6px 10px;border-radius:8px;font-size:11px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.25)">'+escapeHtml(hand)+' <span style="opacity:.55">×'+cnt+"</span></div>").join("")+"</div>";
+  }else{
+    html+='<div class="empty-state" style="padding:16px"><span class="es-icon">✅</span><div class="es-title">'+(h.wrongHands?"Perfect session — no misses!":"No detail saved for this older session")+"</div></div>";
+  }
+  $("trSessionDetailContent").innerHTML=html;
+  openM("trSessionDetailM");
+}
+function openTrainingResults(){renderTrHistory("trainResultsContent");openM("trainResultsM")}
 
 
 function openFolderMove(path){
@@ -5331,7 +5486,8 @@ function submitSplitByCurrency(){
 }
 
 const BR={get d(){return getActiveBankrollObj()},save(){saveBankrollsList()},get sorted(){return[...this.d.sessions].sort((a,b)=>new Date(a.date)-new Date(b.date))}};
-function brSym(){const c=BR.d.settings?.currency||"USD";return{USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[c]||"$"}
+let _currencyTabOverride=null;
+function brSym(){const c=_currencyTabOverride||BR.d.settings?.currency||"USD";return{USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[c]||"$"}
 function getHhCurrency(){return LG("ps_hh_currency","USD")}
 function setHhCurrency(c){LS("ps_hh_currency",c);renderHhCurrencyUI();hhRefreshCurrencyDisplays();toast("Hand History currency set to "+c+" ("+hhSym()+")");playSound("tick");haptic("light")}
 let hhCurrentHandCurrency="";
@@ -5355,11 +5511,22 @@ function getBrBankroll(){const total=BR.sorted.reduce((a,s)=>a+s.resultCents,0);
 function getBrViewFilter(){return LG("ps_br_view_filter",{mode:"active",ids:[]})}
 function saveBrViewFilter(f){LS("ps_br_view_filter",f)}
 function getViewFilterIds(){const f=getBrViewFilter();const all=getBankrollsList();if(f.mode==="all")return all.map(b=>b.id);if(f.mode==="custom"&&f.ids&&f.ids.length){const valid=f.ids.filter(id=>all.some(b=>b.id===id));if(valid.length)return valid}return[getActiveBankrollId()]}
-function getViewedBankrolls(){const ids=getViewFilterIds();return getBankrollsList().filter(b=>ids.includes(b.id))}
+let _currencyTabOverrideIds=null;
+function getViewedBankrolls(){if(_currencyTabOverrideIds)return getBankrollsList().filter(b=>_currencyTabOverrideIds.includes(b.id));const ids=getViewFilterIds();return getBankrollsList().filter(b=>ids.includes(b.id))}
 function getViewedSessions(){const bs=getViewedBankrolls();let out=[];bs.forEach(b=>{(b.sessions||[]).forEach(s=>out.push(Object.assign({},s,{_bid:b.id,_bicon:b.icon,_bname:b.name})))});out.sort((a,b)=>new Date(a.date)-new Date(b.date));return out}
 function getViewedDepositsTotal(){return getViewedBankrolls().reduce((a,b)=>a+(b.deposits||[]).reduce((x,d)=>x+d.amt,0),0)}
 function getViewedStartBankroll(){return getViewedBankrolls().reduce((a,b)=>a+(parseFloat(b.settings?.startBankroll)||0)*100,0)}
 function getViewedBankrollValue(){const total=getViewedSessions().reduce((a,s)=>a+s.resultCents,0);return getViewedStartBankroll()+total+getViewedDepositsTotal()}
+function getViewedCurrencyGroups(){
+  const bs=getViewedBankrolls();
+  const groups={};
+  bs.forEach(b=>{
+    const cur=b.settings?.currency||"USD";
+    if(!groups[cur])groups[cur]=[];
+    groups[cur].push(b);
+  });
+  return groups;
+}
 function renderBrViewFilterChip(){const els=document.querySelectorAll(".br-view-chip");if(!els.length)return;const f=getBrViewFilter();const bs=getViewedBankrolls();let label;if(f.mode==="all")label="All Bankrolls";else if(f.mode==="custom"&&bs.length>1)label=bs.length+" Bankrolls";else label=bs[0]?bs[0].name:"—";const html='<span class="bvf-icon">👁</span><span class="bvf-label">Viewing: '+label+'</span><span class="bvf-chevron">▾</span>';els.forEach(el=>el.innerHTML=html)}
 function openBrViewFilter(){renderBrViewFilterModal();openM("brViewFilterM")}
 function renderBrViewFilterModal(){const f=getBrViewFilter();const list=getBankrollsList();let h='<div class="bvf-option'+(f.mode==="active"?" on":"")+'" onclick="setBrViewFilter(\'active\')"><span class="bvf-opt-icon">📍</span><div class="bvf-opt-text"><div class="bvf-opt-name">Active Bankroll Only</div><div class="bvf-opt-sub">Whichever bankroll is currently selected</div></div></div>';
@@ -5393,14 +5560,22 @@ function prefillLive(){populateLiveBankrollSelect();const ss=BR.d.sessions;if(ss
 function populateLiveBankrollSelect(){const sel=$("liveBankroll");if(!sel)return;const list=getBankrollsList();const activeId=getActiveBankrollId();sel.innerHTML=list.map(b=>'<option value="'+b.id+'"'+(b.id===activeId?" selected":"")+'>'+b.icon+" "+b.name+"</option>").join("")}
 function getBankrollById(id){return getBankrollsList().find(b=>b.id===id)}
 function submitStartLive(){const stakes=$("liveStakes").value.trim();if(!stakes)return toast("Enter stakes");const buyin=parseFloat($("liveBuyin").value)||0;const bankrollId=$("liveBankroll").value||getActiveBankrollId();liveData={bankrollId,start:Date.now(),stakes,location:$("liveLoc").value.trim(),gameType:$("liveGT").value,format:$("liveFmt").value,tableSize:$("liveTable").value,seat:$("liveSeat").value,goal:$("liveGoal").value,goalVal:$("liveGoalVal")?.value||"",buyin:Math.round(buyin*100),invested:Math.round(buyin*100),rebuys:0,events:[],stackHistory:[{ts:Date.now(),amount:Math.round(buyin*100)}]};const notes=$("liveStartNotes").value.trim();if(notes)liveData.events.push({time:new Date().toLocaleTimeString("en-US",{hour:"2-digit",minute:"2-digit"}),text:"📝 "+notes});LS("ps_live",liveData);closeM("liveStartM");startLiveTimer();renderBrAll();const b=getBankrollById(bankrollId);toast("🔴 Live session started"+(b?" · "+b.icon+" "+b.name:""))}
-function startLiveTimer(){if(liveTimer)clearInterval(liveTimer);liveTimer=setInterval(()=>{if(liveData)renderLivePanel()},1000)}
+function startLiveTimer(){if(liveTimer)clearInterval(liveTimer);liveTimer=setInterval(()=>{if(liveData)updateLiveTimerDisplay()},1000)}
+function updateLiveTimerDisplay(){
+  if(!liveData)return;
+  const timerEl=$("liveTimerTxt");if(!timerEl)return;
+  const elapsed=Date.now()-liveData.start;
+  const h=Math.floor(elapsed/3600000),m=Math.floor((elapsed%3600000)/60000),s=Math.floor((elapsed%60000)/1000);
+  timerEl.textContent=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+  const durEl=$("liveDurTxt");if(durEl)durEl.textContent=brFmtDur(Math.round(elapsed/60000));
+}
 function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML='<div class="live-start-cta"><div class="lsc-icon">🔴</div><div class="lsc-text"><div class="lsc-title">Ready to play?</div><div class="lsc-sub">Start a live session to track buy-ins, rebuys, and time in real time.</div></div><button class="btn pri" onclick="openM(\'liveStartM\')">🔴 Start Live Session</button></div>';return}
   const elapsed=Date.now()-liveData.start;const h=Math.floor(elapsed/3600000);const m=Math.floor((elapsed%3600000)/60000);const s=Math.floor((elapsed%60000)/1000);const lb=liveData.bankrollId?getBankrollById(liveData.bankrollId):null;
   const hasStack=liveData.currentStack!=null;
   const pnl=hasStack?liveData.currentStack-liveData.invested:0;
   const hasStackHistory=liveData.stackHistory&&liveData.stackHistory.length>=2;
   const stackBlock=hasStack?'<div class="live-stack-block"><div class="live-stack-row"><span class="live-stack-lbl">💰 Current Stack</span><span class="live-stack-val">'+brSym()+(liveData.currentStack/100).toFixed(0)+'</span></div><div class="live-stack-pnl '+(pnl>=0?"pos":"neg")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(0)+" so far</div>"+(hasStackHistory?'<div class="live-stack-chart-h"><canvas id="chLiveStack"></canvas></div>':"")+"</div>":"";
-  la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION'+(lb?' <span class="live-bankroll-tag">'+lb.icon+" "+lb.name+"</span>":"")+'</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div>'+stackBlock+'<div class="live-action-grid"><button class="live-action-btn" onclick="openLiveInput(\'stack\',\'💰 Update Stack\')">💰 Stack</button><button class="live-action-btn" onclick="openLiveInput(\'rebuy\',\'↻ Rebuy\')">↻ Rebuy</button><button class="live-action-btn" onclick="openLiveInput(\'note\',\'📝 Note\')">📝 Note</button><button class="live-action-btn" style="color:var(--rs)" onclick="openEndLive()">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>";
+  la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION'+(lb?' <span class="live-bankroll-tag">'+lb.icon+" "+lb.name+"</span>":"")+'</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer" id="liveTimerTxt">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div>'+stackBlock+'<div class="live-action-grid"><button class="live-action-btn" onclick="openLiveInput(\'stack\',\'💰 Update Stack\')">💰 Stack</button><button class="live-action-btn" onclick="openLiveInput(\'rebuy\',\'↻ Rebuy\')">↻ Rebuy</button><button class="live-action-btn" onclick="openLiveInput(\'note\',\'📝 Note\')">📝 Note</button><button class="live-action-btn" style="color:var(--rs)" onclick="openEndLive()">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val" id="liveDurTxt">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>";
   if(hasStackHistory)renderLiveStackChart();
 }
 function renderLiveStackChart(){
@@ -5429,13 +5604,82 @@ function brAreaGrad(color){return(context)=>{const{chart}=context;const{ctx,char
 function destroyBrChart(k){if(brCharts[k]){brCharts[k].destroy();delete brCharts[k]}}
 function getCT(){const s=getComputedStyle(document.documentElement);const g=v=>s.getPropertyValue(v).trim();return{grid:g("--bd"),tick:g("--t3"),tbg:g("--b3"),tt:g("--t1"),tb:g("--t2"),tbdr:g("--bd2"),rose:g("--pk"),rose_bg:g("--pk")+"18",li:g("--li"),li_bg:g("--li")+"18",green_a:g("--mt")+"88",red_a:g("--rs")+"88"}}
 function animateCount(el,targetCents){if(!el)return;const dur=650;const start=performance.now();const from=0;const to=targetCents/100;const isNeg=to<0;const sym=brSym();function step(now){const p=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-p,3);const cur=from+(to-from)*eased;el.textContent=(cur<0?"−":"")+sym+Math.abs(cur).toLocaleString(undefined,{maximumFractionDigits:0});if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
-function renderHeroSpark(){const CT=getCT();const sorted=getViewedSessions();const canvas=$("chHeroSpark");if(!canvas)return;destroyBrChart("spark");if(!sorted.length)return;const deps=getViewedDepositsTotal();let cum=getViewedStartBankroll()+deps;const data=[];sorted.forEach(s=>{cum+=s.resultCents;data.push(cum/100)});const pos=data[data.length-1]>=data[0];const col=pos?CT.green_a.slice(0,7):CT.red_a.slice(0,7);brCharts.spark=new Chart(canvas.getContext("2d"),{type:"line",data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:col,backgroundColor:brAreaGrad(col),fill:true,tension:.4,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}})}
-function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();renderHeroSpark();renderBrSessions();renderBrGoals();if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
-function renderBrDash(){const CT=getCT();const sorted=getViewedSessions();const total=sorted.reduce((a,s)=>a+s.resultCents,0);const bankroll=getViewedBankrollValue();const deps=getViewedDepositsTotal();const wins=sorted.filter(s=>s.resultCents>0).length;const losses=sorted.filter(s=>s.resultCents<0).length;const totalMins=sorted.reduce((a,s)=>a+(s.duration||0),0);const totalHrs=totalMins/60;const hourly=totalHrs>0?total/100/totalHrs:0;const winRate=sorted.length?(wins/sorted.length)*100:0;
+function renderHeroSpark(){if(Object.keys(getViewedCurrencyGroups()).length>1)return;const CT=getCT();const sorted=getViewedSessions();const canvas=$("chHeroSpark");if(!canvas)return;destroyBrChart("spark");if(!sorted.length)return;const deps=getViewedDepositsTotal();let cum=getViewedStartBankroll()+deps;const data=[];sorted.forEach(s=>{cum+=s.resultCents;data.push(cum/100)});const pos=data[data.length-1]>=data[0];const col=pos?CT.green_a.slice(0,7):CT.red_a.slice(0,7);brCharts.spark=new Chart(canvas.getContext("2d"),{type:"line",data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:col,backgroundColor:brAreaGrad(col),fill:true,tension:.4,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}})}
+function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();if(Object.keys(getViewedCurrencyGroups()).length<=1){renderHeroSpark();renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
+let currentCurrencyTab=null;
+function renderBrDashMixedCurrency(groups){
+  const keys=Object.keys(groups);
+  if(!currentCurrencyTab||!groups[currentCurrencyTab])currentCurrencyTab=keys[0];
+  const symOf=cur=>({USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$",JPY:"¥"}[cur]||"$");
+  const tabsHtml='<div class="br-currency-tabs">'+keys.map(k=>'<button class="br-curr-tab'+(k===currentCurrencyTab?" on":"")+'" onclick="switchCurrencyTab(\''+k+'\')">'+symOf(k)+" "+k+"</button>").join("")+"</div>";
+  let tabsWrap=$("brCurrencyTabsWrap");
+  if(!tabsWrap){
+    const hero=$("brHero");
+    if(hero&&hero.parentNode){tabsWrap=document.createElement("div");tabsWrap.id="brCurrencyTabsWrap";hero.parentNode.insertBefore(tabsWrap,hero)}
+  }
+  if(tabsWrap)tabsWrap.innerHTML=tabsHtml;
+  // Scope every "viewed" helper + currency symbol to just this tab's bankrolls, render the FULL
+  // normal dashboard (charts and all) using that scope, then clear the override.
+  _currencyTabOverrideIds=groups[currentCurrencyTab].map(b=>b.id);
+  _currencyTabOverride=currentCurrencyTab;
+  renderBrDashSingle();
+  renderHeroSpark();
+  renderBrSessions();
+  renderBrGoals();
+  _currencyTabOverrideIds=null;
+  _currencyTabOverride=null;
+}
+function switchCurrencyTab(k){currentCurrencyTab=k;playSound("tick");haptic("light");renderBrAll()}
+function parseBBFromStakes(stakesStr){
+  if(!stakesStr)return null;
+  const parts=stakesStr.split("/").map(s=>parseFloat(String(s).replace(/[^0-9.]/g,"")));
+  if(parts.length>=2&&!isNaN(parts[1])&&parts[1]>0)return parts[1];
+  if(parts.length===1&&!isNaN(parts[0])&&parts[0]>0)return parts[0];
+  return null;
+}
+function computeBBPerHour(sessions){
+  let totalBB=0,totalHrs=0;
+  const byStake={};
+  sessions.forEach(s=>{
+    const bb=parseBBFromStakes(s.stakes);
+    if(!bb||!s.duration)return;
+    const hrs=s.duration/60;
+    const bbWon=(s.resultCents/100)/bb;
+    totalBB+=bbWon;totalHrs+=hrs;
+    const key=s.stakes||"Unknown";
+    if(!byStake[key])byStake[key]={bb:0,hrs:0,sessions:0};
+    byStake[key].bb+=bbWon;byStake[key].hrs+=hrs;byStake[key].sessions++;
+  });
+  return{overall:totalHrs>0?totalBB/totalHrs:0,totalHrs,byStake};
+}
+function openBBPerHourBreakdown(){
+  const sessions=getViewedSessions();
+  const{overall,byStake}=computeBBPerHour(sessions);
+  const keys=Object.keys(byStake).sort((a,b)=>byStake[b].hrs-byStake[a].hrs);
+  let html='<div class="setting-row" style="border-bottom:1px solid var(--bd2);padding-bottom:14px;margin-bottom:10px"><div class="setting-info"><span class="setting-label">Overall BB/hr</span><span class="setting-desc">Across all stakes, weighted by hours played</span></div><div style="font-family:var(--fm);font-weight:800;font-size:18px;color:'+(overall>=0?"var(--mt)":"var(--rs)")+'">'+(overall>=0?"+":"")+overall.toFixed(1)+"bb/hr</div></div>";
+  if(!keys.length){
+    html+='<div class="empty-state" style="padding:20px"><span class="es-icon">📊</span><div class="es-title">Not enough data yet</div><div class="es-sub">Log sessions with stakes and duration to see your BB/hr breakdown.</div></div>';
+  }else{
+    html+=keys.map(k=>{
+      const d=byStake[k];const rate=d.hrs>0?d.bb/d.hrs:0;const pos=rate>=0;
+      return'<div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">'+escapeHtml(k)+'</span><span class="setting-desc">'+d.sessions+" session"+(d.sessions!==1?"s":"")+" · "+d.hrs.toFixed(1)+"h</span></div><div style=\"font-family:var(--fm);font-weight:800;font-size:14px;color:"+(pos?"var(--mt)":"var(--rs)")+'">'+(pos?"+":"")+rate.toFixed(1)+"bb/hr</div></div>";
+    }).join("");
+  }
+  $("bbHrBreakdownContent").innerHTML=html;
+  openM("bbHrBreakdownM");
+}
+function renderBrDash(){
+  const currencyGroups=getViewedCurrencyGroups();
+  if(Object.keys(currencyGroups).length>1){renderBrDashMixedCurrency(currencyGroups);return}
+  $("brCurrencyTabsWrap")&&($("brCurrencyTabsWrap").innerHTML="");
+  renderBrDashSingle();
+}
+function renderBrDashSingle(){
+  const CT=getCT();const sorted=getViewedSessions();const total=sorted.reduce((a,s)=>a+s.resultCents,0);const bankroll=getViewedBankrollValue();const deps=getViewedDepositsTotal();const wins=sorted.filter(s=>s.resultCents>0).length;const losses=sorted.filter(s=>s.resultCents<0).length;const totalMins=sorted.reduce((a,s)=>a+(s.duration||0),0);const totalHrs=totalMins/60;const hourly=totalHrs>0?total/100/totalHrs:0;const winRate=sorted.length?(wins/sorted.length)*100:0;
   const heroPos=total>=0;
   $("brHero").innerHTML='<div class="br-hero"><div class="br-hero-label">Current Bankroll</div><div class="br-hero-val '+(heroPos?"pos":"neg")+'" id="brHeroVal">'+brFmt(bankroll)+'</div><div class="br-hero-sub">'+(heroPos?"▲":"▼")+' '+brFmt(Math.abs(total))+' all-time · '+sorted.length+" session"+(sorted.length!==1?"s":"")+(deps?" · net deposits "+brFmt(deps):"")+'</div><div class="br-hero-spark"><canvas id="chHeroSpark"></canvas></div></div>';
   animateCount($("brHeroVal"),bankroll);
-  $("brDashStats").innerHTML='<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Total Profit</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+sorted.length+" session"+(sorted.length!==1?"s":"")+'</div></div><div class="br-stat"><div class="brs-label">Sessions Played</div><div class="brs-val" style="color:var(--pk)">'+sorted.length+'</div><div class="brs-sub">'+wins+"W / "+losses+'L</div></div><div class="br-stat '+(hourly>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Hourly Rate</div><div class="brs-val '+(hourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(hourly).toFixed(2)+'/hr</div><div class="brs-sub">'+totalHrs.toFixed(1)+'h played</div></div><div class="br-stat"><div class="brs-label">Win Rate</div><div class="brs-val" style="color:var(--li)">'+winRate.toFixed(1)+'%</div><div class="brs-sub">'+wins+"W / "+losses+'L</div></div>';
+  $("brDashStats").innerHTML='<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Total Profit</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+sorted.length+" session"+(sorted.length!==1?"s":"")+'</div></div><div class="br-stat"><div class="brs-label">Sessions Played</div><div class="brs-val" style="color:var(--pk)">'+sorted.length+'</div><div class="brs-sub">'+wins+"W / "+losses+'L</div></div><div class="br-stat '+(hourly>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Hourly Rate</div><div class="brs-val '+(hourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(hourly).toFixed(2)+'/hr</div><div class="brs-sub">'+totalHrs.toFixed(1)+'h played</div></div><div class="br-stat"><div class="brs-label">Win Rate</div><div class="brs-val" style="color:var(--li)">'+winRate.toFixed(1)+'%</div><div class="brs-sub">'+wins+"W / "+losses+'L</div></div>'+(()=>{const bbh=computeBBPerHour(sorted);return'<div class="br-stat '+(bbh.overall>=0?"stat-pos":"stat-neg")+'" style="cursor:pointer" onclick="openBBPerHourBreakdown()"><div class="brs-label">BB/hr <span style="opacity:.5">▸</span></div><div class="brs-val '+(bbh.overall>=0?"pos":"neg")+'">'+(bbh.overall>=0?"+":"")+bbh.overall.toFixed(1)+'</div><div class="brs-sub">'+bbh.totalHrs.toFixed(1)+'h · tap for breakdown</div></div>'})();
   // Dep history
   const depHist=(BR.d.deposits||[]).slice().reverse();const depArea=$("brDepHist");if(depArea&&depHist.length){depArea.innerHTML='<div style="font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Recent Transactions</div>'+depHist.slice(0,8).map(d=>{const isPos=d.amt>0;return'<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd)"><div style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:'+(isPos?"rgba(110,231,183,.08)":"rgba(251,113,133,.08)")+';font-size:13px">'+(isPos?"↓":"↑")+'</div><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:12px">'+d.desc+'</div><div style="font-size:9px;color:var(--t4)">'+new Date(d.ts).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})+'</div></div><div style="font-family:var(--fm);font-size:13px;font-weight:700;color:'+(isPos?"var(--mt)":"var(--rs)")+'">'+(isPos?"+":"")+brFmt(d.amt)+'</div></div>'}).join("")}else if(depArea)depArea.innerHTML="";
   destroyBrChart("br");const labels=[],data=[];let cum=(parseFloat(BR.d.settings?.startBankroll)||0)*100+deps;sorted.forEach(s=>{cum+=s.resultCents;labels.push(s.date);data.push(cum/100)});
@@ -5468,7 +5712,9 @@ function renderBrSessions(){
     return mul*(av-bv);
   });
   const hc=$("brHistCount");if(hc)hc.textContent=ss.length+" session"+(ss.length!==1?"s":"")+((q||fmtFilter)?" · filtered":"");
-  $("brSBody").innerHTML=ss.map((s,i)=>{const p=s.resultCents;const cls=p>=0?"pos":"neg";const dur=s.duration;const hrRate=dur>15?p/100/(dur/60):0;return'<tr style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openSessDetail(\''+s.id+'\',\''+s._bid+'\')">'+"<td>"+s.date+'</td><td><span style="font-size:10px">'+s.gameType+(s.tableSize&&s.tableSize!=="9-max"?" · "+s.tableSize:"")+'</span>'+(multiView?' <span class="hh-tag-chip" style="margin-left:4px">'+s._bicon+" "+s._bname+'</span>':"")+'</td><td style="font-family:var(--fm);font-size:.82rem">'+(s.stakes||"-")+"</td><td>"+(s.location||"-")+"</td><td>"+brFmtDur(dur)+'</td><td class="profit '+cls+'">'+brFmt(p)+'</td><td style="font-family:var(--fm);font-size:.78rem;color:'+(hrRate>=0?"var(--mt)":"var(--rs)")+'">'+(dur>15?brSym()+Math.abs(hrRate).toFixed(0)+"/hr":"-")+'</td><td class="actions"><button onclick="event.stopPropagation();editBrSess(\''+s.id+'\',\''+s._bid+'\')">✎</button> <button class="del" onclick="event.stopPropagation();delBrSess(\''+s.id+'\',\''+s._bid+'\')">✕</button></td></tr>'}).join("")||'<tr><td colspan="8" style="text-align:center;padding:0;border:none"><div class="empty-state" style="padding:40px 20px"><span class="es-icon">🃏</span><div class="es-title">'+(q||fmtFilter?"No matching sessions":"No sessions logged yet")+'</div><div class="es-sub">'+(q||fmtFilter?"Try a different search or filter.":"Log your first session to start tracking your bankroll.")+'</div></div></td></tr>';
+  const allBr=getBankrollsList();
+  const fmtForSess=(s,cents)=>{if(!multiView)return brFmt(cents);const b=allBr.find(x=>x.id===s._bid);return brFmtGeneric(cents,b?.settings?.currency||"USD")};
+  $("brSBody").innerHTML=ss.map((s,i)=>{const p=s.resultCents;const cls=p>=0?"pos":"neg";const dur=s.duration;const hrRate=dur>15?p/100/(dur/60):0;const sSym=multiView?({USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$",JPY:"¥"}[allBr.find(x=>x.id===s._bid)?.settings?.currency]||"$"):brSym();return'<tr style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openSessDetail(\''+s.id+'\',\''+s._bid+'\')">'+"<td>"+s.date+'</td><td><span style="font-size:10px">'+s.gameType+(s.tableSize&&s.tableSize!=="9-max"?" · "+s.tableSize:"")+'</span>'+(multiView?' <span class="hh-tag-chip" style="margin-left:4px">'+s._bicon+" "+s._bname+'</span>':"")+'</td><td style="font-family:var(--fm);font-size:.82rem">'+(s.stakes||"-")+"</td><td>"+(s.location||"-")+"</td><td>"+brFmtDur(dur)+'</td><td class="profit '+cls+'">'+fmtForSess(s,p)+'</td><td style="font-family:var(--fm);font-size:.78rem;color:'+(hrRate>=0?"var(--mt)":"var(--rs)")+'">'+(dur>15?sSym+Math.abs(hrRate).toFixed(0)+"/hr":"-")+'</td><td class="actions"><button onclick="event.stopPropagation();editBrSess(\''+s.id+'\',\''+s._bid+'\')">✎</button> <button class="del" onclick="event.stopPropagation();delBrSess(\''+s.id+'\',\''+s._bid+'\')">✕</button></td></tr>'}).join("")||'<tr><td colspan="8" style="text-align:center;padding:0;border:none"><div class="empty-state" style="padding:40px 20px"><span class="es-icon">🃏</span><div class="es-title">'+(q||fmtFilter?"No matching sessions":"No sessions logged yet")+'</div><div class="es-sub">'+(q||fmtFilter?"Try a different search or filter.":"Log your first session to start tracking your bankroll.")+'</div></div></td></tr>';
   renderBrHistStats(ss);
 }
 function renderBrHistStats(ss){
@@ -5599,8 +5845,8 @@ function parseCardStr(str){
   }
   return cards;
 }
-function renderPCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+(dealt?" dealt":"")+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+'</span></div></div>'}).join("")}
-function renderCommCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="comm-card '+(red?"red":"blk")+(dealt?" dealt":"")+'"><span>'+c.rank+'</span><div class="mc-suit">'+SYM[c.suit]+'</div></div>'}).join("")}
+function renderPCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+(dealt?" dealt":"")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+'</span></div></div>'}).join("")}
+function renderCommCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="comm-card '+(red?"red":"blk")+(dealt?" dealt":"")+'" data-suit="'+c.suit+'"><span>'+c.rank+'</span><div class="mc-suit">'+SYM[c.suit]+'</div></div>'}).join("")}
 /* ── New Hand Log: multi-player + card-picker state ── */
 let hhPlayersState=[];
 let hhBoardState={flop:[],turn:[],river:[]};
@@ -5738,6 +5984,84 @@ function hhToggleActionSection(){}
 const HH_STREETS=["preflop","flop","turn","river"];
 let hhStreetActions={preflop:[],flop:[],turn:[],river:[]};
 let hhStreetNotesDraft={preflop:"",flop:"",turn:"",river:""};
+let hhCurrentAttachments=[];
+const HH_MAX_ATTACHMENT_SIZE=8*1024*1024;
+const HH_MAX_ATTACHMENTS=5;
+function hhCompressImage(file,maxDim,quality){
+  return new Promise((resolve,reject)=>{
+    if(!file.type.startsWith("image/")){
+      const reader=new FileReader();
+      reader.onload=e=>resolve(e.target.result);
+      reader.onerror=reject;
+      reader.readAsDataURL(file);
+      return;
+    }
+    const reader=new FileReader();
+    reader.onload=(e)=>{
+      const img=new Image();
+      img.onload=()=>{
+        let w=img.width,h=img.height;
+        if(w>maxDim||h>maxDim){
+          if(w>h){h=Math.round(h*maxDim/w);w=maxDim}else{w=Math.round(w*maxDim/h);h=maxDim}
+        }
+        const canvas=document.createElement("canvas");
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext("2d");
+        if(!ctx){resolve(e.target.result);return}
+        ctx.drawImage(img,0,0,w,h);
+        resolve(canvas.toDataURL("image/jpeg",quality));
+      };
+      img.onerror=()=>resolve(e.target.result);
+      img.src=e.target.result;
+    };
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+function hhHandleFileSelect(files){
+  if(!files||!files.length)return;
+  [...files].forEach(file=>{
+    if(hhCurrentAttachments.length>=HH_MAX_ATTACHMENTS){toast("Max "+HH_MAX_ATTACHMENTS+" attachments per hand");return}
+    if(file.size>HH_MAX_ATTACHMENT_SIZE){toast(file.name+" is too large (max 8MB)");return}
+    // Images get downscaled + re-compressed as JPEG before storage — a full-res phone photo can
+    // easily be 5-10MB, which would eat through localStorage's quota fast across many hands.
+    // A resized, compressed copy is typically 90%+ smaller with no meaningful quality loss for
+    // reviewing a hand later, and lets far more attachments fit before running into limits.
+    hhCompressImage(file,1280,.75).then(dataUrl=>{
+      hhCurrentAttachments.push({name:file.name,type:file.type.startsWith("image/")?"image/jpeg":file.type,size:Math.round(dataUrl.length*0.75),dataUrl});
+      renderHhAttachmentsList();
+      hhSaveDraft();
+    }).catch(()=>toast("Couldn't process "+file.name));
+  });
+  const inp=$("hhFileInput");if(inp)inp.value="";
+}
+function renderHhAttachmentsList(){
+  const el=$("hhAttachmentsList");if(!el)return;
+  el.innerHTML=hhCurrentAttachments.map((a,i)=>{
+    const isImg=a.type&&a.type.startsWith("image/");
+    return'<div class="hh-attach-chip">'
+      +(isImg?'<img src="'+a.dataUrl+'" class="hh-attach-thumb" onclick="hhViewAttachment('+i+')"/>':'<span class="hh-attach-icon" onclick="hhViewAttachment('+i+')">📄</span>')
+      +'<span class="hh-attach-name">'+escapeHtml(a.name)+'</span>'
+      +'<button class="hh-attach-remove" onclick="hhRemoveAttachment('+i+')">✕</button>'
+      +"</div>";
+  }).join("");
+}
+function hhRemoveAttachment(i){hhCurrentAttachments.splice(i,1);renderHhAttachmentsList();hhSaveDraft()}
+function hhViewAttachment(i,arr){
+  const list=arr||hhCurrentAttachments;
+  const a=list[i];if(!a)return;
+  if(a.type&&a.type.startsWith("image/")){
+    $("hhAttachViewImg").src=a.dataUrl;
+    $("hhAttachViewImg").style.display="";
+    $("hhAttachViewOther").style.display="none";
+    openM("hhAttachViewM");
+  }else{
+    $("hhAttachViewImg").style.display="none";
+    $("hhAttachViewOther").style.display="";
+    $("hhAttachViewOther").innerHTML='<div style="padding:30px"><span style="font-size:40px">📄</span><div style="margin-top:10px;font-weight:700">'+escapeHtml(a.name)+'</div><a class="btn pri" style="margin-top:12px;display:inline-block" href="'+a.dataUrl+'" download="'+escapeHtml(a.name)+'">Download</a></div>';
+    openM("hhAttachViewM");
+  }
+}
 let hhCurrentStreetTab="preflop";
 
 function hhSwitchStreetTab(street){
@@ -5803,11 +6127,42 @@ function hhIsFoldedBefore(playerIdx,uptoStreetIdx){return hhFoldedBefore(playerI
 function hhAllInBefore(playerIdx,uptoStreetIdx){for(let s=0;s<uptoStreetIdx;s++){if((hhStreetActions[HH_STREETS[s]]||[]).some(a=>a.playerIdx===playerIdx&&a.action==="allin"))return true}return false}
 function hhPlayersStillInHand(uptoStreetIdx){return hhPlayersState.map((p,i)=>i).filter(i=>!hhFoldedBefore(i,uptoStreetIdx))}
 function hhActivePlayersForStreet(street){return hhPlayersStillInHand(HH_STREETS.indexOf(street))}
+let hhBBViewEnabled=LG("ps_hh_bbview",false);
+function hhToggleBBView(){
+  hhBBViewEnabled=!hhBBViewEnabled;
+  LS("ps_hh_bbview",hhBBViewEnabled);
+  $("hhBBViewBtn")?.classList.toggle("active",hhBBViewEnabled);
+  renderHhbTable();hhRefreshCurrencyDisplays();
+  toast(hhBBViewEnabled?"Showing amounts in BB":"Showing amounts in currency");
+}
+function hhFmtAmt(amount,bb,sym){
+  if(amount==null)return"";
+  if(hhBBViewEnabled&&bb){
+    const bbCount=Math.round((amount/bb)*10)/10;
+    return(bbCount%1===0?bbCount.toFixed(0):bbCount.toFixed(1))+"bb";
+  }
+  return(sym!=null?sym:hhSym())+amount;
+}
+function hhGetLiveBlinds(){
+  const sb=parseFloat($("hhBlindsSB")?.value),bb=parseFloat($("hhBlindsBB")?.value);
+  if(isNaN(sb)&&isNaN(bb))return null;
+  return{sb:isNaN(sb)?null:sb,bb:isNaN(bb)?null:bb};
+}
 function hhComputeStreetState(street){
   const streetIdx=HH_STREETS.indexOf(street);
   const activeAtStart=hhPlayersStillInHand(streetIdx).filter(i=>!hhAllInBefore(i,streetIdx));
   const actions=hhStreetActions[street]||[];
   let folded=new Set(),allIn=new Set(),settled=new Set(),hasBet=false,lastAggressor=null;
+  // Preflop: the blinds are live bets already in the pot before anyone acts — the BB is the
+  // opening "bet" everyone else must call/raise/fold to, and BB can check for free only as
+  // long as nobody has raised past their own blind yet.
+  if(street==="preflop"){
+    const blinds=hhGetLiveBlinds();
+    if(blinds&&blinds.bb){
+      const bbIdx=hhPlayersState.findIndex(p=>p.position==="BB");
+      if(bbIdx>=0&&activeAtStart.includes(bbIdx)){hasBet=true;lastAggressor=bbIdx}
+    }
+  }
   actions.forEach(a=>{
     if(a.action==="fold"){folded.add(a.playerIdx);settled.delete(a.playerIdx)}
     else if(a.action==="allin"){allIn.add(a.playerIdx);hasBet=true;lastAggressor=a.playerIdx;settled=new Set([a.playerIdx])}
@@ -5852,7 +6207,7 @@ function hhComputePot(){
   return total;
 }
 /* ── Side pot calculator (standard main+side pot algorithm) ── */
-function hhComputeSidePots(streetActionsObj,playersArr){
+function hhComputeSidePots(streetActionsObj,playersArr,blinds){
   const n=playersArr.length;
   const contributed=new Array(n).fill(0);
   const folded=new Set();
@@ -5862,6 +6217,12 @@ function hhComputeSidePots(streetActionsObj,playersArr){
     // count the difference. Otherwise a player who acts twice on one street (raise reopened on them)
     // gets double-counted, which was creating phantom side pots.
     const committedThisStreet=new Array(n).fill(0);
+    if(street==="preflop"&&blinds){
+      const bbIdx=playersArr.findIndex(p=>p.position==="BB");
+      const sbIdx=playersArr.findIndex(p=>p.position==="SB"||p.position==="BTN/SB");
+      if(bbIdx>=0&&blinds.bb){contributed[bbIdx]+=blinds.bb;committedThisStreet[bbIdx]=blinds.bb}
+      if(sbIdx>=0&&blinds.sb&&sbIdx!==bbIdx){contributed[sbIdx]+=blinds.sb;committedThisStreet[sbIdx]=blinds.sb}
+    }
     (streetActionsObj[street]||[]).forEach(a=>{
       if(a.action==="fold")folded.add(a.playerIdx);
       if((a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null){
@@ -5890,18 +6251,36 @@ function hhComputeSidePots(streetActionsObj,playersArr){
     }
     prevLevel=level;
   });
-  return{pots,returns};
+  // Merge adjacent layers that end up with the exact same eligible winners — e.g. multiple players
+  // folded at different bet sizes but only one player is left standing at the end. That's really
+  // just one pot with one winner, not a genuine multi-way "side pot" situation, so showing it as
+  // several separate pots is confusing rather than informative.
+  const mergedPots=[];
+  pots.forEach(p=>{
+    const last=mergedPots[mergedPots.length-1];
+    const sameEligible=last&&last.eligible.length===p.eligible.length&&last.eligible.every(id=>p.eligible.includes(id));
+    if(sameEligible)last.amount+=p.amount;
+    else mergedPots.push({amount:p.amount,eligible:p.eligible});
+  });
+  return{pots:mergedPots,returns};
 }
 function hhAmountToCall(street){
   const acts=(hhStreetActions[street]||[]);
   const lastAggro=[...acts].reverse().find(a=>a.action==="bet"||a.action==="raise"||a.action==="allin");
-  return lastAggro&&lastAggro.amount!=null?lastAggro.amount:null;
+  if(lastAggro&&lastAggro.amount!=null)return lastAggro.amount;
+  if(street==="preflop"){const blinds=hhGetLiveBlinds();if(blinds&&blinds.bb)return blinds.bb}
+  return null;
 }
 function hhFormatPotDisplay(streetActionsObj,playersArr){
-  const{pots}=hhComputeSidePots(streetActionsObj,playersArr);
-  const total=pots.reduce((a,p)=>a+p.amount,0);
-  if(pots.length<=1)return"Pot ~"+hhSym()+total;
-  return"Pot ~"+hhSym()+total+' <span class="hhb-sidepot-badge">+'+(pots.length-1)+" side pot"+(pots.length>2?"s":"")+"</span>";
+  const liveBlinds=hhGetLiveBlinds();
+  const{pots,returns}=hhComputeSidePots(streetActionsObj,playersArr,liveBlinds);
+  // Live/in-progress display: show everything currently in the middle, including amounts that
+  // haven't been matched *yet* (someone just hasn't acted yet — that's not the same as a hand-over
+  // "uncalled bet returned" situation, which only applies once the hand is actually finished).
+  const total=pots.reduce((a,p)=>a+p.amount,0)+returns.reduce((a,r)=>a+r.amount,0);
+  const fmt=hhFmtAmt(total,liveBlinds&&liveBlinds.bb);
+  if(pots.length<=1)return"Pot ~"+fmt;
+  return"Pot ~"+fmt+' <span class="hhb-sidepot-badge">+'+(pots.length-1)+" side pot"+(pots.length>2?"s":"")+"</span>";
 }
 
 /* ── Sequential action engine ── */
@@ -5927,44 +6306,70 @@ function hhRecordAction(street,playerIdx,action){
 }
 function hhUndoAction(street,idx){hhStreetActions[street].splice(idx,1);renderStreetActions(street);renderHhbTable();renderHhFlowHint();hhSaveDraft();playSound("tick");haptic("light")}
 const HH_NEXT_STREET_MAP={preflop:["flop","Flop"],flop:["turn","Turn"],turn:["river","River"],river:["showdown","Showdown"]};
-function hhNextStreetCTA(street){
+function hhCheckAutoWin(){
+  const folded=new Set();
+  HH_STREETS.forEach(street=>{(hhStreetActions[street]||[]).forEach(a=>{if(a.action==="fold")folded.add(a.playerIdx)})});
+  const stillIn=hhPlayersState.map((p,i)=>i).filter(i=>!folded.has(i));
+  return stillIn.length===1?stillIn[0]:null;
+}
+function hhNextStreetCTA(street,autoWinIdx){
+  if(autoWinIdx!=null){
+    const winnerName=autoWinIdx===0?"Hero":hhPlayersState[autoWinIdx].name;
+    return'<button class="hha-continue-btn" onclick="hhJumpToShowdown()">Skip to Result — '+escapeHtml(winnerName)+" wins →</button>";
+  }
   const next=HH_NEXT_STREET_MAP[street];
   if(!next)return"";
   return '<button class="hha-continue-btn" onclick="hhSwitchStreetTab(\''+next[0]+'\')">Continue to '+next[1]+' →</button>';
 }
+function hhJumpToShowdown(){hhSwitchStreetTab("showdown")}
 function renderStreetActions(street){
   const key=street.charAt(0).toUpperCase()+street.slice(1);
   const logCt=$("hhLog"+key);const builderCt=$("hhBuilder"+key);
   if(!logCt||!builderCt)return;
   const state=hhComputeStreetState(street);
+  const liveBB=hhGetLiveBlinds()?.bb;
   logCt.innerHTML=state.actions.length?state.actions.map((a,idx)=>{
     const p=hhPlayersState[a.playerIdx];const name=a.playerIdx===0?"Hero":(p?p.name:"?");
-    const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhSym()+a.amount:"";
+    const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhFmtAmt(a.amount,liveBB):"";
     return'<div class="hha-log-item"><span class="hha-log-num">'+(idx+1)+'</span><span class="hha-log-text"><b>'+escapeHtml(name)+"</b> "+a.action+amt+"</span>"+(a.note?'<span class="hha-log-note">💬 '+escapeHtml(a.note)+"</span>":"")+'<button class="hha-log-undo" onclick="hhUndoAction(\''+street+"',"+idx+')">✕</button></div>';
   }).join(""):'<div class="hha-log-empty">No actions recorded yet</div>';
   if(state.activeAtStart.length<=1){
-    builderCt.innerHTML='<div class="hha-done-note">'+(state.activeAtStart.length===1?"Only "+escapeHtml(hhPlayersState[state.activeAtStart[0]].name)+" is still live — nothing left to act on.":"Everyone has folded.")+"</div>"+hhNextStreetCTA(street);
+    const autoWinIdx=hhCheckAutoWin();
+    if(autoWinIdx!=null){
+      const winnerName=autoWinIdx===0?"Hero":hhPlayersState[autoWinIdx].name;
+      builderCt.innerHTML='<div class="hha-complete hha-autowin">🏆 <b>'+escapeHtml(winnerName)+"</b> wins the pot — everyone else folded. No further action is needed for this hand.</div>"+hhNextStreetCTA(street,autoWinIdx);
+    }else{
+      builderCt.innerHTML='<div class="hha-done-note">'+(state.activeAtStart.length===1?"Only "+escapeHtml(hhPlayersState[state.activeAtStart[0]].name)+" is still live — nothing left to act on.":"Everyone has folded.")+"</div>"+hhNextStreetCTA(street);
+    }
     updateHhwTabProgress();
     return;
   }
   const nextActor=hhNextActor(street);
   if(nextActor==null){
-    builderCt.innerHTML='<div class="hha-complete">✓ Action is complete for this street — everyone has matched the bet, folded, or is all-in.</div>'+hhNextStreetCTA(street);
+    const autoWinIdx=hhCheckAutoWin();
+    if(autoWinIdx!=null){
+      const winnerName=autoWinIdx===0?"Hero":hhPlayersState[autoWinIdx].name;
+      builderCt.innerHTML='<div class="hha-complete hha-autowin">🏆 <b>'+escapeHtml(winnerName)+"</b> wins the pot — everyone else folded. No further action is needed for this hand.</div>"+hhNextStreetCTA(street,autoWinIdx);
+    }else{
+      builderCt.innerHTML='<div class="hha-complete">✓ Action is complete for this street — everyone has matched the bet, folded, or is all-in.</div>'+hhNextStreetCTA(street);
+    }
     updateHhwTabProgress();
     return;
   }
   updateHhwTabProgress();
   const p=hhPlayersState[nextActor];
-  const canCheck=!state.hasBet&&(street!=="preflop"||p.position==="BB");
+  const bbIdx=hhPlayersState.findIndex(pl=>pl.position==="BB");
+  const canCheck=street!=="preflop"?!state.hasBet:(p.position==="BB"&&state.lastAggressor===bbIdx);
   const toCall=hhAmountToCall(street);
   const lastAggro=[...state.actions].reverse().find(a=>a.action==="bet"||a.action==="raise"||a.action==="allin");
   const callIsAllin=lastAggro&&lastAggro.action==="allin";
+  const liveBBAmt=hhGetLiveBlinds()?.bb;
   builderCt.innerHTML='<div class="hha-next-label hha-auto"><span class="hha-turn-dot"></span>'+(nextActor===0?"🎯 ":"")+escapeHtml(p.name)+' <span class="hha-pos-tag">'+(p.position||"?")+"</span> to act</div>"
-    +(state.hasBet?'<div class="hha-tocall-hint">Facing '+(callIsAllin?"an all-in of ":"a bet of ")+"<b>"+hhSym()+toCall+"</b>"+(callIsAllin?" — calling for less than a full raise is fine":"")+"</div>":"")
+    +(state.hasBet?'<div class="hha-tocall-hint">Facing '+(callIsAllin?"an all-in of ":"a bet of ")+"<b>"+hhFmtAmt(toCall,liveBBAmt)+"</b>"+(callIsAllin?" — calling for less than a full raise is fine":"")+"</div>":"")
     +'<div class="hha-btns">'
     +'<button class="hha-btn hha-fold" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'fold\')">Fold</button>'
     +(canCheck?'<button class="hha-btn hha-check" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'check\')">Check</button>':"")
-    +(state.hasBet?'<button class="hha-btn hha-call" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'call\')">Call'+(toCall!=null?" "+hhSym()+toCall:"")+"</button>":"")
+    +(state.hasBet?'<button class="hha-btn hha-call" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'call\')">Call'+(toCall!=null?" "+hhFmtAmt(toCall,liveBBAmt):"")+"</button>":"")
     +'<button class="hha-btn hha-bet" onclick="hhRecordAction(\''+street+"',"+nextActor+",'"+(state.hasBet?"raise":"bet")+'\')">'+(state.hasBet?"Raise":"Bet")+"</button>"
     +'<button class="hha-btn hha-allin" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'allin\')">All-In</button>'
     +"</div>"
@@ -6010,7 +6415,7 @@ function renderHhbTable(){
     if(streetIdx>=0&&!folded){
       const acts=hhStreetActions[hhCurrentStreetTab]||[];
       const last=[...acts].reverse().find(a=>a.playerIdx===i);
-      if(last){const verbs={fold:"Folded",check:"Checks",call:"Calls",bet:"Bets",raise:"Raises",allin:"All-In"};statusTxt=verbs[last.action]+(last.amount!=null?" "+hhSym()+last.amount:"")}
+      if(last){const verbs={fold:"Folded",check:"Checks",call:"Calls",bet:"Bets",raise:"Raises",allin:"All-In"};statusTxt=verbs[last.action]+(last.amount!=null?" "+hhFmtAmt(last.amount,hhGetLiveBlinds()?.bb):"")}
     }
     const cardLabel=i===0?"Hero":escapeHtml(p.name);
     html+='<div class="hhb-seat'+(i===0?" hero":"")+(folded?" folded":"")+'" style="left:'+x+'%;top:'+y+'%" onclick="openHhCardPicker(\'player'+i+"',2,'"+cardLabel+' — select up to 2 cards\')">'
@@ -6121,6 +6526,7 @@ function initHH(){
   if(!$("hhDate").value)$("hhDate").value=new Date().toISOString().slice(0,10);
   if(!hhPlayersState.length){hhSetNumPlayers(2);hhSwitchStreetTab("preflop")}
   if(!hhDraftChecked){hhDraftChecked=true;hhRestoreDraftIfAny()}
+  $("hhBBViewBtn")?.classList.toggle("active",hhBBViewEnabled);
   setupAC("hhStakes","hhStakesAC",()=>[...new Set(HH.d.hands.map(h=>h.stakes).filter(Boolean))]);
   renderHhHands();renderPlayers();
 }
@@ -6131,7 +6537,15 @@ function hhHasUnsavedProgress(){
   const hasNotes=(($("hhNotes")&&$("hhNotes").value)||"").trim().length>0;
   return!!(anyActions||heroHasCards||boardHasCards||hasNotes);
 }
+let _hhDraftDebounceTimer=null;
 function hhSaveDraft(){
+  // Debounced: rapid typing was triggering a full JSON.stringify + localStorage write on every
+  // keystroke. Coalescing into one write ~400ms after the user pauses keeps the data exactly as
+  // fresh in practice while cutting out most of the redundant work during active editing.
+  if(_hhDraftDebounceTimer)clearTimeout(_hhDraftDebounceTimer);
+  _hhDraftDebounceTimer=setTimeout(()=>{_hhDraftDebounceTimer=null;hhSaveDraftNow()},400);
+}
+function hhSaveDraftNow(){
   if($("hhEditId")&&$("hhEditId").value)return;
   const draft={
     date:$("hhDate")?$("hhDate").value:"",stakes:$("hhStakes")?$("hhStakes").value:"",table:$("hhTable")?$("hhTable").value:"",fmt:hhFmt_,
@@ -6141,7 +6555,7 @@ function hhSaveDraft(){
   };
   LS("ps_hh_draft",draft);
 }
-function hhClearDraft(){LS("ps_hh_draft",null)}
+function hhClearDraft(){if(_hhDraftDebounceTimer){clearTimeout(_hhDraftDebounceTimer);_hhDraftDebounceTimer=null}LS("ps_hh_draft",null)}
 function hhRestoreDraftIfAny(){
   const draft=LG("ps_hh_draft",null);
   if(!draft||!draft.players)return;
@@ -6191,7 +6605,7 @@ function saveHhHand(){
     flopCards:[...hhBoardState.flop],turnCards:[...hhBoardState.turn],riverCards:[...hhBoardState.river],
     hero:players[0]?players[0].cards.map(c=>c.rank+c.suit).join(""):"",
     villain:players.slice(1).map(p=>p.name).filter(n=>n&&!/^Player \d+$/.test(n)).join(", "),
-    result,resultCents:Math.round(result*100),tags:[...S.hhTags],notes:$("hhNotes").value.trim(),ts:Date.now()};
+    result,resultCents:Math.round(result*100),tags:[...S.hhTags],notes:$("hhNotes").value.trim(),attachments:[...hhCurrentAttachments],ts:Date.now()};
   const hands=[...HH.d.hands];const ei=hands.findIndex(x=>x.id===h.id);const isNew=ei<0;if(ei>=0)hands[ei]=h;else hands.push(h);
   HH.d.hands=hands;HH.save();hhClearDraft();resetHhForm();renderHhHands();playSound("save");haptic("light");celebrate();
   if(isNew){addXp(15);checkAchievements();toast("Hand saved · +15 XP ✦")}else toast("Hand updated ✦")
@@ -6203,6 +6617,7 @@ function resetHhForm(){
   $("hhDate").value=new Date().toISOString().slice(0,10);
   S.hhTags=[];renTags("hhTagsW","hhTagsI","hhTags");
   hhBoardState={flop:[],turn:[],river:[]};hhPlayersState=[];hhStreetActions={preflop:[],flop:[],turn:[],river:[]};hhStreetNotesDraft={preflop:"",flop:"",turn:"",river:""};
+  hhCurrentAttachments=[];renderHhAttachmentsList();
   $("hhPresetRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.preset==="2"));
   hhSetNumPlayers(2);
   setHhFmt("cash");
@@ -6218,6 +6633,7 @@ function editHhHand(id){
   $("hhBlindsSB").value=h.blinds&&h.blinds.sb!=null?h.blinds.sb:"";
   $("hhBlindsBB").value=h.blinds&&h.blinds.bb!=null?h.blinds.bb:"";
   hhCurrentHandCurrency=h.currency||"";$("hhHandCurrency").value=hhCurrentHandCurrency;
+  hhCurrentAttachments=[...(h.attachments||[])];renderHhAttachmentsList();
   S.hhTags=[...(h.tags||[])];renTags("hhTagsW","hhTagsI","hhTags");
   // Migrate legacy hands (single hero/villain strings) or load new player-array format
   if(h.players&&h.players.length){
@@ -6278,11 +6694,12 @@ function hhFormatStreetActions(h,street){
   if(!acts.length)return"";
   const players=h.players||[];
   const sym=hhSymFor(h.currency);
+  const bb=h.blinds&&h.blinds.bb;
   const verbs={fold:"folds",check:"checks",call:"calls",bet:"bets",raise:"raises to",allin:"goes all-in"};
   return acts.map(a=>{
     const p=players[a.playerIdx];if(!p)return"";
     const name=a.playerIdx===0?"Hero":p.name;
-    const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+sym+a.amount:"";
+    const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhFmtAmt(a.amount,bb,sym):"";
     const note=a.note?" ("+escapeHtml(a.note)+")":"";
     return escapeHtml(name)+" "+(verbs[a.action]||a.action)+amt+note;
   }).filter(Boolean).join(", ");
@@ -6300,16 +6717,23 @@ function openHhDetail(id){
   }).join("")+'</div>';
   const board=[...flop,...turn,...river];
   if(board.length)hh+='<div style="padding:14px 22px;border-bottom:1px solid var(--bd)"><div class="hh-preview-grp"><span class="hh-preview-lbl">Board</span><div class="hh-preview-cards">'+renderCommCardsHtml(board,true)+'</div></div></div>';
+  if(h.attachments&&h.attachments.length){
+    hh+='<div style="padding:14px 22px;border-bottom:1px solid var(--bd)"><div class="hh-preview-lbl" style="margin-bottom:8px">📎 Attachments</div><div class="hh-attach-list hh-attach-list-view">'+h.attachments.map((a,i)=>{
+      const isImg=a.type&&a.type.startsWith("image/");
+      return'<div class="hh-attach-chip">'+(isImg?'<img src="'+a.dataUrl+'" class="hh-attach-thumb" onclick="hhViewAttachment('+i+',HH.d.hands.find(x=>x.id===\''+h.id+"').attachments)\"/>":'<span class="hh-attach-icon" onclick="hhViewAttachment('+i+',HH.d.hands.find(x=>x.id===\''+h.id+"').attachments)\">📄</span>")+'<span class="hh-attach-name">'+escapeHtml(a.name)+"</span></div>";
+    }).join("")+"</div></div>";
+  }
   if(h.streetActions){
-    const{pots,returns}=hhComputeSidePots(h.streetActions,players);
+    const{pots,returns}=hhComputeSidePots(h.streetActions,players,h.blinds);
     const sym=hhSymFor(h.currency);
+    const bb=h.blinds&&h.blinds.bb;
     if(pots.length>1||returns.length){
       hh+='<div class="hh-pots-breakdown"><div class="hh-preview-lbl" style="margin-bottom:8px">Pots</div>'+pots.map((pot,i)=>{
         const names=pot.eligible.map(idx=>idx===0?"Hero":(players[idx]?players[idx].name:"?")).join(", ");
-        return'<div class="hh-pot-layer"><b>'+(i===0?"Main Pot":"Side Pot "+i)+": "+sym+pot.amount+'</b><span>'+escapeHtml(names)+"</span></div>";
+        return'<div class="hh-pot-layer"><b>'+(i===0?"Main Pot":"Side Pot "+i)+": "+hhFmtAmt(pot.amount,bb,sym)+'</b><span>'+escapeHtml(names)+"</span></div>";
       }).join("")+returns.map(r=>{
         const name=r.playerIdx===0?"Hero":(players[r.playerIdx]?players[r.playerIdx].name:"?");
-        return'<div class="hh-pot-layer hh-pot-returned"><b>Returned: '+sym+r.amount+'</b><span>uncalled, back to '+escapeHtml(name)+"</span></div>";
+        return'<div class="hh-pot-layer hh-pot-returned"><b>Returned: '+hhFmtAmt(r.amount,bb,sym)+'</b><span>uncalled, back to '+escapeHtml(name)+"</span></div>";
       }).join("")+"</div>";
     }
   }
@@ -6372,8 +6796,8 @@ function renderHhReplay(){
   const actionsUpToNow={preflop:[],flop:[],turn:[],river:[]};
   for(let s=0;s<=hhReplayStreet;s++){actionsUpToNow[HH_STREETS[s]]=(h.streetActions&&h.streetActions[HH_STREETS[s]])||[]}
   const replayPlayers=h.players&&h.players.length?h.players:players;
-  const{pots}=hhComputeSidePots(actionsUpToNow,replayPlayers);
-  const pot=pots.reduce((a,p)=>a+p.amount,0);
+  const{pots,returns}=hhComputeSidePots(actionsUpToNow,replayPlayers,h.blinds);
+  const pot=pots.reduce((a,p)=>a+p.amount,0)+returns.reduce((a,r)=>a+r.amount,0);
   const curStreetKey=HH_STREETS[hhReplayStreet];
   const curStreetActs=(h.streetActions&&h.streetActions[curStreetKey])||[];
   const cursym=hhSymFor(h.currency);
@@ -6394,7 +6818,7 @@ function renderHhReplay(){
     const lastAct=[...curStreetActs].reverse().find(a=>a.playerIdx===i);
     const verbs={fold:"Folded",check:"Checks",call:"Calls",bet:"Bets",raise:"Raises",allin:"All-In"};
     let statusTxt="";
-    if(lastAct)statusTxt=verbs[lastAct.action]+((lastAct.action==="call"||lastAct.action==="bet"||lastAct.action==="raise"||lastAct.action==="allin")&&lastAct.amount!=null?" "+cursym+lastAct.amount:"");
+    if(lastAct)statusTxt=verbs[lastAct.action]+((lastAct.action==="call"||lastAct.action==="bet"||lastAct.action==="raise"||lastAct.action==="allin")&&lastAct.amount!=null?" "+hhFmtAmt(lastAct.amount,h.blinds&&h.blinds.bb,cursym):"");
     const showCards=i===0||(!folded&&p.cards&&p.cards.length);
     hh+='<div class="hhb-seat'+(i===0?" hero":"")+(folded?" folded":"")+'" style="left:'+x+'%;top:'+y+'%">'
       +'<div class="hhb-seat-pos">'+(p.position||"")+'</div>'
@@ -6404,13 +6828,13 @@ function renderHhReplay(){
       +(showCards&&p.cards&&p.cards.length?'<div class="hhb-seat-cards">'+renderCommCardsHtml(p.cards,true)+"</div>":!folded&&p.cardsUnknown?'<div class="hhb-seat-unknown-tag">🤷 Unknown</div>':"")
       +"</div>";
   });
-  hh+='</div><div class="hhb-center"><div class="hhb-pot">Pot ~'+cursym+pot+(pots.length>1?' <span class="hhb-sidepot-badge">+'+(pots.length-1)+" side pot"+(pots.length>2?"s":"")+"</span>":"")+'</div><div class="hhb-board">'+(board.length?renderCommCardsHtml(board,true):'<span class="hhb-board-empty">No board yet</span>')+"</div></div></div></div>";
+  hh+='</div><div class="hhb-center"><div class="hhb-pot">Pot ~'+hhFmtAmt(pot,h.blinds&&h.blinds.bb,cursym)+(pots.length>1?' <span class="hhb-sidepot-badge">+'+(pots.length-1)+" side pot"+(pots.length>2?"s":"")+"</span>":"")+'</div><div class="hhb-board">'+(board.length?renderCommCardsHtml(board,true):'<span class="hhb-board-empty">No board yet</span>')+"</div></div></div></div>";
 
   hh+='<div class="hhr-street-label">'+streetNames[hhReplayStreet]+"</div>";
   if(curStreetActs.length){
     hh+='<div class="hha-log">'+curStreetActs.map((a,idx)=>{
       const p=players[a.playerIdx];const name=a.playerIdx===0?"Hero":(p?p.name:"?");
-      const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+cursym+a.amount:"";
+      const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhFmtAmt(a.amount,h.blinds&&h.blinds.bb,cursym):"";
       return'<div class="hha-log-item"><span class="hha-log-num">'+(idx+1)+'</span><span class="hha-log-text"><b>'+escapeHtml(name)+"</b> "+a.action+amt+"</span>"+(a.note?'<span class="hha-log-note">💬 '+escapeHtml(a.note)+"</span>":"")+"</div>";
     }).join("")+"</div>";
   }else{
@@ -6542,6 +6966,34 @@ function initNoteTags(){initTags("nTagsW","nTagsI","nTags");const nb=$("noteBody
 // ═══ SETTINGS & THEME ═══
 const THEMES=[{id:"obsidian",name:"Obsidian Gold",icon:"🌑",sub:"Dark & classic",dots:["#c8a55c","#8b9cc4","#6ec89b"]},{id:"rose",name:"Midnight Rose",icon:"🌸",sub:"Soft & vibrant",dots:["#ec4899","#a78bfa","#6ee7b7"]},{id:"emerald",name:"Emerald Felt",icon:"🌿",sub:"Casino green",dots:["#34d399","#67e8f9","#fbbf24"]},{id:"ocean",name:"Deep Ocean",icon:"🌊",sub:"Cool blue",dots:["#3b82f6","#a78bfa","#6ee7b7"]},{id:"royale",name:"Royal Purple",icon:"👑",sub:"Regal & rich",dots:["#a78bfa","#f472b6","#6ee7b7"]},{id:"daylight",name:"Daylight",icon:"☀️",sub:"Clean & bright",dots:["#b8863f","#4a5fc0","#1f9d68"]}];
 function applyTheme(id){document.documentElement.setAttribute("data-theme",id);LS("ps_theme",id);renderThemeGrid();renderBrAll();toast(THEMES.find(t=>t.id===id)?.icon+" Theme applied")}
+const DECKS=[
+  {id:"classic",name:"Classic",icon:"🂡",sub:"Traditional red & black",dots:["#c0282a","#1a1a2e","#c0282a","#1a1a2e"]},
+  {id:"fourcolor",name:"Four-Color",icon:"🎨",sub:"Easier to read suits at a glance",dots:["#c0282a","#2563eb","#16a34a","#1a1a2e"]},
+  {id:"highcontrast",name:"High Contrast",icon:"⚡",sub:"Bold, dark cards & vivid suits",dots:["#ff3b5c","#00d4ff","#00ff88","#f4f4f5"]},
+  {id:"minimal",name:"Minimal",icon:"◻️",sub:"Clean, flat, no gradients",dots:["#e11d48","#0f172a","#e11d48","#0f172a"]}
+];
+function renderDeckGrid(){
+  var cur=LG("ps_deck","classic");
+  var g=$("deckGrid");
+  if(!g)return;
+  g.innerHTML=DECKS.map(function(d){
+    var isActive=d.id===cur;
+    var dotsHtml=d.dots.map(function(c,i){return'<div class="tc-dot" style="background:'+c+';animation-delay:'+(i*80)+'ms"></div>'}).join("");
+    var swatchHtml='<div class="tc-swatch">'
+      +'<div class="tc-swatch-bar" style="background:linear-gradient(135deg,'+d.dots[0]+','+d.dots[1]+')"></div>'
+      +'<div class="tc-swatch-accent" style="background:'+d.dots[2]+'"></div>'
+      +'</div>';
+    return'<div class="theme-card'+(isActive?" sel":"")+'" onclick="applyDeckDesign(\''+d.id+'\')" title="'+d.name+'">'
+      +swatchHtml
+      +'<div class="tc-body">'
+      +'<div class="tc-top"><span class="tc-icon">'+d.icon+'</span>'+(isActive?'<span class="tc-active-badge">✓</span>':"")+"</div>"
+      +'<div class="tc-name">'+d.name+'</div>'+(d.sub?'<div class="tc-sub">'+d.sub+"</div>":"")
+      +'<div class="tc-dots">'+dotsHtml+"</div>"
+      +"</div>"
+      +"</div>";
+  }).join("");
+}
+function applyDeckDesign(id){document.documentElement.setAttribute("data-deck",id);LS("ps_deck",id);renderDeckGrid();const d=DECKS.find(function(x){return x.id===id});toast(d.icon+" "+d.name+" deck applied")}
 function renderThemeGrid(){
   var cur=LG("ps_theme","rose");
   var g=$("themeGrid");
@@ -6566,7 +7018,29 @@ function renderThemeGrid(){
   }).join("");
 }
 
-function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI();renderHhCurrencyUI()}
+function getStorageUsageBytes(){
+  let total=0;
+  try{
+    for(const key in localStorage){
+      if(Object.prototype.hasOwnProperty.call(localStorage,key)){
+        total+=(localStorage[key].length+key.length)*2;
+      }
+    }
+  }catch(e){}
+  return total;
+}
+function renderStorageUsage(){
+  const bar=$("storageUsageBar"),txt=$("storageUsageTxt");
+  if(!bar||!txt)return;
+  const bytes=getStorageUsageBytes();
+  const mb=bytes/(1024*1024);
+  const estimatedQuotaMB=5; // typical conservative browser localStorage quota
+  const pct=Math.min(100,Math.round((mb/estimatedQuotaMB)*100));
+  bar.style.width=pct+"%";
+  bar.style.background=pct>=85?"var(--rs)":pct>=60?"var(--gd)":"linear-gradient(90deg,var(--pk),var(--pk2))";
+  txt.textContent=mb.toFixed(2)+" MB used"+(pct>=85?" — running low. Consider clearing old data or removing large hand-history attachments.":pct>=60?" — keep an eye on this over time.":"");
+}
+function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderDeckGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI();renderHhCurrencyUI();renderStorageUsage()}
 /* ── Editor appearance (grid size / cell corners) ── */
 function applyEditorAppearance(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);document.documentElement.style.setProperty("--mtx-max",sz+"px");document.documentElement.style.setProperty("--mtx-radius",rad+"px")}
 
@@ -6652,7 +7126,7 @@ function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle(
 
 
 // ═══ INIT ═══
-(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);// Refresh DACTS after theme
+(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=LG("ps_deck","classic");document.documentElement.setAttribute("data-deck",dk);// Refresh DACTS after theme
 const fd=getDACTS();DACTS[0]=fd[0];DACTS[1]=fd[1];DACTS[2]=fd[2];if(!LG("ps_cur",null))S.acts=JSON.parse(JSON.stringify(DACTS));
 Ed.init();checkDirty();resetBrForm();initNoteTags();
 // Wire up delegated nav listeners
@@ -6681,6 +7155,7 @@ liveData=LG("ps_live",null);if(liveData)startLiveTimer();
 balHidden=LG("ps_balhide",false);setTimeout(applyBalHide,100);
 updateUserGreeting();updateCurrencyLabels();
 renderThemeGrid();
+renderDeckGrid();
 // Init file system view buttons
 setFsView(LG("ps_fsview","detail"));
 // Dealer training tab nav
