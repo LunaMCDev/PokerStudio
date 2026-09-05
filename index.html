@@ -3124,15 +3124,15 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
             <button data-f="tourney" onclick="setHhFmt('tourney')">🏆 MTT</button>
           </div>
           <input type="date" id="hhDate" class="minp hhb-meta-input"/>
-          <div class="ac-wrap hhb-meta-input"><input class="minp" id="hhStakes" placeholder="Stakes" style="margin:0"/><div class="ac-list" id="hhStakesAC"></div></div>
+          <div class="ac-wrap hhb-meta-input"><input class="minp" id="hhStakes" placeholder="Set blinds below" style="margin:0" readonly/><div class="ac-list" id="hhStakesAC"></div></div>
           <select id="hhTable" class="hhb-meta-input" onchange="hhSyncPlayersFromTableSize()"><option>8-max</option><option>7-max</option><option>6-max</option><option>5-max</option><option>4-max</option><option>3-max</option><option>HU</option></select>
         </div>
         <div class="hhb-meta-row" style="margin-top:8px">
           <div class="hhb-blinds-wrap hhb-meta-input">
             <span class="hhb-blinds-lbl">Blinds</span>
-            <input class="minp" id="hhBlindsSB" type="number" placeholder="SB" step="0.01" oninput="renderHhbTable();hhSaveDraft()" style="margin:0"/>
+            <input class="minp" id="hhBlindsSB" type="number" placeholder="SB" step="0.01" oninput="hhSyncStakesFromBlinds();renderHhbTable();renderStreetActions(hhCurrentStreetTab);hhSaveDraft()" style="margin:0"/>
             <span class="hhb-blinds-sep">/</span>
-            <input class="minp" id="hhBlindsBB" type="number" placeholder="BB" step="0.01" oninput="renderHhbTable();hhSaveDraft()" style="margin:0"/>
+            <input class="minp" id="hhBlindsBB" type="number" placeholder="BB" step="0.01" oninput="hhSyncStakesFromBlinds();renderHhbTable();renderStreetActions(hhCurrentStreetTab);hhSaveDraft()" style="margin:0"/>
           </div>
           <select id="hhHandCurrency" class="hhb-meta-input" title="Currency for this hand" onchange="hhSetHandCurrency(this.value)">
             <option value="" id="hhHandCurrencyDefaultOpt">Use default</option>
@@ -3497,20 +3497,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">📖 Pro Reference</div>
     <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">HUD Stat &amp; Exploit Cheat Sheet</span><span class="setting-desc">VPIP/PFR reads, population tendencies, quick exploits</span></div><button class="btn btn-s pri" onclick="openHudRef()">📖 Open</button></div>
-  </div>
-  <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">📔 Hand History Currency</div>
-    <div class="setting-row" style="border-bottom:none;flex-direction:column;align-items:stretch;gap:8px">
-      <div class="setting-info"><span class="setting-label">Currency for bets, pots &amp; raises</span><span class="setting-desc">Used when logging and replaying hands — independent of your bankroll currency</span></div>
-      <div class="seg-row" id="hhCurrencyRow">
-        <button data-cur="USD" class="sel">$ USD</button>
-        <button data-cur="EUR">€ EUR</button>
-        <button data-cur="GBP">£ GBP</button>
-        <button data-cur="CAD">C$ CAD</button>
-        <button data-cur="AUD">A$ AUD</button>
-        <button data-cur="JPY">¥ JPY</button>
-      </div>
-    </div>
   </div>
   
 <div class="settings-category"><span class="sc-icon">♠</span>Content Management</div>
@@ -4981,7 +4967,7 @@ function describeShapeForAction(range,ai){
 function computeRangeInsights(range,acts){
   const allH=[];for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cl=range[r][c];if(!cl.length)continue;allH.push({r,c,label:hl(r,c),type:ht(r,c),cn:hcn(r,c),cl,mixed:cl.length>1})}
   const tot=allH.reduce((a,x)=>a+x.cn,0);
-  const pct=((allH.length/169)*100).toFixed(1);
+  const pct=((tot/1326)*100).toFixed(1);
   const tight=pct<=8?"Ultra Tight":pct<=14?"Very Tight":pct<=19?"Tight":pct<=26?"Standard":pct<=35?"Loose":pct<=50?"Very Loose":"Extremely Loose";
   const pairCount=allH.filter(x=>x.type==="pair").length,suitedCount=allH.filter(x=>x.type==="suited").length,offsuitCount=allH.filter(x=>x.type==="offsuit").length;
   const mixedHands=allH.filter(x=>x.mixed);
@@ -5206,7 +5192,8 @@ else renderFsDetail(ct,subFolders,ranges,globalSearch)}
 function setFsView(v){fsView=v;LS("ps_fsview",v);const map={grid:"fsVbGrid",list:"fsVbList",detail:"fsVbDetail"};Object.values(map).forEach(id=>{const el=$(id);if(el)el.classList.remove("on")});const btn=$(map[v]);if(btn)btn.classList.add("on");fsRender()}
 function fsFolderChip(path){const fo=getFO(path);return '<span class="fs-path-chip" onclick="event.stopPropagation();fsNavPush(\''+path+'\')" title="Jump to '+fo.name+'">'+fo.icon+' '+fo.name+'</span>'}
 function renderFsGrid(ct,folders,ranges,globalSearch){let h='<div class="fs-grid">';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-gi" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="gi-ico" style="'+(f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"")+'">'+f.icon+'</div><div class="gi-name">'+f.name+'</div><div class="gi-meta">'+cnt+' ranges</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;h+='<div class="fs-gi" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="gi-ico" style="background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06))">'+(r.icon||"♠")+'</div><div class="gi-name">'+r.name+'</div><div class="gi-meta">'+hcc+' hands</div>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div>'});h+='</div>';ct.innerHTML=h}
-function renderFsList(ct,folders,ranges,globalSearch){let h='<div class="fs-list-wrap"><div class="fs-list-hdr"><span>Name</span><span>Hands</span><span>Modified</span></div>';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-li" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="li-name"><span class="li-ico">'+f.icon+'</span><span class="li-nm">'+f.name+'</span></div><div class="li-cell">'+cnt+' ranges</div><div class="li-cell">—</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;const pct=((hcc/169)*100).toFixed(0);const dt=new Date(r.ts).toLocaleDateString("en-US",{month:"short",day:"numeric"});h+='<div class="fs-li" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="li-name"><span class="li-ico">'+(r.icon||"♠")+'</span><span class="li-nm">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+r.name+'</span>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div><div class="li-cell">'+hcc+' ('+pct+'%)</div><div class="li-cell">'+dt+'</div></div>'});h+='</div>';ct.innerHTML=h}
+function rangeComboCount(range){let tot=0;for(let r=0;r<13;r++)for(let c=0;c<13;c++){if(range[r][c].length)tot+=hcn(r,c)}return tot}
+function renderFsList(ct,folders,ranges,globalSearch){let h='<div class="fs-list-wrap"><div class="fs-list-hdr"><span>Name</span><span>Hands</span><span>Modified</span></div>';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-li" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="li-name"><span class="li-ico">'+f.icon+'</span><span class="li-nm">'+f.name+'</span></div><div class="li-cell">'+cnt+' ranges</div><div class="li-cell">—</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;const pct=((rangeComboCount(r.range)/1326)*100).toFixed(1);const dt=new Date(r.ts).toLocaleDateString("en-US",{month:"short",day:"numeric"});h+='<div class="fs-li" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="li-name"><span class="li-ico">'+(r.icon||"♠")+'</span><span class="li-nm">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+r.name+'</span>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div><div class="li-cell">'+hcc+' ('+pct+'%)</div><div class="li-cell">'+dt+'</div></div>'});h+='</div>';ct.innerHTML=h}
 function renderFsDetail(ct,folders,ranges,globalSearch){
 var h='<div class="fs-detail-list">';
 folders.forEach(function(f){
@@ -5353,7 +5340,7 @@ function renderTrPickList(){
   const byF={};S.saved.forEach((r,i)=>{if(q&&!r.name.toLowerCase().includes(q))return;const f=r.folder||"/";if(!byF[f])byF[f]=[];byF[f].push({r,i})});
   const keys=Object.keys(byF).sort();
   if(!keys.length&&q){h+='<div class="empty-state" style="padding:30px 10px"><span class="es-icon">🔍</span><div class="es-title">No matches</div><div class="es-sub">Try a different search term.</div></div>'}
-  keys.forEach(f=>{const fo=getFO(f);h+='<div class="tr-pick-group">'+fo.icon+' '+(f==="/"?"Root":fo.name)+'</div>';byF[f].forEach(({r,i})=>{const hcc=r.range.flat().filter(c=>c.length).length;const pct=((hcc/169)*100).toFixed(0);h+='<div class="tr-pick-item" onclick="pickTrRange(\''+i+'\')"><div class="tr-pick-ico" style="'+(r.iconColor&&r.iconColor!=="none"?"background:"+r.iconColor:"")+'">'+(r.icon||"♠")+'</div><div class="tr-pick-info"><div class="tr-pick-name">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+r.name+'</div><div class="tr-pick-meta">'+hcc+' hands · '+pct+'% coverage</div>'+(masteryChipHtml(r.name)?'<div style="margin-top:3px">'+masteryChipHtml(r.name)+'</div>':"")+'</div><span class="tr-pick-chev">›</span></div>'});
+  keys.forEach(f=>{const fo=getFO(f);h+='<div class="tr-pick-group">'+fo.icon+' '+(f==="/"?"Root":fo.name)+'</div>';byF[f].forEach(({r,i})=>{const hcc=r.range.flat().filter(c=>c.length).length;const pct=((rangeComboCount(r.range)/1326)*100).toFixed(1);h+='<div class="tr-pick-item" onclick="pickTrRange(\''+i+'\')"><div class="tr-pick-ico" style="'+(r.iconColor&&r.iconColor!=="none"?"background:"+r.iconColor:"")+'">'+(r.icon||"♠")+'</div><div class="tr-pick-info"><div class="tr-pick-name">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+r.name+'</div><div class="tr-pick-meta">'+hcc+' hands · '+pct+'% coverage</div>'+(masteryChipHtml(r.name)?'<div style="margin-top:3px">'+masteryChipHtml(r.name)+'</div>':"")+'</div><span class="tr-pick-chev">›</span></div>'});
   });
   if(!keys.length&&!q&&!S.saved.length)h+='<div class="empty-state" style="padding:30px 10px"><span class="es-icon">📁</span><div class="es-title">No saved ranges yet</div><div class="es-sub">Save a range from the Editor to train it here.</div></div>';
   ct.innerHTML=h;
@@ -6224,6 +6211,14 @@ function hhFmtAmt(amount,bb,sym){
   }
   return(sym!=null?sym:hhSym())+amount;
 }
+function hhSyncStakesFromBlinds(){
+  const stakesInput=$("hhStakes");if(!stakesInput)return;
+  const sb=parseFloat($("hhBlindsSB")?.value),bb=parseFloat($("hhBlindsBB")?.value);
+  if(!isNaN(sb)&&!isNaN(bb))stakesInput.value=sb+"/"+bb;
+  else if(!isNaN(bb))stakesInput.value=""+bb;
+  else if(!isNaN(sb))stakesInput.value=sb+"/?";
+  else stakesInput.value="";
+}
 function hhGetLiveBlinds(){
   const sb=parseFloat($("hhBlindsSB")?.value),bb=parseFloat($("hhBlindsBB")?.value);
   if(isNaN(sb)&&isNaN(bb))return null;
@@ -6234,15 +6229,13 @@ function hhComputeStreetState(street){
   const activeAtStart=hhPlayersStillInHand(streetIdx).filter(i=>!hhAllInBefore(i,streetIdx));
   const actions=hhStreetActions[street]||[];
   let folded=new Set(),allIn=new Set(),settled=new Set(),hasBet=false,lastAggressor=null;
-  // Preflop: the blinds are live bets already in the pot before anyone acts — the BB is the
-  // opening "bet" everyone else must call/raise/fold to, and BB can check for free only as
-  // long as nobody has raised past their own blind yet.
+  // Preflop: there's always a big blind in real poker acting as the opening "bet" everyone else
+  // must call/raise/fold to — that's true whether or not its exact size has been entered here, so
+  // this doesn't depend on blinds being filled in. BB can check for free only as long as nobody
+  // has raised past their own blind yet.
   if(street==="preflop"){
-    const blinds=hhGetLiveBlinds();
-    if(blinds&&blinds.bb){
-      const bbIdx=hhPlayersState.findIndex(p=>p.position==="BB");
-      if(bbIdx>=0&&activeAtStart.includes(bbIdx)){hasBet=true;lastAggressor=bbIdx}
-    }
+    const bbIdx=hhPlayersState.findIndex(p=>p.position==="BB");
+    if(bbIdx>=0&&activeAtStart.includes(bbIdx)){hasBet=true;lastAggressor=bbIdx}
   }
   actions.forEach(a=>{
     if(a.action==="fold"){folded.add(a.playerIdx);settled.delete(a.playerIdx)}
@@ -6375,13 +6368,29 @@ function hhAmountToCall(street){
   if(street==="preflop"){const blinds=hhGetLiveBlinds();if(blinds&&blinds.bb)return blinds.bb}
   return null;
 }
+function hhReturnsAreFinal(streetActionsObj,playersArr){
+  // A returned (uncalled) excess is only "temporary" while someone could still act and potentially
+  // call it — e.g. blinds just posted, nobody's had their turn yet. Once every player still in the
+  // hand is either folded or all-in, nobody can ever call that excess anymore, so it's permanently
+  // decided and should be excluded from what's shown as "the pot" rather than counted as live money.
+  const folded=new Set(),allIn=new Set();
+  HH_STREETS.forEach(street=>{
+    (streetActionsObj[street]||[]).forEach(a=>{
+      if(a.action==="fold")folded.add(a.playerIdx);
+      if(a.action==="allin")allIn.add(a.playerIdx);
+    });
+  });
+  const liveNonAllIn=playersArr.map((p,i)=>i).filter(i=>!folded.has(i)&&!allIn.has(i));
+  return liveNonAllIn.length<=1;
+}
 function hhFormatPotDisplay(streetActionsObj,playersArr){
   const liveBlinds=hhGetLiveBlinds();
   const{pots,returns}=hhComputeSidePots(streetActionsObj,playersArr,liveBlinds);
   // Live/in-progress display: show everything currently in the middle, including amounts that
   // haven't been matched *yet* (someone just hasn't acted yet — that's not the same as a hand-over
   // "uncalled bet returned" situation, which only applies once the hand is actually finished).
-  const total=pots.reduce((a,p)=>a+p.amount,0)+returns.reduce((a,r)=>a+r.amount,0);
+  const returnsFinal=hhReturnsAreFinal(streetActionsObj,playersArr);
+  const total=pots.reduce((a,p)=>a+p.amount,0)+(returnsFinal?0:returns.reduce((a,r)=>a+r.amount,0));
   const fmt=hhFmtAmt(total,liveBlinds&&liveBlinds.bb);
   if(pots.length<=1)return"Pot ~"+fmt;
   return"Pot ~"+fmt+' <span class="hhb-sidepot-badge">+'+(pots.length-1)+" side pot"+(pots.length>2?"s":"")+"</span>";
@@ -6652,7 +6661,8 @@ function hhHasUnsavedProgress(){
   const heroHasCards=hhPlayersState[0]&&hhPlayersState[0].cards.length>0;
   const boardHasCards=hhBoardState.flop.length||hhBoardState.turn.length||hhBoardState.river.length;
   const hasNotes=(($("hhNotes")&&$("hhNotes").value)||"").trim().length>0;
-  return!!(anyActions||heroHasCards||boardHasCards||hasNotes);
+  const hasBlinds=!!(($("hhBlindsSB")&&$("hhBlindsSB").value)||($("hhBlindsBB")&&$("hhBlindsBB").value));
+  return!!(anyActions||heroHasCards||boardHasCards||hasNotes||hasBlinds);
 }
 let _hhDraftDebounceTimer=null;
 function hhSaveDraft(){
@@ -6668,6 +6678,7 @@ function hhSaveDraftNow(){
     date:$("hhDate")?$("hhDate").value:"",stakes:$("hhStakes")?$("hhStakes").value:"",table:$("hhTable")?$("hhTable").value:"",fmt:hhFmt_,
     players:hhPlayersState,board:hhBoardState,actions:hhStreetActions,streetNotes:hhStreetNotesDraft,
     result:$("hhResult")?$("hhResult").value:"",tags:S.hhTags,notes:$("hhNotes")?$("hhNotes").value:"",
+    blindsSB:$("hhBlindsSB")?$("hhBlindsSB").value:"",blindsBB:$("hhBlindsBB")?$("hhBlindsBB").value:"",
     savedAt:Date.now()
   };
   LS("ps_hh_draft",draft);
@@ -6676,14 +6687,17 @@ function hhClearDraft(){if(_hhDraftDebounceTimer){clearTimeout(_hhDraftDebounceT
 function hhRestoreDraftIfAny(){
   const draft=LG("ps_hh_draft",null);
   if(!draft||!draft.players)return;
-  const hasContent=(draft.actions&&HH_STREETS.some(s=>(draft.actions[s]||[]).length>0))||(draft.players[0]&&draft.players[0].cards&&draft.players[0].cards.length)||(draft.notes&&draft.notes.trim());
+  const hasContent=(draft.actions&&HH_STREETS.some(s=>(draft.actions[s]||[]).length>0))||(draft.players[0]&&draft.players[0].cards&&draft.players[0].cards.length)||(draft.notes&&draft.notes.trim())||draft.blindsSB||draft.blindsBB;
   if(!hasContent)return;
   hhPlayersState=draft.players;
   hhBoardState=draft.board||{flop:[],turn:[],river:[]};
   hhStreetActions=draft.actions||{preflop:[],flop:[],turn:[],river:[]};
   hhStreetNotesDraft=draft.streetNotes||{preflop:"",flop:"",turn:"",river:""};
   if($("hhDate"))$("hhDate").value=draft.date||new Date().toISOString().slice(0,10);
+  if($("hhBlindsSB"))$("hhBlindsSB").value=draft.blindsSB||"";
+  if($("hhBlindsBB"))$("hhBlindsBB").value=draft.blindsBB||"";
   if($("hhStakes"))$("hhStakes").value=draft.stakes||"";
+  if(draft.blindsSB||draft.blindsBB)hhSyncStakesFromBlinds();
   if($("hhTable"))$("hhTable").value=draft.table||"8-max";
   if($("hhResult"))$("hhResult").value=draft.result||"";
   if($("hhNotes"))$("hhNotes").value=draft.notes||"";
@@ -6749,6 +6763,7 @@ function editHhHand(id){
   $("hhResult").value=h.result;$("hhNotes").value=h.notes||"";
   $("hhBlindsSB").value=h.blinds&&h.blinds.sb!=null?h.blinds.sb:"";
   $("hhBlindsBB").value=h.blinds&&h.blinds.bb!=null?h.blinds.bb:"";
+  if(h.blinds&&(h.blinds.sb!=null||h.blinds.bb!=null))hhSyncStakesFromBlinds();
   hhCurrentHandCurrency=h.currency||"";$("hhHandCurrency").value=hhCurrentHandCurrency;
   hhCurrentAttachments=[...(h.attachments||[])];renderHhAttachmentsList();
   S.hhTags=[...(h.tags||[])];renTags("hhTagsW","hhTagsI","hhTags");
@@ -6914,7 +6929,7 @@ function renderHhReplay(){
   for(let s=0;s<=hhReplayStreet;s++){actionsUpToNow[HH_STREETS[s]]=(h.streetActions&&h.streetActions[HH_STREETS[s]])||[]}
   const replayPlayers=h.players&&h.players.length?h.players:players;
   const{pots,returns}=hhComputeSidePots(actionsUpToNow,replayPlayers,h.blinds);
-  const pot=pots.reduce((a,p)=>a+p.amount,0)+returns.reduce((a,r)=>a+r.amount,0);
+  const pot=pots.reduce((a,p)=>a+p.amount,0)+(hhReturnsAreFinal(actionsUpToNow,replayPlayers)?0:returns.reduce((a,r)=>a+r.amount,0));
   const curStreetKey=HH_STREETS[hhReplayStreet];
   const curStreetActs=(h.streetActions&&h.streetActions[curStreetKey])||[];
   const cursym=hhSymFor(h.currency);
@@ -7157,7 +7172,7 @@ function renderStorageUsage(){
   bar.style.background=pct>=85?"var(--rs)":pct>=60?"var(--gd)":"linear-gradient(90deg,var(--pk),var(--pk2))";
   txt.textContent=mb.toFixed(2)+" MB used"+(pct>=85?" — running low. Consider clearing old data or removing large hand-history attachments.":pct>=60?" — keep an eye on this over time.":"");
 }
-function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderDeckGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI();renderHhCurrencyUI();renderStorageUsage()}
+function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderDeckGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI();renderStorageUsage()}
 /* ── Editor appearance (grid size / cell corners) ── */
 function applyEditorAppearance(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);document.documentElement.style.setProperty("--mtx-max",sz+"px");document.documentElement.style.setProperty("--mtx-radius",rad+"px")}
 
@@ -7256,7 +7271,6 @@ $("bsPresetRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")re
 $("comboTypeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("comboTypeRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runComboCalc()});
 $("comboBlockRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("comboBlockRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runComboCalc()});
 $("hhPresetRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhApplyPreset(+e.target.dataset.preset)});
-$("hhCurrencyRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setHhCurrency(e.target.dataset.cur)});
 $("hhbStreetTabs")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhSwitchStreetTab(e.target.dataset.street)});
 $("flowNodeSizeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.size=e.target.dataset.size;$("flowNodeSizeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));renderFlowCanvas();flowSaveCurrent()});
 $("flowNodeText")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.text=e.target.value;renderFlowCanvas();flowSaveCurrent()});
