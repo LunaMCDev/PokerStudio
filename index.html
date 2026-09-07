@@ -66,6 +66,7 @@ body.nav-hamburger .hamburger-btn{display:flex}
   background:transparent;transition:background .2s;flex-shrink:0;
 }
 .hamburger-btn:hover{background:rgba(200,165,92,.08)}
+.hamburger-btn:active{transform:scale(.9)}
 .hamburger-btn span{
   display:block;width:100%;height:2px;border-radius:2px;background:var(--pk2);
   transition:transform .3s var(--spring),opacity .2s,width .3s;
@@ -81,6 +82,7 @@ body.nav-hamburger .hamburger-btn{display:flex}
   display:flex;align-items:center;justify-content:center;
 }
 .search-btn:hover{background:rgba(200,165,92,.08);transform:scale(1.08)}
+.search-btn:active{transform:scale(.92)}
 
 /* Global search modal */
 .gs-modal{max-width:560px;max-height:80vh;padding:0;overflow:hidden;display:flex;flex-direction:column}
@@ -603,6 +605,7 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .fs-topbar{display:flex;align-items:center;gap:4px;padding:6px 8px;background:var(--b2);border-bottom:1px solid var(--bd);flex-shrink:0;flex-wrap:nowrap;overflow:hidden}
 .fs-nav-btn{width:28px;height:28px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid var(--bd);background:var(--b3);color:var(--t2);cursor:pointer;font-size:13px;transition:all .15s}
 .fs-nav-btn:hover:not(:disabled){background:var(--b4);border-color:var(--bd2)}
+.fs-nav-btn:active:not(:disabled){transform:scale(.9)}
 .fs-nav-btn:disabled{opacity:.3;cursor:default}
 .fs-addr{flex:1;min-width:0;display:flex;align-items:center;gap:3px;padding:4px 8px;background:var(--b0);border:1px solid var(--bd);border-radius:6px;overflow:hidden}
 .fs-addr-sep{color:var(--t5);font-size:11px;flex-shrink:0}
@@ -804,7 +807,7 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .fs-select-mode .range-di.selected{border-color:var(--pk);background:rgba(200,165,92,.07)}
 .fs-select-mode .range-di.selected .di-ico::after{content:"✓";position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:var(--pk2);color:var(--b0);font-size:12px;font-weight:800;border-radius:inherit}
 .fs-bulk-bar{position:sticky;bottom:0;left:0;right:0;display:none;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(135deg,var(--b2),var(--b3));border-top:2px solid var(--pk);z-index:20;font-size:12px;font-weight:700;color:var(--pk2);gap:12px}
-.di-act-move{color:var(--li)!important}
+.di-act-move{color:var(--li)!important;transition:color .15s,border-color .15s}
 .di-act-move:hover{color:var(--pk2)!important;border-color:var(--pk)!important}
 .move-target{display:flex;align-items:center;gap:8px;padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--bd);transition:background .12s}
 .move-target:last-child{border-bottom:none}
@@ -922,7 +925,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 
 /* ── File system ── */
 .fs-di{min-height:52px;transition:background .15s}
-.folder-di{cursor:pointer}
+.folder-di{cursor:pointer;transition:background .18s}
 .folder-di:hover{background:linear-gradient(135deg,rgba(200,165,92,.05),transparent)}
 .range-di{cursor:pointer}
 .fs-di .di-info{flex:1;min-width:0}
@@ -1953,8 +1956,8 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .hh-folder-ico{font-size:24px}
 .hh-folder-name{font-size:11px;font-weight:700;color:var(--t1);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
 .hh-folder-count{font-size:9px;color:var(--t4)}
-.hh-row-move-btn{background:none;border:none;font-size:15px;padding:6px;flex-shrink:0;opacity:.6}
-.hh-row-move-btn:hover{opacity:1}
+.hh-row-move-btn{background:none;border:none;font-size:15px;padding:6px;flex-shrink:0;opacity:.6;transition:opacity .15s,transform .15s}
+.hh-row-move-btn:hover{opacity:1;transform:scale(1.1)}
 .hh-move-folder-list{display:flex;flex-direction:column;gap:6px;max-height:50vh;overflow-y:auto}
 .hh-move-folder-item{padding:10px 14px;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);font-size:13px;cursor:pointer;transition:border-color .15s;display:flex;align-items:center;gap:6px}
 .hh-move-folder-item:hover{border-color:var(--pk)}
@@ -2049,6 +2052,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .hha-btns{display:flex;gap:3px;flex-wrap:wrap}
 .hha-btn{padding:5px 9px;border-radius:20px;font-size:9.5px;font-weight:700;background:var(--b2);border:1px solid var(--bd2);color:var(--t4);cursor:pointer;transition:all .18s var(--spring)}
 .hha-btn:hover{color:var(--t1)}
+.hha-btn:active{transform:scale(.92)}
 .hha-btn.sel.hha-fold{background:rgba(248,113,113,.18);border-color:var(--rs);color:var(--rs)}
 .hha-btn.sel.hha-check{background:rgba(139,156,196,.18);border-color:var(--li);color:var(--li)}
 .hha-btn.sel.hha-call{background:rgba(110,231,183,.18);border-color:var(--mt);color:var(--mt)}
@@ -2644,12 +2648,20 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   display:flex;align-items:center;justify-content:center;transition:all .18s;
 }
 .flow-card-del:hover{background:var(--rs);color:#fff;border-color:transparent}
+.flow-card-move{
+  position:absolute;top:6px;right:32px;width:22px;height:22px;border-radius:50%;
+  background:var(--b0);border:1px solid var(--bd2);color:var(--t4);font-size:10px;
+  display:flex;align-items:center;justify-content:center;transition:all .18s var(--spring);
+}
+.flow-card-move:hover{background:var(--pk);color:var(--b0);border-color:transparent;transform:scale(1.1)}
 
 /* ── Editor top bar & toolbar ── */
 .flow-editor-topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .flow-back-btn{padding:9px 14px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:11px;font-weight:700;flex-shrink:0}
 .flow-title-input{flex:1;min-width:0;background:transparent;border:none;border-bottom:1.5px dashed var(--bd2);color:var(--t1);font-size:15px;font-weight:800;padding:6px 4px;font-family:var(--fd);font-style:italic}
-.flow-icon-btn{width:36px;height:36px;border-radius:50%;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:16px;flex-shrink:0}
+.flow-icon-btn{width:36px;height:36px;border-radius:50%;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:16px;flex-shrink:0;transition:all .18s var(--spring)}
+.flow-icon-btn:hover{border-color:var(--pk);color:var(--pk2);transform:translateY(-1px)}
+.flow-icon-btn:active{transform:scale(.9)}
 .flow-toolbar{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
 .flow-toolbar-row{display:flex;gap:6px;align-items:center}
 .flow-tool-btn{
@@ -2660,7 +2672,9 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-tool-btn span{font-size:14px}
 .flow-tool-btn:hover{border-color:var(--pk);transform:translateY(-1px);color:var(--t1)}
 .flow-tool-btn.active{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;color:var(--b0);box-shadow:0 3px 12px -2px color-mix(in srgb,var(--pk) 55%,transparent)}
+.flow-tool-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;pointer-events:none}
 .flow-tool-btn.flow-tool-pri{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;color:var(--b0)}
+.flow-tool-btn.flow-tool-pri:disabled{background:var(--b2);color:var(--t4)}
 .flow-tool-icon-btn{
   width:36px;height:36px;flex-shrink:0;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
   font-size:13px;transition:all .2s var(--spring);
@@ -2668,6 +2682,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-tool-icon-btn:hover{border-color:var(--pk);transform:translateY(-1px)}
 .flow-tool-icon-btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
 .flow-tool-icon-btn:disabled:hover{border-color:var(--bd);transform:none}
+.flow-tool-icon-btn.active{background:linear-gradient(135deg,var(--rs),#e08a8a);border-color:transparent;color:#fff;box-shadow:0 3px 12px -2px rgba(212,114,114,.5)}
 .flow-tool-icon-btn.flow-tool-danger:hover{border-color:var(--rs);color:var(--rs)}
 .flow-hint{font-size:10.5px;color:var(--t4);text-align:center;margin-bottom:10px;padding:6px 10px;background:var(--b0);border-radius:var(--r1);border:1px dashed var(--bd)}
 
@@ -3553,6 +3568,11 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="section-head"><span style="font-size:20px">🧠</span><h2>Flowcharts</h2></div>
     <div class="setting-desc" style="margin-bottom:14px">Map out decision trees, study plans, or any thought process visually.</div>
     <button class="btn pri" style="width:100%;padding:14px;font-weight:800;margin-bottom:16px" onclick="createNewFlowchart()">+ New Flowchart</button>
+    <div class="hh-folder-bar">
+      <div class="hh-folder-breadcrumb" id="flowFolderBreadcrumb"></div>
+      <button class="btn btn-s" onclick="openM('flowNewFolderM')">+ Folder</button>
+    </div>
+    <div class="hh-folder-grid" id="flowFolderGrid"></div>
     <div id="flowGrid" class="flow-grid"></div>
   </div>
 
@@ -3575,6 +3595,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
         <button class="flow-tool-icon-btn" id="flowRedoBtn" onclick="flowRedo()" title="Redo" disabled>↷</button>
         <button class="flow-tool-icon-btn" onclick="flowZoom(0.1)" title="Zoom in">🔍+</button>
         <button class="flow-tool-icon-btn" onclick="flowZoom(-0.1)" title="Zoom out">🔍−</button>
+        <button class="flow-tool-icon-btn" id="flowLockBtn" onclick="flowToggleLock()" title="Lock — explore without moving anything">🔓</button>
         <span style="flex:1"></span>
         <button class="flow-tool-icon-btn flow-tool-danger" onclick="flowClearCanvas()" title="Clear all">🗑️</button>
       </div>
@@ -3852,6 +3873,20 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <h3>📊 BB/hr by Stake</h3>
   <div id="bbHrBreakdownContent"></div>
   <div class="mact"><button class="btn pri" onclick="closeM('bbHrBreakdownM')">Close</button></div>
+</div></div>
+<div class="mov" id="flowNewFolderM"><div class="mdl" style="max-width:360px">
+  <h3>📁 New Folder</h3>
+  <label class="slbl">Name</label>
+  <input class="minp" id="flowNewFolderName" placeholder="e.g. Preflop, C-Bet Strategy…"/>
+  <label class="slbl" style="margin-top:8px">Icon</label>
+  <div class="ac-wrap"><input class="minp" id="flowNewFolderIcon" value="📁" style="text-align:center;font-size:18px"/></div>
+  <div class="mact"><button class="btn" onclick="closeM('flowNewFolderM')">Cancel</button><button class="btn pri" onclick="flowSaveFolder()">Save</button></div>
+</div></div>
+<div class="mov" id="flowMoveToFolderM"><div class="mdl" style="max-width:360px">
+  <h3>📂 Move to Folder</h3>
+  <input type="hidden" id="flowMoveId"/>
+  <div id="flowMoveFolderList" class="hh-move-folder-list"></div>
+  <div class="mact"><button class="btn" onclick="closeM('flowMoveToFolderM')">Cancel</button></div>
 </div></div>
 <div class="mov" id="flowManageM"><div class="mdl" style="max-width:420px">
   <h3>⋯ Manage Flowchart</h3>
@@ -4169,26 +4204,95 @@ function flowToggleSnap(){
 const FLOW_COLORS=["#c8a55c","#ec4899","#34d399","#3b82f6","#a78bfa","#f87171","#fbbf24","#67e8f9"];
 function initFlow(){
   Flow.load();
+  flowCurrentFolder="/";
   $("flowListArea").style.display="";
   $("flowEditorArea").style.display="none";
+  renderFlowFolderBar();
   renderFlowGrid();
+}
+let flowCurrentFolder="/";
+function getFlowFolders(){return LG("ps_flowchart_folders",[])}
+function saveFlowFoldersList(list){LS("ps_flowchart_folders",list)}
+function flowNavFolder(path){flowCurrentFolder=path;renderFlowFolderBar();renderFlowGrid()}
+function flowFolderChildren(path){
+  return getFlowFolders().filter(f=>{
+    if(f.path===path)return false;
+    const parent=f.path.slice(0,f.path.lastIndexOf("/"))||"/";
+    return parent===path;
+  });
+}
+function renderFlowFolderBar(){
+  const bc=$("flowFolderBreadcrumb");if(!bc)return;
+  const parts=flowCurrentFolder==="/"?[]:flowCurrentFolder.split("/").filter(Boolean);
+  let html='<span class="hh-crumb'+(flowCurrentFolder==="/"?" on":"")+'" onclick="flowNavFolder(\'/\')">🏠 All Flowcharts</span>';
+  let acc="";
+  parts.forEach(part=>{
+    acc+="/"+part;
+    const f=getFlowFolders().find(x=>x.path===acc);
+    html+='<span class="hh-crumb-sep">›</span><span class="hh-crumb'+(acc===flowCurrentFolder?" on":"")+'" onclick="flowNavFolder(\''+acc+'\')">'+(f?f.icon+" "+escapeHtml(f.name):acc)+"</span>";
+  });
+  bc.innerHTML=html;
+  const grid=$("flowFolderGrid");if(!grid)return;
+  const children=flowFolderChildren(flowCurrentFolder);
+  if(!children.length){grid.innerHTML="";return}
+  grid.innerHTML=children.map(f=>{
+    const count=Flow.d.filter(x=>(x.folder||"/")===f.path).length;
+    return'<div class="hh-folder-card" onclick="flowNavFolder(\''+f.path+'\')" oncontextmenu="event.preventDefault();flowFolderCtx(\''+f.path+'\')"><span class="hh-folder-ico">'+f.icon+'</span><span class="hh-folder-name">'+escapeHtml(f.name)+'</span><span class="hh-folder-count">'+count+" chart"+(count!==1?"s":"")+"</span></div>";
+  }).join("");
+}
+function flowFolderCtx(path){
+  const f=getFlowFolders().find(x=>x.path===path);if(!f)return;
+  confirmAction("Delete folder \""+escapeHtml(f.name)+"\"?","Flowcharts inside will move back to All Flowcharts, not be deleted.",()=>{
+    saveFlowFoldersList(getFlowFolders().filter(x=>x.path!==path&&!x.path.startsWith(path+"/")));
+    Flow.d.forEach(x=>{if((x.folder||"/")===path||(x.folder||"").startsWith(path+"/"))x.folder="/"});
+    Flow.save();renderFlowFolderBar();renderFlowGrid();toast("Folder deleted");
+  });
+}
+function flowSaveFolder(){
+  const name=$("flowNewFolderName").value.trim();if(!name)return toast("Enter a name");
+  const icon=$("flowNewFolderIcon").value.trim()||"📁";
+  const parent=flowCurrentFolder==="/"?"":flowCurrentFolder;
+  const path=parent+"/"+name.toLowerCase().replace(/[^a-z0-9]+/g,"-")+"_"+Date.now().toString(36);
+  const list=getFlowFolders();list.push({path,name,icon});saveFlowFoldersList(list);
+  closeM("flowNewFolderM");
+  $("flowNewFolderName").value="";$("flowNewFolderIcon").value="📁";
+  renderFlowFolderBar();
+  toast("Folder created ✦");
+}
+function openFlowMoveToFolder(id){
+  $("flowMoveId").value=id;
+  const f=Flow.d.find(x=>x.id===id);
+  const cur=f?f.folder||"/":"/";
+  const all=[{path:"/",name:"All Flowcharts",icon:"🏠"},...getFlowFolders()];
+  $("flowMoveFolderList").innerHTML=all.map(fo=>'<div class="hh-move-folder-item'+(fo.path===cur?" cur":"")+'" onclick="flowMoveToFolder(\''+fo.path+'\')">'+fo.icon+" "+escapeHtml(fo.name)+(fo.path===cur?' <span class="hh-move-cur-tag">current</span>':"")+"</div>").join("");
+  openM("flowMoveToFolderM");
+}
+function flowMoveToFolder(path){
+  const id=$("flowMoveId").value;
+  const f=Flow.d.find(x=>x.id===id);if(!f)return;
+  f.folder=path;Flow.save();
+  closeM("flowMoveToFolderM");
+  renderFlowFolderBar();renderFlowGrid();
+  toast("Moved ✦");
 }
 function renderFlowGrid(){
   const ct=$("flowGrid");if(!ct)return;
+  const inFolder=Flow.d.filter(f=>(f.folder||"/")===flowCurrentFolder);
   if(!Flow.d.length){ct.innerHTML='<div class="empty-state"><span class="es-icon">🧠</span><div class="es-title">No flowcharts yet</div><div class="es-sub">Create one to start mapping out your thinking.</div></div>';return}
-  ct.innerHTML=[...Flow.d].sort((a,b)=>b.updated-a.updated).map(f=>{
-    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><div class="flow-card-icon">🧠</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
+  if(!inFolder.length){ct.innerHTML='<div class="empty-state"><span class="es-icon">📁</span><div class="es-title">No flowcharts in this folder yet</div><div class="es-sub">Create a new one here, or move an existing chart in.</div></div>';return}
+  ct.innerHTML=[...inFolder].sort((a,b)=>b.updated-a.updated).map(f=>{
+    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><button class="flow-card-move" onclick="event.stopPropagation();openFlowMoveToFolder(\''+f.id+'\')" title="Move to folder">📂</button><div class="flow-card-icon">'+(f.locked?"🔒":"🧠")+'</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
   }).join("");
 }
 function createNewFlowchart(){
-  const f={id:"flow_"+Date.now(),name:"Untitled Flowchart",nodes:[],connections:[],created:Date.now(),updated:Date.now()};
+  const f={id:"flow_"+Date.now(),name:"Untitled Flowchart",nodes:[],connections:[],folder:flowCurrentFolder,created:Date.now(),updated:Date.now()};
   Flow.d.push(f);Flow.save();
   openFlowchart(f.id);
 }
 function quickDeleteFlowchart(id){
   const f=Flow.d.find(x=>x.id===id);if(!f)return;
   if(!confirm('Delete "'+f.name+'"? This can\'t be undone.'))return;
-  Flow.d=Flow.d.filter(x=>x.id!==id);Flow.save();renderFlowGrid();toast("Flowchart deleted");
+  Flow.d=Flow.d.filter(x=>x.id!==id);Flow.save();renderFlowFolderBar();renderFlowGrid();toast("Flowchart deleted");
 }
 function openFlowchart(id){
   flowState=Flow.d.find(f=>f.id===id);if(!flowState)return;
@@ -4200,15 +4304,35 @@ function openFlowchart(id){
   $("flowEditorArea").style.display="";
   $("flowTitleInput").value=flowState.name;
   $("flowSnapBtn")?.classList.toggle("active",flowSnapEnabled);
-  $("flowModeHint").textContent="Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
+  flowUpdateLockUI();
   renderFlowCanvas();
   if(flowState.nodes.length)requestAnimationFrame(()=>flowFitToScreen(false));
   playSound("tick");haptic("light");
+}
+function flowUpdateLockUI(){
+  if(!flowState)return;
+  const locked=!!flowState.locked;
+  const btn=$("flowLockBtn");
+  if(btn){btn.textContent=locked?"🔒":"🔓";btn.classList.toggle("active",locked);btn.title=locked?"Locked — tap to unlock and edit":"Lock — explore without moving anything"}
+  const layoutBtn=document.querySelector('.flow-tool-btn[onclick="flowAutoLayout()"]');
+  if(layoutBtn)layoutBtn.disabled=locked;
+  const addBtn=$("flowAddBtn");
+  if(addBtn)addBtn.disabled=locked;
+  $("flowModeHint").textContent=locked?"🔒 This flowchart is locked — pan and zoom to explore, but nothing can be moved, added, or edited until you unlock it.":"Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
+}
+function flowToggleLock(){
+  if(!flowState)return;
+  flowState.locked=!flowState.locked;
+  flowSaveCurrent();
+  flowUpdateLockUI();
+  playSound(flowState.locked?"tick":"save");haptic(flowState.locked?"warn":"success");
+  toast(flowState.locked?"🔒 Flowchart locked — explore freely, nothing will move":"🔓 Flowchart unlocked — you can edit again");
 }
 function closeFlowEditor(){
   flowSaveCurrent();
   $("flowEditorArea").style.display="none";
   $("flowListArea").style.display="";
+  renderFlowFolderBar();
   renderFlowGrid();
 }
 let flowHistory=[],flowHistoryIndex=-1;
@@ -4266,13 +4390,14 @@ function deleteCurrentFlowchart(){
   Flow.d=Flow.d.filter(f=>f.id!==flowState.id);Flow.save();
   closeM("flowManageM");flowState=null;
   $("flowEditorArea").style.display="none";$("flowListArea").style.display="";
-  renderFlowGrid();toast("Flowchart deleted");
+  renderFlowFolderBar();renderFlowGrid();toast("Flowchart deleted");
 }
 
 /* ── Nodes ── */
 let flowJustAddedNodeId=null,flowJustAddedNodeTime=0,flowJustAddedConnId=null,flowJustAddedConnTime=0;
 function flowAddNode(){
   if(!flowState)return;
+  if(flowState.locked){toast("🔒 Unlock this flowchart to add nodes");return}
   const n=flowState.nodes.length;
   const col=n%5,row=Math.floor(n/5);
   const node={id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:80+col*180,y:80+row*140,w:160,h:84,text:"New idea",subtitle:"",body:"",shape:"rect",size:"md",color:FLOW_COLORS[0]};
@@ -4294,7 +4419,9 @@ function flowOpenNodeEditor(id){
   renderFlowCanvas();
   openM("flowNodeM");
 }
+function flowCheckLocked(){if(flowState&&flowState.locked){toast("🔒 Unlock this flowchart to make changes");return true}return false}
 function flowDuplicateSelectedNode(){
+  if(flowCheckLocked())return;
   const node=flowState.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;
   const copy={...node,id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:node.x+30,y:node.y+30};
   flowState.nodes.push(copy);
@@ -4308,10 +4435,12 @@ function renderFlowColorRow(current){
   $("flowNodeColorRow").innerHTML=FLOW_COLORS.map(c=>'<button class="flow-color-opt'+(c===current?" sel":"")+'" style="background:'+c+'" onclick="flowSetNodeColor(\''+c+"')\"></button>").join("");
 }
 function flowSetNodeColor(c){
+  if(flowCheckLocked())return;
   const node=flowState.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;
   node.color=c;renderFlowColorRow(c);renderFlowCanvas();flowSaveCurrent();
 }
 function flowDeleteSelectedNode(){
+  if(flowCheckLocked())return;
   if(!flowSelectedNodeId)return;
   flowState.nodes=flowState.nodes.filter(n=>n.id!==flowSelectedNodeId);
   flowState.connections=flowState.connections.filter(c=>c.from!==flowSelectedNodeId&&c.to!==flowSelectedNodeId);
@@ -4321,6 +4450,7 @@ function flowDeleteSelectedNode(){
   toast("Node deleted");
 }
 function flowClearCanvas(){
+  if(flowCheckLocked())return;
   if(!flowState||!flowState.nodes.length)return;
   if(!confirm("Clear all nodes and connections from this flowchart?"))return;
   flowState.nodes=[];flowState.connections=[];
@@ -4329,6 +4459,7 @@ function flowClearCanvas(){
 }
 function flowZoom(delta){flowZoomLevel=Math.max(0.4,Math.min(2,+(flowZoomLevel+delta).toFixed(2)));renderFlowCanvas()}
 function flowDeleteConnection(id){
+  if(flowCheckLocked())return;
   flowState.connections=flowState.connections.filter(c=>c.id!==id);
   flowSaveCurrent();renderFlowCanvas();
   playSound("tick");haptic("light");
@@ -4345,10 +4476,12 @@ function renderFlowConnColorRow(current){
   $("flowConnColorRow").innerHTML=FLOW_COLORS.map(c=>'<button class="flow-color-opt'+(c===current?" sel":"")+'" style="background:'+c+'" onclick="flowSetConnColor(\''+c+"')\"></button>").join("");
 }
 function flowSetConnColor(c){
+  if(flowCheckLocked())return;
   const conn=flowState.connections.find(x=>x.id===flowSelectedConnId);if(!conn)return;
   conn.color=c;renderFlowConnColorRow(c);renderFlowCanvas();flowSaveCurrent();
 }
 function flowDeleteSelectedConnection(){
+  if(flowCheckLocked())return;
   if(!flowSelectedConnId)return;
   closeM("flowConnM");
   flowDeleteConnection(flowSelectedConnId);
@@ -4375,6 +4508,7 @@ function flowFitToScreen(showToast){
 }
 function flowAutoLayout(){
   if(!flowState||!flowState.nodes.length){toast("Add some nodes first");return}
+  if(flowState.locked){toast("🔒 Unlock this flowchart to rearrange it");return}
   const nodes=flowState.nodes,connections=flowState.connections;
   const oldPositions={};nodes.forEach(n=>{oldPositions[n.id]={x:n.x,y:n.y}});
   const nodeById={};nodes.forEach(n=>nodeById[n.id]=n);
@@ -4587,7 +4721,7 @@ function flowNodePointerDown(e,id){
   flowDragState={id,startX:point.clientX,startY:point.clientY,origX:node.x,origY:node.y,moved:false};
   let rafId=null;
   const onMove=(ev)=>{
-    if(!flowDragState)return;
+    if(!flowDragState||flowState.locked)return;
     if(ev.cancelable)ev.preventDefault();
     const p=ev.touches?ev.touches[0]:ev;
     const dx=(p.clientX-flowDragState.startX)/flowZoomLevel;
@@ -4645,6 +4779,7 @@ function flowNodeTapped(id){
 }
 function flowHandlePointerDown(e,fromId){
   e.preventDefault();e.stopPropagation();
+  if(flowState.locked){toast("🔒 Unlock this flowchart to draw arrows");return}
   const point=e.touches?e.touches[0]:e;
   const canvas=$("flowCanvas");
   const fromNode=flowState.nodes.find(n=>n.id===fromId);if(!fromNode)return;
@@ -8235,13 +8370,13 @@ $("comboTypeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")r
 $("comboBlockRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("comboBlockRow").querySelectorAll("button").forEach(b=>b.classList.remove("sel"));e.target.classList.add("sel");runComboCalc()});
 $("hhPresetRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhApplyPreset(+e.target.dataset.preset)});
 $("hhbStreetTabs")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;hhSwitchStreetTab(e.target.dataset.street)});
-$("flowNodeSizeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.size=e.target.dataset.size;$("flowNodeSizeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeSizeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON"||flowCheckLocked())return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.size=e.target.dataset.size;$("flowNodeSizeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));renderFlowCanvas();flowSaveCurrent()});
 $("shiftTypeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("shiftTypeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));shiftUpdateFieldVisibility();updateShiftLivePreview()});
 $("depPromoTypeRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("depPromoTypeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b===e.target));$("depDesc").placeholder=PROMO_TYPE_LABELS[e.target.dataset.ptype]});
-$("flowNodeText")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.text=e.target.value;renderFlowCanvas();flowSaveCurrent()});
-$("flowNodeSubtitle")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.subtitle=e.target.value;renderFlowCanvas();flowSaveCurrent()});
-$("flowNodeBody")?.addEventListener("input",e=>{const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.body=e.target.value;renderFlowCanvas();flowSaveCurrent()});
-$("flowConnLabel")?.addEventListener("input",e=>{const conn=flowState?.connections.find(c=>c.id===flowSelectedConnId);if(!conn)return;conn.label=e.target.value;renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeText")?.addEventListener("input",e=>{if(flowCheckLocked())return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.text=e.target.value;renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeSubtitle")?.addEventListener("input",e=>{if(flowCheckLocked())return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.subtitle=e.target.value;renderFlowCanvas();flowSaveCurrent()});
+$("flowNodeBody")?.addEventListener("input",e=>{if(flowCheckLocked())return;const node=flowState?.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;node.body=e.target.value;renderFlowCanvas();flowSaveCurrent()});
+$("flowConnLabel")?.addEventListener("input",e=>{if(flowCheckLocked())return;const conn=flowState?.connections.find(c=>c.id===flowSelectedConnId);if(!conn)return;conn.label=e.target.value;renderFlowCanvas();flowSaveCurrent()});
 applyNavStyle();
 $("editorRadiusRow")?.addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;setEditorRadius(+e.target.dataset.rad)});
 applyEditorAppearance();
