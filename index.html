@@ -1400,6 +1400,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   transition:all .22s var(--spring);
 }
 .seg-row button:hover{color:var(--t1);border-color:var(--bd3)}
+.seg-row button:disabled{opacity:.4;cursor:not-allowed;pointer-events:none}
 .seg-row button.sel{
   background:linear-gradient(135deg,var(--pk),var(--pk2));color:var(--b0);border-color:transparent;
   box-shadow:0 3px 14px -2px color-mix(in srgb,var(--pk) 55%,transparent);transform:translateY(-1px);
@@ -2685,6 +2686,14 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-tool-icon-btn.active{background:linear-gradient(135deg,var(--rs),#e08a8a);border-color:transparent;color:#fff;box-shadow:0 3px 12px -2px rgba(212,114,114,.5)}
 .flow-tool-icon-btn.flow-tool-danger:hover{border-color:var(--rs);color:var(--rs)}
 .flow-hint{font-size:10.5px;color:var(--t4);text-align:center;margin-bottom:10px;padding:6px 10px;background:var(--b0);border-radius:var(--r1);border:1px dashed var(--bd)}
+.flow-view-banner{
+  display:flex;align-items:center;gap:10px;justify-content:space-between;
+  padding:10px 14px;margin-bottom:10px;border-radius:var(--r1);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--li) 16%,var(--b2)),var(--b2));
+  border:1px solid color-mix(in srgb,var(--li) 40%,var(--bd));
+  animation:vIn .3s var(--e);
+}
+.flow-view-banner-text{font-size:11.5px;font-weight:700;color:var(--li)}
 
 /* ── Canvas ── */
 .flow-canvas-wrap{
@@ -2767,6 +2776,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 /* ── Node editor modal ── */
 .flow-color-row{display:flex;flex-wrap:wrap;gap:8px}
 .flow-color-opt{width:32px;height:32px;border-radius:50%;border:2px solid transparent;transition:all .2s var(--spring)}
+.flow-color-opt:disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
 .flow-color-opt.sel{border-color:var(--t1);transform:scale(1.15);box-shadow:0 0 0 2px var(--b1),0 0 10px 1px rgba(255,255,255,.3)}
 .nc-nb-chip{
   display:inline-flex;align-items:center;gap:3px;
@@ -3573,6 +3583,15 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       <button class="btn btn-s" onclick="openM('flowNewFolderM')">+ Folder</button>
     </div>
     <div class="hh-folder-grid" id="flowFolderGrid"></div>
+    <div class="br-hist-toolbar-right" style="margin-bottom:10px">
+      <select id="flowSortField" class="sel-sm" onchange="renderFlowGrid()">
+        <option value="updated">Sort: Last Edited</option>
+        <option value="created">Sort: Date Created</option>
+        <option value="name">Sort: Name</option>
+        <option value="nodes">Sort: Node Count</option>
+      </select>
+      <button class="btn btn-s" id="flowDirBtn" onclick="toggleFlowSortDir()">⬇ Newest</button>
+    </div>
     <div id="flowGrid" class="flow-grid"></div>
   </div>
 
@@ -3599,6 +3618,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
         <span style="flex:1"></span>
         <button class="flow-tool-icon-btn flow-tool-danger" onclick="flowClearCanvas()" title="Clear all">🗑️</button>
       </div>
+    </div>
+    <div class="flow-view-banner" id="flowViewBanner" style="display:none">
+      <span class="flow-view-banner-text">👁 View Mode — nothing can be changed while exploring</span>
+      <button class="btn pri btn-s" onclick="flowToggleLock()">✎ Edit</button>
     </div>
     <div class="flow-hint" id="flowModeHint">Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.</div>
     <div class="flow-canvas-wrap" id="flowCanvasWrap">
@@ -3806,7 +3829,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   </div>
   <div class="slbl" style="margin-top:10px">Color</div>
   <div class="flow-color-row" id="flowNodeColorRow"></div>
-  <div class="mact"><button class="btn btn-d" onclick="flowDeleteSelectedNode()">🗑️ Delete</button><button class="btn btn-s" onclick="flowDuplicateSelectedNode()">⧉ Duplicate</button><button class="btn pri" onclick="closeM('flowNodeM')">Done</button></div>
+  <div class="mact"><button class="btn btn-d" id="flowNodeDeleteBtn" onclick="flowDeleteSelectedNode()">🗑️ Delete</button><button class="btn btn-s" id="flowNodeDupBtn" onclick="flowDuplicateSelectedNode()">⧉ Duplicate</button><button class="btn pri" onclick="closeM('flowNodeM')">Done</button></div>
 </div></div>
 <div class="mov" id="flowConnM"><div class="mdl" style="max-width:380px">
   <h3>🔗 Arrow</h3>
@@ -3814,7 +3837,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <input class="minp" id="flowConnLabel" placeholder="e.g. Yes / No / Fold…"/>
   <div class="slbl" style="margin-top:10px">Color</div>
   <div class="flow-color-row" id="flowConnColorRow"></div>
-  <div class="mact"><button class="btn btn-d" onclick="flowDeleteSelectedConnection()">🗑️ Remove Arrow</button><button class="btn pri" onclick="closeM('flowConnM')">Done</button></div>
+  <div class="mact"><button class="btn btn-d" id="flowConnDeleteBtn" onclick="flowDeleteSelectedConnection()">🗑️ Remove Arrow</button><button class="btn pri" onclick="closeM('flowConnM')">Done</button></div>
 </div></div>
 <div class="mov" id="shiftFormM"><div class="mdl" style="max-width:440px;max-height:85vh;overflow-y:auto">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
@@ -4275,12 +4298,30 @@ function flowMoveToFolder(path){
   renderFlowFolderBar();renderFlowGrid();
   toast("Moved ✦");
 }
+let flowSortDir="desc";
+function toggleFlowSortDir(){flowSortDir=flowSortDir==="desc"?"asc":"desc";renderFlowGrid()}
+function flowSortDirLabel(){
+  const field=$("flowSortField")?.value||"updated";
+  const asc=flowSortDir==="asc";
+  if(field==="name")return asc?"A → Z":"Z → A";
+  if(field==="nodes")return asc?"⬆ Fewest":"⬇ Most";
+  return asc?"⬆ Oldest":"⬇ Newest";
+}
 function renderFlowGrid(){
   const ct=$("flowGrid");if(!ct)return;
+  const dirBtn=$("flowDirBtn");if(dirBtn)dirBtn.textContent=flowSortDirLabel();
   const inFolder=Flow.d.filter(f=>(f.folder||"/")===flowCurrentFolder);
   if(!Flow.d.length){ct.innerHTML='<div class="empty-state"><span class="es-icon">🧠</span><div class="es-title">No flowcharts yet</div><div class="es-sub">Create one to start mapping out your thinking.</div></div>';return}
   if(!inFolder.length){ct.innerHTML='<div class="empty-state"><span class="es-icon">📁</span><div class="es-title">No flowcharts in this folder yet</div><div class="es-sub">Create a new one here, or move an existing chart in.</div></div>';return}
-  ct.innerHTML=[...inFolder].sort((a,b)=>b.updated-a.updated).map(f=>{
+  const field=$("flowSortField")?.value||"updated";
+  const dir=flowSortDir==="asc"?1:-1;
+  const sorted=[...inFolder].sort((a,b)=>{
+    if(field==="name")return a.name.localeCompare(b.name)*dir;
+    if(field==="nodes")return(a.nodes.length-b.nodes.length)*dir;
+    if(field==="created")return((a.created||0)-(b.created||0))*dir;
+    return((a.updated||0)-(b.updated||0))*dir;
+  });
+  ct.innerHTML=sorted.map(f=>{
     return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><button class="flow-card-move" onclick="event.stopPropagation();openFlowMoveToFolder(\''+f.id+'\')" title="Move to folder">📂</button><div class="flow-card-icon">'+(f.locked?"🔒":"🧠")+'</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
   }).join("");
 }
@@ -4313,12 +4354,15 @@ function flowUpdateLockUI(){
   if(!flowState)return;
   const locked=!!flowState.locked;
   const btn=$("flowLockBtn");
-  if(btn){btn.textContent=locked?"🔒":"🔓";btn.classList.toggle("active",locked);btn.title=locked?"Locked — tap to unlock and edit":"Lock — explore without moving anything"}
+  if(btn){btn.textContent=locked?"🔒":"🔓";btn.classList.toggle("active",locked);btn.title=locked?"View Mode — tap to switch to editing":"Switch to View Mode — explore without changing anything"}
   const layoutBtn=document.querySelector('.flow-tool-btn[onclick="flowAutoLayout()"]');
-  if(layoutBtn)layoutBtn.disabled=locked;
+  if(layoutBtn)layoutBtn.style.display=locked?"none":"";
   const addBtn=$("flowAddBtn");
-  if(addBtn)addBtn.disabled=locked;
-  $("flowModeHint").textContent=locked?"🔒 This flowchart is locked — pan and zoom to explore, but nothing can be moved, added, or edited until you unlock it.":"Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
+  if(addBtn)addBtn.style.display=locked?"none":"";
+  const banner=$("flowViewBanner");
+  if(banner)banner.style.display=locked?"flex":"none";
+  $("flowModeHint").style.display=locked?"none":"";
+  $("flowModeHint").textContent="Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
 }
 function flowToggleLock(){
   if(!flowState)return;
@@ -4326,7 +4370,7 @@ function flowToggleLock(){
   flowSaveCurrent();
   flowUpdateLockUI();
   playSound(flowState.locked?"tick":"save");haptic(flowState.locked?"warn":"success");
-  toast(flowState.locked?"🔒 Flowchart locked — explore freely, nothing will move":"🔓 Flowchart unlocked — you can edit again");
+  toast(flowState.locked?"👁 View Mode — nothing can be changed":"✎ Edit mode — you can make changes again");
 }
 function closeFlowEditor(){
   flowSaveCurrent();
@@ -4397,7 +4441,7 @@ function deleteCurrentFlowchart(){
 let flowJustAddedNodeId=null,flowJustAddedNodeTime=0,flowJustAddedConnId=null,flowJustAddedConnTime=0;
 function flowAddNode(){
   if(!flowState)return;
-  if(flowState.locked){toast("🔒 Unlock this flowchart to add nodes");return}
+  if(flowState.locked){toast("👁 In View Mode — tap ✎ Edit to add nodes");return}
   const n=flowState.nodes.length;
   const col=n%5,row=Math.floor(n/5);
   const node={id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:80+col*180,y:80+row*140,w:160,h:84,text:"New idea",subtitle:"",body:"",shape:"rect",size:"md",color:FLOW_COLORS[0]};
@@ -4411,15 +4455,21 @@ function flowAddNode(){
 function flowOpenNodeEditor(id){
   flowSelectedNodeId=id;
   const node=flowState.nodes.find(n=>n.id===id);if(!node)return;
+  const locked=!!flowState.locked;
   $("flowNodeText").value=node.text;
   $("flowNodeSubtitle").value=node.subtitle||"";
   $("flowNodeBody").value=node.body||"";
-  $("flowNodeSizeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.size===(node.size||"md")));
+  [$("flowNodeText"),$("flowNodeSubtitle"),$("flowNodeBody")].forEach(el=>{el.disabled=locked});
+  $("flowNodeSizeRow").querySelectorAll("button").forEach(b=>{b.classList.toggle("sel",b.dataset.size===(node.size||"md"));b.disabled=locked});
   renderFlowColorRow(node.color);
+  $("flowNodeColorRow").querySelectorAll("button").forEach(b=>{b.disabled=locked});
+  $("flowNodeDeleteBtn").style.display=locked?"none":"";
+  $("flowNodeDupBtn").style.display=locked?"none":"";
+  $("flowNodeM").querySelector("h3").textContent=locked?"👁 Viewing (View Mode)":"✎ Edit Node";
   renderFlowCanvas();
   openM("flowNodeM");
 }
-function flowCheckLocked(){if(flowState&&flowState.locked){toast("🔒 Unlock this flowchart to make changes");return true}return false}
+function flowCheckLocked(){if(flowState&&flowState.locked){toast("👁 In View Mode — tap ✎ Edit to make changes");return true}return false}
 function flowDuplicateSelectedNode(){
   if(flowCheckLocked())return;
   const node=flowState.nodes.find(n=>n.id===flowSelectedNodeId);if(!node)return;
@@ -4468,8 +4518,13 @@ function flowDeleteConnection(id){
 function flowOpenConnEditor(id){
   flowSelectedConnId=id;
   const conn=flowState.connections.find(c=>c.id===id);if(!conn)return;
+  const locked=!!flowState.locked;
   $("flowConnLabel").value=conn.label||"";
+  $("flowConnLabel").disabled=locked;
   renderFlowConnColorRow(conn.color||FLOW_COLORS[0]);
+  $("flowConnColorRow").querySelectorAll("button").forEach(b=>{b.disabled=locked});
+  $("flowConnDeleteBtn").style.display=locked?"none":"";
+  $("flowConnM").querySelector("h3").textContent=locked?"👁 Viewing Arrow":"🔗 Arrow";
   openM("flowConnM");
 }
 function renderFlowConnColorRow(current){
@@ -4508,7 +4563,7 @@ function flowFitToScreen(showToast){
 }
 function flowAutoLayout(){
   if(!flowState||!flowState.nodes.length){toast("Add some nodes first");return}
-  if(flowState.locked){toast("🔒 Unlock this flowchart to rearrange it");return}
+  if(flowState.locked){toast("👁 In View Mode — tap ✎ Edit to rearrange it");return}
   const nodes=flowState.nodes,connections=flowState.connections;
   const oldPositions={};nodes.forEach(n=>{oldPositions[n.id]={x:n.x,y:n.y}});
   const nodeById={};nodes.forEach(n=>nodeById[n.id]=n);
@@ -4779,7 +4834,7 @@ function flowNodeTapped(id){
 }
 function flowHandlePointerDown(e,fromId){
   e.preventDefault();e.stopPropagation();
-  if(flowState.locked){toast("🔒 Unlock this flowchart to draw arrows");return}
+  if(flowState.locked){toast("👁 In View Mode — tap ✎ Edit to draw arrows");return}
   const point=e.touches?e.touches[0]:e;
   const canvas=$("flowCanvas");
   const fromNode=flowState.nodes.find(n=>n.id===fromId);if(!fromNode)return;
