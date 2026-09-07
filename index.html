@@ -2436,8 +2436,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .ar-ab-name{font-weight:700;color:var(--t2);flex:1}
 .ar-ab-nums{color:var(--t4);font-size:10px;font-family:var(--fm)}
 .ar-shape{font-size:10.5px;color:var(--t3);margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd);position:relative;z-index:1;line-height:1.5}
-.flow-analysis-tip{font-size:11.5px;line-height:1.5;color:var(--t2);background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:10px 12px;margin-bottom:8px}
-.flow-analysis-tip.flow-analysis-tip-good{color:var(--mt);background:rgba(110,231,183,.08);border-color:rgba(110,231,183,.25)}
 
 .ar-action-card{background:var(--b2);border:1px solid var(--bd);border-left:3px solid;border-radius:var(--r1);padding:12px;margin-bottom:8px}
 .ar-action-hdr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px;font-weight:800;font-size:13px;margin-bottom:8px}
@@ -2680,23 +2678,18 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   background-image:radial-gradient(circle,var(--bd2) 1px,transparent 1px);background-size:22px 22px;
   position:relative;
 }
-.flow-canvas{position:relative;transform-origin:0 0;min-width:100%;min-height:100%}
+.flow-canvas{position:relative;transform-origin:0 0;min-width:100%;min-height:100%;transition:transform .25s var(--e)}
 .flow-svg{position:absolute;left:0;top:0;pointer-events:none;z-index:1}
 #flowNodesLayer{position:relative;z-index:2}
 #flowConnLabelsLayer{position:absolute;left:0;top:0;z-index:2;pointer-events:none}
-.flow-arrow-opt{
-  position:absolute;transform:translate(-50%,-50%);width:18px;height:18px;border-radius:50%;
-  background:var(--conn-color,#c8a55c);border:2px solid var(--b1);
-  pointer-events:auto;opacity:.75;transition:all .18s var(--spring);z-index:4;
-  box-shadow:0 2px 8px -2px rgba(0,0,0,.5);
-}
-.flow-arrow-opt:hover{opacity:1;transform:translate(-50%,-50%) scale(1.4)}
 .flow-arrow-label{
   position:absolute;transform:translate(-50%,-50%);font-size:9.5px;font-weight:700;color:var(--t2);
   background:var(--b1);padding:2px 8px;border-radius:20px;border:1px solid var(--bd2);
   white-space:nowrap;pointer-events:none;z-index:4;box-shadow:0 2px 8px -3px rgba(0,0,0,.5);
 }
-.flow-conn-line{filter:drop-shadow(0 0 3px currentColor)}
+.flow-conn-line{filter:drop-shadow(0 0 3px currentColor);transition:stroke-width .15s,filter .15s,d .5s var(--spring)}
+.flow-conn-hitarea{transition:d .5s var(--spring)}
+.flow-conn-hitarea:hover+.flow-conn-line{stroke-width:3.5;filter:drop-shadow(0 0 6px currentColor)}
 .flow-conn-line.flow-conn-entering{stroke-dasharray:1000;animation:flowConnDraw .5s var(--e) backwards}
 @keyframes flowConnDraw{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
 
@@ -2706,7 +2699,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   will-change:left,top;
 }
 .flow-node-wrap.flow-layout-transition{transition:left .5s var(--spring),top .5s var(--spring)}
-.flow-svg.flow-layout-fading{opacity:0;transition:opacity .18s}
 .flow-node-wrap:active{cursor:grabbing}
 .flow-node-wrap.sel .flow-node{box-shadow:0 0 0 3px color-mix(in srgb,var(--node-color) 45%,transparent),0 4px 18px -4px color-mix(in srgb,var(--node-color) 70%,transparent)}
 .flow-node-wrap.hover-target .flow-node{box-shadow:0 0 0 4px var(--mt),0 0 24px -2px var(--mt)!important;transform:scale(1.05)}
@@ -3569,7 +3561,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="flow-editor-topbar">
       <button class="flow-back-btn" onclick="closeFlowEditor()">← Back</button>
       <input class="flow-title-input" id="flowTitleInput" placeholder="Untitled Flowchart" oninput="flowRenameCurrent(this.value)"/>
-      <button class="flow-icon-btn" onclick="openFlowAnalysis()" title="Analyze">📊</button>
       <button class="flow-icon-btn" onclick="openFlowManageM()" title="Manage">⋯</button>
     </div>
     <div class="flow-toolbar">
@@ -3862,11 +3853,6 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div id="bbHrBreakdownContent"></div>
   <div class="mact"><button class="btn pri" onclick="closeM('bbHrBreakdownM')">Close</button></div>
 </div></div>
-<div class="mov" id="flowAnalysisM"><div class="mdl" style="max-width:460px;max-height:85vh;overflow-y:auto">
-  <h3>📊 Flowchart Analysis</h3>
-  <div id="flowAnalysisContent"></div>
-  <div class="mact"><button class="btn pri" onclick="closeM('flowAnalysisM')">Close</button></div>
-</div></div>
 <div class="mov" id="flowManageM"><div class="mdl" style="max-width:420px">
   <h3>⋯ Manage Flowchart</h3>
   <label class="slbl">Description <span class="tool-optional">(optional)</span></label>
@@ -3999,7 +3985,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="live-sec">
       <div class="live-sec-title">Table Setup</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div><label class="slbl">Table Size</label><select class="minp" id="liveTable" style="margin:0"><option value="HU">HU (Heads Up)</option><option value="3-max">3-max</option><option value="4-max">4-max</option><option value="5-max">5-max</option><option value="6-max" selected>6-max</option><option value="7-max">7-max</option><option value="8-max">8-max</option><option value="9-max">9-max</option><option value="10-max">10-max (Stud)</option></select></div>
+        <div><label class="slbl">Table Size</label><select class="minp" id="liveTable" style="margin:0" onchange="liveAutoFillBuyin()"><option value="HU">HU (Heads Up)</option><option value="3-max">3-max</option><option value="4-max">4-max</option><option value="5-max">5-max</option><option value="6-max" selected>6-max</option><option value="7-max">7-max</option><option value="8-max">8-max</option><option value="9-max">9-max</option><option value="10-max">10-max (Stud)</option></select></div>
         <div><label class="slbl">Venue / Platform</label><div class="ac-wrap"><input class="minp" id="liveLoc" placeholder="PokerStars, Bellagio…" style="margin:0" autocomplete="off"/><div class="ac-list" id="liveLocAC"></div></div></div>
         <div><label class="slbl">Seat Number</label><select class="minp" id="liveSeat" style="margin:0"><option value="">Unknown</option><option>Seat 1</option><option>Seat 2</option><option>Seat 3</option><option>Seat 4</option><option>Seat 5</option><option>Seat 6</option><option>Seat 7</option><option>Seat 8</option><option>Seat 9</option></select></div>
         <div><label class="slbl">Session Goal</label><select class="minp" id="liveGoal" style="margin:0" onchange="onLiveGoalChange()"><option value="">None</option><option value="win">Win target</option><option value="time">Time limit</option><option value="stop_loss">Stop-loss</option><option value="hands">Hand count</option></select></div>
@@ -4387,79 +4373,6 @@ function flowFitToScreen(showToast){
   });
   if(showToast){playSound("tick");haptic("light");toast("⛶ Fit to screen")}
 }
-function computeFlowAnalysis(){
-  const nodes=flowState.nodes,connections=flowState.connections;
-  const outgoing={},incoming={},undirected={};
-  nodes.forEach(n=>{outgoing[n.id]=[];incoming[n.id]=[];undirected[n.id]=new Set()});
-  connections.forEach(c=>{
-    if(outgoing[c.from]==null||incoming[c.to]==null)return;
-    outgoing[c.from].push(c.to);incoming[c.to].push(c.from);
-    undirected[c.from].add(c.to);undirected[c.to].add(c.from);
-  });
-  const visited=new Set(),components=[];
-  nodes.forEach(n=>{
-    if(visited.has(n.id))return;
-    const comp=[];const queue=[n.id];visited.add(n.id);
-    while(queue.length){
-      const cur=queue.shift();comp.push(cur);
-      undirected[cur].forEach(nb=>{if(!visited.has(nb)){visited.add(nb);queue.push(nb)}});
-    }
-    components.push(comp);
-  });
-  const isolatedNodes=nodes.filter(n=>outgoing[n.id].length===0&&incoming[n.id].length===0);
-  const branchPoints=nodes.filter(n=>outgoing[n.id].length>=2);
-  const convergePoints=nodes.filter(n=>incoming[n.id].length>=2);
-  const deadEnds=nodes.filter(n=>incoming[n.id].length>0&&outgoing[n.id].length===0);
-  const treeComponents=components.filter(c=>c.length>1);
-  let maxDepth=0;
-  treeComponents.forEach(compIds=>{
-    const idSet=new Set(compIds);
-    const level={};compIds.forEach(id=>level[id]=0);
-    function assignLevel(id,lvl,stack){
-      if(stack.has(id))return;
-      if(level[id]<lvl)level[id]=lvl;
-      stack.add(id);
-      (outgoing[id]||[]).filter(cid=>idSet.has(cid)).forEach(childId=>assignLevel(childId,lvl+1,stack));
-      stack.delete(id);
-    }
-    const localInDeg={};compIds.forEach(id=>localInDeg[id]=(incoming[id]||[]).filter(pid=>idSet.has(pid)).length);
-    const roots=compIds.filter(id=>localInDeg[id]===0);
-    (roots.length?roots:compIds).forEach(id=>assignLevel(id,0,new Set()));
-    maxDepth=Math.max(maxDepth,Math.max(...compIds.map(id=>level[id])));
-  });
-  let hasCycle=false;
-  const visitState={};nodes.forEach(n=>visitState[n.id]=0);
-  function dfsCycle(id){
-    visitState[id]=1;
-    for(const next of outgoing[id]||[]){
-      if(visitState[next]===1){hasCycle=true;return}
-      if(visitState[next]===0)dfsCycle(next);
-    }
-    visitState[id]=2;
-  }
-  nodes.forEach(n=>{if(visitState[n.id]===0)dfsCycle(n.id)});
-  return{nodeCount:nodes.length,connCount:connections.length,componentCount:components.length,
-    treeComponentCount:treeComponents.length,isolatedCount:isolatedNodes.length,isolatedNodes,
-    branchPoints,convergePoints,deadEnds,maxDepth:maxDepth+1,hasCycle};
-}
-function openFlowAnalysis(){
-  if(!flowState||!flowState.nodes.length){
-    $("flowAnalysisContent").innerHTML='<div class="empty-state" style="padding:20px"><span class="es-icon">📊</span><div class="es-title">Nothing to analyze yet</div><div class="es-sub">Add some nodes first.</div></div>';
-    openM("flowAnalysisM");return;
-  }
-  const a=computeFlowAnalysis();
-  let html='<div class="ar-hero"><div class="ar-hero-row"><span class="ar-hero-tight">'+a.nodeCount+" node"+(a.nodeCount!==1?"s":"")+'</span><span class="ar-hero-pct">'+a.connCount+" arrow"+(a.connCount!==1?"s":"")+'</span></div><div class="ar-hero-sub">'+a.maxDepth+" level"+(a.maxDepth!==1?"s":"")+" deep · "+a.treeComponentCount+" connected group"+(a.treeComponentCount!==1?"s":"")+(a.isolatedCount?" · "+a.isolatedCount+" isolated":"")+'</div></div>';
-  html+='<div class="ar-quickstats"><div class="ar-qs-item"><span class="ar-qs-lbl">Branch Points</span><span class="ar-qs-val">'+a.branchPoints.length+'</span></div><div class="ar-qs-item"><span class="ar-qs-lbl">Converge Points</span><span class="ar-qs-val">'+a.convergePoints.length+"</span></div></div>";
-  const tips=[];
-  if(a.isolatedCount>0)tips.push("🔌 <b>"+a.isolatedCount+(a.isolatedCount!==1?" nodes aren't":" node isn't")+" connected to anything.</b> Either link "+(a.isolatedCount!==1?"them":"it")+" in, or remove "+(a.isolatedCount!==1?"them":"it")+" if it's no longer needed.");
-  if(a.treeComponentCount>1)tips.push("🧩 This flowchart has <b>"+a.treeComponentCount+" separate sections</b> that don't connect to each other. If they're genuinely different topics, splitting them into their own flowcharts may be clearer.");
-  if(a.hasCycle)tips.push("🔁 This flowchart contains a <b>loop</b> — a path eventually leads back to an earlier node. Worth double-checking that's intentional.");
-  if(a.deadEnds.length>a.nodeCount*0.4&&a.nodeCount>4)tips.push("🚧 A lot of branches (<b>"+a.deadEnds.length+"</b>) end without leading anywhere further. That's normal for final outcomes, but worth a check that none were left unfinished.");
-  if(a.nodeCount>=6)tips.push("✨ Tip: use <b>Auto Layout</b> to automatically organize this into a clean hierarchy with minimal crossing arrows.");
-  html+=tips.length?'<div class="slbl" style="margin-top:14px">💭 Suggestions</div>'+tips.map(t=>'<div class="flow-analysis-tip">'+t+"</div>").join(""):'<div class="flow-analysis-tip flow-analysis-tip-good">✅ This flowchart looks clean — no isolated nodes, no disconnected sections, nothing obviously incomplete.</div>';
-  $("flowAnalysisContent").innerHTML=html;
-  openM("flowAnalysisM");
-}
 function flowAutoLayout(){
   if(!flowState||!flowState.nodes.length){toast("Add some nodes first");return}
   const nodes=flowState.nodes,connections=flowState.connections;
@@ -4571,20 +4484,26 @@ function flowAutoLayout(){
   }
 
   // Animate nodes gliding to their new spots rather than snapping instantly: render at the
-  // OLD positions first, fade the connections out, then move each node via a CSS transition,
-  // and only do the final full re-render (which redraws connections at their new endpoints)
-  // once the glide has finished.
+  // OLD positions first, then move each node via a CSS transition, morphing each connection's
+  // path shape in sync so the arrows glide along with their nodes instead of vanishing and
+  // popping back in. A final full re-render settles everything once the glide finishes.
   const newPositions={};nodes.forEach(n=>{newPositions[n.id]={x:n.x,y:n.y}});
   nodes.forEach(n=>{n.x=oldPositions[n.id].x;n.y=oldPositions[n.id].y});
   flowSaveCurrent();
   renderFlowCanvas();
-  const svgEl=$("flowSvg");if(svgEl)svgEl.classList.add("flow-layout-fading");
   requestAnimationFrame(()=>{
     document.querySelectorAll(".flow-node-wrap").forEach(el=>el.classList.add("flow-layout-transition"));
     nodes.forEach(n=>{
       n.x=newPositions[n.id].x;n.y=newPositions[n.id].y;
       const el=document.querySelector('.flow-node-wrap[data-id="'+n.id+'"]');
       if(el){el.style.left=n.x+"px";el.style.top=n.y+"px"}
+    });
+    connections.forEach(c=>{
+      const from=nodes.find(n=>n.id===c.from),to=nodes.find(n=>n.id===c.to);
+      if(!from||!to)return;
+      const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
+      const d=flowConnPathD(p1,p2,c.from,c.to);
+      document.querySelectorAll('path[data-cid="'+c.id+'"]').forEach(el=>el.setAttribute("d",d));
     });
     setTimeout(()=>{
       flowSaveCurrent();
@@ -4632,7 +4551,8 @@ function renderFlowCanvas(){
     if(!from||!to)return"";
     const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
     const connEntering=c.id===flowJustAddedConnId&&(Date.now()-flowJustAddedConnTime)<500;
-    return'<path data-cid="'+c.id+'" class="flow-conn-line'+(connEntering?" flow-conn-entering":"")+'" style="color:'+(c.color||"#c8a55c")+'" d="'+flowConnPathD(p1,p2,c.from,c.to)+'" fill="none" stroke="'+(c.color||"#c8a55c")+'" stroke-width="2" marker-end="url(#flowArrow_'+c.id+')"/>';
+    return'<path data-cid="'+c.id+'" class="flow-conn-hitarea" d="'+flowConnPathD(p1,p2,c.from,c.to)+'" fill="none" stroke="transparent" stroke-width="22" style="pointer-events:auto;cursor:pointer" onclick="flowOpenConnEditor(\''+c.id+"')\"/>"
+      +'<path data-cid="'+c.id+'" class="flow-conn-line'+(connEntering?" flow-conn-entering":"")+'" style="color:'+(c.color||"#c8a55c")+'" d="'+flowConnPathD(p1,p2,c.from,c.to)+'" fill="none" stroke="'+(c.color||"#c8a55c")+'" stroke-width="2" marker-end="url(#flowArrow_'+c.id+')"/>';
   }).join("");
   svg.innerHTML="<defs>"+markerDefs+"</defs>"+svgLines;
   if(flowJustAddedNodeId||flowJustAddedConnId){
@@ -4648,7 +4568,7 @@ function renderFlowCanvas(){
       if(!from||!to)return"";
       const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
       const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
-      return(c.label?'<div class="flow-arrow-label" data-cid-lbl="'+c.id+'" style="left:'+mx+"px;top:"+(my-16)+'px">'+escapeHtml(c.label)+"</div>":"")+'<button class="flow-arrow-opt" data-cid="'+c.id+'" style="left:'+mx+"px;top:"+my+'px;--conn-color:'+(c.color||"#c8a55c")+'" onclick="flowOpenConnEditor(\''+c.id+"')\" title=\"Arrow options\"></button>";
+      return c.label?'<div class="flow-arrow-label" data-cid-lbl="'+c.id+'" style="left:'+mx+"px;top:"+(my-16)+'px">'+escapeHtml(c.label)+"</div>":"";
     }).join("");
   }
   const maxX=Math.max(800,...flowState.nodes.map(n=>n.x+n.w+100),1);
@@ -4707,11 +4627,8 @@ function flowUpdateNodePositionDOM(id){
     const from=flowState.nodes.find(n=>n.id===c.from),to=flowState.nodes.find(n=>n.id===c.to);
     if(!from||!to)return;
     const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
-    const lineEl=document.querySelector('#flowSvg path[data-cid="'+c.id+'"]');
-    if(lineEl)lineEl.setAttribute("d",flowConnPathD(p1,p2,c.from,c.to));
-    const optBtn=document.querySelector('.flow-arrow-opt[data-cid="'+c.id+'"]');
+    document.querySelectorAll('#flowSvg path[data-cid="'+c.id+'"]').forEach(lineEl=>lineEl.setAttribute("d",flowConnPathD(p1,p2,c.from,c.to)));
     const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
-    if(optBtn){optBtn.style.left=mx+"px";optBtn.style.top=my+"px"}
     const lblEl=document.querySelector('.flow-arrow-label[data-cid-lbl="'+c.id+'"]');
     if(lblEl){lblEl.style.left=mx+"px";lblEl.style.top=(my-16)+"px"}
   });
@@ -6348,7 +6265,7 @@ function submitDep(){
 }
 // Live session
 let liveData=LG("ps_live",null);let liveTimer=null;
-function onLiveFmtChange(){const fmt=$("liveFmt")?.value;const buyinLabel=$("liveBuyinLabel");if(buyinLabel){buyinLabel.textContent=fmt==="tourney"||fmt==="sng"?"Entry Fee":fmt==="bomb"?"Min Buy-in":"Buy-in"}}
+function onLiveFmtChange(){const fmt=$("liveFmt")?.value;const buyinLabel=$("liveBuyinLabel");if(buyinLabel){buyinLabel.textContent=fmt==="tourney"||fmt==="sng"?"Entry Fee":fmt==="bomb"?"Min Buy-in":"Buy-in"}liveAutoFillBuyin()}
 function onLiveGoalChange(){const goal=$("liveGoal")?.value;const extra=$("liveGoalExtra");if(extra)extra.style.display=goal?"block":"none";const val=$("liveGoalVal");if(val){val.placeholder=goal==="win"?"Win target (e.g. 500)":goal==="time"?"Time limit (e.g. 4)":goal==="stop_loss"?"Stop-loss amount (e.g. 200)":goal==="hands"?"Hand count (e.g. 200)":"Value"}}
 function setLiveStakes(el,val){document.querySelectorAll(".lqs").forEach(x=>x.classList.remove("on"));el.classList.add("on");$("liveStakes").value=val}
 const STAKE_PRESETS=["0.01/0.02","0.02/0.05","0.05/0.10","0.10/0.25","0.25/0.50","0.50/1","1/2","1/3","2/5","3/5","5/10","10/20","10/25","25/50","50/100","100/200"];
@@ -6383,7 +6300,10 @@ function liveAutoFillBuyin(){
   if(!stakesVal.includes("/")){buyinEl.value="";return} // not a recognizable "SB/BB" cash format — leave empty rather than guess
   const bb=parseBBFromStakes(stakesVal);
   if(!bb){buyinEl.value="";return}
-  buyinEl.value=Math.round(bb*100);
+  const isCash=($("liveFmt")?.value||"cash")==="cash";
+  const is8Max=$("liveTable")?.value==="8-max";
+  const multiple=isCash&&is8Max?150:100;
+  buyinEl.value=Math.round(bb*multiple);
 }
 function prefillLive(){
   populateLiveBankrollSelect();
