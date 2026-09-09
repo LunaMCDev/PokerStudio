@@ -575,7 +575,7 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .tr-progress{width:85%;height:2px;background:var(--b0);border-radius:1px;overflow:hidden;margin-top:6px}
 .tr-progress-fill{height:100%;background:linear-gradient(90deg,var(--pk),var(--mt));border-radius:1px;transition:width .4s;box-shadow:0 0 8px 1px color-mix(in srgb,var(--pk) 60%,transparent)}
 .tbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%}
-.tabtn{flex:1;min-width:85px;max-width:170px;padding:16px 12px;border:1px solid;background:transparent;border-radius:var(--r1);font-size:13px;font-weight:800;transition:all .25s var(--spring);text-transform:uppercase;letter-spacing:.5px;position:relative}
+.tabtn{flex:1;min-width:85px;max-width:170px;padding:16px 12px;border:1px solid;background:transparent;border-radius:var(--r1);font-size:13px;font-weight:800;transition:all .25s var(--spring);text-transform:uppercase;letter-spacing:.5px;position:relative;overflow-wrap:anywhere;word-break:break-word;line-height:1.25;hyphens:auto}
 .kb-hints .tabtn::after,.kb-hints #flopBtns .btn::after{content:attr(data-kb);position:absolute;top:4px;right:5px;font-family:var(--fm);font-size:8px;font-weight:700;opacity:.35;letter-spacing:0}
 .kb-hints #flopBtns .btn{position:relative}
 .tabtn:active,.btn:active,.pill:active,.cell:active{transform:scale(.94)!important}
@@ -4023,7 +4023,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <h3>Start Live Session</h3>
     <div class="live-sec">
       <div class="live-sec-title">Bankroll</div>
-      <select class="minp" id="liveBankroll" style="margin:0"></select>
+      <select class="minp" id="liveBankroll" style="margin:0" onchange="liveAutoFillBuyin()"></select>
     </div>
     <div class="live-sec">
       <div class="live-sec-title">Format</div>
@@ -6483,10 +6483,27 @@ function brAutoFillBuyin(){
   updateBrResultLive();
 }
 let liveBuyinTouched=false;
+function computeBankrollBalanceById(id){
+  const b=getBankrollById(id);if(!b)return 0;
+  const sessTotal=(b.sessions||[]).reduce((a,s)=>a+s.resultCents,0);
+  const depTotal=(b.deposits||[]).reduce((a,d)=>a+d.amt,0);
+  const startBankroll=(parseFloat(b.settings?.startBankroll)||0)*100;
+  return startBankroll+sessTotal+depTotal;
+}
 function liveAutoFillBuyin(){
   if(liveBuyinTouched)return;
-  const stakesVal=$("liveStakes").value.trim();
   const buyinEl=$("liveBuyin");
+  // Special case: for a bankroll named "Online Cash", default the buy-in to the entire
+  // current balance rather than a stakes-based multiple — this bankroll is played as a
+  // single rolling stack, not fixed per-session buy-ins.
+  const bankrollId=$("liveBankroll")?.value;
+  const bankroll=bankrollId?getBankrollById(bankrollId):null;
+  if(bankroll&&(bankroll.name||"").trim().toLowerCase()==="online cash"){
+    const balanceCents=computeBankrollBalanceById(bankrollId);
+    buyinEl.value=balanceCents>0?(balanceCents/100).toFixed(2).replace(/\.00$/,""):"";
+    return;
+  }
+  const stakesVal=$("liveStakes").value.trim();
   if(!stakesVal.includes("/")){buyinEl.value="";return} // not a recognizable "SB/BB" cash format — leave empty rather than guess
   const bb=parseBBFromStakes(stakesVal);
   if(!bb){buyinEl.value="";return}
