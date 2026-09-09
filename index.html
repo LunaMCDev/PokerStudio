@@ -4009,6 +4009,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div><label class="slbl">Starting Amount</label><input class="minp" id="newBrStart" type="number" placeholder="0.00" step="0.01" style="margin:0"/></div>
     <div><label class="slbl">Currency</label><select class="minp" id="newBrCurrency" style="margin:0"><option value="GBP">£ GBP</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="CAD">C$ CAD</option><option value="AUD">A$ AUD</option></select></div>
   </div>
+  <label class="setting-row" style="border-bottom:none;padding:8px 12px;background:var(--b0);border-radius:var(--r1);cursor:pointer;margin-bottom:6px">
+    <span class="setting-label" style="font-size:12px">Online bankroll <span class="tool-optional">(off by default)</span><br><span class="tool-optional" style="font-size:9.5px">Buy-in on a live session defaults to your entire balance, not a stakes-based amount</span></span>
+    <input type="checkbox" id="newBrOnlineFlag" style="width:20px;height:20px;flex-shrink:0"/>
+  </label>
   <div class="mact"><button class="btn" onclick="closeM('newBrM');if(_brSwitcherWasOpen){renderBrSwitcherList();openM('brSwitcherM')}">Cancel</button><button class="btn pri" onclick="submitNewBr()">✦ Save</button></div>
 </div></div>
 <div class="mov" id="brViewFilterM"><div class="mdl" style="max-width:400px;max-height:80vh;overflow-y:auto">
@@ -6336,11 +6340,11 @@ function getBankrollBalance(b){const sessTotal=(b.sessions||[]).reduce((a,s)=>a+
 function renderBrSwitcherList(){const list=getBankrollsList();const activeId=getActiveBankrollId();$("brSwitcherList").innerHTML=list.map(b=>{const on=b.id===activeId;const bal=getBankrollBalance(b);return'<div class="brsw-row'+(on?" on":"")+'" onclick="switchActiveBankroll(\''+b.id+'\')"><span class="brsw-row-icon">'+b.icon+'</span><div class="brsw-row-info"><div class="brsw-row-name">'+escapeHtml(b.name)+(on?' <span class="brsw-active-tag">Active</span>':"")+'</div><div class="brsw-row-meta">'+b.sessions.length+' sessions · <span class="'+(bal>=0?"brsw-bal-pos":"brsw-bal-neg")+'">'+brFmtGeneric(bal,b.settings.currency)+'</span></div></div><button class="btn btn-xs" onclick="event.stopPropagation();openEditBr(\''+b.id+'\')">✎</button>'+(list.length>1?'<button class="btn btn-xs btn-d" onclick="event.stopPropagation();deleteBankroll(\''+b.id+'\')">✕</button>':"")+'</div>'}).join("")}
 function brFmtGeneric(cents,curr){const sym=curr==="EUR"?"€":curr==="GBP"?"£":curr==="CAD"?"C$":"$";const v=cents/100;return(v<0?"-":"")+sym+Math.abs(v).toLocaleString(undefined,{maximumFractionDigits:0})}
 let _brSwitcherWasOpen=false;
-function openNewBr(){_brSwitcherWasOpen=$("brSwitcherM")?.classList.contains("open")||false;closeM("brSwitcherM");$("newBrEditId").value="";$("newBrTitle").textContent="+ New Bankroll";$("newBrName").value="";$("newBrStart").value="0";$("newBrCurrency").value="GBP";renderBrIconGrid("💰");openM("newBrM")}
-function openEditBr(id){const b=getBankrollsList().find(x=>x.id===id);if(!b)return;_brSwitcherWasOpen=$("brSwitcherM")?.classList.contains("open")||false;closeM("brSwitcherM");$("newBrEditId").value=id;$("newBrTitle").textContent="✎ Edit Bankroll";$("newBrName").value=b.name;$("newBrStart").value=b.settings?.startBankroll||0;$("newBrCurrency").value=b.settings?.currency||"GBP";renderBrIconGrid(b.icon);openM("newBrM")}
+function openNewBr(){_brSwitcherWasOpen=$("brSwitcherM")?.classList.contains("open")||false;closeM("brSwitcherM");$("newBrEditId").value="";$("newBrTitle").textContent="+ New Bankroll";$("newBrName").value="";$("newBrStart").value="0";$("newBrCurrency").value="GBP";$("newBrOnlineFlag").checked=false;renderBrIconGrid("💰");openM("newBrM")}
+function openEditBr(id){const b=getBankrollsList().find(x=>x.id===id);if(!b)return;_brSwitcherWasOpen=$("brSwitcherM")?.classList.contains("open")||false;closeM("brSwitcherM");$("newBrEditId").value=id;$("newBrTitle").textContent="✎ Edit Bankroll";$("newBrName").value=b.name;$("newBrStart").value=b.settings?.startBankroll||0;$("newBrCurrency").value=b.settings?.currency||"GBP";$("newBrOnlineFlag").checked=!!b.settings?.onlineBankroll;renderBrIconGrid(b.icon);openM("newBrM")}
 function renderBrIconGrid(sel){$("newBrIconGrid").innerHTML=BR_ICONS.map(ic=>'<div class="cdot2 br-icon-opt'+(ic===sel?" sel":"")+'" data-ic="'+ic+'" onclick="selectBrIcon(this)">'+ic+'</div>').join("")}
 function selectBrIcon(el){$("newBrIconGrid").querySelectorAll(".br-icon-opt").forEach(d=>d.classList.remove("sel"));el.classList.add("sel")}
-function submitNewBr(){const name=$("newBrName").value.trim();if(!name)return toast("Enter a name");const selEl=$("newBrIconGrid").querySelector(".br-icon-opt.sel")||$("newBrIconGrid").querySelector(".br-icon-opt");const icon=selEl?selEl.dataset.ic:"💰";const startBankroll=parseFloat($("newBrStart").value)||0;const currency=$("newBrCurrency").value||"GBP";const editId=$("newBrEditId").value;const list=getBankrollsList();if(editId){const b=list.find(x=>x.id===editId);if(b){b.name=name;b.icon=icon;b.settings.startBankroll=startBankroll;b.settings.currency=currency}}else{list.push({id:"br_"+Date.now(),name,icon,sessions:[],goals:[],deposits:[],settings:{startBankroll,currency}});LS("ps_active_bankroll",list[list.length-1].id)}saveBankrollsList();closeM("newBrM");renderBrAll();renderBankrollSwitcher();updateCurrencyLabels();toast(editId?"Updated ✦":"Bankroll created ✦");if(!editId)celebrate();if(_brSwitcherWasOpen){renderBrSwitcherList();openM("brSwitcherM")}}
+function submitNewBr(){const name=$("newBrName").value.trim();if(!name)return toast("Enter a name");const selEl=$("newBrIconGrid").querySelector(".br-icon-opt.sel")||$("newBrIconGrid").querySelector(".br-icon-opt");const icon=selEl?selEl.dataset.ic:"💰";const startBankroll=parseFloat($("newBrStart").value)||0;const currency=$("newBrCurrency").value||"GBP";const onlineBankroll=$("newBrOnlineFlag").checked;const editId=$("newBrEditId").value;const list=getBankrollsList();if(editId){const b=list.find(x=>x.id===editId);if(b){b.name=name;b.icon=icon;b.settings.startBankroll=startBankroll;b.settings.currency=currency;b.settings.onlineBankroll=onlineBankroll}}else{list.push({id:"br_"+Date.now(),name,icon,sessions:[],goals:[],deposits:[],settings:{startBankroll,currency,onlineBankroll}});LS("ps_active_bankroll",list[list.length-1].id)}saveBankrollsList();closeM("newBrM");renderBrAll();renderBankrollSwitcher();updateCurrencyLabels();toast(editId?"Updated ✦":"Bankroll created ✦");if(!editId)celebrate();if(_brSwitcherWasOpen){renderBrSwitcherList();openM("brSwitcherM")}}
 function deleteBankroll(id){const list=getBankrollsList();if(list.length<=1)return toast("You need at least one bankroll");const b=list.find(x=>x.id===id);confirmAction("Delete \""+(b?.name||"")+"\"?","All its sessions, goals, and deposits will be lost.",()=>{const wasActive=getActiveBankrollId()===id;_bankrollsCache=list.filter(x=>x.id!==id);saveBankrollsList();if(wasActive)LS("ps_active_bankroll",_bankrollsCache[0].id);renderBrSwitcherList();renderBrAll();renderBankrollSwitcher();toast("Deleted")})}
 const BR_CURRENCIES=[{code:"GBP",sym:"£",name:"British Pound"},{code:"USD",sym:"$",name:"US Dollar"},{code:"EUR",sym:"€",name:"Euro"},{code:"CAD",sym:"C$",name:"Canadian Dollar"},{code:"AUD",sym:"A$",name:"Australian Dollar"}];
 function openSplitByCurrency(){
@@ -6493,12 +6497,12 @@ function computeBankrollBalanceById(id){
 function liveAutoFillBuyin(){
   if(liveBuyinTouched)return;
   const buyinEl=$("liveBuyin");
-  // Special case: for a bankroll named "Online Cash", default the buy-in to the entire
-  // current balance rather than a stakes-based multiple — this bankroll is played as a
-  // single rolling stack, not fixed per-session buy-ins.
+  // For a bankroll flagged as "Online bankroll" in its settings, default the buy-in to the
+  // entire current balance rather than a stakes-based multiple — this bankroll is played as
+  // a single rolling stack, not fixed per-session buy-ins.
   const bankrollId=$("liveBankroll")?.value;
   const bankroll=bankrollId?getBankrollById(bankrollId):null;
-  if(bankroll&&(bankroll.name||"").trim().toLowerCase()==="online cash"){
+  if(bankroll&&bankroll.settings?.onlineBankroll){
     const balanceCents=computeBankrollBalanceById(bankrollId);
     buyinEl.value=balanceCents>0?(balanceCents/100).toFixed(2).replace(/\.00$/,""):"";
     return;
