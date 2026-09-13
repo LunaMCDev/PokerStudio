@@ -10,9 +10,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="PokerStudio"/>
-<link rel="manifest" id="pwaManifestLink"/>
-<link rel="apple-touch-icon" id="pwaAppleIcon"/>
-<link rel="icon" id="pwaFavicon"/>
+<link rel="manifest" href="./manifest.webmanifest"/>
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png"/>
+<link rel="icon" href="./icons/favicon-32.png" type="image/png"/>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
@@ -8686,68 +8686,12 @@ function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle(
 
 // ═══ INIT ═══
 function setupPWA(){
-  try{
-    const cs=getComputedStyle(document.documentElement);
-    const bg=cs.getPropertyValue("--b0").trim()||"#0d0710";
-    const accent=cs.getPropertyValue("--pk").trim()||"#ec4899";
-    const accent2=cs.getPropertyValue("--pk2").trim()||"#f472b6";
-    // Generate an on-brand icon on the fly (rounded square, gradient, spade glyph) since this
-    // is a single HTML file with no separate image assets to point a manifest at.
-    const canvas=document.createElement("canvas");
-    canvas.width=512;canvas.height=512;
-    const ctx=canvas.getContext("2d");
-    const r=96;
-    ctx.beginPath();
-    ctx.moveTo(r,0);ctx.arcTo(512,0,512,512,r);ctx.arcTo(512,512,0,512,r);ctx.arcTo(0,512,0,0,r);ctx.arcTo(0,0,512,0,r);
-    ctx.closePath();ctx.clip();
-    ctx.fillStyle=bg;ctx.fillRect(0,0,512,512);
-    const grad=ctx.createLinearGradient(0,0,512,512);
-    grad.addColorStop(0,accent);grad.addColorStop(1,accent2);
-    ctx.fillStyle=grad;
-    ctx.font="700 300px Georgia, serif";
-    ctx.textAlign="center";ctx.textBaseline="middle";
-    ctx.fillText("♠",256,290);
-    const iconUrl=canvas.toDataURL("image/png");
-    const appleIcon=$("pwaAppleIcon"),favicon=$("pwaFavicon");
-    if(appleIcon)appleIcon.href=iconUrl;
-    if(favicon){favicon.href=iconUrl;favicon.type="image/png"}
-    // Build the manifest dynamically (as a Blob URL) so it always reflects the current theme,
-    // rather than shipping a separate static manifest.json this single file can't host.
-    const manifest={
-      name:"PokerStudio",short_name:"PokerStudio",
-      description:"Poker study, hand history, bankroll, and dealer shift tracking.",
-      start_url:location.href.split("#")[0],scope:location.href.split("#")[0],
-      display:"standalone",orientation:"portrait",
-      background_color:bg,theme_color:bg,
-      icons:[
-        {src:iconUrl,sizes:"192x192",type:"image/png",purpose:"any maskable"},
-        {src:iconUrl,sizes:"512x512",type:"image/png",purpose:"any maskable"}
-      ]
-    };
-    const manifestBlob=new Blob([JSON.stringify(manifest)],{type:"application/json"});
-    const manifestUrl=URL.createObjectURL(manifestBlob);
-    const manifestLink=$("pwaManifestLink");
-    if(manifestLink)manifestLink.href=manifestUrl;
-    // Best-effort offline caching. Browsers vary in whether they allow registering a service
-    // worker from a Blob URL (some restrict this for security reasons), and installability
-    // itself generally requires an https/localhost origin rather than a local file — so this
-    // is attempted quietly and simply does nothing if the environment doesn't support it,
-    // rather than surfacing an error to the person using the app.
-    if("serviceWorker" in navigator){
-      const swCode="self.addEventListener('install',e=>self.skipWaiting());"
-        +"self.addEventListener('activate',e=>self.clients.claim());"
-        +"self.addEventListener('fetch',e=>{"
-        +"if(e.request.method!=='GET')return;"
-        +"e.respondWith(caches.open('pokerstudio-v1').then(cache=>"
-        +"cache.match(e.request).then(cached=>{"
-        +"const fetchPromise=fetch(e.request).then(res=>{if(res&&res.ok)cache.put(e.request,res.clone());return res}).catch(()=>cached);"
-        +"return cached||fetchPromise;"
-        +"})));});";
-      const swBlob=new Blob([swCode],{type:"application/javascript"});
-      const swUrl=URL.createObjectURL(swBlob);
-      navigator.serviceWorker.register(swUrl).catch(()=>{/* silently ignore — offline caching is a bonus, not a requirement */});
-    }
-  }catch(e){/* PWA setup is a nice-to-have; never let it block the app from loading */}
+  // Real manifest.webmanifest, icons, and sw.js now ship as separate files alongside
+  // index.html (see the accompanying icons/ folder) rather than being generated as
+  // Blob URLs at runtime, so registration here is a plain, standard call.
+  if("serviceWorker" in navigator){
+    navigator.serviceWorker.register("./sw.js").catch(()=>{/* offline caching is a bonus, not a requirement */});
+  }
 }
 (function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=LG("ps_deck","classic");document.documentElement.setAttribute("data-deck",dk);const fnt=FONTS.find(x=>x.id===LG("ps_font","sora"));if(fnt)document.documentElement.style.setProperty("--ff",fnt.stack);setupPWA();// Refresh DACTS after theme
 const fd=getDACTS();DACTS[0]=fd[0];DACTS[1]=fd[1];DACTS[2]=fd[2];if(!LG("ps_cur",null))S.acts=JSON.parse(JSON.stringify(DACTS));
