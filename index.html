@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/>
 <title>PokerStudio</title>
+<meta name="description" content="Poker study, hand history, bankroll, and dealer shift tracking — all in one place."/>
+<meta name="theme-color" content="#0d0710"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="PokerStudio"/>
+<link rel="manifest" id="pwaManifestLink"/>
+<link rel="apple-touch-icon" id="pwaAppleIcon"/>
+<link rel="icon" id="pwaFavicon"/>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
@@ -356,6 +365,8 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .srb-text{flex:1;min-width:0}
 .srb-title{font-size:12.5px;font-weight:800;color:var(--t1)}
 .srb-sub{font-size:10px;color:var(--t3);margin-top:1px}
+.backup-srb{background:linear-gradient(135deg,color-mix(in srgb,var(--li) 18%,transparent),color-mix(in srgb,var(--li) 5%,transparent));border-color:color-mix(in srgb,var(--li) 35%,transparent);box-shadow:0 0 24px -12px color-mix(in srgb,var(--li) 50%,transparent)}
+.backup-srb .srb-icon{animation:none}
 .srb-close{
   width:24px;height:24px;border-radius:50%;background:var(--b0);border:1px solid var(--bd2);
   color:var(--t4);font-size:9px;cursor:pointer;transition:all .18s;flex-shrink:0;
@@ -587,6 +598,8 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .tabtn.tabtn-wrong{opacity:1!important;border-color:var(--rs)!important;color:var(--rs)!important;box-shadow:0 0 22px rgba(248,113,113,.5),0 0 0 1px rgba(248,113,113,.3);animation:tabtnWrongShake .4s var(--e)}
 @keyframes tabtnCorrectPulse{0%{transform:scale(1)}45%{transform:scale(1.08)}100%{transform:scale(1)}}
 @keyframes tabtnWrongShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes statPulse{0%{transform:scale(1)}35%{transform:scale(1.32);color:var(--pk2);text-shadow:0 0 14px color-mix(in srgb,var(--pk2) 70%,transparent)}100%{transform:scale(1)}}
+.pulse{animation:statPulse .5s var(--spring)}
 .tr-quick-stats{display:flex;width:100%;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);overflow:hidden}
 .tr-qs{flex:1;text-align:center;padding:10px 6px;border-right:1px solid var(--bd)}
 .tr-qs:last-child{border:none}
@@ -690,7 +703,7 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 
 /* ── GRID VIEW ── */
 .fs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:5px}
-.fs-gi{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px 8px;border-radius:var(--r1);cursor:pointer;transition:background .13s,transform .13s;border:1px solid transparent;text-align:center;position:relative}
+.fs-gi{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 6px 8px;border-radius:var(--r1);cursor:pointer;transition:background .13s,transform .13s;border:1px solid transparent;text-align:center;position:relative;animation:slideUp .3s var(--e) backwards}
 .fs-gi:hover{background:rgba(200,165,92,.07);border-color:var(--bd);transform:translateY(-1px)}
 .fs-gi.fav{border-color:rgba(200,165,92,.2)}
 .fs-gi .gi-ico{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:9px;font-size:20px;background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06));border:1px solid var(--bd);transition:transform .15s}
@@ -922,6 +935,17 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 @keyframes fadeInRight{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.stagger-in>*:nth-child(1){animation-delay:.02s}
+.stagger-in>*:nth-child(2){animation-delay:.06s}
+.stagger-in>*:nth-child(3){animation-delay:.10s}
+.stagger-in>*:nth-child(4){animation-delay:.14s}
+.stagger-in>*:nth-child(5){animation-delay:.18s}
+.stagger-in>*:nth-child(6){animation-delay:.22s}
+.stagger-in>*:nth-child(7){animation-delay:.26s}
+.stagger-in>*:nth-child(8){animation-delay:.30s}
+.stagger-in>*:nth-child(9){animation-delay:.34s}
+.stagger-in>*:nth-child(10){animation-delay:.38s}
+.stagger-in>*:nth-child(n+11){animation-delay:.4s}
 
 /* ── File system ── */
 .fs-di{min-height:52px;transition:background .15s}
@@ -1164,7 +1188,9 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   color:var(--pk2);margin:26px 0 12px;
   padding-bottom:9px;border-bottom:1px solid var(--bd2);
   position:relative;animation:slideUp .35s var(--e) backwards;
+  cursor:pointer;transition:opacity .15s;user-select:none;-webkit-user-select:none;
 }
+.settings-category:hover{opacity:.8}
 .settings-category:first-of-type{margin-top:4px}
 .settings-category::after{
   content:"";position:absolute;bottom:-1px;left:0;width:56px;height:2px;
@@ -1172,6 +1198,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   box-shadow:0 0 10px 1px color-mix(in srgb,var(--pk) 60%,transparent);
 }
 .settings-category .sc-icon{font-size:15px;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--pk2) 45%,transparent))}
+.sc-chevron{margin-left:auto;font-size:12px;color:var(--t4);transition:transform .2s var(--spring)}
+.settings-danger-cat{color:var(--rs)}
+.settings-danger-cat::after{background:linear-gradient(90deg,var(--rs),transparent);box-shadow:0 0 10px 1px color-mix(in srgb,var(--rs) 60%,transparent)}
+.settings-danger-cat .sc-icon{filter:drop-shadow(0 0 6px color-mix(in srgb,var(--rs) 45%,transparent))}
 
 /* ══ LIVE SESSION START MODAL — fully styled ══ */
 #liveStartM .mdl h3{
@@ -1952,7 +1982,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .hh-crumb.on{color:var(--pk2);font-weight:700}
 .hh-crumb-sep{color:var(--t4);font-size:10px}
 .hh-folder-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:12px}
-.hh-folder-card{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:all .18s var(--spring)}
+.hh-folder-card{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:all .18s var(--spring);animation:slideUp .3s var(--e) backwards;position:relative}
 .hh-folder-card:hover{border-color:var(--pk);transform:translateY(-2px)}
 .hh-folder-ico{font-size:24px}
 .hh-folder-name{font-size:11px;font-weight:700;color:var(--t1);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
@@ -2655,6 +2685,15 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   display:flex;align-items:center;justify-content:center;transition:all .18s var(--spring);
 }
 .flow-card-move:hover{background:var(--pk);color:var(--b0);border-color:transparent;transform:scale(1.1)}
+.flow-card-edit{
+  position:absolute;top:6px;right:58px;width:22px;height:22px;border-radius:50%;
+  background:var(--b0);border:1px solid var(--bd2);color:var(--t4);font-size:10px;
+  display:flex;align-items:center;justify-content:center;transition:all .18s var(--spring);
+}
+.flow-card-edit:hover{background:var(--li);color:var(--b0);border-color:transparent;transform:scale(1.1)}
+.fnd-color-bar{height:5px;border-radius:4px;margin-bottom:14px;background:var(--node-color)}
+.fnd-subtitle{font-size:13px;font-weight:700;color:var(--t2);margin-top:2px;margin-bottom:10px}
+.fnd-body{font-size:12.5px;line-height:1.55;color:var(--t3);white-space:pre-wrap;padding-top:10px;border-top:1px solid var(--bd)}
 
 /* ── Editor top bar & toolbar ── */
 .flow-editor-topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
@@ -2686,18 +2725,24 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-tool-icon-btn.active{background:linear-gradient(135deg,var(--rs),#e08a8a);border-color:transparent;color:#fff;box-shadow:0 3px 12px -2px rgba(212,114,114,.5)}
 .flow-tool-icon-btn.flow-tool-danger:hover{border-color:var(--rs);color:var(--rs)}
 .flow-hint{font-size:10.5px;color:var(--t4);text-align:center;margin-bottom:10px;padding:6px 10px;background:var(--b0);border-radius:var(--r1);border:1px dashed var(--bd)}
-.flow-view-banner{
-  display:flex;align-items:center;gap:10px;justify-content:space-between;
-  padding:10px 14px;margin-bottom:10px;border-radius:var(--r1);
+.flow-viewmode-chip{
+  display:flex;align-items:center;gap:6px;flex-shrink:0;
+  padding:5px 6px 5px 10px;border-radius:20px;
   background:linear-gradient(135deg,color-mix(in srgb,var(--li) 16%,var(--b2)),var(--b2));
   border:1px solid color-mix(in srgb,var(--li) 40%,var(--bd));
   animation:vIn .3s var(--e);
 }
-.flow-view-banner-text{font-size:11.5px;font-weight:700;color:var(--li)}
+.flow-viewmode-chip span{font-size:10px;font-weight:800;color:var(--li);white-space:nowrap}
+.flow-viewmode-chip button{
+  font-size:10px;font-weight:800;color:var(--b0);white-space:nowrap;
+  background:linear-gradient(135deg,var(--pk),var(--pk2));border:none;border-radius:14px;
+  padding:4px 9px;transition:transform .15s var(--spring);
+}
+.flow-viewmode-chip button:active{transform:scale(.92)}
 
 /* ── Canvas ── */
 .flow-canvas-wrap{
-  width:100%;height:calc(100vh - 340px);min-height:360px;overflow:auto;
+  width:100%;height:calc(100vh - 290px);min-height:400px;overflow:auto;
   background:var(--b0);border:1px solid var(--bd2);border-radius:var(--r2);
   background-image:radial-gradient(circle,var(--bd2) 1px,transparent 1px);background-size:22px 22px;
   position:relative;
@@ -2774,8 +2819,8 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-size-lg .flow-node-body{font-size:10.5px}
 
 /* ── Node editor modal ── */
-.flow-color-row{display:flex;flex-wrap:wrap;gap:8px}
-.flow-color-opt{width:32px;height:32px;border-radius:50%;border:2px solid transparent;transition:all .2s var(--spring)}
+.flow-color-row{display:flex;flex-wrap:wrap;gap:7px;max-height:118px;overflow-y:auto;padding:2px 2px 4px;scrollbar-width:thin}
+.flow-color-opt{width:28px;height:28px;border-radius:50%;border:2px solid transparent;transition:all .2s var(--spring);flex-shrink:0}
 .flow-color-opt:disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
 .flow-color-opt.sel{border-color:var(--t1);transform:scale(1.15);box-shadow:0 0 0 2px var(--b1),0 0 10px 1px rgba(255,255,255,.3)}
 .nc-nb-chip{
@@ -2995,6 +3040,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 <!-- EDITOR -->
 <div id="editorV" class="view on">
   <div class="srb" id="studyReminderBanner" style="display:none"></div>
+  <div class="srb backup-srb" id="backupReminderBanner" style="display:none"></div>
   <div class="viewer-bar" id="viewerBar" style="display:none">
     <span style="font-size:18px;margin-right:4px" id="vbIcon">♠</span>
     <span class="vb-name" id="vbName"></span>
@@ -3210,7 +3256,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="br-hist-hdr"><h3>📜 Session History</h3><span class="br-hist-count" id="brHistCount"></span></div>
     <div class="br-table-card">
       <div style="overflow-x:auto">
-        <div id="brSBody" class="br-sess-list"></div>
+        <div id="brSBody" class="br-sess-list stagger-in"></div>
       </div>
     </div>
   </div>
@@ -3419,7 +3465,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       <div class="hh-folder-breadcrumb" id="hhFolderBreadcrumb"></div>
       <button class="btn btn-s" onclick="openM('hhNewFolderM')">+ Folder</button>
     </div>
-    <div class="hh-folder-grid" id="hhFolderGrid"></div>
+    <div class="hh-folder-grid stagger-in" id="hhFolderGrid"></div>
 
     <div class="ac-wrap" style="margin-bottom:8px"><input type="text" class="minp" id="hhSearch" placeholder="🔍 Search hands…" style="margin:0" oninput="renderHhHands()"/></div>
     <div class="br-hist-toolbar">
@@ -3440,7 +3486,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       </div>
     </div>
     <div class="br-hist-hdr"><h3>📝 Logged Hands</h3><span class="br-hist-count" id="hhCount"></span></div>
-    <div id="hhList"></div>
+    <div id="hhList" class="stagger-in"></div>
 </div>
 
 <!-- TOOLS -->
@@ -3502,8 +3548,8 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="tool-card">
       <h3>Pot Odds</h3>
       <div class="tool-grid-2">
-        <div><label class="slbl">Pot Size (incl. their bet)</label><input class="minp" id="poPot" type="number" placeholder="e.g. 100" oninput="runPotOdds()" style="margin:0"/></div>
-        <div><label class="slbl">Amount to Call</label><input class="minp" id="poCall" type="number" placeholder="e.g. 25" oninput="runPotOdds()" style="margin:0"/></div>
+        <div><label class="slbl">Pot Size (before their bet)</label><input class="minp" id="poPotBefore" type="number" placeholder="e.g. 75" oninput="runPotOdds()" style="margin:0"/></div>
+        <div><label class="slbl">Their Bet</label><input class="minp" id="poTheirBet" type="number" placeholder="e.g. 25" oninput="runPotOdds()" style="margin:0"/></div>
       </div>
       <div style="margin-top:10px"><label class="slbl">Your Estimated Equity % <span class="tool-optional">(optional)</span></label><input class="minp" id="poEquity" type="number" placeholder="e.g. 35" oninput="runPotOdds()" style="margin:0"/></div>
     </div>
@@ -3580,9 +3626,9 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <button class="btn pri" style="width:100%;padding:14px;font-weight:800;margin-bottom:16px" onclick="createNewFlowchart()">+ New Flowchart</button>
     <div class="hh-folder-bar">
       <div class="hh-folder-breadcrumb" id="flowFolderBreadcrumb"></div>
-      <button class="btn btn-s" onclick="openM('flowNewFolderM')">+ Folder</button>
+      <button class="btn btn-s" onclick="flowOpenNewFolder()">+ Folder</button>
     </div>
-    <div class="hh-folder-grid" id="flowFolderGrid"></div>
+    <div class="hh-folder-grid stagger-in" id="flowFolderGrid"></div>
     <div class="br-hist-toolbar-right" style="margin-bottom:10px">
       <select id="flowSortField" class="sel-sm" onchange="renderFlowGrid()">
         <option value="updated">Sort: Last Edited</option>
@@ -3592,7 +3638,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       </select>
       <button class="btn btn-s" id="flowDirBtn" onclick="toggleFlowSortDir()">⬇ Newest</button>
     </div>
-    <div id="flowGrid" class="flow-grid"></div>
+    <div id="flowGrid" class="flow-grid stagger-in"></div>
   </div>
 
   <!-- EDITOR VIEW -->
@@ -3607,21 +3653,19 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
         <button class="flow-tool-btn flow-tool-pri" id="flowAddBtn" onclick="flowAddNode()" title="Add node"><span>➕</span>Add</button>
         <button class="flow-tool-btn" onclick="flowAutoLayout()" title="Auto layout"><span>✨</span>Layout</button>
         <button class="flow-tool-btn" onclick="flowFitToScreen(true)" title="Fit to screen"><span>⛶</span>Fit</button>
-        <button class="flow-tool-btn" id="flowSnapBtn" onclick="flowToggleSnap()" title="Snap to grid"><span>▦</span>Snap</button>
+        <div class="flow-viewmode-chip" id="flowViewModeChip" style="display:none">
+          <span>👁 View Mode</span>
+          <button onclick="flowToggleLock()">✎ Edit</button>
+        </div>
       </div>
       <div class="flow-toolbar-row">
         <button class="flow-tool-icon-btn" id="flowUndoBtn" onclick="flowUndo()" title="Undo" disabled>↶</button>
         <button class="flow-tool-icon-btn" id="flowRedoBtn" onclick="flowRedo()" title="Redo" disabled>↷</button>
         <button class="flow-tool-icon-btn" onclick="flowZoom(0.1)" title="Zoom in">🔍+</button>
         <button class="flow-tool-icon-btn" onclick="flowZoom(-0.1)" title="Zoom out">🔍−</button>
-        <button class="flow-tool-icon-btn" id="flowLockBtn" onclick="flowToggleLock()" title="Lock — explore without moving anything">🔓</button>
         <span style="flex:1"></span>
         <button class="flow-tool-icon-btn flow-tool-danger" onclick="flowClearCanvas()" title="Clear all">🗑️</button>
       </div>
-    </div>
-    <div class="flow-view-banner" id="flowViewBanner" style="display:none">
-      <span class="flow-view-banner-text">👁 View Mode — nothing can be changed while exploring</span>
-      <button class="btn pri btn-s" onclick="flowToggleLock()">✎ Edit</button>
     </div>
     <div class="flow-hint" id="flowModeHint">Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.</div>
     <div class="flow-canvas-wrap" id="flowCanvasWrap">
@@ -3673,13 +3717,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 <div id="settingsV" class="view" style="max-width:800px;margin:0 auto">
   <div class="section-head"><span style="font-size:20px">⚙</span><h2>Settings</h2></div>
   
-<div class="settings-category"><span class="sc-icon">🎨</span>Appearance &amp; Navigation</div>
-<div class="gp" style="margin-bottom:12px"><div class="slbl">🎨 Theme</div><div class="theme-grid" id="themeGrid"></div></div>
-<div class="gp" style="margin-bottom:12px"><div class="slbl">🃏 Deck Design</div><div class="theme-grid" id="deckGrid"></div></div>
-<div class="gp" style="margin-bottom:12px"><div class="slbl">🔤 Font</div><div class="setting-desc" style="margin-bottom:8px">Changes body text only — headings, numbers, and icons always stay put so nothing breaks.</div><select class="minp" id="fontSelect" onchange="applyFont(this.value)" style="margin-bottom:10px"></select><div class="font-preview-box" id="fontPreviewBox"></div></div>
-  
+
+<div class="settings-category" onclick="toggleSettingsCat('nav')"><span class="sc-icon">🧭</span>Navigation &amp; Behaviour<span class="sc-chevron" id="scChev_nav">▾</span></div>
+<div class="settings-cat-body" id="scBody_nav">
 <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🧭 Navigation Style</div>
     <div class="setting-row" style="border-bottom:none;flex-direction:column;align-items:stretch;gap:8px">
       <div class="setting-info"><span class="setting-label">How you move around the app</span><span class="setting-desc">Applies instantly, no restart needed</span></div>
       <div class="seg-row" id="navStyleRow">
@@ -3688,44 +3729,13 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
         <button data-nav="hamburger">☰ Hamburger</button>
       </div>
     </div>
+    <div class="setting-row" style="border-top:1px solid var(--bd);margin-top:10px;padding-top:10px;border-bottom:none"><div class="setting-info"><span class="setting-label">Default Tab on Launch</span><span class="setting-desc">Which screen opens the app</span></div><select id="setDefaultTab" onchange="LS('ps_default_tab',this.value)" style="font-size:12px"><option value="editor">♠️ Editor</option><option value="trainer">🎯 Train</option><option value="files">📁 Files</option><option value="bankroll">💰 Bank</option></select></div>
   </div>
-  
+</div>
+
+<div class="settings-category" onclick="toggleSettingsCat('editor')"><span class="sc-icon">♠</span>Range Editor<span class="sc-chevron" id="scChev_editor">▾</span></div>
+<div class="settings-cat-body" id="scBody_editor">
 <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🚀 App Behaviour</div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Default Tab on Launch</span><span class="setting-desc">Which screen opens the app</span></div><select id="setDefaultTab" onchange="LS('ps_default_tab',this.value)" style="font-size:12px"><option value="editor">♠️ Editor</option><option value="trainer">🎯 Train</option><option value="files">📁 Files</option><option value="bankroll">💰 Bank</option></select></div>
-    <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Study Streak</span><span class="setting-desc" id="setStreakDesc">Keep training daily to build your streak</span></div><div class="streak-chip" id="setStreakChip"><span class="fire">🔥</span><span id="setStreakVal">0</span></div></div>
-  </div>
-  
-<div class="settings-category"><span class="sc-icon">👤</span>Profile &amp; Progress</div>
-<div class="gp" style="margin-bottom:12px">
-    <div class="slbl">👤 Profile</div>
-    <div style="padding:10px 0">
-      <div style="font-weight:600;font-size:12px;margin-bottom:6px">Your Name</div>
-      <input type="text" id="setUserName" placeholder="Enter your name..." style="width:100%;padding:10px 14px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);font-size:13px;color:var(--t1)" oninput="LS('ps_username',this.value);updateUserGreeting()"/>
-    </div>
-    <div style="padding:0 0 6px">
-      <div style="font-weight:600;font-size:12px;margin-bottom:6px">Your Icon</div>
-      <div id="profIconGrid"></div>
-    </div>
-  </div>
-  
-<div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🎮 Progress</div>
-    <div class="xp-card" id="xpCard"></div>
-    <div class="setting-row" style="border-bottom:none;margin-top:10px"><div class="setting-info"><span class="setting-label">Achievements</span><span class="setting-desc">Badges you've unlocked through training, playing &amp; logging</span></div><button class="btn btn-s pri" id="setAchvBtn" onclick="openAchvModal()"><span id="setAchvChip">0/21</span> 🏆</button></div>
-  </div>
-  
-<div class="settings-category"><span class="sc-icon">🎮</span>Training</div>
-<div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🎯 Trainer</div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Auto-advance Speed</span><span class="setting-desc">How fast correct answers auto-advance</span></div><select id="setSpeed" onchange="LS('ps_speed',this.value)"><option value="fast" selected>Fast (0.5s)</option><option value="normal">Normal (1s)</option><option value="slow">Slow (2.5s)</option></select></div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Haptic Feedback</span><span class="setting-desc">Vibrate on correct / missed answers</span></div><button class="btn btn-s" id="setVibrate" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_vibrate',this.dataset.on);if(this.dataset.on==='1')haptic('light')" data-on="1">On</button></div>
-    <div class="setting-row"><div class="setting-info"><span class="setting-label">Sound Effects</span><span class="setting-desc">Chimes on correct / wrong answers</span></div><button class="btn btn-s" id="setSound" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_sound',this.dataset.on);if(this.dataset.on==='1')playSound('correct')" data-on="1">On</button></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Clear Error History</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear all error history?','',()=>{S.errors={};saveErr();toast('Errors cleared ✦')})">Clear</button></div>
-  </div>
-  
-<div class="gp" style="margin-bottom:12px">
-    <div class="slbl">🎛 Range Editor Appearance</div>
     <div class="setting-row" style="border-bottom:none;flex-direction:column;align-items:stretch;gap:8px">
       <div class="setting-info"><span class="setting-label">Grid Size</span><span class="setting-desc">How big the range grid appears — applies everywhere instantly</span></div>
       <div class="seg-row" id="editorSizeRow">
@@ -3744,34 +3754,54 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       </div>
     </div>
   </div>
-  
 <div class="gp" style="margin-bottom:12px">
-    <div class="slbl">📖 Pro Reference</div>
-    <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">HUD Stat &amp; Exploit Cheat Sheet</span><span class="setting-desc">VPIP/PFR reads, population tendencies, quick exploits</span></div><button class="btn btn-s pri" onclick="openHudRef()">📖 Open</button></div>
-  </div>
-  
-<div class="settings-category"><span class="sc-icon">♠</span>Content Management</div>
-<div class="gp" style="margin-bottom:12px">
-    <div class="slbl">♠ Editor</div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Reset Default Actions</div></div><button class="btn btn-s" onclick="confirmAction('Reset editor actions?','',()=>{S.acts=JSON.parse(JSON.stringify(getDACTS()));S.sel=0;Ed.renActs();Ed.saveSt();toast('Actions reset ✦')})">Reset</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Import Range Notation</div></div><button class="btn btn-s" onclick="openM('impM')">Import</button></div>
   </div>
-  
-<div class="settings-category"><span class="sc-icon">🗄️</span>Data &amp; Backup</div>
+</div>
+
+<div class="settings-category" onclick="toggleSettingsCat('training')"><span class="sc-icon">🎯</span>Training<span class="sc-chevron" id="scChev_training">▾</span></div>
+<div class="settings-cat-body" id="scBody_training">
+<div class="gp" style="margin-bottom:12px">
+    <div class="setting-row"><div class="setting-info"><span class="setting-label">Auto-advance Speed</span><span class="setting-desc">How fast correct answers auto-advance</span></div><select id="setSpeed" onchange="LS('ps_speed',this.value)"><option value="fast" selected>Fast (0.5s)</option><option value="normal">Normal (1s)</option><option value="slow">Slow (2.5s)</option></select></div>
+    <div class="setting-row"><div class="setting-info"><span class="setting-label">Haptic Feedback</span><span class="setting-desc">Vibrate on correct / missed answers</span></div><button class="btn btn-s" id="setVibrate" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_vibrate',this.dataset.on);if(this.dataset.on==='1')haptic('light')" data-on="1">On</button></div>
+    <div class="setting-row"><div class="setting-info"><span class="setting-label">Sound Effects</span><span class="setting-desc">Chimes on correct / wrong answers</span></div><button class="btn btn-s" id="setSound" onclick="this.dataset.on=this.dataset.on==='1'?'0':'1';this.textContent=this.dataset.on==='1'?'On':'Off';LS('ps_sound',this.dataset.on);if(this.dataset.on==='1')playSound('correct')" data-on="1">On</button></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Clear Error History</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear all error history?','',()=>{S.errors={};saveErr();toast('Errors cleared ✦')})">Clear</button></div>
+  </div>
+<div class="gp" style="margin-bottom:12px">
+    <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">HUD Stat &amp; Exploit Cheat Sheet</span><span class="setting-desc">VPIP/PFR reads, population tendencies, quick exploits</span></div><button class="btn btn-s pri" onclick="openHudRef()">📖 Open</button></div>
+  </div>
+</div>
+
+
+<div class="settings-category" onclick="toggleSettingsCat('appearance')"><span class="sc-icon">🎨</span>Appearance<span class="sc-chevron" id="scChev_appearance">▾</span></div>
+<div class="settings-cat-body" id="scBody_appearance">
+<div class="gp" style="margin-bottom:12px"><div class="slbl">🎨 Theme</div><div class="theme-grid" id="themeGrid"></div></div>
+<div class="gp" style="margin-bottom:12px"><div class="slbl">🃏 Deck Design</div><div class="theme-grid" id="deckGrid"></div></div>
+<div class="gp" style="margin-bottom:12px"><div class="slbl">🔤 Font</div><div class="setting-desc" style="margin-bottom:8px">Changes body text only — headings, numbers, and icons always stay put so nothing breaks.</div><select class="minp" id="fontSelect" onchange="applyFont(this.value)" style="margin-bottom:10px"></select><div class="font-preview-box" id="fontPreviewBox"></div></div>
+</div>
+
+<div class="settings-category" onclick="toggleSettingsCat('backup')"><span class="sc-icon">💾</span>Backup &amp; Storage<span class="sc-chevron" id="scChev_backup">▾</span></div>
+<div class="settings-cat-body" id="scBody_backup">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">📊 Storage</div>
     <div id="storageUsageWrap" style="margin-bottom:12px">
       <div class="storage-bar-track"><div class="storage-bar-fill" id="storageUsageBar"></div></div>
       <div class="setting-desc" id="storageUsageTxt" style="margin-top:5px">Calculating…</div>
     </div>
-    <div class="slbl">🗄️ Data</div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Export All Data</div></div><button class="btn btn-s pri" onclick="dlJSON()">💾 Export</button></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Import Data</div></div><button class="btn btn-s" onclick="$('jfInput').click()">📂 Import</button></div>
-    <div class="glow-line"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Export All Data</div><div id="backupStatusLine" style="font-size:10.5px;margin-top:2px"></div></div><button class="btn btn-s pri" onclick="dlJSON()">💾 Export</button></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Import Data</div></div><button class="btn btn-s" onclick="$('jfInput').click()">📂 Import</button></div>
+  </div>
+</div>
+
+<div class="settings-category settings-danger-cat" onclick="toggleSettingsCat('danger')"><span class="sc-icon">⚠️</span>Danger Zone<span class="sc-chevron" id="scChev_danger">▾</span></div>
+<div class="settings-cat-body" id="scBody_danger" style="display:none">
+<div class="gp" style="margin-bottom:12px;border-color:color-mix(in srgb,var(--rs) 30%,var(--bd))">
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Delete All Ranges</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Delete ALL ranges?','Cannot be undone',()=>{S.saved=[];S.folders=[{path:'/',icon:'📁',name:'Root'}];saveSvd();fsRender();toast('Ranges deleted')})">Delete</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Clear Active Bankroll</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Wipes sessions, goals &amp; deposits for the currently selected bankroll only</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear this bankroll\\'s data?','Cannot be undone',()=>{const b=BR.d;b.sessions=[];b.goals=[];b.deposits=[];BR.save();renderBrAll();toast('Bankroll cleared')})">Clear</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Factory Reset</div></div><button class="btn btn-s btn-d" onclick="confirmAction('FACTORY RESET?','Everything will be permanently erased',()=>{localStorage.clear();location.reload()})">Reset All</button></div>
   </div>
+</div>
   <div class="gp" style="margin-bottom:12px;text-align:center;padding:24px">
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
@@ -3830,6 +3860,13 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div class="slbl" style="margin-top:10px">Color</div>
   <div class="flow-color-row" id="flowNodeColorRow"></div>
   <div class="mact"><button class="btn btn-d" id="flowNodeDeleteBtn" onclick="flowDeleteSelectedNode()">🗑️ Delete</button><button class="btn btn-s" id="flowNodeDupBtn" onclick="flowDuplicateSelectedNode()">⧉ Duplicate</button><button class="btn pri" onclick="closeM('flowNodeM')">Done</button></div>
+</div></div>
+<div class="mov" id="flowNodeDetailM"><div class="mdl" style="max-width:420px;max-height:80vh;overflow-y:auto">
+  <div class="fnd-color-bar" id="fndColorBar"></div>
+  <h3 id="fndTitle" style="word-break:break-word"></h3>
+  <div class="fnd-subtitle" id="fndSubtitle" style="display:none"></div>
+  <div class="fnd-body" id="fndBody" style="display:none"></div>
+  <div class="mact"><button class="btn pri" onclick="closeM('flowNodeDetailM')">Close</button></div>
 </div></div>
 <div class="mov" id="flowConnM"><div class="mdl" style="max-width:380px">
   <h3>🔗 Arrow</h3>
@@ -3898,12 +3935,13 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div class="mact"><button class="btn pri" onclick="closeM('bbHrBreakdownM')">Close</button></div>
 </div></div>
 <div class="mov" id="flowNewFolderM"><div class="mdl" style="max-width:360px">
-  <h3>📁 New Folder</h3>
+  <h3 id="flowFolderModalTitle">📁 New Folder</h3>
+  <input type="hidden" id="flowEditFolderPath"/>
   <label class="slbl">Name</label>
   <input class="minp" id="flowNewFolderName" placeholder="e.g. Preflop, C-Bet Strategy…"/>
   <label class="slbl" style="margin-top:8px">Icon</label>
   <div class="ac-wrap"><input class="minp" id="flowNewFolderIcon" value="📁" style="text-align:center;font-size:18px"/></div>
-  <div class="mact"><button class="btn" onclick="closeM('flowNewFolderM')">Cancel</button><button class="btn pri" onclick="flowSaveFolder()">Save</button></div>
+  <div class="mact"><button class="btn" onclick="closeM('flowNewFolderM')">Cancel</button><button class="btn pri" id="flowFolderModalSaveBtn" onclick="flowSaveFolder()">Save</button></div>
 </div></div>
 <div class="mov" id="flowMoveToFolderM"><div class="mdl" style="max-width:360px">
   <h3>📂 Move to Folder</h3>
@@ -4145,6 +4183,81 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 // ═══ CONSTANTS ═══
 const RK="AKQJT98765432".split(""),SU=["s","h","d","c"],SYM={s:"♠",h:"♥",d:"♦",c:"♣"},TC=1326;
 
+function _comboToHandClass(combo){
+  const m=combo.match(/^([2-9TJQKA])([shdc])([2-9TJQKA])([shdc])$/i);
+  if(!m)return null;
+  const r1=m[1].toUpperCase(),s1=m[2].toLowerCase(),r2=m[3].toUpperCase(),s2=m[4].toLowerCase();
+  if(r1===r2)return r1+r2;
+  const order="AKQJT98765432";
+  const hi=order.indexOf(r1)<order.indexOf(r2)?r1:r2;
+  const lo=hi===r1?r2:r1;
+  return hi+lo+(s1===s2?"s":"o");
+}
+function _inferSeedAction(title){
+  const firstPart=title.includes(" vs ")?title.split(" vs ")[0]:title;
+  const fp=firstPart.toLowerCase();
+  if(fp.includes("shove"))return"Shove";
+  if(fp.includes("cold 4b"))return"Cold 4-Bet";
+  if(fp.includes("4bet")||fp.includes("4b to")||/\b4b\b/.test(fp))return"4-Bet";
+  if(/\bsq\b/.test(fp))return"Squeeze";
+  if(fp.includes("3bet")||/\b3b\b/.test(fp))return"3-Bet";
+  if(fp.includes("call"))return"Call";
+  if(fp.includes("open"))return"Raise";
+  return"Raise";
+}
+function parseSolverMultiRange(text){
+  const hm={};for(let r=0;r<13;r++)for(let c=0;c<13;c++)hm[hl(r,c).toUpperCase()]=[r,c];
+  const headerRe=/Ra+nge\s*(\d+)\s*([AB]?)\s*-\s*([^\r\n\[]*)/g;
+  const matches=[...text.matchAll(headerRe)];
+  const results=[];
+  for(let i=0;i<matches.length;i++){
+    const num=matches[i][1],suffix=matches[i][2]||"",title=matches[i][3].trim();
+    const start=matches[i].index+matches[i][0].length;
+    const end=i+1<matches.length?matches[i+1].index:text.length;
+    const body=text.slice(start,end);
+    const classFreq={};
+    const bracketRe=/\[([\d.]+)\]([^\[\]]+?)\[\/\1\]/g;
+    let bm;
+    while((bm=bracketRe.exec(body))!==null){
+      const freq=parseFloat(bm[1]);
+      bm[2].split(",").map(s=>s.trim()).filter(Boolean).forEach(combo=>{
+        const cls=_comboToHandClass(combo);
+        if(cls)classFreq[cls]=freq;
+      });
+    }
+    const withoutBrackets=body.replace(/\[([\d.]+)\][^\[\]]+?\[\/\1\]/g,"");
+    withoutBrackets.split(",").map(s=>s.trim()).filter(s=>/^[2-9TJQKA][shdc][2-9TJQKA][shdc]$/i.test(s)).forEach(combo=>{
+      const cls=_comboToHandClass(combo);
+      if(cls&&!(cls in classFreq))classFreq[cls]=100;
+    });
+    const actionName=_inferSeedAction(title);
+    const range=mkR();
+    Object.entries(classFreq).forEach(([cls,freq])=>{
+      const rc=hm[cls.toUpperCase()];if(!rc)return;
+      const[r,c]=rc;
+      range[r][c].push({ai:0,w:freq});
+      if(freq<100)range[r][c].push({ai:1,w:Math.round((100-freq)*100)/100});
+    });
+    results.push({
+      num,suffix,title,
+      name:num+suffix+" - "+title,
+      range,
+      acts:[{name:actionName,color:COLS[0]},{name:"Fold",color:"#585050"}]
+    });
+  }
+  return results;
+}
+function removeSeedRangesIfPresent(){
+  if(LG("ps_seed_ranges_removed",false))return;
+  try{
+    const before=S.saved.length;
+    S.saved=(S.saved||[]).filter(r=>!(r.id||"").startsWith("range_seed_"));
+    S.folders=(S.folders||[]).filter(f=>!(f.path||"").startsWith("/seed-"));
+    if(S.saved.length!==before)saveSvd();
+    LS("ps_seed_ranges_removed",true);
+  }catch(e){console.error("Removing preset ranges failed:",e)}
+}
+
 /* ══════════════════════ HAND EVALUATOR & EQUITY ENGINE ══════════════════════ */
 function cardRankVal(ch){return 14-RK.indexOf(ch)}
 function combinations(arr,k){const result=[];function helper(start,combo){if(combo.length===k){result.push([...combo]);return}for(let i=start;i<arr.length;i++){combo.push(arr[i]);helper(i+1,combo);combo.pop()}}helper(0,[]);return result}
@@ -4221,16 +4334,7 @@ function calcEquity(heroCards,villainCards,boardCards,iterations){
 /* ══════════════════════ FLOWCHART EDITOR ══════════════════════ */
 const Flow={d:[],load(){this.d=LG("ps_flowcharts",[])},save(){LS("ps_flowcharts",this.d)}};
 let flowState=null,flowSelectedNodeId=null,flowSelectedConnId=null,flowZoomLevel=1,flowDragState=null,flowConnectDrag=null;
-const FLOW_GRID_SIZE=20;
-let flowSnapEnabled=LG("ps_flow_snap",false);
-function flowToggleSnap(){
-  flowSnapEnabled=!flowSnapEnabled;
-  LS("ps_flow_snap",flowSnapEnabled);
-  $("flowSnapBtn")?.classList.toggle("active",flowSnapEnabled);
-  playSound("tick");haptic("light");
-  toast(flowSnapEnabled?"▦ Snap to grid on":"Snap to grid off");
-}
-const FLOW_COLORS=["#c8a55c","#ec4899","#34d399","#3b82f6","#a78bfa","#f87171","#fbbf24","#67e8f9"];
+const FLOW_COLORS=["#ec4899","#f472b6","#fb7185","#e879f9","#f9a8d4","#c4b5fd","#a78bfa","#e9d5ff","#d946ef","#f0abfc","#c8a55c","#34d399","#3b82f6","#f87171","#fbbf24","#67e8f9","#ef4444","#fb923c","#f97316","#dc2626","#fde047","#eab308","#22c55e","#4ade80","#84cc16","#10b981","#059669","#06b6d4","#2dd4bf","#14b8a6","#60a5fa","#6366f1","#818cf8","#0ea5e9","#1e40af","#a8a29e","#78716c","#92400e","#57534e","#be185d"];
 function initFlow(){
   Flow.load();
   flowCurrentFolder="/";
@@ -4266,7 +4370,7 @@ function renderFlowFolderBar(){
   if(!children.length){grid.innerHTML="";return}
   grid.innerHTML=children.map(f=>{
     const count=Flow.d.filter(x=>(x.folder||"/")===f.path).length;
-    return'<div class="hh-folder-card" onclick="flowNavFolder(\''+f.path+'\')" oncontextmenu="event.preventDefault();flowFolderCtx(\''+f.path+'\')"><span class="hh-folder-ico">'+f.icon+'</span><span class="hh-folder-name">'+escapeHtml(f.name)+'</span><span class="hh-folder-count">'+count+" chart"+(count!==1?"s":"")+"</span></div>";
+    return'<div class="hh-folder-card" onclick="flowNavFolder(\''+f.path+'\')" oncontextmenu="event.preventDefault();flowOpenEditFolder(\''+f.path+'\')"><button class="flow-card-move" style="top:6px;right:28px" onclick="event.stopPropagation();flowOpenEditFolder(\''+f.path+'\')" title="Edit folder">✎</button><button class="flow-card-del" onclick="event.stopPropagation();flowFolderCtx(\''+f.path+'\')" title="Delete folder">✕</button><span class="hh-folder-ico">'+f.icon+'</span><span class="hh-folder-name">'+escapeHtml(f.name)+'</span><span class="hh-folder-count">'+count+" chart"+(count!==1?"s":"")+"</span></div>";
   }).join("");
 }
 function flowFolderCtx(path){
@@ -4277,14 +4381,41 @@ function flowFolderCtx(path){
     Flow.save();renderFlowFolderBar();renderFlowGrid();toast("Folder deleted");
   });
 }
+function flowOpenNewFolder(){
+  $("flowEditFolderPath").value="";
+  $("flowFolderModalTitle").textContent="📁 New Folder";
+  $("flowFolderModalSaveBtn").textContent="Save";
+  $("flowNewFolderName").value="";
+  $("flowNewFolderIcon").value="📁";
+  openM("flowNewFolderM");
+}
+function flowOpenEditFolder(path){
+  const f=getFlowFolders().find(x=>x.path===path);if(!f)return;
+  $("flowEditFolderPath").value=path;
+  $("flowFolderModalTitle").textContent="✎ Edit Folder";
+  $("flowFolderModalSaveBtn").textContent="Save Changes";
+  $("flowNewFolderName").value=f.name;
+  $("flowNewFolderIcon").value=f.icon;
+  openM("flowNewFolderM");
+}
 function flowSaveFolder(){
   const name=$("flowNewFolderName").value.trim();if(!name)return toast("Enter a name");
   const icon=$("flowNewFolderIcon").value.trim()||"📁";
+  const editPath=$("flowEditFolderPath").value;
+  const list=getFlowFolders();
+  if(editPath){
+    const f=list.find(x=>x.path===editPath);
+    if(f){f.name=name;f.icon=icon}
+    saveFlowFoldersList(list);
+    closeM("flowNewFolderM");
+    renderFlowFolderBar();
+    toast("Folder updated ✦");
+    return;
+  }
   const parent=flowCurrentFolder==="/"?"":flowCurrentFolder;
   const path=parent+"/"+name.toLowerCase().replace(/[^a-z0-9]+/g,"-")+"_"+Date.now().toString(36);
-  const list=getFlowFolders();list.push({path,name,icon});saveFlowFoldersList(list);
+  list.push({path,name,icon});saveFlowFoldersList(list);
   closeM("flowNewFolderM");
-  $("flowNewFolderName").value="";$("flowNewFolderIcon").value="📁";
   renderFlowFolderBar();
   toast("Folder created ✦");
 }
@@ -4328,21 +4459,22 @@ function renderFlowGrid(){
     return((a.updated||0)-(b.updated||0))*dir;
   });
   ct.innerHTML=sorted.map(f=>{
-    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><button class="flow-card-move" onclick="event.stopPropagation();openFlowMoveToFolder(\''+f.id+'\')" title="Move to folder">📂</button><div class="flow-card-icon">'+(f.locked?"🔒":"🧠")+'</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
+    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><button class="flow-card-move" onclick="event.stopPropagation();openFlowMoveToFolder(\''+f.id+'\')" title="Move to folder">📂</button><button class="flow-card-edit" onclick="event.stopPropagation();openFlowchartForEdit(\''+f.id+'\')" title="Edit">✎</button><div class="flow-card-icon">🧠</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
   }).join("");
 }
 function createNewFlowchart(){
   const f={id:"flow_"+Date.now(),name:"Untitled Flowchart",nodes:[],connections:[],folder:flowCurrentFolder,created:Date.now(),updated:Date.now()};
   Flow.d.push(f);Flow.save();
-  openFlowchart(f.id);
+  openFlowchart(f.id,true);
 }
 function quickDeleteFlowchart(id){
   const f=Flow.d.find(x=>x.id===id);if(!f)return;
   if(!confirm('Delete "'+f.name+'"? This can\'t be undone.'))return;
   Flow.d=Flow.d.filter(x=>x.id!==id);Flow.save();renderFlowFolderBar();renderFlowGrid();toast("Flowchart deleted");
 }
-function openFlowchart(id){
+function openFlowchart(id,forEdit){
   flowState=Flow.d.find(f=>f.id===id);if(!flowState)return;
+  flowState.locked=!forEdit;
   flowSelectedNodeId=null;flowZoomLevel=1;
   flowHistory=[JSON.stringify({nodes:flowState.nodes,connections:flowState.connections})];
   flowHistoryIndex=0;
@@ -4350,23 +4482,21 @@ function openFlowchart(id){
   $("flowListArea").style.display="none";
   $("flowEditorArea").style.display="";
   $("flowTitleInput").value=flowState.name;
-  $("flowSnapBtn")?.classList.toggle("active",flowSnapEnabled);
   flowUpdateLockUI();
   renderFlowCanvas();
   if(flowState.nodes.length)requestAnimationFrame(()=>flowFitToScreen(false));
   playSound("tick");haptic("light");
 }
+function openFlowchartForEdit(id){openFlowchart(id,true)}
 function flowUpdateLockUI(){
   if(!flowState)return;
   const locked=!!flowState.locked;
-  const btn=$("flowLockBtn");
-  if(btn){btn.textContent=locked?"🔒":"🔓";btn.classList.toggle("active",locked);btn.title=locked?"View Mode — tap to switch to editing":"Switch to View Mode — explore without changing anything"}
   const layoutBtn=document.querySelector('.flow-tool-btn[onclick="flowAutoLayout()"]');
   if(layoutBtn)layoutBtn.style.display=locked?"none":"";
   const addBtn=$("flowAddBtn");
   if(addBtn)addBtn.style.display=locked?"none":"";
-  const banner=$("flowViewBanner");
-  if(banner)banner.style.display=locked?"flex":"none";
+  const chip=$("flowViewModeChip");
+  if(chip)chip.style.display=locked?"flex":"none";
   $("flowModeHint").style.display=locked?"none":"";
   $("flowModeHint").textContent="Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
 }
@@ -4375,6 +4505,7 @@ function flowToggleLock(){
   flowState.locked=!flowState.locked;
   flowSaveCurrent();
   flowUpdateLockUI();
+  renderFlowCanvas();
   playSound(flowState.locked?"tick":"save");haptic(flowState.locked?"warn":"success");
   toast(flowState.locked?"👁 View Mode — nothing can be changed":"✎ Edit mode — you can make changes again");
 }
@@ -4433,7 +4564,7 @@ function duplicateFlowchart(){
   copy.id="flow_"+Date.now();copy.name=flowState.name+" (Copy)";copy.created=Date.now();copy.updated=Date.now();
   Flow.d.push(copy);Flow.save();
   closeM("flowManageM");toast("Duplicated ✦");
-  openFlowchart(copy.id);
+  openFlowchart(copy.id,true);
 }
 function deleteCurrentFlowchart(){
   if(!confirm('Delete "'+flowState.name+'"? This can\'t be undone.'))return;
@@ -4459,21 +4590,30 @@ function flowAddNode(){
   playSound("tick");haptic("light");
 }
 function flowOpenNodeEditor(id){
-  flowSelectedNodeId=id;
   const node=flowState.nodes.find(n=>n.id===id);if(!node)return;
-  const locked=!!flowState.locked;
+  if(flowState.locked){flowShowNodeDetail(node);return}
+  flowSelectedNodeId=id;
   $("flowNodeText").value=node.text;
   $("flowNodeSubtitle").value=node.subtitle||"";
   $("flowNodeBody").value=node.body||"";
-  [$("flowNodeText"),$("flowNodeSubtitle"),$("flowNodeBody")].forEach(el=>{el.disabled=locked});
-  $("flowNodeSizeRow").querySelectorAll("button").forEach(b=>{b.classList.toggle("sel",b.dataset.size===(node.size||"md"));b.disabled=locked});
+  [$("flowNodeText"),$("flowNodeSubtitle"),$("flowNodeBody")].forEach(el=>{el.disabled=false});
+  $("flowNodeSizeRow").querySelectorAll("button").forEach(b=>{b.classList.toggle("sel",b.dataset.size===(node.size||"md"));b.disabled=false});
   renderFlowColorRow(node.color);
-  $("flowNodeColorRow").querySelectorAll("button").forEach(b=>{b.disabled=locked});
-  $("flowNodeDeleteBtn").style.display=locked?"none":"";
-  $("flowNodeDupBtn").style.display=locked?"none":"";
-  $("flowNodeM").querySelector("h3").textContent=locked?"👁 Viewing (View Mode)":"✎ Edit Node";
+  $("flowNodeColorRow").querySelectorAll("button").forEach(b=>{b.disabled=false});
+  $("flowNodeDeleteBtn").style.display="";
+  $("flowNodeDupBtn").style.display="";
+  $("flowNodeM").querySelector("h3").textContent="✎ Edit Node";
   renderFlowCanvas();
   openM("flowNodeM");
+}
+function flowShowNodeDetail(node){
+  $("fndColorBar").style.setProperty("--node-color",node.color||"#c8a55c");
+  $("fndTitle").textContent=node.text||"Untitled";
+  const sub=$("fndSubtitle");
+  if(node.subtitle){sub.textContent=node.subtitle;sub.style.display=""}else sub.style.display="none";
+  const body=$("fndBody");
+  if(node.body){body.textContent=node.body;body.style.display=""}else body.style.display="none";
+  openM("flowNodeDetailM");
 }
 function flowCheckLocked(){if(flowState&&flowState.locked){toast("👁 In View Mode — tap ✎ Edit to make changes");return true}return false}
 function flowDuplicateSelectedNode(){
@@ -4522,15 +4662,15 @@ function flowDeleteConnection(id){
   toast("Arrow removed");
 }
 function flowOpenConnEditor(id){
+  if(flowState.locked)return;
   flowSelectedConnId=id;
   const conn=flowState.connections.find(c=>c.id===id);if(!conn)return;
-  const locked=!!flowState.locked;
   $("flowConnLabel").value=conn.label||"";
-  $("flowConnLabel").disabled=locked;
+  $("flowConnLabel").disabled=false;
   renderFlowConnColorRow(conn.color||FLOW_COLORS[0]);
-  $("flowConnColorRow").querySelectorAll("button").forEach(b=>{b.disabled=locked});
-  $("flowConnDeleteBtn").style.display=locked?"none":"";
-  $("flowConnM").querySelector("h3").textContent=locked?"👁 Viewing Arrow":"🔗 Arrow";
+  $("flowConnColorRow").querySelectorAll("button").forEach(b=>{b.disabled=false});
+  $("flowConnDeleteBtn").style.display="";
+  $("flowConnM").querySelector("h3").textContent="🔗 Arrow";
   openM("flowConnM");
 }
 function renderFlowConnColorRow(current){
@@ -4639,7 +4779,7 @@ function flowAutoLayout(){
     return order;
   }
 
-  const vGap=110,hGap=40,margin=50,componentGapX=90;
+  const vGap=140,hGap=60,margin=50,componentGapX=100;
   let cursorX=margin,maxOverallY=margin;
   treeComponents.forEach(compIds=>{
     const levels=computeLevels(compIds);
@@ -4722,8 +4862,24 @@ function flowEdgePoint(node,other){
   const scale=Math.min(scaleX,scaleY);
   return{x:cx+dx*scale,y:cy+dy*scale};
 }
+function flowConnControlPoints(p1,p2){
+  const dx=p2.x-p1.x,dy=p2.y-p1.y;
+  const dist=Math.sqrt(dx*dx+dy*dy)||1;
+  const curveStrength=Math.min(dist*0.5,90);
+  if(Math.abs(dy)>=Math.abs(dx)){
+    const dir=dy>=0?1:-1;
+    return{c1x:p1.x,c1y:p1.y+dir*curveStrength,c2x:p2.x,c2y:p2.y-dir*curveStrength};
+  }
+  const dir=dx>=0?1:-1;
+  return{c1x:p1.x+dir*curveStrength,c1y:p1.y,c2x:p2.x-dir*curveStrength,c2y:p2.y};
+}
+function flowConnMidpoint(p1,p2){
+  const{c1x,c1y,c2x,c2y}=flowConnControlPoints(p1,p2);
+  return{x:0.125*p1.x+0.375*c1x+0.375*c2x+0.125*p2.x,y:0.125*p1.y+0.375*c1y+0.375*c2y+0.125*p2.y};
+}
 function flowConnPathD(p1,p2,fromId,toId){
-  return"M"+p1.x+","+p1.y+" L"+p2.x+","+p2.y;
+  const{c1x,c1y,c2x,c2y}=flowConnControlPoints(p1,p2);
+  return"M"+p1.x+","+p1.y+" C"+c1x+","+c1y+" "+c2x+","+c2y+" "+p2.x+","+p2.y;
 }
 function renderFlowCanvas(){
   if(!flowState)return;
@@ -4746,7 +4902,7 @@ function renderFlowCanvas(){
     if(!from||!to)return"";
     const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
     const connEntering=c.id===flowJustAddedConnId&&(Date.now()-flowJustAddedConnTime)<500;
-    return'<path data-cid="'+c.id+'" class="flow-conn-hitarea" d="'+flowConnPathD(p1,p2,c.from,c.to)+'" fill="none" stroke="transparent" stroke-width="22" style="pointer-events:auto;cursor:pointer" onclick="flowOpenConnEditor(\''+c.id+"')\"/>"
+    return'<path data-cid="'+c.id+'" class="flow-conn-hitarea" d="'+flowConnPathD(p1,p2,c.from,c.to)+'" fill="none" stroke="transparent" stroke-width="22" style="'+(flowState.locked?"pointer-events:none;cursor:default":"pointer-events:auto;cursor:pointer")+'" onclick="flowOpenConnEditor(\''+c.id+"')\"/>"
       +'<path data-cid="'+c.id+'" class="flow-conn-line'+(connEntering?" flow-conn-entering":"")+'" style="color:'+(c.color||"#c8a55c")+'" d="'+flowConnPathD(p1,p2,c.from,c.to)+'" fill="none" stroke="'+(c.color||"#c8a55c")+'" stroke-width="2" marker-end="url(#flowArrow_'+c.id+')"/>';
   }).join("");
   svg.innerHTML="<defs>"+markerDefs+"</defs>"+svgLines;
@@ -4762,7 +4918,7 @@ function renderFlowCanvas(){
       const from=flowState.nodes.find(n=>n.id===c.from),to=flowState.nodes.find(n=>n.id===c.to);
       if(!from||!to)return"";
       const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
-      const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
+      const _mp=flowConnMidpoint(p1,p2);const mx=_mp.x,my=_mp.y;
       return c.label?'<div class="flow-arrow-label" data-cid-lbl="'+c.id+'" style="left:'+mx+"px;top:"+(my-16)+'px">'+escapeHtml(c.label)+"</div>":"";
     }).join("");
   }
@@ -4804,7 +4960,6 @@ function flowNodePointerDown(e,id){
     wrapEl?.classList.remove("dragging");
     if(flowDragState&&!flowDragState.moved)flowNodeTapped(id);
     else{
-      if(flowSnapEnabled){node.x=Math.round(node.x/FLOW_GRID_SIZE)*FLOW_GRID_SIZE;node.y=Math.round(node.y/FLOW_GRID_SIZE)*FLOW_GRID_SIZE}
       flowSaveCurrent();renderFlowCanvas();
     }
     flowDragState=null;
@@ -4823,7 +4978,7 @@ function flowUpdateNodePositionDOM(id){
     if(!from||!to)return;
     const p1=flowEdgePoint(from,to),p2=flowEdgePoint(to,from);
     document.querySelectorAll('#flowSvg path[data-cid="'+c.id+'"]').forEach(lineEl=>lineEl.setAttribute("d",flowConnPathD(p1,p2,c.from,c.to)));
-    const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
+    const _mp=flowConnMidpoint(p1,p2);const mx=_mp.x,my=_mp.y;
     const lblEl=document.querySelector('.flow-arrow-label[data-cid-lbl="'+c.id+'"]');
     if(lblEl){lblEl.style.left=mx+"px";lblEl.style.top=(my-16)+"px"}
   });
@@ -4885,7 +5040,9 @@ function flowHandlePointerDown(e,fromId){
       const toId=targetNodeEl.dataset.id;
       const exists=flowState.connections.some(c=>c.from===fromId&&c.to===toId);
       if(!exists){
-        const newConn={id:"c"+Date.now(),from:fromId,to:toId,color:FLOW_COLORS[0],label:""};
+        const toNode=flowState.nodes.find(n=>n.id===toId);
+        const defaultColor=(toNode&&toNode.color)||FLOW_COLORS[0];
+        const newConn={id:"c"+Date.now(),from:fromId,to:toId,color:defaultColor,label:""};
         flowState.connections.push(newConn);
         flowSaveCurrent();
         flowJustAddedConnId=newConn.id;flowJustAddedConnTime=Date.now();
@@ -4979,9 +5136,11 @@ function runEquityCalc(){
 
 /* ── Pot Odds ── */
 function runPotOdds(){
-  const pot=parseFloat($("poPot").value)||0,call=parseFloat($("poCall").value)||0;
+  const potBefore=parseFloat($("poPotBefore").value)||0,theirBet=parseFloat($("poTheirBet").value)||0;
   const ct=$("poResult");
-  if(pot<=0||call<=0){ct.innerHTML="";return}
+  if(potBefore<0||theirBet<=0){ct.innerHTML="";return}
+  const pot=potBefore+theirBet;
+  const call=theirBet;
   const totalPot=pot+call;
   const breakeven=(call/totalPot*100);
   const ratio=(pot/call);
@@ -5251,7 +5410,7 @@ function escapeHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").repla
 function openM(id){const el=$(id);if(!el)return;el.classList.remove("closing");el.classList.add("open");if(id==="saveM"){popFS();renderEG("rIG",null,REM);renderCG("rCG");const sf=$("saveFolder");if(sf)sf.value=fsCurPath||"/"}if(id==="newFM"){popFS();renderEG("fIG",null,FEM);renderCG("fCG");const np=$("newFP");if(np)np.value=fsCurPath||"/";const sl=$("newFLocSpan");if(sl)sl.textContent=fsCurPath||"/"}if(id==="editM")popFS();if(id==="impM")impShowTab("N");if(id==="liveStartM")prefillLive();if(id==="newNbM"){renderEG("nbIG",null,FEM);renderCG("nbCG")}}
 function closeM(id){const el=$(id);if(!el||!el.classList.contains("open"))return;el.classList.add("closing");setTimeout(()=>{if(el.classList.contains("closing"))el.classList.remove("open","closing")},190)}
 let viewerMode=false;
-function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="editor")renderStudyReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor()}if(v==="tools"){initTools()}if(v==="flow"){initFlow()}if(v==="shifts"){initShifts()}if(v==="handHistory"){initHH()}}
+function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="editor")renderStudyReminder();if(v==="editor")renderBackupReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor()}if(v==="tools"){initTools()}if(v==="flow"){initFlow()}if(v==="shifts"){initShifts()}if(v==="handHistory"){initHH()}}
 let _cfCb=null;
 function confirmAction(msg,name,cb){$("cfMsg").innerHTML=msg+(name?'<br><span class="cfn">'+escapeHtml(name)+"</span>":"");_cfCb=cb;$("cfOv").classList.add("open")}
 function closeCf(){$("cfOv").classList.remove("open");_cfCb=null}
@@ -5572,7 +5731,7 @@ const Ed={
   apPlus(str){const ri=s=>RK.indexOf(s);if(str.length<=2&&str[0]===str[1]){for(let i=0;i<=ri(str[0]);i++)this.sCell(i,i)}else{const suf=str.length>2?str[2]:"",r=ri(str[0]),c=ri(str[1]);if(suf==="S")for(let i=r+1;i<=c;i++)this.sCell(r,i);else for(let i=r+1;i<=c;i++)this.sCell(i,r)}},
   sCell(r,c){const cl=S.range[r][c];const w=S.wt;const ei=cl.findIndex(a=>a.ai===S.sel);if(ei>=0)cl[ei].w=w;else cl.push({ai:S.sel,w:w})},
   saveSt(){LS("ps_cur",{acts:S.acts,range:S.range,sel:S.sel,wt:S.wt})},
-  loadSt(){const d=LG("ps_cur",null);if(d){if(d.acts)S.acts=d.acts;if(d.range)S.range=d.range;if(d.sel!==undefined)S.sel=d.sel;if(d.wt!==undefined){S.wt=d.wt;$("wSlider").value=d.wt;$("wVal").textContent=d.wt+"%"}this.renActs();this.renAll();this.updInfo()}loadSvd();loadErr()},
+  loadSt(){const d=LG("ps_cur",null);if(d){if(d.acts)S.acts=d.acts;if(d.range)S.range=d.range;if(d.sel!==undefined)S.sel=d.sel;if(d.wt!==undefined){S.wt=d.wt;$("wSlider").value=d.wt;$("wVal").textContent=d.wt+"%"}this.renActs();this.renAll();this.updInfo()}loadSvd();removeSeedRangesIfPresent();loadErr()},
 };
 // ═══ FILE SYSTEM ═══
 let fsView=LG("ps_fsview","detail");
@@ -5624,9 +5783,9 @@ else if(fsView==="list")renderFsList(ct,subFolders,ranges,globalSearch);
 else renderFsDetail(ct,subFolders,ranges,globalSearch)}
 function setFsView(v){fsView=v;LS("ps_fsview",v);const map={grid:"fsVbGrid",list:"fsVbList",detail:"fsVbDetail"};Object.values(map).forEach(id=>{const el=$(id);if(el)el.classList.remove("on")});const btn=$(map[v]);if(btn)btn.classList.add("on");fsRender()}
 function fsFolderChip(path){const fo=getFO(path);return '<span class="fs-path-chip" onclick="event.stopPropagation();fsNavPush(\''+path+'\')" title="Jump to '+fo.name+'">'+fo.icon+' '+fo.name+'</span>'}
-function renderFsGrid(ct,folders,ranges,globalSearch){let h='<div class="fs-grid">';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-gi" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="gi-ico" style="'+(f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"")+'">'+f.icon+'</div><div class="gi-name">'+escapeHtml(f.name)+'</div><div class="gi-meta">'+cnt+' ranges</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;h+='<div class="fs-gi" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="gi-ico" style="background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06))">'+(r.icon||"♠")+'</div><div class="gi-name">'+escapeHtml(r.name)+'</div><div class="gi-meta">'+hcc+' hands</div>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div>'});h+='</div>';ct.innerHTML=h}
+function renderFsGrid(ct,folders,ranges,globalSearch){let h='<div class="fs-grid stagger-in">';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-gi" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="gi-ico" style="'+(f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"")+'">'+f.icon+'</div><div class="gi-name">'+escapeHtml(f.name)+'</div><div class="gi-meta">'+cnt+' ranges</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;h+='<div class="fs-gi" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="gi-ico" style="background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06))">'+(r.icon||"♠")+'</div><div class="gi-name">'+escapeHtml(r.name)+'</div><div class="gi-meta">'+hcc+' hands</div>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div>'});h+='</div>';ct.innerHTML=h}
 function rangeComboCount(range){let tot=0;for(let r=0;r<13;r++)for(let c=0;c<13;c++){if(range[r][c].length)tot+=hcn(r,c)}return tot}
-function renderFsList(ct,folders,ranges,globalSearch){let h='<div class="fs-list-wrap"><div class="fs-list-hdr"><span>Name</span><span>Hands</span><span>Modified</span></div>';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-li" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="li-name"><span class="li-ico">'+f.icon+'</span><span class="li-nm">'+escapeHtml(f.name)+'</span></div><div class="li-cell">'+cnt+' ranges</div><div class="li-cell">—</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;const pct=((rangeComboCount(r.range)/1326)*100).toFixed(1);const dt=new Date(r.ts).toLocaleDateString("en-US",{month:"short",day:"numeric"});h+='<div class="fs-li" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="li-name"><span class="li-ico">'+(r.icon||"♠")+'</span><span class="li-nm">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+escapeHtml(r.name)+'</span>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div><div class="li-cell">'+hcc+' ('+pct+'%)</div><div class="li-cell">'+dt+'</div></div>'});h+='</div>';ct.innerHTML=h}
+function renderFsList(ct,folders,ranges,globalSearch){let h='<div class="fs-list-wrap stagger-in"><div class="fs-list-hdr"><span>Name</span><span>Hands</span><span>Modified</span></div>';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-li" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="li-name"><span class="li-ico">'+f.icon+'</span><span class="li-nm">'+escapeHtml(f.name)+'</span></div><div class="li-cell">'+cnt+' ranges</div><div class="li-cell">—</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;const pct=((rangeComboCount(r.range)/1326)*100).toFixed(1);const dt=new Date(r.ts).toLocaleDateString("en-US",{month:"short",day:"numeric"});h+='<div class="fs-li" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="li-name"><span class="li-ico">'+(r.icon||"♠")+'</span><span class="li-nm">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+escapeHtml(r.name)+'</span>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div><div class="li-cell">'+hcc+' ('+pct+'%)</div><div class="li-cell">'+dt+'</div></div>'});h+='</div>';ct.innerHTML=h}
 function renderFsDetail(ct,folders,ranges,globalSearch){
 var h='<div class="fs-detail-list">';
 folders.forEach(function(f){
@@ -5699,9 +5858,58 @@ function addAct(){const n=$("actName").value.trim();if(!n)return toast("Enter na
 function clearR(){S.range=mkR();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty();toast("Cleared")}
 function impNot(){const t=$("impText").value.trim();if(!t)return;const headers=[...t.matchAll(/^(Range\s*\d*\s*-\s*)(.+)$/gim)];if(headers.length>1){const blocks=[];for(let i=0;i<headers.length;i++){const name=headers[i][2].trim()||"Action "+(i+1);const start=headers[i].index+headers[i][0].length;const end=i<headers.length-1?headers[i+1].index:t.length;blocks.push({name,text:t.slice(start,end).trim()})}S.range=mkR();S.acts=[];blocks.forEach((blk,idx)=>{S.acts.push({name:blk.name,color:COLS[idx%COLS.length]});S.sel=idx;Ed.fromNot(blk.text)});S.sel=0;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty();renderRangeStats();closeM("impM");toast("Imported "+blocks.length+" actions ✦");return}Ed.fromNot(t);checkDirty();closeM("impM");toast("Imported")}
 function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle("on",x===t);$("impP"+x).style.display=x===t?"block":"none"})}
-function impSolver(){toast("Use Notation tab for multi-action import")}
+function impSolver(){
+  const t=$("impSolverText").value.trim();if(!t)return toast("Paste solver notation first");
+  try{
+    const parsed=parseSolverMultiRange(t);
+    if(!parsed.length)return toast("No ranges found — check the format");
+    parsed.forEach(p=>{
+      S.saved.push({
+        id:"range_"+Date.now().toString(36)+Math.random().toString(36).slice(2,8),
+        name:p.name,icon:"♠",iconColor:"#c8a55c",
+        acts:p.acts,range:p.range,tags:[],notes:"",fav:false,folder:"/",ts:Date.now()
+      });
+    });
+    saveSvd();fsRender();renderFsSidebar();
+    closeM("impM");
+    toast("Imported "+parsed.length+" range"+(parsed.length!==1?"s":"")+" ✦");
+  }catch(e){toast("Couldn't parse that — check the format");console.error(e)}
+}
 function buildExportJSON(){return JSON.stringify({v:23,exported:new Date().toISOString(),username:LG("ps_username",""),ranges:S.saved,folders:S.folders,errors:S.errors,current:{acts:S.acts,range:S.range},bankrolls:getBankrollsList(),activeBankroll:getActiveBankrollId(),trainingHistory:LG("ps_tr_history",[]),flopHistory:LG("ps_flop_history",[]),notes:LG("ps_notes",{notebooks:[],notes:[]}),handHistory:LG("ps_hh",{hands:[],players:[]}),flowcharts:LG("ps_flowcharts",[]),xp:getXp(),achievements:LG("ps_achv",{unlocked:{}}),streak:getStreak(),lifetime:getLifetime(),dailyStats:LG("ps_daily_stats",{completed:0}),hhCurrency:getHhCurrency(),brViewFilter:getBrViewFilter(),shifts:getShifts()},null,2)}
-function dlJSON(){const ts=new Date().toISOString().slice(0,10);const b=new Blob([buildExportJSON()],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pokerstudio-"+ts+".json";a.click();toast("Downloaded ✦")}
+function dlJSON(){const ts=new Date().toISOString().slice(0,10);const b=new Blob([buildExportJSON()],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pokerstudio-"+ts+".json";a.click();LS("ps_last_export_ts",Date.now());renderBackupReminder();renderBackupStatus();toast("Downloaded ✦")}
+function daysSinceLastExport(){const ts=LG("ps_last_export_ts",null);if(!ts)return null;return Math.floor((Date.now()-ts)/86400000)}
+function hasAnyUserData(){
+  try{
+    if((HH.d?.hands||[]).length)return true;
+    if((S.saved||[]).length)return true;
+    if((Notes.d?.notes||[]).length)return true;
+    if((Flow.d||[]).length)return true;
+    if(getBankrollsList().some(b=>(b.sessions||[]).length))return true;
+    return false;
+  }catch(e){return false}
+}
+function shouldShowBackupReminder(){
+  if(!hasAnyUserData())return false;
+  const today=new Date().toISOString().slice(0,10);
+  if(LG("ps_backup_reminder_dismissed","")===today)return false;
+  const days=daysSinceLastExport();
+  return days===null||days>=7;
+}
+function renderBackupReminder(){
+  const el=$("backupReminderBanner");if(!el)return;
+  if(!shouldShowBackupReminder()){el.style.display="none";return}
+  const days=daysSinceLastExport();
+  el.style.display="flex";
+  el.innerHTML='<span class="srb-icon">💾</span><div class="srb-text"><div class="srb-title">'+(days===null?"You've never backed up your data":"It's been "+days+" days since your last backup")+'</div><div class="srb-sub">Hand history, bankroll, and notes only live on this device — export a backup to be safe.</div></div><button class="btn pri btn-s" onclick="go(\'settings\');dismissBackupReminder()">Back Up Now</button><button class="srb-close" onclick="dismissBackupReminder()">✕</button>';
+}
+function dismissBackupReminder(){LS("ps_backup_reminder_dismissed",new Date().toISOString().slice(0,10));const el=$("backupReminderBanner");if(el)el.style.display="none"}
+function renderBackupStatus(){
+  const el=$("backupStatusLine");if(!el)return;
+  const days=daysSinceLastExport();
+  if(days===null){el.textContent="You haven't exported a backup yet.";el.style.color="var(--rs)"}
+  else if(days===0){el.textContent="Backed up today ✦";el.style.color="var(--mt)"}
+  else{el.textContent="Last backed up "+days+" day"+(days!==1?"s":"")+" ago"+(days>=7?" — overdue for another":"");el.style.color=days>=7?"var(--rs)":"var(--t3)"}
+}
 function impJSONPaste(){const txt=$("impJSONText").value.trim();if(!txt)return toast("Paste JSON first");try{importJSONData(JSON.parse(txt));closeM("impM")}catch(e){toast("Invalid JSON")}}
 function hdlJSONFile(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{importJSONData(JSON.parse(ev.target.result));closeM("impM")}catch(err){toast("Invalid JSON")}};r.readAsText(f);e.target.value=""}
 function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.length}if(d.folders)S.folders=d.folders;if(d.errors){S.errors=d.errors;saveErr()}saveSvd();if(d.current){S.acts=d.current.acts||S.acts;S.range=d.current.range||S.range;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty()}if(d.bankrolls&&d.bankrolls.length){LS("ps_bankrolls",d.bankrolls);_bankrollsCache=null;if(d.activeBankroll)LS("ps_active_bankroll",d.activeBankroll)}else if(d.bankroll){const list=getBankrollsList();const active=getActiveBankrollObj();active.sessions=d.bankroll.sessions||[];active.goals=d.bankroll.goals||[];active.deposits=d.bankroll.deposits||[];active.settings=d.bankroll.settings||active.settings;saveBankrollsList()}if(d.username)LS("ps_username",d.username);if(d.trainingHistory)LS("ps_tr_history",d.trainingHistory);if(d.flopHistory)LS("ps_flop_history",d.flopHistory);if(d.notes)LS("ps_notes",d.notes);if(d.handHistory){LS("ps_hh",d.handHistory);HH._d=null}if(d.flowcharts){LS("ps_flowcharts",d.flowcharts);Flow.d=d.flowcharts}if(d.xp!=null)LS("ps_xp",d.xp);if(d.achievements)LS("ps_achv",d.achievements);if(d.streak)LS("ps_streak",d.streak);if(d.lifetime)LS("ps_lifetime",d.lifetime);if(d.dailyStats)LS("ps_daily_stats",d.dailyStats);if(d.hhCurrency)setHhCurrency(d.hhCurrency);if(d.brViewFilter)LS("ps_br_view_filter",d.brViewFilter);if(d.shifts)saveShiftsList(d.shifts);fsRender();renderFsSidebar();updateUserGreeting();renderBankrollSwitcher();renderXpUI();renderAchvChip();toast("Imported "+c+" ranges ✦")}
@@ -5719,7 +5927,7 @@ const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,t
   if(this.exclHands.size)pool=pool.filter(([r,c])=>!this.exclHands.has(hl(r,c)));
   if(!pool.length){toast("All hands excluded");this.endSession();return}
   const[r,c]=pool[Math.floor(Math.random()*pool.length)];const t=ht(r,c);const ss=[...SU].sort(()=>Math.random()-.5);let cards;if(t==="pair")cards=[{rank:RK[r],suit:ss[0]},{rank:RK[r],suit:ss[1]}];else if(t==="suited"){const s=ss[0];cards=[{rank:RK[r],suit:s},{rank:RK[c],suit:s}]}else cards=[{rank:RK[c],suit:ss[0]},{rank:RK[r],suit:ss[1]}];
-  this.cur={r,c,cards,label:hl(r,c),type:t};$("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").textContent="";$("tExp").className="texp";$("tCard").className="tcard";$("hCnt").textContent="#"+(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");$("streakN").textContent=this.stats.streak}else sb.classList.remove("show");
+  this.cur={r,c,cards,label:hl(r,c),type:t};$("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").textContent="";$("tExp").className="texp";$("tCard").className="tcard";$("hCnt").textContent="#"+(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");pulseStat($("streakN"),this.stats.streak)}else sb.classList.remove("show");
   const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));document.querySelectorAll(".tabtn").forEach(b=>{b.disabled=false;b.classList.remove("tabtn-correct","tabtn-wrong")});this._ts=Date.now()},
   answer(ai){if(!this.cur)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];let ok=false;if(!ca.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");ok=fi>=0&&ai===fi}else{if(ca.some(a=>a.ai===ai))ok=true}const mixHtml=this.mixHtml(ca,ai);
   this.stats.total++;this.stats.history.push(ok?1:0);this.stats.byType[type].t++;if(ok)this.stats.byType[type].ok++;const an=this.acts[ai].name;if(!this.stats.byAction[an])this.stats.byAction[an]={ok:0,t:0};this.stats.byAction[an].t++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak;this.stats.byAction[an].ok++;if(trMode==="weak")recCorrectWeak(label,this.rangeId)}else{this.stats.streak=0;recErr(label,an,this.rangeId);if(!this.stats.wrongHands[label])this.stats.wrongHands[label]=0;this.stats.wrongHands[label]++}
@@ -5727,7 +5935,7 @@ const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,t
   const card=$("tCard"),fb=$("tFb"),ep=$("tExp");if(ok){card.className="tcard fb-ok";fb.textContent="✦ CORRECT";fb.className="tfb ok show";const ms=this.stats.streak>0&&this.stats.streak%10===0;playSound(ms?"win":"correct");haptic(ms?"success":"light");if(ms)celebrate()}else{card.className="tcard fb-no";fb.textContent="✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}ep.innerHTML='<div class="mix-label">'+(ok?"This hand's range":"Correct mix")+'</div><div class="mix-chips">'+mixHtml+'</div>'+(ok&&mult>1?'<div class="xp-gain-chip">+'+xpGain+' XP · '+mult+'x streak bonus</div>':'<div class="xp-gain-chip sub">+'+xpGain+' XP</div>');ep.className="texp show";$("trProg").style.width=(this.limit>0?Math.round((this.stats.total/this.limit)*100):Math.round(this.stats.total>0?(this.stats.ok/this.stats.total)*100:0))+"%";const correctAis=ca.length?ca.map(a=>a.ai):[this.acts.findIndex(a=>a.name.toLowerCase()==="fold")];document.querySelectorAll(".tabtn").forEach((b,i)=>{const bai=this.trainIdx[i];b.disabled=true;if(correctAis.includes(bai))b.classList.add("tabtn-correct");if(!ok&&bai===ai)b.classList.add("tabtn-wrong")});this.updQ();checkAchievements();const spd=LG("ps_speed","fast");const okMs=spd==="fast"?500:spd==="slow"?2500:1000;const noMs=spd==="fast"?800:spd==="slow"?4000:2000;if(this.limit>0&&this.stats.total>=this.limit){setTimeout(()=>this.endSession(),ok?okMs:noMs)}else setTimeout(()=>{if(!this.paused)this.next()},ok?okMs:noMs)},
   togglePause(){this.paused=!this.paused;const btn=$("trPauseBtn");if(btn){btn.textContent=this.paused?"▶ Resume":"⏸ Pause";btn.style.color=this.paused?"var(--mt)":"var(--gd)"}if(!this.paused)this.next()},
   endSession(){this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;const hist=LG("ps_tr_history",[]);const id="th_"+Date.now();hist.push({id,rangeId:this.rangeId,date:new Date().toISOString(),total:s.total,ok:s.ok,accuracy:acc,best:s.best,limit:this.limit||"∞",wrongHands:s.wrongHands||{}});LS("ps_tr_history",hist);bumpLifetimeSession(acc,s.total);trackDailySession(acc,s.total);const newAchv=checkAchievements();if(acc>=90&&s.total>=5){setTimeout(celebrate,200);playSound("win");haptic("success")}const wh=Object.entries(s.wrongHands).sort((a,b)=>b[1]-a[1]).slice(0,12);const masteryHtml=this.rangeId&&this.rangeId!=="_editor"&&this.rangeId!=="_global"?'<div class="slbl" style="margin-top:14px">Range Mastery</div><div style="display:flex;justify-content:center">'+(masteryChipHtml(this.rangeId)||'<span class="mastery-chip" style="--mc:var(--t4)">⬡ Unranked</span>')+'</div>':"";$("trContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">'+(acc>=80?"🌟":acc>=60?"✨":"💪")+'</div><div style="font-family:var(--fd);font-size:22px;font-style:italic;color:var(--pk2);margin-bottom:14px">Session Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div>'+masteryHtml+(wh.length?'<div class="slbl" style="margin-top:14px">Missed Hands</div><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">'+wh.map(([h,c])=>'<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2)">'+h+' <span style="opacity:.5">'+c+"×</span></div>").join("")+"</div>":"")+'<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="pickTrRange(window._trPickedVal)">Train Again</button><button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>'},
-  updQ(){const s=this.stats;$("qScore").textContent=s.ok+"/"+s.total;$("qAcc").textContent=s.total?Math.round((s.ok/s.total)*100)+"%":"—";$("qStreak").textContent=s.streak;$("qBest").textContent=s.best},
+  updQ(){const s=this.stats;pulseStat($("qScore"),s.ok+"/"+s.total);pulseStat($("qAcc"),s.total?Math.round((s.ok/s.total)*100)+"%":"—");pulseStat($("qStreak"),s.streak);pulseStat($("qBest"),s.best)},
 };
 /* ── GAUNTLET MODE (boss-fight cross-range trainer with a timer) ── */
 function renderGauntIntro(){const n=S.saved.filter(r=>r.range.flat().some(c=>c.length)).length;$("trGauntContent").innerHTML='<div class="gaunt-intro"><div class="gaunt-boss-ico">⚔️</div><div class="gaunt-title">Boss Gauntlet</div><div class="gaunt-desc">Hands are pulled at random from <b>all '+n+' of your saved ranges</b>. You have <b>5 seconds</b> per hand. Miss the timer and it counts as wrong. Correct answers pay <b>2× XP</b>.</div>'+(n<2?'<div class="gaunt-warn">Save at least 2 ranges with assigned hands to unlock the Gauntlet.</div>':'<button class="btn pri" style="width:100%;padding:14px;font-size:13px;font-weight:800" onclick="Gauntlet.start()">⚔️ Enter the Gauntlet</button>')+'</div>'}
@@ -5739,7 +5947,7 @@ const Gauntlet={active:false,pool:[],cur:null,timer:null,timeLeft:5,stats:{ok:0,
     const trainIdx=this.usedActIdxFor(p.range,p.acts);
     this.cur={r:p.r,c:p.c,cards,label:hl(p.r,p.c),type:t,acts:p.acts,range:p.range,rangeName:p.rangeName,trainIdx};
     $("gRangeName").textContent=p.rangeName;$("gFb").textContent="";$("gFb").className="tfb";$("gExp").textContent="";$("gExp").className="texp";$("gCard").className="tcard gaunt-card";$("gCnt").textContent="#"+(this.stats.total+1);
-    const sb=$("gStreakB");if(this.stats.streak>=3){sb.classList.add("show");$("gStreakN").textContent=this.stats.streak}else sb.classList.remove("show");
+    const sb=$("gStreakB");if(this.stats.streak>=3){sb.classList.add("show");pulseStat($("gStreakN"),this.stats.streak)}else sb.classList.remove("show");
     const ct=$("gCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p2,i)=>setTimeout(()=>p2.classList.add("dealt"),40+i*100));
     const bc=$("gBtns");bc.innerHTML="";trainIdx.forEach((ai,i)=>{const a=p.acts[ai];const b=document.createElement("button");b.className="tabtn";b.style.borderColor=a.color;b.style.color=a.color;b.textContent=a.name;b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(ai));bc.appendChild(b)});
     this.timeLeft=5;const tf=$("gTimer");tf.style.transition="none";tf.style.width="100%";requestAnimationFrame(()=>{tf.style.transition="width .1s linear"});
@@ -5755,7 +5963,7 @@ const Gauntlet={active:false,pool:[],cur:null,timer:null,timeLeft:5,stats:{ok:0,
     const correctAis=ca.length?ca.map(a=>a.ai):[acts.findIndex(a=>a.name.toLowerCase()==="fold")];
     document.querySelectorAll("#gBtns .tabtn").forEach((b,i)=>{const bai=this.cur.trainIdx[i];b.disabled=true;if(correctAis.includes(bai))b.classList.add("tabtn-correct");if(!ok&&ai>=0&&bai===ai)b.classList.add("tabtn-wrong")});this.updQ();checkAchievements();
     setTimeout(()=>{if(this.active)this.next()},ok?400:1100)},
-  updQ(){const s=this.stats;$("gScore").textContent=s.ok+"/"+s.total;$("gAcc").textContent=s.total?Math.round((s.ok/s.total)*100)+"%":"—";$("gStreak").textContent=s.streak;$("gBest").textContent=s.best},
+  updQ(){const s=this.stats;pulseStat($("gScore"),s.ok+"/"+s.total);pulseStat($("gAcc"),s.total?Math.round((s.ok/s.total)*100)+"%":"—");pulseStat($("gStreak"),s.streak);pulseStat($("gBest"),s.best)},
   end(){clearInterval(this.timer);this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;if(s.total>0){bumpLifetimeSession(acc,s.total);trackDailySession(acc,s.total);checkAchievements()}$("trGauntContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">⚔️</div><div class="gaunt-title">Gauntlet Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div><div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="Gauntlet.start()">⚔️ Again</button><button class="btn" onclick="renderGauntIntro()">Back</button></div></div>'},
 };
 function switchTrTab(tab){["train","gaunt","hist"].forEach(t=>{const area=$("tr"+t.charAt(0).toUpperCase()+t.slice(1)+"Area");const btn=$("trTab"+t.charAt(0).toUpperCase()+t.slice(1));if(area)area.style.display=t===tab?"":"none";if(btn)btn.classList.toggle("on",t===tab)});if(tab==="hist")renderTrHistory();if(tab==="train")$("trTrainArea").style.display="flex";if(tab==="gaunt"&&!Gauntlet.active)renderGauntIntro()}
@@ -6657,9 +6865,19 @@ function trendDataset(key,values,CT){
   if(!isTrendOn(key))return[];
   return[{label:"Trend",data:computeLinearTrend(values),borderColor:CT.gold,borderDash:[6,4],borderWidth:2,pointRadius:0,pointHoverRadius:0,fill:false,tension:0,order:0}];
 }
+function pulseStat(el,newText){
+  if(!el)return;
+  const changed=el.textContent!==String(newText);
+  el.textContent=newText;
+  if(changed){
+    el.classList.remove("pulse");
+    void el.offsetWidth;
+    el.classList.add("pulse");
+  }
+}
 function animateCount(el,targetCents){if(!el)return;const dur=650;const start=performance.now();const from=0;const to=targetCents/100;const isNeg=to<0;const sym=brSym();function step(now){const p=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-p,3);const cur=from+(to-from)*eased;el.textContent=(cur<0?"−":"")+sym+Math.abs(cur).toLocaleString(undefined,{maximumFractionDigits:0});if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 function renderHeroSpark(){if(Object.keys(getViewedCurrencyGroups()).length>1)return;const CT=getCT();const sorted=getViewedSessions();const canvas=$("chHeroSpark");if(!canvas)return;destroyBrChart("spark");if(!sorted.length||typeof Chart==="undefined")return;const deps=getViewedDepositsTotal();let cum=getViewedStartBankroll()+deps;const data=[];sorted.forEach(s=>{cum+=s.resultCents;data.push(cum/100)});const pos=data[data.length-1]>=data[0];const col=pos?CT.green_a.slice(0,7):CT.red_a.slice(0,7);brCharts.spark=new Chart(canvas.getContext("2d"),{type:"line",data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:col,backgroundColor:brAreaGrad(col),fill:true,tension:.4,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}})}
-function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();if(Object.keys(getViewedCurrencyGroups()).length<=1){renderHeroSpark();renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
+function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();if(Object.keys(getViewedCurrencyGroups()).length<=1){renderHeroSpark();renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const bt=$("brTitle");if(bt)bt.textContent="Luna's Bankroll";updateCurrencyLabels()}
 let currentCurrencyTab=null;
 function renderBrDashMixedCurrency(groups){
   const keys=Object.keys(groups);
@@ -8375,7 +8593,28 @@ function renderStorageUsage(){
   bar.style.background=pct>=85?"var(--rs)":pct>=60?"var(--gd)":"linear-gradient(90deg,var(--pk),var(--pk2))";
   txt.textContent=mb.toFixed(2)+" MB used"+(pct>=85?" — running low. Consider clearing old data or removing large hand-history attachments.":pct>=60?" — keep an eye on this over time.":"");
 }
-function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderDeckGrid();renderFontGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI();renderStorageUsage()}
+function toggleSettingsCat(id){
+  const body=$("scBody_"+id),chev=$("scChev_"+id);
+  if(!body)return;
+  const collapsed=body.style.display==="none";
+  body.style.display=collapsed?"":"none";
+  if(chev)chev.textContent=collapsed?"▾":"▸";
+  const saved=LG("ps_settings_collapsed",{});
+  saved[id]=!collapsed;
+  LS("ps_settings_collapsed",saved);
+  playSound("tick");
+}
+function restoreSettingsCatState(){
+  const saved=LG("ps_settings_collapsed",{});
+  ["nav","editor","training","appearance","backup","danger"].forEach(id=>{
+    const body=$("scBody_"+id),chev=$("scChev_"+id);
+    if(!body)return;
+    const shouldCollapse=id in saved?saved[id]:id==="danger";
+    body.style.display=shouldCollapse?"none":"";
+    if(chev)chev.textContent=shouldCollapse?"▸":"▾";
+  });
+}
+function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");syncBalToggles();renderThemeGrid();renderDeckGrid();renderFontGrid();renderEditorSizeUI();renderNavStyleUI();renderStorageUsage();renderBackupStatus();restoreSettingsCatState()}
 /* ── Editor appearance (grid size / cell corners) ── */
 function applyEditorAppearance(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);document.documentElement.style.setProperty("--mtx-max",sz+"px");document.documentElement.style.setProperty("--mtx-radius",rad+"px")}
 
@@ -8417,7 +8656,7 @@ function renderEditorSizeUI(){const sz=LG("ps_editor_size",520);const rad=LG("ps
 function renderStreakUI(){const s=getStreak();const el=$("setStreakVal");if(el)el.textContent=s.count;const d=$("setStreakDesc");if(d)d.textContent=s.count>0?"Best: "+s.best+" day"+(s.best!==1?"s":"")+" · keep it going!":"Keep training daily to build your streak"}
 function openHudRef(){openM("hudRefM")}
 function syncBalToggles(){$("balToggle").textContent=balHidden?"👁 Show":"👁 Hide";const sb=$("setBalToggle");if(sb)sb.textContent=balHidden?"👁 Show":"👁 Hide"}
-function updateUserGreeting(){const name=LG("ps_username","");const icon=LG("ps_user_icon","😎");const el=$("headerGreeting");if(el)el.textContent=name?icon+" Hey "+name+" ♡":"";const hg=$("hdGreeting");if(hg)hg.textContent=name?icon+" Hey "+name+" ♡":"Welcome ♠"}
+function updateUserGreeting(){const name="Luna",icon="💖";const el=$("headerGreeting");if(el)el.textContent=icon+" Hey "+name+" ♡";const hg=$("hdGreeting");if(hg)hg.textContent=icon+" Hey "+name+" ♡"}
 
 /* ══ NAVIGATION STYLE (Bottom Bar / Top Bar / Hamburger) ══ */
 function applyNavStyle(){const style=LG("ps_nav_style","bottom");document.body.classList.remove("nav-bottom","nav-top","nav-hamburger");document.body.classList.add("nav-"+style);if(style!=="hamburger")closeHamburgerMenu();setTimeout(updateNavIndicator,50)}
@@ -8446,7 +8685,71 @@ function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle(
 
 
 // ═══ INIT ═══
-(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=LG("ps_deck","classic");document.documentElement.setAttribute("data-deck",dk);const fnt=FONTS.find(x=>x.id===LG("ps_font","sora"));if(fnt)document.documentElement.style.setProperty("--ff",fnt.stack);// Refresh DACTS after theme
+function setupPWA(){
+  try{
+    const cs=getComputedStyle(document.documentElement);
+    const bg=cs.getPropertyValue("--b0").trim()||"#0d0710";
+    const accent=cs.getPropertyValue("--pk").trim()||"#ec4899";
+    const accent2=cs.getPropertyValue("--pk2").trim()||"#f472b6";
+    // Generate an on-brand icon on the fly (rounded square, gradient, spade glyph) since this
+    // is a single HTML file with no separate image assets to point a manifest at.
+    const canvas=document.createElement("canvas");
+    canvas.width=512;canvas.height=512;
+    const ctx=canvas.getContext("2d");
+    const r=96;
+    ctx.beginPath();
+    ctx.moveTo(r,0);ctx.arcTo(512,0,512,512,r);ctx.arcTo(512,512,0,512,r);ctx.arcTo(0,512,0,0,r);ctx.arcTo(0,0,512,0,r);
+    ctx.closePath();ctx.clip();
+    ctx.fillStyle=bg;ctx.fillRect(0,0,512,512);
+    const grad=ctx.createLinearGradient(0,0,512,512);
+    grad.addColorStop(0,accent);grad.addColorStop(1,accent2);
+    ctx.fillStyle=grad;
+    ctx.font="700 300px Georgia, serif";
+    ctx.textAlign="center";ctx.textBaseline="middle";
+    ctx.fillText("♠",256,290);
+    const iconUrl=canvas.toDataURL("image/png");
+    const appleIcon=$("pwaAppleIcon"),favicon=$("pwaFavicon");
+    if(appleIcon)appleIcon.href=iconUrl;
+    if(favicon){favicon.href=iconUrl;favicon.type="image/png"}
+    // Build the manifest dynamically (as a Blob URL) so it always reflects the current theme,
+    // rather than shipping a separate static manifest.json this single file can't host.
+    const manifest={
+      name:"PokerStudio",short_name:"PokerStudio",
+      description:"Poker study, hand history, bankroll, and dealer shift tracking.",
+      start_url:location.href.split("#")[0],scope:location.href.split("#")[0],
+      display:"standalone",orientation:"portrait",
+      background_color:bg,theme_color:bg,
+      icons:[
+        {src:iconUrl,sizes:"192x192",type:"image/png",purpose:"any maskable"},
+        {src:iconUrl,sizes:"512x512",type:"image/png",purpose:"any maskable"}
+      ]
+    };
+    const manifestBlob=new Blob([JSON.stringify(manifest)],{type:"application/json"});
+    const manifestUrl=URL.createObjectURL(manifestBlob);
+    const manifestLink=$("pwaManifestLink");
+    if(manifestLink)manifestLink.href=manifestUrl;
+    // Best-effort offline caching. Browsers vary in whether they allow registering a service
+    // worker from a Blob URL (some restrict this for security reasons), and installability
+    // itself generally requires an https/localhost origin rather than a local file — so this
+    // is attempted quietly and simply does nothing if the environment doesn't support it,
+    // rather than surfacing an error to the person using the app.
+    if("serviceWorker" in navigator){
+      const swCode="self.addEventListener('install',e=>self.skipWaiting());"
+        +"self.addEventListener('activate',e=>self.clients.claim());"
+        +"self.addEventListener('fetch',e=>{"
+        +"if(e.request.method!=='GET')return;"
+        +"e.respondWith(caches.open('pokerstudio-v1').then(cache=>"
+        +"cache.match(e.request).then(cached=>{"
+        +"const fetchPromise=fetch(e.request).then(res=>{if(res&&res.ok)cache.put(e.request,res.clone());return res}).catch(()=>cached);"
+        +"return cached||fetchPromise;"
+        +"})));});";
+      const swBlob=new Blob([swCode],{type:"application/javascript"});
+      const swUrl=URL.createObjectURL(swBlob);
+      navigator.serviceWorker.register(swUrl).catch(()=>{/* silently ignore — offline caching is a bonus, not a requirement */});
+    }
+  }catch(e){/* PWA setup is a nice-to-have; never let it block the app from loading */}
+}
+(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=LG("ps_deck","classic");document.documentElement.setAttribute("data-deck",dk);const fnt=FONTS.find(x=>x.id===LG("ps_font","sora"));if(fnt)document.documentElement.style.setProperty("--ff",fnt.stack);setupPWA();// Refresh DACTS after theme
 const fd=getDACTS();DACTS[0]=fd[0];DACTS[1]=fd[1];DACTS[2]=fd[2];if(!LG("ps_cur",null))S.acts=JSON.parse(JSON.stringify(DACTS));
 Ed.init();checkDirty();resetBrForm();initNoteTags();
 // Wire up delegated nav listeners
