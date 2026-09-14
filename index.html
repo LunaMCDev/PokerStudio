@@ -26,7 +26,7 @@
 [data-theme="daylight"] .pcard,[data-theme="daylight"] .comm-card{background:linear-gradient(160deg,#fefdfa,#f0e8d0)}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{height:100%;height:100dvh;overflow:hidden}
-body{display:flex;flex-direction:column;background:var(--b0);color:var(--t1);font-family:var(--ff);-webkit-font-smoothing:antialiased;font-size:13px;transition:background-color .4s var(--e),color .4s var(--e);height:100vh;height:100dvh;overflow:hidden}
+body{display:flex;flex-direction:column;background:var(--b0);color:var(--t1);font-family:var(--ff);-webkit-font-smoothing:antialiased;font-size:13px;transition:background-color .4s var(--e),color .4s var(--e);height:100vh;height:100dvh;height:var(--app-height,100dvh);overflow:hidden}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 50% 40% at 50% 0%,color-mix(in srgb,var(--pk) 4%,transparent),transparent 70%)}
 ::-webkit-scrollbar{width:4px}
 input,button,select,textarea{font-family:inherit;font-size:inherit;color:inherit;border:none;outline:none;background:none}button{cursor:pointer}
@@ -8685,6 +8685,19 @@ function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle(
 
 
 // ═══ INIT ═══
+function updateAppHeight(){
+  // window.innerHeight / visualViewport.height reflect whatever is ACTUALLY visible right
+  // now, including transient OS chrome that env(safe-area-inset-*) and dvh don't always
+  // capture consistently across iOS versions — an active call banner, an expanded Dynamic
+  // Island Live Activity, the keyboard, etc. Re-measuring live is the standard, most robust
+  // fix for this whole class of "content doesn't quite fill/fit the screen" mobile bug.
+  const h=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
+  document.documentElement.style.setProperty("--app-height",h+"px");
+}
+window.addEventListener("resize",updateAppHeight);
+window.addEventListener("orientationchange",updateAppHeight);
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)updateAppHeight()});
+if(window.visualViewport)window.visualViewport.addEventListener("resize",updateAppHeight);
 function setupPWA(){
   // Real manifest.webmanifest, icons, and sw.js now ship as separate files alongside
   // index.html (see the accompanying icons/ folder) rather than being generated as
@@ -8693,7 +8706,7 @@ function setupPWA(){
     navigator.serviceWorker.register("./sw.js").catch(()=>{/* offline caching is a bonus, not a requirement */});
   }
 }
-(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=LG("ps_deck","classic");document.documentElement.setAttribute("data-deck",dk);const fnt=FONTS.find(x=>x.id===LG("ps_font","sora"));if(fnt)document.documentElement.style.setProperty("--ff",fnt.stack);setupPWA();// Refresh DACTS after theme
+(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=LG("ps_deck","classic");document.documentElement.setAttribute("data-deck",dk);const fnt=FONTS.find(x=>x.id===LG("ps_font","sora"));if(fnt)document.documentElement.style.setProperty("--ff",fnt.stack);updateAppHeight();setupPWA();// Refresh DACTS after theme
 const fd=getDACTS();DACTS[0]=fd[0];DACTS[1]=fd[1];DACTS[2]=fd[2];if(!LG("ps_cur",null))S.acts=JSON.parse(JSON.stringify(DACTS));
 Ed.init();checkDirty();resetBrForm();initNoteTags();
 // Wire up delegated nav listeners
