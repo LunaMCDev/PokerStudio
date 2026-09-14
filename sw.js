@@ -1,4 +1,4 @@
-const CACHE_VERSION = "pokerstudio-pwa-v1";
+const CACHE_VERSION = "pokerstudio-pwa-v2";
 const APP_SHELL = [
   "./",
   "./index.html",

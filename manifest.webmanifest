@@ -1,15 +1,15 @@
 {
   "name": "PokerStudio",
   "short_name": "PokerStudio",
-  "description": "Poker range editor, trainer, hand history, bankroll tracker, dealer shift log, and flowchart study notebook.",
+  "description": "Poker range editor, trainer, bankroll tracker, and study notebook.",
   "id": "/",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui", "browser"],
   "orientation": "portrait",
-  "background_color": "#0d0710",
-  "theme_color": "#0d0710",
+  "background_color": "#120c18",
+  "theme_color": "#ec4899",
   "categories": ["productivity", "education", "sports"],
   "lang": "en-GB",
   "dir": "ltr",
@@ -39,13 +39,6 @@
       "short_name": "Editor",
       "description": "Open PokerStudio at the range editor.",
       "url": "./index.html#editor",
-      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "Train",
-      "short_name": "Train",
-      "description": "Open PokerStudio at the trainer.",
-      "url": "./index.html#trainer",
       "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
     },
     {
