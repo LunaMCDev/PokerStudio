@@ -177,20 +177,51 @@ body.nav-hamburger .hamburger-btn{display:flex}
 @keyframes celebPop{0%{opacity:0;transform:translate(0,0) scale(.4) rotate(0)}12%{opacity:1;transform:translate(calc(var(--dx) * .3),-30px) scale(1.15) rotate(calc(var(--rot) * .3))}100%{opacity:0;transform:translate(var(--dx),160px) scale(.7) rotate(var(--rot))}}
 @keyframes streakPulse{0%{box-shadow:0 0 0 0 rgba(251,146,60,.5)}70%{box-shadow:0 0 0 10px rgba(251,146,60,0)}100%{box-shadow:0 0 0 0 rgba(251,146,60,0)}}
 .streak-chip.pulse{animation:streakPulse .8s ease-out}
-.gp{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px;transition:all .25s}
+.gp{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px;transition:all .25s;box-shadow:0 0 12px rgba(200,165,92,.08),inset 0 0 10px rgba(255,255,255,.02)}
+.gp:hover{box-shadow:0 0 16px rgba(200,165,92,.12),inset 0 0 10px rgba(255,255,255,.03)}
 
-.btn{padding:8px 16px;border:1px solid rgba(200,165,92,.12);background:var(--b3);color:var(--t2);font-size:10px;font-weight:600;border-radius:var(--r1);transition:all .2s;white-space:nowrap;letter-spacing:.3px}
+.btn{padding:8px 16px;border:1px solid rgba(200,165,92,.12);background:var(--b3);color:var(--t2);font-size:10px;font-weight:600;border-radius:var(--r1);transition:all .2s;white-space:nowrap;letter-spacing:.3px;box-shadow:0 0 10px rgba(200,165,92,.1);cursor:pointer}
+.btn:hover{background:var(--b2);box-shadow:0 0 16px rgba(200,165,92,.2);transform:translateY(-1px)}
 
-.btn.pri{background:var(--pk);border:none;color:var(--b0);font-weight:700;box-shadow:0 2px 12px rgba(200,165,92,.2)}
-.btn.pri:hover{background:var(--pk2);box-shadow:0 4px 20px rgba(200,165,92,.3);transform:translateY(-1px)}
+.btn.pri{background:var(--pk);border:none;color:var(--b0);font-weight:700;box-shadow:0 2px 12px rgba(236,72,153,.3),0 0 20px rgba(236,72,153,.15)}
+.btn.pri:hover{background:var(--pk2);box-shadow:0 4px 20px rgba(236,72,153,.4),0 0 30px rgba(236,72,153,.25);transform:translateY(-2px);text-shadow:0 0 8px rgba(0,0,0,.2)}
 .btn-s{padding:6px 12px;font-size:9px}.btn-xs{padding:3px 8px;font-size:8px;border-radius:5px}
-.btn-d{color:var(--rs);border-color:rgba(212,114,114,.12)}.btn-d:hover{background:rgba(212,114,114,.06)}
-.btn-save{background:var(--mt);border:none;color:var(--b0);font-weight:800}
+.btn-d{color:var(--rs);border-color:rgba(239,68,68,.2);box-shadow:0 0 12px rgba(239,68,68,.1)}.btn-d:hover{background:rgba(239,68,68,.1);box-shadow:0 0 20px rgba(239,68,68,.25);transform:translateY(-1px)}
+.btn-save{background:var(--mt);border:none;color:var(--b0);font-weight:800;box-shadow:0 0 16px rgba(51,184,149,.2)}
 
 .glow-line{height:1px;background:linear-gradient(90deg,transparent,var(--pk),transparent);opacity:.1;margin:16px 0}
-.section-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.section-head h2{font-family:var(--fd);font-size:28px;font-weight:800;font-style:italic;color:var(--pk2)}
-.minp{width:100%;padding:10px 14px;background:var(--b0);border:1px solid rgba(200,165,92,.06);border-radius:var(--r1);color:var(--t1);font-size:12px;outline:none;margin-bottom:8px;transition:all .25s}
+.danger-zone{
+  background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(236,72,153,.04));
+  border:1.5px solid rgba(239,68,68,.3);
+  border-radius:var(--r2);
+  padding:14px;
+  margin:18px 0;
+  box-shadow:0 0 20px 2px rgba(239,68,68,.15),inset 0 0 15px rgba(239,68,68,.08);
+  animation:dangerPulse 3s ease-in-out infinite;
+}
+@keyframes dangerPulse{0%,100%{box-shadow:0 0 20px 2px rgba(239,68,68,.15),inset 0 0 15px rgba(239,68,68,.08)}50%{box-shadow:0 0 30px 3px rgba(239,68,68,.25),inset 0 0 20px rgba(239,68,68,.12)}}
+.danger-zone-header{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:700;text-transform:uppercase;
+  color:var(--rs);letter-spacing:1.2px;
+  margin-bottom:10px;text-shadow:0 0 8px rgba(239,68,68,.4);
+}
+.danger-zone-header::before{content:"⚠ "}
+.danger-zone-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px solid rgba(239,68,68,.2);
+  transition:all .2s;
+}
+.danger-zone-item:last-child{border-bottom:none}
+.danger-zone-item:hover{
+  background:rgba(239,68,68,.08);
+  padding-left:8px;
+  box-shadow:inset 4px 0 0 rgba(239,68,68,.5);
+}
+.section-head{display:flex;align-items:center;gap:10px;margin-bottom:18px;text-shadow:0 0 16px rgba(236,72,153,.2)}
+.section-head h2{font-family:var(--fd);font-size:28px;font-weight:800;font-style:italic;color:var(--pk2);text-shadow:0 2px 12px rgba(236,72,153,.3)}
+.minp{width:100%;padding:10px 14px;background:var(--b0);border:1px solid rgba(200,165,92,.1);border-radius:var(--r1);color:var(--t1);font-size:12px;outline:none;margin-bottom:8px;transition:all .25s;box-shadow:inset 0 0 8px rgba(200,165,92,.05)}
+.minp:focus{border-color:rgba(236,72,153,.4);box-shadow:inset 0 0 12px rgba(200,165,92,.08),0 0 12px rgba(236,72,153,.2)}
 .minp::placeholder{color:var(--t5)}
 textarea.minp{min-height:50px;resize:vertical}
 .mact{display:flex;gap:6px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
@@ -206,8 +237,10 @@ select{
   border:1px solid var(--bd2);border-radius:var(--r1);
   color:var(--t1);font-size:12px;font-weight:500;
   transition:border-color .2s,box-shadow .2s,background-color .2s;
+  box-shadow:0 0 10px rgba(200,165,92,.08);
 }
-select:hover{border-color:var(--bd3);background-color:var(--b3)}
+select:hover{border-color:var(--bd3);background-color:var(--b3);box-shadow:0 0 16px rgba(200,165,92,.15)}
+select:focus{border-color:rgba(236,72,153,.4);box-shadow:0 0 16px rgba(236,72,153,.2)}
 select:focus{outline:none;border-color:var(--pk);box-shadow:0 0 0 3px color-mix(in srgb,var(--pk) 22%,transparent),0 0 14px -3px color-mix(in srgb,var(--pk) 55%,transparent)}
 select:disabled{opacity:.5;cursor:not-allowed}
 select.minp{
@@ -230,8 +263,8 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .mov.closing .mdl{animation:mdlOut .2s var(--e) forwards}
 @keyframes overlayOut{from{opacity:1}to{opacity:0}}
 @keyframes mdlOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.94) translateY(6px)}}
-.mdl{background:var(--b1);border:1px solid var(--bd2);border-radius:var(--r2);padding:24px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,.5);animation:mdlIn .25s var(--spring)}
-.mdl h3{font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;margin-bottom:14px;color:var(--pk2)}
+.mdl{background:var(--b1);border:1px solid var(--bd2);border-radius:var(--r2);padding:24px;max-width:480px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,.5),0 0 40px rgba(236,72,153,.15);animation:mdlIn .25s var(--spring)}
+.mdl h3{font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;margin-bottom:14px;color:var(--pk2);text-shadow:0 0 12px rgba(236,72,153,.2)}
 
 /* ── TOAST NOTIFICATION ── */
 .toast{
@@ -475,11 +508,13 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 
 /* ══ Shift Log ══ */
 .shift-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.shift-sum-card{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 8px;text-align:center}
+.shift-sum-card{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 8px;text-align:center;box-shadow:0 0 10px rgba(200,165,92,.08),inset 0 0 8px rgba(255,255,255,.02);transition:all .2s}
+.shift-sum-card:hover{box-shadow:0 0 14px rgba(200,165,92,.15),inset 0 0 8px rgba(255,255,255,.04);transform:translateY(-2px)}
 .shift-sum-lbl{font-size:8.5px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
-.shift-sum-val{font-size:17px;font-weight:800;color:var(--pk2);font-family:var(--fm)}
+.shift-sum-val{font-size:17px;font-weight:800;color:var(--pk2);font-family:var(--fm);text-shadow:0 0 8px rgba(236,72,153,.2)}
 .shift-sum-sub{font-size:9px;color:var(--t4);margin-top:3px}
-.shift-item{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:all .18s var(--spring)}
+.shift-item{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:all .18s var(--spring);box-shadow:0 0 10px rgba(200,165,92,.06)}
+.shift-item:hover{border-color:var(--pk2);box-shadow:0 0 16px rgba(236,72,153,.15),inset 0 0 10px rgba(236,72,153,.05)}
 .shift-item:hover{border-color:var(--pk);transform:translateY(-1px)}
 .shift-item-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
 .shift-item-date{font-weight:800;font-size:13px;color:var(--t1)}
@@ -518,7 +553,7 @@ select.sel-sm{padding:6px 26px 6px 10px;font-size:10px;background-position:right
 .shift-cal-day.leave-day{background:color-mix(in srgb,var(--li) 14%,var(--b0));border-color:color-mix(in srgb,var(--li) 50%,var(--bd));box-shadow:0 0 10px -3px color-mix(in srgb,var(--li) 65%,transparent)}
 .shift-cal-late-dot{position:absolute;bottom:2px;left:2px;width:5px;height:5px;border-radius:50%;background:var(--rs);box-shadow:0 0 6px 1.5px var(--rs)}
 .shift-stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}
-.shift-chart-box{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px;margin-top:12px}
+.shift-chart-box{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:14px;margin-top:12px;box-shadow:0 0 12px rgba(200,165,92,.08),inset 0 0 10px rgba(255,255,255,.02);transition:all .2s}
 .shift-ot-hero{background:linear-gradient(135deg,color-mix(in srgb,var(--gd2) 20%,var(--b2)),var(--b2));border:1px solid color-mix(in srgb,var(--gd2) 40%,var(--bd));border-radius:var(--r2);padding:16px;text-align:center;margin-bottom:10px;box-shadow:0 0 20px -8px color-mix(in srgb,var(--gd2) 50%,transparent)}
 .shift-ot-hero-lbl{font-size:10.5px;font-weight:700;color:var(--gd2);letter-spacing:.4px;text-transform:uppercase}
 .shift-ot-hero-val{font-size:32px;font-weight:800;font-family:var(--fm);color:var(--gd2);text-shadow:0 0 16px color-mix(in srgb,var(--gd2) 60%,transparent);margin:4px 0}
@@ -1156,6 +1191,12 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .minp:hover{border-color:var(--bd3)}
 .minp:focus{outline:none;border-color:var(--pk);box-shadow:inset 0 1px 3px rgba(0,0,0,.35),0 0 0 3px color-mix(in srgb,var(--pk) 22%,transparent),0 0 14px -3px color-mix(in srgb,var(--pk) 55%,transparent)}
 .slbl{font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t4);margin-bottom:6px;display:block}
+.shift-history-header{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;margin:16px 0 8px;transition:all .2s}
+.shift-history-header:hover{color:var(--pk2)}
+.shift-history-toggle{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;transition:transform .2s var(--spring)}
+.shift-history-toggle.closed{transform:rotate(-90deg)}
+.shift-history-content{overflow:hidden;transition:max-height .3s var(--e),opacity .2s;max-height:99999px;opacity:1}
+.shift-history-content.closed{max-height:0;opacity:0;pointer-events:none}
 
 /* ── Settings category headers ── */
 .settings-category{
@@ -1164,14 +1205,23 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   color:var(--pk2);margin:26px 0 12px;
   padding-bottom:9px;border-bottom:1px solid var(--bd2);
   position:relative;animation:slideUp .35s var(--e) backwards;
+  cursor:pointer;user-select:none;transition:all .2s;
+  text-shadow:0 0 10px rgba(236,72,153,.2);
 }
+.settings-category:hover{color:var(--li);text-shadow:0 0 16px rgba(236,72,153,.35)}
 .settings-category:first-of-type{margin-top:4px}
 .settings-category::after{
   content:"";position:absolute;bottom:-1px;left:0;width:56px;height:2px;
   background:linear-gradient(90deg,var(--pk),transparent);
-  box-shadow:0 0 10px 1px color-mix(in srgb,var(--pk) 60%,transparent);
+  box-shadow:0 0 12px 2px rgba(236,72,153,.3);
 }
-.settings-category .sc-icon{font-size:15px;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--pk2) 45%,transparent))}
+.settings-category .sc-icon{font-size:15px;filter:drop-shadow(0 0 8px rgba(236,72,153,.4))}
+.settings-category-toggle{
+  display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-right:-8px;transition:transform .2s var(--spring);
+}
+.settings-category.closed .settings-category-toggle{transform:rotate(-90deg)}
+.settings-section-content{overflow:hidden;transition:max-height .3s var(--e),opacity .2s;max-height:99999px;opacity:1}
+.settings-section-content.closed{max-height:0;opacity:0;pointer-events:none}
 
 /* ══ LIVE SESSION START MODAL — fully styled ══ */
 #liveStartM .mdl h3{
@@ -2657,47 +2707,48 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .flow-card-move:hover{background:var(--pk);color:var(--b0);border-color:transparent;transform:scale(1.1)}
 
 /* ── Editor top bar & toolbar ── */
-.flow-editor-topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.flow-back-btn{padding:9px 14px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:11px;font-weight:700;flex-shrink:0}
-.flow-title-input{flex:1;min-width:0;background:transparent;border:none;border-bottom:1.5px dashed var(--bd2);color:var(--t1);font-size:15px;font-weight:800;padding:6px 4px;font-family:var(--fd);font-style:italic}
-.flow-icon-btn{width:36px;height:36px;border-radius:50%;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:16px;flex-shrink:0;transition:all .18s var(--spring)}
+.flow-editor-topbar{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.flow-back-btn{padding:7px 10px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:10px;font-weight:700;flex-shrink:0}
+.flow-title-input{flex:1;min-width:0;background:transparent;border:none;border-bottom:1.5px dashed var(--bd2);color:var(--t1);font-size:13px;font-weight:800;padding:4px 2px;font-family:var(--fd);font-style:italic}
+.flow-icon-btn{width:32px;height:32px;border-radius:50%;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:14px;flex-shrink:0;transition:all .18s var(--spring)}
 .flow-icon-btn:hover{border-color:var(--pk);color:var(--pk2);transform:translateY(-1px)}
 .flow-icon-btn:active{transform:scale(.9)}
-.flow-toolbar{display:flex;flex-direction:column;gap:8px;margin-bottom:8px}
-.flow-toolbar-row{display:flex;gap:6px;align-items:center}
+.flow-toolbar{display:flex;flex-direction:row;gap:4px;margin-bottom:4px;flex-wrap:wrap}
+.flow-toolbar-row{display:flex;gap:4px;align-items:center}
 .flow-tool-btn{
-  flex:1;display:flex;align-items:center;justify-content:center;gap:5px;
-  height:38px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
-  font-size:11px;font-weight:700;color:var(--t2);transition:all .2s var(--spring);
+  flex:0;display:flex;align-items:center;justify-content:center;gap:3px;
+  height:32px;padding:0 8px;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
+  font-size:9px;font-weight:700;color:var(--t2);transition:all .2s var(--spring);white-space:nowrap;
 }
-.flow-tool-btn span{font-size:14px}
+.flow-tool-btn span{font-size:12px}
 .flow-tool-btn:hover{border-color:var(--pk);transform:translateY(-1px);color:var(--t1)}
 .flow-tool-btn.active{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;color:var(--b0);box-shadow:0 3px 12px -2px color-mix(in srgb,var(--pk) 55%,transparent)}
 .flow-tool-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;pointer-events:none}
 .flow-tool-btn.flow-tool-pri{background:linear-gradient(135deg,var(--pk),var(--pk2));border-color:transparent;color:var(--b0)}
 .flow-tool-btn.flow-tool-pri:disabled{background:var(--b2);color:var(--t4)}
 .flow-tool-icon-btn{
-  width:36px;height:36px;flex-shrink:0;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
-  font-size:13px;transition:all .2s var(--spring);
+  width:32px;height:32px;flex-shrink:0;border-radius:var(--r1);background:var(--b2);border:1px solid var(--bd);
+  font-size:12px;transition:all .2s var(--spring);
 }
 .flow-tool-icon-btn:hover{border-color:var(--pk);transform:translateY(-1px)}
 .flow-tool-icon-btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
 .flow-tool-icon-btn:disabled:hover{border-color:var(--bd);transform:none}
 .flow-tool-icon-btn.active{background:linear-gradient(135deg,var(--rs),#e08a8a);border-color:transparent;color:#fff;box-shadow:0 3px 12px -2px rgba(212,114,114,.5)}
 .flow-tool-icon-btn.flow-tool-danger:hover{border-color:var(--rs);color:var(--rs)}
-.flow-hint{font-size:10.5px;color:var(--t4);text-align:center;margin-bottom:10px;padding:6px 10px;background:var(--b0);border-radius:var(--r1);border:1px dashed var(--bd)}
+.flow-hint{font-size:9px;color:var(--t4);text-align:center;margin-bottom:4px;padding:3px 6px;background:transparent;border-radius:var(--r1);border:none}
 .flow-view-banner{
-  display:flex;align-items:center;gap:10px;justify-content:space-between;
-  padding:10px 14px;margin-bottom:10px;border-radius:var(--r1);
-  background:linear-gradient(135deg,color-mix(in srgb,var(--li) 16%,var(--b2)),var(--b2));
-  border:1px solid color-mix(in srgb,var(--li) 40%,var(--bd));
+  display:flex;align-items:center;gap:8px;justify-content:space-between;
+  padding:8px 12px;margin-bottom:4px;border-radius:var(--r1);
+  background:linear-gradient(135deg,color-mix(in srgb,var(--li) 20%,var(--b2)),color-mix(in srgb,var(--li) 8%,var(--b2)));
+  border:1.5px solid color-mix(in srgb,var(--li) 50%,var(--bd));
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--li) 20%,transparent),0 4px 12px -6px rgba(0,0,0,.15);
   animation:vIn .3s var(--e);
 }
-.flow-view-banner-text{font-size:11.5px;font-weight:700;color:var(--li)}
+.flow-view-banner-text{font-size:10px;font-weight:700;color:var(--li);letter-spacing:.2px;text-transform:uppercase;flex:1}
 
 /* ── Canvas ── */
 .flow-canvas-wrap{
-  width:100%;height:calc(100vh - 340px);min-height:360px;overflow:auto;
+  width:100%;height:calc(100vh - 260px);min-height:300px;overflow:auto;
   background:var(--b0);border:1px solid var(--bd2);border-radius:var(--r2);
   background-image:radial-gradient(circle,var(--bd2) 1px,transparent 1px);background-size:22px 22px;
   position:relative;
@@ -3600,27 +3651,23 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="flow-editor-topbar">
       <button class="flow-back-btn" onclick="closeFlowEditor()">← Back</button>
       <input class="flow-title-input" id="flowTitleInput" placeholder="Untitled Flowchart" oninput="flowRenameCurrent(this.value)"/>
-      <button class="flow-icon-btn" onclick="openFlowManageM()" title="Manage">⋯</button>
+      <button class="flow-icon-btn" onclick="openFlowEditChart()" title="Edit name & description">✎</button>
     </div>
     <div class="flow-toolbar">
       <div class="flow-toolbar-row">
         <button class="flow-tool-btn flow-tool-pri" id="flowAddBtn" onclick="flowAddNode()" title="Add node"><span>➕</span>Add</button>
         <button class="flow-tool-btn" onclick="flowAutoLayout()" title="Auto layout"><span>✨</span>Layout</button>
         <button class="flow-tool-btn" onclick="flowFitToScreen(true)" title="Fit to screen"><span>⛶</span>Fit</button>
-        <button class="flow-tool-btn" id="flowSnapBtn" onclick="flowToggleSnap()" title="Snap to grid"><span>▦</span>Snap</button>
-      </div>
-      <div class="flow-toolbar-row">
         <button class="flow-tool-icon-btn" id="flowUndoBtn" onclick="flowUndo()" title="Undo" disabled>↶</button>
         <button class="flow-tool-icon-btn" id="flowRedoBtn" onclick="flowRedo()" title="Redo" disabled>↷</button>
         <button class="flow-tool-icon-btn" onclick="flowZoom(0.1)" title="Zoom in">🔍+</button>
         <button class="flow-tool-icon-btn" onclick="flowZoom(-0.1)" title="Zoom out">🔍−</button>
         <button class="flow-tool-icon-btn" id="flowLockBtn" onclick="flowToggleLock()" title="Lock — explore without moving anything">🔓</button>
         <span style="flex:1"></span>
-        <button class="flow-tool-icon-btn flow-tool-danger" onclick="flowClearCanvas()" title="Clear all">🗑️</button>
       </div>
     </div>
     <div class="flow-view-banner" id="flowViewBanner" style="display:none">
-      <span class="flow-view-banner-text">👁 View Mode — nothing can be changed while exploring</span>
+      <span class="flow-view-banner-text">👁 VIEW MODE — exploring only</span>
       <button class="btn pri btn-s" onclick="flowToggleLock()">✎ Edit</button>
     </div>
     <div class="flow-hint" id="flowModeHint">Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.</div>
@@ -3665,15 +3712,18 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div style="display:flex;gap:8px;margin:14px 0">
       <button class="btn pri" style="flex:1" onclick="openShiftForm()">+ Log Shift</button>
     </div>
-    <div class="slbl" style="margin:16px 0 8px">📋 All Shifts</div>
-    <div id="shiftsList"></div>
+    <div class="shift-history-header closed" id="shiftHistoryHeader" onclick="toggleShiftHistoryCollapse()"><span class="shift-history-toggle closed">▼</span><span class="slbl" style="margin:0">📋 All Shifts</span></div>
+    <div class="shift-history-content closed" id="shiftHistoryContent">
+      <div id="shiftsList"></div>
+    </div>
   </div>
 </div>
 <!-- SETTINGS -->
 <div id="settingsV" class="view" style="max-width:800px;margin:0 auto">
   <div class="section-head"><span style="font-size:20px">⚙</span><h2>Settings</h2></div>
   
-<div class="settings-category"><span class="sc-icon">🎨</span>Appearance &amp; Navigation</div>
+<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🎨</span>Appearance &amp; Navigation</div>
+<div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px"><div class="slbl">🎨 Theme</div><div class="theme-grid" id="themeGrid"></div></div>
 <div class="gp" style="margin-bottom:12px"><div class="slbl">🃏 Deck Design</div><div class="theme-grid" id="deckGrid"></div></div>
 <div class="gp" style="margin-bottom:12px"><div class="slbl">🔤 Font</div><div class="setting-desc" style="margin-bottom:8px">Changes body text only — headings, numbers, and icons always stay put so nothing breaks.</div><select class="minp" id="fontSelect" onchange="applyFont(this.value)" style="margin-bottom:10px"></select><div class="font-preview-box" id="fontPreviewBox"></div></div>
@@ -3695,8 +3745,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="setting-row"><div class="setting-info"><span class="setting-label">Default Tab on Launch</span><span class="setting-desc">Which screen opens the app</span></div><select id="setDefaultTab" onchange="LS('ps_default_tab',this.value)" style="font-size:12px"><option value="editor">♠️ Editor</option><option value="trainer">🎯 Train</option><option value="files">📁 Files</option><option value="bankroll">💰 Bank</option></select></div>
     <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">Study Streak</span><span class="setting-desc" id="setStreakDesc">Keep training daily to build your streak</span></div><div class="streak-chip" id="setStreakChip"><span class="fire">🔥</span><span id="setStreakVal">0</span></div></div>
   </div>
+</div>
   
-<div class="settings-category"><span class="sc-icon">👤</span>Profile &amp; Progress</div>
+<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">👤</span>Profile &amp; Progress</div>
+<div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">👤 Profile</div>
     <div style="padding:10px 0">
@@ -3714,8 +3766,10 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="xp-card" id="xpCard"></div>
     <div class="setting-row" style="border-bottom:none;margin-top:10px"><div class="setting-info"><span class="setting-label">Achievements</span><span class="setting-desc">Badges you've unlocked through training, playing &amp; logging</span></div><button class="btn btn-s pri" id="setAchvBtn" onclick="openAchvModal()"><span id="setAchvChip">0/21</span> 🏆</button></div>
   </div>
+</div>
   
-<div class="settings-category"><span class="sc-icon">🎮</span>Training</div>
+<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🎮</span>Training</div>
+<div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">🎯 Trainer</div>
     <div class="setting-row"><div class="setting-info"><span class="setting-label">Auto-advance Speed</span><span class="setting-desc">How fast correct answers auto-advance</span></div><select id="setSpeed" onchange="LS('ps_speed',this.value)"><option value="fast" selected>Fast (0.5s)</option><option value="normal">Normal (1s)</option><option value="slow">Slow (2.5s)</option></select></div>
@@ -3749,15 +3803,19 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     <div class="slbl">📖 Pro Reference</div>
     <div class="setting-row" style="border-bottom:none"><div class="setting-info"><span class="setting-label">HUD Stat &amp; Exploit Cheat Sheet</span><span class="setting-desc">VPIP/PFR reads, population tendencies, quick exploits</span></div><button class="btn btn-s pri" onclick="openHudRef()">📖 Open</button></div>
   </div>
+</div>
   
-<div class="settings-category"><span class="sc-icon">♠</span>Content Management</div>
+<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">♠</span>Content Management</div>
+<div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">♠ Editor</div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Reset Default Actions</div></div><button class="btn btn-s" onclick="confirmAction('Reset editor actions?','',()=>{S.acts=JSON.parse(JSON.stringify(getDACTS()));S.sel=0;Ed.renActs();Ed.saveSt();toast('Actions reset ✦')})">Reset</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px">Import Range Notation</div></div><button class="btn btn-s" onclick="openM('impM')">Import</button></div>
   </div>
+</div>
   
-<div class="settings-category"><span class="sc-icon">🗄️</span>Data &amp; Backup</div>
+<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🗄️</span>Data &amp; Backup</div>
+<div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">📊 Storage</div>
     <div id="storageUsageWrap" style="margin-bottom:12px">
@@ -3766,17 +3824,21 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     </div>
     <div class="slbl">🗄️ Data</div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Export All Data</div></div><button class="btn btn-s pri" onclick="dlJSON()">💾 Export</button></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Import Data</div></div><button class="btn btn-s" onclick="$('jfInput').click()">📂 Import</button></div>
-    <div class="glow-line"></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Delete All Ranges</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Delete ALL ranges?','Cannot be undone',()=>{S.saved=[];S.folders=[{path:'/',icon:'📁',name:'Root'}];saveSvd();fsRender();toast('Ranges deleted')})">Delete</button></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Clear Active Bankroll</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Wipes sessions, goals &amp; deposits for the currently selected bankroll only</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear this bankroll\\'s data?','Cannot be undone',()=>{const b=BR.d;b.sessions=[];b.goals=[];b.deposits=[];BR.save();renderBrAll();toast('Bankroll cleared')})">Clear</button></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Factory Reset</div></div><button class="btn btn-s btn-d" onclick="confirmAction('FACTORY RESET?','Everything will be permanently erased',()=>{localStorage.clear();location.reload()})">Reset All</button></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:none"><div><div style="font-weight:600;font-size:12px">Import Data</div></div><button class="btn btn-s" onclick="$('jfInput').click()">📂 Import</button></div>
   </div>
+  
+<div class="danger-zone">
+  <div class="danger-zone-header">Danger Zone</div>
+  <div class="danger-zone-item"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Delete All Ranges</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Permanently remove all saved poker ranges</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Delete ALL ranges?','Cannot be undone',()=>{S.saved=[];S.folders=[{path:'/',icon:'📁',name:'Root'}];saveSvd();fsRender();toast('Ranges deleted')})">Delete</button></div>
+  <div class="danger-zone-item"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Clear Active Bankroll</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Wipe sessions, goals &amp; deposits for current bankroll only</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear this bankroll\\'s data?','Cannot be undone',()=>{const b=BR.d;b.sessions=[];b.goals=[];b.deposits=[];BR.save();renderBrAll();toast('Bankroll cleared')})">Clear</button></div>
+  <div class="danger-zone-item"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Factory Reset</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Erase everything — all data, all settings, irreversible</div></div><button class="btn btn-s btn-d" onclick="confirmAction('FACTORY RESET?','Everything will be permanently erased',()=>{localStorage.clear();location.reload()})">Reset All</button></div>
+</div>
   <div class="gp" style="margin-bottom:12px;text-align:center;padding:24px">
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
   </div>
+</div>
 </div>
 
 </div><!-- end .main -->
@@ -3904,6 +3966,25 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <label class="slbl" style="margin-top:8px">Icon</label>
   <div class="ac-wrap"><input class="minp" id="flowNewFolderIcon" value="📁" style="text-align:center;font-size:18px"/></div>
   <div class="mact"><button class="btn" onclick="closeM('flowNewFolderM')">Cancel</button><button class="btn pri" onclick="flowSaveFolder()">Save</button></div>
+</div></div>
+
+<div class="mov" id="flowEditFolderM"><div class="mdl" style="max-width:360px">
+  <h3>✎ Edit Folder</h3>
+  <input type="hidden" id="flowEditFolderPath"/>
+  <label class="slbl">Name</label>
+  <input class="minp" id="flowEditFolderName" placeholder="Folder name…"/>
+  <label class="slbl" style="margin-top:8px">Icon</label>
+  <div class="ac-wrap"><input class="minp" id="flowEditFolderIcon" value="📁" style="text-align:center;font-size:18px"/></div>
+  <div class="mact"><button class="btn" onclick="closeM('flowEditFolderM')">Cancel</button><button class="btn pri" onclick="flowSaveEditFolder()">Save</button></div>
+</div></div>
+
+<div class="mov" id="flowEditChartM"><div class="mdl" style="max-width:380px">
+  <h3>✎ Edit Flowchart</h3>
+  <label class="slbl">Name</label>
+  <input class="minp" id="flowEditChartName" placeholder="Untitled Flowchart"/>
+  <label class="slbl" style="margin-top:8px">Description <span class="tool-optional">(optional)</span></label>
+  <textarea class="minp" id="flowEditChartDesc" placeholder="What's this flowchart for?" style="min-height:50px;font-size:12px"></textarea>
+  <div class="mact"><button class="btn" onclick="closeM('flowEditChartM')">Cancel</button><button class="btn pri" onclick="flowSaveEditChart()">Save</button></div>
 </div></div>
 <div class="mov" id="flowMoveToFolderM"><div class="mdl" style="max-width:360px">
   <h3>📂 Move to Folder</h3>
@@ -4230,7 +4311,7 @@ function flowToggleSnap(){
   playSound("tick");haptic("light");
   toast(flowSnapEnabled?"▦ Snap to grid on":"Snap to grid off");
 }
-const FLOW_COLORS=["#c8a55c","#ec4899","#34d399","#3b82f6","#a78bfa","#f87171","#fbbf24","#67e8f9"];
+const FLOW_COLORS=["#ec4899","#f87171","#fbbf24","#34d399","#3b82f6","#a78bfa","#67e8f9","#c8a55c","#fb7185","#fca5a5","#fde047","#86efac","#60a5fa","#c4b5fd","#22d3ee"];
 function initFlow(){
   Flow.load();
   flowCurrentFolder="/";
@@ -4266,16 +4347,16 @@ function renderFlowFolderBar(){
   if(!children.length){grid.innerHTML="";return}
   grid.innerHTML=children.map(f=>{
     const count=Flow.d.filter(x=>(x.folder||"/")===f.path).length;
-    return'<div class="hh-folder-card" onclick="flowNavFolder(\''+f.path+'\')" oncontextmenu="event.preventDefault();flowFolderCtx(\''+f.path+'\')"><span class="hh-folder-ico">'+f.icon+'</span><span class="hh-folder-name">'+escapeHtml(f.name)+'</span><span class="hh-folder-count">'+count+" chart"+(count!==1?"s":"")+"</span></div>";
+    return'<div class="hh-folder-card" oncontextmenu="event.preventDefault();flowFolderCtx(\''+f.path+'\')" style="position:relative"><span class="hh-folder-ico" style="cursor:pointer" onclick="flowNavFolder(\''+f.path+'\')">'+f.icon+'</span><span class="hh-folder-name" style="cursor:pointer" onclick="flowNavFolder(\''+f.path+'\')">'+escapeHtml(f.name)+'</span><span class="hh-folder-count">'+count+" chart"+(count!==1?"s":"")+"</span><button class=\"hh-folder-edit\" onclick=\"event.stopPropagation();openFlowEditFolder(\''+f.path+'\')\" style=\"position:absolute;top:4px;right:4px;background:none;border:none;font-size:14px;padding:4px;opacity:.4;transition:opacity .2s;cursor:pointer\" onmouseover=\"this.style.opacity=1\" onmouseout=\"this.style.opacity=.4\">✎</button></div>";
   }).join("");
 }
 function flowFolderCtx(path){
   const f=getFlowFolders().find(x=>x.path===path);if(!f)return;
-  confirmAction("Delete folder \""+escapeHtml(f.name)+"\"?","Flowcharts inside will move back to All Flowcharts, not be deleted.",()=>{
-    saveFlowFoldersList(getFlowFolders().filter(x=>x.path!==path&&!x.path.startsWith(path+"/")));
-    Flow.d.forEach(x=>{if((x.folder||"/")===path||(x.folder||"").startsWith(path+"/"))x.folder="/"});
-    Flow.save();renderFlowFolderBar();renderFlowGrid();toast("Folder deleted");
-  });
+  const menu=$("fsCtxMenu");if(!menu)return;
+  const h='<div class="fs-ctx-i" onclick="openFlowEditFolder(\''+path+'\')">✎ Edit</div>'
+    +'<div class="fs-ctx-sep"></div>'
+    +'<div class="fs-ctx-i del" onclick="flowDeleteFolderConfirm(\''+path+'\')">✕ Delete</div>';
+  menu.innerHTML=h;menu.style.display="block";const r=event.target.getBoundingClientRect();menu.style.left=(r.left)+'px';menu.style.top=(r.top+25)+'px';
 }
 function flowSaveFolder(){
   const name=$("flowNewFolderName").value.trim();if(!name)return toast("Enter a name");
@@ -4287,6 +4368,30 @@ function flowSaveFolder(){
   $("flowNewFolderName").value="";$("flowNewFolderIcon").value="📁";
   renderFlowFolderBar();
   toast("Folder created ✦");
+}
+function openFlowEditFolder(path){
+  const f=getFlowFolders().find(x=>x.path===path);if(!f)return;
+  $("flowEditFolderPath").value=path;
+  $("flowEditFolderName").value=f.name;
+  $("flowEditFolderIcon").value=f.icon;
+  openM("flowEditFolderM");
+}
+function flowSaveEditFolder(){
+  const path=$("flowEditFolderPath").value;
+  const folders=getFlowFolders();
+  const f=folders.find(x=>x.path===path);if(!f)return;
+  f.name=$("flowEditFolderName").value.trim()||f.name;
+  f.icon=$("flowEditFolderIcon").value||"📁";
+  saveFlowFoldersList(folders);
+  closeM("flowEditFolderM");renderFlowFolderBar();renderFlowGrid();toast("Folder updated ✦");
+}
+function flowDeleteFolderConfirm(path){
+  const f=getFlowFolders().find(x=>x.path===path);if(!f)return;
+  confirmAction("Delete folder \""+escapeHtml(f.name)+"\"?","Flowcharts inside will move to All Flowcharts.",()=>{
+    saveFlowFoldersList(getFlowFolders().filter(x=>x.path!==path&&!x.path.startsWith(path+"/")));
+    Flow.d.forEach(x=>{if((x.folder||"/")===path||(x.folder||"").startsWith(path+"/"))x.folder="/"});
+    Flow.save();renderFlowFolderBar();renderFlowGrid();toast("Folder deleted");
+  });
 }
 function openFlowMoveToFolder(id){
   $("flowMoveId").value=id;
@@ -4328,21 +4433,22 @@ function renderFlowGrid(){
     return((a.updated||0)-(b.updated||0))*dir;
   });
   ct.innerHTML=sorted.map(f=>{
-    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><button class="flow-card-move" onclick="event.stopPropagation();openFlowMoveToFolder(\''+f.id+'\')" title="Move to folder">📂</button><div class="flow-card-icon">'+(f.locked?"🔒":"🧠")+'</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
+    return'<div class="flow-card" onclick="openFlowchart(\''+f.id+'\')"><button class="flow-card-del" onclick="event.stopPropagation();quickDeleteFlowchart(\''+f.id+'\')">✕</button><button class="flow-card-move" onclick="event.stopPropagation();openFlowEditChart(\''+f.id+'\')" title="Edit properties">✎</button><button class="flow-card-move" onclick="event.stopPropagation();openFlowMoveToFolder(\''+f.id+'\')" title="Move to folder">📂</button><div class="flow-card-icon">'+(f.locked?"🔒":"🧠")+'</div><div class="flow-card-name">'+escapeHtml(f.name)+'</div>'+(f.description?'<div class="flow-card-desc">'+escapeHtml(f.description)+"</div>":"")+'<div class="flow-card-meta">'+f.nodes.length+' node'+(f.nodes.length!==1?"s":"")+" · "+new Date(f.updated).toLocaleDateString()+"</div></div>";
   }).join("");
 }
 function createNewFlowchart(){
-  const f={id:"flow_"+Date.now(),name:"Untitled Flowchart",nodes:[],connections:[],folder:flowCurrentFolder,created:Date.now(),updated:Date.now()};
+  const f={id:"flow_"+Date.now(),name:"Untitled Flowchart",nodes:[],connections:[],folder:flowCurrentFolder,created:Date.now(),updated:Date.now(),locked:false};
   Flow.d.push(f);Flow.save();
-  openFlowchart(f.id);
+  openFlowchart(f.id,true);
 }
 function quickDeleteFlowchart(id){
   const f=Flow.d.find(x=>x.id===id);if(!f)return;
   if(!confirm('Delete "'+f.name+'"? This can\'t be undone.'))return;
   Flow.d=Flow.d.filter(x=>x.id!==id);Flow.save();renderFlowFolderBar();renderFlowGrid();toast("Flowchart deleted");
 }
-function openFlowchart(id){
+function openFlowchart(id,isNewChart){
   flowState=Flow.d.find(f=>f.id===id);if(!flowState)return;
+  if(isNewChart){flowState.locked=false}else if(!flowState.locked){flowState.locked=true}
   flowSelectedNodeId=null;flowZoomLevel=1;
   flowHistory=[JSON.stringify({nodes:flowState.nodes,connections:flowState.connections})];
   flowHistoryIndex=0;
@@ -4350,7 +4456,6 @@ function openFlowchart(id){
   $("flowListArea").style.display="none";
   $("flowEditorArea").style.display="";
   $("flowTitleInput").value=flowState.name;
-  $("flowSnapBtn")?.classList.toggle("active",flowSnapEnabled);
   flowUpdateLockUI();
   renderFlowCanvas();
   if(flowState.nodes.length)requestAnimationFrame(()=>flowFitToScreen(false));
@@ -4369,6 +4474,27 @@ function flowUpdateLockUI(){
   if(banner)banner.style.display=locked?"flex":"none";
   $("flowModeHint").style.display=locked?"none":"";
   $("flowModeHint").textContent="Tap ➕ to add a node. Drag a node to move it, or drag its ➜ handle onto another node to draw an arrow. Tap a node to edit it.";
+}
+function openFlowEditChart(id){
+  let chart=flowState;
+  if(id){chart=Flow.d.find(f=>f.id===id)}
+  if(!chart)return;
+  $("flowEditChartName").value=chart.name;
+  $("flowEditChartDesc").value=chart.description||"";
+  $("flowEditChartM").dataset.chartId=chart.id;
+  openM("flowEditChartM");
+}
+function flowSaveEditChart(){
+  const chartId=$("flowEditChartM").dataset.chartId;
+  const chart=Flow.d.find(f=>f.id===chartId);if(!chart)return;
+  chart.name=$("flowEditChartName").value.trim()||"Untitled Flowchart";
+  chart.description=$("flowEditChartDesc").value.trim();
+  Flow.save();
+  closeM("flowEditChartM");
+  if(flowState&&flowState.id===chartId){
+    $("flowTitleInput").value=chart.name;
+  }
+  renderFlowGrid();toast("Flowchart updated ✦");
 }
 function flowToggleLock(){
   if(!flowState)return;
@@ -4885,7 +5011,9 @@ function flowHandlePointerDown(e,fromId){
       const toId=targetNodeEl.dataset.id;
       const exists=flowState.connections.some(c=>c.from===fromId&&c.to===toId);
       if(!exists){
-        const newConn={id:"c"+Date.now(),from:fromId,to:toId,color:FLOW_COLORS[0],label:""};
+        const targetNode=flowState.nodes.find(n=>n.id===toId);
+        const connColor=targetNode?.color||FLOW_COLORS[0];
+        const newConn={id:"c"+Date.now(),from:fromId,to:toId,color:connColor,label:""};
         flowState.connections.push(newConn);
         flowSaveCurrent();
         flowJustAddedConnId=newConn.id;flowJustAddedConnTime=Date.now();
@@ -5936,6 +6064,17 @@ function shiftTimesLabel(s){
   }
   return(s.startTime||"?")+" – "+(s.endTime||"?");
 }
+function toggleShiftHistoryCollapse(){
+  const header=$("shiftHistoryHeader");
+  const content=$("shiftHistoryContent");
+  const toggle=header?.querySelector(".shift-history-toggle");
+  if(!header||!content)return;
+  const isClosed=content.classList.contains("closed");
+  content.classList.toggle("closed",!isClosed);
+  header.classList.toggle("closed",!isClosed);
+  if(toggle)toggle.classList.toggle("closed",!isClosed);
+  LS("ps_shift_history_collapsed",!isClosed);
+}
 function renderShiftsList(){
   const el=$("shiftsList");if(!el)return;
   const shifts=[...getShifts()].sort((a,b)=>(shiftDateKey(b)||"").localeCompare(shiftDateKey(a)||"")||(b.startTime||"").localeCompare(a.startTime||""));
@@ -6142,7 +6281,18 @@ function shiftSwitchTab(tab){
   const ov=$("shiftOverviewArea"),hi=$("shiftHistoryArea");
   if(ov)ov.style.display=tab==="overview"?"":"none";
   if(hi)hi.style.display=tab==="history"?"":"none";
-  if(tab==="history"){renderShiftStats();renderShiftsList()}
+  if(tab==="history"){
+    renderShiftStats();renderShiftsList();
+    const collapsed=LG("ps_shift_history_collapsed");
+    if(collapsed){
+      const header=$("shiftHistoryHeader");
+      const content=$("shiftHistoryContent");
+      const toggle=header?.querySelector(".shift-history-toggle");
+      if(header)header.classList.add("closed");
+      if(content)content.classList.add("closed");
+      if(toggle)toggle.classList.add("closed");
+    }
+  }
   playSound("tick");haptic("light");
 }
 // ── Stats & Graphs ──
@@ -8374,6 +8524,15 @@ function renderStorageUsage(){
   bar.style.width=pct+"%";
   bar.style.background=pct>=85?"var(--rs)":pct>=60?"var(--gd)":"linear-gradient(90deg,var(--pk),var(--pk2))";
   txt.textContent=mb.toFixed(2)+" MB used"+(pct>=85?" — running low. Consider clearing old data or removing large hand-history attachments.":pct>=60?" — keep an eye on this over time.":"");
+}
+function toggleSettingsSection(header){
+  const isClosed=header.classList.contains("closed");
+  const toggle=header.querySelector(".settings-category-toggle");
+  const content=header.nextElementSibling;
+  if(!content||!content.classList.contains("settings-section-content"))return;
+  content.classList.toggle("closed",!isClosed);
+  header.classList.toggle("closed",!isClosed);
+  if(toggle)toggle.classList.toggle("closed",!isClosed);
 }
 function loadSettingsUI(){$("setSpeed").value=LG("ps_speed","fast");const vib=LG("ps_vibrate","1");$("setVibrate").textContent=vib==="1"?"On":"Off";$("setVibrate").dataset.on=vib;const snd=LG("ps_sound","1");if($("setSound")){$("setSound").textContent=snd==="1"?"On":"Off";$("setSound").dataset.on=snd}if($("setDefaultTab"))$("setDefaultTab").value=LG("ps_default_tab","editor");$("setUserName").value=LG("ps_username","")||"";renderEG("profIconGrid",LG("ps_user_icon","😎"),REM);const pig=$("profIconGrid");if(pig&&!pig._boundIconSave){pig._boundIconSave=true;pig.addEventListener("click",(e)=>{if(e.target.classList.contains("emoji-opt")){LS("ps_user_icon",e.target.dataset.e);updateUserGreeting();playSound("tick");haptic("light")}})}syncBalToggles();renderThemeGrid();renderDeckGrid();renderFontGrid();renderStreakUI();renderXpUI();renderAchvChip();renderEditorSizeUI();renderNavStyleUI();renderStorageUsage()}
 /* ── Editor appearance (grid size / cell corners) ── */
