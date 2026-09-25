@@ -141,10 +141,11 @@ body.nav-hamburger .hamburger-btn{display:flex}
   border-right:1px solid var(--bd2);
   box-shadow:20px 0 60px rgba(0,0,0,.5);
   padding:18px 14px;display:flex;flex-direction:column;gap:3px;
-  transform:translateX(-100%);transition:transform .35s var(--spring);
+  transform:translateX(-100%);visibility:hidden;
+  transition:transform .35s var(--spring),visibility 0s linear .35s;
   overflow-y:auto;
 }
-.hamburger-drawer.open{transform:translateX(0)}
+.hamburger-drawer.open{transform:translateX(0);visibility:visible;transition:transform .35s var(--spring),visibility 0s}
 .hd-header{padding:8px 10px 18px;margin-bottom:8px;border-bottom:1px solid var(--bd)}
 .hd-logo{
   font-family:var(--fd);font-size:22px;font-weight:800;font-style:italic;
@@ -992,7 +993,6 @@ input:focus,select:focus,textarea:focus{
   border-color:var(--pk)!important;
   box-shadow:0 0 0 4px color-mix(in srgb,var(--pk) 15%,transparent)!important;
   background:color-mix(in srgb,var(--b0) 95%,var(--pk));
-}
 }
 button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 *{-webkit-tap-highlight-color:transparent}
@@ -3237,6 +3237,188 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .plo-card.red{color:#e31937}
 .plo-card.black{color:#000}
 .plo-cards-row{display:flex;gap:8px;justify-content:center;align-items:center;padding:10px}
+
+/* ══ Autocomplete, tag chips, history headers, chart trend toggle ══ */
+.ac-wrap{position:relative}
+.ac-list{display:none;position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:300;
+  background:var(--b2);border:1px solid var(--bd2);border-radius:var(--r1);padding:4px;
+  max-height:220px;overflow-y:auto;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.ac-list.show{display:block;animation:slideDown .15s var(--e)}
+.ac-list div{padding:8px 10px;border-radius:6px;font-size:12px;color:var(--t2);cursor:pointer;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ac-list div:hover{background:rgba(200,165,92,.1);color:var(--pk2)}
+.tchip{display:inline-flex;align-items:center;gap:4px;padding:2px 4px 2px 9px;border-radius:50px;
+  background:rgba(139,156,196,.12);border:1px solid rgba(139,156,196,.25);color:var(--li);
+  font-size:10px;font-weight:600;line-height:1.5}
+.tchip .tx{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;
+  border-radius:50%;font-size:12px;cursor:pointer;opacity:.6;transition:all .15s}
+.tchip .tx:hover{opacity:1;background:var(--rs);color:#fff}
+.br-hist-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 10px}
+.br-hist-hdr h3{font-family:var(--fd);font-size:16px;font-style:italic;font-weight:800;color:var(--pk2);margin:0}
+.chart-trend-btn{margin-left:auto;float:right;padding:3px 10px;border-radius:50px;font-size:9px;font-weight:700;
+  letter-spacing:.3px;text-transform:none;background:var(--b0);border:1px solid var(--bd2);color:var(--t3);
+  cursor:pointer;transition:all .15s}
+.chart-trend-btn:hover{border-color:var(--bd3);color:var(--t1)}
+.chart-trend-btn.on{background:rgba(200,165,92,.14);border-color:var(--gd2);color:var(--gd2)}
+/* ══ GG Results ══ */
+.gg-toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.gg-toolbar .btn.pri{flex:1;min-width:180px}
+.gg-unit-tog{margin-bottom:0}
+.gg-status{font-size:11.5px;color:var(--t2);background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:9px 12px;margin-bottom:12px;line-height:1.5}
+.gg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.gg-chart-h{height:320px}
+@media(max-width:639px){.gg-rake-tile{grid-column:1/-1}}
+.gg-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:10.5px;color:var(--t4);margin-top:4px}
+.gg-hands{margin-top:20px}
+.gg-hands-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.gg-hands-hdr h3{font-family:var(--fd);font-size:16px;font-style:italic;font-weight:800;color:var(--pk2);margin:0}
+.gg-filters{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:10px}
+@media(min-width:640px){.gg-filters{grid-template-columns:repeat(4,1fr)}}
+.gg-filters select{width:100%}
+.gg-hand-list{display:flex;flex-direction:column;gap:6px}
+.gg-row{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);cursor:pointer;transition:border-color .15s,transform .15s}
+.gg-row:hover{border-color:var(--pk);transform:translateY(-1px)}
+.gg-row.no-raw{cursor:default;opacity:.75}
+.gg-row-cards{display:flex;gap:2px;flex-shrink:0;min-width:56px}
+.gg-row-cards .comm-card{width:26px;height:36px;font-size:11px;border-radius:4px}
+.gg-row-cards .comm-card .mc-suit{font-size:9px}
+.gg-nocards{color:var(--t5);font-size:14px;width:56px;text-align:center}
+.gg-row-mid{flex:1;min-width:0}
+.gg-row-top{display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:12.5px;color:var(--t1)}
+.gg-row-sub{font-size:9.5px;color:var(--t4);margin-top:2px;font-family:var(--fm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gg-row-board{color:var(--t3)}
+.gg-row-right{text-align:right;flex-shrink:0}
+.gg-row-right .profit{font-size:12.5px}
+.gg-row-ev{font-size:9px;color:#f59e0b;font-family:var(--fm);margin-top:1px}
+.gg-row-play{width:14px;color:var(--t4);font-size:11px;flex-shrink:0}
+.gg-badge{font-size:8.5px;font-weight:800;padding:1px 7px;border-radius:20px;background:rgba(200,165,92,.12);color:var(--pk2);border:1px solid rgba(200,165,92,.25)}
+.gg-badge.sd{background:rgba(59,130,246,.12);color:#60a5fa;border-color:rgba(59,130,246,.3)}
+.gg-badge.ai{background:rgba(245,158,11,.12);color:#f59e0b;border-color:rgba(245,158,11,.3)}
+/* Replayer */
+/* ── GG hand list v3: filters, views, reports ── */
+.gg-quick{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;margin-bottom:8px}
+.gg-quick::-webkit-scrollbar{display:none}
+.gg-chip{flex-shrink:0;padding:6px 12px;border-radius:50px;font-size:10.5px;font-weight:700;background:var(--b2);border:1px solid var(--bd2);color:var(--t3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.gg-chip:hover{color:var(--t1);border-color:var(--bd3)}
+.gg-chip.on{background:color-mix(in srgb,var(--pk) 22%,var(--b2));border-color:var(--pk);color:var(--pk2)}
+.gg-toolbar2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.gg-filter-btn.on{border-color:var(--pk);color:var(--pk2)}
+.gg-fcount{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 5px;border-radius:20px;background:var(--pk);color:var(--b0);font-size:9.5px;font-weight:800;margin-left:4px}
+.gg-tabs{margin:0;flex:1;display:flex}
+.gg-tabs button{flex:1;padding:7px 8px!important;font-size:10px!important}
+.gg-active{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.gg-active:empty{display:none}
+.gg-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 4px 4px 11px;border-radius:50px;background:rgba(200,165,92,.1);border:1px solid rgba(200,165,92,.3);color:var(--pk2);font-size:10.5px;font-weight:700}
+.gg-pill button{width:18px;height:18px;border-radius:50%;font-size:9px;color:var(--t3);background:var(--b0);cursor:pointer}
+.gg-pill button:hover{background:var(--rs);color:#fff}
+.gg-clear{font-size:10.5px;font-weight:700;color:var(--t4);text-decoration:underline;cursor:pointer;padding:4px 6px}
+.gg-panel{background:var(--b2);border:1px solid var(--bd2);border-radius:var(--r2);padding:12px 14px;margin-bottom:10px;animation:vIn .2s var(--e)}
+.gg-psec{margin-bottom:12px}
+.gg-plbl{font-size:8.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--t4);margin-bottom:6px}
+.gg-chiprow{display:flex;flex-wrap:wrap;gap:5px}
+.gg-prow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.gg-prow>*{flex:1;min-width:90px}
+.gg-prow .minp{margin:0}
+.gg-inp{display:flex;align-items:center;gap:6px}
+.gg-inp span{font-size:10px;color:var(--t4)}
+.gg-hint{font-size:9.5px;color:var(--t4);font-weight:500;letter-spacing:0;text-transform:none}
+.gg-rgrid{display:grid;grid-template-columns:repeat(13,1fr);gap:1.5px;margin-top:8px;user-select:none;touch-action:none;max-width:420px}
+.gg-rcell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(6px,1.7vw,8.5px);font-weight:700;color:var(--t4);background:var(--b0);border-radius:3px;cursor:pointer}
+.gg-rcell.pair{background:color-mix(in srgb,var(--gd) 10%,var(--b0))}
+.gg-rcell.suited{background:color-mix(in srgb,var(--mt) 7%,var(--b0))}
+.gg-rcell.on{background:var(--pk);color:var(--b0)}
+.gg-pfoot{display:flex;justify-content:flex-end;gap:8px;border-top:1px solid var(--bd);padding-top:10px}
+.gg-viewbar{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.gg-viewtog{margin:0}
+.gg-viewtog button{padding:6px 12px!important;font-size:10px!important}
+.gg-sortbox{display:flex;gap:4px;margin-left:auto}
+.gg-dir{min-width:32px;font-weight:800}
+.gg-badge.act{background:rgba(139,156,196,.12);color:var(--li);border-color:rgba(139,156,196,.3)}
+.gg-badge.pt{background:rgba(236,72,153,.1);color:#f472b6;border-color:rgba(236,72,153,.3)}
+.gg-table-wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:var(--r2);background:var(--b2)}
+.gg-table{width:100%;border-collapse:collapse;font-size:11px;white-space:nowrap}
+.gg-table th{position:sticky;top:0;background:var(--b3);padding:8px 10px;font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t4);text-align:left;cursor:pointer;user-select:none}
+.gg-table th.on{color:var(--pk2)}
+.gg-table th:hover{color:var(--t1)}
+.gg-table td{padding:7px 10px;border-top:1px solid var(--bd);color:var(--t2);vertical-align:middle}
+.gg-table .num{text-align:right;font-family:var(--fm)}
+.gg-table tbody tr{cursor:pointer}
+.gg-table tbody tr:hover td{background:rgba(200,165,92,.05)}
+.gg-table tr.no-raw{opacity:.7}
+.gg-tcards{display:flex;align-items:center;gap:2px}
+.gg-tcards .comm-card{width:20px;height:28px;font-size:9px;border-radius:3px}
+.gg-tcards .comm-card .mc-suit{font-size:7px}
+.gg-tcards b{margin-left:6px;color:var(--t1)}
+.gg-tsub{font-size:8.5px;color:var(--t4)}
+.gg-tev{color:#f59e0b}
+.gg-btable tbody tr.gg-total td{font-weight:800;color:var(--t1);background:var(--b3);cursor:default}
+.gg-group{border:1px solid var(--bd);border-radius:var(--r2);margin-bottom:8px;overflow:hidden;background:var(--b1)}
+.gg-group-hdr{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--b2);cursor:pointer;font-size:11.5px}
+.gg-group-hdr:hover{background:var(--b3)}
+.gg-gcaret{color:var(--t4);width:10px}
+.gg-glabel{font-weight:800;color:var(--t1);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gg-gstats{font-size:9.5px;color:var(--t4);font-family:var(--fm);white-space:nowrap}
+.gg-group-hdr .profit{font-size:11.5px;white-space:nowrap}
+.gg-group-body{padding:8px;display:flex;flex-direction:column;gap:6px}
+.gg-grid-wrap{display:flex;justify-content:center}
+.gg-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:1.5px;width:min(100%,560px);aspect-ratio:1}
+.gg-gcell{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:3px;cursor:pointer;overflow:hidden;line-height:1.05;transition:transform .12s}
+.gg-gcell:hover{transform:scale(1.18);z-index:2;position:relative;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.gg-gcell.empty{cursor:default;opacity:.45}
+.gg-gcell.empty:hover{transform:none;box-shadow:none}
+.gg-gcell.sel{outline:2px solid var(--pk);outline-offset:-2px}
+.gg-gc-l{font-size:clamp(5.5px,1.6vw,9px);font-weight:800;color:var(--t1)}
+.gg-gc-v{font-size:clamp(5px,1.35vw,8px);font-family:var(--fm);color:var(--t2)}
+.gg-legend-note{font-size:9.5px;color:var(--t4);margin-top:8px;line-height:1.5}
+
+.ggr-mdl{max-width:520px;padding:0;overflow-y:auto;overflow-x:hidden;max-height:94vh}
+.ggr-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:14px 16px 10px;border-bottom:1px solid var(--bd2);background:linear-gradient(135deg,var(--b2),var(--b3))}
+.ggr-title{font-family:var(--fd);font-style:italic;font-weight:800;font-size:18px;color:var(--pk2);display:flex;align-items:center;gap:8px}
+.ggr-sub{font-size:9.5px;color:var(--t4);margin-top:3px;font-family:var(--fm)}
+.ggr-felt-wrap{padding:26px 22px 30px}
+.ggr-felt{aspect-ratio:1.35/1;margin-bottom:0}
+.ggr-seat{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;z-index:3;transition:opacity .25s}
+.ggr-seat.folded{opacity:.4}
+.ggr-cards{display:flex;gap:2px;margin-bottom:-6px;position:relative;z-index:1}
+.ggr-cards .comm-card{width:26px;height:36px;font-size:11px;border-radius:4px}
+.ggr-cards .comm-card .mc-suit{font-size:9px}
+.ggr-seat.hero .ggr-cards .comm-card{width:32px;height:44px;font-size:13px}
+.ggr-back{width:22px;height:31px;border-radius:4px;border:1.5px solid rgba(255,255,255,.7);background:repeating-linear-gradient(45deg,var(--pk) 0 3px,var(--mg) 3px 6px);box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.ggr-plate{background:var(--b1);border:1.5px solid var(--bd2);border-radius:10px;padding:3px 9px;text-align:center;min-width:66px;position:relative;z-index:2;transition:all .2s}
+.ggr-seat.hero .ggr-plate{border-color:var(--pk)}
+.ggr-seat.actor .ggr-plate{border-color:var(--gd2);box-shadow:0 0 14px -2px var(--gd2)}
+.ggr-seat.winner .ggr-plate{border-color:#22c55e;box-shadow:0 0 16px -2px #22c55e}
+.ggr-name{font-size:9px;font-weight:700;color:var(--t2);white-space:nowrap}
+.ggr-stack{font-size:10px;font-weight:800;color:var(--t1);font-family:var(--fm)}
+.ggr-dealer{display:inline-flex;align-items:center;justify-content:center;width:13px;height:13px;border-radius:50%;background:#fff;color:#111;font-size:8px;font-weight:900;margin-left:2px}
+.ggr-status{font-size:8.5px;font-weight:800;margin-top:3px;padding:1px 7px;border-radius:20px;background:var(--b0);border:1px solid var(--bd2);color:var(--t2);white-space:nowrap}
+.ggr-status.fold{color:var(--rs)}
+.ggr-status.win{color:#22c55e;border-color:rgba(34,197,94,.4)}
+.ggr-bet{position:absolute;transform:translate(-50%,-50%);z-index:2;font-size:9.5px;font-weight:800;font-family:var(--fm);color:var(--gd2);background:rgba(0,0,0,.45);border:1px solid color-mix(in srgb,var(--gd2) 45%,transparent);padding:1px 7px;border-radius:20px;white-space:nowrap}
+.ggr-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px;z-index:1}
+.ggr-board{display:flex;gap:3px}
+.ggr-board .comm-card,.ggr-slot{width:28px;height:39px;font-size:12px;border-radius:4px}
+.ggr-board .comm-card .mc-suit{font-size:10px}
+.ggr-slot{border:1px dashed var(--bd2);background:rgba(0,0,0,.12)}
+.ggr-street{text-align:center;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--pk2)}
+.ggr-action{text-align:center;font-size:14px;font-weight:700;color:var(--t1);margin:4px 16px 8px;min-height:20px}
+.ggr-scrub{display:block;width:calc(100% - 32px);max-width:none;margin:0 16px 10px}
+.ggr-controls{display:flex;gap:5px;justify-content:center;padding:0 12px 10px;flex-wrap:wrap}
+.ggr-controls .btn{min-width:38px}
+.ggr-play{min-width:78px!important}
+.ggr-result{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:11px;color:var(--t3);padding:8px 16px;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.ggr-result b.pos{color:var(--mt)}.ggr-result b.neg{color:var(--rs)}
+.ggr-log{max-height:170px;overflow-y:auto;padding:8px 16px;font-size:11px;display:flex;flex-direction:column;gap:2px}
+.ggr-log-street{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pk2);margin-top:6px;padding:3px 8px;border-radius:6px;cursor:pointer}
+.ggr-log-street.future{opacity:.45}
+.ggr-log-street.on{background:rgba(200,165,92,.14)}
+.ggr-log-item{padding:3px 8px;border-radius:6px;color:var(--t2);cursor:pointer}
+.ggr-log-item.future{color:var(--t5)}
+.ggr-log-item.on{background:rgba(200,165,92,.14);color:var(--t1);font-weight:700}
+.ggr-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px 16px;font-size:11px;color:var(--t4)}
+.ggr-nav .btn:disabled{opacity:.35}
+@media(max-width:480px){.gg-chart-h{height:260px}.ggr-felt-wrap{padding:24px 14px 28px}.ggr-plate{min-width:56px;padding:2px 6px}}
+
 </style>
 </head>
 <body>
@@ -3741,6 +3923,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
       <div class="tools-hub-card tools-card-featured" style="border-left-color:var(--gd2)" onclick="go('notes')"><span class="thc-icon">📝</span><div class="thc-featured-body"><span class="thc-label">Notes</span><span class="thc-sub">Study notes &amp; ideas</span></div></div>
       <div class="tools-hub-card tools-card-featured" style="border-left-color:var(--li)" onclick="go('handHistory')"><span class="thc-icon">📔</span><div class="thc-featured-body"><span class="thc-label">Hand History</span><span class="thc-sub">Log &amp; review hands</span></div></div>
       <div class="tools-hub-card tools-card-featured" style="border-left-color:var(--mt)" onclick="go('notes');switchNotesHub('hhPlayers')"><span class="thc-icon">👤</span><div class="thc-featured-body"><span class="thc-label">Player Notes</span><span class="thc-sub">Reads &amp; tendencies</span></div></div>
+      <div class="tools-hub-card tools-card-featured" style="border-left-color:#22c55e" onclick="go('gg')"><span class="thc-icon">📈</span><div class="thc-featured-body"><span class="thc-label">GG Results</span><span class="thc-sub">Import hand histories &amp; graph</span></div></div>
       <div class="tools-hub-card tools-card-featured" style="border-left-color:var(--ic)" onclick="go('flow')"><span class="thc-icon">🧠</span><div class="thc-featured-body"><span class="thc-label">Flowcharts</span><span class="thc-sub">Strategy trees</span></div></div>
     </div>
     <div class="tools-section-hdr"><span class="tsh-icon">💼</span><span class="tsh-title">Work</span><span class="tsh-rule"></span></div>
@@ -4043,6 +4226,24 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
     </div>
   </div>
 </div>
+<!-- GG RESULTS -->
+<div id="ggV" class="view" style="max-width:900px;margin:0 auto">
+  <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
+  <div class="section-head"><span style="font-size:20px">📈</span><h2>GG Results</h2></div>
+  <div class="setting-desc" style="margin-bottom:14px">Import GGPoker cash hand histories (.txt) to graph your winnings. Re-importing the same file is safe — duplicate hands are skipped.</div>
+  <input type="file" id="ggFileInput" accept=".txt,text/plain" multiple style="display:none" onchange="ggImportFiles(this.files)"/>
+  <div class="gg-toolbar">
+    <button class="btn pri" onclick="$('ggFileInput').click()">📂 Import Hand Histories</button>
+    <select id="ggStakeFilter" class="sel-sm" onchange="renderGG()"></select>
+    <div class="br-toggle gg-unit-tog" id="ggUnitTog">
+      <button class="on" data-u="money" onclick="ggSetUnit('money')">$</button>
+      <button data-u="bb" onclick="ggSetUnit('bb')">BB</button>
+    </div>
+  </div>
+  <div id="ggImportStatus" class="gg-status" style="display:none"></div>
+  <div id="ggContent"></div>
+</div>
+<div class="mov" id="ggReplayM"><div class="mdl ggr-mdl" id="ggReplayContent"></div></div>
 <!-- SETTINGS -->
 <div id="settingsV" class="view" style="max-width:800px;margin:0 auto">
   <div class="section-head"><span style="font-size:20px">⚙</span><h2>Settings</h2></div>
@@ -4156,7 +4357,7 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   <div class="danger-zone-header">Danger Zone</div>
   <div class="danger-zone-item"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Delete All Ranges</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Permanently remove all saved poker ranges</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Delete ALL ranges?','Cannot be undone',()=>{S.saved=[];S.folders=[{path:'/',icon:'📁',name:'Root'}];saveSvd();fsRender();toast('Ranges deleted')})">Delete</button></div>
   <div class="danger-zone-item"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Clear Active Bankroll</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Wipe sessions, goals &amp; deposits for current bankroll only</div></div><button class="btn btn-s btn-d" onclick="confirmAction('Clear this bankroll\\'s data?','Cannot be undone',()=>{const b=BR.d;b.sessions=[];b.goals=[];b.deposits=[];BR.save();renderBrAll();toast('Bankroll cleared')})">Clear</button></div>
-  <div class="danger-zone-item"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Factory Reset</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Erase everything — all data, all settings, irreversible</div></div><button class="btn btn-s btn-d" onclick="confirmAction('FACTORY RESET?','Everything will be permanently erased',()=>{localStorage.clear();location.reload()})">Reset All</button></div>
+  <div class="danger-zone-item"><div><div style="font-weight:600;font-size:12px;color:var(--rs)">Factory Reset</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Erase everything — all data, all settings, irreversible</div></div><button class="btn btn-s btn-d" onclick="confirmAction('FACTORY RESET?','Everything will be permanently erased',()=>{localStorage.clear();try{GGDB.db&&GGDB.db.close();const r=indexedDB.deleteDatabase('pokerstudio_gg');r.onsuccess=r.onerror=r.onblocked=()=>location.reload();setTimeout(()=>location.reload(),1500)}catch(e){location.reload()}})">Reset All</button></div>
 </div>
   <div class="gp" style="margin-bottom:12px;text-align:center;padding:24px">
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
@@ -4627,15 +4828,6 @@ function calcEquity(heroCards,villainCards,boardCards,iterations){
 /* ══════════════════════ FLOWCHART EDITOR ══════════════════════ */
 const Flow={d:[],load(){this.d=LG("ps_flowcharts",[])},save(){LS("ps_flowcharts",this.d)}};
 let flowState=null,flowSelectedNodeId=null,flowSelectedConnId=null,flowZoomLevel=1,flowDragState=null,flowConnectDrag=null;
-const FLOW_GRID_SIZE=20;
-let flowSnapEnabled=LG("ps_flow_snap",false);
-function flowToggleSnap(){
-  flowSnapEnabled=!flowSnapEnabled;
-  LS("ps_flow_snap",flowSnapEnabled);
-  $("flowSnapBtn")?.classList.toggle("active",flowSnapEnabled);
-  playSound("tick");haptic("light");
-  toast(flowSnapEnabled?"▦ Snap to grid on":"Snap to grid off");
-}
 const FLOW_COLORS=["#ec4899","#f87171","#fbbf24","#34d399","#3b82f6","#a78bfa","#67e8f9","#c8a55c","#fb7185","#fca5a5","#fde047","#86efac","#60a5fa","#c4b5fd","#22d3ee"];
 function initFlow(){
   Flow.load();
@@ -4896,15 +5088,23 @@ function deleteCurrentFlowchart(){
 
 /* ── Nodes ── */
 let flowJustAddedNodeId=null,flowJustAddedNodeTime=0,flowJustAddedConnId=null,flowJustAddedConnTime=0;
+function flowViewCenter(){
+  const wrap=$("flowCanvasWrap"),z=flowZoomLevel||1;
+  return{x:(wrap.scrollLeft+wrap.clientWidth/2)/z,y:(wrap.scrollTop+wrap.clientHeight/2)/z};
+}
 function flowAddNode(){
   if(!flowState)return;
   if(flowState.locked){toast("👁 In View Mode — tap ✎ Edit to add nodes");return}
-  const n=flowState.nodes.length;
-  const col=n%5,row=Math.floor(n/5);
-  const node={id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:80+col*180,y:80+row*140,w:160,h:84,text:"New idea",subtitle:"",body:"",shape:"rect",size:"md",color:FLOW_COLORS[0]};
+  const node={id:"n"+Date.now()+"_"+Math.floor(Math.random()*10000),x:0,y:0,w:160,h:84,text:"New idea",subtitle:"",body:"",shape:"rect",size:"md",color:FLOW_COLORS[0]};
   flowState.nodes.push(node);
-  flowSaveCurrent();
   flowJustAddedNodeId=node.id;flowJustAddedNodeTime=Date.now();
+  renderFlowCanvas(); // measures the node's real rendered size into node.w/node.h
+  const c=flowViewCenter();
+  let x=Math.max(0,Math.round(c.x-node.w/2)),y=Math.max(0,Math.round(c.y-node.h/2));
+  // If a node already sits on this exact spot, step diagonally so repeated taps don't stack invisibly
+  while(flowState.nodes.some(o=>o!==node&&Math.abs(o.x-x)<12&&Math.abs(o.y-y)<12)){x+=24;y+=24}
+  node.x=x;node.y=y;
+  flowSaveCurrent();
   renderFlowCanvas();
   flowOpenNodeEditor(node.id);
   playSound("tick");haptic("light");
@@ -5255,7 +5455,6 @@ function flowNodePointerDown(e,id){
     wrapEl?.classList.remove("dragging");
     if(flowDragState&&!flowDragState.moved)flowNodeTapped(id);
     else{
-      if(flowSnapEnabled){node.x=Math.round(node.x/FLOW_GRID_SIZE)*FLOW_GRID_SIZE;node.y=Math.round(node.y/FLOW_GRID_SIZE)*FLOW_GRID_SIZE}
       flowSaveCurrent();renderFlowCanvas();
     }
     flowDragState=null;
@@ -5630,6 +5829,7 @@ function genPLOHand(){
   }
   
   ploState.selected=null;
+  ploState.revealed=false;
   $("ploResult").innerHTML='';
   $("ploBoardSize").textContent='5';
   renderPLOBoard();
@@ -5682,112 +5882,68 @@ function renderPLOBoard(){
 }
 
 function ploSelectHand(idx){
+  if(ploState.revealed)return;
   ploState.selected=idx;
   renderPLOBoard();
   ploReveal();
 }
 
-function getRankValue(r){const v={A:14,K:13,Q:12,J:11,T:10};return v[r]||parseInt(r)}
-
+const PLO_SUIT={'♠':'s','♥':'h','♦':'d','♣':'c'};
+function ploCard(c){return{rank:c[0],suit:PLO_SUIT[c[1]]}}
+// Omaha rule: exactly 2 hole cards + exactly 3 board cards, scored with the shared evaluate5/compareHands engine
 function getBestHand(hand,board){
-  const cardsPerPlayer=hand.length;
-  const boardSize=board.length;
-  const totalCards=cardsPerPlayer+boardSize;
-  let best={type:'High Card',rank:1,cards:[0,0,0,0,0]};
-  
-  // Generate all combinations of cardsPerPlayer from hand
-  const handIndices=[];
-  for(let i=0;i<cardsPerPlayer;i++)handIndices.push(i);
-  
-  // For each combo of 2 from hand + board combos
-  for(let i=0;i<cardsPerPlayer;i++){
-    for(let j=i+1;j<cardsPerPlayer;j++){
-      const hc=[hand[i],hand[j]];
-      // Get all board combinations (3 from boardSize)
-      for(let a=0;a<boardSize;a++){
-        for(let b=a+1;b<boardSize;b++){
-          for(let c=b+1;c<boardSize;c++){
-            const combo=[hc[0],hc[1],board[a],board[b],board[c]];
-            const h5=evaluateHand(combo);
-            if(h5.rank>best.rank){best=h5}
-            else if(h5.rank===best.rank){
-              for(let k=0;k<5;k++){
-                if(h5.cards[k]>best.cards[k]){best=h5;break}
-                if(h5.cards[k]<best.cards[k])break;
-              }
-            }
-          }
-        }
-      }
+  let best=null,bestCards=null;
+  for(let i=0;i<hand.length;i++)for(let j=i+1;j<hand.length;j++)
+    for(let a=0;a<board.length;a++)for(let b=a+1;b<board.length;b++)for(let c=b+1;c<board.length;c++){
+      const combo=[hand[i],hand[j],board[a],board[b],board[c]];
+      const score=evaluate5(combo.map(ploCard));
+      if(!best||compareHands(score,best)>0){best=score;bestCards=combo}
     }
-  }
-  return best;
+  return{score:best,cards:bestCards,type:HAND_NAMES[best.category]};
 }
-
-function evaluateHand(cards){
-  const ranks=cards.map(c=>getRankValue(c[0])).sort((a,b)=>b-a);
-  const suits=cards.map(c=>c[1]);
-  const rankCounts={};
-  ranks.forEach(r=>{rankCounts[r]=(rankCounts[r]||0)+1});
-  const counts=Object.values(rankCounts).sort((a,b)=>b-a);
-  const isFlush=new Set(suits).size===1;
-  const isStraight=ranks[0]-ranks[4]===4&&new Set(ranks).size===5;
-  
-  if(isStraight&&isFlush)return{type:'Straight Flush',rank:9,cards:ranks};
-  if(counts[0]===4)return{type:'Four of a Kind',rank:8,cards:ranks};
-  if(counts[0]===3&&counts[1]===2)return{type:'Full House',rank:7,cards:ranks};
-  if(isFlush)return{type:'Flush',rank:6,cards:ranks};
-  if(isStraight)return{type:'Straight',rank:5,cards:ranks};
-  if(counts[0]===3)return{type:'Three of a Kind',rank:4,cards:ranks};
-  if(counts[0]===2&&counts[1]===2)return{type:'Two Pair',rank:3,cards:ranks};
-  if(counts[0]===2)return{type:'Pair',rank:2,cards:ranks};
-  return{type:'High Card',rank:1,cards:ranks};
+function ploBoardWinners(evals){
+  let w=[0];
+  for(let i=1;i<evals.length;i++){const c=compareHands(evals[i].score,evals[w[0]].score);if(c>0)w=[i];else if(c===0)w.push(i)}
+  return w;
 }
-
+function ploCardsText(cards){
+  return cards.map(c=>{const red=c[1]==='♥'||c[1]==='♦';return'<span style="color:'+(red?'var(--rs)':'var(--t1)')+';font-weight:700">'+c[0]+c[1]+'</span>'}).join(' ');
+}
 function ploReveal(){
   if(ploState.selected===null){
     $("ploResult").innerHTML='<div class="tool-card" style="color:var(--li)">Select a hand first!</div>';
     return;
   }
-  
-  // Evaluate all hands
-  let hands;
-  if(ploState.boardMode===2 && ploState.board2){
-    hands=ploState.hands.map(h=>{
-      const hand1=getBestHand(h,ploState.board);
-      const hand2=getBestHand(h,ploState.board2);
-      return hand1.rank>hand2.rank?hand1:(hand1.rank<hand2.rank?hand2:(hand1.cards[0]>hand2.cards[0]?hand1:hand2));
-    });
-  }else{
-    hands=ploState.hands.map(h=>getBestHand(h,ploState.board));
-  }
-  
-  const colors=['#ec4899','#3b82f6','#10b981','#f59e0b','#8b5cf6','#f43f5e'];
-  const maxRank=Math.max(...hands.map(h=>h.rank));
-  const winners=hands.map((h,i)=>h.rank===maxRank?i:-1).filter(i=>i>=0);
-  const didWin=winners.includes(ploState.selected);
-  
+  const boards=[ploState.board].concat(ploState.boardMode===2&&ploState.board2?[ploState.board2]:[]);
+  const perBoard=boards.map(bd=>ploState.hands.map(h=>getBestHand(h,bd)));
+  const winnersPerBoard=perBoard.map(ploBoardWinners);
+  // Each board is worth an equal share of the pot, split evenly between that board's winners
+  const shares=ploState.hands.map((_,i)=>winnersPerBoard.reduce((a,w)=>a+(w.includes(i)?1/(boards.length*w.length):0),0));
+  const maxShare=Math.max(...shares);
+  const sel=ploState.selected;
+  const didWin=shares[sel]>0&&Math.abs(shares[sel]-maxShare)<1e-9;
+
+  ploState.revealed=true;
   ploState.score+=(didWin?1:0);
   ploState.total+=1;
   $("ploScore").textContent=ploState.score;
   $("ploTotal").textContent=ploState.total;
-  
+
+  const colors=['#ec4899','#3b82f6','#10b981','#f59e0b','#8b5cf6','#f43f5e'];
+  const shareLabel=s=>s>=1-1e-9?'Scoops':s<=1e-9?'—':Math.round(s*100)+'% of pot';
   let res='<div class="tool-card" style="'+(didWin?'border-left:4px solid var(--gd2)':'border-left:4px solid var(--li)')+'">';
   res+='<h3 style="margin:0 0 10px 0">'+(didWin?'✓ Correct!':'✗ Wrong')+'</h3>';
-  res+='<div style="margin-bottom:10px">';
-  res+='<div style="font-size:11px;color:#888;margin-bottom:6px">Hand Strengths:</div>';
-  hands.forEach((h,i)=>{
-    const isSel=i===ploState.selected;
-    const isWin=winners.includes(i);
-    const bg=isSel?'rgba(200,100,200,0.2)':'rgba(100,100,100,0.1)';
-    const cardDisplay=h.cards.map(c=>{
-      const ranks={14:'A',13:'K',12:'Q',11:'J',10:'T',9:'9',8:'8',7:'7',6:'6',5:'5',4:'4',3:'3',2:'2'};
-      return ranks[c]||c;
-    }).join(' ');
-    res+='<div style="font-size:12px;margin:4px 0;padding:6px;border-radius:4px;background:'+bg+';border-left:3px solid '+colors[i]+'">';
-    res+='<b>Player '+(i+1)+':</b> '+h.type+(isWin?' (WINNER)':'')+' <span style="font-size:11px;color:#aaa">['+cardDisplay+']</span></div>';
+  res+='<div style="font-size:11px;color:#888;margin-bottom:6px">Best hand per player'+(boards.length>1?' on each board':'')+':</div>';
+  ploState.hands.forEach((_,i)=>{
+    const isSel=i===sel,isTop=shares[i]>0&&Math.abs(shares[i]-maxShare)<1e-9;
+    res+='<div style="font-size:12px;margin:4px 0;padding:8px;border-radius:6px;background:'+(isSel?'rgba(200,100,200,0.2)':'rgba(100,100,100,0.1)')+';border-left:3px solid '+colors[i]+'">';
+    res+='<div style="display:flex;justify-content:space-between;gap:8px"><b>Player '+(i+1)+(isSel?' (your pick)':'')+'</b>'+(boards.length>1?'<span style="font-weight:800;color:'+(isTop?'var(--gd2)':'var(--t4)')+'">'+shareLabel(shares[i])+'</span>':'')+'</div>';
+    perBoard.forEach((evals,bi)=>{
+      const won=winnersPerBoard[bi].includes(i),split=won&&winnersPerBoard[bi].length>1;
+      res+='<div style="margin-top:4px;color:var(--t2)">'+(boards.length>1?'Board '+(bi+1)+': ':'')+'<b>'+evals[i].type+'</b>'+(won?(split?' 🤝 split':' 🏆'):'')+' <span style="font-size:11px;font-family:var(--fm)">'+ploCardsText(evals[i].cards)+'</span></div>';
+    });
+    res+='</div>';
   });
-  res+='</div>';
   res+='<button class="btn pri" style="width:100%;margin-top:8px" onclick="genPLOHand()">Next Hand</button>';
   res+='</div>';
   $("ploResult").innerHTML=res;
@@ -6002,7 +6158,7 @@ function escapeHtml(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").repla
 function openM(id){const el=$(id);if(!el)return;el.classList.remove("closing");el.classList.add("open");if(id==="saveM"){popFS();renderEG("rIG",null,REM);renderCG("rCG");const sf=$("saveFolder");if(sf)sf.value=fsCurPath||"/"}if(id==="newFM"){popFS();renderEG("fIG",null,FEM);renderCG("fCG");const np=$("newFP");if(np)np.value=fsCurPath||"/";const sl=$("newFLocSpan");if(sl)sl.textContent=fsCurPath||"/"}if(id==="editM")popFS();if(id==="impM")impShowTab("N");if(id==="liveStartM")prefillLive();if(id==="newNbM"){renderEG("nbIG",null,FEM);renderCG("nbCG")}}
 function closeM(id){const el=$(id);if(!el||!el.classList.contains("open"))return;el.classList.add("closing");setTimeout(()=>{if(el.classList.contains("closing"))el.classList.remove("open","closing")},190)}
 let viewerMode=false;
-function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="editor")renderStudyReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor()}if(v==="tools"){initTools()}if(v==="flow"){initFlow()}if(v==="shifts"){initShifts()}if(v==="handHistory"){initHH()}}
+function go(v){var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===v));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===v));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll")renderBrAll();if(v==="editor"&&!viewerMode)showEditorMode();if(v==="editor")renderStudyReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor()}if(v==="tools"){initTools()}if(v==="flow"){initFlow()}if(v==="shifts"){initShifts()}if(v==="gg"){initGG()}if(v==="handHistory"){initHH()}}
 let _cfCb=null;
 function confirmAction(msg,name,cb){$("cfMsg").innerHTML=msg+(name?'<br><span class="cfn">'+escapeHtml(name)+"</span>":"");_cfCb=cb;$("cfOv").classList.add("open")}
 function closeCf(){$("cfOv").classList.remove("open");_cfCb=null}
@@ -6451,11 +6607,11 @@ function clearR(){S.range=mkR();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty(
 function impNot(){const t=$("impText").value.trim();if(!t)return;const headers=[...t.matchAll(/^(Range\s*\d*\s*-\s*)(.+)$/gim)];if(headers.length>1){const blocks=[];for(let i=0;i<headers.length;i++){const name=headers[i][2].trim()||"Action "+(i+1);const start=headers[i].index+headers[i][0].length;const end=i<headers.length-1?headers[i+1].index:t.length;blocks.push({name,text:t.slice(start,end).trim()})}S.range=mkR();S.acts=[];blocks.forEach((blk,idx)=>{S.acts.push({name:blk.name,color:COLS[idx%COLS.length]});S.sel=idx;Ed.fromNot(blk.text)});S.sel=0;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty();renderRangeStats();closeM("impM");toast("Imported "+blocks.length+" actions ✦");return}Ed.fromNot(t);checkDirty();closeM("impM");toast("Imported")}
 function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle("on",x===t);$("impP"+x).style.display=x===t?"block":"none"})}
 function impSolver(){toast("Use Notation tab for multi-action import")}
-function buildExportJSON(){return JSON.stringify({v:23,exported:new Date().toISOString(),username:LG("ps_username",""),ranges:S.saved,folders:S.folders,errors:S.errors,current:{acts:S.acts,range:S.range},bankrolls:getBankrollsList(),activeBankroll:getActiveBankrollId(),trainingHistory:LG("ps_tr_history",[]),flopHistory:LG("ps_flop_history",[]),notes:LG("ps_notes",{notebooks:[],notes:[]}),handHistory:LG("ps_hh",{hands:[],players:[]}),flowcharts:LG("ps_flowcharts",[]),xp:getXp(),achievements:LG("ps_achv",{unlocked:{}}),streak:getStreak(),lifetime:getLifetime(),dailyStats:LG("ps_daily_stats",{completed:0}),hhCurrency:getHhCurrency(),brViewFilter:getBrViewFilter(),shifts:getShifts()},null,2)}
-function dlJSON(){const ts=new Date().toISOString().slice(0,10);const b=new Blob([buildExportJSON()],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pokerstudio-"+ts+".json";a.click();toast("Downloaded ✦")}
+function buildExportJSON(extra){return JSON.stringify({v:23,exported:new Date().toISOString(),username:LG("ps_username",""),ranges:S.saved,folders:S.folders,errors:S.errors,current:{acts:S.acts,range:S.range},bankrolls:getBankrollsList(),activeBankroll:getActiveBankrollId(),trainingHistory:LG("ps_tr_history",[]),flopHistory:LG("ps_flop_history",[]),notes:LG("ps_notes",{notebooks:[],notes:[]}),handHistory:LG("ps_hh",{hands:[],players:[]}),flowcharts:LG("ps_flowcharts",[]),xp:getXp(),achievements:LG("ps_achv",{unlocked:{}}),streak:getStreak(),lifetime:getLifetime(),dailyStats:LG("ps_daily_stats",{completed:0}),hhCurrency:getHhCurrency(),brViewFilter:getBrViewFilter(),shifts:getShifts(),...(extra||{})},null,2)}
+async function dlJSON(){const ts=new Date().toISOString().slice(0,10);let gg={hands:[],raw:[]};try{gg={hands:await GGDB.all(),raw:await GGDB.allRaw()}}catch(e){}const b=new Blob([buildExportJSON({gg})],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pokerstudio-"+ts+".json";a.click();toast("Downloaded ✦")}
 function impJSONPaste(){const txt=$("impJSONText").value.trim();if(!txt)return toast("Paste JSON first");try{importJSONData(JSON.parse(txt));closeM("impM")}catch(e){toast("Invalid JSON")}}
 function hdlJSONFile(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{importJSONData(JSON.parse(ev.target.result));closeM("impM")}catch(err){toast("Invalid JSON")}};r.readAsText(f);e.target.value=""}
-function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.length}if(d.folders)S.folders=d.folders;if(d.errors){S.errors=d.errors;saveErr()}saveSvd();if(d.current){S.acts=d.current.acts||S.acts;S.range=d.current.range||S.range;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty()}if(d.bankrolls&&d.bankrolls.length){LS("ps_bankrolls",d.bankrolls);_bankrollsCache=null;if(d.activeBankroll)LS("ps_active_bankroll",d.activeBankroll)}else if(d.bankroll){const list=getBankrollsList();const active=getActiveBankrollObj();active.sessions=d.bankroll.sessions||[];active.goals=d.bankroll.goals||[];active.deposits=d.bankroll.deposits||[];active.settings=d.bankroll.settings||active.settings;saveBankrollsList()}if(d.username)LS("ps_username",d.username);if(d.trainingHistory)LS("ps_tr_history",d.trainingHistory);if(d.flopHistory)LS("ps_flop_history",d.flopHistory);if(d.notes)LS("ps_notes",d.notes);if(d.handHistory){LS("ps_hh",d.handHistory);HH._d=null}if(d.flowcharts){LS("ps_flowcharts",d.flowcharts);Flow.d=d.flowcharts}if(d.xp!=null)LS("ps_xp",d.xp);if(d.achievements)LS("ps_achv",d.achievements);if(d.streak)LS("ps_streak",d.streak);if(d.lifetime)LS("ps_lifetime",d.lifetime);if(d.dailyStats)LS("ps_daily_stats",d.dailyStats);if(d.hhCurrency)setHhCurrency(d.hhCurrency);if(d.brViewFilter)LS("ps_br_view_filter",d.brViewFilter);if(d.shifts)saveShiftsList(d.shifts);fsRender();renderFsSidebar();updateUserGreeting();renderBankrollSwitcher();renderXpUI();renderAchvChip();toast("Imported "+c+" ranges ✦")}
+function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.length}if(d.folders)S.folders=d.folders;if(d.errors){S.errors=d.errors;saveErr()}saveSvd();if(d.current){S.acts=d.current.acts||S.acts;S.range=d.current.range||S.range;Ed.renActs();Ed.renAll();Ed.updInfo();Ed.saveSt();checkDirty()}if(d.bankrolls&&d.bankrolls.length){LS("ps_bankrolls",d.bankrolls);_bankrollsCache=null;if(d.activeBankroll)LS("ps_active_bankroll",d.activeBankroll)}else if(d.bankroll){const list=getBankrollsList();const active=getActiveBankrollObj();active.sessions=d.bankroll.sessions||[];active.goals=d.bankroll.goals||[];active.deposits=d.bankroll.deposits||[];active.settings=d.bankroll.settings||active.settings;saveBankrollsList()}if(d.username)LS("ps_username",d.username);if(d.trainingHistory)LS("ps_tr_history",d.trainingHistory);if(d.flopHistory)LS("ps_flop_history",d.flopHistory);if(d.notes)LS("ps_notes",d.notes);if(d.handHistory){LS("ps_hh",d.handHistory);HH._d=null}if(d.flowcharts){LS("ps_flowcharts",d.flowcharts);Flow.d=d.flowcharts}if(d.xp!=null)LS("ps_xp",d.xp);if(d.achievements)LS("ps_achv",d.achievements);if(d.streak)LS("ps_streak",d.streak);if(d.lifetime)LS("ps_lifetime",d.lifetime);if(d.dailyStats)LS("ps_daily_stats",d.dailyStats);if(d.hhCurrency)setHhCurrency(d.hhCurrency);if(d.brViewFilter)LS("ps_br_view_filter",d.brViewFilter);if(d.shifts)saveShiftsList(d.shifts);ggImportBackup(d);fsRender();renderFsSidebar();updateUserGreeting();renderBankrollSwitcher();renderXpUI();renderAchvChip();toast("Imported "+c+" ranges ✦")}
 // ═══ TRAINER ═══
 let trMode="all";
 function setMode(m){trMode=m;document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m===m));if(Tr.active)Tr.next()}
@@ -6585,6 +6741,910 @@ function openTrSessionDetail(idx){
   openM("trSessionDetailM");
 }
 function openTrainingResults(){renderTrHistory("trainResultsContent");openM("trainResultsM")}
+/* Fast 7-card evaluator for all-in EV: cards are ints 0..51 (rank=c>>2 with 0=deuce..12=ace, suit=c&3).
+   Returns one integer; higher is better. */
+function ggTop5(mask,n){let v=0,k=0;for(let r=12;r>=0&&k<n;r--)if(mask&(1<<r)){v=(v<<4)|r;k++}return v}
+function ggStraightHigh(mask){const m=mask|((mask>>12)&1?0:0);for(let r=12;r>=4;r--){if(((mask>>(r-4))&31)===31)return r}if((mask&0x100F)===0x100F)return 3;return -1}
+function ggEval7(cs){
+  const cnt=new Array(13).fill(0),sm=[0,0,0,0],sc=[0,0,0,0];let rm=0;
+  for(let i=0;i<cs.length;i++){const r=cs[i]>>2,s=cs[i]&3;cnt[r]++;sm[s]|=1<<r;sc[s]++;rm|=1<<r}
+  for(let s=0;s<4;s++)if(sc[s]>=5){const sh=ggStraightHigh(sm[s]);if(sh>=0)return(8<<20)|sh;return(5<<20)|ggTop5(sm[s],5)}
+  let quad=-1,trips=[],pairs=[];
+  for(let r=12;r>=0;r--){if(cnt[r]===4)quad=r;else if(cnt[r]===3)trips.push(r);else if(cnt[r]===2)pairs.push(r)}
+  if(quad>=0)return(7<<20)|(quad<<4)|ggTop5(rm&~(1<<quad),1);
+  if(trips.length&&(trips.length>1||pairs.length)){const t=trips[0],p=trips.length>1?Math.max(trips[1],pairs[0]??-1):pairs[0];return(6<<20)|(t<<4)|p}
+  const sh=ggStraightHigh(rm);if(sh>=0)return(4<<20)|sh;
+  if(trips.length){const t=trips[0];return(3<<20)|(t<<8)|ggTop5(rm&~(1<<t),2)}
+  if(pairs.length>=2){const a=pairs[0],b=pairs[1];return(2<<20)|(a<<8)|(b<<4)|ggTop5(rm&~(1<<a)&~(1<<b),1)}
+  if(pairs.length===1){const a=pairs[0];return(1<<20)|(a<<12)|ggTop5(rm&~(1<<a),3)}
+  return ggTop5(rm,5);
+}
+function ggCardInt(c){return((12-"AKQJT98765432".indexOf(c.rank))<<2)|"shdc".indexOf(c.suit)}
+
+/* ══ GGPoker hand-history parser + all-in EV ══
+   Relies on the app's evaluate5 / compareHands / best5of7 / RK / SU. */
+function ggMoney(s){return Math.round(parseFloat(String(s).replace(/[$,]/g,""))*100)} // cents
+function ggParseCards(str){return(str||"").trim().split(/\s+/).filter(Boolean).map(c=>({rank:c[0].toUpperCase(),suit:c[1].toLowerCase()}))}
+function ggSplitHands(text){
+  return text.replace(/\r/g,"").split(/\n(?=Poker Hand #)/).map(t=>t.trim()).filter(t=>t.startsWith("Poker Hand #"));
+}
+function ggParseHand(txt){
+  const lines=txt.split("\n");
+  const head=lines[0].match(/^Poker Hand #(\S+):\s*(.+?)\s*\(\$?([\d.,]+)\/\$?([\d.,]+)\)\s*-\s*(\d{4})\/(\d{2})\/(\d{2}) (\d{2}):(\d{2}):(\d{2})/);
+  if(!head)return{error:"Unrecognised header"};
+  if(!/\$/.test(lines[0]))return{error:"Tournament/chip hand — only cash games are supported"};
+  const h={id:head[1],game:head[2],sb:ggMoney(head[3]),bb:ggMoney(head[4]),
+    ts:Date.UTC(+head[5],+head[6]-1,+head[7],+head[8],+head[9],+head[10])};
+  const tm=lines[1]&&lines[1].match(/^Table '([^']+)'\s*(\d+)-max.*?Seat #(\d+) is the button/);
+  h.table=tm?tm[1]:"";h.maxSeats=tm?+tm[2]:6;const btnSeat=tm?+tm[3]:null;const dealt=[];let runBoard=null;
+  const seats={},streetPut={},total={},folded=new Set(),allin=new Set(),shown={},collected={};
+  let street="preflop",hero=null,heroCards=null,rit=false,lastActionStreet="preflop";
+  const boardAt={preflop:[]};let board=[];
+  let cashout=0,rake=0,jackpot=0,totalPot=0,section="setup";
+  const add=(p,c)=>{total[p]=(total[p]||0)+c};
+  let pfRaises=0,limpers=0,heroFoldStreet=null;const heroPf=[];
+  for(const raw of lines.slice(1)){
+    const ln=raw.trim();if(!ln)continue;
+    let m;
+    if((m=ln.match(/^Seat (\d+): (.+?) \(\$?([\d.,]+) in chips\)/))&&section==="setup"){seats[m[2]]={seat:+m[1],stack:ggMoney(m[3])};continue}
+    if(ln.startsWith("*** HOLE CARDS")){section="play";continue}
+    if(ln.startsWith("*** SUMMARY")){section="summary";continue}
+    if((m=ln.match(/^\*\*\* (FIRST |SECOND |THIRD )?(FLOP|TURN|RIVER) \*\*\*(.*)$/))){
+      if(m[1]){rit=true;if(m[1]==="FIRST "){runBoard=[...m[3].matchAll(/\[([^\]]*)\]/g)].map(x=>ggParseCards(x[1])).flat()}continue} // run-it-twice runouts don't change the pre-runout board
+      const cards=[...m[3].matchAll(/\[([^\]]*)\]/g)].map(x=>ggParseCards(x[1])).flat();
+      board=cards;street=m[2].toLowerCase();boardAt[street]=[...board];
+      for(const k in streetPut)streetPut[k]=0;continue}
+    if(ln.startsWith("***"))continue;
+    if(section==="summary"){
+      if((m=ln.match(/^Total pot \$?([\d.,]+).*?Rake \$?([\d.,]+)/))){totalPot=ggMoney(m[1]);rake=ggMoney(m[2]);
+        const j=ln.match(/Jackpot \$?([\d.,]+)/);if(j)jackpot=ggMoney(j[1]);
+        ["Bingo","Fortune","Tax"].forEach(k=>{const x=ln.match(new RegExp(k+" \\$?([\\d.,]+)"));if(x)jackpot+=ggMoney(x[1])})}
+      if((m=ln.match(/^Seat \d+: (.+?) (?:\([^)]*\) )*showed \[([^\]]+)\]/)))shown[m[1]]=ggParseCards(m[2]);
+      continue}
+    if((m=ln.match(/^Dealt to (.+?)(?: \[([^\]]+)\])?$/))){dealt.push(m[1]);if(m[2]){hero=m[1];heroCards=ggParseCards(m[2])}continue}
+    if((m=ln.match(/^Uncalled bet \(\$?([\d.,]+)\) returned to (.+)$/))){add(m[2],-ggMoney(m[1]));continue}
+    if((m=ln.match(/^(.+?) collected \$?([\d.,]+) from/))){collected[m[1]]=(collected[m[1]]||0)+ggMoney(m[2]);continue}
+    if((m=ln.match(/^(.+?): (?:Receives Cashout|Cashout|Cash Out)[^$]*\(?\$([\d.,]+)/i))){if(m[1]===hero||m[1]==="Hero")cashout+=ggMoney(m[2]);continue}
+    if((m=ln.match(/^(.+?): Pays Cashout Risk[^$]*\(?\$([\d.,]+)/i))){if(m[1]===hero||m[1]==="Hero")cashout-=ggMoney(m[2]);continue}
+    if(!(m=ln.match(/^(.+?): (.+)$/)))continue;
+    const p=m[1],act=m[2];
+    if(!(p in seats))continue;
+    if(/and is all-in/.test(act))allin.add(p);
+    let a;
+    if((a=act.match(/^posts (?:the )?ante \$?([\d.,]+)/))){add(p,ggMoney(a[1]));continue}          // dead money
+    if((a=act.match(/^posts (?:small blind|big blind|straddle|missed blind|dead blind|small & big blinds?) \$?([\d.,]+)/))){
+      const v=ggMoney(a[1]);streetPut[p]=(streetPut[p]||0)+v;add(p,v);continue}
+    if((a=act.match(/^posts [^$]*\$?([\d.,]+)/))){add(p,ggMoney(a[1]));continue}
+    const pre=street==="preflop",isH=p===hero;
+    if(/^folds/.test(act)){folded.add(p);lastActionStreet=street;if(isH){heroFoldStreet=street;if(pre)heroPf.push({a:"fold",rb:pfRaises})}continue}
+    if(/^checks/.test(act)){lastActionStreet=street;if(isH&&pre)heroPf.push({a:"check",rb:pfRaises});continue}
+    if((a=act.match(/^(?:calls|bets) \$?([\d.,]+)/))){const v=ggMoney(a[1]);streetPut[p]=(streetPut[p]||0)+v;add(p,v);lastActionStreet=street;
+      if(pre&&/^calls/.test(act)){if(isH)heroPf.push({a:"call",rb:pfRaises});if(pfRaises===0)limpers++}continue}
+    if((a=act.match(/^raises \$?[\d.,]+ to \$?([\d.,]+)/))){const to=ggMoney(a[1]),inc=to-(streetPut[p]||0);streetPut[p]=to;add(p,inc);lastActionStreet=street;
+      if(pre){if(isH)heroPf.push({a:"raise",rb:pfRaises,lim:limpers});pfRaises++}continue}
+    if((a=act.match(/^shows \[([^\]]+)\]/))){shown[p]=ggParseCards(a[1]);continue}
+  }
+  if(!hero||!seats[hero])return{error:"No hero in hand"};
+  const heroNet=(collected[hero]||0)-(total[hero]||0)+cashout;
+  const live=Object.keys(seats).filter(p=>!folded.has(p)&&(total[p]||0)>0||(p===hero&&!folded.has(p)));
+  const remaining=Object.keys(seats).filter(p=>!folded.has(p)&&(total[p]>0||collected[p]));
+  const heroIn=!folded.has(hero);
+  const showdown=heroIn&&remaining.length>=2;
+  const SI={preflop:0,flop:1,turn:2,river:3};
+  const st=heroFoldStreet?SI[heroFoldStreet]:showdown?4:(SI[street]||0);
+  // conservation check across all players (should equal -(rake+jackpot))
+  let sumNet=0;for(const p in seats)sumNet+=(collected[p]||0)-(total[p]||0);
+  // Position from button + seat order among players dealt in
+  let pos="";
+  let inHand=dealt.filter(p=>seats[p]);
+  if(inHand.length<2||!inHand.includes(hero))inHand=Object.keys(seats); // fall back to seat order if "Dealt to" lines are missing
+  const order=inHand.sort((a,b)=>seats[a].seat-seats[b].seat);
+  if(order.length>=2&&btnSeat!=null){
+    let bi=order.findIndex(p=>seats[p].seat>=btnSeat);if(bi<0)bi=0;
+    const rot=[...order.slice(bi),...order.slice(0,bi)],n=rot.length,set=HH_POS_SETS[n];
+    const k=rot.indexOf(hero);
+    if(set&&k>=0)pos=n===2?set[k]:(k<3?set[n-3+k]:set[k-3]);
+  }
+  const hcStr=(heroCards||[]).map(c=>c.rank+c.suit).join("");
+  // Hero's preflop line, pot type and furthest street reached
+  let pf="walk";
+  if(heroPf.length){
+    const raises=heroPf.filter(x=>x.a==="raise");
+    if(raises.length){const last=raises[raises.length-1];pf=last.rb===0?(last.lim>0?"iso":"open"):last.rb===1?"3bet":"4bet"}
+    else{const c=heroPf.find(x=>x.a==="call");if(c)pf=c.rb===0?"limp":"call";else if(heroPf.some(x=>x.a==="check"))pf="check";else pf="fold"}
+  }
+  const pt=pfRaises===0?"limped":pfRaises===1?"srp":pfRaises===2?"3bet":"4bet";
+
+  let cls="";
+  if(heroCards&&heroCards.length===2){const[a,b]=[...heroCards].sort((x,y)=>RK.indexOf(x.rank)-RK.indexOf(y.rank));cls=a.rank===b.rank?a.rank+b.rank:a.rank+b.rank+(a.suit===b.suit?"s":"o")}
+  const fullBoard=runBoard?[...board,...runBoard.slice(board.length)]:board;
+  // Rake share — weighted-contributed: each player pays rake in proportion to what they put in the pot
+  let contribSum=0;for(const p in seats)contribSum+=Math.max(0,total[p]||0);
+  const heroShare=contribSum>0?Math.max(0,total[hero]||0)/contribSum:0;
+  const shares={};for(const p in seats)shares[p]=contribSum>0?Math.max(0,total[p]||0)/contribSum:0;
+  const out={...h,hero,heroCards,pos,hc:hcStr,cls,rake,fees:jackpot,rakePaid:rake*heroShare,pf,pt,st,vpip:["limp","call","open","iso","3bet","4bet"].includes(pf)?1:0,pfr:["open","iso","3bet","4bet"].includes(pf)?1:0,feesPaid:jackpot*heroShare,_shares:shares,pot:totalPot,board:fullBoard.map(c=>c.rank+c.suit).join(""),net:heroNet,showdown,rit,cashout:cashout!==0,conserve:sumNet+rake+jackpot,
+    stack:seats[hero].stack,allinEv:null};
+  // ── All-in EV: betting ended before the river, Hero still in, every live opponent's cards known ──
+  const streets=["preflop","flop","turn","river"];
+  const lastIdx=streets.indexOf(lastActionStreet);
+  const finalBoardLen=board.length;
+  const boardAtAllin=boardAt[lastActionStreet]||[];
+  const reachedLater=rit||finalBoardLen>boardAtAllin.length;
+  if(showdown&&lastIdx<3&&reachedLater&&cashout===0){
+    const players=remaining;
+    const hands={};let known=true;
+    for(const p of players){const c=p===hero?heroCards:shown[p];if(!c||c.length!==2){known=false;break}hands[p]=c}
+    if(known){
+      const contrib=Object.keys(seats).map(p=>({p,amt:total[p]||0,live:players.includes(p)})).filter(x=>x.amt>0);
+      const levels=[...new Set(contrib.filter(c=>c.live).map(c=>c.amt))].sort((a,b)=>a-b);
+      const pots=[];let prev=0;
+      levels.forEach(L=>{let amt=0;contrib.forEach(c=>{amt+=Math.max(0,Math.min(c.amt,L)-prev)});
+        const elig=players.filter(p=>(total[p]||0)>=L);pots.push({amt,elig});prev=L});
+      // dead money above the highest live level (can't happen normally) is ignored
+      const potSum=pots.reduce((a,x)=>a+x.amt,0);
+      const payoutFactor=potSum>0?(potSum-rake-jackpot)/potSum:1;
+      const eq=ggPotEquity(hands,boardAtAllin,pots,hero);
+      out.allinEv=Math.round(eq*payoutFactor-(total[hero]||0));
+      out.allinStreet=lastActionStreet;
+    }
+  }
+  return out;
+}
+/* Expected share of all pots for hero — exact when ≤2 cards to come, else 20k-sample Monte Carlo (fast int evaluator) */
+function ggPotEquity(hands,board,pots,hero){
+  const names=Object.keys(hands),hi=names.map(p=>hands[p].map(ggCardInt)),bi=board.map(ggCardInt);
+  const used=new Set([...bi,...hi.flat()]);const deck=[];for(let i=0;i<52;i++)if(!used.has(i))deck.push(i);
+  const need=5-bi.length,full=new Array(7),scores={};
+  const potIdx=pots.map(pot=>pot.elig.map(p=>names.indexOf(p)));const heroI=names.indexOf(hero);
+  const score=run=>{
+    for(let k=0;k<need;k++)full[2+bi.length+k]=run[k];
+    for(let k=0;k<bi.length;k++)full[2+k]=bi[k];
+    const sc=hi.map(h=>{full[0]=h[0];full[1]=h[1];return ggEval7(full)});
+    let win=0;
+    potIdx.forEach((el,pi)=>{let best=-1,cnt=0,heroWins=false;
+      el.forEach(i=>{if(sc[i]>best){best=sc[i];cnt=1;heroWins=i===heroI}else if(sc[i]===best){cnt++;if(i===heroI)heroWins=true}});
+      if(heroWins)win+=pots[pi].amt/cnt});
+    return win};
+  let sum=0,n=0;const r=[0,0,0,0,0];
+  if(need===0)return score(r);
+  if(need===1){for(const c of deck){r[0]=c;sum+=score(r);n++}return sum/n}
+  if(need===2){for(let i=0;i<deck.length;i++)for(let j=i+1;j<deck.length;j++){r[0]=deck[i];r[1]=deck[j];sum+=score(r);n++}return sum/n}
+  const N=20000;
+  for(let t=0;t<N;t++){for(let i=0;i<need;i++){const j=i+Math.floor(Math.random()*(deck.length-i));const x=deck[i];deck[i]=deck[j];deck[j]=x;r[i]=deck[i]}
+    sum+=score(r);n++}
+  return sum/n;
+}
+function ggParseFile(text){
+  const res={hands:[],errors:0,skipped:0};
+  ggSplitHands(text).forEach(t=>{const h=ggParseHand(t);if(h.error){res.errors++;res.lastError=h.error}else res.hands.push(h)});
+  return res;
+}
+
+/* ══ Replay builder: turns one GG hand into a list of table snapshots, one per action ══ */
+function ggBuildReplay(text){
+  const lines=text.replace(/\r/g,"").split("\n").map(l=>l.trim()).filter(Boolean);
+  const head=lines[0].match(/^Poker Hand #(\S+):.*?\(\$?([\d.,]+)\/\$?([\d.,]+)\)\s*-\s*(.+)$/);
+  const tm=(lines[1]||"").match(/^Table '([^']+)'\s*(\d+)-max.*?Seat #(\d+) is the button/);
+  const R={id:head?head[1]:"",sb:head?ggMoney(head[2]):0,bb:head?ggMoney(head[3]):0,date:head?head[4]:"",
+    table:tm?tm[1]:"",maxSeats:tm?+tm[2]:6,btnSeat:tm?+tm[3]:null,seats:[],hero:null,heroCards:[],states:[]};
+  const st={stacks:{},bets:{},pot:0,folded:[],board:[],board2:null,shown:{},last:{},won:{},street:"Preflop",allin:[]};
+  const snap=(text,actor,kind)=>R.states.push(JSON.parse(JSON.stringify({...st,text,actor:actor||null,kind:kind||"act"})));
+  const sweep=()=>{for(const p in st.bets)st.pot+=st.bets[p];st.bets={}};
+  const newStreet=name=>{sweep();st.street=name;for(const p in st.last)if(st.last[p]!=="Fold")delete st.last[p]};
+  const f=c=>"{{"+c+"}}"; // money placeholder, formatted at render time ($ or BB)
+  let section="setup",rake=null;const late=[];
+  for(const ln of lines.slice(2)){
+    let m;
+    if(section==="setup"&&(m=ln.match(/^Seat (\d+): (.+?) \(\$?([\d.,]+) in chips\)/))){R.seats.push({seat:+m[1],name:m[2]});st.stacks[m[2]]=ggMoney(m[3]);continue}
+    if(section==="setup"&&!R.states.length)snap("Hand #"+R.id+" — blinds "+f(R.sb)+" / "+f(R.bb),null,"start");
+    if(ln.startsWith("*** HOLE CARDS")){section="play";snap("Cards are dealt",null,"street");continue}
+    if(ln.startsWith("*** SUMMARY")){section="summary";continue}
+    if(section==="summary"){
+      if((m=ln.match(/^Total pot \$?([\d.,]+).*?Rake \$?([\d.,]+)/)))rake=ggMoney(m[2]);
+      if((m=ln.match(/^Seat \d+: (.+?) (?:\([^)]*\) )*(?:showed|mucked) \[([^\]]+)\]/))&&!st.shown[m[1]])late.push([m[1],m[2]]);
+      continue}
+    if((m=ln.match(/^\*\*\* (FIRST |SECOND |THIRD )?(FLOP|TURN|RIVER) \*\*\*(.*)$/))){
+      const cards=[...m[3].matchAll(/\[([^\]]*)\]/g)].map(x=>x[1]).join(" ").split(/\s+/).filter(Boolean);
+      const nm=m[2][0]+m[2].slice(1).toLowerCase();
+      if(m[1]==="SECOND "||m[1]==="THIRD "){sweep();st.board2=cards;st.street="Run 2 · "+nm;snap("Run 2 "+nm.toLowerCase()+": "+cards.slice(-(nm==="Flop"?3:1)).join(" "),null,"street");continue}
+      newStreet((m[1]?"Run 1 · ":"")+nm);st.board=cards;
+      snap((m[1]?"Run 1 "+nm.toLowerCase():nm)+": "+cards.slice(-(nm==="Flop"?3:1)).join(" "),null,"street");continue}
+    if(/^\*\*\* (FIRST |SECOND )?SHOWDOWN/.test(ln)){sweep();st.street="Showdown";continue}
+    if(ln.startsWith("***"))continue;
+    if((m=ln.match(/^Dealt to (.+?)(?: \[([^\]]+)\])?$/))){if(m[2]){R.hero=m[1];R.heroCards=m[2].split(/\s+/)}continue}
+    if((m=ln.match(/^Uncalled bet \(\$?([\d.,]+)\) returned to (.+)$/))){const a=ggMoney(m[1]),p=m[2];st.bets[p]=(st.bets[p]||0)-a;st.stacks[p]+=a;snap("Uncalled "+f(a)+" returned to "+p,p,"return");continue}
+    if((m=ln.match(/^(.+?) collected \$?([\d.,]+) from/))){sweep();const a=ggMoney(m[2]),p=m[1];st.pot=Math.max(0,st.pot-a);st.stacks[p]+=a;st.won[p]=(st.won[p]||0)+a;snap(p+" wins "+f(a),p,"win");continue}
+    if(!(m=ln.match(/^(.+?): (.+)$/))||!(m[1] in st.stacks))continue;
+    const p=m[1],act=m[2];let a;const ai=/and is all-in/.test(act);
+    if(ai&&!st.allin.includes(p))st.allin.push(p);
+    const put=v=>{st.stacks[p]-=v;st.bets[p]=(st.bets[p]||0)+v};
+    if((a=act.match(/^posts (?:the )?ante \$?([\d.,]+)/))){const v=ggMoney(a[1]);st.stacks[p]-=v;st.pot+=v;snap(p+" posts ante "+f(v),p,"post");continue}
+    if((a=act.match(/^posts ([a-z &]+?) \$?([\d.,]+)/))){const v=ggMoney(a[2]);put(v);st.last[p]=a[1].replace(/^(small|big) blind$/,m=>m==="small blind"?"SB":"BB");snap(p+" posts "+a[1]+" "+f(v),p,"post");continue}
+    if(/^folds/.test(act)){st.folded.push(p);st.last[p]="Fold";snap(p+" folds",p,"fold");continue}
+    if(/^checks/.test(act)){st.last[p]="Check";snap(p+" checks",p,"check");continue}
+    if((a=act.match(/^calls \$?([\d.,]+)/))){const v=ggMoney(a[1]);put(v);st.last[p]="Call"+(ai?" · all-in":"");snap(p+" calls "+f(v)+(ai?" and is all-in":""),p,"call");continue}
+    if((a=act.match(/^bets \$?([\d.,]+)/))){const v=ggMoney(a[1]);put(v);st.last[p]="Bet"+(ai?" · all-in":"");snap(p+" bets "+f(v)+(ai?" and is all-in":""),p,"bet");continue}
+    if((a=act.match(/^raises \$?[\d.,]+ to \$?([\d.,]+)/))){const to=ggMoney(a[1]);put(to-(st.bets[p]||0));st.last[p]="Raise"+(ai?" · all-in":"");snap(p+" raises to "+f(to)+(ai?" and is all-in":""),p,"raise");continue}
+    if((a=act.match(/^shows \[([^\]]+)\]/))){st.shown[p]=a[1].split(/\s+/);snap(p+" shows "+a[1],p,"show");continue}
+    snap(p+": "+act,p,"note");
+  }
+  if(late.length){late.forEach(([p,c])=>st.shown[p]=c.split(/\s+/));snap(late.map(([p,c])=>p+" shows "+c).join(" · "),null,"show")}
+  sweep();
+  if(R.hero){const start=R.states[0].stacks[R.hero],end=st.stacks[R.hero];R.heroNet=end-start}
+  snap("Hand over"+(rake?" · rake "+f(rake):""),null,"end");
+  return R;
+}
+
+/* ══════════════════════ GG RESULTS (GGPoker hand-history graph, hand list & replayer) ══════════════════════ */
+const GG_COLORS={net:"#22c55e",sd:"#3b82f6",nsd:"#ef4444",ev:"#f59e0b",rake:"#a78bfa"};
+let ggUnit=LG("ps_gg_unit","money"),ggChart=null;
+
+/* ── Storage: IndexedDB (no 5 MB localStorage cap). Two stores: small summaries (loaded into memory) + raw hand text (loaded on demand for the replayer) ── */
+const GGDB={db:null,cache:null,failed:false,
+  open(){
+    if(this.db)return Promise.resolve(this.db);
+    return new Promise((res,rej)=>{
+      if(!window.indexedDB){this.failed=true;return rej(new Error("IndexedDB unavailable"))}
+      const rq=indexedDB.open("pokerstudio_gg",1);
+      rq.onupgradeneeded=()=>{const db=rq.result;if(!db.objectStoreNames.contains("hands"))db.createObjectStore("hands",{keyPath:"id"});if(!db.objectStoreNames.contains("raw"))db.createObjectStore("raw",{keyPath:"id"})};
+      rq.onsuccess=()=>{this.db=rq.result;res(this.db)};
+      rq.onerror=()=>{this.failed=true;rej(rq.error)};
+    });
+  },
+  req(r){return new Promise((res,rej)=>{r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})},
+  sortCache(){this.cache.sort((a,b)=>a.ts-b.ts||(a.id<b.id?-1:1))},
+  all(){ // concurrent callers share one load, so nobody can swap the cache out from under a merge
+    if(this.cache)return Promise.resolve(this.cache);
+    if(!this._loading)this._loading=(async()=>{
+      let list=[];
+      try{await this.open();list=await this.req(this.db.transaction("hands").objectStore("hands").getAll())}
+      catch(e){if(!this._warned){this._warned=true;toast("⚠️ This browser blocked database storage — imported hands won't be saved")}}
+      this.cache=list;
+      await this.migrateLegacy();
+      this.sortCache();
+      this._loading=null;
+      return this.cache;
+    })();
+    return this._loading;
+  },
+  async migrateLegacy(){ // hands imported before the IndexedDB upgrade lived in localStorage without raw text
+    const legacy=LG("ps_gg_hands",null);if(!Array.isArray(legacy)||!legacy.length)return;
+    const have=new Set(this.cache.map(h=>h.id));
+    const recs=legacy.filter(x=>!have.has(x[0])).map(x=>({id:x[0],ts:x[1],bb:x[2],net:x[3],sd:x[4],ev:x[5]==null?null:x[5],sb:x[6]!=null?x[6]:x[2]/2,pos:"",hc:"",cls:"",pot:null,board:"",table:"",raw:0}));
+    try{await this.putMany(recs,[]);localStorage.removeItem("ps_gg_hands")}catch(e){}
+    this.cache.push(...recs);
+  },
+  putMany(sums,raws){
+    if(this.failed||!this.db)return Promise.resolve();
+    return new Promise((res,rej)=>{
+      const tx=this.db.transaction(["hands","raw"],"readwrite");
+      const hs=tx.objectStore("hands"),rs=tx.objectStore("raw");
+      sums.forEach(s=>hs.put(s));raws.forEach(r=>rs.put(r));
+      tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);tx.onabort=()=>rej(tx.error||new Error("aborted"));
+    });
+  },
+  async raw(id){try{await this.open();const r=await this.req(this.db.transaction("raw").objectStore("raw").get(id));return r?r.text:null}catch(e){return null}},
+  async allRaw(){try{await this.open();return await this.req(this.db.transaction("raw").objectStore("raw").getAll())}catch(e){return[]}},
+  async clear(){
+    this.cache=[];localStorage.removeItem("ps_gg_hands");
+    try{await this.open();await new Promise((res,rej)=>{const tx=this.db.transaction(["hands","raw"],"readwrite");tx.objectStore("hands").clear();tx.objectStore("raw").clear();tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}catch(e){}
+  }
+};
+const GG_SV=2; // summary schema version — older saved hands are re-read from their stored text
+function getGGHands(){return GGDB.cache||[]}
+function ggSummary(h,hasRaw){return{id:h.id,ts:h.ts,bb:h.bb,sb:h.sb,net:h.net,sd:h.showdown?1:0,ev:h.allinEv,pos:h.pos,hc:h.hc,cls:h.cls,pot:h.pot,board:h.board,table:h.table,rk:+h.rakePaid.toFixed(4),fe:+h.feesPaid.toFixed(4),pf:h.pf,pt:h.pt,st:h.st,vpip:h.vpip,pfr:h.pfr,sv:GG_SV,raw:hasRaw?1:0}}
+
+function ggAmt(c){const v=c/100;return"$"+(v>=1&&Number.isInteger(v)?v:v.toFixed(2))}
+function ggStakeLabel(bb){const h=getGGHands().find(x=>x.bb===bb);return ggAmt(h&&h.sb!=null?h.sb:bb/2)+"/"+ggAmt(bb)}
+function ggFmt(c,bb){ // cents → "$1.23" or "12.5 bb" per unit toggle
+  if(ggUnit==="bb"&&bb){const v=c/bb;return(v<0?"−":"")+(Math.abs(v)%1===0?Math.abs(v).toFixed(0):Math.abs(v).toFixed(1))+" bb"}
+  const v=c/100;return(v<0?"−$":"$")+Math.abs(v).toFixed(2);
+}
+function ggRakeFmt(c,bb){if(ggUnit==="bb")return(c/bb).toFixed(2)+" bb";const v=c/100;return"$"+(v<0.01?v.toFixed(4):v.toFixed(3))}
+function ggSigned(c,bb){return(c>0?"+":"")+ggFmt(c,bb)}
+
+async function initGG(){
+  $("ggUnitTog").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.u===ggUnit));
+  await GGDB.all();
+  renderGG();
+  await ggBackfillRake();
+}
+// Hands saved before rake tracking existed: recalculate rake from their stored text (no re-import needed)
+let ggBackfilling=false;
+async function ggBackfillRake(){
+  const need=getGGHands().filter(h=>h.raw&&(h.sv||0)<GG_SV);
+  if(!need.length||ggBackfilling)return;
+  ggBackfilling=true;
+  const status=$("ggImportStatus");status.style.display="";status.textContent="⏳ Updating "+need.length.toLocaleString()+" saved hands with new stats…";
+  const rawMap=new Map((await GGDB.allRaw()).map(r=>[r.id,r.text]));
+  for(let i=0;i<need.length;i+=500){
+    const upd=[];
+    for(const h of need.slice(i,i+500)){
+      const t=rawMap.get(h.id);if(!t)continue;
+      const p=ggParseHand(t);if(p.error)continue;
+      const keepEv=h.ev;Object.assign(h,ggSummary(p,true));if(keepEv!==undefined)h.ev=keepEv;upd.push(h); // keep the stored EV so the graph doesn't shift
+    }
+    try{await GGDB.putMany(upd,[])}catch(e){}
+    status.textContent="⏳ Updating saved hands… "+Math.min(i+500,need.length).toLocaleString()+" / "+need.length.toLocaleString();
+    await new Promise(r=>setTimeout(r,0));
+  }
+  ggBackfilling=false;
+  status.textContent="✓ Updated "+need.length.toLocaleString()+" saved hands with the latest stats";
+  renderGG();
+}
+function ggSetUnit(u){ggUnit=u;LS("ps_gg_unit",u);$("ggUnitTog").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.u===u));renderGG();playSound("tick");haptic("light")}
+
+async function ggImportFiles(files){
+  if(!files||!files.length)return;
+  const list=[...files],status=$("ggImportStatus");
+  const cache=await GGDB.all();
+  const byId=new Map(cache.map(h=>[h.id,h]));
+  let added=0,upgraded=0,dupes=0,errors=0,lastError="";
+  status.style.display="";
+  if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+  for(const f of list){
+    status.textContent="⏳ Reading "+f.name+"…";
+    let text;
+    try{text=await f.text()}catch(e){errors++;lastError="couldn't read "+f.name;continue}
+    const texts=ggSplitHands(text);
+    for(let i=0;i<texts.length;i+=250){
+      const sums=[],raws=[];
+      for(const t of texts.slice(i,i+250)){
+        const h=ggParseHand(t);
+        if(h.error){errors++;lastError=h.error;continue}
+        const old=byId.get(h.id);
+        if(old&&old.raw){dupes++;continue}
+        const rec=ggSummary(h,true);
+        sums.push(rec);raws.push({id:h.id,text:t});
+        if(old){Object.assign(old,rec);upgraded++}else{byId.set(h.id,rec);cache.push(rec);added++}
+      }
+      try{await GGDB.putMany(sums,raws)}
+      catch(e){status.innerHTML='<span style="color:var(--rs)">⚠️ Couldn\'t save: '+escapeHtml(e.message||"storage full")+"</span>";GGDB.sortCache();renderGG();return}
+      status.textContent="⏳ "+f.name+": "+Math.min(i+250,texts.length)+" / "+texts.length+" hands";
+      await new Promise(r=>setTimeout(r,0));
+    }
+  }
+  $("ggFileInput").value="";
+  GGDB.sortCache();
+  status.innerHTML="✓ Imported <b>"+added+"</b> new hand"+(added!==1?"s":"")+(upgraded?" · "+upgraded+" upgraded for replay":"")+(dupes?" · "+dupes+" already imported":"")+(errors?' · <span style="color:var(--rs)">'+errors+" skipped ("+escapeHtml(lastError)+")</span>":"");
+  renderGG();
+  if(added||upgraded){playSound("save");haptic("success")}
+}
+function ggClearAll(){
+  confirmAction("Delete all imported GG hands?","Your hand history files are untouched — you can re-import them any time.",async()=>{await GGDB.clear();$("ggImportStatus").style.display="none";renderGG();toast("GG results cleared")});
+}
+function ggStakeFiltered(){const v=$("ggStakeFilter")?.value;const all=getGGHands();return v?all.filter(h=>h.bb===+v):all}
+
+function renderGG(){
+  const all=getGGHands(),ct=$("ggContent");if(!ct)return;
+  const stakes=[...new Set(all.map(h=>h.bb))].sort((a,b)=>a-b);
+  const sel=$("ggStakeFilter"),cur=sel.value;
+  sel.innerHTML='<option value="">All stakes</option>'+stakes.map(bb=>'<option value="'+bb+'">'+ggStakeLabel(bb)+"</option>").join("");
+  sel.value=stakes.map(String).includes(cur)?cur:"";
+  sel.style.display=stakes.length>1?"":"none";
+  const hands=ggStakeFiltered();
+  if(ggChart){ggChart.destroy();ggChart=null}
+  if(!hands.length){
+    ct.innerHTML='<div class="empty-state"><span class="es-icon">📈</span><div class="es-title">No hands imported yet</div><div class="es-sub">Download your hand histories from GGPoker (PokerCraft → Hand Histories), then import the .txt files here.</div><button class="btn pri" onclick="$(\'ggFileInput\').click()">📂 Import Hand Histories</button></div>';
+    return;
+  }
+  const inBB=ggUnit==="bb",val=(c,bb)=>inBB?c/bb:c/100;
+  let net=0,sd=0,nsd=0,ev=0,nBB=0,sdCount=0,allinCount=0;
+  const L={net:[],sd:[],nsd:[],ev:[]};
+  hands.forEach(h=>{
+    const v=val(h.net,h.bb);net+=v;nBB+=h.net/h.bb;
+    if(h.sd){sd+=v;sdCount++}else nsd+=v;
+    if(h.ev!=null){ev+=val(h.ev,h.bb);allinCount++}else ev+=v;
+    L.net.push(+net.toFixed(4));L.sd.push(+sd.toFixed(4));L.nsd.push(+nsd.toFixed(4));L.ev.push(+ev.toFixed(4));
+  });
+  const fmt=v=>inBB?(v<0?"−":"")+Math.abs(v).toFixed(1)+" BB":(v<0?"−$":"$")+Math.abs(v).toFixed(2);
+  const bb100=nBB/hands.length*100,cls=v=>v>=0?"pos":"neg",luck=net-ev;
+  const tile=(label,v,sub,color)=>'<div class="br-stat"><div class="brs-label"><span class="gg-dot" style="background:'+color+'"></span>'+label+'</div><div class="brs-val '+cls(v)+'">'+fmt(v)+'</div><div class="brs-sub">'+sub+"</div></div>";
+  const legacy=hands.filter(h=>!h.raw).length;
+  let rake=0,fees=0,rakeUnknown=0;
+  hands.forEach(h=>{if(h.rk==null){rakeUnknown++;return}rake+=val(h.rk,h.bb);fees+=val(h.fe||0,h.bb)});
+  const rakeBB100=hands.reduce((a,h)=>a+(h.rk||0)/h.bb,0)/hands.length*100;
+  const pos=v=>inBB?Math.abs(v).toFixed(2)+" BB":"$"+Math.abs(v).toFixed(2);
+  const dfmt=ts=>new Date(ts).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
+  ct.innerHTML='<div class="br-stats">'
+    +tile("Net Won",net,hands.length.toLocaleString()+" hands · "+(bb100>=0?"+":"")+bb100.toFixed(1)+" bb/100",GG_COLORS.net)
+    +tile("Showdown",sd,sdCount.toLocaleString()+" hands to showdown",GG_COLORS.sd)
+    +tile("Non-Showdown",nsd,(hands.length-sdCount).toLocaleString()+" hands",GG_COLORS.nsd)
+    +tile("All-in EV",ev,allinCount+" all-in"+(allinCount!==1?"s":"")+" · "+(luck>=0?"running above EV ":"running below EV ")+fmt(Math.abs(luck)),GG_COLORS.ev)
+    +'<div class="br-stat gg-rake-tile"><div class="brs-label"><span class="gg-dot" style="background:'+GG_COLORS.rake+'"></span>Rake Paid</div><div class="brs-val" style="color:'+GG_COLORS.rake+'">'+pos(rake)+'</div><div class="brs-sub">'+rakeBB100.toFixed(2)+" bb/100 · "+"pre-rake "+fmt(net+rake)+(fees>0.00001?" · jackpot/fees "+pos(fees):"")+(rakeUnknown?" · "+rakeUnknown+" older hand"+(rakeUnknown!==1?"s":"")+" not counted (re-import)":"")+"</div></div>"
+    +'</div>'
+    +'<div class="br-chart-box"><h3><span class="cdot" style="background:'+GG_COLORS.net+'"></span>Winnings Graph</h3><div class="br-chart-h gg-chart-h"><canvas id="chGG"></canvas></div></div>'
+    +'<div class="gg-foot"><span>'+(sel.value?ggStakeLabel(+sel.value):stakes.length>1?stakes.length+" stakes":ggStakeLabel(stakes[0]))+" · "+dfmt(hands[0].ts)+" – "+dfmt(hands[hands.length-1].ts)+'</span><button class="btn btn-s btn-d" onclick="ggClearAll()">🗑 Clear imported hands</button></div>'
+    +(legacy?'<div class="gg-status" style="margin-top:12px">ℹ️ '+legacy+' hand'+(legacy!==1?"s were":" was")+' imported before replays existed. Re-import the same .txt files to add cards, positions &amp; replays — nothing is duplicated.</div>':"")
+    +ggHandsSectionHtml();
+  ggRenderList();
+  if(typeof Chart==="undefined")return;
+  const CT=getCT(),big=hands.length>3000;
+  const ds=(label,data,color,width)=>({label,data,borderColor:color,backgroundColor:color,borderWidth:width,pointRadius:0,pointHoverRadius:3,tension:0,fill:false});
+  ggChart=new Chart($("chGG").getContext("2d"),{type:"line",
+    data:{labels:hands.map((_,i)=>i+1),datasets:[ds("Net won",L.net,GG_COLORS.net,2.5),ds("Showdown",L.sd,GG_COLORS.sd,1.8),ds("Non-showdown",L.nsd,GG_COLORS.nsd,1.8),ds("All-in EV",L.ev,GG_COLORS.ev,1.8)]},
+    options:{responsive:true,maintainAspectRatio:false,animation:big?false:{duration:700},interaction:{intersect:false,mode:"index"},
+      plugins:{glowLine:false,legend:{display:true,position:"bottom",labels:{color:CT.tick,usePointStyle:true,pointStyle:"line",boxWidth:18,font:{size:11}}},
+        tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,callbacks:{title:c=>"Hand "+c[0].label,label:c=>" "+c.dataset.label+": "+fmt(c.raw)}}},
+      scales:{x:{title:{display:true,text:"Hands",color:CT.tick,font:{size:10}},ticks:{color:CT.tick,maxTicksLimit:7,font:{size:10}},grid:{display:false}},
+        y:{ticks:{color:CT.tick,font:{size:10},callback:v=>inBB?(v<0?"−":"")+Math.abs(v)+" bb":(v<0?"−$":"$")+Math.abs(v).toFixed(2)},grid:{color:CT.grid,drawTicks:false}}}}});
+}
+
+async function ggImportBackup(d){
+  let sums=[],raws=[];
+  if(d.gg&&Array.isArray(d.gg.hands)){sums=d.gg.hands;raws=Array.isArray(d.gg.raw)?d.gg.raw:[]}
+  else if(Array.isArray(d.ggHands))sums=d.ggHands.map(x=>Array.isArray(x)?{id:x[0],ts:x[1],bb:x[2],net:x[3],sd:x[4],ev:x[5]==null?null:x[5],sb:x[6]!=null?x[6]:x[2]/2,pos:"",hc:"",cls:"",pot:null,board:"",table:"",raw:0}:x);
+  if(!sums.length)return;
+  const cache=await GGDB.all();
+  try{await GGDB.putMany(sums,raws)}catch(e){toast("⚠️ Couldn't restore GG hands: "+(e.message||"storage error"));return}
+  const byId=new Map(cache.map(h=>[h.id,h]));
+  sums.forEach(h=>{const o=byId.get(h.id);if(o)Object.assign(o,h);else{cache.push(h);byId.set(h.id,h)}});
+  GGDB.sortCache();
+  if($("ggV")&&$("ggV").classList.contains("on"))renderGG();
+}
+/* ── Hand list: advanced filters, sorting, views & reports ── */
+const GG_POS_ORDER=["UTG","UTG+1","LJ","HJ","CO","BTN","BTN/SB","SB","BB"];
+const GG_POS_FILTER=["UTG","UTG+1","LJ","HJ","CO","BTN","SB","BB"];
+const GG_PF=[["fold","Fold"],["check","Check"],["walk","Walk"],["limp","Limp"],["call","Call"],["open","Open"],["iso","Iso-raise"],["3bet","3-bet"],["4bet","4-bet+"]];
+const GG_PT=[["limped","Limped"],["srp","Single-raised"],["3bet","3-bet"],["4bet","4-bet+"]];
+const GG_ST=["Preflop","Flop","Turn","River","Showdown"];
+const GG_PF_L=Object.fromEntries(GG_PF),GG_PT_L=Object.fromEntries(GG_PT);
+const GG_F0={pos:[],res:"",sd:"",pf:[],pt:[],st:0,allin:false,from:"",to:"",minPot:"",minNet:"",maxNet:"",range:[]};
+const ggList=Object.assign({q:"",limit:50,current:[],panel:false,tab:"list",collapsed:{}},
+  {f:JSON.parse(JSON.stringify(GG_F0)),sort:{key:"date",dir:-1},view:"cards",group:"session",metric:"total",bdim:"pos"},
+  (()=>{const p=LG("ps_gg_listprefs",null);if(!p)return{};p.f=Object.assign(JSON.parse(JSON.stringify(GG_F0)),p.f||{});return p})());
+function ggSavePrefs(){LS("ps_gg_listprefs",{f:ggList.f,sort:ggList.sort,view:ggList.view,group:ggList.group,metric:ggList.metric,bdim:ggList.bdim,tab:ggList.tab})}
+function ggRefresh(){ggList.limit=50;ggSavePrefs();ggRenderList()}
+const ggClsIdx=(()=>{const m={};for(let r=0;r<13;r++)for(let c=0;c<13;c++)m[hl(r,c)]=r*13+c;return m})();
+
+function ggHandsSectionHtml(){
+  const tab=(k,l)=>'<button class="'+(ggList.tab===k?"on":"")+'" data-tab="'+k+'">'+l+"</button>";
+  return'<div class="gg-hands"><div class="gg-hands-hdr"><h3>🃏 Hands</h3><span class="br-hist-count" id="ggListCount"></span></div>'
+    +'<input class="minp" id="ggSearch" placeholder="🔍 Search: AKs, AA, Ah, BTN, 3bet, hand id…" value="'+escapeHtml(ggList.q)+'" style="margin-bottom:8px" oninput="ggList.q=this.value;ggList.limit=50;clearTimeout(window._ggSearchT);window._ggSearchT=setTimeout(ggRenderList,150)"/>'
+    +'<div class="gg-quick" id="ggQuick"></div>'
+    +'<div class="gg-toolbar2"><button class="btn btn-s gg-filter-btn" id="ggFilterBtn" onclick="ggList.panel=!ggList.panel;ggRenderList()">⚙ Filters</button>'
+    +'<div class="br-toggle gg-tabs" id="ggTabs">'+tab("list","📋 Hands")+tab("grid","🔥 Starting hands")+tab("breakdown","📊 Breakdown")+"</div></div>"
+    +'<div id="ggPanel"></div><div id="ggActive" class="gg-active"></div><div id="ggBody"></div></div>';
+}
+
+/* ── filtering ── */
+const GG_QUICK=[
+  ["won","Won",f=>f.res==="won",f=>{f.res=f.res==="won"?"":"won"}],
+  ["lost","Lost",f=>f.res==="lost",f=>{f.res=f.res==="lost"?"":"lost"}],
+  ["sd","Showdown",f=>f.sd==="sd",f=>{f.sd=f.sd==="sd"?"":"sd"}],
+  ["allin","All-in",f=>f.allin,f=>{f.allin=!f.allin}],
+  ["vpip","VPIP",f=>f.pf.length===6&&["limp","call","open","iso","3bet","4bet"].every(x=>f.pf.includes(x)),f=>{f.pf=f.pf.length===6?[]:["limp","call","open","iso","3bet","4bet"]}],
+  ["3bp","3-bet+ pots",f=>f.pt.length===2&&f.pt.includes("3bet")&&f.pt.includes("4bet"),f=>{f.pt=f.pt.length===2&&f.pt.includes("3bet")?[]:["3bet","4bet"]}],
+  ["flop","Saw flop",f=>f.st===1,f=>{f.st=f.st===1?0:1}],
+  ["big","Big pots ≥30bb",f=>f.minPot==="30",f=>{f.minPot=f.minPot==="30"?"":"30"}],
+];
+function ggPosMatch(h,p){return h.pos===p||(h.pos==="BTN/SB"&&(p==="BTN"||p==="SB"))}
+function ggFilterHands(arr,opt){
+  const f=ggList.f,toks=ggList.q.split(/[\s,]+/).filter(Boolean),rng=new Set(opt&&opt.ignoreRange?[]:f.range);
+  const from=f.from?Date.parse(f.from+"T00:00:00Z"):null,to=f.to?Date.parse(f.to+"T00:00:00Z")+86400000:null;
+  const num=v=>v===""||v==null?null:+v;const minPot=num(f.minPot),minNet=num(f.minNet),maxNet=num(f.maxNet);
+  return arr.filter(h=>{
+    if(f.pos.length&&!f.pos.some(p=>ggPosMatch(h,p)))return false;
+    if(f.res==="won"&&!(h.net>0))return false;
+    if(f.res==="lost"&&!(h.net<0))return false;
+    if(f.res==="even"&&h.net!==0)return false;
+    if(f.sd==="sd"&&!h.sd)return false;
+    if(f.sd==="nsd"&&h.sd)return false;
+    if(f.sd==="sdwon"&&!(h.sd&&h.net>0))return false;
+    if(f.sd==="sdlost"&&!(h.sd&&h.net<0))return false;
+    if(f.pf.length&&!f.pf.includes(h.pf))return false;
+    if(f.pt.length&&!f.pt.includes(h.pt))return false;
+    if(f.st&&!((h.st||0)>=f.st))return false;
+    if(f.allin&&h.ev==null)return false;
+    if(from!=null&&h.ts<from)return false;
+    if(to!=null&&h.ts>=to)return false;
+    if(minPot!=null&&!((h.pot||0)/h.bb>=minPot))return false;
+    if(minNet!=null&&!(h.net/h.bb>=minNet))return false;
+    if(maxNet!=null&&!(h.net/h.bb<=maxNet))return false;
+    if(rng.size&&!rng.has(h.cls))return false;
+    return toks.every(t=>ggMatchToken(h,t));
+  });
+}
+function ggClsOf(tok){
+  const t=tok.toUpperCase();const m=t.match(/^([AKQJT2-9])([AKQJT2-9])([SO]?)$/);if(!m)return null;
+  let[a,b]=[m[1],m[2]];if(RK.indexOf(a)>RK.indexOf(b))[a,b]=[b,a];
+  return{hi:a,lo:b,suit:m[3].toLowerCase()};
+}
+function ggMatchToken(h,tok){
+  const t=tok.trim();if(!t)return true;
+  const up=t.toUpperCase(),low=t.toLowerCase();
+  if(GG_POS_FILTER.includes(up)||up==="BTN/SB")return ggPosMatch(h,up);
+  if(/^[AKQJT2-9][shdc]$/i.test(t)){const c=t[0].toUpperCase()+t[1].toLowerCase();return(h.hc||"").includes(c)||(h.board||"").includes(c)}
+  const c=ggClsOf(t);
+  if(c&&h.cls){if(c.hi===c.lo)return h.cls===c.hi+c.lo;if(!h.cls.startsWith(c.hi+c.lo))return false;return!c.suit||h.cls.endsWith(c.suit)}
+  const kw={"3bet":h=>h.pt==="3bet"||h.pf==="3bet","4bet":h=>h.pt==="4bet"||h.pf==="4bet",limp:h=>h.pf==="limp"||h.pt==="limped",open:h=>h.pf==="open",allin:h=>h.ev!=null,showdown:h=>!!h.sd,sd:h=>!!h.sd,walk:h=>h.pf==="walk"};
+  if(kw[low])return kw[low](h);
+  return(h.id||"").toLowerCase().includes(low)||(h.table||"").toLowerCase().includes(low);
+}
+
+/* ── sorting ── */
+const GG_SORT_KEYS=[["date","Date"],["hand","Hand"],["pos","Position"],["action","Action"],["pot","Pot"],["street","Street"],["net","Result"],["ev","All-in EV"],["luck","Luck vs EV"],["rake","Rake"]];
+function ggSortVal(h,k){
+  const n=c=>ggUnit==="bb"?c/h.bb:c;
+  switch(k){
+    case"hand":return ggClsIdx[h.cls]??999;
+    case"pos":return GG_POS_ORDER.indexOf(h.pos);
+    case"action":return GG_PF.findIndex(x=>x[0]===h.pf);
+    case"pot":return n(h.pot||0);
+    case"street":return h.st||0;
+    case"net":return n(h.net);
+    case"ev":return h.ev==null?null:n(h.ev);
+    case"luck":return h.ev==null?null:n(h.net-h.ev);
+    case"rake":return n(h.rk||0);
+    default:return h.ts;
+  }
+}
+function ggSortHands(arr){
+  const{key,dir}=ggList.sort;
+  return arr.map(h=>[ggSortVal(h,key),h]).sort((A,B)=>{
+    const a=A[0],b=B[0];
+    if(a==null&&b!=null)return 1;if(b==null&&a!=null)return-1; // hands without a value (e.g. no all-in) always sink
+    if(a!==b&&a!=null)return(a<b?-1:1)*dir;
+    return B[1].ts-A[1].ts;
+  }).map(x=>x[1]);
+}
+function ggSetSort(key){
+  if(ggList.sort.key===key)ggList.sort.dir*=-1;
+  else ggList.sort={key,dir:(key==="hand"||key==="pos"||key==="action")?1:-1};
+  ggRefresh();
+}
+
+/* ── aggregates (used by groups, breakdown, heatmap) ── */
+function ggAgg(arr){
+  let n=arr.length,net=0,nbb=0,vp=0,pr=0,known=0,flop=0,sd=0,sdw=0,rk=0;
+  arr.forEach(h=>{net+=h.net;nbb+=h.net/h.bb;rk+=ggUnit==="bb"?(h.rk||0)/h.bb:(h.rk||0);
+    if(h.pf){known++;vp+=h.vpip?1:0;pr+=h.pfr?1:0;if((h.st||0)>=1)flop++}
+    if(h.sd){sd++;if(h.net>0)sdw++}});
+  return{n,net,nbb,bb100:n?nbb/n*100:0,vpip:known?vp/known*100:null,pfr:known?pr/known*100:null,wtsd:flop?sd/flop*100:null,wsd:sd?sdw/sd*100:null,rk};
+}
+function ggNetFmt(a){return ggUnit==="bb"?(a.nbb<0?"−":"+")+Math.abs(a.nbb).toFixed(1)+" bb":(a.net<0?"−$":"+$")+Math.abs(a.net/100).toFixed(2)}
+const ggPct=v=>v==null?"—":v.toFixed(0)+"%";
+
+/* ── grouping ── */
+const GG_GROUPS=[["session","Session"],["day","Day"],["pos","Position"],["cls","Starting hand"],["pf","Preflop action"],["pt","Pot type"],["st","Street reached"],["stakes","Stakes"],["hour","Hour of day"],["weekday","Day of week"]];
+function ggGroupKey(h,dim,sess){
+  switch(dim){
+    case"session":return sess.get(h.id);
+    case"day":return new Date(h.ts).toISOString().slice(0,10);
+    case"pos":return h.pos||"—";
+    case"cls":return h.cls||"—";
+    case"pf":return h.pf||"—";
+    case"pt":return h.pt||"—";
+    case"st":return h.st==null?"—":String(h.st);
+    case"stakes":return String(h.bb);
+    case"hour":return String(new Date(h.ts).getUTCHours()).padStart(2,"0");
+    case"weekday":return String(new Date(h.ts).getUTCDay());
+  }
+}
+function ggSessions(arr){ // a gap of 30+ minutes between hands starts a new session
+  const byTime=[...arr].sort((a,b)=>a.ts-b.ts),m=new Map();let s=0,prev=null;
+  byTime.forEach(h=>{if(prev!=null&&h.ts-prev>30*60000)s++;m.set(h.id,"s"+String(s).padStart(5,"0"));prev=h.ts});
+  return m;
+}
+function ggGroupLabel(dim,key,items){
+  const dt=ts=>new Date(ts).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
+  switch(dim){
+    case"session":{const t=items.map(h=>h.ts);const a=Math.min(...t),b=Math.max(...t);return"Session · "+dt(a)+" – "+new Date(b).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit",timeZone:"UTC"})}
+    case"day":return new Date(key+"T00:00:00Z").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
+    case"pf":return GG_PF_L[key]||key;
+    case"pt":return GG_PT_L[key]||key;
+    case"st":return key==="—"?"—":"Reached "+GG_ST[+key];
+    case"stakes":return ggStakeLabel(+key);
+    case"hour":return key+":00–"+key+":59";
+    case"weekday":return["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][+key];
+    default:return key;
+  }
+}
+function ggGroupOrder(dim,keys){
+  const idx={pos:k=>GG_POS_ORDER.indexOf(k),cls:k=>ggClsIdx[k]??999,pf:k=>GG_PF.findIndex(x=>x[0]===k),pt:k=>GG_PT.findIndex(x=>x[0]===k),st:k=>+k,stakes:k=>+k,hour:k=>+k,weekday:k=>(+k+6)%7};
+  if(dim==="session"||dim==="day")return keys.sort().reverse();
+  const rank=k=>{if(k==="—")return 1e9;const v=idx[dim]?idx[dim](k):0;return v<0?1e8:v};
+  return keys.sort((a,b)=>rank(a)-rank(b));
+}
+function ggBuildGroups(arr,dim){
+  const sess=dim==="session"?ggSessions(arr):null,map=new Map();
+  arr.forEach(h=>{const k=ggGroupKey(h,dim,sess);if(!map.has(k))map.set(k,[]);map.get(k).push(h)});
+  return ggGroupOrder(dim,[...map.keys()]).map(k=>({key:k,items:map.get(k),label:ggGroupLabel(dim,k,map.get(k))}));
+}
+
+/* ── main render ── */
+function ggRenderList(){
+  const body=$("ggBody");if(!body)return;
+  const base=ggStakeFiltered();
+  const arr=ggSortHands(ggFilterHands(base));
+  ggList.current=arr;
+  const a=ggAgg(arr);
+  const cnt=$("ggListCount");
+  if(cnt)cnt.textContent=arr.length.toLocaleString()+" / "+base.length.toLocaleString()+" hands · "+ggNetFmt(a);
+  ggRenderQuick();if(!ggList._keepPanel)ggRenderPanel();ggList._keepPanel=false;ggRenderActive();
+  $("ggTabs").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tab===ggList.tab));
+  $("ggTabs").onclick=e=>{const b=e.target.closest("button");if(b){ggList.tab=b.dataset.tab;ggSavePrefs();ggRenderList()}};
+  if(ggList.tab==="grid")return ggRenderGrid(body);
+  if(ggList.tab==="breakdown")return ggRenderBreakdown(body,arr);
+  // list tab
+  const seg=(k,l)=>'<button class="'+(ggList.view===k?"on":"")+'" data-view="'+k+'">'+l+"</button>";
+  let h='<div class="gg-viewbar"><div class="br-toggle gg-viewtog">'+seg("cards","Cards")+seg("table","Table")+seg("groups","Groups")+"</div>";
+  if(ggList.view==="groups")h+='<select class="sel-sm" id="ggGroupSel">'+GG_GROUPS.map(([k,l])=>'<option value="'+k+'"'+(ggList.group===k?" selected":"")+">By "+l.toLowerCase()+"</option>").join("")+"</select>";
+  h+='<div class="gg-sortbox"><select class="sel-sm" id="ggSortSel">'+GG_SORT_KEYS.map(([k,l])=>'<option value="'+k+'"'+(ggList.sort.key===k?" selected":"")+">Sort: "+l+"</option>").join("")+'</select><button class="btn btn-s gg-dir" id="ggDirBtn" title="Reverse order">'+(ggList.sort.dir<0?"↓":"↑")+"</button></div></div>";
+  if(!arr.length){body.innerHTML=h+'<div class="empty-state" style="padding:30px 16px"><span class="es-icon">🔍</span><div class="es-title">No hands match</div><div class="es-sub">Loosen a filter or clear the search.</div><button class="btn btn-s" onclick="ggResetFilters()">Reset filters</button></div>';ggBindViewbar();return}
+  if(ggList.view==="table")h+=ggTableHtml(arr);
+  else if(ggList.view==="groups")h+=ggGroupsHtml(arr);
+  else h+='<div class="gg-hand-list">'+arr.slice(0,ggList.limit).map((x,i)=>ggRowHtml(x,i)).join("")+"</div>"+ggMoreBtn(arr);
+  body.innerHTML=h;ggBindViewbar();
+  body.onclick=e=>{
+    const th=e.target.closest("[data-sort]");if(th){ggSetSort(th.dataset.sort);return}
+    const g=e.target.closest("[data-gtoggle]");if(g){ggList.collapsed[g.dataset.gtoggle]=g.dataset.open==="1";ggRenderList();return}
+    const gm=e.target.closest("[data-gmore]");if(gm){ggList.collapsed["more:"+gm.dataset.gmore]=true;ggRenderList();return}
+    const row=e.target.closest("[data-i]");if(row)ggOpenReplay(+row.dataset.i);
+  };
+}
+function ggBindViewbar(){
+  const vt=document.querySelector(".gg-viewtog");if(vt)vt.onclick=e=>{const b=e.target.closest("button");if(b){ggList.view=b.dataset.view;ggRefresh()}};
+  const gs=$("ggGroupSel");if(gs)gs.onchange=()=>{ggList.group=gs.value;ggList.collapsed={};ggRefresh()};
+  const ss=$("ggSortSel");if(ss)ss.onchange=()=>{ggList.sort={key:ss.value,dir:ggList.sort.dir};ggRefresh()};
+  const db=$("ggDirBtn");if(db)db.onclick=()=>{ggList.sort.dir*=-1;ggRefresh()};
+}
+function ggMoreBtn(arr){return arr.length>ggList.limit?'<button class="btn" style="width:100%;margin-top:8px" onclick="ggList.limit+=100;ggRenderList()">Show more ('+(arr.length-ggList.limit).toLocaleString()+" left)</button>":""}
+function ggMiniCards(str){
+  if(!str)return'<span class="gg-nocards">—</span>';
+  return renderCommCardsHtml(str.match(/../g).map(x=>({rank:x[0],suit:x[1]})),true);
+}
+const ggDt=ts=>new Date(ts).toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
+function ggRowHtml(h,i){
+  const b=(t,c)=>'<span class="gg-badge'+(c?" "+c:"")+'">'+t+"</span>";
+  const badges=(h.pos?b(h.pos):"")+(h.pf&&h.pf!=="fold"?b(GG_PF_L[h.pf],"act"):"")+(h.pt==="3bet"||h.pt==="4bet"?b(GG_PT_L[h.pt]+" pot","pt"):"")+(h.sd?b("SD","sd"):"")+(h.ev!=null?b("All-in","ai"):"");
+  return'<div class="gg-row'+(h.raw?"":" no-raw")+'" data-i="'+i+'">'
+    +'<div class="gg-row-cards">'+ggMiniCards(h.hc)+"</div>"
+    +'<div class="gg-row-mid"><div class="gg-row-top"><b>'+(h.cls||"—")+"</b>"+badges+"</div>"
+    +'<div class="gg-row-sub">'+ggDt(h.ts)+" · "+ggStakeLabel(h.bb)+(h.pot?" · pot "+ggFmt(h.pot,h.bb):"")+(h.board?' · <span class="gg-row-board">'+h.board.match(/../g).join(" ")+"</span>":"")+"</div></div>"
+    +'<div class="gg-row-right"><div class="profit '+(h.net>=0?"pos":"neg")+'">'+ggSigned(h.net,h.bb)+"</div>"
+    +(h.ev!=null?'<div class="gg-row-ev">EV '+ggSigned(h.ev,h.bb)+"</div>":"")+"</div>"
+    +'<span class="gg-row-play">'+(h.raw?"▶":"")+"</span></div>";
+}
+function ggTableHtml(arr){
+  const cols=[["date","Date"],["hand","Hand"],["pos","Pos"],["action","Action"],["pot","Pot"],["street","Street"],["net","Result"],["ev","EV"],["rake","Rake"]];
+  const th=cols.map(([k,l])=>'<th data-sort="'+k+'" class="'+(ggList.sort.key===k?"on":"")+(["pot","net","ev","rake"].includes(k)?" num":"")+'">'+l+(ggList.sort.key===k?(ggList.sort.dir<0?" ↓":" ↑"):"")+"</th>").join("");
+  const rows=arr.slice(0,ggList.limit).map((h,i)=>'<tr data-i="'+i+'"'+(h.raw?"":' class="no-raw"')+">"
+    +"<td>"+ggDt(h.ts)+"</td>"
+    +'<td><div class="gg-tcards">'+ggMiniCards(h.hc)+"<b>"+(h.cls||"")+"</b></div></td>"
+    +"<td>"+(h.pos||"—")+"</td>"
+    +"<td>"+(GG_PF_L[h.pf]||"—")+(h.pt&&h.pt!=="srp"?'<div class="gg-tsub">'+GG_PT_L[h.pt]+"</div>":"")+"</td>"
+    +'<td class="num">'+(h.pot!=null?ggFmt(h.pot,h.bb):"—")+"</td>"
+    +"<td>"+(h.st!=null?GG_ST[h.st]:"—")+"</td>"
+    +'<td class="num"><span class="profit '+(h.net>=0?"pos":"neg")+'">'+ggSigned(h.net,h.bb)+"</span></td>"
+    +'<td class="num gg-tev">'+(h.ev!=null?ggSigned(h.ev,h.bb):"")+"</td>"
+    +'<td class="num">'+(h.rk?ggRakeFmt(h.rk,h.bb):"")+"</td></tr>").join("");
+  return'<div class="gg-table-wrap"><table class="gg-table"><thead><tr>'+th+"</tr></thead><tbody>"+rows+"</tbody></table></div>"+ggMoreBtn(arr);
+}
+function ggGroupsHtml(arr){
+  const idx=new Map(arr.map((h,i)=>[h,i]));
+  const groups=ggBuildGroups(arr,ggList.group);
+  return groups.map((g,gi)=>{
+    const gid=ggList.group+":"+g.key;
+    const open=ggList.collapsed[gid]===undefined?gi===0:!ggList.collapsed[gid]; // first group open by default
+    const a=ggAgg(g.items);
+    const showAll=ggList.collapsed["more:"+gid];
+    const items=showAll?g.items:g.items.slice(0,25);
+    return'<div class="gg-group"><div class="gg-group-hdr" data-gtoggle="'+escapeHtml(gid)+'" data-open="'+(open?1:0)+'"><span class="gg-gcaret">'+(open?"▾":"▸")+'</span><span class="gg-glabel">'+escapeHtml(g.label)+'</span><span class="gg-gstats">'+a.n+" hands · "+(a.bb100>=0?"+":"")+a.bb100.toFixed(1)+' bb/100</span><span class="profit '+(a.net>=0?"pos":"neg")+'">'+ggNetFmt(a)+"</span></div>"
+      +(open?'<div class="gg-group-body">'+items.map(h=>ggRowHtml(h,idx.get(h))).join("")+(g.items.length>items.length?'<button class="btn btn-s" style="width:100%;margin-top:6px" data-gmore="'+escapeHtml(gid)+'">Show all '+g.items.length+" hands</button>":"")+"</div>":"")+"</div>";
+  }).join("");
+}
+
+/* ── reports ── */
+function ggRenderGrid(body){
+  const arr=ggFilterHands(ggStakeFiltered(),{ignoreRange:true}); // the grid is the range picker, so ignore the range filter here
+  const by={};arr.forEach(h=>{if(!h.cls)return;(by[h.cls]=by[h.cls]||[]).push(h)});
+  const m=ggList.metric;
+  const val=list=>{if(!list)return null;const a=ggAgg(list);return m==="hands"?a.n:m==="perhand"?a.nbb/a.n:m==="vpip"?a.vpip:ggUnit==="bb"?a.nbb:a.net/100};
+  const vals=Object.values(by).map(val).filter(v=>v!=null);
+  const maxAbs=Math.max(1e-9,...vals.map(v=>Math.abs(v)));
+  const fmtV=v=>m==="hands"?String(v):m==="vpip"?v.toFixed(0)+"%":m==="perhand"?(v>=0?"+":"")+v.toFixed(1):ggUnit==="bb"?(v>=0?"+":"")+v.toFixed(0):(v>=0?"+":"−")+Math.abs(v).toFixed(2);
+  const sel=new Set(ggList.f.range);
+  let cells="";
+  for(let r=0;r<13;r++)for(let c=0;c<13;c++){
+    const k=hl(r,c),list=by[k],v=val(list);
+    let bg="var(--b2)";
+    if(v!=null){const t=Math.min(1,Math.abs(v)/maxAbs);const col=(m==="hands"||m==="vpip")?"var(--li)":v>=0?"#22c55e":"#ef4444";bg="color-mix(in srgb,"+col+" "+Math.round(18+t*70)+"%,var(--b2))"}
+    cells+='<div class="gg-gcell'+(list?"":" empty")+(sel.has(k)?" sel":"")+'" data-cls="'+k+'" style="background:'+bg+'" title="'+k+(list?": "+list.length+" hands":"")+'"><span class="gg-gc-l">'+k+"</span>"+(v!=null?'<span class="gg-gc-v">'+fmtV(v)+"</span>":"")+"</div>";
+  }
+  const o=(k,l)=>'<option value="'+k+'"'+(m===k?" selected":"")+">"+l+"</option>";
+  body.innerHTML='<div class="gg-viewbar"><select class="sel-sm" id="ggMetricSel">'+o("total","Total won ("+(ggUnit==="bb"?"bb":"$")+")")+o("perhand","bb per hand")+o("hands","Hands dealt")+o("vpip","VPIP %")+"</select>"
+    +'<span class="gg-hint">Tap a hand to see those hands</span></div>'
+    +'<div class="gg-grid-wrap"><div class="gg-grid" id="ggGrid">'+cells+"</div></div>";
+  $("ggMetricSel").onchange=e=>{ggList.metric=e.target.value;ggSavePrefs();ggRenderList()};
+  $("ggGrid").onclick=e=>{const c=e.target.closest(".gg-gcell");if(!c||c.classList.contains("empty"))return;ggList.f.range=[c.dataset.cls];ggList.tab="list";ggRefresh();playSound("tick");haptic("light")};
+}
+function ggRenderBreakdown(body,arr){
+  const dim=ggList.bdim;
+  const groups=ggBuildGroups(arr,dim);
+  const total=ggAgg(arr);
+  const row=(label,a,key)=>'<tr'+(key!=null?' data-bkey="'+escapeHtml(key)+'"':' class="gg-total"')+"><td>"+escapeHtml(label)+'</td><td class="num">'+a.n.toLocaleString()+'</td><td class="num"><span class="profit '+(a.net>=0?"pos":"neg")+'">'+ggNetFmt(a)+'</span></td><td class="num">'+(a.bb100>=0?"+":"")+a.bb100.toFixed(1)+'</td><td class="num">'+ggPct(a.vpip)+'</td><td class="num">'+ggPct(a.pfr)+'</td><td class="num">'+ggPct(a.wtsd)+'</td><td class="num">'+ggPct(a.wsd)+"</td></tr>";
+  body.innerHTML='<div class="gg-viewbar"><select class="sel-sm" id="ggBdimSel">'+GG_GROUPS.map(([k,l])=>'<option value="'+k+'"'+(dim===k?" selected":"")+">By "+l.toLowerCase()+"</option>").join("")+'</select><span class="gg-hint">Tap a row to filter to it</span></div>'
+    +'<div class="gg-table-wrap"><table class="gg-table gg-btable"><thead><tr><th>'+(GG_GROUPS.find(g=>g[0]===dim)||["",""])[1]+'</th><th class="num">Hands</th><th class="num">Won</th><th class="num">bb/100</th><th class="num">VPIP</th><th class="num">PFR</th><th class="num">WTSD</th><th class="num">W$SD</th></tr></thead><tbody>'
+    +groups.map(g=>row(g.label,ggAgg(g.items),g.key)).join("")+row("Total",total,null)+"</tbody></table></div>"
+    +'<div class="gg-legend-note">VPIP = voluntarily put money in preflop · PFR = preflop raise · WTSD = went to showdown after seeing a flop · W$SD = won money at showdown</div>';
+  $("ggBdimSel").onchange=e=>{ggList.bdim=e.target.value;ggSavePrefs();ggRenderList()};
+  body.querySelector("tbody").onclick=e=>{
+    const tr=e.target.closest("[data-bkey]");if(!tr)return;const k=tr.dataset.bkey,f=ggList.f;
+    if(dim==="pos"&&k!=="—")f.pos=[k==="BTN/SB"?"BTN":k];
+    else if(dim==="pf")f.pf=[k];
+    else if(dim==="pt")f.pt=[k];
+    else if(dim==="cls")f.range=[k];
+    else if(dim==="day"){f.from=k;f.to=k}
+    else if(dim==="st"){ggList.q="";f.st=+k}
+    else{ggList.view="groups";ggList.group=dim;ggList.collapsed={[dim+":"+k]:false}}
+    if(dim==="stakes"){$("ggStakeFilter").value=k;ggList.view="cards"}
+    ggList.tab="list";ggRefresh();if(dim==="stakes")renderGG();
+  };
+}
+
+/* ── quick chips, filter panel, active pills ── */
+function ggRenderQuick(){
+  const f=ggList.f,el=$("ggQuick");if(!el)return;
+  el.innerHTML=GG_QUICK.map(([k,l,on])=>'<button class="gg-chip'+(on(f)?" on":"")+'" data-q="'+k+'">'+l+"</button>").join("");
+  el.onclick=e=>{const b=e.target.closest("[data-q]");if(!b)return;GG_QUICK.find(q=>q[0]===b.dataset.q)[3](f);ggRefresh();playSound("tick");haptic("light")};
+}
+function ggActiveFilters(){
+  const f=ggList.f,out=[];
+  if(f.pos.length)out.push(["pos","Position: "+f.pos.join(", ")]);
+  if(f.pf.length)out.push(["pf","Action: "+f.pf.map(x=>GG_PF_L[x]).join(", ")]);
+  if(f.pt.length)out.push(["pt","Pot: "+f.pt.map(x=>GG_PT_L[x]).join(", ")]);
+  if(f.res)out.push(["res",{won:"Won",lost:"Lost",even:"Broke even"}[f.res]]);
+  if(f.sd)out.push(["sd",{sd:"Showdown",nsd:"No showdown",sdwon:"Won at showdown",sdlost:"Lost at showdown"}[f.sd]]);
+  if(f.st)out.push(["st","Reached "+GG_ST[f.st]+(f.st<4?"+":"")]);
+  if(f.allin)out.push(["allin","All-in"]);
+  if(f.from||f.to)out.push(["date",(f.from||"…")+" → "+(f.to||"…")]);
+  if(f.minPot!=="")out.push(["minPot","Pot ≥ "+f.minPot+" bb"]);
+  if(f.minNet!==""||f.maxNet!=="")out.push(["net","Result "+(f.minNet!==""?f.minNet:"−∞")+" to "+(f.maxNet!==""?f.maxNet:"∞")+" bb"]);
+  if(f.range.length)out.push(["range","Hands: "+(f.range.length<=6?f.range.join(", "):f.range.length+" selected")]);
+  return out;
+}
+function ggRenderActive(){
+  const el=$("ggActive"),act=ggActiveFilters();if(!el)return;
+  const btn=$("ggFilterBtn");if(btn){btn.innerHTML="⚙ Filters"+(act.length?' <span class="gg-fcount">'+act.length+"</span>":"");btn.classList.toggle("on",ggList.panel)}
+  el.innerHTML=act.length?act.map(([k,l])=>'<span class="gg-pill">'+escapeHtml(l)+'<button data-rm="'+k+'" title="Remove">✕</button></span>').join("")+'<button class="gg-clear" onclick="ggResetFilters()">Clear all</button>':"";
+  el.onclick=e=>{const b=e.target.closest("[data-rm]");if(!b)return;const f=ggList.f,k=b.dataset.rm;
+    if(k==="date"){f.from="";f.to=""}else if(k==="net"){f.minNet="";f.maxNet=""}else f[k]=JSON.parse(JSON.stringify(GG_F0[k]));ggRefresh()};
+}
+function ggResetFilters(){ggList.f=JSON.parse(JSON.stringify(GG_F0));ggList.q="";const s=$("ggSearch");if(s)s.value="";ggRefresh()}
+function ggRenderPanel(){
+  const el=$("ggPanel");if(!el)return;
+  if(!ggList.panel){el.innerHTML="";return}
+  const f=ggList.f;
+  const chips=(field,opts)=>'<div class="gg-chiprow">'+opts.map(([v,l])=>'<button class="gg-chip'+(f[field].includes(v)?" on":"")+'" data-multi="'+field+'" data-v="'+v+'">'+l+"</button>").join("")+"</div>";
+  const seg=(field,opts)=>'<div class="gg-chiprow">'+opts.map(([v,l])=>'<button class="gg-chip'+(String(f[field])===String(v)?" on":"")+'" data-one="'+field+'" data-v="'+v+'">'+l+"</button>").join("")+"</div>";
+  const latest=ggStakeFiltered().reduce((m,h)=>Math.max(m,h.ts),0);
+  const sel=new Set(f.range);
+  let grid="";for(let r=0;r<13;r++)for(let c=0;c<13;c++){const k=hl(r,c);grid+='<div class="gg-rcell'+(sel.has(k)?" on":"")+(r===c?" pair":c>r?" suited":"")+'" data-r="'+k+'">'+k+"</div>"}
+  el.innerHTML='<div class="gg-panel">'
+    +'<div class="gg-psec"><div class="gg-plbl">Position</div>'+chips("pos",GG_POS_FILTER.map(p=>[p,p]))+"</div>"
+    +'<div class="gg-psec"><div class="gg-plbl">Your preflop action</div>'+chips("pf",GG_PF)+"</div>"
+    +'<div class="gg-psec"><div class="gg-plbl">Pot type</div>'+chips("pt",GG_PT)+"</div>"
+    +'<div class="gg-psec"><div class="gg-plbl">You reached</div>'+seg("st",[[0,"Any"],[1,"Flop+"],[2,"Turn+"],[3,"River+"],[4,"Showdown"]])+"</div>"
+    +'<div class="gg-psec"><div class="gg-plbl">Result</div>'+seg("res",[["","Any"],["won","Won"],["lost","Lost"],["even","Broke even"]])+"</div>"
+    +'<div class="gg-psec"><div class="gg-plbl">Showdown</div>'+seg("sd",[["","Any"],["sd","Went to SD"],["nsd","No SD"],["sdwon","Won at SD"],["sdlost","Lost at SD"]])+"</div>"
+    +'<div class="gg-psec gg-prow"><div><div class="gg-plbl">Pot at least</div><div class="gg-inp"><input type="number" class="minp" data-num="minPot" value="'+f.minPot+'" placeholder="0"/><span>bb</span></div></div>'
+    +'<div><div class="gg-plbl">Result from</div><div class="gg-inp"><input type="number" class="minp" data-num="minNet" value="'+f.minNet+'" placeholder="−∞"/><span>bb</span></div></div>'
+    +'<div><div class="gg-plbl">to</div><div class="gg-inp"><input type="number" class="minp" data-num="maxNet" value="'+f.maxNet+'" placeholder="∞"/><span>bb</span></div></div></div>'
+    +'<div class="gg-psec"><div class="gg-plbl">Date</div><div class="gg-prow"><input type="date" class="minp" data-num="from" value="'+f.from+'"/><input type="date" class="minp" data-num="to" value="'+f.to+'"/></div>'
+    +'<div class="gg-chiprow">'+[["day","Latest day"],["7","Last 7 days"],["30","Last 30 days"],["all","All time"]].map(([k,l])=>'<button class="gg-chip" data-dp="'+k+'">'+l+"</button>").join("")+'</div><div class="gg-hint">Relative to your most recent hand</div></div>'
+    +'<div class="gg-psec"><div class="gg-plbl">All-in</div>'+seg("allin",[[false,"Any"],[true,"Only all-in hands"]])+"</div>"
+    +'<div class="gg-psec"><div class="gg-plbl">Starting hands <span class="gg-hint">'+(f.range.length?f.range.length+" selected":"tap or drag to select")+'</span></div>'
+    +'<div class="gg-chiprow">'+[["pairs","Pairs"],["suited","Suited"],["offsuit","Offsuit"],["bway","Broadway"],["ax","Ax"],["clear","Clear"]].map(([k,l])=>'<button class="gg-chip" data-rp="'+k+'">'+l+"</button>").join("")+"</div>"
+    +'<div class="gg-rgrid" id="ggRGrid">'+grid+"</div></div>"
+    +'<div class="gg-pfoot"><button class="btn btn-s" onclick="ggResetFilters()">Reset all</button><button class="btn btn-s pri" onclick="ggList.panel=false;ggRenderList()">Done</button></div></div>';
+  el.onclick=e=>{
+    const t=e.target.closest("[data-multi],[data-one],[data-dp],[data-rp]");if(!t)return;
+    if(t.dataset.multi){const a=f[t.dataset.multi],v=t.dataset.v,i=a.indexOf(v);if(i>=0)a.splice(i,1);else a.push(v)}
+    else if(t.dataset.one){const k=t.dataset.one,v=t.dataset.v;f[k]=k==="st"?+v:k==="allin"?v==="true":v}
+    else if(t.dataset.dp){const d=new Date(latest).toISOString().slice(0,10),k=t.dataset.dp;
+      if(k==="all"){f.from="";f.to=""}else{f.to=d;f.from=k==="day"?d:new Date(latest-(+k-1)*86400000).toISOString().slice(0,10)}}
+    else if(t.dataset.rp){const k=t.dataset.rp,s=new Set(k==="clear"?[]:f.range);
+      for(let r=0;r<13;r++)for(let c=0;c<13;c++){const h=hl(r,c),hit=k==="pairs"?r===c:k==="suited"?c>r:k==="offsuit"?c<r:k==="bway"?r<5&&c<5:k==="ax"?(r===0||c===0):false;if(hit)s.add(h)}
+      f.range=[...s]}
+    ggRefresh();playSound("tick");
+  };
+  // apply as you type (debounced) rather than on blur — a blur-triggered redraw would swallow the tap that caused it
+  el.querySelectorAll("[data-num]").forEach(inp=>inp.oninput=()=>{f[inp.dataset.num]=inp.value;clearTimeout(ggList._numT);ggList._numT=setTimeout(()=>{ggList._keepPanel=true;ggRefresh()},250)});
+  // drag-to-paint on the starting-hand grid
+  const g=$("ggRGrid");let painting=null;
+  g.onpointerdown=e=>{const c=e.target.closest("[data-r]");if(!c)return;e.preventDefault();if(c.releasePointerCapture)c.releasePointerCapture(e.pointerId);painting=!c.classList.contains("on");ggPaint(c,painting)};
+  g.onpointerover=e=>{if(painting===null)return;const c=e.target.closest("[data-r]");if(c)ggPaint(c,painting)};
+  const stop=()=>{if(painting===null)return;painting=null;f.range=[...g.querySelectorAll(".on")].map(x=>x.dataset.r);ggList.limit=50;ggSavePrefs();ggList._keepPanel=true;ggRenderList();const h=el.querySelector(".gg-psec:last-of-type .gg-hint");if(h)h.textContent=f.range.length?f.range.length+" selected":"tap or drag to select"};
+  g.onpointerup=stop;g.onpointerleave=stop;
+}
+function ggPaint(c,on){c.classList.toggle("on",on)}
+
+/* ── Replayer ── */
+const ggR={list:[],idx:0,rep:null,step:0,timer:null};
+async function ggOpenReplay(i){
+  const h=ggList.current[i];if(!h)return;
+  if(!h.raw){toast("Re-import this file to enable the replay for older hands");return}
+  const text=await GGDB.raw(h.id);
+  if(!text){toast("Couldn't load this hand's history");return}
+  ggR.list=ggList.current;ggR.idx=i;ggR.rep=ggBuildReplay(text);ggR.hand=h;ggR.step=0;ggStopAuto();
+  // start at "Cards are dealt" so the opening frame isn't an empty table
+  const dealtAt=ggR.rep.states.findIndex(s=>s.text==="Cards are dealt");if(dealtAt>0)ggR.step=dealtAt;
+  ggRenderReplay();
+  if(!$("ggReplayM").classList.contains("open"))openM("ggReplayM");
+  playSound("tick");haptic("light");
+}
+function ggReplayNav(d){const j=ggR.idx+d;if(j<0||j>=ggR.list.length)return;ggOpenReplay(j)}
+function ggStep(d){const n=ggR.rep.states.length;ggR.step=Math.max(0,Math.min(n-1,ggR.step+d));ggRenderReplay()}
+function ggGoto(s){ggR.step=Math.max(0,Math.min(ggR.rep.states.length-1,s));ggRenderReplay()}
+function ggJumpStreet(dir){ // jump to next/previous street marker
+  const S=ggR.rep.states;let s=ggR.step+dir;
+  while(s>0&&s<S.length-1&&S[s].kind!=="street")s+=dir;
+  ggGoto(s);
+}
+function ggStopAuto(){if(ggR.timer){clearInterval(ggR.timer);ggR.timer=null}}
+function ggToggleAuto(){
+  if(ggR.timer){ggStopAuto();ggRenderReplay();return}
+  if(ggR.step>=ggR.rep.states.length-1)ggR.step=0;
+  ggR.timer=setInterval(()=>{
+    if(!$("ggReplayM").classList.contains("open")){ggStopAuto();return}
+    if(ggR.step>=ggR.rep.states.length-1){ggStopAuto();ggRenderReplay();return}
+    ggR.step++;ggRenderReplay();
+  },900);
+  ggRenderReplay();
+}
+function ggMoneyText(t){return t.replace(/\{\{(-?\d+)\}\}/g,(_,c)=>ggFmt(+c,ggR.rep.bb))}
+function ggCardHtml(code,big){const c={rank:code[0],suit:code[1]};return renderCommCardsHtml([c],true)}
+function ggRenderReplay(){
+  const R=ggR.rep,st=R.states[ggR.step],h=ggR.hand,n=R.states.length;
+  const heroSeat=(R.seats.find(s=>s.name===R.hero)||R.seats[0]).seat;
+  const max=Math.max(R.maxSeats,...R.seats.map(s=>s.seat));
+  const seatsHtml=R.seats.map(s=>{
+    const slot=((s.seat-heroSeat)%max+max)%max;
+    const ang=Math.PI/2+slot/max*2*Math.PI;
+    const x=50+42*Math.cos(ang),y=50+38*Math.sin(ang);
+    const bx=50+24*Math.cos(ang),by=50+19*Math.sin(ang);
+    const isHero=s.name===R.hero,folded=st.folded.includes(s.name),actor=st.actor===s.name,won=st.won[s.name];
+    const cards=isHero?R.heroCards:st.shown[s.name];
+    const cardHtml=cards&&cards.length?'<div class="ggr-cards">'+cards.map(c=>ggCardHtml(c)).join("")+"</div>"
+      :(folded?"":'<div class="ggr-cards"><div class="ggr-back"></div><div class="ggr-back"></div></div>');
+    const bet=st.bets[s.name];
+    const label=isHero?"Hero":s.name.slice(0,8);
+    return'<div class="ggr-seat'+(isHero?" hero":"")+(folded?" folded":"")+(actor?" actor":"")+(won?" winner":"")+'" style="left:'+x+"%;top:"+y+'%">'
+      +cardHtml
+      +'<div class="ggr-plate"><div class="ggr-name">'+escapeHtml(label)+(s.seat===R.btnSeat?' <span class="ggr-dealer">D</span>':"")+'</div><div class="ggr-stack">'+ggFmt(st.stacks[s.name],R.bb)+(st.allin.includes(s.name)&&st.stacks[s.name]===0?" · all-in":"")+"</div></div>"
+      +(won?'<div class="ggr-status win">+'+ggFmt(won,R.bb)+"</div>":st.last[s.name]?'<div class="ggr-status'+(st.last[s.name]==="Fold"?" fold":"")+'">'+st.last[s.name]+"</div>":"")
+      +"</div>"
+      +(bet>0?'<div class="ggr-bet" style="left:'+bx+"%;top:"+by+'%">'+ggFmt(bet,R.bb)+"</div>":"");
+  }).join("");
+  const boardRow=cards=>'<div class="ggr-board">'+[0,1,2,3,4].map(k=>cards&&cards[k]?ggCardHtml(cards[k]):'<div class="ggr-slot"></div>').join("")+"</div>";
+  const totalPot=st.pot+Object.values(st.bets).reduce((a,b)=>a+Math.max(0,b),0);
+  const log=R.states.map((s,k)=>k===0?"":'<div class="'+(s.kind==="street"?"ggr-log-street":"ggr-log-item")+(k===ggR.step?" on":"")+(k>ggR.step?" future":"")+'" data-s="'+k+'">'+escapeHtml(ggMoneyText(s.text))+"</div>").join("");
+  const dateTxt=new Date(h.ts).toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
+  $("ggReplayContent").innerHTML=
+    '<div class="ggr-hdr"><div><div class="ggr-title">'+(h.cls||"Hand")+(h.pos?' <span class="gg-badge">'+h.pos+"</span>":"")+'</div><div class="ggr-sub">'+ggStakeLabel(R.bb)+" · "+dateTxt+' · #'+escapeHtml(R.id)+'</div></div><button class="sd-close" onclick="ggStopAuto();closeM(\'ggReplayM\')">✕</button></div>'
+    +'<div class="ggr-felt-wrap"><div class="hhb-table-felt ggr-felt">'+seatsHtml
+    +'<div class="ggr-center"><div class="hhb-pot">Pot '+ggFmt(totalPot,R.bb)+"</div>"+boardRow(st.board)+(st.board2?boardRow(st.board2):"")+"</div></div></div>"
+    +'<div class="ggr-street">'+escapeHtml(st.street)+'</div><div class="ggr-action">'+escapeHtml(ggMoneyText(st.text))+"</div>"
+    +'<input type="range" class="wsl ggr-scrub" min="0" max="'+(n-1)+'" value="'+ggR.step+'" oninput="ggGoto(+this.value)"/>'
+    +'<div class="ggr-controls"><button class="btn btn-s" onclick="ggGoto(0)" title="Start">⏮</button><button class="btn btn-s" onclick="ggJumpStreet(-1)" title="Previous street">⏪</button><button class="btn btn-s" onclick="ggStep(-1)" title="Back">◀</button>'
+    +'<button class="btn btn-s pri ggr-play" onclick="ggToggleAuto()">'+(ggR.timer?"⏸":"▶ Play")+'</button>'
+    +'<button class="btn btn-s" onclick="ggStep(1)" title="Forward">▶</button><button class="btn btn-s" onclick="ggJumpStreet(1)" title="Next street">⏩</button><button class="btn btn-s" onclick="ggGoto('+(n-1)+')" title="End">⏭</button></div>'
+    +'<div class="ggr-result"><span>Result <b class="'+(h.net>=0?"pos":"neg")+'">'+ggSigned(h.net,h.bb)+"</b></span>"+(h.ev!=null?"<span>All-in EV <b>"+ggSigned(h.ev,h.bb)+"</b></span>":"")+(h.rk>0?"<span>Rake paid <b>"+ggRakeFmt(h.rk,h.bb)+"</b></span>":"")+(h.sd?"<span>Showdown</span>":"<span>No showdown</span>")+"</div>"
+    +'<div class="ggr-log" id="ggrLog">'+log+"</div>"
+    +'<div class="ggr-nav"><button class="btn" '+(ggR.idx<=0?"disabled":"")+' onclick="ggReplayNav(-1)">← Prev hand</button><span>'+(ggR.idx+1)+" / "+ggR.list.length+'</span><button class="btn" '+(ggR.idx>=ggR.list.length-1?"disabled":"")+' onclick="ggReplayNav(1)">Next hand →</button></div>';
+  const logEl=$("ggrLog");
+  logEl.onclick=e=>{const it=e.target.closest("[data-s]");if(it){ggStopAuto();ggGoto(+it.dataset.s)}};
+  const on=logEl.querySelector(".on");if(on){const r=on.getBoundingClientRect(),lr=logEl.getBoundingClientRect();logEl.scrollTop+=(r.top-lr.top)-lr.height/2+r.height/2}
+}
+document.addEventListener("keydown",e=>{
+  if(!$("ggReplayM")||!$("ggReplayM").classList.contains("open"))return;
+  if(document.activeElement&&/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)&&document.activeElement.type!=="range")return;
+  if(e.key==="ArrowRight"){e.preventDefault();ggStep(1)}
+  else if(e.key==="ArrowLeft"){e.preventDefault();ggStep(-1)}
+  else if(e.key===" "){e.preventDefault();ggToggleAuto()}
+});
+
 /* ══════════════════════ SHIFT LOG ══════════════════════ */
 function migrateShiftFormat(s){
   if(s.startDate!=null)return s;
@@ -9146,7 +10206,16 @@ function renderStorageUsage(){
   const pct=Math.min(100,Math.round((mb/estimatedQuotaMB)*100));
   bar.style.width=pct+"%";
   bar.style.background=pct>=85?"var(--rs)":pct>=60?"var(--gd)":"linear-gradient(90deg,var(--pk),var(--pk2))";
-  txt.textContent=mb.toFixed(2)+" MB used"+(pct>=85?" — running low. Consider clearing old data or removing large hand-history attachments.":pct>=60?" — keep an eye on this over time.":"");
+  txt.textContent="App data: "+mb.toFixed(2)+" MB of ~5 MB"+(pct>=85?" — running low. Consider clearing old data or removing large hand-history attachments.":pct>=60?" — keep an eye on this over time.":"");
+  (async()=>{
+    const hands=await GGDB.all();let est=null,persisted=false;
+    try{est=await navigator.storage.estimate()}catch(e){}
+    try{persisted=await navigator.storage.persisted()}catch(e){}
+    let el=$("storageIdbTxt");
+    if(!el){el=document.createElement("div");el.id="storageIdbTxt";el.className="setting-desc";el.style.marginTop="4px";txt.after(el)}
+    const gb=q=>q>=1073741824?(q/1073741824).toFixed(1)+" GB":(q/1048576).toFixed(0)+" MB";
+    el.textContent="GG hand histories: "+hands.length.toLocaleString()+" hands (separate database)"+(est&&est.quota?" · "+(est.usage/1048576).toFixed(1)+" MB used of "+gb(est.quota)+" available":"")+(persisted?" · protected from automatic clearing":"");
+  })();
 }
 function toggleSettingsSection(header){
   const isClosed=header.classList.contains("closed");
