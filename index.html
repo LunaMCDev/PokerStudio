@@ -3291,6 +3291,14 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .ggdel-lbl code{font-family:var(--fm);color:var(--rs);background:var(--b2);padding:2px 6px;border-radius:4px;font-weight:700}
 .ggdel-acts{display:flex;gap:8px;margin-top:14px}.ggdel-acts .btn{flex:1}
 .ggdel-acts .btn:disabled{opacity:.4;cursor:not-allowed}
+.gg-graph-box{cursor:pointer;transition:border-color .15s}
+.gg-graph-box:hover{border-color:var(--pk)}
+.gg-expand{margin-left:auto;font-size:10px;font-weight:700;color:var(--pk2);font-family:var(--fb,inherit);font-style:normal;letter-spacing:.3px}
+.gx-mdl{max-width:1200px;width:100%;height:88vh;max-height:none;padding:14px 16px;display:flex;flex-direction:column}
+@media(max-width:640px){#ggGraphM{padding:0}.gx-mdl{height:100%;max-height:100vh;border-radius:0;padding:12px 8px}}
+.gx-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 4px}
+.gx-hdr h3{margin:0;font-size:16px}
+.gx-chart{position:relative;flex:1;min-height:0}
 .gg-status{font-size:11.5px;color:var(--t2);background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:9px 12px;margin-bottom:12px;line-height:1.5}
 .gg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .gg-chart-h{height:320px}
@@ -4701,6 +4709,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
   <input class="minp" id="goalName" maxlength="60"/>
   <div class="mact"><button class="btn btn-d" id="goalDeleteBtn" onclick="deleteGoal()">🗑 Delete</button><button class="btn" id="goalReopenBtn" onclick="reopenGoal()">↺ Reopen</button><span style="flex:1"></span><button class="btn" onclick="closeM('goalFormM')">Cancel</button><button class="btn pri" onclick="saveGoal()">✦ Save</button></div>
 </div></div>
+<div class="mov" id="ggGraphM" onclick="if(event.target===this)closeGGGraph()"><div class="mdl gx-mdl"><div class="gx-hdr"><h3>📈 Winnings Graph</h3><button class="gs-close" onclick="closeGGGraph()">✕</button></div><div class="gx-chart"><canvas id="chGGBig"></canvas></div></div></div>
 <div class="mov" id="ggReplayM"><div class="mdl ggr-mdl" id="ggReplayContent"></div></div>
 <div class="cfov" id="cfOv"><div class="cfbox"><div class="cfm" id="cfMsg"></div><div class="cfa"><button class="btn" onclick="closeCf()">Cancel</button><button class="btn btn-d" onclick="runCf()">Confirm</button></div></div></div>
 <div class="mov" id="rangePreviewM"><div class="mdl" style="max-width:520px"><h3>Range Preview</h3><div id="rangePreviewContent" style="font-size:12px;line-height:1.6;color:var(--t2)"></div><div class="mact" style="margin-top:18px"><button class="btn" onclick="closeM('rangePreviewM')">Close</button></div></div></div>
@@ -7692,21 +7701,28 @@ function renderGG(){
     +tile("All-in EV",ev,allinCount+" all-in"+(allinCount!==1?"s":"")+" · "+(luck>=0?"running above EV ":"running below EV ")+fmt(Math.abs(luck)),GG_COLORS.ev)
     +'<div class="br-stat gg-rake-tile"><div class="brs-label"><span class="gg-dot" style="background:'+GG_COLORS.rake+'"></span>Rake Paid</div><div class="brs-val" style="color:'+GG_COLORS.rake+'">'+pos(rake)+'</div><div class="brs-sub">'+rakeBB100.toFixed(2)+" bb/100 · "+"pre-rake "+fmt(net+rake)+(fees>0.00001?" · jackpot/fees "+pos(fees):"")+(rakeUnknown?" · "+rakeUnknown+" older hand"+(rakeUnknown!==1?"s":"")+" not counted (re-import)":"")+"</div></div>"
     +'</div>'
-    +'<div class="br-chart-box"><h3><span class="cdot" style="background:'+GG_COLORS.net+'"></span>Winnings Graph</h3><div class="br-chart-h gg-chart-h"><canvas id="chGG"></canvas></div></div>'
+    +'<div class="br-chart-box gg-graph-box" onclick="openGGGraph()" title="Open the detailed graph"><h3><span class="cdot" style="background:'+GG_COLORS.net+'"></span>Winnings Graph<span class="gg-expand">⤢ Enlarge</span></h3><div class="br-chart-h gg-chart-h"><canvas id="chGG"></canvas></div></div>'
     +'<div class="gg-foot"><span>'+(sel.value?ggStakeLabel(+sel.value):stakes.length>1?stakes.length+" stakes":ggStakeLabel(stakes[0]))+" · "+dfmt(hands[0].ts)+" – "+dfmt(hands[hands.length-1].ts)+'</span><span class="gg-foot-note">Delete imported hands in Settings › Danger Zone</span></div>'
     +(legacy?'<div class="gg-status" style="margin-top:12px">ℹ️ '+legacy+' hand'+(legacy!==1?"s were":" was")+' imported before replays existed. Re-import the same .txt files to add cards, positions &amp; replays — nothing is duplicated.</div>':"")
     +ggHandsSectionHtml();
   ggRenderList();
   if(typeof Chart==="undefined")return;
   const CT=getCT(),big=hands.length>3000;
-  const ds=(label,data,color,width)=>({label,data,borderColor:color,backgroundColor:color,borderWidth:width,pointRadius:0,pointHoverRadius:3,tension:0,fill:false});
-  ggChart=new Chart($("chGG").getContext("2d"),{type:"line",
-    data:{labels:hands.map((_,i)=>i+1),datasets:[ds("Net won",L.net,GG_COLORS.net,2.5),ds("Showdown",L.sd,GG_COLORS.sd,1.8),ds("Non-showdown",L.nsd,GG_COLORS.nsd,1.8),ds("All-in EV",L.ev,GG_COLORS.ev,1.8)]},
-    options:{responsive:true,maintainAspectRatio:false,animation:big?false:{duration:700},interaction:{intersect:false,mode:"index"},
-      plugins:{glowLine:false,legend:{display:true,position:"bottom",labels:{color:CT.tick,usePointStyle:true,pointStyle:"line",boxWidth:18,font:{size:11}}},
+  ggChartSpec={labels:hands.map((_,i)=>i+1),L,fmt,inBB,big};
+  ggChart=new Chart($("chGG").getContext("2d"),ggWinChartCfg(ggChartSpec,false));
+}
+let ggChartSpec=null;
+// one config builder for the small and the enlarged graph — each call returns fresh plain objects
+function ggWinChartCfg(sp,large){
+  const CT=getCT(),L=sp.L,fmt=sp.fmt,inBB=sp.inBB,w=large?0.6:0,fs=large?12:10;
+  const ds=(label,data,color,width)=>({label,data:[...data],borderColor:color,backgroundColor:color,borderWidth:width+w,pointRadius:0,pointHoverRadius:3,tension:0,fill:false});
+  return{type:"line",
+    data:{labels:[...sp.labels],datasets:[ds("Net won",L.net,GG_COLORS.net,2.5),ds("Showdown",L.sd,GG_COLORS.sd,1.8),ds("Non-showdown",L.nsd,GG_COLORS.nsd,1.8),ds("All-in EV",L.ev,GG_COLORS.ev,1.8)]},
+    options:{responsive:true,maintainAspectRatio:false,animation:(large||sp.big)?false:{duration:700},interaction:{intersect:false,mode:"index"},
+      plugins:{glowLine:false,legend:{display:true,position:"bottom",labels:{color:CT.tick,usePointStyle:true,pointStyle:"line",boxWidth:18,font:{size:large?12:11}}},
         tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,callbacks:{title:c=>"Hand "+c[0].label,label:c=>" "+c.dataset.label+": "+fmt(c.raw)}}},
-      scales:{x:{title:{display:true,text:"Hands",color:CT.tick,font:{size:10}},ticks:{color:CT.tick,maxTicksLimit:7,font:{size:10}},grid:{display:false}},
-        y:{ticks:{color:CT.tick,font:{size:10},callback:v=>inBB?(v<0?"−":"")+Math.abs(v)+" bb":(v<0?"−$":"$")+Math.abs(v).toFixed(2)},grid:{color:CT.grid,drawTicks:false}}}}});
+      scales:{x:{title:{display:true,text:"Hands",color:CT.tick,font:{size:fs}},ticks:{color:CT.tick,maxTicksLimit:large?10:7,font:{size:fs}},grid:{display:false}},
+        y:{ticks:{color:CT.tick,font:{size:fs},callback:v=>inBB?(v<0?"−":"")+Math.abs(v)+" bb":(v<0?"−$":"$")+Math.abs(v).toFixed(2)},grid:{color:CT.grid,drawTicks:false}}}}};
 }
 
 async function ggImportBackup(d){
@@ -8849,19 +8865,28 @@ function ggShareDownload(){
 
 /* ── Replayer ── */
 const ggR={list:[],idx:0,rep:null,step:0,timer:null};
-async function ggOpenReplay(i){
-  const h=ggList.current[i];if(!h)return;
+/* ── larger winnings graph (opened by tapping the Winnings Graph) ── */
+let ggBigChart=null;
+function openGGGraph(){
+  if(!ggChartSpec||typeof Chart==="undefined")return;
+  openM("ggGraphM");
+  if(ggBigChart){ggBigChart.destroy();ggBigChart=null}
+  ggBigChart=new Chart($("chGGBig").getContext("2d"),ggWinChartCfg(ggChartSpec,true));
+}
+function closeGGGraph(){if(ggBigChart){ggBigChart.destroy();ggBigChart=null}closeM("ggGraphM")}
+async function ggOpenReplay(i,list){
+  const L=list||ggList.current,h=L[i];if(!h)return;
   if(!h.raw){toast("Re-import this file to enable the replay for older hands");return}
   const text=await GGDB.raw(h.id);
   if(!text){toast("Couldn't load this hand's history");return}
-  ggR.list=ggList.current;ggR.idx=i;ggR.raw=text;ggR.rep=ggBuildReplay(text);ggR.hand=h;ggR.step=0;ggR.draft="";ggR.pinStep=null;ggR.pin=true;ggR.built=null;ggR.pausedAtNote=false;ggStopAuto();
+  ggR.list=L;ggR.idx=i;ggR.raw=text;ggR.rep=ggBuildReplay(text);ggR.hand=h;ggR.step=0;ggR.draft="";ggR.pinStep=null;ggR.pin=true;ggR.built=null;ggR.pausedAtNote=false;ggStopAuto();
   // start at "Cards are dealt" so the opening frame isn't an empty table
   const dealtAt=ggR.rep.states.findIndex(s=>s.text==="Cards are dealt");if(dealtAt>0)ggR.step=dealtAt;
   ggRenderReplay();
   if(!$("ggReplayM").classList.contains("open"))openM("ggReplayM");
   playSound("tick");haptic("light");
 }
-function ggReplayNav(d){const j=ggR.idx+d;if(j<0||j>=ggR.list.length)return;ggOpenReplay(j)}
+function ggReplayNav(d){const j=ggR.idx+d;if(j<0||j>=ggR.list.length)return;ggOpenReplay(j,ggR.list)}
 function ggStep(d){const n=ggR.rep.states.length;ggR.step=Math.max(0,Math.min(n-1,ggR.step+d));ggRenderReplay()}
 function ggGoto(s){ggR.step=Math.max(0,Math.min(ggR.rep.states.length-1,s));if(!ggR.timer)ggR.pausedAtNote=false;ggRenderReplay()}
 function ggJumpStreet(dir){ // jump to next/previous street marker
