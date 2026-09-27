@@ -3299,6 +3299,99 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .gx-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;padding:0 4px}
 .gx-hdr h3{margin:0;font-size:16px}
 .gx-chart{position:relative;flex:1;min-height:0}
+.ar-sec{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px;margin:10px 0}
+.ar-sec-h{font-size:12px;font-weight:800;color:var(--t1);margin-bottom:8px}
+.ar-sec-sub{font-size:10px;font-weight:500;color:var(--t4);margin-left:4px}
+.ar-note{font-size:10px;color:var(--t4);line-height:1.5;margin-top:8px}.ar-note b{color:var(--t2)}
+.ar-glance{display:flex;height:16px;border-radius:8px;overflow:hidden;gap:2px;background:var(--b0)}
+.ar-glance span{min-width:2px}
+.ar-glance-leg{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:11px;color:var(--t3)}
+.ar-glance-leg div{display:flex;align-items:center;gap:6px}.ar-glance-leg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.ar-glance-leg b{font-family:var(--fm);color:var(--t1);margin-left:2px}
+.ar-sh{margin-bottom:8px}.ar-sh:last-of-type{margin-bottom:0}
+.ar-sh-t{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:var(--t1);margin-bottom:4px}
+.ar-sh-t i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.ar-sh-line{display:grid;grid-template-columns:92px 1fr;gap:8px;font-size:10.5px;padding:3px 0}
+.ar-sh-line span{color:var(--t4)}
+.ar-sh-line code{font-family:var(--fm);color:var(--t2);line-height:1.55;word-break:break-word}
+.ar-edges{display:flex;flex-direction:column;border:1px solid var(--bd);border-radius:var(--r1);overflow:hidden}
+.ar-edge,.ar-edge-h{display:grid;grid-template-columns:70px 1fr 1fr;gap:6px;padding:6px 10px;font-size:11px;border-top:1px solid var(--bd);font-family:var(--fm);color:var(--t2)}
+.ar-edge-h{border-top:none;background:var(--b3);font-family:inherit;font-size:8.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--t4)}
+.ar-edge b{color:var(--t1)}.ar-edge small{color:var(--t4);font-size:9px}
+.ar-grp{display:grid;grid-template-columns:minmax(0,130px) 1fr 40px;gap:8px;align-items:center;padding:5px 0;border-top:1px solid var(--bd)}
+.ar-grp:first-of-type{border-top:none}
+.ar-grp-l{font-size:11px;color:var(--t2);display:flex;flex-direction:column}.ar-grp-l small{font-size:9px;color:var(--t4)}
+.ar-grp-bar{display:flex;height:10px;background:var(--b0);border-radius:5px;overflow:hidden}
+.ar-grp-v{font-family:var(--fm);font-size:11px;color:var(--t1);text-align:right}
+.ar-mix{display:flex;flex-wrap:wrap;gap:4px}
+.ar-mx{display:inline-flex;align-items:baseline;gap:4px;padding:3px 7px;border-radius:6px;background:var(--b3);font-size:10px;font-family:var(--fm)}
+.ar-mx b{color:var(--t1)}.ar-mx em{font-style:normal;font-weight:700}
+.fs-thumb{flex-shrink:0;border-radius:4px;display:block}
+.fs-addr{overflow-x:auto;scrollbar-width:none}.fs-addr::-webkit-scrollbar{display:none}.fs-addr span{white-space:nowrap;flex-shrink:0}
+.fs-gi .fs-thumb{margin:2px auto 0}
+.fs-achips{display:flex;flex-wrap:wrap;gap:3px 8px;margin-top:4px}
+.fs-achip{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;color:var(--t3);font-family:var(--fm)}
+.fs-achip i{width:7px;height:7px;border-radius:2px;display:inline-block}
+.fs-di .di-sub b{color:var(--t1);font-weight:700}
+.fs-more,.fs-sum-btn{flex-shrink:0;width:32px;height:32px;border-radius:8px;border:1px solid var(--bd);background:var(--b2);color:var(--t3);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1}
+.fs-more:hover,.fs-sum-btn:hover{color:var(--pk2);border-color:var(--bd2);background:var(--b3)}
+.fs-sum-btn{font-size:13px}
+.fs-chev{color:var(--t5);font-size:18px;margin-left:2px}
+.fs-di.folder-di .fs-more{opacity:.7}
+.fs-posbar{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;padding:2px 2px 8px;margin-bottom:4px;border-bottom:1px solid var(--bd)}
+.fs-posbar::-webkit-scrollbar{display:none}
+.fs-posbar-l{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin-right:4px;flex-shrink:0}
+.fs-posbar .gg-chip{padding:4px 10px;font-size:10px}
+.lr-mdl{max-width:560px;width:100%;max-height:94vh;padding:14px 16px 18px}
+@media(max-width:640px){#learnM{padding:0}.lr-mdl{max-height:100vh;height:100%;border-radius:0;padding:12px}}
+.lr-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.lr-back{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd2);background:var(--b2);color:var(--t2);font-size:15px;cursor:pointer;flex-shrink:0}
+.lr-tt{display:flex;flex-direction:column;min-width:0}.lr-tt b{font-size:15px;color:var(--t1)}.lr-tt span{font-size:10.5px;color:var(--t4);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lr-prog-bar{height:8px;border-radius:4px;background:var(--b0);overflow:hidden}.lr-prog-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--pk),var(--mt));border-radius:4px}
+.lr-prog-t{font-size:10.5px;color:var(--t3);margin-top:5px}.lr-prog-t b{color:var(--mt)}
+.lr-due{margin-top:10px;padding:9px 11px;border-radius:var(--r1);background:color-mix(in srgb,var(--gd) 14%,var(--b2));border:1px solid color-mix(in srgb,var(--gd) 45%,var(--bd));font-size:11px;color:var(--t1)}
+.lr-okrev{margin-top:8px;font-size:10px;color:var(--t4)}
+.lr-how{font-size:11px;color:var(--t3);line-height:1.55;margin:12px 0}.lr-how b{color:var(--t1)}
+.lr-list{display:flex;flex-direction:column;gap:6px}
+.lr-item{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:var(--r2);border:1px solid var(--bd);background:var(--b2);color:var(--t2);cursor:pointer;text-align:left;width:100%}
+.lr-item:hover{border-color:var(--pk)}.lr-item.done{border-color:color-mix(in srgb,var(--mt) 45%,var(--bd))}
+.lr-item.final{background:linear-gradient(135deg,color-mix(in srgb,var(--pk) 12%,var(--b2)),var(--b2));margin-top:4px}
+.lr-ic{font-size:20px;width:28px;text-align:center}.lr-it{flex:1;display:flex;flex-direction:column;min-width:0}.lr-it b{font-size:12px;color:var(--t1)}.lr-it small{font-size:9.5px;color:var(--t4);margin-top:2px}
+.lr-st{font-size:16px;color:var(--t4)}
+.lr-grid{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:2px;user-select:none;-webkit-user-select:none;touch-action:none}
+.lr-c{position:relative;aspect-ratio:1;border-radius:3px;background:var(--b3);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.lr-c span{font-size:clamp(6.5px,1.9vw,9.5px);font-weight:700;color:var(--t1);position:relative;z-index:1;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.lr-c.off{background:var(--b1);opacity:.35}.lr-c.off span{color:var(--t5);text-shadow:none}
+.lr-c.paint{cursor:pointer;outline:1px dashed var(--bd2);outline-offset:-1px}
+.lr-c.ok{box-shadow:inset 0 0 0 2px #22c55e}.lr-c.bad{box-shadow:inset 0 0 0 2px #ef4444}
+.lr-c em{position:absolute;left:0;right:0;bottom:0;height:28%}
+.lr-leg{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0;font-size:10.5px;color:var(--t3)}.lr-leg span{display:flex;align-items:center;gap:5px}.lr-leg i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.lr-study{display:flex;flex-direction:column;gap:6px;background:var(--b2);border-radius:var(--r1);padding:10px 11px;margin-top:6px}
+.lr-sl{display:grid;grid-template-columns:12px auto 1fr;gap:8px;align-items:baseline;font-size:11px}.lr-sl i{width:10px;height:10px;border-radius:3px;display:inline-block}.lr-sl b{color:var(--t1)}.lr-sl code{font-family:var(--fm);color:var(--t2);word-break:break-word}.lr-sl span{color:var(--t4)}
+.lr-ctitle{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin:12px 0 6px}
+.lr-mrow{display:grid;grid-template-columns:40px 1fr;gap:8px;align-items:center;margin-bottom:4px;font-family:var(--fm);font-size:11px}.lr-mrow b{color:var(--t1)}
+.lr-mix{display:flex;height:16px;border-radius:4px;overflow:hidden;gap:1px}.lr-mix span{display:flex;align-items:center;justify-content:center;font-size:8.5px;color:#fff;font-weight:700;min-width:2px}
+.lr-tip{margin-top:12px;font-size:11px;color:var(--t2);line-height:1.5;background:var(--b2);border-radius:var(--r1);padding:9px 11px}
+.lr-nav{display:flex;gap:8px;margin-top:14px}.lr-nav .btn{flex:1}
+.lr-pal{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.lr-pb{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:50px;border:1.5px solid var(--bd2);background:var(--b2);color:var(--t3);font-size:11px;font-weight:700;cursor:pointer}
+.lr-pb i{width:11px;height:11px;border-radius:3px;display:inline-block}.lr-pb.on{border-color:var(--t1);color:var(--t1);background:var(--b3)}
+.lr-hint{font-size:10px;color:var(--t4);line-height:1.5;margin-top:8px}.lr-hint b{color:var(--t2)}
+.lr-score{padding:9px 11px;border-radius:var(--r1);font-size:11px;margin-bottom:10px;color:var(--t2);line-height:1.45}.lr-score b{font-size:16px;font-family:var(--fm);margin-right:4px}
+.lr-score.good{background:color-mix(in srgb,#22c55e 14%,var(--b2))}.lr-score.good b{color:#22c55e}.lr-score.meh{background:color-mix(in srgb,#ef4444 10%,var(--b2))}.lr-score.meh b{color:#f87171}
+.lr-qcard{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 0 14px}
+.lr-qhand{display:flex;gap:8px}
+.lr-card{width:62px;height:86px;border-radius:9px;background:#f8fafc;color:#111827;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:26px;font-weight:800;font-family:var(--fm);box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.lr-card small{font-size:22px;line-height:1}.lr-card.red{color:#dc2626}
+.lr-qlab{font-family:var(--fm);font-size:13px;color:var(--t3)}
+.lr-qbtns{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.lr-qb{padding:14px 10px;border-radius:var(--r2);border:2px solid var(--kc);background:color-mix(in srgb,var(--kc) 14%,var(--b2));color:var(--t1);font-size:13px;font-weight:800;cursor:pointer}
+.lr-qb:disabled{opacity:.45;cursor:default}.lr-qb.right{opacity:1;box-shadow:0 0 0 3px #22c55e}.lr-qb.wrong{opacity:1;box-shadow:0 0 0 3px #ef4444}
+.lr-fb{margin-top:12px;display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800}.lr-fb.good{color:#22c55e}.lr-fb.bad{color:#f87171}
+.lr-qprog{height:4px;border-radius:2px;background:var(--b0);margin-top:16px;overflow:hidden}.lr-qprog span{display:block;height:100%;background:var(--pk)}
+.lr-final{text-align:center;padding:14px 0;color:var(--t3);font-size:12px}.lr-big{font-size:46px;font-weight:800;font-family:var(--fm);color:var(--t1)}
+.lr-mast{margin-top:8px;color:var(--gd2);font-weight:800}.lr-notyet{margin-top:8px;font-size:11px;color:var(--t4)}
+.fs-lbadge{font-family:inherit;color:var(--pk2)}.fs-lbadge.ok{color:var(--mt)}.fs-lbadge.due{color:var(--gd2)}
 .gg-status{font-size:11.5px;color:var(--t2);background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:9px 12px;margin-bottom:12px;line-height:1.5}
 .gg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .gg-chart-h{height:320px}
@@ -3780,6 +3873,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
     <button class="btn btn-s" onclick="previewRange()">Preview</button>
     <button class="btn btn-s pri" onclick="showMemoryTips()">Summary</button>
     <button class="btn btn-s" onclick="trainThis()">Train</button>
+    <button class="btn btn-s pri" onclick="openLearn(S.loadedIdx)">🧠 Learn</button>
     <button class="btn btn-xs" onclick="closeViewer()">Close</button>
   </div>
   <div id="editorControls">
@@ -3863,7 +3957,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
       <select id="fsSortSel" class="sel-sm" onchange="fsRender()">
         <option value="newest">Newest</option><option value="oldest">Oldest</option>
         <option value="a-z">A → Z</option><option value="z-a">Z → A</option>
-        <option value="most">Most Hands</option><option value="least">Least Hands</option><option value="pct">% Coverage</option>
+        <option value="most">Widest</option><option value="least">Tightest</option>
       </select>
       <div class="fs-view-btns">
         <div class="fs-vb" id="fsVbGrid" onclick="setFsView('grid')" title="Grid view">⊞</div>
@@ -4659,6 +4753,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
       <div class="setting-desc" id="storageUsageTxt" style="margin-top:5px">Calculating…</div>
     </div>
     <div class="slbl">🗄️ Data</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Restore Default Ranges</div><div style="font-size:9.5px;color:var(--t4);margin-top:2px">Put back the 145 built-in 6-max ranges — your own ranges stay as they are</div></div><button class="btn btn-s" onclick="restoreDefaultRanges()">🎯 Restore</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)"><div><div style="font-weight:600;font-size:12px">Export All Data</div></div><button class="btn btn-s pri" onclick="dlJSON()">💾 Export</button></div>
     <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:none"><div><div style="font-weight:600;font-size:12px">Import Data</div></div><button class="btn btn-s" onclick="$('jfInput').click()">📂 Import</button></div>
   </div>
@@ -4709,6 +4804,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
   <input class="minp" id="goalName" maxlength="60"/>
   <div class="mact"><button class="btn btn-d" id="goalDeleteBtn" onclick="deleteGoal()">🗑 Delete</button><button class="btn" id="goalReopenBtn" onclick="reopenGoal()">↺ Reopen</button><span style="flex:1"></span><button class="btn" onclick="closeM('goalFormM')">Cancel</button><button class="btn pri" onclick="saveGoal()">✦ Save</button></div>
 </div></div>
+<div class="mov" id="learnM"><div class="mdl lr-mdl" id="learnBody"></div></div>
 <div class="mov" id="ggGraphM" onclick="if(event.target===this)closeGGGraph()"><div class="mdl gx-mdl"><div class="gx-hdr"><h3>📈 Winnings Graph</h3><button class="gs-close" onclick="closeGGGraph()">✕</button></div><div class="gx-chart"><canvas id="chGGBig"></canvas></div></div></div>
 <div class="mov" id="ggReplayM"><div class="mdl ggr-mdl" id="ggReplayContent"></div></div>
 <div class="cfov" id="cfOv"><div class="cfbox"><div class="cfm" id="cfMsg"></div><div class="cfa"><button class="btn" onclick="closeCf()">Cancel</button><button class="btn btn-d" onclick="runCf()">Confirm</button></div></div></div>
@@ -6590,7 +6686,41 @@ function saveErr(){LS("ps_err",S.errors)}
 function recErr(l,a,rid){const k=rid||"_global";if(!S.errors[k])S.errors[k]={};if(!S.errors[k][l])S.errors[k][l]={t:0,a:{}};S.errors[k][l].t++;S.errors[k][l].a[a]=(S.errors[k][l].a[a]||0)+1;S.errors[k][l].interval=4;S.errors[k][l].dueAt=Date.now()+4*3600000;S.errors[k][l].lastSeen=Date.now();saveErr()}
 function recCorrectWeak(l,rid){const k=rid||"_global";if(!S.errors[k]||!S.errors[k][l])return;const e=S.errors[k][l];e.interval=Math.min((e.interval||4)*2,720);e.dueAt=Date.now()+e.interval*3600000;e.lastSeen=Date.now();saveErr()}
 function getWeak(n,rid){const k=rid||"_global";const e=S.errors[k]||{};const now=Date.now();return Object.entries(e).sort((a,b)=>{const aDue=(a[1].dueAt||0)<=now?1:0,bDue=(b[1].dueAt||0)<=now?1:0;if(aDue!==bDue)return bDue-aDue;return b[1].t-a[1].t}).slice(0,n||20)}
-function loadSvd(){S.saved=LG("ps_saved",[]);let needsSave=false;S.saved.forEach(r=>{if(!r.id){r.id="range_"+Date.now().toString(36)+Math.random().toString(36).slice(2,8);needsSave=true}});if(needsSave)saveSvd();const f=LG("ps_folders",null);if(f&&Array.isArray(f)&&f.length&&typeof f[0]==="object")S.folders=f;else S.folders=[{path:"/",icon:"📁",name:"Root"}];if(!S.folders.find(f=>f.path==="/"))S.folders.unshift({path:"/",icon:"📁",name:"Root"})}
+/* ── built-in default ranges: 6-max GTO preflop pack (145 spots) ──
+   per spot: name, group, action names (fold is the remainder), and one run-length-encoded 13×13 grid per action (2-digit %, "zz"=100, "-k" = k empty cells) */
+const DEF_RANGES={"root":"GTO 6-max","groups":[["Opens","\ud83d\ude80"],["vs Open","\ud83d\udee1\ufe0f"],["vs 3-Bet","\u2694\ufe0f"],["vs 4-Bet","\ud83d\udca3"],["vs Shove","\ud83d\udd25"],["vs Open + Caller","\ud83e\udd6a"],["vs Squeeze","\ud83d\udddc\ufe0f"],["Cold 4-Bet","\ud83e\uddca"],["Called, then Squeezed","\ud83d\udd01"]],"r":[{"n":1,"name":"UTG open (2.5bb)","g":"Opens","a":["Raise"],"c":["zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz953163-3zzzzzzzzzz52-7zzzz15zzzz-8zz59-2zz28-czz-dzz-d6414-c2536-312-83913-z-6"]},{"n":2,"name":"HJ open (2.5bb)","g":"Opens","a":["Raise"],"c":["zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz47-2zzzzzzzzzzzz85-6zzzzzzzzzz93-7zzzz38-1zzzz03-660-4zz-722-5zz06-czz10-c9141-350-84915-c12-s"]},{"n":3,"name":"CO open (2.5bb)","g":"Opens","a":["Raise"],"c":["zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz17zzzzzzzzzzzzzz7051-4zzzzzzzzzzzzzz44-5zzzzzzzzzzzzzz-6zz34-3zzzz-696-5zz08-563-6zz25-czz34-3zz-8zz25-210-9zz-s"]},{"n":4,"name":"BU open (2.5bb)","g":"Opens","a":["Raise"],"c":["zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz98-1zzzzzzzzzzzzzzzzzzzz-3zzzzzzzzzzzzzzzz72-4zzzzzzzzzzzzzzzz-5zz90-229-1zzzzzz-4zz36-5zzzz49-3zz-7zz47-3zz-8zzzz-2zz-9zz-2zz-azz-116-b73"]},{"n":5,"name":"SB open (3bb)","g":"Opens","a":["Raise"],"c":["zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-3zzzzzzzzzzzzzzzzzz-4zzzzzzzzzzzzzzzzzz-4zz65-23947zzzzzzzz-3zz-6zzzzzz-3zz-7zzzzzz-2zz-8zzzz31-1zz-9zz-264-azz-dzz"]},{"n":6,"name":"BB vs UTG open (2.5bb)","g":"vs Open","a":["3-bet 12bb","Call"],"c":["zzzz-3123925869229195098zz18174639374159910405-118367023-140-70205-b24-307-d05-d0223-d03-r0513-c35-r","-2zzzzzz886175140871815002-1828354616359410707-282643077zz602502-5984703zzzzzz57-613-393zzzz39-a95zzzz32-a9877zz06-azz97zz-bzzzzzz-bzz9587-bzz65-czz-dzz"]},{"n":7,"name":"BB vs HJ open (2.5bb)","g":"vs Open","a":["3-bet 12bb","Call"],"c":["zzzz01-306326352505251zzzz50-233234044702221472640zz72035898-617382853-926-305-106-b05-d18-d0524-c05-425-80212-z-6","-299zzzzzz94683748504849-250zzzz67776056307826-17460-12897420233-583626247zzzzzz-67411-10195zz9484-a95zzzz53-a82zzzz13-a9576zz-b95zzzz-b9888zz-bzzzz-czz-dzz"]},{"n":8,"name":"BB vs CO open (2.5bb)","g":"vs Open","a":["3-bet 12bb","Call"],"c":["zzzz-5034629452361zzzz-4092948053048623654zz450405533439-4195639zz-1150555-50328043133-201-536-405-708-503-604-619-d07-458-807-332-z-3","-2zzzzzzzzzz975471557739-2zzzzzzzz917152957052386446-15596954766612068-2814461-1zz859509-59772526267zzzz99-559-495zzzzzz-a97zzzz95-a81zzzz33-a93zzzz25-a93zzzz10-azzzz-czz-dzz"]},{"n":9,"name":"BB vs BU open (2.5bb)","g":"vs Open","a":["3-bet 12bb","Call"],"c":["zzzzzz66-565-3zzzzzz-4063609-157807811zz03-261050542-216036746zz01-116954351-320632827zz01-13763-547-1334243-736-510-645-629-506-712-472-807-372-c15-p","-334zzzzzzzzzz35zzzzzz-3zzzzzzzz946491zz43202289-197zzzz39959558zzzz84973354-199zz8405574935-280377273-199zz6337-4zz5311185757zzzzzz-464-40290zzzzzz-355-671zzzzzz-a88zzzz89-128-893zzzz5223-9zzzz-czz-dzz"]},{"n":10,"name":"BB vs SB open (3bb)","g":"vs Open","a":["3-bet 10bb","Call"],"c":["zzzzzz38-510-3zzzzzz9822-8zz-1zz-935-3zz-438526381zz-1123623zz0802-101963799zz-1276645145503-766737239-123-63790-53307-48527-63201-31048-72506-249-907-290-a25-1zz-c","-362zzzzzzzzzz90zzzzzz-30278zzzzzzzzzzzzzzzz-1zz-1zzzzzzzzzzzzzzzzzz65zzzzzz-1zzzzzzzz62483719-1zz886477-19298zz99046301-1zz733455864597zzzz93-3zz34-128617677zzzzzz-36310-4506793zzzz-215-6306899zzzz-190-7147594zzzz51-993zzzz10-a7593-czz"]},{"n":11,"name":"SB vs UTG open (2.5bb)","g":"vs Open","a":["3-bet 11bb","Call"],"c":["zzzz255307-147-109989809-1zzzz9186872044-13924-380469568-c76-d58-d38-d19-d22-d08-e05-z-6","-2754720-40202-4091413-80204050802-b2410-c37-d1902-c23-d1301-c0412-c1009-c05-s"]},{"n":12,"name":"SB vs HJ open (2.5bb)","g":"vs Open","a":["3-bet 11bb","Call"],"c":["zzzz660253094848188495zz-1zzzz49757716364717080601-187zzzz79-91708-170-d48-d38-d24-d19-z-z","-23498470901-21605-4512523-813-22108-b3015-c52-d48-d39-d2704-c1116-c1412-c02-s"]},{"n":13,"name":"SB vs CO open (2.5bb)","g":"vs Open","a":["3-bet 11bb","Call"],"c":["zzzz913602670211518693zz81zzzz43617560-243-485zzzz7975-89466-1zz-d54-d51-d30-d23-d12-z-l","-20964982104-21407-457392503-715-22125-806-328-c46-d49-d53-d3302-c1803-c2010-c03-s"]},{"n":14,"name":"SB vs BU open (2.5bb)","g":"vs Open","a":["3-bet 11bb","Call"],"c":["zzzzzz9753749499zz9398zzzzzzzz958385925303-59497zz8593-897zz34zz81-8zz58-299-d80-d84-d81-d19-d01-z-7","-30347260601-10702-405171508-70603-1150705-703-319-c0101-c20-d16-d19-d12-d1002-c04-s"]},{"n":15,"name":"BU vs UTG open (2.5bb)","g":"vs Open","a":["3-bet 7.5bb","Call"],"c":["zzzz38-104-12138273090180791zz73-122-10106660803-2zzzzzz02-q17-d18-d18-d06-e01-z-k","-2629820-43405-209-1273912-ozz-d64-d48-d44-d2712-c1125-c0644-c19-d19-e"]},{"n":16,"name":"BU vs HJ open (2.5bb)","g":"vs Open","a":["3-bet 7.5bb","Call"],"c":["zzzz99-139639199-175619982zzzz266346380204-123-3509280779524-740-24843-c5903-c50-d46-d4202-c2913-c0601-z-6","-201zz61370901-1253901-374375411-75008202305-b5257-c4108-c50-d54-d4707-c1714-c1822-c07-d03-e"]},{"n":17,"name":"BU vs CO open (2.5bb)","g":"vs Open","a":["3-bet 7.5bb","Call"],"c":["zzzzzz40096981zzzz8364zzzzzzzz57533285-1360927-36289zz738034-78768157742-834-35102-c41-d41-d56-d6209-z-k","-360913119-21736-443476815-73811-12720-813-22358-c4906-c59-d59-d4404-c2210-c1912-c05-s"]},{"n":18,"name":"CO vs UTG open (2.5bb)","g":"vs Open","a":["3-bet 7.5bb","Call"],"c":["zzzz734370293536-1839185-197zz57868726-346-37852778101-b7608-c75-d47-d28-d1316-c2821-d09-z-6","-227573003-31709-203-1431413-815-1230407-b2411-c25-d26-d17-d1303-c0610-c0506-c04-s"]},{"n":19,"name":"CO vs HJ open (2.5bb)","g":"vs Open","a":["3-bet 7.5bb","Call"],"c":["zzzz852456889858-18393zz24zzzz386876-101-216-37796809978-814-259-d76-d58-d33-d2402-c2210-c0303-z-6","-21576440901-21707-4623224-823-1200109-b4116-c24-d42-d26-d1501-c0805-c0408-c03-s"]},{"n":20,"name":"HJ vs UTG open (2.5bb)","g":"vs Open","a":["3-bet 7.5bb","Call"],"c":["zzzz827486282130-1959659-198zz8194941301-246-376498519-c89-d84-d35-d21-d1708-c1932-d04-z-6","-2182614-40504-202-1190606-805-115-102-b1102-c16-d10-d07-d0401-c0302-c0104-z-6"]},{"n":21,"name":"UTG open vs BB 3-bet (12bb)","g":"vs 3-Bet","a":["4-bet 27bb","Call"],"c":["zzzz-410-32663zz479318-121210203-v04-z-z-z-b","-2zzzz80-431-3530760-czz-d4516-c5919-c52-d49-d5205-c2509-c3906-z-6"]},{"n":22,"name":"UTG open vs SB 3-bet (11bb)","g":"vs 3-Bet","a":["4-bet 25bb","Call"],"c":["zzzz-830955326zz31345023292428-z-z-z-z-7","-2zz6339-434-374-13324-bzz-dzz23-c5011-c29-d42-d17-d0828-c3513-z-6"]},{"n":23,"name":"UTG open vs BU 3-bet (7.5bb)","g":"vs 3-Bet","a":["4-bet 20bb","Call"],"c":["zzzz-15819-12723-17541-252zz38857512-738-122-d16-d04-d09-z-z-s","-2zz4281-106-22519-248-1621525-a7814-c8441-c9625-c65-d65-d5414-c2536-c3913-z-6"]},{"n":24,"name":"UTG open vs CO 3-bet (7.5bb)","g":"vs 3-Bet","a":["4-bet 20bb","Call"],"c":["zzzz-16719-123-27224-253zz43679006-748-127-d15-d09-d06-d03-z-z-e","-2zz3347-42814-247-1573310-a73-d8553-c8420-c45-d61-d4214-c2536-c3913-z-6"]},{"n":25,"name":"UTG open vs HJ 3-bet (7.5bb)","g":"vs 3-Bet","a":["4-bet 20bb","Call"],"c":["zzzz-164-10412-27613-254zz54736902-755-126-d15-d04-d10-d04-z-z-e","-2zz3633-42407-246-1462707-a74-d8547-c5619-c46-d52-d4314-c2536-c3913-z-6"]},{"n":26,"name":"HJ open vs BB 3-bet (12bb)","g":"vs 3-Bet","a":["4-bet 27bb","Call"],"c":["zzzz-4085033-206zz39zz-4011001-4213424-b04-b18-z-z-z-b","-2zzzzzz0404-28607-261-1zz65-b760604-bzz-d7120-c73-d63-d3802-c3604-c42-d12-s"]},{"n":27,"name":"HJ open vs SB 3-bet (11bb)","g":"vs 3-Bet","a":["4-bet 25bb","Call"],"c":["zzzz-303433622170367zz56zz-1899941030627-682-a06-206-z-z-z-l","-2zz9243-417-344-17311-b18-d9429-c6108-c43-d38-d19-d1826-c3506-c12-s"]},{"n":28,"name":"HJ open vs BU 3-bet (7.5bb)","g":"vs 3-Bet","a":["4-bet 20bb","Call"],"c":["zzzz-12945-10834-16764-250zz15zz5968-20701-3901078-d25-d09-d10-d11-z-z-e","-2zz71550510-23308-250-185-141-806-1224007-b7548-c914003-b90-d8906-c6010-c3441-c4915-c12-s"]},{"n":29,"name":"HJ open vs CO 3-bet (7.5bb)","g":"vs 3-Bet","a":["4-bet 20bb","Call"],"c":["zzzz-15629-12302-19843-246zz29zz7628-1012001-380-168-d29-d03-d10-d03-d02-z-z","-2zz4471-40239-254-171-124-a3216-c717314-b972903-b72-d7606-c5910-c3141-c4515-c12-s"]},{"n":30,"name":"CO open vs BB 3-bet (12bb)","g":"vs 3-Bet","a":["4-bet 27bb","Call"],"c":["zzzz-4077472-2304263zz-927-144-1zz-b23-b0313-b03-c14-c04-p13-c07-z-3","-2zzzzzz531714-17311-237-1zzzz52-844-27728-bzz10-czz-d90-d73-d5408-c42-d34-d61-s"]},{"n":31,"name":"CO open vs SB 3-bet (11bb)","g":"vs 3-Bet","a":["4-bet 25bb","Call"],"c":["zzzz-248207167612408-15281zz-2867304100503-31935zz-d75-90603-z-s13-z-g","-2zzzz37-425-319-1zz4414-836-309-b2531-czz18-c65-d55-d39-d3203-c4303-c29-s"]},{"n":32,"name":"CO open vs BU 3-bet (7.5bb)","g":"vs 3-Bet","a":["4-bet 20bb","Call"],"c":["zzzz-265013441306489-280zz-1767480-78036zz-a26-28007-c42-d09-d18-d06-d06-d14-z-7","-2zzzz353533-23609-220-1zz2426-820-21450-b2081-c584010-b91-d8208-c9425-c4634-c3325-c76-s"]},{"n":33,"name":"BU open vs BB 3-bet (12bb)","g":"vs 3-Bet","a":["4-bet 27bb","Call"],"c":["zzzz-645-20891zzzz-a191783zz-a3603-1zz-902-317-l35-c23-p19-p29-p","-2zzzzzzzzzz23-1zz4802-3zzzzzz56-78317-1zzzz-82117-2zz24-b8348-czz-dzz02-czz21-czz-d67-d44-d31-e"]},{"n":34,"name":"BU open vs SB 3-bet (11bb)","g":"vs 3-Bet","a":["4-bet 25bb","Call"],"c":["zzzz16-235826578415883-1zzzz-345-723zzzz0907-847-2zz-d80-z-z-z-7","-284zzzz38-359-5zzzzzz-877-27423-814-349-c2020-czz27-czz-dzz-d5023-c5602-c51-d04-e"]},{"n":35,"name":"SB open vs BB 3-bet (10bb)","g":"vs 3-Bet","a":["4-bet 26bb","Call"],"c":["zzzzzz-553-101-2zzzz-b70zzzz-a696349zz-9zz0113-1zz-802-410-k07-p25-c07-z-3","-3zzzzzzzzzz05zz99-4zzzzzzzz48-630-2zzzz62-73112-2zz65-c92-c90-dzz-dzz-d89-d79-z-7"]},{"n":36,"name":"BB 3-bet vs UTG 4-bet (27bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzz-b98zz-d45-r06-d01-d01-z-z-e","-z-z-z-z-t"]},{"n":37,"name":"BB 3-bet vs HJ 4-bet (27bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzz-bzzzz-dzz-d53-d05-d05-d18-d05-d05-d02-z-7","-201-z-z-z-z-q"]},{"n":38,"name":"BB 3-bet vs CO 4-bet (27bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzz-72937-2zzzz-dzz-dzz-d33-d05-d03-d19-d07-d07-z-7","-z-z-z-z-t"]},{"n":39,"name":"BB 3-bet vs BU 4-bet (27bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzzzz66-565-3zzzzzz-a16-1zz03-czz-dzz-d43-d10-d29-d12-d07-z-7","-q01-g01-d01-q01-z-z-e"]},{"n":40,"name":"BB 3-bet vs SB 4-bet (26bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["89zz99-609-3zzzz859822-899-1zz-dzz-dzz-d54-d22-d33-d32-d25-d07-d25-e","11-10138-501-515-a01-u0802-b0103-c01-e07-d01-d06-z-6"]},{"n":41,"name":"SB 3-bet vs UTG 4-bet (25bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzz-704-3zzzz-d95-d39-d17-d11-d09-d05-z-z","-z-z-z-z-t"]},{"n":42,"name":"SB 3-bet vs HJ 4-bet (25bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzz65-603-3zzzz-dzz-d53-d27-d16-d12-d11-z-z","-201-c01-q01-z-z-z-l"]},{"n":43,"name":"SB 3-bet vs CO 4-bet (25bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzz9036-535-3zzzz19-czz-dzz-d39-d30-d11-d10-d12-z-l","-201-102-a01-z-501-r01-z-z-e"]},{"n":44,"name":"SB 3-bet vs BU 4-bet (25bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["zzzz978653-8zzzz8778-964-1zz02-czz-d99-d36-d47-d29-d07-d01-z-7","-20311-b08-a08-g09-q08-d05-d03-d03-z-l"]},{"n":45,"name":"BU 3-bet vs UTG 4-bet (20bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["47zz-726-382zz-d16-d02-z-k06-d01-z-l","53-1552053-443-312-11445-b51-d39-d1704-c30-d25-d1314-c2321-c0701-c01-s"]},{"n":46,"name":"BU 3-bet vs HJ 4-bet (20bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["43zz-720-392zz-d54-d06-z-610-d12-d03-z-l","57-199-139-45507-208-1266322-a25-d4203-c4403-c32-d28-d1902-c2613-c0601-z-6"]},{"n":47,"name":"BU 3-bet vs CO 4-bet (20bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["39zz-75820-2zzzz-dzz-d62-z-603-d32-d23-z-l","61-1zz400927-106-12410-4575332-821-f1529-c5102-c41-d38-d19-d3909-z-k"]},{"n":48,"name":"CO 3-bet vs UTG 4-bet (20bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["41zz-718-385zz-d11-d03-z-k01-z-z","59-1734349-432-311-13336-b66-d43-d20-d24-d28-d1316-c2821-d09-z-6"]},{"n":49,"name":"CO 3-bet vs HJ 4-bet (20bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["48zz-722-392zz-d46-r03-r08-d11-z-z","52-1852447-456-308-1386801-a34-d59-d26-d38-d24-d1302-c2210-c0303-z-6"]},{"n":50,"name":"HJ 3-bet vs UTG 4-bet (20bb)","g":"vs 4-Bet","a":["All-in","Call"],"c":["39zz-715-388zz-d13-z-z-z-z","61-1824442-438-311-12234-b73-d35-d24-d27-d21-d1708-c1932-d04-z-6"]},{"n":51,"name":"UTG open vs BB shove","g":"vs Shove","a":["Call"],"c":["zzzz-b2693-z-z-z-z-e"]},{"n":52,"name":"UTG open vs SB shove","g":"vs Shove","a":["Call"],"c":["zzzz-b26zz-z-z-z-z-e"]},{"n":53,"name":"UTG open vs BU shove","g":"vs Shove","a":["Call"],"c":["zzzz-b30zz-d22-d11-d04-z-z-z-7"]},{"n":54,"name":"UTG open vs CO shove","g":"vs Shove","a":["Call"],"c":["zzzz-b28zz-d27-d07-d08-z-z-z-7"]},{"n":55,"name":"UTG open vs HJ shove","g":"vs Shove","a":["Call"],"c":["zzzz-b25zz-d26-d10-d04-z-z-z-7"]},{"n":56,"name":"HJ open vs BB shove","g":"vs Shove","a":["Call"],"c":["zzzz-b39zz-d24-z-z-z-z"]},{"n":57,"name":"HJ open vs SB shove","g":"vs Shove","a":["Call"],"c":["zzzz-b56zz-d82-d06-z-z-z-l"]},{"n":58,"name":"HJ open vs BU shove","g":"vs Shove","a":["Call"],"c":["zzzz-b50zz-d78-d25-z-z-z-l"]},{"n":59,"name":"HJ open vs CO shove","g":"vs Shove","a":["Call"],"c":["zzzz-b46zz-d68-d17-d01-z-z-z-7"]},{"n":60,"name":"CO open vs BB shove","g":"vs Shove","a":["Call"],"c":["zzzz-b63zz-dzz-z-z-z-z"]},{"n":61,"name":"CO open vs SB shove","g":"vs Shove","a":["Call"],"c":["zzzz-b81zz-dzz-d75-z-z-z-l"]},{"n":62,"name":"CO open vs BU shove","g":"vs Shove","a":["Call"],"c":["zzzz-b80zz-dzz-d80-d15-z-z-z-7"]},{"n":63,"name":"BU open vs BB shove","g":"vs Shove","a":["Call"],"c":["zzzz-bzzzz-b17-1zz-dzz-d17-z-z-z-7"]},{"n":64,"name":"BU open vs SB shove","g":"vs Shove","a":["Call"],"c":["zzzz16-azzzz-b23-1zz-dzz-d80-z-z-z-7"]},{"n":65,"name":"SB open vs BB shove","g":"vs Shove","a":["Call"],"c":["zzzzzz-azzzz-b70-1zz-dzz-dzz-d10-z-z-s"]},{"n":66,"name":"BB vs UTG open + HJ call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz97-120-103-2433012-1zzzzzz049972-1030916-38536zz04-c02-d29-d16-d2904-c0318-c06-e25-z-6","-203zz57-1023059546988-495-91525-133-c9836-c7139-c8446-c7164-c974965-b94zz14-b927433-b99-d90-d99"]},{"n":67,"name":"BB vs UTG open + CO call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz71-105-118-101795303-1zzzzzz300727-1116302-39472zz4840-b06-d23-d15-d09-d2519-c0515-d02-z-6","-229zz9430386245214796-47093-80628-13127-b9499-c7781-c853501-b916932-b756744-b958170-bzz9834-bzz-dzz-dzz"]},{"n":68,"name":"BB vs UTG open + BU call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz1504-155440308415452-1zzzzzz62-157104228-212-19473zz8106-903-132-d05-d10-d05-d0907-c0202-c0311-z-6","-28596zz4540514759464702-338zz-80627-11961-b689922-b9597-c907861-b957368-b915757-b989751-b978952-bzz-dzz-dzz"]},{"n":69,"name":"BB vs UTG open + SB call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz0101-222331010391998zzzz421003-1341081500401-16668zzzz-426-431690251-15606-o17-r1502-c10-d04-d02-s","-29999999678658290618002-258909358-73431-2zz-b49zz14-bzz9936-b839996-bzz94zz-b859697-b90zzzz-b96zz99-b9891-czz-dzz"]},{"n":70,"name":"BB vs HJ open + CO call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz5604-228020195-12943zzzz9792-201-168-49157zzzz-936472595-10306-o04-d10-d1640-c08-e02-z-6","-24496zz8028974705zz7135-20308zz-80943-286-b0599-czz74-c9652-c906184-b845277-b92zz60-bzz9833-bzz-dzz-dzz"]},{"n":71,"name":"BB vs HJ open + BU call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz7907-20102-1354362-1zzzz9199-210221702-39152zzzz-9747507zz075524-o08-d11-d2107-c18-d05-z-7","-22193zz9275807465573846-20901zz20-204-40948-298-922-29328-bzz83-c927185-b898184-b796969-b82zz32-b95zz97-bzz-dzz-dzz"]},{"n":72,"name":"BB vs HJ open + SB call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz6214-102500238034314zzzzzz0732-2112341790375043229zz4820-8896885zz-19934-a24-z-611-d07-d08-d11-s","-23886zz98499861975786-39368zz9857-1560311-26871-15280-8113201-1zz-105-a769976-bzz99zz-bzz999953-a89zzzz-b93zzzz-a2492zz99-b8996-czz-dzz"]},{"n":73,"name":"BB vs CO open + BU call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzzzz5019-2230754654142zzzz80787611-10149-201-1zz78zz7184-87748-1zz9829-811-125zz1841-p06-d1505-c0916-z-k","-35081zzzz769346355958-220222487-13313-522-1291646-7235112-10271-a14-18208-bzz8338-b949036-b858765-b918497-bzzzz95-bzz-dzz-dzz"]},{"n":74,"name":"BB vs CO open + SB call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzzzz-105-34099774527zzzzzz674206-12611-11733206524zz-186-118-101-204-1401524zz18-8zz999419zz222114-p05-c2247-c2517-d15-c01-d19-e","-3zz95zzzzzz6001235573-3335894957189985528-13576-1zz1497-7608567-18294-90528-1787801-azzzzzz78-azz95zz-b7852zz18-a7583zz53-921zz85zz30-93399zz-c81-dzz"]},{"n":75,"name":"BB vs BU open + SB call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzzzz-207-223-112-148zzzzzz77-16301030136-13864zz72zz3702zz74138970591548560550zz56zz1902-524092402zz51-79977180317zz-10447-b05-d03-c1814-339-817-340-n02-101-c","-3zzzz93zzzz77zz88zz52-323zz3798979963zz5136-128-16398-12401-114-3449550-144-180-676917697-149zz94-bzz9606-azz95zz94-azz97zz84-a8286zz-b83zzzz78-azzzz17-b98-dzz"]},{"n":76,"name":"SB vs UTG open + HJ call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz80-66509-297zzzz-153-104-11025-39965zz-d37-d30-d21-d35-s07-z-k","-22067-5210103-103-225-p63-d13-d19-d34-d3013-c1327-d15-c08-d03-d06"]},{"n":77,"name":"SB vs UTG open + CO call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz7601-4057265-2zzzzzz78-120-20302-3zz75zz-d48-d52-d18-d11-d2716-c1102-d10-z-6","-22470-50709-50816-o52-d13-d40-d35-d2304-c0618-c0826-q19-d01"]},{"n":78,"name":"SB vs UTG open + BU call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz5966-201-28280-299zz888601-408-3zz91zz82-c54-d11-d21-d18-d08-d1802-z-k","-2413320-41112-201-1121415-b01-c4605-c52-d3202-c34-d3811-c1206-c1121-c04-d11-e"]},{"n":79,"name":"SB vs HJ open + CO call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz5593-424567016-1zzzz8696-9zz93zzzz-913441186-d08-d01-d18-d09-d14-z-l","-2450711-42605-4140410-o1402-c48-d18-d33-d2207-c0614-c1911-c09-d04-d02"]},{"n":80,"name":"SB vs HJ open + BU call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz7076-50892-2zzzz79zz-401-4zz63zzzz-9649401zz03-c21-d21-d17-d17-d21-z-l","-2302416-43602-421-130-p23-c74-d46-d51-d2909-c0611-c1820-c07-d03-d04"]},{"n":81,"name":"SB vs CO open + BU call","g":"vs Open + Caller","a":["Squeeze 13bb","Call"],"c":["zzzz984594-4193021-1zzzz846998-8zz99zz8594-87927-1zzzz-927-12597-d37-d18-d22-d51-z-l","-202550615-33905-4163102-901-11506-p0305-c63-d50-d31-d1405-c2014-c10-d06-d02"]},{"n":82,"name":"BU vs UTG open + HJ call","g":"vs Open + Caller","a":["Squeeze 12bb","Call"],"c":["zzzz51-20108-115513291-180zz97-121-33243-3zzzzzz-r30-d34-d02-d10-s02-z-6","-2498801-4280901-120-10330-pzz-d50-d31-d41-d4302-c0438-d62-q23-e"]},{"n":83,"name":"BU vs UTG open + CO call","g":"vs Open + Caller","a":["Squeeze 12bb","Call"],"c":["zzzz38-104-12138273090180791zz73-122-10106660803-2zzzzzz02-q17-d18-d18-d06-e01-z-k","-2629820-43405-209-1273912-ozz-d64-d48-d44-d2712-c1125-c0644-c19-d19-e"]},{"n":84,"name":"BU vs HJ open + CO call","g":"vs Open + Caller","a":["Squeeze 12bb","Call"],"c":["zzzz3053-23106702269121999zz3773-995zzzzzz-926401954-d05-d03-d25-d13-d0701-301-z-g","-2704767-45308-201-1632720-805-f4610-c95-d79-d50-d46-d1250-c2435-c01-d22-d01"]},{"n":85,"name":"CO vs UTG open + HJ call","g":"vs Open + Caller","a":["Squeeze 12bb","Call"],"c":["zzzz1306-35720403954-186zz96020667-20201-3zzzz99-r21-d24-d08-d17-d01-e01-z-6","-28736-5131011-114-10441-b01-dzz-d26-d34-d14-d3512-d30-c1823-c06-d05-e"]},{"n":86,"name":"UTG open vs HJ call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["zz61-10204-221-133060159-137-12017-21714-k11-z-z-402-z-g","-118-705-3zz56-d65-z-z-z-z","-12165-b07-d35-d02-d0505-c02-d23-d0202-c0429-z-k"]},{"n":87,"name":"UTG open vs CO call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["9996-10103-10651-182-2070863-1132139-125-705-d03-z-z-z-l","-104-b7737-d30-z-z-z-z","01-197-a15-203-b65-d08-d13-d04-d14-d04-d0331-c0601-z-6"]},{"n":88,"name":"UTG open vs BU call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["zz99-230-1102619-270325371-14112111042-101-553-d30-a01-z-z-z-a","-101-b3929-d15-z-z-z-z","-2zz-a08-212-b32-d08-d11-d08-d10-d0401-c0514-c0807-z-6"]},{"n":89,"name":"UTG open vs SB call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["-125-b1112-d03-z-z-z-z","-125-b1112-d03-z-z-z-z","10-1zz65-523-103-138-15516-b40-d52-d2520-c39-d55-d2604-c1203-c2210-z-6"]},{"n":90,"name":"UTG open vs HJ call + SB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["9989-101070226021501-101-266-109342656-102-y15-z-z-z-7","-107-b9328-d58-z-z-z-z","010452-601-30706-d41-d08-d20-d04-d05-d01-d0426-d13-z-6"]},{"n":91,"name":"UTG open vs CO call + SB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["zz79-40115-1547517-11270-15007-110-114-k05-d09-z-z-z-7","-120-b7030-d31-z-z-z-z","-10178-a18-201-b69-d1102-c13-d07-d10-d0204-c0106-c0813-z-6"]},{"n":92,"name":"UTG open vs BU call + SB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["zz9112903334161604141419-10269-10751-a04-d04-d16-z-z-z-7","-109-b8628-d60-z-z-z-z","-288-a1202-111-b36-d11-d0801-c11-d08-d06-d04-d1613-z-6"]},{"n":93,"name":"UTG open vs HJ call + BU squeeze","g":"vs Squeeze","a":["4-bet 27bb","All-in","Call"],"c":["zz71-155220333-1321531-1530362-11803-o07-d07-r13-z-z-e","-129-706-39738-d69-z-z-z-z","-219-606-i31-d02-d03-d05-d07-s05-d08-z-6"]},{"n":94,"name":"UTG open vs CO call + BU squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["zz99-1797211-3065205-12270-18508-402-556-r03-z-z-z-7","-101-b7630-d29-z-z-z-z","-208-a02-e15-d04-d04-d09-d01-s02-z-k"]},{"n":95,"name":"UTG open vs HJ call + CO squeeze","g":"vs Squeeze","a":["4-bet 27bb","All-in","Call"],"c":["zz73-27934-203173128-10968-1233704-102-l01-d14-z-z-z-7","-127-b9132-d57-z-z-z-z","-248-p42-d01-d01-d06-d05-d08-d0112-z-k"]},{"n":96,"name":"HJ open vs CO call + BB squeeze","g":"vs Squeeze","a":["4-bet 27bb","All-in","Call"],"c":["98zz-2372529572357-34772-23332-10260-105-472-d46-a12-b01-z-z-x","-d4823-d12-d01-z-z-z-l","02-1zz-601-305051403-b16-d33-d09-d15-d09-d05-d0804-d05-z-6"]},{"n":97,"name":"HJ open vs BU call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["98zz-2442709642362-116019795-2504533125201-317-193-d81-z-z-z-l","-d0301-z-z-z-z-e","02-1zz-b04200503-a07-d19-d15-d12-d08-d05-d0401-c0107-z-6"]},{"n":98,"name":"HJ open vs SB call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["98zz-260-101376006-1020180zz-252-102150323-379-158-d47-90117-284-z-z-z-7","-d09-e02-r01-z-z-z-7","02-1zzzz-511-122-111-1zz4009-a40-d52-d1506-c31-d51-e04-c2519-c2003-c08-s"]},{"n":99,"name":"HJ open vs CO call + SB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["93zz-1128929-11701392719-13169-4156614-658-d34-a05-o01-z-z-k","-d6831-d29-d05-z-z-z-l","07-1zz-a01-102-c13-d17-d04-d01-d07-r0808-d03-z-6"]},{"n":100,"name":"HJ open vs BU call + SB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["9599-101-13672433926-103026784-26429262313-419-182-d77-z-z-z-l","-d3216-d05-d01-z-z-z-l","0501zz-a01-130-c13-d22-d1001-c08-d10-d07-d0117-c0404-z-6"]},{"n":101,"name":"HJ open vs CO call + BU squeeze","g":"vs Squeeze","a":["4-bet 27bb","All-in","Call"],"c":["zz9690089701245708221243-16787-279490704-778-d64-d26-z-z-z-7","-104-b3313-d21-z-z-z-z","-209-p01-d04-r01-d01-d02-z-z"]},{"n":102,"name":"CO open vs BU call + BB squeeze","g":"vs Squeeze","a":["4-bet 27bb","All-in","Call"],"c":["98zz-50656-11855-1zzzz-296011674-4058219zz-d96-d70-z-z-z-7","-f01-z-z-z-z-d","02-1zz12-b0921-p04-d30-d06-d17-d08-e01-c05-z-7"]},{"n":103,"name":"CO open vs SB call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["90zz2301-14252470149-371zz-101-177-758-1zz-a3232-146-d02-d37-d10-d01-z-z","-329-929-126-q17-r06-d11-z-z-e","10-1777088-419-5749939-842-250-c36-d98-d49-d52-d30-d2508-c0124-c33-s"]},{"n":104,"name":"CO open vs BU call + SB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["98zz-10144-15408-113-164-198zz-1268615-14570-105-254-199-b03-192-d70-z-z-z-7","-d02-102-z-z-z-z-d","02-1zz03-b1724-p08-d30-d07-d09-r02-d0301-z-6"]},{"n":105,"name":"BU open vs SB call + BB squeeze","g":"vs Squeeze","a":["4-bet 29bb","All-in","Call"],"c":["78zz02-40114-124-101zzzz-40103-52267zz-a54-298-98405-219-r13-d04-z-z","-201-n03-f02-d10-z-630-d01-z-l","22-197zzzz31-39503-4zzzzzz-87514-17483-c43-c70-dzz-d83-d5103-c6622-c62-d03-s"]},{"n":106,"name":"BB cold 4-bet vs UTG open + HJ 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz41-320-286-3zzzz0301380601-112-661-r03-z-z-z-7"]},{"n":107,"name":"BB cold 4-bet vs UTG open + CO 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz37-323-26812-2zzzz-24611-216-648-r10-z-z-z-7"]},{"n":108,"name":"BB cold 4-bet vs UTG open + BU 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz21-336-257-3zzzz-1166409-954-r04-z-z-z-7"]},{"n":109,"name":"BB cold 4-bet vs UTG open + SB 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz-503-20264-1zzzz18-301-813-z-z-z-z"]},{"n":110,"name":"BB cold 4-bet vs HJ open + CO 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzzzz-32204-19918-2zzzz40276602-10336-6zz-z-z-z-z"]},{"n":111,"name":"BB cold 4-bet vs HJ open + BU 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzzzz-104-11507-19907-2zzzz67268412-201-402-1zz-r03-z-z-z-7"]},{"n":112,"name":"BB cold 4-bet vs HJ open + SB 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz41-631-10102zzzz25-12801233003-3650534zz-z-z-z-z"]},{"n":113,"name":"BB cold 4-bet vs CO open + BU 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzzzz77-301-124-3zzzzzzzz4502-10233-48523zz-dzz-d08-d04-d05-z-z-e"]},{"n":114,"name":"BB cold 4-bet vs CO open + SB 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz94-azzzz378619071913-55765zz-d97-z-z-z-l"]},{"n":115,"name":"BB cold 4-bet vs BU open + SB 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzzzz-206425911-4zzzzzz11-1662001-5zz71zz-a0616-1zz-dzz-d13-z-z-s"]},{"n":116,"name":"SB cold 4-bet vs UTG open + HJ 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz41-661-3zzzz02013219-935-z-602-z-z-s"]},{"n":117,"name":"SB cold 4-bet vs UTG open + CO 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz25-676-3zzzz-1183715-949-r01-z-z-z-7"]},{"n":118,"name":"SB cold 4-bet vs UTG open + BU 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz-425-247-3zzzz-1096909-940-r03-z-z-z-7"]},{"n":119,"name":"SB cold 4-bet vs HJ open + CO 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzzzz-30611-19502-2zzzz482969-317-6zz-z-z-z-z"]},{"n":120,"name":"SB cold 4-bet vs HJ open + BU 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzzzz-101-114-26710-2zzzz25386926-9zz-z-z-z-z"]},{"n":121,"name":"SB cold 4-bet vs CO open + BU 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzzzz04-202-256-3zzzzzz614618-76213zz-d48-z-z-z-l"]},{"n":122,"name":"BU cold 4-bet vs UTG open + HJ 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz29-223-114-153-3zzzz-1074713-108-706-d01-z-z-z-l"]},{"n":123,"name":"BU cold 4-bet vs UTG open + CO 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz-2241613-24010-2zzzz-1072914-10120-607-d01-d06-z-z-z-7"]},{"n":124,"name":"BU cold 4-bet vs HJ open + CO 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz28-30143-14556-101zzzzzz-402238720-217-185-z-z-z-z"]},{"n":125,"name":"CO cold 4-bet vs UTG open + HJ 3-bet","g":"Cold 4-Bet","a":["Cold 4-bet"],"c":["zzzz4201-12408-244-3zzzz-1122606-11604-607-z-z-z-z"]},{"n":126,"name":"SB called UTG open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-207-p05-d13-d01-z-601-r02-z-7","-204-c01-q01-r01-d01-r01-z-l"]},{"n":127,"name":"SB called HJ open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-206-z-425-z-y01-z-l","-220-c07-q05-r02-d03-d02-r0201-z-6"]},{"n":128,"name":"SB called CO open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-20903-m07-t29-z-603-d02-z-l","-301-b02-a01-t01-r01-d01-z-z"]},{"n":129,"name":"SB called BU open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-g10-906-t01-d08-r01-z-z","-30304-401-5050101-z-h02-d01-d01-d01-d01-z-7"]},{"n":130,"name":"BU called UTG open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-914-301-e20-d23-z-605-d01-z-z","-2451411-402-305-11310-b14-d07-d0706-c10-d11-d0601-c0605-c06-d15-d02-e"]},{"n":131,"name":"BU called UTG open, vs SB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-915-304-e21-d31-z-601-d03-d02-z-l","-245-a02-215-b12-d0901-c0702-c05-d09-d03-d0109-c02-d07-d02-e"]},{"n":132,"name":"BU called HJ open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-909-i14-d32-z-k02-d03-z-l","-20133-506-542-108-810-106-d20-d0606-c12-d12-d0802-c0401-c0702-c07-d03-e"]},{"n":133,"name":"BU called HJ open, vs SB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-91001-h17-d38-z-k04-d06-z-l","-20118-501-530-a08-104-d14-d0604-c04-d12-d0101-c0505-c0302-c06-d03-e"]},{"n":134,"name":"BU called CO open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-q03-f09-d23-z-602-d01-z-l","-350-506-5430915-816-f14-d2101-c11-d15-d08-d0802-c0704-c05-s"]},{"n":135,"name":"BU called CO open, vs SB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-q03-f17-d31-z-604-d06-z-l","-336-b36-103-809-f06-d1601-c09-d06-d03-d0404-c0201-c05-s"]},{"n":136,"name":"CO called UTG open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-905-302-e12-d02-z-601-d01-d03-z-l","-227-107-404-302-1010803-a11-d03-d06-d07-d07-d04-d0303-c04-d04-s"]},{"n":137,"name":"CO called UTG open, vs SB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-s11-r03-r02-r02-z-l","-227-101-404-303-20901-a12-d07-d04-d03-d05-r0207-c05-d04-s"]},{"n":138,"name":"CO called UTG open, vs BU squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-906-303-e20-d04-d01-d01-d02-d02-d02-z-l","-216-e04-a03-d01-d01-d04-d03-d0301-c0102-c03-d02-s"]},{"n":139,"name":"CO called HJ open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-908-i14-d22-z-602-d05-d01-z-l","-21517-503-5130204-a05-d05-d03-d05-d07-d0101-c03-d0402-c03-s"]},{"n":140,"name":"CO called HJ open, vs SB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-910-i16-d25-z-k01-d05-z-l","-21511-501-508-c04-d04-d03-d02-d05-d0101-c0201-c0202-c03-s"]},{"n":141,"name":"CO called HJ open, vs BU squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-910-i20-d20-d01-d02-d04-d02-d01-z-l","-215-c03-q03-r02-d02-d02-d0302-q03-s"]},{"n":142,"name":"HJ called UTG open, vs BB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-z-z-z-z-t","-218-603-302-20602-a15-e02-c04-d01-d04-d03-d0202-c0102-z-6"]},{"n":143,"name":"HJ called UTG open, vs SB squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-z-z-z-z-t","-218-601-301-20601-a14-e02-c04-d03-d04-e01-c0302-c0103-z-6"]},{"n":144,"name":"HJ called UTG open, vs BU squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-902-302-e12-z-z-z-z","-210-101-c01-a03-d02-d01-d01-d01-d01-d0201-c01-z-7"]},{"n":145,"name":"HJ called UTG open, vs CO squeeze","g":"Called, then Squeezed","a":["All-in","Call"],"c":["-902-301-e10-z-z-z-z","-212-e01-a04-d01-d01-d01-d02-d01-d0201-c0101-z-6"]}]};
+const DEF_RANGES_FLAG="ps_def_ranges_v1";
+function defRangeDecode(str){const out=[];for(let i=0;i<str.length;i+=2){if(str[i]==="-"){const k=parseInt(str[i+1],36);for(let j=0;j<k;j++)out.push(0)}else out.push(str.slice(i,i+2)==="zz"?100:parseInt(str.slice(i,i+2),10))}return out}
+function buildDefaultRanges(){
+  const D=getDACTS(),root="/"+DEF_RANGES.root+"/",icons=Object.fromEntries(DEF_RANGES.groups);
+  const col=n=>n==="Call"?D[1].color:n==="All-in"?"#ef4444":/^(4-bet|Cold)/.test(n)?"#f59e0b":D[0].color;
+  const folders=[{path:root,icon:"🎯",iconColor:"none",name:DEF_RANGES.root,def:1},...DEF_RANGES.groups.map(([g,ic])=>({path:root+g+"/",icon:ic,iconColor:"none",name:g,def:1}))];
+  const base=Date.now();
+  const ranges=DEF_RANGES.r.map(sp=>{
+    const acts=sp.a.map(n=>({name:n,color:col(n)})).concat([{name:"Fold",color:D[2].color}]),fi=acts.length-1;
+    const grids=sp.c.map(defRangeDecode),range=mkR();
+    for(let r=0;r<13;r++)for(let c=0;c<13;c++){const i=r*13+c,cell=[];let tot=0;
+      grids.forEach((g,ai)=>{if(g[i]>0){cell.push({ai,w:g[i]});tot+=g[i]}});
+      if(tot>0&&tot<100)cell.push({ai:fi,w:100-tot});range[r][c]=cell}
+    return{id:"def_gto6_"+sp.n,def:1,name:sp.name,icon:icons[sp.g]||"🎯",iconColor:"none",acts,range,tags:["GTO","6-max",sp.g],notes:"Built-in 6-max preflop range · spot #"+sp.n+" · 100bb, opens 2.5bb (SB 3bb)",fav:false,folder:root+sp.g+"/",ts:base-sp.n};
+  });
+  return{folders,ranges};
+}
+function seedDefaultRanges(){ // add the pack without touching the user's own ranges
+  const{folders,ranges}=buildDefaultRanges();
+  folders.forEach(f=>{if(!S.folders.find(x=>x.path===f.path))S.folders.push(f)});
+  const have=new Set(S.saved.map(r=>r.id));ranges.forEach(r=>{if(!have.has(r.id))S.saved.push(r)});
+}
+function restoreDefaultRanges(){
+  confirmAction("Restore the default ranges?","Re-adds all 145 built-in 6-max ranges. Any you edited or deleted are put back as they were — your own ranges aren't touched.",()=>{
+    loadSvd();S.saved=S.saved.filter(r=>!(r.def||String(r.id||"").startsWith("def_gto6_")));
+    seedDefaultRanges();LS(DEF_RANGES_FLAG,1);saveSvd();
+    try{fsRender();renderFsSidebar()}catch(e){}
+    toast("Default ranges restored ✦");playSound("save");haptic("success");
+  });
+}
+function loadSvd(){S.saved=LG("ps_saved",[]);let needsSave=false;S.saved.forEach(r=>{if(!r.id){r.id="range_"+Date.now().toString(36)+Math.random().toString(36).slice(2,8);needsSave=true}});if(needsSave)saveSvd();const f=LG("ps_folders",null);if(f&&Array.isArray(f)&&f.length&&typeof f[0]==="object")S.folders=f;else S.folders=[{path:"/",icon:"📁",name:"Root"}];if(!S.folders.find(f=>f.path==="/"))S.folders.unshift({path:"/",icon:"📁",name:"Root"});
+  if(!LG(DEF_RANGES_FLAG,0)){seedDefaultRanges();LS(DEF_RANGES_FLAG,1);saveSvd()}}
 function saveSvd(){LS("ps_saved",S.saved);LS("ps_folders",S.folders)}
 function checkDirty(){if(S.loadedIdx<0){$("loadedBar").classList.remove("show");$("saveBackBtn").style.display="none";return}$("loadedBar").classList.add("show");const sv=S.saved[S.loadedIdx];$("loadedName").textContent=sv?.name||"";$("saveBackBtn").style.display=JSON.stringify({acts:S.acts,range:S.range})!==S.snapshot?"inline-flex":"none"}
 function saveBack(){if(S.loadedIdx<0)return;const bad=Ed.checkRangeValid();if(bad>0){Ed.highlightBadCells();return toast("⚠ "+bad+" hands don't add to 100%")}S.saved[S.loadedIdx].acts=JSON.parse(JSON.stringify(S.acts));S.saved[S.loadedIdx].range=JSON.parse(JSON.stringify(S.range));S.saved[S.loadedIdx].ts=Date.now();saveSvd();S.snapshot=JSON.stringify({acts:S.acts,range:S.range});checkDirty();playSound("save");haptic("light");toast("Saved ✦")}
@@ -6640,9 +6770,204 @@ function describeShapeForAction(range,ai){
   if(ck>=2)phrases.push({icon:"🔗",text:"Suited connectors KQs–"+RK[ck]+RK[ck+1]+"s"});
   return phrases;
 }
+/* ── deeper range summary ── */
+const arIsFold=a=>/^fold$/i.test(((a&&a.name)||"").trim());
+function arShorthand(labels){ // ["AA","KK","AKs",...] → "KK+, AKs"
+  const set=new Set(labels),out=[];
+  // pairs
+  const pr=[];for(let i=0;i<13;i++)if(set.has(RK[i]+RK[i]))pr.push(i);
+  let i=0;while(i<pr.length){let j=i;while(j+1<pr.length&&pr[j+1]===pr[j]+1)j++;const a=RK[pr[i]],b=RK[pr[j]];
+    out.push(pr[i]===0?(i===j?"AA":b+b+"+"):i===j?a+a:a+a+"-"+b+b);i=j+1}
+  // suited / offsuit by high card
+  for(const sfx of["s","o"])for(let h=0;h<12;h++){const ks=[];for(let k=h+1;k<13;k++)if(set.has(RK[h]+RK[k]+sfx))ks.push(k);
+    let x=0;while(x<ks.length){let y=x;while(y+1<ks.length&&ks[y+1]===ks[y]+1)y++;
+      const top=RK[h]+RK[ks[x]]+sfx,bot=RK[h]+RK[ks[y]]+sfx;
+      out.push(x===y?top:ks[x]===h+1?bot+"+":top+"-"+bot);x=y+1}}
+  return out.join(", ");
+}
+function arDeepHtml(ins,range,acts){
+  const play=[],hands=[];let h="";
+  for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cl=range[r][c],w={};cl.forEach(x=>{if(!arIsFold(acts[x.ai]))w[x.ai]=(w[x.ai]||0)+x.w});const p=Object.values(w).reduce((a,b)=>a+b,0);hands.push({r,c,k:hl(r,c),cn:hcn(r,c),w,p})}
+  const nf=acts.map((a,i)=>({a,i})).filter(x=>!arIsFold(x.a));
+  const pctAll=ai=>hands.reduce((s,x)=>s+x.cn*(x.w[ai]||0)/100,0)/1326*100;
+  const playPct=hands.reduce((s,x)=>s+x.cn*x.p/100,0)/1326*100;
+  // 1 · at a glance
+  const segs=nf.map(({a,i})=>({n:a.name,c:a.color,v:pctAll(i)})).filter(s=>s.v>0.05);
+  const foldC=(acts.find(arIsFold)||{}).color||"var(--b4)";
+  h+='<div class="ar-sec"><div class="ar-sec-h">🧭 Range at a glance</div>'
+    +'<div class="ar-glance">'+segs.map(s=>'<span style="flex:'+s.v+';background:'+s.c+'" title="'+escapeHtml(s.n)+'"></span>').join("")+'<span style="flex:'+Math.max(0,100-playPct)+';background:'+foldC+';opacity:.35" title="Fold"></span></div>'
+    +'<div class="ar-glance-leg">'+segs.map(s=>'<div><i style="background:'+s.c+'"></i>'+escapeHtml(s.n)+"<b>"+s.v.toFixed(1)+"%</b></div>").join("")+'<div><i style="background:'+foldC+';opacity:.5"></i>Fold<b>'+(100-playPct).toFixed(1)+"%</b></div></div>"
+    +'<div class="ar-note">Share of <b>all 1,326 starting hands</b>, counting mixed hands at their frequency. You play <b>'+playPct.toFixed(1)+"%</b> of hands in this spot — about "+Math.round(playPct*13.26)+" of every 1,326 combos.</div></div>";
+  // 2 · shorthand
+  h+='<div class="ar-sec"><div class="ar-sec-h">✍️ Range in shorthand</div>'+nf.map(({a,i})=>{
+      const always=hands.filter(x=>(x.w[i]||0)>=100).map(x=>x.k),most=hands.filter(x=>(x.w[i]||0)>=50&&(x.w[i]||0)<100).map(x=>x.k),some=hands.filter(x=>(x.w[i]||0)>0&&(x.w[i]||0)<50).map(x=>x.k);
+      if(!always.length&&!most.length&&!some.length)return"";
+      const line=(l,arr)=>arr.length?'<div class="ar-sh-line"><span>'+l+"</span><code>"+arShorthand(arr)+"</code></div>":"";
+      return'<div class="ar-sh"><div class="ar-sh-t"><i style="background:'+a.color+'"></i>'+escapeHtml(a.name)+"</div>"+line("Always",always)+line("Mostly (50–99%)",most)+line("Sometimes (<50%)",some)+"</div>"}).join("")
+    +'<div class="ar-note">"A9s+" means A9s up to AKs; "K9o-K6o" is K9o, K8o, K7o and K6o; "TT+" is every pair from tens up.</div></div>';
+  // 3 · edges by high card
+  const inR=x=>x.p>=50;
+  const edge=(hi,sfx)=>{let low=null,gaps=false,seen=false;for(let k=hi+1;k<13;k++){const x=hands.find(y=>y.k===RK[hi]+RK[k]+sfx);if(inR(x)){if(seen&&low!==k-1)gaps=true;low=k;seen=true}}return low==null?"—":RK[hi]+RK[low]+sfx+(gaps?" <small>(gaps)</small>":"")};
+  const lowPair=(()=>{let lo=null;for(let i=0;i<13;i++){const x=hands.find(y=>y.k===RK[i]+RK[i]);if(inR(x))lo=i}return lo==null?"none":RK[lo]+RK[lo]})();
+  h+='<div class="ar-sec"><div class="ar-sec-h">📏 How far down each card goes</div><div class="ar-edges"><div class="ar-edge-h"><span>High card</span><span>Suited to</span><span>Offsuit to</span></div>'
+    +[0,1,2,3,4,5,6].map(hi=>'<div class="ar-edge"><b>'+RK[hi]+'</b><span>'+edge(hi,"s")+"</span><span>"+edge(hi,"o")+"</span></div>").join("")
+    +'<div class="ar-edge"><b>Pairs</b><span>down to '+lowPair+"</span><span></span></div></div>"
+    +'<div class="ar-note">Counts a hand once it\'s played at least half the time. The lowest kicker for each high card is usually the easiest way to remember a range.</div></div>';
+  // 4 · hand groups
+  if(typeof GG_CATS!=="undefined"){
+    const rows=GG_CATS.map(([id,l,sub])=>{const hs=hands.filter(x=>ggHandCat(x.k)===id);const cn=hs.reduce((s,x)=>s+x.cn,0);if(!cn)return"";
+      const pl=hs.reduce((s,x)=>s+x.cn*x.p/100,0),parts=nf.map(({a,i})=>({c:a.color,n:a.name,v:hs.reduce((s,x)=>s+x.cn*(x.w[i]||0)/100,0)/cn*100})).filter(p=>p.v>0.5);
+      return'<div class="ar-grp"><div class="ar-grp-l">'+l+(sub?"<small>"+sub+"</small>":"")+'</div><div class="ar-grp-bar">'+parts.map(p=>'<span style="width:'+p.v+"%;background:"+p.c+'" title="'+escapeHtml(p.n)+" "+p.v.toFixed(0)+'%"></span>').join("")+'</div><div class="ar-grp-v">'+(pl/cn*100).toFixed(0)+"%</div></div>"}).join("");
+    h+='<div class="ar-sec"><div class="ar-sec-h">🧩 By hand group</div>'+rows+'<div class="ar-note">How much of each group you play (right) and with which action (bar colours).</div></div>';
+  }
+  // 5 · mixed hands
+  const mixed=hands.filter(x=>{const vals=Object.values(x.w).filter(v=>v>0);return x.p>0&&(x.p<100||vals.length>1)});
+  if(mixed.length){
+    const mc=mixed.reduce((s,x)=>s+x.cn,0);
+    h+='<div class="ar-sec"><div class="ar-sec-h">🔀 Mixed strategies <span class="ar-sec-sub">'+mixed.length+" hands · "+mc+' combos</span></div><div class="ar-mix">'
+      +mixed.sort((a,b)=>b.p-a.p||a.r+a.c-b.r-b.c).map(x=>'<span class="ar-mx" title="'+x.k+'"><b>'+x.k+"</b>"+nf.filter(({i})=>x.w[i]).map(({a,i})=>'<em style="color:'+a.color+'">'+x.w[i]+"</em>").join("/")+"</span>").join("")+"</div>"
+      +'<div class="ar-note">Numbers are the % for each action in its colour; the rest is fold. At real tables you can simplify: play a hand every time if it\'s mostly played, never if it\'s rarely played.</div></div>';
+  }
+  return h;
+}
+/* ── 🧠 Learn a range: chunked lessons → paint from memory → quick-fire quiz, with mastery + spaced review ── */
+const LR_CHUNKS=[["pairs","Pocket pairs","🎲",["pp_hi","pp_mid","pp_lo"]],["aces","Suited aces & AK / AQ","🅰️",["akq","sa"]],["sbw","Suited broadways","👑",["sbw"]],["suited","Suited connectors & other suited","🔗",["sc","so"]],["off","Offsuit broadways & aces","🃏",["obw","oa"]],["junk","Other offsuit hands","🗑️",["oo"]]];
+const LR_REVIEW_DAYS=[1,3,7,14,30,60];
+let LR=null;
+function lrProg(id){const all=LG("ps_learn",{});return all[id]||{c:{},lvl:0,due:0}}
+function lrSaveProg(id,p){const all=LG("ps_learn",{});all[id]=p;LS("ps_learn",all)}
+function lrStatus(r){ // for badges: {done, total, due}
+  if(!r||!r.id)return null;const p=lrProg(r.id);const n=Object.keys(p.c).length;if(!n&&!p.fin)return null;
+  const tot=lrChunksFor(r).length,m=Object.values(p.c).filter(x=>x.m).length;return{m,tot,learned:!!p.fin,due:p.fin&&p.due&&Date.now()>=p.due}
+}
+function lrKeys(r){const acts=r.acts||[],L=[];acts.forEach((a,k)=>{if(!arIsFold(a))L.push({k,name:a.name,color:a.color})});const fa=acts.find(arIsFold);L.push({k:"F",name:"Fold",color:fa?fa.color:"#64748b"});return L}
+function lrCell(r,i,j){const acts=r.acts||[],cl=(r.range[i]||[])[j]||[],w={};let tot=0;cl.forEach(x=>{const k=arIsFold(acts[x.ai])?"F":x.ai;w[k]=(w[k]||0)+x.w;tot+=x.w});if(tot<100)w.F=(w.F||0)+100-tot;
+  let ok=Object.keys(w).filter(k=>w[k]>=25);if(!ok.length){const d=Object.keys(w).sort((a,b)=>w[b]-w[a])[0];ok=[d]}
+  const dom=Object.keys(w).sort((a,b)=>w[b]-w[a])[0];return{w,ok:new Set(ok.map(String)),dom:String(dom)}}
+function lrChunksFor(r){
+  const out=[];LR_CHUNKS.forEach(([id,l,ic,cats])=>{const cells=[];for(let i=0;i<13;i++)for(let j=0;j<13;j++)if(cats.includes(ggHandCat(hl(i,j))))cells.push([i,j]);
+    const played=cells.filter(([i,j])=>lrCell(r,i,j).dom!=="F"||lrCell(r,i,j).ok.size>1).length;if(played)out.push({id,l,ic,cells,played})});
+  return out;
+}
+function openLearn(idx){
+  const r=S.saved[idx];if(!r)return toast("Save this range first to learn it");
+  closeCtxMenu&&closeCtxMenu();
+  LR={idx,r,keys:lrKeys(r),chunks:lrChunksFor(r),step:"home",cur:0,pal:0};
+  if(!LR.chunks.length)return toast("This range is empty — nothing to learn yet");
+  lrRender();openM("learnM");
+}
+function lrClose(){closeM("learnM");LR=null;try{fsRender()}catch(e){}}
+function lrAllCells(){const c=[];for(let i=0;i<13;i++)for(let j=0;j<13;j++)c.push([i,j]);return c}
+function lrChunk(){return LR.cur==="final"?{id:"final",l:"The whole range",ic:"🏆",cells:lrAllCells()}:LR.chunks[LR.cur]}
+function lrKeyOf(k){return LR.keys.find(x=>String(x.k)===String(k))}
+function lrMixBar(w){return'<div class="lr-mix">'+LR.keys.filter(k=>w[k.k]).map(k=>'<span style="flex:'+w[k.k]+';background:'+k.color+'">'+(w[k.k]>=12?w[k.k]+"%":"")+"</span>").join("")+"</div>"}
+function lrCellBg(w){ // gradient showing the mix
+  const parts=LR.keys.filter(k=>w[k.k]&&k.k!=="F");if(!parts.length)return"";let acc=0,st=[];parts.forEach(k=>{st.push(k.color+" "+acc+"%");acc+=w[k.k];st.push(k.color+" "+acc+"%")});if(acc<100){st.push("transparent "+acc+"%","transparent 100%")}
+  return"background:linear-gradient(90deg,"+st.join(",")+")"}
+function lrHead(title,sub){return'<div class="lr-top"><button class="lr-back" onclick="'+(LR.step==="home"?"lrClose()":"LR.step=\'home\';lrRender()")+'">'+(LR.step==="home"?"✕":"←")+'</button><div class="lr-tt"><b>'+title+"</b>"+(sub?"<span>"+sub+"</span>":"")+"</div></div>"}
+function lrRender(){
+  const b=$("learnBody");if(!b||!LR)return;const r=LR.r,p=lrProg(r.id);
+  if(LR.step==="home"){
+    const m=LR.chunks.filter(c=>p.c[c.id]&&p.c[c.id].m).length,tot=LR.chunks.length;
+    const due=p.fin&&p.due&&Date.now()>=p.due;
+    b.innerHTML=lrHead("🧠 Learn",escapeHtml(r.name))
+      +'<div class="lr-prog"><div class="lr-prog-bar"><span style="width:'+(m/tot*100)+'%"></span></div><div class="lr-prog-t">'+m+" of "+tot+" sections mastered"+(p.fin?" · <b>range learned ✓</b>":"")+"</div></div>"
+      +(due?'<div class="lr-due">⏰ Time for a review — take the final test to keep it fresh.</div>':p.fin&&p.due?'<div class="lr-okrev">Next review '+new Date(p.due).toLocaleDateString("en-GB",{day:"numeric",month:"short"})+"</div>":"")
+      +'<div class="lr-how">Learn it one chunk at a time: <b>study</b> the hands, <b>paint</b> them from memory, then a <b>quick-fire</b> quiz. Score 90% on the paint and 80% on the quiz to master a section.</div>'
+      +'<div class="lr-list">'+LR.chunks.map((c,i)=>{const s=p.c[c.id]||{};return'<button class="lr-item'+(s.m?" done":"")+'" onclick="LR.cur='+i+';LR.step=\'study\';lrRender()"><span class="lr-ic">'+c.ic+'</span><span class="lr-it"><b>'+c.l+"</b><small>"+c.played+" hand"+(c.played!==1?"s":"")+" played · "+(s.p!=null?"paint "+s.p+"%":"not started")+(s.q!=null?" · quiz "+s.q+"%":"")+'</small></span><span class="lr-st">'+(s.m?"⭐":"›")+"</span></button>"}).join("")
+      +'<button class="lr-item final'+(p.fin?" done":"")+'" onclick="LR.cur=\'final\';LR.step=\'paint\';lrStartPaint();lrRender()"><span class="lr-ic">🏆</span><span class="lr-it"><b>Final test — the whole range</b><small>Paint all 169 hands from memory'+(p.fp!=null?" · best "+p.fp+"%":"")+'</small></span><span class="lr-st">'+(p.fin?"✓":"›")+"</span></button></div>";
+    return;
+  }
+  const c=lrChunk();
+  if(LR.step==="study"){
+    const set=new Set(c.cells.map(x=>x[0]*13+x[1]));
+    let grid="";for(let i=0;i<13;i++)for(let j=0;j<13;j++){const inC=set.has(i*13+j),cc=lrCell(r,i,j);grid+='<div class="lr-c'+(inC?"":" off")+'" style="'+(inC?lrCellBg(cc.w):"")+'"><span>'+hl(i,j)+"</span></div>"}
+    const byKey=LR.keys.map(k=>({k,hands:c.cells.map(([i,j])=>({lb:hl(i,j),cc:lrCell(r,i,j)})).filter(x=>(x.cc.w[k.k]||0)>=50).map(x=>x.lb)}));
+    b.innerHTML=lrHead(c.ic+" "+c.l,"Step 1 of 3 · Study")
+      +'<div class="lr-grid">'+grid+"</div>"+lrLegend()
+      +'<div class="lr-study">'+byKey.filter(x=>x.hands.length&&x.k.k!=="F").map(x=>'<div class="lr-sl"><i style="background:'+x.k.color+'"></i><b>'+escapeHtml(x.k.name)+"</b><code>"+arShorthand(x.hands)+"</code></div>").join("")
+      +(c.cells.some(([i,j])=>lrCell(r,i,j).dom==="F")?'<div class="lr-sl"><i style="background:'+lrKeyOf("F").color+'"></i><b>Fold</b><span>everything else in this group</span></div>':"")+"</div>"
+      +lrMixedList(c)
+      +'<div class="lr-tip">💡 Look for the <b>edge</b> — the lowest hand of each type you still play. Say it out loud: “'+lrEdgePhrase(c)+'”.</div>'
+      +'<div class="lr-nav"><button class="btn pri" onclick="LR.step=\'paint\';lrStartPaint();lrRender()">I\'ve got it — paint it →</button></div>';
+    return;
+  }
+  if(LR.step==="paint"){
+    const set=new Set(c.cells.map(x=>x[0]*13+x[1])),P=LR.paint,G=LR.graded;
+    let grid="";for(let i=0;i<13;i++)for(let j=0;j<13;j++){const k=i*13+j,inC=set.has(k);
+      if(!inC){grid+='<div class="lr-c off"><span>'+hl(i,j)+"</span></div>";continue}
+      const pk=P[k],kk=pk!=null?lrKeyOf(pk):null,g=G?G[k]:null;
+      grid+='<div class="lr-c paint'+(g===true?" ok":g===false?" bad":"")+'" data-k="'+k+'" style="'+(kk&&kk.k!=="F"?"background:"+kk.color:"")+'"><span>'+hl(i,j)+"</span>"+(g===false?'<em style="'+lrCellBg(lrCell(r,i,j).w)+'"></em>':"")+"</div>"}
+    const res=G?LR.paintScore:null;
+    b.innerHTML=lrHead(c.ic+" "+c.l,(LR.cur==="final"?"Final test":"Step 2 of 3")+" · Paint from memory")
+      +(res==null?'<div class="lr-pal">'+LR.keys.map((k,i)=>'<button class="lr-pb'+(LR.pal===i?" on":"")+'" data-pal="'+i+'"><i style="background:'+k.color+'"></i>'+escapeHtml(k.name)+"</button>").join("")+"</div>"
+        :'<div class="lr-score '+(res>=90?"good":"meh")+'"><b>'+res+"%</b> correct"+(res>=90?" — nailed it":" — the red-outlined hands were wrong; their real mix is shown in the strip underneath")+"</div>")
+      +'<div class="lr-grid" id="lrGrid">'+grid+"</div>"
+      +(res==null?'<div class="lr-hint">Pick an action, then tap or drag across hands. Anything you leave blank counts as <b>fold</b>. Mixed hands accept any action played at least 25% of the time.</div>'
+        +'<div class="lr-nav"><button class="btn" onclick="lrStartPaint();lrRender()">Clear</button><button class="btn pri" onclick="lrGradePaint()">Check ✓</button></div>'
+        :'<div class="lr-nav"><button class="btn" onclick="lrStartPaint();lrRender()">Try again</button>'+(LR.cur==="final"?'<button class="btn pri" onclick="LR.step=\'home\';lrRender()">Done</button>':'<button class="btn pri" onclick="lrStartQuiz();LR.step=\'quiz\';lrRender()">Quick-fire quiz →</button>')+"</div>");
+    lrBindPaint();return;
+  }
+  if(LR.step==="quiz"){
+    const Q=LR.quiz;
+    if(Q.i>=Q.list.length){
+      const sc=Math.round(Q.score/Q.list.length*100),pr=lrProg(r.id),s=pr.c[c.id]||{};s.q=Math.max(s.q||0,sc);s.lq=sc;s.m=(s.p||0)>=90&&s.q>=80;pr.c[c.id]=s;lrSaveProg(r.id,pr);
+      b.innerHTML=lrHead(c.ic+" "+c.l,"Step 3 of 3 · Results")
+        +'<div class="lr-final"><div class="lr-big">'+sc+'%</div><div>'+Q.score+" of "+Q.list.length+" right</div>"+(s.m?'<div class="lr-mast">⭐ Section mastered</div>':'<div class="lr-notyet">Master it with 90% on the paint and 80% here.</div>')+"</div>"
+        +(Q.miss.length?'<div class="lr-miss"><div class="lr-ctitle">Worth another look</div>'+Q.miss.map(([i,j])=>'<div class="lr-mrow"><b>'+hl(i,j)+"</b>"+lrMixBar(lrCell(r,i,j).w)+"</div>").join("")+"</div>":"")
+        +'<div class="lr-nav"><button class="btn" onclick="lrStartQuiz();lrRender()">Quiz again</button><button class="btn pri" onclick="LR.step=\'home\';lrRender()">Back to sections</button></div>';
+      return;
+    }
+    const [i,j]=Q.list[Q.i],cc=lrCell(r,i,j),lb=hl(i,j),ans=Q.ans;
+    b.innerHTML=lrHead(c.ic+" "+c.l,"Step 3 of 3 · Quick-fire "+(Q.i+1)+"/"+Q.list.length)
+      +'<div class="lr-qcard"><div class="lr-qhand">'+lrCardsHtml(lb)+'</div><div class="lr-qlab">'+lb+"</div></div>"
+      +'<div class="lr-qbtns">'+LR.keys.map(k=>{let cl="";if(ans!=null){if(cc.ok.has(String(k.k)))cl=" right";else if(String(ans)===String(k.k))cl=" wrong"}return'<button class="lr-qb'+cl+'" data-ans="'+k.k+'" style="--kc:'+k.color+'"'+(ans!=null?" disabled":"")+">"+escapeHtml(k.name)+"</button>"}).join("")+"</div>"
+      +(ans!=null?'<div class="lr-fb '+(cc.ok.has(String(ans))?"good":"bad")+'">'+(cc.ok.has(String(ans))?"✓ Correct":"✗ Not quite")+lrMixBar(cc.w)+'</div><div class="lr-nav"><button class="btn pri" onclick="LR.quiz.i++;LR.quiz.ans=null;lrRender()">Next →</button></div>':"")
+      +'<div class="lr-qprog"><span style="width:'+(Q.i/Q.list.length*100)+'%"></span></div>';
+    b.querySelectorAll("[data-ans]").forEach(x=>x.onclick=()=>{if(LR.quiz.ans!=null)return;const a=x.dataset.ans;LR.quiz.ans=a;const ok=cc.ok.has(String(a));if(ok){LR.quiz.score++;playSound("correct");haptic("light")}else{LR.quiz.miss.push([i,j]);playSound("wrong");haptic("medium")}
+      lrRender();if(ok)setTimeout(()=>{if(LR&&LR.step==="quiz"&&LR.quiz.ans===a&&LR.quiz.list[LR.quiz.i]&&LR.quiz.list[LR.quiz.i][0]===i&&LR.quiz.list[LR.quiz.i][1]===j){LR.quiz.i++;LR.quiz.ans=null;lrRender()}},700)});
+  }
+}
+function lrLegend(){return'<div class="lr-leg">'+LR.keys.map(k=>'<span><i style="background:'+k.color+'"></i>'+escapeHtml(k.name)+"</span>").join("")+"</div>"}
+function lrMixedList(c){const m=c.cells.map(([i,j])=>({lb:hl(i,j),cc:lrCell(LR.r,i,j)})).filter(x=>Object.values(x.cc.w).filter(v=>v>0).length>1);if(!m.length)return"";
+  return'<div class="lr-mixed"><div class="lr-ctitle">Mixed hands in this group</div>'+m.map(x=>'<div class="lr-mrow"><b>'+x.lb+"</b>"+lrMixBar(x.cc.w)+"</div>").join("")+"</div>"}
+function lrEdgePhrase(c){
+  const r=LR.r,out=[];const byType={};c.cells.forEach(([i,j])=>{const lb=hl(i,j),cc=lrCell(r,i,j);if(cc.dom==="F")return;const t=lb.length===2?"pairs":lb[0]+(lb[2]==="s"?" suited":" offsuit");const rank=lb.length===2?i:Math.max(i,j);if(!byType[t]||rank>byType[t].rank)byType[t]={lb,rank}});
+  Object.entries(byType).forEach(([t,v])=>out.push(t==="pairs"?"pairs down to "+v.lb:t.replace(/^([AKQJT2-9])/,"$1-x")+" down to "+v.lb));
+  return out.slice(0,4).join(", ")||"nothing played here";
+}
+function lrCardsHtml(lb){const S2=["♠","♥","♦","♣"],r1=lb[0],r2=lb[1],suited=lb[2]==="s";const s1=Math.floor(Math.random()*4);let s2=suited?s1:(s1+1+Math.floor(Math.random()*3))%4;
+  const card=(r,s)=>'<span class="lr-card'+(s===1||s===2?" red":"")+'">'+(r==="T"?"10":r)+"<small>"+S2[s]+"</small></span>";return card(r1,s1)+card(r2,s2)}
+function lrStartPaint(){LR.paint={};LR.graded=null;LR.paintScore=null}
+function lrBindPaint(){
+  const g=$("lrGrid");if(!g||LR.graded)return;
+  const pal=document.querySelectorAll("[data-pal]");pal.forEach(x=>x.onclick=()=>{LR.pal=+x.dataset.pal;pal.forEach(y=>y.classList.toggle("on",y===x))});
+  let down=false;const paint=el=>{if(!el||!el.dataset.k)return;const k=+el.dataset.k,key=LR.keys[LR.pal].k;LR.paint[k]=key;el.style.background=key==="F"?"":LR.keys[LR.pal].color};
+  const at=e=>{const t=e.touches?e.touches[0]:e;return document.elementFromPoint(t.clientX,t.clientY)?.closest(".lr-c.paint")};
+  g.onpointerdown=e=>{down=true;paint(at(e));e.preventDefault()};g.onpointermove=e=>{if(down)paint(at(e))};
+  g.onpointerup=g.onpointercancel=()=>{down=false};if(!window._lrUp){window._lrUp=1;document.addEventListener("pointerup",()=>{const gg=$("lrGrid");if(gg&&gg.onpointerup)gg.onpointerup()})}
+  g.ontouchmove=e=>{if(down){paint(at(e));e.preventDefault()}};
+}
+function lrGradePaint(){
+  const c=lrChunk(),r=LR.r;let ok=0;LR.graded={};
+  c.cells.forEach(([i,j])=>{const k=i*13+j,pick=LR.paint[k]!=null?String(LR.paint[k]):"F",good=lrCell(r,i,j).ok.has(pick);LR.graded[k]=good;if(good)ok++});
+  const sc=Math.round(ok/c.cells.length*100);LR.paintScore=sc;
+  const p=lrProg(r.id);
+  if(LR.cur==="final"){p.fp=Math.max(p.fp||0,sc);if(sc>=90){p.lvl=Math.min((p.lvl||0)+(p.fin?1:0),LR_REVIEW_DAYS.length-1);p.fin=1;p.due=Date.now()+LR_REVIEW_DAYS[p.lvl]*86400000}else if(p.fin){p.lvl=0;p.due=Date.now()+86400000}}
+  else{const s=p.c[c.id]||{};s.p=Math.max(s.p||0,sc);s.lp=sc;s.m=s.p>=90&&(s.q||0)>=80;p.c[c.id]=s}
+  lrSaveProg(r.id,p);playSound(sc>=90?"save":"wrong");haptic(sc>=90?"success":"light");lrRender();
+}
+function lrStartQuiz(){
+  const c=lrChunk(),r=LR.r;
+  // weight toward hands that are played or sit on the edge of what's played
+  const played=c.cells.filter(([i,j])=>lrCell(r,i,j).dom!=="F"),edge=c.cells.filter(([i,j])=>lrCell(r,i,j).dom==="F"&&[[0,1],[1,0],[0,-1],[-1,0]].some(([a,b2])=>{const x=i+a,y=j+b2;return x>=0&&y>=0&&x<13&&y<13&&played.some(q=>q[0]===x&&q[1]===y)}));
+  const pool=[...played,...played.filter(([i,j])=>lrCell(r,i,j).ok.size>1),...edge];const list=[],seen=new Set();
+  const sh=[...pool].sort(()=>Math.random()-.5);for(const h of sh){const k=h[0]*13+h[1];if(seen.has(k))continue;seen.add(k);list.push(h);if(list.length>=10)break}
+  LR.quiz={list,i:0,score:0,ans:null,miss:[]};
+}
 function computeRangeInsights(range,acts){
-  const allH=[];for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cl=range[r][c];if(!cl.length)continue;allH.push({r,c,label:hl(r,c),type:ht(r,c),cn:hcn(r,c),cl,mixed:cl.length>1})}
-  const tot=allH.reduce((a,x)=>a+x.cn,0);
+  const allH=[];for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cl=range[r][c];if(!cl.length)continue;const play=cl.filter(x=>!arIsFold(acts[x.ai])).reduce((a,x)=>a+x.w,0);if(play<=0)continue;allH.push({r,c,label:hl(r,c),type:ht(r,c),cn:hcn(r,c),cl,play,mixed:cl.length>1})}
+  const tot=allH.reduce((a,x)=>a+x.cn*x.play/100,0);
   const pct=((tot/1326)*100).toFixed(1);
   const tight=pct<=8?"Ultra Tight":pct<=14?"Very Tight":pct<=19?"Tight":pct<=26?"Standard":pct<=35?"Loose":pct<=50?"Very Loose":"Extremely Loose";
   const pairCount=allH.filter(x=>x.type==="pair").length,suitedCount=allH.filter(x=>x.type==="suited").length,offsuitCount=allH.filter(x=>x.type==="offsuit").length;
@@ -6650,6 +6975,7 @@ function computeRangeInsights(range,acts){
   const sortedByStrength=[...allH].sort((a,b)=>rangeScore(b.r,b.c)-rangeScore(a.r,a.c));
   const strongestHand=sortedByStrength[0]||null,weakestHand=sortedByStrength[sortedByStrength.length-1]||null;
   const actionsData=acts.map((act,ai)=>{
+    if(arIsFold(act))return null;
     const hands=allH.filter(h=>h.cl.some(x=>x.ai===ai));
     if(!hands.length)return null;
     const comboCount=hands.reduce((a,h)=>a+h.cn*(h.cl.find(x=>x.ai===ai).w/100),0);
@@ -6672,7 +6998,7 @@ function renderAnalysisSummary(){
   h+='<div class="ar-hero"><div class="ar-hero-row"><span class="ar-hero-tight">'+ins.tight+'</span><span class="ar-hero-pct">'+ins.pct+'%</span></div><div class="ar-hero-sub">'+ins.tot.toFixed(0)+' combos · '+ins.allH.length+' hand types · '+ins.mixedHands.length+' mixed-frequency</div><div class="ar-combo-bar"><div class="ar-combo-seg" style="width:'+(ins.pairCount/ins.allH.length*100||0)+'%;background:var(--gd)" title="Pairs"></div><div class="ar-combo-seg" style="width:'+(ins.suitedCount/ins.allH.length*100||0)+'%;background:var(--mt)" title="Suited"></div><div class="ar-combo-seg" style="width:'+(ins.offsuitCount/ins.allH.length*100||0)+'%;background:var(--li)" title="Offsuit"></div></div><div class="ar-combo-legend"><span><i style="background:var(--gd)"></i>'+ins.pairCount+' pairs</span><span><i style="background:var(--mt)"></i>'+ins.suitedCount+' suited</span><span><i style="background:var(--li)"></i>'+ins.offsuitCount+' offsuit</span></div>'
     +'<div class="ar-quickstats"><div class="ar-qs-item"><span class="ar-qs-lbl">Strongest</span><span class="ar-qs-val">'+(ins.strongestHand?ins.strongestHand.label:"—")+'</span></div><div class="ar-qs-item"><span class="ar-qs-lbl">Widest included</span><span class="ar-qs-val">'+(ins.weakestHand?ins.weakestHand.label:"—")+'</span></div></div>'
     +'<div class="ar-action-breakdown">'+ins.actionsData.map(ad=>'<div class="ar-ab-row"><span class="ar-ab-dot" style="background:'+ad.act.color+'"></span><span class="ar-ab-name">'+ad.act.name+'</span><span class="ar-ab-nums">'+ad.comboCount.toFixed(0)+' combos · '+ad.comboPct.toFixed(1)+'%</span></div>').join("")+'</div>'
-    +'<div class="ar-shape">💭 '+ins.rangeShape+'</div></div>';
+    +'<div class="ar-shape">💭 '+ins.rangeShape+'</div></div>'+arDeepHtml(ins,AR.range,AR.acts);
   ins.actionsData.forEach(ad=>{
     const pairsS=ad.pairs.map(h=>h.label).join(", "),suitedS=ad.suited.map(h=>h.label).slice(0,15).join(", "),offsuitS=ad.offsuit.map(h=>h.label).slice(0,12).join(", ");
     const mixedS=ad.mixed.map(h=>{const w=h.cl.find(x=>x.ai===ad.ai).w;return h.label+" "+w+"%"}).join(", ");
@@ -6827,14 +7153,14 @@ function getSubs(p){return S.folders.filter(f=>f.path!==p&&f.path.startsWith(p)&
 function initFs(){loadSvd();renderFsSidebar();fsRender();updateFsNavButtons()}
 function renderFsSidebar(){const tree=$("fsSidebarTree");if(!tree)return;const siAll=$("siAll");if(siAll)siAll.textContent=S.saved.length;const siFavs=$("siFavs");if(siFavs)siFavs.textContent=S.saved.filter(r=>r.fav).length;
 const pinWrap=$("fsSidebarPinnedWrap");if(pinWrap){let pins=LG("ps_pinned",[]);const validPaths=new Set(S.folders.map(f=>f.path));const pruned=pins.filter(p=>validPaths.has(p));if(pruned.length!==pins.length)LS("ps_pinned",pruned);pins=pruned;if(pins.length){let ph='<div class="fs-sb-divider"></div><div class="fs-sb-section">📌 Pinned</div>';pins.forEach(p=>{const fo=getFO(p);const on=!fsSpecial&&fsCurPath===p;ph+='<div class="fs-sb-item'+(on?" on":"")+'" onclick="fsNavPush(\''+p+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+p+'\')"><span class="si">'+fo.icon+'</span>'+fo.name+'<span class="sb-unpin" onclick="event.stopPropagation();pinFolder(\''+p+'\')" title="Unpin">✕</span></div>'});pinWrap.innerHTML=ph}else pinWrap.innerHTML=""}
-let h="";function renderSubFolders(path,depth){getSubs(path).forEach(f=>{const on=!fsSpecial&&fsCurPath===f.path;const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-sb-item'+(on?" on":"")+'" onclick="fsNavPush(\''+f.path+'\')" style="padding-left:'+(12+depth*14)+'px"><span class="si">'+f.icon+'</span>'+f.name+'<span class="sc">'+cnt+'</span></div>';renderSubFolders(f.path,depth+1)})}renderSubFolders("/",0);tree.innerHTML=h;document.querySelectorAll(".fs-sb-item[data-sp]").forEach(el=>{const sp=el.dataset.sp;if(sp==="all")el.classList.toggle("on",!fsSpecial);else if(sp==="favs")el.classList.toggle("on",fsSpecial==="favs");else if(sp==="recent")el.classList.toggle("on",fsSpecial==="recent")})}
+let h="";function renderSubFolders(path,depth){getSubs(path).forEach(f=>{const on=!fsSpecial&&fsCurPath===f.path;const cnt=fsDeepCount(f.path);h+='<div class="fs-sb-item'+(on?" on":"")+'" onclick="fsNavPush(\''+f.path+'\')" style="padding-left:'+(12+depth*14)+'px"><span class="si">'+f.icon+'</span>'+f.name+'<span class="sc">'+cnt+'</span></div>';renderSubFolders(f.path,depth+1)})}renderSubFolders("/",0);tree.innerHTML=h;document.querySelectorAll(".fs-sb-item[data-sp]").forEach(el=>{const sp=el.dataset.sp;if(sp==="all")el.classList.toggle("on",!fsSpecial);else if(sp==="favs")el.classList.toggle("on",fsSpecial==="favs");else if(sp==="recent")el.classList.toggle("on",fsSpecial==="recent")})}
 /* ── UNIFIED NAVIGATION STATE: Back/Forward/Up all traverse one logical history ── */
 function clearFsSearch(){const si=$("fsSearch");if(si&&si.value)si.value=""}
 function applyFsState(st){fsSpecial=st.special;fsCurPath=st.path}
 function updateFsNavButtons(){const bb=$("fsBackBtn");const fb=$("fsFwdBtn");const ub=$("fsUpBtn");if(bb)bb.disabled=fsHistIdx<=0;if(fb)fb.disabled=fsHistIdx>=fsHistory.length-1;if(ub)ub.disabled=!fsSpecial&&fsCurPath==="/"}
 function pushFsState(st){clearFsSearch();fsHistory=fsHistory.slice(0,fsHistIdx+1);fsHistory.push(st);fsHistIdx=fsHistory.length-1;applyFsState(st);if(window.innerWidth<=520){const _sb=$("fsSidebar");if(_sb)_sb.classList.remove("open");const _ov=$("fsSidebarOverlay");if(_ov)_ov.style.display="none"}renderFsSidebar();fsRender();updateFsNavButtons()}
 function fsSetSpecial(sp,el){pushFsState({special:sp==="all"?null:sp,path:"/"})}
-function fsNavPush(path){pushFsState({special:null,path:path})}
+function fsNavPush(path){fsPosFilter="";pushFsState({special:null,path:path})}
 function fsGoBack(){if(fsHistIdx<=0)return;fsHistIdx--;clearFsSearch();applyFsState(fsHistory[fsHistIdx]);renderFsSidebar();fsRender();updateFsNavButtons()}
 function fsGoFwd(){if(fsHistIdx>=fsHistory.length-1)return;fsHistIdx++;clearFsSearch();applyFsState(fsHistory[fsHistIdx]);renderFsSidebar();fsRender();updateFsNavButtons()}
 function fsGoUp(){if(fsSpecial){pushFsState({special:null,path:"/"});return}const p=fsCurPath;if(p==="/")return;const up=p.slice(0,p.slice(0,-1).lastIndexOf("/")+1)||"/";pushFsState({special:null,path:up})}
@@ -6846,15 +7172,39 @@ function toggleFsSidebar(){
   if(ov)ov.style.display=open?"block":"none";
 }
 
+/* ── file browser helpers: weighted stats, thumbnails, recursive counts ── */
+const _fsStatCache=new Map();
+function fsRangeStats(r){
+  const key=(r.id||r.name)+"|"+r.ts;if(_fsStatCache.has(key))return _fsStatCache.get(key);
+  const acts=r.acts||[],per=acts.map(()=>0);let play=0;const cells=[];
+  for(let i=0;i<13;i++)for(let j=0;j<13;j++){const cl=(r.range[i]||[])[j]||[],cn=hcn(i,j);let p=0,best=-1,bw=0;
+    cl.forEach(x=>{if(arIsFold(acts[x.ai]))return;per[x.ai]+=cn*x.w/100;p+=x.w;if(x.w>bw){bw=x.w;best=x.ai}});
+    play+=cn*p/100;cells.push(best<0?null:[best,p])}
+  const st={play:play/1326*100,acts:acts.map((a,i)=>({name:a.name,color:a.color,pct:per[i]/1326*100})).filter((a,i)=>!arIsFold(acts[i])&&a.pct>0.05),cells};
+  _fsStatCache.set(key,st);return st;
+}
+function fsThumb(r,size){
+  const st=fsRangeStats(r),acts=r.acts||[],s=size||44,cs=s/13;let rects="";
+  st.cells.forEach((c,k)=>{if(!c)return;const x=(k%13)*cs,y=Math.floor(k/13)*cs;rects+='<rect x="'+x.toFixed(2)+'" y="'+y.toFixed(2)+'" width="'+(cs-.4).toFixed(2)+'" height="'+(cs-.4).toFixed(2)+'" fill="'+((acts[c[0]]||{}).color||"#888")+'" fill-opacity="'+(0.3+0.7*c[1]/100).toFixed(2)+'"/>'});
+  return'<svg class="fs-thumb" viewBox="0 0 '+s+" "+s+'" width="'+s+'" height="'+s+'"><rect width="'+s+'" height="'+s+'" rx="3" style="fill:var(--b0)"/>'+rects+"</svg>";
+}
+function fsDeepCount(path){return S.saved.filter(r=>(r.folder||"/").startsWith(path)).length}
+function fsActChips(st){return st.acts.map(a=>'<span class="fs-achip"><i style="background:'+a.color+'"></i>'+escapeHtml(a.name)+" "+a.pct.toFixed(1)+"%</span>").join("")}
+let fsPosFilter="";
+const FS_POS=["UTG","HJ","CO","BU","BTN","SB","BB"];
+function fsPosOf(r){const m=(r.name||"").match(/^(UTG|HJ|CO|BU|BTN|SB|BB)\b/);return m?(m[1]==="BTN"?"BU":m[1]):""}
 function fsRender(){if(!$("fsContent"))return;loadSvd();const q=$("fsSearch")?.value?.toLowerCase()||"";const sort=$("fsSortSel")?.value||"newest";
 const globalSearch=!fsSpecial&&!!q;
-const addr=$("fsAddr");if(addr){if(fsSpecial==="favs")addr.innerHTML='<span>⭐ Favorites</span>';else if(fsSpecial==="recent")addr.innerHTML='<span>🕐 Recent</span>';else if(globalSearch)addr.innerHTML='<span>🔍 Search results</span>';else{const pts=fsCurPath.split("/").filter(Boolean);let h='<span onclick="fsNavPush(\'/\')">🏠</span>';let acc="/";pts.forEach(p=>{acc+=p+"/";h+='<span class="sep"> / </span><span onclick="fsNavPush(\''+acc+'\')">'+p+'</span>'});addr.innerHTML=h}}
+const addr=$("fsAddr");if(addr){if(fsSpecial==="favs")addr.innerHTML='<span>⭐ Favorites</span>';else if(fsSpecial==="recent")addr.innerHTML='<span>🕐 Recent</span>';else if(globalSearch)addr.innerHTML='<span>🔍 Search results</span>';else{const pts=fsCurPath.split("/").filter(Boolean);let h='<span onclick="fsNavPush(\'/\')">🏠'+(pts.length?"":" My Ranges")+'</span>';let acc="/";pts.forEach(p=>{acc+=p+"/";h+='<span class="sep"> / </span><span onclick="fsNavPush(\''+acc+'\')">'+p+'</span>'});addr.innerHTML=h}}
 let ranges=[...S.saved];
 if(fsSpecial==="favs")ranges=ranges.filter(r=>r.fav);
 else if(fsSpecial==="recent")ranges=[...S.saved].sort((a,b)=>b.ts-a.ts).slice(0,20);
 else if(!q)ranges=ranges.filter(r=>(r.folder||"/")===fsCurPath);
 if(q)ranges=ranges.filter(r=>r.name.toLowerCase().includes(q)||(r.tags||[]).some(t=>t.includes(q))||(r.notes||"").toLowerCase().includes(q));
-if(sort==="newest")ranges.sort((a,b)=>b.ts-a.ts);else if(sort==="oldest")ranges.sort((a,b)=>a.ts-b.ts);else if(sort==="a-z")ranges.sort((a,b)=>a.name.localeCompare(b.name));else if(sort==="z-a")ranges.sort((a,b)=>b.name.localeCompare(a.name));else if(sort==="most")ranges.sort((a,b)=>b.range.flat().filter(c=>c.length).length-a.range.flat().filter(c=>c.length).length);else if(sort==="least")ranges.sort((a,b)=>a.range.flat().filter(c=>c.length).length-b.range.flat().filter(c=>c.length).length);else if(sort==="pct"){ranges.sort((a,b)=>b.range.flat().filter(c=>c.length).length-a.range.flat().filter(c=>c.length).length)}
+if(sort==="newest")ranges.sort((a,b)=>b.ts-a.ts);else if(sort==="oldest")ranges.sort((a,b)=>a.ts-b.ts);else if(sort==="a-z")ranges.sort((a,b)=>a.name.localeCompare(b.name));else if(sort==="z-a")ranges.sort((a,b)=>b.name.localeCompare(a.name));else if(sort==="most"||sort==="pct")ranges.sort((a,b)=>fsRangeStats(b).play-fsRangeStats(a).play);else if(sort==="least")ranges.sort((a,b)=>fsRangeStats(a).play-fsRangeStats(b).play);
+const posAvail=[...new Set(ranges.map(fsPosOf).filter(Boolean))];if(fsPosFilter&&!posAvail.includes(fsPosFilter))fsPosFilter="";
+const posBar=ranges.length>=6&&posAvail.length>=2?'<div class="fs-posbar"><span class="fs-posbar-l">Your seat</span>'+["",...FS_POS.filter(p=>posAvail.includes(p))].map(p=>'<button class="gg-chip'+(fsPosFilter===p?" on":"")+'" onclick="fsPosFilter=\''+p+'\';fsRender()">'+(p||"All")+"</button>").join("")+"</div>":"";
+if(fsPosFilter)ranges=ranges.filter(r=>fsPosOf(r)===fsPosFilter);
 ranges.sort((a,b)=>(b.fav?1:0)-(a.fav?1:0));
 const subFolders=(!fsSpecial&&!q)?getSubs(fsCurPath):[];
 const ct=$("fsContent");
@@ -6863,16 +7213,17 @@ const st=$("fsStatus");if(st)st.textContent=total===0?"Empty":`${total} item${to
 if(!total){var _ei=q?'🔍':fsSpecial==='favs'?'⭐':fsSpecial==='recent'?'🕐':'📁';var _et=q?'No results for "'+q+'"':fsSpecial?'Nothing here yet':'This folder is empty';var _es=q?'Try a different search term.':fsSpecial==='favs'?'Star ranges to see them here.':fsSpecial==='recent'?'Open ranges to see them here.':'Save from the Editor or create a subfolder.';ct.innerHTML='<div class="empty-state"><span class="es-icon">'+_ei+'</span><div class="es-title">'+_et+'</div><div class="es-sub">'+_es+'</div>'+(!q&&!fsSpecial?'<button class="btn pri" onclick="openM(\'saveM\')">+ Save Range</button>':'')+'</div>';return}
 if(fsView==="grid")renderFsGrid(ct,subFolders,ranges,globalSearch);
 else if(fsView==="list")renderFsList(ct,subFolders,ranges,globalSearch);
-else renderFsDetail(ct,subFolders,ranges,globalSearch)}
+else renderFsDetail(ct,subFolders,ranges,globalSearch);
+if(posBar)ct.insertAdjacentHTML("afterbegin",posBar)}
 function setFsView(v){fsView=v;LS("ps_fsview",v);const map={grid:"fsVbGrid",list:"fsVbList",detail:"fsVbDetail"};Object.values(map).forEach(id=>{const el=$(id);if(el)el.classList.remove("on")});const btn=$(map[v]);if(btn)btn.classList.add("on");fsRender()}
 function fsFolderChip(path){const fo=getFO(path);return '<span class="fs-path-chip" onclick="event.stopPropagation();fsNavPush(\''+path+'\')" title="Jump to '+fo.name+'">'+fo.icon+' '+fo.name+'</span>'}
-function renderFsGrid(ct,folders,ranges,globalSearch){let h='<div class="fs-grid">';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-gi" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="gi-ico" style="'+(f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"")+'">'+f.icon+'</div><div class="gi-name">'+escapeHtml(f.name)+'</div><div class="gi-meta">'+cnt+' ranges</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;h+='<div class="fs-gi" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="gi-ico" style="background:linear-gradient(135deg,rgba(200,165,92,.12),rgba(139,156,196,.06))">'+(r.icon||"♠")+'</div><div class="gi-name">'+escapeHtml(r.name)+'</div><div class="gi-meta">'+hcc+' hands</div>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div>'});h+='</div>';ct.innerHTML=h}
+function renderFsGrid(ct,folders,ranges,globalSearch){let h='<div class="fs-grid">';folders.forEach(f=>{const cnt=fsDeepCount(f.path);h+='<div class="fs-gi" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="gi-ico" style="'+(f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"")+'">'+f.icon+'</div><div class="gi-name">'+escapeHtml(f.name)+'</div><div class="gi-meta">'+cnt+' range'+(cnt!==1?"s":"")+'</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const st=fsRangeStats(r);h+='<div class="fs-gi" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')" title="'+escapeHtml(r.name)+'">'+fsThumb(r,64)+'<div class="gi-name">'+(r.fav?"★ ":"")+escapeHtml(r.name)+'</div><div class="gi-meta">'+st.play.toFixed(1)+'% of hands</div>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div>'});h+='</div>';ct.innerHTML=h}
 function rangeComboCount(range){let tot=0;for(let r=0;r<13;r++)for(let c=0;c<13;c++){if(range[r][c].length)tot+=hcn(r,c)}return tot}
 function renderFsList(ct,folders,ranges,globalSearch){let h='<div class="fs-list-wrap"><div class="fs-list-hdr"><span>Name</span><span>Hands</span><span>Modified</span></div>';folders.forEach(f=>{const cnt=S.saved.filter(r=>(r.folder||"/")===f.path).length;h+='<div class="fs-li" onclick="fsNavPush(\''+f.path+'\')" oncontextmenu="fsCtx(event,\'folder\',\''+f.path+'\')"><div class="li-name"><span class="li-ico">'+f.icon+'</span><span class="li-nm">'+escapeHtml(f.name)+'</span></div><div class="li-cell">'+cnt+' ranges</div><div class="li-cell">—</div></div>'});ranges.forEach(r=>{const i=S.saved.indexOf(r);const hcc=r.range.flat().filter(c=>c.length).length;const pct=((rangeComboCount(r.range)/1326)*100).toFixed(1);const dt=new Date(r.ts).toLocaleDateString("en-US",{month:"short",day:"numeric"});h+='<div class="fs-li" onclick="showViewerMode('+i+')" oncontextmenu="fsCtx(event,\'range\','+i+')"><div class="li-name"><span class="li-ico">'+(r.icon||"♠")+'</span><span class="li-nm">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+escapeHtml(r.name)+'</span>'+(globalSearch?fsFolderChip(r.folder||"/"):"")+'</div><div class="li-cell">'+hcc+' ('+pct+'%)</div><div class="li-cell">'+dt+'</div></div>'});h+='</div>';ct.innerHTML=h}
 function renderFsDetail(ct,folders,ranges,globalSearch){
 var h='<div class="fs-detail-list">';
 folders.forEach(function(f){
-  var cnt=S.saved.filter(function(r){return(r.folder||"/")===f.path}).length;
+  var cnt=fsDeepCount(f.path);
   var sub=getSubs(f.path).length;
   var cs=f.iconColor&&f.iconColor!=="none"?"background:"+f.iconColor:"";
   var fp=f.path;
@@ -6881,11 +7232,7 @@ folders.forEach(function(f){
   row+='<div class="di-ico" style="'+cs+'">'+f.icon+'</div>';
   row+='<div class="di-info"><div class="di-name">'+escapeHtml(f.name)+'</div>';
   row+='<div class="di-sub">'+cnt+' range'+(cnt!==1?"s":"")+(sub?" · "+sub+" subfolder"+(sub!==1?"s":""):"")+' </div></div>';
-  row+='<div class="di-acts">';
-  row+='<button class="di-act-move" onclick="event.stopPropagation();openFolderMove('+sq+fp+sq+')" title="Move folder">Move</button>';
-  row+='<button onclick="event.stopPropagation();openEdF('+sq+fp+sq+')" title="Edit name & icon">✎ Edit</button>';
-  row+='<button class="del" onclick="event.stopPropagation();delFolder('+sq+fp+sq+')" title="Delete folder">×</button>';
-  row+='</div></div>';
+  row+='<button class="fs-more" onclick="event.stopPropagation();fsCtx(event,'+sq+'folder'+sq+','+sq+fp+sq+')" title="More">⋯</button><span class="fs-chev">›</span></div>';
   h+=row;
 });
 ranges.forEach(function(r){
@@ -6902,25 +7249,24 @@ ranges.forEach(function(r){
   var favOn=r.fav?" on":"";
   var favStar=r.fav?"★":"☆";
   var row='<div class="fs-di range-di'+selClass+'" onclick="'+clickFn+'" oncontextmenu="fsCtx(event,'+sq+'range'+sq+','+i+')">';
-  row+='<div class="di-ico" style="'+rcs+'">'+(r.icon||"♠")+'</div>';
+  var st=fsRangeStats(r);
+  row+=fsThumb(r,44);
   row+='<div class="di-info">';
   row+='<div class="di-name">'+(r.fav?'<span class="di-fav-star">★</span>':"")+escapeHtml(r.name)+'</div>';
-  row+='<div class="di-sub">'+hcc+' hands ('+pct+'%) · '+(r.acts?r.acts.length:0)+' action'+(r.acts&&r.acts.length!==1?"s":"")+" · "+dt+(globalSearch?' · ':'')+'</div>'+(globalSearch?'<div style="margin-top:3px">'+fsFolderChip(r.folder||"/")+'</div>':'');
-  if(tags)row+='<div class="di-tags">'+tags+'</div>';
+  var ls=lrStatus(r);
+  row+='<div class="di-sub"><b>'+st.play.toFixed(1)+'%</b> of hands · '+(r.def?"built-in":dt)+(ls?' · <span class="fs-lbadge'+(ls.due?" due":ls.learned?" ok":"")+'">'+(ls.due?"⏰ review due":ls.learned?"🧠 learned":"🧠 "+ls.m+"/"+ls.tot)+"</span>":"")+'</div>';
+  row+='<div class="fs-achips">'+fsActChips(st)+'</div>'+(globalSearch?'<div style="margin-top:3px">'+fsFolderChip(r.folder||"/")+'</div>':'');
   row+='</div>';
-  row+='<div class="di-acts">';
-  row+='<button onclick="event.stopPropagation();openPreview('+i+')" title="Preview">Preview</button>';
-  row+='<button onclick="event.stopPropagation();openMove('+i+')" title="Move to folder">Move</button>';
-  row+='<button onclick="event.stopPropagation();openEdit('+i+')" title="Edit properties">Edit</button>';
-  row+='<button class="del" onclick="event.stopPropagation();delRange('+i+')" title="Delete">×</button>';
-  row+='</div>';
+  row+='<button class="fs-sum-btn" onclick="event.stopPropagation();openLearn('+i+')" title="Learn this range">🧠</button>';
+  row+='<button class="fs-sum-btn" onclick="event.stopPropagation();openSummary('+i+')" title="Summary">💡</button>';
+  row+='<button class="fs-more" onclick="event.stopPropagation();fsCtx(event,'+sq+'range'+sq+','+i+')" title="More">⋯</button>';
   row+='<span class="fav-star'+favOn+'" onclick="event.stopPropagation();togFav('+i+')" title="Favourite">'+favStar+'</span>';
   row+='</div>';
   h+=row;
 });
 h+='</div>';ct.innerHTML=h}
 
-function fsCtx(e,type,data){e.preventDefault();closeCtxMenu();const menu=$("fsCtxMenu");if(!menu)return;let h="";if(type==="folder"){h='<div class="fs-ctx-i" onclick="fsNavPush(\''+data+'\')">📂 Open</div>'+'<div class="fs-ctx-i" onclick="openFolderMove(\''+data+'\')">📁 Move Folder</div>'+'<div class="fs-ctx-i" onclick="openEdF(\''+data+'\')">✎ Edit / Rename</div>'+'<div class="fs-ctx-i" onclick="pinFolder(\''+data+'\')">'+(isPinned(data)?'📌 Unpin':'📌 Pin to Sidebar')+'</div>'+'<div class="fs-ctx-sep"></div>'+'<div class="fs-ctx-i del" onclick="delFolder(\''+data+'\')">✕ Delete</div>'}else{const r=S.saved[data];h='<div class="fs-ctx-i" onclick="showViewerMode('+data+')">👁 Open</div><div class="fs-ctx-i" onclick="openPreview('+data+')">🔍 Preview</div><div class="fs-ctx-i" onclick="openSummary('+data+')">💡 Summary</div><div class="fs-ctx-sep"></div><div class="fs-ctx-i" onclick="openEdit('+data+')">✎ Edit Properties</div><div class="fs-ctx-i" onclick="openMove('+data+')">📁 Move to…</div><div class="fs-ctx-i" onclick="dupRange('+data+')">📋 Duplicate</div><div class="fs-ctx-i" onclick="togFav('+data+')">'+(r?.fav?"☆ Remove Favorite":"★ Add to Favorites")+'</div><div class="fs-ctx-sep"></div><div class="fs-ctx-i del" onclick="delRange('+data+')">✕ Delete</div>'}
+function fsCtx(e,type,data){e.preventDefault();closeCtxMenu();const menu=$("fsCtxMenu");if(!menu)return;let h="";if(type==="folder"){h='<div class="fs-ctx-i" onclick="fsNavPush(\''+data+'\')">📂 Open</div>'+'<div class="fs-ctx-i" onclick="openFolderMove(\''+data+'\')">📁 Move Folder</div>'+'<div class="fs-ctx-i" onclick="openEdF(\''+data+'\')">✎ Edit / Rename</div>'+'<div class="fs-ctx-i" onclick="pinFolder(\''+data+'\')">'+(isPinned(data)?'📌 Unpin':'📌 Pin to Sidebar')+'</div>'+'<div class="fs-ctx-sep"></div>'+'<div class="fs-ctx-i del" onclick="delFolder(\''+data+'\')">✕ Delete</div>'}else{const r=S.saved[data];h='<div class="fs-ctx-i" onclick="showViewerMode('+data+')">👁 Open</div><div class="fs-ctx-i" onclick="openPreview('+data+')">🔍 Preview</div><div class="fs-ctx-i" onclick="openSummary('+data+')">💡 Summary</div><div class="fs-ctx-i" onclick="openLearn('+data+')">🧠 Learn</div><div class="fs-ctx-sep"></div><div class="fs-ctx-i" onclick="openEdit('+data+')">✎ Edit Properties</div><div class="fs-ctx-i" onclick="openMove('+data+')">📁 Move to…</div><div class="fs-ctx-i" onclick="dupRange('+data+')">📋 Duplicate</div><div class="fs-ctx-i" onclick="togFav('+data+')">'+(r?.fav?"☆ Remove Favorite":"★ Add to Favorites")+'</div><div class="fs-ctx-sep"></div><div class="fs-ctx-i del" onclick="delRange('+data+')">✕ Delete</div>'}
 menu.innerHTML=h;menu.style.display="block";let x=e.clientX,y=e.clientY;if(x+190>window.innerWidth)x=window.innerWidth-200;if(y+menu.offsetHeight+10>window.innerHeight)y=e.clientY-menu.offsetHeight-4;menu.style.left=x+"px";menu.style.top=y+"px";setTimeout(()=>document.addEventListener("click",closeCtxMenu,{once:true}),10)}
 function closeCtxMenu(){const m=$("fsCtxMenu");if(m)m.style.display="none"}
 function popFS(){["saveFolder","newFP","edFolder"].forEach(id=>{const sel=$(id);if(!sel)return;const v=sel.value;sel.innerHTML='<option value="/">📁 Root  (/)</option>';S.folders.filter(f=>f.path!=="/").forEach(f=>{const depth=(f.path.match(/\//g)||[]).length-1;const o=document.createElement("option");o.value=f.path;o.textContent="  ".repeat(depth)+f.icon+" "+f.name+"  ("+f.path+")";sel.appendChild(o)});sel.value=v||"/"})}
