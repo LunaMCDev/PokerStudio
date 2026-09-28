@@ -3392,6 +3392,66 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
 .lr-final{text-align:center;padding:14px 0;color:var(--t3);font-size:12px}.lr-big{font-size:46px;font-weight:800;font-family:var(--fm);color:var(--t1)}
 .lr-mast{margin-top:8px;color:var(--gd2);font-weight:800}.lr-notyet{margin-top:8px;font-size:11px;color:var(--t4)}
 .fs-lbadge{font-family:inherit;color:var(--pk2)}.fs-lbadge.ok{color:var(--mt)}.fs-lbadge.due{color:var(--gd2)}
+#trainerV.tr-focus .daily-card,#trainerV.tr-focus .tr-picker-btn,#trainerV.tr-focus #mTabs,#trainerV.tr-focus .trwrap>div:first-child{display:none!important}
+#trainerV.tr-focus #trTrainArea{gap:0!important}
+#trainerV.tr-picked .tr-picker-btn,#trainerV.tr-picked #mTabs{display:none!important}
+.trsu-change{background:none;border:none;padding:0;margin-top:2px;color:var(--pk2);font-size:10.5px;font-weight:700;cursor:pointer}
+.trsu-deal{grid-template-columns:1fr 1fr 1fr!important}
+@media(max-width:420px){.trsu-deal{grid-template-columns:1fr 1fr!important}.trsu-deal button[data-deal=weak]{grid-column:1/-1}}
+.trsu-deal button:disabled{opacity:.45;cursor:default}
+.trs-wrap{width:100%;max-width:440px;display:flex;flex-direction:column;gap:10px}
+.trs-head{display:flex;align-items:center;gap:10px}
+.trs-x{width:36px;height:36px;flex-shrink:0;border-radius:50%;border:1px solid var(--bd2);background:var(--b2);color:var(--t2);font-size:14px;cursor:pointer}
+.trs-mid{flex:1;min-width:0}
+.trs-name{font-size:12px;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trs-tag{font-size:9px;font-weight:700;color:var(--pk2);background:color-mix(in srgb,var(--pk) 14%,transparent);padding:1px 6px;border-radius:50px;margin-left:4px}
+.trs-bar{height:6px;border-radius:3px;background:var(--b0);margin-top:5px;overflow:hidden}.trs-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--pk),var(--mt));border-radius:3px;transition:width .3s}
+.trs-count{font-family:var(--fm);font-size:12px;font-weight:800;color:var(--t2);flex-shrink:0}
+#trainerV.tr-focus .tcard{min-height:0;padding:16px 14px 14px}
+.trs-actions{position:sticky;bottom:calc(env(safe-area-inset-bottom,0px) + 74px);z-index:5;background:linear-gradient(to top,var(--b0) 70%,transparent);padding:8px 0 4px}
+@media(min-width:900px){.trs-actions{bottom:12px}}
+.trs-actions .tbtns{gap:8px}
+.trs-actions .tabtn{position:relative;max-width:none;padding:16px 10px;background:color-mix(in srgb,var(--ac) 10%,var(--b1))}
+.tab-k{position:absolute;top:4px;left:7px;font-size:8.5px;opacity:.5;font-family:var(--fm)}
+.trs-next{width:100%;padding:16px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--pk),var(--pk2));color:#fff;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 18px -6px var(--pk)}
+.trs-keys{text-align:center;font-size:9px;color:var(--t5)}
+@media(hover:none){.trs-keys,.tab-k{display:none}}
+.trs-fbrow{display:flex;align-items:center;gap:14px;justify-content:center}
+.trs-fbl{display:flex;flex-direction:column;align-items:center;gap:6px}
+.trs-thumb{flex-shrink:0;border-radius:4px}
+.trsu{width:100%;max-width:440px;background:var(--b1);border:1px solid var(--bd);border-radius:var(--r3);padding:16px}
+.trsu-top{display:flex;gap:14px;align-items:flex-start}
+.trsu-info{min-width:0;flex:1}
+.trsu-name{font-size:15px;font-weight:800;color:var(--t1)}
+.trsu-meta{font-size:11px;color:var(--t3);margin-top:3px}.trsu-meta b{color:var(--t1);font-family:var(--fm)}
+.trsu-hist{font-size:10px;color:var(--t4);margin-top:5px}
+.trsu-lbl{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin:16px 0 7px}
+.trsu .len-chips{display:flex;gap:6px;flex-wrap:nowrap}.trsu .len-chip{flex:1;padding:10px 4px;font-size:12px}
+.trsu-deal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.trsu-deal button{text-align:left;padding:10px 11px;border-radius:var(--r2);border:1.5px solid var(--bd);background:var(--b2);color:var(--t3);cursor:pointer;display:flex;flex-direction:column;gap:3px}
+.trsu-deal button b{font-size:12px;color:var(--t1)}.trsu-deal button span{font-size:9.5px;line-height:1.35}
+.trsu-deal button.on{border-color:var(--pk);background:color-mix(in srgb,var(--pk) 10%,var(--b2))}
+.trsu-go{width:100%;margin-top:16px;padding:14px;font-size:14px;font-weight:800}
+.trsu-sec{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.tr-pick-item .fs-thumb{margin-right:2px}
+.trr{width:100%;max-width:440px;display:flex;flex-direction:column;gap:12px;animation:vIn .4s}
+.trr-hero{text-align:center;background:var(--b1);border:1px solid var(--bd);border-radius:var(--r3);padding:18px}
+.trr-emoji{font-size:30px}.trr-acc{font-size:44px;font-weight:800;font-family:var(--fm);color:var(--t1);line-height:1.1}
+.trr-sub{font-size:11px;color:var(--t3);margin-top:4px}.trr-mastery{margin-top:8px;display:flex;justify-content:center}
+.trr-sec{background:var(--b1);border:1px solid var(--bd);border-radius:var(--r2);padding:12px}
+.trr-h{font-size:12px;font-weight:800;color:var(--t1);margin-bottom:8px}.trr-h span{font-size:10px;font-weight:500;color:var(--t4);margin-left:4px}
+.trr-act{display:grid;grid-template-columns:minmax(0,110px) 1fr 44px;gap:8px;align-items:center;font-size:11px;color:var(--t2);padding:3px 0}
+.trr-act span{display:flex;align-items:center;gap:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.trr-act i{width:9px;height:9px;border-radius:2px;display:inline-block;flex-shrink:0}
+.trr-bar{height:8px;background:var(--b0);border-radius:4px;overflow:hidden}.trr-bar b{display:block;height:100%;border-radius:4px}
+.trr-act em{font-style:normal;font-family:var(--fm);font-size:10.5px;color:var(--t3);text-align:right}
+.trr-note{font-size:9.5px;color:var(--t4);margin-top:6px}
+.trr-miss{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 0;border-top:1px solid var(--bd)}
+.trr-miss:first-of-type{border-top:none}
+.trr-miss b{font-family:var(--fm);font-size:13px;color:var(--t1);min-width:34px}.trr-miss small{font-size:9.5px;color:var(--rs)}
+.trr-mc{display:flex;gap:4px;flex-wrap:wrap;flex:1}.trr-mc .mix-chip{font-size:9.5px;padding:2px 7px}
+.trr-you{font-size:9.5px;color:var(--t4)}
+.trr-perfect{text-align:center;font-size:12px;color:var(--mt);padding:10px}
+.trr-btns{display:flex;flex-wrap:wrap;gap:8px}.trr-btns .btn{flex:1 1 45%}
 .gg-status{font-size:11.5px;color:var(--t2);background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:9px 12px;margin-bottom:12px;line-height:1.5}
 .gg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .gg-chart-h{height:320px}
@@ -7297,24 +7357,85 @@ function importJSONData(d){let c=0;if(d.ranges){S.saved=d.ranges;c=d.ranges.leng
 let trMode="all";
 function setMode(m){trMode=m;document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m===m));if(Tr.active)Tr.next()}
 function updWeakDueBadge(rangeId){const badge=$("weakDueBadge");if(!badge)return;const k=rangeId||"_global";const e=S.errors[k]||{};const now=Date.now();const due=Object.values(e).filter(x=>(x.dueAt||0)<=now).length;badge.textContent=due>0?due:"";badge.classList.toggle("show",due>0)}
+/* ── trainer helpers: frequency-aware judging, mix chips, highlighted range thumbnail ── */
+function trWeights(cell,acts){const fi=acts.findIndex(a=>arIsFold(a)),w={};let tot=0;(cell||[]).forEach(x=>{w[x.ai]=(w[x.ai]||0)+x.w;tot+=x.w});if(tot<100&&fi>=0)w[fi]=(w[fi]||0)+100-tot;return w}
+function trJudge(cell,ai,acts){const w=trWeights(cell,acts),vals=Object.values(w),max=vals.length?Math.max(...vals):0,v=w[ai]||0;
+  // correct = an action played at least 25% of the time (or the main action)
+  return{ok:v>0&&(v>=25||v===max),v,max,w,good:Object.keys(w).map(Number).filter(k=>w[k]>0&&(w[k]>=25||w[k]===max))}}
+function trMixHtml(w,acts,chosen){return Object.keys(w).map(Number).sort((a,b)=>w[b]-w[a]).map(k=>{const a=acts[k]||{name:"?",color:"var(--t3)"};return'<span class="mix-chip'+(k===chosen?" chosen":"")+'" style="--mc:'+a.color+'">'+escapeHtml(a.name)+" "+w[k]+"%</span>"}).join("")}
+function trThumbHi(range,acts,hr,hc){
+  const s=84,cs=s/13;let rects='<rect width="'+s+'" height="'+s+'" rx="4" style="fill:var(--b0)"/>';
+  for(let i=0;i<13;i++)for(let j=0;j<13;j++){const w=trWeights(range[i][j],acts);let best=-1,bw=0,p=0;Object.keys(w).forEach(k=>{if(arIsFold(acts[k]))return;p+=w[k];if(w[k]>bw){bw=w[k];best=+k}});if(best<0)continue;
+    rects+='<rect x="'+(j*cs).toFixed(2)+'" y="'+(i*cs).toFixed(2)+'" width="'+(cs-.5).toFixed(2)+'" height="'+(cs-.5).toFixed(2)+'" fill="'+acts[best].color+'" fill-opacity="'+(0.3+0.7*p/100).toFixed(2)+'"/>'}
+  rects+='<rect x="'+(hc*cs-1).toFixed(2)+'" y="'+(hr*cs-1).toFixed(2)+'" width="'+(cs+1.5).toFixed(2)+'" height="'+(cs+1.5).toFixed(2)+'" fill="none" stroke="#fff" stroke-width="1.6" rx="1"/>';
+  return'<svg class="trs-thumb" viewBox="0 0 '+s+" "+s+'" width="'+s+'" height="'+s+'" aria-label="Where this hand sits in the range">'+rects+"</svg>";
+}
+function trDrillMistakes(){const list=window._trLastWrong||[];if(!list.length)return;window._trFocus=new Set(list);Tr.start(window._trD,window._trId,Math.min(30,Math.max(10,list.length*2)))}
+function setTrDeal(v){LS("ps_tr_deal",v);trMode=v==="weak"?"weak":"all";document.querySelectorAll("[data-deal]").forEach(b=>b.classList.toggle("on",b.dataset.deal===v))}
 const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,total:0,streak:0,best:0},
   usedActIdx(){const used=new Set();let hasEmpty=false;for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cell=this.range[r][c];if(!cell.length)hasEmpty=true;else cell.forEach(a=>used.add(a.ai))}if(hasEmpty){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");if(fi>=0)used.add(fi)}const arr=[...used].sort((a,b)=>a-b);return arr.length?arr:this.acts.map((a,i)=>i)},
   mixHtml(cell,chosenAi){if(!cell.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");const name=fi>=0?this.acts[fi].name:"Fold";const color=fi>=0?this.acts[fi].color:"var(--li)";const isChosen=fi>=0&&fi===chosenAi;return'<span class="mix-chip'+(isChosen?" chosen":"")+'" style="--mc:'+color+'">'+name+' 100%</span>'}return[...cell].sort((a,b)=>b.w-a.w).map(a=>{const act=this.acts[a.ai];const isChosen=a.ai===chosenAi;return'<span class="mix-chip'+(isChosen?" chosen":"")+'" style="--mc:'+act.color+'">'+act.name+' '+a.w+'%</span>'}).join("")},
-  start(d,rangeId,limit){this.range=d.range;this.acts=d.acts;this.rangeId=rangeId||"_global";this.limit=limit||0;this.paused=false;this.exclHands=getExclHands();this.trainIdx=this.usedActIdx();this.stats={ok:0,total:0,streak:0,best:0,byType:{pair:{ok:0,t:0},suited:{ok:0,t:0},offsuit:{ok:0,t:0}},byAction:{},history:[],wrongHands:{}};this.acts.forEach(a=>{this.stats.byAction[a.name]={ok:0,t:0}});this.active=true;trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"));$("mTabs").style.display="flex";this.buildUI();updWeakDueBadge(this.rangeId);this.next()},
-  buildUI(){const li=this.limit>0?'<div style="text-align:center;font-size:10px;color:var(--t4);margin-bottom:6px">'+this.limit+' hands</div>':'<div style="display:flex;gap:6px;justify-content:center;margin-bottom:6px"><button class="btn btn-s" id="trPauseBtn" onclick="Tr.togglePause()" style="color:var(--gd)">⏸ Pause</button><button class="btn btn-s btn-d" onclick="Tr.endSession()">⏹ Stop</button></div>';$("trContent").innerHTML=li+'<div style="width:100%;max-width:420px"><div class="tcard" id="tCard"><div class="hand-counter" id="hCnt">#0</div><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tr-progress"><div class="tr-progress-fill" id="trProg" style="width:0%"></div></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div></div><div class="tbtns" id="tBtns"></div><div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div>';const bc=$("tBtns");bc.innerHTML="";this.trainIdx.forEach((ai,i)=>{const a=this.acts[ai];const b=document.createElement("button");b.className="tabtn";b.style.borderColor=a.color;b.style.color=a.color;b.textContent=a.name;b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(ai));bc.appendChild(b)})},
-  next(){let pool=[];if(trMode==="weak"){const hm={};for(let r=0;r<13;r++)for(let c=0;c<13;c++)hm[hl(r,c)]=[r,c];getWeak(30,this.rangeId).forEach(([l])=>{if(hm[l])pool.push(hm[l])});pool=pool.filter(([r,c])=>this.range[r][c].length);if(!pool.length){trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"))}}
-  if(!pool.length){pool=[];for(let r=0;r<13;r++)for(let c=0;c<13;c++)pool.push([r,c])}
-  if(this.exclHands.size)pool=pool.filter(([r,c])=>!this.exclHands.has(hl(r,c)));
-  if(!pool.length){toast("All hands excluded");this.endSession();return}
-  const[r,c]=pool[Math.floor(Math.random()*pool.length)];const t=ht(r,c);const ss=[...SU].sort(()=>Math.random()-.5);let cards;if(t==="pair")cards=[{rank:RK[r],suit:ss[0]},{rank:RK[r],suit:ss[1]}];else if(t==="suited"){const s=ss[0];cards=[{rank:RK[r],suit:s},{rank:RK[c],suit:s}]}else cards=[{rank:RK[c],suit:ss[0]},{rank:RK[r],suit:ss[1]}];
-  this.cur={r,c,cards,label:hl(r,c),type:t};$("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").textContent="";$("tExp").className="texp";$("tCard").className="tcard";$("hCnt").textContent="#"+(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");$("streakN").textContent=this.stats.streak}else sb.classList.remove("show");
-  const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));document.querySelectorAll(".tabtn").forEach(b=>{b.disabled=false;b.classList.remove("tabtn-correct","tabtn-wrong")});this._ts=Date.now()},
-  answer(ai){if(!this.cur)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];let ok=false;if(!ca.length){const fi=this.acts.findIndex(a=>a.name.toLowerCase()==="fold");ok=fi>=0&&ai===fi}else{if(ca.some(a=>a.ai===ai))ok=true}const mixHtml=this.mixHtml(ca,ai);
-  this.stats.total++;this.stats.history.push(ok?1:0);this.stats.byType[type].t++;if(ok)this.stats.byType[type].ok++;const an=this.acts[ai].name;if(!this.stats.byAction[an])this.stats.byAction[an]={ok:0,t:0};this.stats.byAction[an].t++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak;this.stats.byAction[an].ok++;if(trMode==="weak")recCorrectWeak(label,this.rangeId)}else{this.stats.streak=0;recErr(label,an,this.rangeId);if(!this.stats.wrongHands[label])this.stats.wrongHands[label]=0;this.stats.wrongHands[label]++}
-  bumpLifetimeHand();bumpLifetimeStreak(this.stats.streak);trackDailyHand();trackDailyStreak(this.stats.streak);const mult=getMultiplier(ok?this.stats.streak:0);const xpGain=ok?Math.round(10*mult):2;const xpInfo=addXp(xpGain);
-  const card=$("tCard"),fb=$("tFb"),ep=$("tExp");if(ok){card.className="tcard fb-ok";fb.textContent="✦ CORRECT";fb.className="tfb ok show";const ms=this.stats.streak>0&&this.stats.streak%10===0;playSound(ms?"win":"correct");haptic(ms?"success":"light");if(ms)celebrate()}else{card.className="tcard fb-no";fb.textContent="✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}ep.innerHTML='<div class="mix-label">'+(ok?"This hand's range":"Correct mix")+'</div><div class="mix-chips">'+mixHtml+'</div>'+(ok&&mult>1?'<div class="xp-gain-chip">+'+xpGain+' XP · '+mult+'x streak bonus</div>':'<div class="xp-gain-chip sub">+'+xpGain+' XP</div>');ep.className="texp show";$("trProg").style.width=(this.limit>0?Math.round((this.stats.total/this.limit)*100):Math.round(this.stats.total>0?(this.stats.ok/this.stats.total)*100:0))+"%";const correctAis=ca.length?ca.map(a=>a.ai):[this.acts.findIndex(a=>a.name.toLowerCase()==="fold")];document.querySelectorAll(".tabtn").forEach((b,i)=>{const bai=this.trainIdx[i];b.disabled=true;if(correctAis.includes(bai))b.classList.add("tabtn-correct");if(!ok&&bai===ai)b.classList.add("tabtn-wrong")});this.updQ();checkAchievements();const spd=LG("ps_speed","fast");const okMs=spd==="fast"?500:spd==="slow"?2500:1000;const noMs=spd==="fast"?800:spd==="slow"?4000:2000;if(this.limit>0&&this.stats.total>=this.limit){setTimeout(()=>this.endSession(),ok?okMs:noMs)}else setTimeout(()=>{if(!this.paused)this.next()},ok?okMs:noMs)},
-  togglePause(){this.paused=!this.paused;const btn=$("trPauseBtn");if(btn){btn.textContent=this.paused?"▶ Resume":"⏸ Pause";btn.style.color=this.paused?"var(--mt)":"var(--gd)"}if(!this.paused)this.next()},
-  endSession(){this.active=false;const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;const hist=LG("ps_tr_history",[]);const id="th_"+Date.now();hist.push({id,rangeId:this.rangeId,date:new Date().toISOString(),total:s.total,ok:s.ok,accuracy:acc,best:s.best,limit:this.limit||"∞",wrongHands:s.wrongHands||{}});LS("ps_tr_history",hist);bumpLifetimeSession(acc,s.total);trackDailySession(acc,s.total);const newAchv=checkAchievements();if(acc>=90&&s.total>=5){setTimeout(celebrate,200);playSound("win");haptic("success")}const wh=Object.entries(s.wrongHands).sort((a,b)=>b[1]-a[1]).slice(0,12);const masteryHtml=this.rangeId&&this.rangeId!=="_editor"&&this.rangeId!=="_global"?'<div class="slbl" style="margin-top:14px">Range Mastery</div><div style="display:flex;justify-content:center">'+(masteryChipHtml(this.rangeId)||'<span class="mastery-chip" style="--mc:var(--t4)">⬡ Unranked</span>')+'</div>':"";$("trContent").innerHTML='<div style="text-align:center;padding:30px;animation:vIn .4s"><div style="font-size:36px;margin-bottom:12px">'+(acc>=80?"🌟":acc>=60?"✨":"💪")+'</div><div style="font-family:var(--fd);font-size:22px;font-style:italic;color:var(--pk2);margin-bottom:14px">Session Complete</div><div class="rstats"><div class="rstat-card"><div class="rsv">'+s.ok+"/"+s.total+'</div><div class="rsl">Score</div></div><div class="rstat-card"><div class="rsv">'+acc+'%</div><div class="rsl">Accuracy</div></div><div class="rstat-card"><div class="rsv">'+s.best+'</div><div class="rsl">Best Streak</div></div></div>'+masteryHtml+(wh.length?'<div class="slbl" style="margin-top:14px">Missed Hands</div><div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center">'+wh.map(([h,c])=>'<div style="padding:4px 8px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.2)">'+h+' <span style="opacity:.5">'+c+"×</span></div>").join("")+"</div>":"")+'<div style="display:flex;gap:8px;justify-content:center;margin-top:18px"><button class="btn pri" onclick="pickTrRange(window._trPickedVal)">Train Again</button><button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>'},
+  start(d,rangeId,limit){this.range=d.range;this.acts=d.acts;this.rangeName=(d&&d.name)||(rangeId==="_editor"?"Current editor":rangeId);this.focus=window._trFocus||null;window._trFocus=null;this.cur=null;this.waiting=false;const tv=$("trainerV");if(tv)tv.classList.add("tr-focus");this.rangeId=rangeId||"_global";this.limit=limit||0;this.paused=false;this.exclHands=getExclHands();this.trainIdx=this.usedActIdx();this.stats={ok:0,total:0,streak:0,best:0,byType:{pair:{ok:0,t:0},suited:{ok:0,t:0},offsuit:{ok:0,t:0}},byAction:{},history:[],wrongHands:{}};this.acts.forEach(a=>{this.stats.byAction[a.name]={ok:0,t:0}});this.active=true;trMode=(!this.focus&&LG("ps_tr_deal","smart")==="weak")?"weak":"all";this.buildUI();updWeakDueBadge(this.rangeId);this.next()},
+  buildUI(){
+    const nm=escapeHtml(this.rangeName||"Range"),free=!(this.limit>0);
+    $("trContent").innerHTML='<div class="trs-wrap"><div class="trs-head"><button class="trs-x" onclick="Tr.endSession()" title="End session">✕</button><div class="trs-mid"><div class="trs-name">'+nm+(this.focus?' <span class="trs-tag">mistakes drill</span>':trMode==="weak"?' <span class="trs-tag">weak spots</span>':"")+'</div><div class="trs-bar"><span id="trProg" style="width:0%"></span></div></div><div class="trs-count" id="hCnt">#1</div>'+(free?'<button class="trs-x" id="trPauseBtn" onclick="Tr.togglePause()" title="Pause">⏸</button>':"")+'</div>'
+      +'<div class="tcard" id="tCard"><div class="streak-badge" id="streakB"><span class="fire">🔥</span><span id="streakN">0</span></div><div class="ttype" id="tType"></div><div class="tcards" id="tCards"></div><div class="tfb" id="tFb"></div><div class="texp" id="tExp"></div></div>'
+      +'<div class="trs-actions"><div class="tbtns" id="tBtns"></div><button class="trs-next" id="trNextBtn" style="display:none" onclick="Tr.goNext()">Next hand →</button></div>'
+      +'<div class="tr-quick-stats"><div class="tr-qs"><div class="qv" id="qScore">0/0</div><div class="ql">Score</div></div><div class="tr-qs"><div class="qv" id="qAcc">—</div><div class="ql">Accuracy</div></div><div class="tr-qs"><div class="qv" id="qStreak">0</div><div class="ql">Streak</div></div><div class="tr-qs"><div class="qv" id="qBest">0</div><div class="ql">Best</div></div></div>'
+      +'<div class="trs-keys">Keys: 1–'+this.trainIdx.length+' to answer · Space for next</div></div>';
+    const bc=$("tBtns");this.trainIdx.forEach((ai,i)=>{const a=this.acts[ai];const b=document.createElement("button");b.className="tabtn";b.style.setProperty("--ac",a.color);b.style.borderColor=a.color;b.style.color=a.color;b.innerHTML='<span class="tab-k">'+(i+1)+"</span>"+escapeHtml(a.name);b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(ai));bc.appendChild(b)});
+    $("tCard").addEventListener("click",()=>{if(this.waiting)this.goNext()});
+  },
+  next(){
+    const fi=this.acts.findIndex(a=>arIsFold(a)),all=[];
+    for(let r=0;r<13;r++)for(let c=0;c<13;c++){if(this.exclHands.has(hl(r,c)))continue;if(fi<0&&!this.range[r][c].length)continue;all.push([r,c])}
+    let pool=all,smart=false;
+    if(this.focus&&this.focus.size)pool=all.filter(([r,c])=>this.focus.has(hl(r,c)));
+    else if(trMode==="weak"){const want=new Set(getWeak(30,this.rangeId).map(x=>x[0]));pool=all.filter(([r,c])=>want.has(hl(r,c)));if(!pool.length){trMode="all";document.querySelectorAll(".mode-tab").forEach(t=>t.classList.toggle("on",t.dataset.m==="all"));toast("No weak spots yet — dealing all hands");pool=all}}
+    if(pool===all&&LG("ps_tr_deal","smart")!=="all")smart=true;
+    if(!pool.length){toast("All hands excluded");this.endSession();return}
+    if(pool.length>1&&this.cur)pool=pool.filter(([r,c])=>!(r===this.cur.r&&c===this.cur.c));
+    let pick;
+    if(smart){ // favour hands you actually play, mixed hands and the folds right on the edge of the range
+      const playAt=(r,c)=>{const w=trWeights(this.range[r][c],this.acts);return Object.keys(w).reduce((s,k)=>s+(+k===fi?0:w[k]),0)};
+      const wts=pool.map(([r,c])=>{const p=playAt(r,c);if(p>0){const w=trWeights(this.range[r][c],this.acts),mixed=Object.values(w).filter(v=>v>=10).length>1;return mixed?5:3}
+        return[[0,1],[1,0],[0,-1],[-1,0]].some(([a,b])=>{const x=r+a,y=c+b;return x>=0&&y>=0&&x<13&&y<13&&playAt(x,y)>0})?2:0.6});
+      let t=wts.reduce((a,b)=>a+b,0)*Math.random();pick=pool[pool.length-1];for(let i=0;i<pool.length;i++){t-=wts[i];if(t<=0){pick=pool[i];break}}
+    }else pick=pool[Math.floor(Math.random()*pool.length)];
+    const[r,c]=pick;const t=ht(r,c);const ss=[...SU].sort(()=>Math.random()-.5);let cards;if(t==="pair")cards=[{rank:RK[r],suit:ss[0]},{rank:RK[r],suit:ss[1]}];else if(t==="suited"){const s=ss[0];cards=[{rank:RK[r],suit:s},{rank:RK[c],suit:s}]}else cards=[{rank:RK[c],suit:ss[0]},{rank:RK[r],suit:ss[1]}];
+    this.cur={r,c,cards,label:hl(r,c),type:t};this.waiting=false;
+    $("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").innerHTML="";$("tExp").className="texp";$("tCard").className="tcard";
+    $("hCnt").textContent=(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");$("trNextBtn").style.display="none";$("tBtns").style.display="";
+    const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");$("streakN").textContent=this.stats.streak}else sb.classList.remove("show");
+    const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));
+    document.querySelectorAll("#tBtns .tabtn").forEach(b=>{b.disabled=false;b.classList.remove("tabtn-correct","tabtn-wrong")});this._ts=Date.now()},
+  answer(ai){if(!this.cur||this.waiting)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];const J=trJudge(ca,ai,this.acts),ok=J.ok;
+  this.stats.total++;this.stats.history.push(ok?1:0);this.stats.byType[type].t++;if(ok)this.stats.byType[type].ok++;const an=this.acts[ai].name;if(!this.stats.byAction[an])this.stats.byAction[an]={ok:0,t:0};this.stats.byAction[an].t++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak;this.stats.byAction[an].ok++;if(trMode==="weak")recCorrectWeak(label,this.rangeId)}else{this.stats.streak=0;recErr(label,an,this.rangeId);if(!this.stats.wrongHands[label])this.stats.wrongHands[label]=0;this.stats.wrongHands[label]++;(this.stats.wrongAns||(this.stats.wrongAns={}))[label]=an}
+  bumpLifetimeHand();bumpLifetimeStreak(this.stats.streak);trackDailyHand();trackDailyStreak(this.stats.streak);const mult=getMultiplier(ok?this.stats.streak:0);const xpGain=ok?Math.round(10*mult):2;addXp(xpGain);
+  const card=$("tCard"),fb=$("tFb"),ep=$("tExp");
+  if(ok){card.className="tcard fb-ok";fb.textContent=J.v<100&&J.v<J.max?"✦ CORRECT · mixed spot":"✦ CORRECT";fb.className="tfb ok show";const ms=this.stats.streak>0&&this.stats.streak%10===0;playSound(ms?"win":"correct");haptic(ms?"success":"light");if(ms)celebrate()}
+  else{card.className="tcard fb-no";fb.textContent=J.v>0?"✗ RARELY — only "+J.v+"%":"✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}
+  ep.innerHTML='<div class="trs-fbrow"><div class="trs-fbl"><div class="mix-label">'+(ok?"This hand's mix":"Correct play")+'</div><div class="mix-chips">'+trMixHtml(J.w,this.acts,ai)+'</div><div class="xp-gain-chip'+(ok?"":" sub")+'">+'+xpGain+" XP"+(ok&&mult>1?" · "+mult+"x streak":"")+"</div></div>"+trThumbHi(this.range,this.acts,r,c)+"</div>";ep.className="texp show";
+  $("trProg").style.width=(this.limit>0?Math.round(this.stats.total/this.limit*100):Math.round(this.stats.ok/this.stats.total*100))+"%";
+  document.querySelectorAll("#tBtns .tabtn").forEach((b,i)=>{const bai=this.trainIdx[i];b.disabled=true;if(J.good.includes(bai))b.classList.add("tabtn-correct");if(!ok&&bai===ai)b.classList.add("tabtn-wrong")});this.updQ();checkAchievements();
+  const done=this.limit>0&&this.stats.total>=this.limit;
+  if(ok){const spd=LG("ps_speed","fast"),ms=spd==="fast"?550:spd==="slow"?2500:1100;setTimeout(()=>{if(!this.active||this.cur.label!==label||this.stats.total!==this._n)return;if(done)this.endSession();else if(!this.paused)this.next()},ms);this._n=this.stats.total}
+  else{this.waiting=true;$("tBtns").style.display="none";const nb=$("trNextBtn");nb.style.display="";nb.textContent=done?"See results →":"Next hand →"}},
+  goNext(){if(!this.waiting)return;this.waiting=false;if(this.limit>0&&this.stats.total>=this.limit)this.endSession();else if(!this.paused)this.next()},
+  togglePause(){this.paused=!this.paused;const btn=$("trPauseBtn");if(btn){btn.textContent=this.paused?"▶":"⏸";btn.title=this.paused?"Resume":"Pause"}if(!this.paused&&!this.waiting)this.next()},
+  endSession(){this.active=false;this.waiting=false;const tv=$("trainerV");if(tv)tv.classList.remove("tr-focus");const s=this.stats;const acc=s.total?Math.round((s.ok/s.total)*100):0;
+    if(s.total>0){const hist=LG("ps_tr_history",[]);hist.push({id:"th_"+Date.now(),rangeId:this.rangeId,date:new Date().toISOString(),total:s.total,ok:s.ok,accuracy:acc,best:s.best,limit:this.limit||"∞",wrongHands:s.wrongHands||{}});LS("ps_tr_history",hist);bumpLifetimeSession(acc,s.total);trackDailySession(acc,s.total)}
+    checkAchievements();if(acc>=90&&s.total>=5){setTimeout(celebrate,200);playSound("win");haptic("success")}
+    const wh=Object.entries(s.wrongHands).sort((a,b)=>b[1]-a[1]);const hm={};for(let r=0;r<13;r++)for(let c=0;c<13;c++)hm[hl(r,c)]=[r,c];
+    const mastery=this.rangeId&&this.rangeId!=="_editor"&&this.rangeId!=="_global"?(masteryChipHtml(this.rangeId)||'<span class="mastery-chip" style="--mc:var(--t4)">⬡ Unranked</span>'):"";
+    const byAct=Object.entries(s.byAction).filter(([,v])=>v.t).map(([n,v])=>{const a=this.acts.find(x=>x.name===n)||{color:"var(--t3)"};const p=Math.round(v.ok/v.t*100);return'<div class="trr-act"><span><i style="background:'+a.color+'"></i>'+escapeHtml(n)+'</span><div class="trr-bar"><b style="width:'+p+"%;background:"+a.color+'"></b></div><em>'+v.ok+"/"+v.t+"</em></div>"}).join("");
+    const savedIdx=S.saved.findIndex(x=>x.name===this.rangeId);
+    $("trContent").innerHTML='<div class="trr"><div class="trr-hero"><div class="trr-emoji">'+(acc>=90?"🌟":acc>=70?"✨":"💪")+'</div><div class="trr-acc">'+acc+'%</div><div class="trr-sub">'+s.ok+" of "+s.total+" correct · best streak "+s.best+"</div>"+(mastery?'<div class="trr-mastery">'+mastery+"</div>":"")+"</div>"
+      +(byAct?'<div class="trr-sec"><div class="trr-h">By answer you gave</div>'+byAct+'<div class="trr-note">How often you were right when you chose each action.</div></div>':"")
+      +(wh.length?'<div class="trr-sec"><div class="trr-h">Review your mistakes <span>'+wh.length+" hand"+(wh.length!==1?"s":"")+"</span></div>"+wh.slice(0,15).map(([h,n])=>{const[r,c]=hm[h];const w=trWeights(this.range[r][c],this.acts);return'<div class="trr-miss"><b>'+h+"</b>"+(n>1?'<small>'+n+"×</small>":"")+'<div class="trr-mc">'+trMixHtml(w,this.acts,-1)+'</div><span class="trr-you">you: '+escapeHtml((s.wrongAns||{})[h]||"?")+"</span></div>"}).join("")+"</div>":'<div class="trr-perfect">No mistakes — perfect session.</div>')
+      +'<div class="trr-btns"><button class="btn pri" onclick="pickTrRange(window._trPickedVal)">↻ Train again</button>'+(wh.length?'<button class="btn" onclick="trDrillMistakes()">🎯 Drill my '+wh.length+" mistake"+(wh.length!==1?"s":"")+"</button>":"")+(savedIdx>=0?'<button class="btn" onclick="openLearn('+savedIdx+')">🧠 Learn</button>':"")+'<button class="btn" onclick="go(\'files\')">📁 Ranges</button></div></div>';
+    window._trLastWrong=wh.map(x=>x[0]);
+  },
   updQ(){const s=this.stats;$("qScore").textContent=s.ok+"/"+s.total;$("qAcc").textContent=s.total?Math.round((s.ok/s.total)*100)+"%":"—";$("qStreak").textContent=s.streak;$("qBest").textContent=s.best},
 };
 /* ── GAUNTLET MODE (boss-fight cross-range trainer with a timer) ── */
@@ -7333,14 +7454,14 @@ const Gauntlet={active:false,pool:[],cur:null,timer:null,timeLeft:5,stats:{ok:0,
     this.timeLeft=5;const tf=$("gTimer");tf.style.transition="none";tf.style.width="100%";requestAnimationFrame(()=>{tf.style.transition="width .1s linear"});
     this.timer=setInterval(()=>{this.timeLeft-=0.1;const pct=Math.max(0,this.timeLeft/5*100);tf.style.width=pct+"%";tf.style.background=pct<30?"var(--rs)":pct<60?"var(--gd)":"var(--mt)";if(this.timeLeft<=0){clearInterval(this.timer);this.answer(-1)}},100)},
   usedActIdxFor(range,acts){const used=new Set();let hasEmpty=false;for(let r=0;r<13;r++)for(let c=0;c<13;c++){const cell=range[r][c];if(!cell.length)hasEmpty=true;else cell.forEach(a=>used.add(a.ai))}if(hasEmpty){const fi=acts.findIndex(a=>a.name.toLowerCase()==="fold");if(fi>=0)used.add(fi)}const arr=[...used].sort((a,b)=>a-b);return arr.length?arr:acts.map((a,i)=>i)},
-  answer(ai){clearInterval(this.timer);if(!this.cur)return;const{r,c,acts,range,label}=this.cur;const ca=range[r][c];let ok=false;if(ai>=0){if(!ca.length){const fi=acts.findIndex(a=>a.name.toLowerCase()==="fold");ok=fi>=0&&ai===fi}else if(ca.some(a=>a.ai===ai))ok=true}
+  answer(ai){clearInterval(this.timer);if(!this.cur)return;const{r,c,acts,range,label}=this.cur;const ca=range[r][c];const GJ=ai>=0?trJudge(ca,ai,acts):null;let ok=!!(GJ&&GJ.ok);
     const mixHtml=ai>=0?Tr.mixHtml.call({acts},ca,ai):Tr.mixHtml.call({acts},ca,-1);
     this.stats.total++;if(ok){this.stats.ok++;this.stats.streak++;if(this.stats.streak>this.stats.best)this.stats.best=this.stats.streak}else this.stats.streak=0;
     bumpLifetimeHand();bumpLifetimeStreak(this.stats.streak);trackDailyHand();trackDailyStreak(this.stats.streak);const mult=getMultiplier(ok?this.stats.streak:0);const xpGain=ok?Math.round(20*mult):2;addXp(xpGain);
     if(!this.runCounted){this.runCounted=true;bumpLifetimeGauntlet()}
     const card=$("gCard"),fb=$("gFb"),ep=$("gExp");if(ai<0){fb.textContent="⏱ TIME'S UP";fb.className="tfb no show";card.className="tcard gaunt-card fb-no";playSound("wrong");haptic("error")}else if(ok){card.className="tcard gaunt-card fb-ok";fb.textContent="✦ CORRECT";fb.className="tfb ok show";playSound("correct");haptic("light")}else{card.className="tcard gaunt-card fb-no";fb.textContent="✗ WRONG";fb.className="tfb no show";playSound("wrong");haptic("error")}
     ep.innerHTML='<div class="mix-label">'+(ok?"This hand's range":"Correct mix")+'</div><div class="mix-chips">'+mixHtml+'</div><div class="xp-gain-chip'+(ok?"":" sub")+'">+'+xpGain+' XP</div>';ep.className="texp show";
-    const correctAis=ca.length?ca.map(a=>a.ai):[acts.findIndex(a=>a.name.toLowerCase()==="fold")];
+    const correctAis=trJudge(ca,-99,acts).good;
     document.querySelectorAll("#gBtns .tabtn").forEach((b,i)=>{const bai=this.cur.trainIdx[i];b.disabled=true;if(correctAis.includes(bai))b.classList.add("tabtn-correct");if(!ok&&ai>=0&&bai===ai)b.classList.add("tabtn-wrong")});this.updQ();checkAchievements();
     setTimeout(()=>{if(this.active)this.next()},ok?400:1100)},
   updQ(){const s=this.stats;$("gScore").textContent=s.ok+"/"+s.total;$("gAcc").textContent=s.total?Math.round((s.ok/s.total)*100)+"%":"—";$("gStreak").textContent=s.streak;$("gBest").textContent=s.best},
@@ -7352,23 +7473,26 @@ function openTrRangePicker(){loadSvd();$("trPickSearch").value="";renderTrPickLi
 function renderTrPickList(){
   const q=($("trPickSearch")?.value||"").toLowerCase();
   const ct=$("trPickList");if(!ct)return;
+  const item=(r,i)=>{const st=fsRangeStats(r),mc=masteryChipHtml(r.name);return'<div class="tr-pick-item" onclick="pickTrRange(\''+i+'\')">'+fsThumb(r,40)+'<div class="tr-pick-info"><div class="tr-pick-name">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+escapeHtml(r.name)+'</div><div class="tr-pick-meta">'+st.play.toFixed(1)+'% of hands · '+st.acts.map(a=>a.name).join(" / ")+'</div>'+(mc?'<div style="margin-top:3px">'+mc+'</div>':"")+'</div><span class="tr-pick-chev">›</span></div>'};
   let h="";
   if(!q){
     const hcCur=S.range.flat().filter(c=>c.length).length;
     h+='<div class="tr-pick-item tr-pick-current" onclick="pickTrRange(\'current\')"><div class="tr-pick-ico">✎</div><div class="tr-pick-info"><div class="tr-pick-name">Current Editor</div><div class="tr-pick-meta">'+hcCur+' hands assigned</div></div><span class="tr-pick-chev">›</span></div>';
+    const seen=new Set(),rec=[];[...LG("ps_tr_history",[])].reverse().forEach(x=>{if(seen.has(x.rangeId)||rec.length>=5)return;seen.add(x.rangeId);const i=S.saved.findIndex(r=>r.name===x.rangeId);if(i>=0)rec.push(i)});
+    if(rec.length)h+='<div class="tr-pick-group">🕐 Recently trained</div>'+rec.map(i=>item(S.saved[i],i)).join("");
   }
-  const byF={};S.saved.forEach((r,i)=>{if(q&&!r.name.toLowerCase().includes(q))return;const f=r.folder||"/";if(!byF[f])byF[f]=[];byF[f].push({r,i})});
-  const keys=Object.keys(byF).sort();
+  const order=[];(function walk(p){order.push(p);getSubs(p).forEach(f=>walk(f.path))})("/");
+  const byF={};S.saved.forEach((r,i)=>{if(q&&!r.name.toLowerCase().includes(q)&&!(r.tags||[]).some(t=>t.toLowerCase().includes(q)))return;const f=r.folder||"/";(byF[f]=byF[f]||[]).push({r,i})});
+  const keys=[...order.filter(f=>byF[f]),...Object.keys(byF).filter(f=>!order.includes(f))];
   if(!keys.length&&q){h+='<div class="empty-state" style="padding:30px 10px"><span class="es-icon">🔍</span><div class="es-title">No matches</div><div class="es-sub">Try a different search term.</div></div>'}
-  keys.forEach(f=>{const fo=getFO(f);h+='<div class="tr-pick-group">'+fo.icon+' '+(f==="/"?"Root":escapeHtml(fo.name))+'</div>';byF[f].forEach(({r,i})=>{const hcc=r.range.flat().filter(c=>c.length).length;const pct=((rangeComboCount(r.range)/1326)*100).toFixed(1);h+='<div class="tr-pick-item" onclick="pickTrRange(\''+i+'\')"><div class="tr-pick-ico" style="'+(r.iconColor&&r.iconColor!=="none"?"background:"+r.iconColor:"")+'">'+(r.icon||"♠")+'</div><div class="tr-pick-info"><div class="tr-pick-name">'+(r.fav?'<span style="color:var(--gd)">★</span> ':"")+escapeHtml(r.name)+'</div><div class="tr-pick-meta">'+hcc+' hands · '+pct+'% coverage</div>'+(masteryChipHtml(r.name)?'<div style="margin-top:3px">'+masteryChipHtml(r.name)+'</div>':"")+'</div><span class="tr-pick-chev">›</span></div>'});
-  });
+  keys.forEach(f=>{const fo=getFO(f);const path=f.split("/").filter(Boolean);h+='<div class="tr-pick-group">'+fo.icon+' '+(f==="/"?"My ranges":escapeHtml(path.join(" › ")))+'</div>'+byF[f].map(({r,i})=>item(r,i)).join("")});
   if(!keys.length&&!q&&!S.saved.length)h+='<div class="empty-state" style="padding:30px 10px"><span class="es-icon">📁</span><div class="es-title">No saved ranges yet</div><div class="es-sub">Save a range from the Editor to train it here.</div></div>';
   ct.innerHTML=h;
 }
 function pickTrRange(v){
   window._trPickedVal=v;
   closeM("trPickM");
-  if(v===""){$("trContent").innerHTML='<div class="trprompt"><span class="pico">♠️ ♥️</span>Select a range above to begin training.</div>';$("mTabs").style.display="none";$("trPickerLabel").textContent="Select a range";$("trPickerSub").textContent="Tap to choose from your saved ranges";$("trPickerIcon").textContent="♠";return}
+  if(v===""){const tvx=$("trainerV");if(tvx)tvx.classList.remove("tr-picked");$("trContent").innerHTML='<div class="trprompt"><span class="pico">♠️ ♥️</span>Select a range above to begin training.</div>';$("mTabs").style.display="none";$("trPickerLabel").textContent="Select a range";$("trPickerSub").textContent="Tap to choose from your saved ranges";$("trPickerIcon").textContent="♠";return}
   var d,rId,icon="♠";
   if(v==="current"){d={acts:S.acts,range:S.range};rId="_editor";icon="✎"}
   else{d=S.saved[+v];rId=d?.name||"r_"+v;icon=(d&&d.icon)||"♠"}
@@ -7376,16 +7500,25 @@ function pickTrRange(v){
   var _lname=(d&&d.name)||"Range";
   $("trPickerLabel").textContent=_lname;
   $("trPickerIcon").textContent=icon;
-  var hcc=d?d.range.flat().filter(c=>c.length).length:0;
-  $("trPickerSub").textContent=hcc+" hands assigned · tap to change";
-  var _lb=[10,25,50,100,0].map(function(n){return'<button class="len-chip'+(n===0?' sel':'')+'" data-n="'+n+'" onclick="setTrLen(this,'+n+')">'+(n===0?"♾ Free":n+" hands")+'</button>'}).join("");
-  $("trContent").innerHTML='<div class="tr-session-card"><div class="tsc-title">'+_lname+'</div><div style="font-size:11px;color:var(--t3);margin-bottom:10px">Choose session length:</div><div class="len-chips">'+_lb+'</div><button class="btn pri" style="width:100%;margin-top:14px;padding:13px;font-size:13px;font-weight:800" onclick="startTrSession()">&#9654; Start Training</button><div style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px"><button class="btn btn-s" onclick="openExcludeHands()">&#x270E; Exclude Hands</button><span id="trExclCount" style="font-size:9px;color:var(--t4)"></span></div></div>';
+  var st=d?fsRangeStats(v==="current"?Object.assign({},d,{id:"_ed",ts:Date.now()}):d):{play:0,acts:[]};
+  $("trPickerSub").textContent=st.play.toFixed(1)+"% of hands · tap to change";
+  var last=(LG("ps_tr_history",[])).filter(function(x){return x.rangeId===rId}),lh=last[last.length-1];
+  var sessions=last.length,avg=sessions?Math.round(last.slice(-5).reduce(function(a,x){return a+x.accuracy},0)/Math.min(5,sessions)):null;
+  var lenDef=LG("ps_tr_len",25);window._trLen=lenDef;
+  var _lb=[10,25,50,100,0].map(function(n){return'<button class="len-chip'+(n===lenDef?' sel':'')+'" data-n="'+n+'" onclick="setTrLen(this,'+n+')">'+(n===0?"∞":n)+'</button>'}).join("");
+  var deal=LG("ps_tr_deal","smart"),savedIdx=v==="current"?-1:+v,weakN=0;try{weakN=getWeak(30,rId).length}catch(e){}
+  var tvp=$("trainerV");if(tvp)tvp.classList.add("tr-picked");
+  $("trContent").innerHTML='<div class="trsu"><div class="trsu-top">'+(d?fsThumb(v==="current"?Object.assign({},d,{id:"_ed",ts:Date.now()}):d,76):"")+'<div class="trsu-info"><div class="trsu-name">'+escapeHtml(_lname)+'</div><button class="trsu-change" onclick="openTrRangePicker()">Change range</button><div class="trsu-meta"><b>'+st.play.toFixed(1)+'%</b> of hands played</div><div class="fs-achips">'+fsActChips(st)+'</div>'+(sessions?'<div class="trsu-hist">'+sessions+' session'+(sessions!==1?"s":"")+' · last '+lh.accuracy+'% · recent avg '+avg+'%</div>':'<div class="trsu-hist">Not trained yet</div>')+(masteryChipHtml(rId)?'<div style="margin-top:4px">'+masteryChipHtml(rId)+'</div>':"")+'</div></div>'
+    +'<div class="trsu-lbl">Hands per session</div><div class="len-chips">'+_lb+'</div>'
+    +'<div class="trsu-lbl">Which hands to deal</div><div class="trsu-deal"><button data-deal="smart" class="'+(deal==="smart"?"on":"")+'" onclick="setTrDeal(\'smart\')"><b>🎯 Smart</b><span>Focus on hands you play, mixed hands and the edges</span></button><button data-deal="all" class="'+(deal==="all"?"on":"")+'" onclick="setTrDeal(\'all\')"><b>🎲 Every hand</b><span>All 169 equally, including easy folds</span></button><button data-deal="weak" class="'+(deal==="weak"?"on":"")+'" onclick="setTrDeal(\'weak\')"'+(weakN?"":" disabled")+'><b>🩹 Weak spots'+(weakN?" ("+weakN+")":"")+'</b><span>'+(weakN?"Hands you keep getting wrong":"Nothing to fix yet")+'</span></button></div>'
+    +'<button class="btn pri trsu-go" onclick="startTrSession()">▶ Start training</button>'
+    +'<div class="trsu-sec"><button class="btn btn-s" onclick="openExcludeHands()">✎ Exclude hands <span id="trExclCount"></span></button>'+(savedIdx>=0?'<button class="btn btn-s" onclick="openLearn('+savedIdx+')">🧠 Learn it first</button>':"")+'</div></div>';
   updateExclCount();$("mTabs").style.display="flex";
 }
 function getExclKey(){const rid=window._trId;return rid?"ps_excl_"+rid:null}
 function getExclHands(){const k=getExclKey();if(!k)return new Set();return new Set(LG(k,[]))}
 function saveExclHands(s){const k=getExclKey();if(!k)return;LS(k,[...s])}
-function updateExclCount(){const el=$("trExclCount");if(!el)return;const s=getExclHands();el.textContent=s.size?s.size+" hands excluded":""}
+function updateExclCount(){const el=$("trExclCount");if(!el)return;const s=getExclHands();el.textContent=s.size?"· "+s.size+" off":""}
 function openExcludeHands(){const d=window._trD;if(!d)return;const excl=getExclHands();let h='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><h3 style="margin:0">Exclude Hands</h3><button class="btn btn-xs" onclick="closeM(\'exclHandsM\');updateExclCount()" style="flex-shrink:0">✕ Done</button></div><div style="font-size:10px;color:var(--t3);margin-bottom:8px">Click to toggle.</div><div style="display:flex;gap:6px;margin-bottom:8px"><button class="btn btn-xs" onclick="exclBulk(\'empty\')">Exclude Folds</button><button class="btn btn-xs" onclick="exclBulk(\'all\')">All</button><button class="btn btn-xs" onclick="exclBulk(\'none\')">None</button></div><div id="exclGrid" style="display:grid;grid-template-columns:repeat(13,1fr);gap:2px;max-width:440px;margin:0 auto;user-select:none;touch-action:none">';
 for(let r=0;r<13;r++)for(let c=0;c<13;c++){const label=hl(r,c);const ca=d.range[r][c];const isExcl=excl.has(label);const isEmpty=!ca.length;const topAct=ca.length?d.acts[ca[0].ai]:null;const bg=isExcl?"var(--b0)":isEmpty?"var(--b2)":topAct?topAct.color+"44":"var(--b3)";h+='<div data-hl="'+label+'" data-r="'+r+'" data-c="'+c+'" class="excl-cell" style="aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:clamp(5px,1.1vw,8px);font-weight:700;background:'+bg+';border:1px solid '+(isExcl?"var(--rs)":"var(--bd)")+';cursor:pointer;opacity:'+(isExcl?".35":"1")+';border-radius:2px;color:'+(isExcl?"var(--rs)":isEmpty?"var(--t5)":"var(--t1)")+'">'+label+'</div>'}
 h+='</div><div style="margin-top:8px;text-align:right"><span id="exclModalCount" style="font-size:10px;color:var(--t4)">'+excl.size+' excluded</span></div>';const m=$("exclHandsM");if(!m)return;m.querySelector(".mdl").innerHTML=h;initExclDrag();openM("exclHandsM")}
@@ -9905,7 +10038,7 @@ function doFolderMove(path){
 
 function setTrLen(el,n){
   document.querySelectorAll('.len-chip').forEach(function(b){b.classList.toggle('sel',b===el)});
-  window._trLen=n;
+  window._trLen=n;LS("ps_tr_len",n);
 }
 function startTrSession(){
   var n=(window._trLen!==undefined)?window._trLen:0;
@@ -12276,6 +12409,7 @@ setFsView(LG("ps_fsview","detail"));
 window.addEventListener("click",()=>closeCtxMenu());
 document.addEventListener("keydown",function(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openGlobalSearch();return}if(e.code==="Escape"){document.querySelectorAll(".mov.open,.cfov.open").forEach(function(m){m.classList.remove("open")});closeCtxMenu();closeHamburgerMenu();return}
   if(document.activeElement.tagName==="INPUT"||document.activeElement.tagName==="TEXTAREA")return;
+  if(Tr.active&&Tr.waiting&&(e.code==="Space"||e.key==="Enter")){e.preventDefault();Tr.goNext();return}
   const n=parseInt(e.key,10);if(!n||n<1||n>9)return;
   if(Tr.active&&!Tr.paused&&Tr.cur&&Tr.trainIdx&&n<=Tr.trainIdx.length){e.preventDefault();const btns=document.querySelectorAll(".tabtn");const b=btns[n-1];if(b&&!b.disabled)b.click()}
 });
