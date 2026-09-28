@@ -3516,6 +3516,55 @@ button:focus-visible{outline:2px solid var(--pk);outline-offset:2px}
   .editor-grid .matrix{--mtx-max:600px}
   .editor-side{width:340px;max-width:340px;margin:0;position:sticky;top:10px}
 }
+.sh-gear{margin-left:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--bd2);background:var(--b2);color:var(--t2);font-size:15px;cursor:pointer}
+.sh-tabs{display:flex;gap:6px;margin-bottom:12px}
+.sh-layout{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:900px){.sh-layout{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}}
+.sh-col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.shc{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r2);padding:12px}
+.shc-log{width:100%;padding:13px}
+.shc-q{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:10px}
+.shc-q span,.sh-fchips span{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t4);margin-right:2px}
+.shc-q button,.sh-fchips button{padding:6px 11px;border-radius:50px;border:1px solid var(--bd2);background:var(--b0);color:var(--t1);font-family:var(--fm);font-size:11px;font-weight:700;cursor:pointer}
+.shc-q button:hover,.sh-fchips button:hover{border-color:var(--pk)}
+.shc-hint{font-size:10px;color:var(--t4);margin-top:8px}
+.sh-period{background:linear-gradient(150deg,color-mix(in srgb,var(--gd2) 12%,var(--b2)),var(--b2));border:1px solid color-mix(in srgb,var(--gd2) 35%,var(--bd));border-radius:var(--r2);padding:14px}
+.shp-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.shp-h span{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--gd2)}.shp-h b{font-size:13px;color:var(--t1)}
+.shp-bar{height:6px;border-radius:3px;background:var(--b0);margin:10px 0 5px;overflow:hidden}.shp-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gd2),var(--pk));border-radius:3px}
+.shp-d{font-size:10px;color:var(--t4)}
+.shp-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:12px 0 4px}
+.shp-stats div{display:flex;flex-direction:column;align-items:center;background:rgba(0,0,0,.18);border-radius:var(--r1);padding:8px 4px}
+.shp-stats b{font-family:var(--fm);font-size:17px;font-weight:800;color:var(--t1);white-space:nowrap}.shp-stats span{font-size:9px;color:var(--t4);margin-top:2px}
+.shp-stats .ot b{color:var(--gd2)}.shp-stats .pay b{color:var(--mt);font-size:14px}
+.sh-mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.shm{background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:9px 10px;display:flex;flex-direction:column;min-width:0}
+.shm span{font-size:8.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--t4)}.shm b{font-family:var(--fm);font-size:15px;color:var(--t1);margin:3px 0 1px}.shm small{font-size:9px;color:var(--t4)}
+.shift-cal-dow,.shift-cal-days{grid-template-columns:repeat(7,1fr) 44px!important}
+.shift-cal-dow .wk{font-size:8px}
+.shift-cal-day{aspect-ratio:auto!important;min-height:46px;padding:3px 1px!important}
+.shift-cal-day.in-period:not(.has-shift):not(.leave-day){background:color-mix(in srgb,var(--gd2) 5%,var(--b0))}
+.shift-cal-day.future:not(.has-shift):not(.leave-day){opacity:.55}
+.shift-cal-wk{display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:8px;background:rgba(0,0,0,.2);font-family:var(--fm)}
+.shift-cal-wk b{font-size:10px;color:var(--t1)}.shift-cal-wk small{font-size:8px;color:var(--gd2)}.shift-cal-wk.zero b{color:var(--t5)}
+.shift-cal-legend{flex-wrap:wrap;gap:4px 12px!important}
+.shift-cal-legend span{display:inline-flex;align-items:center;gap:4px}
+.shift-cal-legend i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.shift-cal-note{position:absolute;top:3px;left:3px;font-size:6.5px;line-height:1;filter:drop-shadow(0 0 3px rgba(0,0,0,.6))}
+.lg-work{background:color-mix(in srgb,var(--mt) 45%,var(--b0));border:1px solid var(--mt)}.lg-ot{background:var(--gd2)}.lg-late{background:var(--rs);border-radius:50%!important}.lg-period{background:color-mix(in srgb,var(--gd2) 25%,var(--b0))}
+.sh-cal-hint{font-size:9.5px;color:var(--t5);margin-top:6px}
+@media(min-width:900px){.shift-cal-wrap{max-width:560px}}
+.sh-filters{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin:12px 0 10px}.sh-filters::-webkit-scrollbar{display:none}.sh-filters .gg-chip{flex-shrink:0}
+.shg{border:1px solid var(--bd);border-radius:var(--r2);background:var(--b1);margin-bottom:8px;overflow:hidden}
+.shg-h{width:100%;display:flex;align-items:center;gap:8px;padding:11px 12px;background:var(--b2);border:none;color:var(--t2);cursor:pointer;text-align:left;flex-wrap:wrap}
+.shg-t{font-weight:800;font-size:12.5px;color:var(--t1);flex:1}.shg-s{font-size:10.5px;color:var(--t3);font-family:var(--fm);flex-basis:100%;order:3}
+.shg-c{color:var(--t4);transition:transform .2s;font-size:16px}.shg.open .shg-c{transform:rotate(90deg)}
+.shr{display:flex;align-items:center;gap:10px;padding:9px 12px;border-top:1px solid var(--bd);cursor:pointer}
+.shr:hover{background:color-mix(in srgb,var(--pk) 5%,transparent)}
+.shr-d{width:34px;display:flex;flex-direction:column;align-items:center;flex-shrink:0}.shr-d b{font-size:16px;color:var(--t1);line-height:1}.shr-d small{font-size:9px;color:var(--t4);text-transform:uppercase}
+.shr-m{flex:1;min-width:0}.shr-t{font-size:12px;color:var(--t2);font-family:var(--fm)}.shr-n{font-size:10.5px;color:var(--t4);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shr-r{display:flex;flex-direction:column;align-items:flex-end;gap:2px}.shr-r b{font-family:var(--fm);font-size:13px;color:var(--t1)}
+.sh-fchips{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:8px}
+.sh-form .sh-foot{position:sticky;bottom:-28px;background:var(--b1);padding:12px 0 4px;margin-bottom:-4px;z-index:2}
 .gg-status{font-size:11.5px;color:var(--t2);background:var(--b2);border:1px solid var(--bd);border-radius:var(--r1);padding:9px 12px;margin-bottom:12px;line-height:1.5}
 .gg-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
 .gg-chart-h{height:320px}
@@ -4716,39 +4765,38 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 <!-- SHIFT LOG -->
 <div id="shiftsV" class="view">
   <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
-  <div class="section-head"><span style="font-size:20px">⏱️</span><h2>Shift Log</h2></div>
-  <div class="setting-desc" style="margin-bottom:14px">Track your dealing shifts, overtime, holiday &amp; sick days.</div>
-  <div style="display:flex;gap:6px;margin-bottom:14px">
+  <div class="section-head"><span style="font-size:20px">⏱️</span><h2>Shift Log</h2><button class="sh-gear" onclick="openShiftSettings()" title="Shift settings">⚙</button></div>
+  <div class="sh-tabs">
     <button class="mode-tab on" id="shiftTabOverview" onclick="shiftSwitchTab('overview')">📅 Overview</button>
-    <button class="mode-tab" id="shiftTabHistory" onclick="shiftSwitchTab('history')">📊 History &amp; Stats</button>
+    <button class="mode-tab" id="shiftTabHistory" onclick="shiftSwitchTab('history')">📋 History &amp; Stats</button>
   </div>
   <div id="shiftOverviewArea">
-    <div class="shift-ot-hero" id="shiftOtHero"></div>
-    <div class="shift-summary-grid" id="shiftSummaryGrid"></div>
-    <div style="display:flex;gap:8px;margin:14px 0">
-      <button class="btn pri" style="flex:1" onclick="openShiftForm()">+ Log Shift</button>
-    </div>
-    <div class="shift-cal-wrap">
-      <div class="shift-cal-nav">
-        <button class="flow-icon-btn" onclick="shiftCalPrevMonth()">‹</button>
-        <span id="shiftCalMonthLabel" class="shift-cal-month-label" onclick="shiftCalToday()"></span>
-        <button class="flow-icon-btn" onclick="shiftCalNextMonth()">›</button>
+    <div class="sh-layout">
+      <div class="sh-col">
+        <div id="shClock"></div>
+        <div class="sh-period" id="shiftOtHero"></div>
+        <div class="sh-mini" id="shiftSummaryGrid"></div>
       </div>
-      <div id="shiftCalGrid"></div>
-      <div class="shift-cal-legend"><span class="shift-cal-legend-dot"></span> Overtime pay period starts &nbsp;·&nbsp; <span class="shift-cal-legend-dot" style="background:var(--rs);box-shadow:0 0 6px 1.5px var(--rs)"></span> Late</div>
+      <div class="sh-col">
+        <div class="shift-cal-wrap">
+          <div class="shift-cal-nav">
+            <button class="flow-icon-btn" onclick="shiftCalPrevMonth()">‹</button>
+            <span id="shiftCalMonthLabel" class="shift-cal-month-label" onclick="shiftCalToday()" title="Back to this month"></span>
+            <button class="flow-icon-btn" onclick="shiftCalNextMonth()">›</button>
+          </div>
+          <div id="shiftCalGrid"></div>
+          <div class="shift-cal-legend"><span><i class="lg-work"></i>Worked</span><span>🏖️ Holiday</span><span>🤒 Sick</span><span><i class="lg-ot"></i>OT</span><span><i class="lg-late"></i>Late</span><span>📝 Note</span><span><i class="lg-period"></i>Pay period</span></div>
+          <div class="sh-cal-hint">Tap a day to log or edit it.</div>
+        </div>
+      </div>
     </div>
   </div>
   <div id="shiftHistoryArea" style="display:none">
     <div class="shift-summary-grid shift-stats-grid" id="shiftStatsCards"></div>
+    <div class="sh-filters" id="shFilters"></div>
+    <div id="shiftsList"></div>
     <div class="shift-chart-box"><div class="slbl" style="display:flex;align-items:center">Hours by Month</div><div style="height:200px"><canvas id="chShiftHours"></canvas></div></div>
     <div class="shift-chart-box"><div class="slbl">Worked vs Holiday vs Sick</div><div style="height:200px"><canvas id="chShiftBreakdown"></canvas></div></div>
-    <div style="display:flex;gap:8px;margin:14px 0">
-      <button class="btn pri" style="flex:1" onclick="openShiftForm()">+ Log Shift</button>
-    </div>
-    <div class="shift-history-header closed" id="shiftHistoryHeader" onclick="toggleShiftHistoryCollapse()"><span class="shift-history-toggle closed">▼</span><span class="slbl" style="margin:0">📋 All Shifts</span></div>
-    <div class="shift-history-content closed" id="shiftHistoryContent">
-      <div id="shiftsList"></div>
-    </div>
   </div>
 </div>
 <!-- GG RESULTS -->
@@ -4927,6 +4975,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 </div></div>
 <div class="mov" id="edQuickM"><div class="mdl edq-mdl" id="edQuickBody"></div></div>
 <div class="mov" id="edTypeM"><div class="mdl edq-mdl" id="edTypeBody"></div></div>
+<div class="mov" id="shSetM"><div class="mdl edq-mdl" id="shSetBody"></div></div>
 <div class="mov" id="learnM"><div class="mdl lr-mdl" id="learnBody"></div></div>
 <div class="mov" id="ggGraphM" onclick="if(event.target===this)closeGGGraph()"><div class="mdl gx-mdl"><div class="gx-hdr"><h3>📈 Winnings Graph</h3><button class="gs-close" onclick="closeGGGraph()">✕</button></div><div class="gx-chart"><canvas id="chGGBig"></canvas></div></div></div>
 <div class="mov" id="ggReplayM"><div class="mdl ggr-mdl" id="ggReplayContent"></div></div>
@@ -4981,7 +5030,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
   <div class="flow-color-row" id="flowConnColorRow"></div>
   <div class="mact"><button class="btn btn-d" id="flowConnDeleteBtn" onclick="flowDeleteSelectedConnection()">🗑️ Remove Arrow</button><button class="btn pri" onclick="closeM('flowConnM')">Done</button></div>
 </div></div>
-<div class="mov" id="shiftFormM"><div class="mdl" style="max-width:440px;max-height:85vh;overflow-y:auto">
+<div class="mov" id="shiftFormM"><div class="mdl sh-form" style="max-width:440px;max-height:88vh;overflow-y:auto">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
     <h3 id="shiftFormTitle" style="margin:0;border:none;padding:0">⏱️ Log Shift</h3>
     <button class="flow-icon-btn" onclick="closeM('shiftFormM')" title="Close">✕</button>
@@ -5002,7 +5051,8 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
       <div style="flex:1.2"><label class="slbl">End Date</label><input type="date" class="minp" id="shiftEndDate" oninput="shiftMarkEndTouched();updateShiftLivePreview()"/></div>
       <div style="flex:1"><label class="slbl">End Time</label><input type="time" class="minp" id="shiftEndTime" oninput="shiftMarkEndTouched();updateShiftLivePreview()"/></div>
     </div>
-    <label class="slbl" style="margin-top:10px">Overtime Hours <span class="tool-optional">(if any of this shift was OT — e.g. asked to stay late or start early)</span></label>
+    <div class="sh-fchips" id="shFormChips"></div>
+    <label class="slbl" style="margin-top:10px">Overtime hours <span class="tool-optional">(part of this shift paid as OT)</span></label>
     <input type="number" class="minp" id="shiftOtHours" step="0.25" min="0" placeholder="0" oninput="updateShiftLivePreview()"/>
     <label class="setting-row shift-ot-check-row" style="border-bottom:none;margin-top:8px;padding:10px 12px;background:var(--b0);border-radius:var(--r1);cursor:pointer">
       <span class="setting-label" style="font-size:13px">I was late</span>
@@ -5022,7 +5072,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
   <label class="slbl" style="margin-top:8px">Notes <span class="tool-optional">(optional)</span></label>
   <textarea class="rnote" id="shiftNotes" style="min-height:50px"></textarea>
   <div id="shiftLivePreview" class="shift-preview"></div>
-  <div class="mact"><button class="btn btn-d" id="shiftDeleteBtn" style="display:none" onclick="deleteShift()">🗑️ Delete</button><button class="btn" onclick="closeM('shiftFormM')">Cancel</button><button class="btn pri" onclick="saveShift()">Save Shift</button></div>
+  <div class="mact sh-foot"><button class="btn btn-d" id="shiftDeleteBtn" style="display:none" onclick="deleteShift()">🗑️ Delete</button><button class="btn" onclick="closeM('shiftFormM')">Cancel</button><button class="btn pri" onclick="saveShift()">Save Shift</button></div>
 </div></div>
 <div class="mov" id="trainResultsM"><div class="mdl" style="max-width:480px;max-height:80vh;overflow-y:auto">
   <h3>🎯 Training Results</h3>
@@ -9747,20 +9797,59 @@ function computeShiftSummary(shifts,rangeStart,rangeEnd){
   });
   return{hours,otHours,count};
 }
+/* ── shift log: settings, clock in/out, quick log, pay period hero, grouped history ── */
+function shSettings(){return Object.assign({rate:"",otMult:1.5,len:10},LG("ps_shift_settings",{}))}
+function shD(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function shT(d){return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
+function shFmtH(h){const m=Math.round(h*60);return Math.floor(m/60)+"h"+(m%60?" "+String(m%60).padStart(2,"0")+"m":"")}
+function shCommon(n){const c={};getShifts().filter(s=>(s.type||"worked")==="worked"&&s.startTime&&s.endTime).forEach(s=>{const k=s.startTime+"–"+s.endTime;c[k]=(c[k]||0)+1});return Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,n||3).map(([k,v])=>({start:k.split("–")[0],end:k.split("–")[1],n:v}))}
+function shQuickLog(start,end){
+  const now=new Date(),[sh,sm]=start.split(":").map(Number),[eh,em]=end.split(":").map(Number),cross=eh*60+em<=sh*60+sm;
+  const d=new Date(now);const nowM=now.getHours()*60+now.getMinutes();
+  if(cross&&nowM<eh*60+em+180&&nowM<sh*60+sm)d.setDate(d.getDate()-1); // early hours after a night shift → it started yesterday
+  const sd=shD(d),ed=new Date(d);if(cross)ed.setDate(ed.getDate()+1);
+  const list=getShifts();if(list.some(s=>s.type!=="holiday"&&s.type!=="sick"&&s.startDate===sd&&s.startTime===start))return toast("That shift is already logged");
+  list.push({id:"shift_"+Date.now(),type:"worked",startDate:sd,startTime:start,endDate:shD(ed),endTime:end,otHours:0,isLate:false,lateMins:0,notes:"",ts:Date.now()});
+  saveShiftsList(list);afterShiftChange();playSound("save");haptic("success");
+  toast("Logged "+start+"–"+end+" · "+new Date(sd+"T00:00:00").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"}));
+}
+function renderShiftClock(){
+  const el=$("shClock");if(!el)return;
+  const com=shCommon(3);
+  el.innerHTML='<div class="shc"><button class="btn pri shc-log" onclick="openShiftForm()">+ Log shift</button>'
+    +(com.length?'<div class="shc-q"><span>Quick log</span>'+com.map(c=>'<button onclick="shQuickLog(\''+c.start+'\',\''+c.end+'\')">'+c.start+"–"+c.end+"</button>").join("")+"</div>":'<div class="shc-hint">Log a few shifts and your usual times appear here for one-tap logging.</div>')+"</div>";
+}
+function openShiftSettings(){
+  const s=shSettings();
+  $("shSetBody").innerHTML='<div class="edq-h"><h3>⚙ Shift settings</h3><button class="btn btn-xs" onclick="closeM(\'shSetM\')">✕</button></div>'
+    +'<label class="slbl">Usual shift length (hours)</label><input type="number" class="minp" id="shSetLen" step="0.5" min="1" max="24" value="'+s.len+'"/><div class="edq-ex">Used to fill in the end time when you enter a start time.</div>'
+    +'<label class="slbl" style="margin-top:12px">Hourly rate <span class="tool-optional">(optional — shows estimated pay)</span></label><input type="number" class="minp" id="shSetRate" step="0.01" min="0" placeholder="e.g. 12.50" value="'+(s.rate||"")+'"/>'
+    +'<label class="slbl" style="margin-top:12px">Overtime multiplier</label><input type="number" class="minp" id="shSetMult" step="0.05" min="1" value="'+s.otMult+'"/>'
+    +'<div class="edq-ex">Pay periods run from the 2nd Sunday of one month to the 2nd Sunday of the next.</div>'
+    +'<div class="mact"><button class="btn" onclick="closeM(\'shSetM\')">Cancel</button><button class="btn pri" onclick="saveShiftSettings()">Save</button></div>';
+  openM("shSetM");
+}
+function saveShiftSettings(){LS("ps_shift_settings",{len:parseFloat($("shSetLen").value)||10,rate:parseFloat($("shSetRate").value)||"",otMult:parseFloat($("shSetMult").value)||1.5});closeM("shSetM");afterShiftChange();toast("Saved ✦")}
+function shPay(reg,ot){const s=shSettings();if(!s.rate)return null;return reg*s.rate+ot*s.rate*s.otMult}
+function shMoney(v){return"£"+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
+function shInRange(s,a,b){const d=new Date((shiftDateKey(s)||"")+"T00:00:00");return!isNaN(d.getTime())&&d>=a&&d<b}
+function shAgg(list){let hrs=0,ot=0,reg=0,n=0,late=0,hol=0,sick=0;list.forEach(s=>{const b=computeShiftBreakdown(s);if(s.type==="holiday"){hol+=b.hours;return}if(s.type==="sick"){sick+=b.hours;return}hrs+=b.hours;ot+=b.otHours;reg+=b.regularHours;n++;if(s.isLate)late++});return{hrs,ot,reg,n,late,hol,sick}}
 function renderShiftSummary(){
   const grid=$("shiftSummaryGrid");if(!grid)return;
-  const shifts=getShifts();
-  const now=new Date();
-  const period=getOTPeriodForDate(now.toISOString().slice(0,10));
-  const monthStart=new Date(now.getFullYear(),now.getMonth(),1);const monthEnd=new Date(now.getFullYear(),now.getMonth()+1,1);
-  const allStart=new Date(0);const allEnd=new Date(8640000000000000);
-  const periodSum=computeShiftSummary(shifts,period.start,period.end);
-  const month=computeShiftSummary(shifts,monthStart,monthEnd);
-  const all=computeShiftSummary(shifts,allStart,allEnd);
+  renderShiftClock();
+  const shifts=getShifts(),now=new Date(),period=getOTPeriodForDate(shD(now));
+  const P=shAgg(shifts.filter(s=>shInRange(s,period.start,period.end)));
+  const prevStart=getOTPeriodForDate(shD(new Date(period.start.getTime()-86400000))).start,L=shAgg(shifts.filter(s=>shInRange(s,prevStart,period.start)));
+  const M=shAgg(shifts.filter(s=>shInRange(s,new Date(now.getFullYear(),now.getMonth(),1),new Date(now.getFullYear(),now.getMonth()+1,1)))),A=shAgg(shifts);
+  const days=Math.round((period.end-period.start)/86400000),done=Math.min(days,Math.max(0,Math.floor((now-period.start)/86400000)+1));
+  const pay=shPay(P.reg,P.ot);
   const hero=$("shiftOtHero");
-  if(hero)hero.innerHTML='<div class="shift-ot-hero-lbl">⚡ Overtime — Current Pay Period</div><div class="shift-ot-hero-val">'+periodSum.otHours.toFixed(1)+'h</div><div class="shift-ot-hero-sub">'+fmtShiftDate(period.start)+" – "+fmtShiftDate(period.end)+" · "+all.otHours.toFixed(1)+"h all-time</div>";
-  const card=(label,sub,d)=>'<div class="shift-sum-card"><div class="shift-sum-lbl">'+label+'</div><div class="shift-sum-val">'+d.hours.toFixed(1)+'h</div><div class="shift-sum-sub">'+(d.otHours>0?d.otHours.toFixed(1)+"h OT":"no OT")+(sub?"<br>"+sub:"")+"</div></div>";
-  grid.innerHTML=card("Current OT Period",fmtShiftDate(period.start)+"–"+fmtShiftDate(period.end),periodSum)+card("This Month","",month)+card("All Time","",all);
+  if(hero)hero.innerHTML='<div class="shp-h"><span>Pay period</span><b>'+fmtShiftDate(period.start)+" – "+fmtShiftDate(new Date(period.end.getTime()-86400000))+'</b></div>'
+    +'<div class="shp-bar"><span style="width:'+(done/days*100).toFixed(1)+'%"></span></div><div class="shp-d">Day '+done+" of "+days+" · "+(days-done)+" day"+(days-done!==1?"s":"")+" left</div>"
+    +'<div class="shp-stats"><div><b>'+P.hrs.toFixed(1)+'h</b><span>worked</span></div><div class="ot"><b>'+P.ot.toFixed(1)+'h</b><span>overtime</span></div><div><b>'+P.n+'</b><span>shift'+(P.n!==1?"s":"")+"</span></div>"+(pay!=null?'<div class="pay"><b>'+shMoney(pay)+'</b><span>est. pay</span></div>':'<div><b>'+P.late+'</b><span>late</span></div>')+"</div>"
+    +(P.hol||P.sick?'<div class="shp-d">'+(P.hol?"🏖️ "+P.hol+"h holiday ":"")+(P.sick?"🤒 "+P.sick+"h sick":"")+"</div>":"");
+  const card=(l,d,sub)=>'<div class="shm"><span>'+l+"</span><b>"+d.hrs.toFixed(1)+"h</b><small>"+(d.ot?d.ot.toFixed(1)+"h OT · ":"")+d.n+" shift"+(d.n!==1?"s":"")+(sub||"")+"</small></div>";
+  grid.innerHTML=card("Last period",L)+card("This month",M)+card("All time",A);
 }
 function shiftTypeIcon(type){return type==="holiday"?"🏖️":type==="sick"?"🤒":"💼"}
 function shiftTimesLabel(s){
@@ -9782,27 +9871,23 @@ function toggleShiftHistoryCollapse(){
   if(toggle)toggle.classList.toggle("closed",!isClosed);
   LS("ps_shift_history_collapsed",!isClosed);
 }
+let shHistFilter="all",shOpenGroups=null;
 function renderShiftsList(){
   const el=$("shiftsList");if(!el)return;
-  const shifts=[...getShifts()].sort((a,b)=>(shiftDateKey(b)||"").localeCompare(shiftDateKey(a)||"")||(b.startTime||"").localeCompare(a.startTime||""));
-  if(!shifts.length){
-    el.innerHTML='<div class="empty-state" style="padding:30px"><span class="es-icon">⏱️</span><div class="es-title">No shifts logged yet</div><div class="es-sub">Tap "+ Log Shift" or a day on the calendar to add one.</div></div>';
-    return;
-  }
-  el.innerHTML=shifts.map(s=>{
-    const b=computeShiftBreakdown(s);
-    const dk=shiftDateKey(s);
-    const dt=new Date((dk||"")+"T00:00:00");
-    const dateStr=isNaN(dt.getTime())?(dk||"?"):dt.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
-    const lateTag=s.isLate?(' <span class="shift-late-tag">'+(parseFloat(s.lateMins)||0)+"m late</span>"):"";
-    return'<div class="shift-item" onclick="openShiftForm(\''+s.id+'\')">'
-      +'<div class="shift-item-hdr"><span class="shift-item-date">'+shiftTypeIcon(s.type)+" "+dateStr+"</span></div>"
-      +'<div class="shift-item-times">'+shiftTimesLabel(s)+"</div>"
-      +(s.notes?'<div class="shift-item-notes">📝 '+escapeHtml(s.notes)+"</div>":"")
-      +'<div class="shift-item-foot"><span class="shift-item-hours">'+b.hours.toFixed(1)+"h"+(b.otHours>0?' <span class="shift-ot-tag">OT</span>':"")+lateTag+"</span></div>"
-      +"</div>";
-  }).join("");
+  const F=[["all","All"],["worked","💼 Worked"],["ot","⚡ Overtime"],["late","⏰ Late"],["holiday","🏖️ Holiday"],["sick","🤒 Sick"]];
+  const fe=$("shFilters");if(fe)fe.innerHTML=F.map(([k,l])=>'<button class="gg-chip'+(shHistFilter===k?" on":"")+'" onclick="shHistFilter=\''+k+'\';renderShiftsList()">'+l+"</button>").join("");
+  let shifts=[...getShifts()].sort((a,b)=>(shiftDateKey(b)||"").localeCompare(shiftDateKey(a)||"")||(b.startTime||"").localeCompare(a.startTime||""));
+  const all=shifts.length;
+  shifts=shifts.filter(s=>{const t=s.type||"worked";return shHistFilter==="all"||(shHistFilter==="ot"?(parseFloat(s.otHours)||0)>0:shHistFilter==="late"?s.isLate:t===shHistFilter)});
+  if(!shifts.length){el.innerHTML='<div class="empty-state" style="padding:30px"><span class="es-icon">⏱️</span><div class="es-title">'+(all?"Nothing matches this filter":"No shifts logged yet")+'</div><div class="es-sub">'+(all?"Try another filter.":'Clock in, use quick log or tap a day on the calendar.')+"</div></div>";return}
+  const groups=[];shifts.forEach(s=>{const p=getOTPeriodForDate(shiftDateKey(s)),k=shD(p.start);let g=groups.find(x=>x.k===k);if(!g){g={k,p,items:[]};groups.push(g)}g.items.push(s)});
+  if(!shOpenGroups)shOpenGroups=new Set([groups[0].k]);
+  el.innerHTML=groups.map(g=>{const a=shAgg(g.items),open=shOpenGroups.has(g.k),pay=shPay(a.reg,a.ot);
+    return'<div class="shg'+(open?" open":"")+'"><button class="shg-h" onclick="shToggleGroup(\''+g.k+'\')"><span class="shg-t">'+fmtShiftDate(g.p.start)+" – "+fmtShiftDate(new Date(g.p.end.getTime()-86400000))+'</span><span class="shg-s">'+a.hrs.toFixed(1)+"h"+(a.ot?" · "+a.ot.toFixed(1)+"h OT":"")+" · "+a.n+" shift"+(a.n!==1?"s":"")+(pay!=null?" · "+shMoney(pay):"")+'</span><span class="shg-c">›</span></button>'
+      +(open?'<div class="shg-b">'+g.items.map(s=>{const b=computeShiftBreakdown(s),dk=shiftDateKey(s),dt=new Date((dk||"")+"T00:00:00"),lv=s.type==="holiday"||s.type==="sick";
+        return'<div class="shr" onclick="openShiftForm(\''+s.id+'\')"><div class="shr-d"><b>'+(isNaN(dt)?"?":dt.getDate())+"</b><small>"+(isNaN(dt)?"":dt.toLocaleDateString("en-GB",{weekday:"short"}))+'</small></div><div class="shr-m"><div class="shr-t">'+shiftTypeIcon(s.type)+" "+shiftTimesLabel(s)+"</div>"+(s.notes?'<div class="shr-n">📝 '+escapeHtml(s.notes)+"</div>":"")+'</div><div class="shr-r"><b>'+(lv?b.hours+"h":shFmtH(b.hours))+"</b>"+(b.otHours>0?'<span class="shift-ot-tag">+'+b.otHours+"h OT</span>":"")+(s.isLate?'<span class="shift-late-tag">'+(parseFloat(s.lateMins)||0)+"m late</span>":"")+"</div></div>"}).join("")+"</div>":"")+"</div>"}).join("");
 }
+function shToggleGroup(k){if(!shOpenGroups)shOpenGroups=new Set();if(shOpenGroups.has(k))shOpenGroups.delete(k);else shOpenGroups.add(k);renderShiftsList()}
 function shiftGetSelectedType(){return $("shiftTypeRow")?.querySelector("button.sel")?.dataset.type||"worked"}
 function shiftSetSelectedType(type){
   $("shiftTypeRow")?.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.type===type));
@@ -9824,7 +9909,7 @@ function shiftAutoFillEnd(){
   if(!st){$("shiftEndDate").value=sd;updateShiftLivePreview();return}
   const start=new Date(sd+"T"+st+":00");
   if(isNaN(start.getTime()))return;
-  const end=new Date(start.getTime()+SHIFT_DEFAULT_LENGTH_HRS*3600000);
+  const end=new Date(start.getTime()+shSettings().len*3600000);
   $("shiftEndDate").value=end.getFullYear()+"-"+String(end.getMonth()+1).padStart(2,"0")+"-"+String(end.getDate()).padStart(2,"0");
   $("shiftEndTime").value=String(end.getHours()).padStart(2,"0")+":"+String(end.getMinutes()).padStart(2,"0");
   updateShiftLivePreview();
@@ -9871,9 +9956,12 @@ function openShiftForm(id,prefillDate){
     $("shiftNotes").value="";
     $("shiftDeleteBtn").style.display="none";
   }
+  const fc=$("shFormChips");if(fc){const com=shCommon(3);fc.innerHTML=(com.length?'<span>Usual</span>'+com.map(c=>'<button type="button" onclick="$(\'shiftStartTime\').value=\''+c.start+'\';shiftEndTouched=false;shiftAutoFillEnd();shSetEnd(\''+c.end+'\')">'+c.start+"–"+c.end+"</button>").join(""):"")+'<span>Length</span>'+[8,9,10,12].map(h=>'<button type="button" onclick="shSetLen('+h+')">'+h+"h</button>").join("")}
   updateShiftLivePreview();
   openM("shiftFormM");
 }
+function shSetEnd(t){const sd=$("shiftStartDate").value,st=$("shiftStartTime").value;if(!sd||!st)return;const[a,b]=st.split(":").map(Number),[c,d]=t.split(":").map(Number);const e=new Date(sd+"T00:00:00");if(c*60+d<=a*60+b)e.setDate(e.getDate()+1);$("shiftEndDate").value=shD(e);$("shiftEndTime").value=t;shiftEndTouched=true;updateShiftLivePreview()}
+function shSetLen(h){const sd=$("shiftStartDate").value,st=$("shiftStartTime").value;if(!sd||!st)return toast("Set a start time first");const e=new Date(new Date(sd+"T"+st+":00").getTime()+h*3600000);$("shiftEndDate").value=shD(e);$("shiftEndTime").value=shT(e);shiftEndTouched=true;updateShiftLivePreview()}
 function updateShiftLivePreview(){
   const prev=$("shiftLivePreview");if(!prev)return;
   const type=shiftGetSelectedType();
@@ -9944,40 +10032,26 @@ function shiftCalQuickAdd(dateStr){openShiftForm(null,dateStr)}
 const SHIFT_MONTH_NAMES=["January","February","March","April","May","June","July","August","September","October","November","December"];
 function renderShiftCalendar(){
   if(shiftCalYear==null){const now=new Date();shiftCalYear=now.getFullYear();shiftCalMonth=now.getMonth()}
-  const label=$("shiftCalMonthLabel");
-  if(label)label.textContent=SHIFT_MONTH_NAMES[shiftCalMonth]+" "+shiftCalYear;
-  const firstDay=new Date(shiftCalYear,shiftCalMonth,1);
-  const startOffset=firstDay.getDay();
-  const daysInMonth=new Date(shiftCalYear,shiftCalMonth+1,0).getDate();
-  const secondSunday=getSecondSunday(shiftCalYear,shiftCalMonth);
-  const shifts=getShifts();
-  const byDate={};
-  shifts.forEach(s=>{const dk=shiftDateKey(s);if(!dk)return;if(!byDate[dk])byDate[dk]=[];byDate[dk].push(s)});
-  const todayStr=new Date().toISOString().slice(0,10);
-  let html='<div class="shift-cal-dow">'+["S","M","T","W","T","F","S"].map(d=>"<span>"+d+"</span>").join("")+"</div>";
-  html+='<div class="shift-cal-days">';
-  for(let i=0;i<startOffset;i++)html+='<div class="shift-cal-day empty"></div>';
-  for(let day=1;day<=daysInMonth;day++){
-    const dateStr=shiftCalYear+"-"+String(shiftCalMonth+1).padStart(2,"0")+"-"+String(day).padStart(2,"0");
-    const dayShifts=byDate[dateStr]||[];
-    const isPeriodStart=day===secondSunday.getDate();
-    const totalHrs=dayShifts.reduce((a,s)=>a+computeShiftHours(s),0);
-    const anyOt=dayShifts.some(s=>(parseFloat(s.otHours)||0)>0);
-    const anyLate=dayShifts.some(s=>s.isLate);
-    const leaveEntry=dayShifts.find(s=>s.type==="holiday"||s.type==="sick");
-    const isToday=dateStr===todayStr;
-    const clickAction=dayShifts.length?"openShiftForm('"+dayShifts[0].id+"')":"shiftCalQuickAdd('"+dateStr+"')";
-    html+='<div class="shift-cal-day'+(dayShifts.length?" has-shift":"")+(leaveEntry?" leave-day":"")+(isPeriodStart?" period-start":"")+(isToday?" today":"")+'" onclick="'+clickAction+'">'
-      +'<span class="shift-cal-daynum">'+day+"</span>"
-      +(leaveEntry?'<span class="shift-cal-leave-icon">'+(leaveEntry.type==="holiday"?"🏖️":"🤒")+"</span>"
-        :(dayShifts.length?'<span class="shift-cal-hrs">'+totalHrs.toFixed(1)+"h</span>"+(anyOt?'<span class="shift-cal-ot">OT</span>':""):""))
-      +(anyLate?'<span class="shift-cal-late-dot" title="Late"></span>':"")
-      +(isPeriodStart?'<span class="shift-cal-period-dot" title="Overtime period starts"></span>':"")
-      +"</div>";
+  const label=$("shiftCalMonthLabel");if(label)label.textContent=SHIFT_MONTH_NAMES[shiftCalMonth]+" "+shiftCalYear;
+  const firstDay=new Date(shiftCalYear,shiftCalMonth,1),startOffset=firstDay.getDay(),daysInMonth=new Date(shiftCalYear,shiftCalMonth+1,0).getDate();
+  const secondSunday=getSecondSunday(shiftCalYear,shiftCalMonth),cur=getOTPeriodForDate(shD(new Date()));
+  const byDate={};getShifts().forEach(s=>{const dk=shiftDateKey(s);if(!dk)return;(byDate[dk]=byDate[dk]||[]).push(s)});
+  const todayStr=shD(new Date());
+  let html='<div class="shift-cal-dow">'+["S","M","T","W","T","F","S"].map(d=>"<span>"+d+"</span>").join("")+'<span class="wk">Week</span></div><div class="shift-cal-days">';
+  const cells=[];for(let i=0;i<startOffset;i++)cells.push(null);for(let d=1;d<=daysInMonth;d++)cells.push(d);while(cells.length%7)cells.push(null);
+  for(let w=0;w<cells.length/7;w++){let wk=0,wkOt=0;
+    for(let k=0;k<7;k++){const day=cells[w*7+k];if(day==null){html+='<div class="shift-cal-day empty"></div>';continue}
+      const dateStr=shiftCalYear+"-"+String(shiftCalMonth+1).padStart(2,"0")+"-"+String(day).padStart(2,"0"),dt=new Date(dateStr+"T00:00:00");
+      const ds=byDate[dateStr]||[],worked=ds.filter(s=>s.type!=="holiday"&&s.type!=="sick"),hrs=worked.reduce((a,s)=>a+computeShiftHours(s),0),ot=worked.reduce((a,s)=>a+computeShiftBreakdown(s).otHours,0);wk+=hrs;wkOt+=ot;
+      const leave=ds.find(s=>s.type==="holiday"||s.type==="sick"),late=ds.some(s=>s.isLate),inP=dt>=cur.start&&dt<cur.end,note=ds.map(s=>(s.notes||"").trim()).filter(Boolean).join(" · ");
+      const click=ds.length?"openShiftForm('"+ds[0].id+"')":"shiftCalQuickAdd('"+dateStr+"')";
+      html+='<div class="shift-cal-day'+(worked.length?" has-shift":"")+(leave?" leave-day":"")+(day===secondSunday.getDate()?" period-start":"")+(dateStr===todayStr?" today":"")+(inP?" in-period":"")+(dt>new Date()?" future":"")+'" onclick="'+click+'" title="'+escapeHtml(dt.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}))+(ds.length?" · "+ds.map(shiftTimesLabel).join(", "):"")+(note?" · 📝 "+escapeHtml(note):"")+'">'
+        +'<span class="shift-cal-daynum">'+day+"</span>"
+        +(leave&&!worked.length?'<span class="shift-cal-leave-icon">'+(leave.type==="holiday"?"🏖️":"🤒")+"</span>":worked.length?'<span class="shift-cal-hrs">'+(+hrs.toFixed(1))+"h</span>"+(ot?'<span class="shift-cal-ot">+'+(+ot.toFixed(1))+" OT</span>":""):"")
+        +(note?'<span class="shift-cal-note" title="Has a note">📝</span>':"")+(late?'<span class="shift-cal-late-dot" title="Late"></span>':"")+(day===secondSunday.getDate()?'<span class="shift-cal-period-dot" title="New pay period starts"></span>':"")+"</div>"}
+    html+='<div class="shift-cal-wk'+(wk?"":" zero")+'"><b>'+(wk?(+wk.toFixed(1))+"h":"–")+"</b>"+(wkOt?"<small>+"+(+wkOt.toFixed(1))+"</small>":"")+"</div>";
   }
-  html+="</div>";
-  const gridEl=$("shiftCalGrid");
-  if(gridEl)gridEl.innerHTML=html;
+  html+="</div>";const gridEl=$("shiftCalGrid");if(gridEl)gridEl.innerHTML=html;
 }
 // ── Tabs ──
 let shiftCurrentTab="overview";
@@ -9988,18 +10062,7 @@ function shiftSwitchTab(tab){
   const ov=$("shiftOverviewArea"),hi=$("shiftHistoryArea");
   if(ov)ov.style.display=tab==="overview"?"":"none";
   if(hi)hi.style.display=tab==="history"?"":"none";
-  if(tab==="history"){
-    renderShiftStats();renderShiftsList();
-    const collapsed=LG("ps_shift_history_collapsed");
-    if(collapsed){
-      const header=$("shiftHistoryHeader");
-      const content=$("shiftHistoryContent");
-      const toggle=header?.querySelector(".shift-history-toggle");
-      if(header)header.classList.add("closed");
-      if(content)content.classList.add("closed");
-      if(toggle)toggle.classList.add("closed");
-    }
-  }
+  if(tab==="history"){renderShiftStats();renderShiftsList()}
   playSound("tick");haptic("light");
 }
 // ── Stats & Graphs ──
@@ -10019,11 +10082,13 @@ function renderShiftStats(){
   const cardsEl=$("shiftStatsCards");
   if(cardsEl){
     const card=(icon,label,val,sub)=>'<div class="shift-sum-card"><div class="shift-sum-lbl">'+icon+" "+label+'</div><div class="shift-sum-val">'+val+'</div><div class="shift-sum-sub">'+(sub||"")+"</div></div>";
+    const com=shCommon(1)[0],avg=worked.length?totalHours/worked.length:0;
     cardsEl.innerHTML=card("💼","Worked",worked.length+" shifts",totalHours.toFixed(0)+"h total")
+      +card("⌛","Average shift",worked.length?shFmtH(avg):"—",com?"usually "+com.start+"–"+com.end:"")
       +card("⚡","Overtime",totalOt.toFixed(0)+"h","across all shifts")
-      +card("🏖️","Holiday",holiday.length+" days",totalHolidayHours.toFixed(0)+"h")
-      +card("🤒","Sick",sick.length+" days",totalSickHours.toFixed(0)+"h")
-      +card("⏰","Late",lateShifts.length+" times",totalLateMins.toFixed(0)+" min total");
+      +card("🏖️","Holiday",holiday.length+" day"+(holiday.length!==1?"s":""),totalHolidayHours.toFixed(0)+"h")
+      +card("🤒","Sick",sick.length+" day"+(sick.length!==1?"s":""),totalSickHours.toFixed(0)+"h")
+      +card("⏰","Late",lateShifts.length+(lateShifts.length===1?" time":" times"),totalLateMins.toFixed(0)+" min total");
   }
   renderShiftHoursChart(worked);
   renderShiftTypeChart(totalHours,totalHolidayHours,totalSickHours);
