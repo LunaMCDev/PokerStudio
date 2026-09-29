@@ -11180,8 +11180,7 @@ function goalCurrent(g,b){
 function goalProgress(g,b){
   const cur=goalCurrent(g,b);
   let pct,done,remaining;
-  if(g.type==="balance"&&g.startVal!=null&&g.target>g.startVal){pct=(cur-g.startVal)/(g.target-g.startVal)}
-  else pct=g.target>0?cur/g.target:0;
+  pct=g.target>0?cur/g.target:0; // share of the target reached — matches the "$cur / $target" shown on the card
   pct=Math.max(0,pct);done=cur>=g.target;remaining=Math.max(0,g.target-cur);
   let pace=null;
   if(g.deadline&&!g.doneAt){
