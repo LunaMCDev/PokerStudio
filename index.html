@@ -1554,6 +1554,14 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 .ggr-hnav button:not(:disabled):hover{background:var(--b3)}
 .ggr-hnav button:disabled{opacity:.3;cursor:default}
 .ggr-hnav span{min-width:52px;text-align:center;font-family:var(--fm);font-size:11px;color:var(--t3)}
+.rc-rpop{max-width:520px;max-height:92vh;overflow-y:auto}
+.rp-grid{margin:10px 0 8px}
+.rp-grid .rc-g.in .rc-g-bg{opacity:.85}.rp-grid .rc-g.in .rc-g-l{color:#fff;font-weight:700}
+.rp-grid .rc-g.me{outline:2.5px solid #fff;outline-offset:-1px;z-index:1;box-shadow:0 0 0 4px color-mix(in srgb,var(--pk) 60%,transparent)}
+.rp-grid .rc-g.me .rc-g-l{color:#fff;font-weight:900}
+.rp-hand{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.2);border-left:3px solid var(--mt);font-size:12px;color:var(--t3)}
+.rp-hand.miss{border-left-color:var(--rs)}.rp-hand.minor{border-left-color:var(--gd2)}.rp-hand.excused{border-left-color:#60a5fa}
+.rp-hand b{color:var(--t1)}.rp-hcls{font-family:var(--fm);font-size:16px;font-weight:800;color:var(--t1);padding:3px 8px;border-radius:7px;background:var(--b3)}
 .brsw-view{display:flex;align-items:center;gap:8px;margin:10px 0 4px;padding:10px 12px;border:1px dashed var(--bd2);border-radius:10px;font-size:12px;color:var(--t3);cursor:pointer}.brsw-view b{color:var(--t1);font-weight:700}.brsw-view .bvf-chevron{margin-left:auto}
 .br-view-chip{
   display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
@@ -9119,8 +9127,27 @@ function ggRcReplayHtml(h){
     +'<div class="rc-rp-d">You: <b>'+escapeHtml(x.act)+"</b> · Range: "+ggRcMixHtml(x.mix)+"</div>"
     +(x.ex?'<div class="rc-rp-ex"><span>'+ggRcExLabel(x.ex)+(x.ex.n?" — “"+escapeHtml(x.ex.n)+"”":"")+'</span><button onclick="ggRcUnexcuse('+i+')">Undo</button></div><div class="rc-rp-exs">Still counts as off-range in your overall stats.</div>'
       :x.verdict!=="ok"?'<button class="rc-rp-nm" onclick="ggRcExcuseOpen('+i+')">🛡 Not a mistake…</button>':"")
-    +(x.ri>=0?'<button class="rc-rp-v" onclick="closeM(\'ggReplayM\');showViewerMode('+x.ri+')">👁 Range</button>':"")+"</div>"}).join("")
+    +'<button class="rc-rp-v" onclick="ggRcRangePop('+i+')">👁 Range</button>'+"</div>"}).join("")
     +'<div class="rc-rp-b"><button class="btn btn-s'+(fl?" pri":"")+'" onclick="ggRcReplayTag(\''+RC_FLAG+'\')">🚩 '+(fl?"Flagged":"Flag")+'</button><button class="btn btn-s'+(done?" pri":"")+'" onclick="ggRcReplayTag(\''+RC_DONE+'\')">✓ '+(done?"Reviewed":"Mark reviewed")+"</button></div></div>";
+}
+/* the full range as a popup over the replayer — close it and you're back on the same hand */
+function ggRcRangePop(i){
+  const x=(window._rcRp||[])[i];if(!x)return;const d=x.d,fi=d.acts.findIndex(a=>arIsFold(a));
+  let grid='<div class="rc-grid rp-grid">';
+  for(let k=0;k<169;k++){const r=Math.floor(k/13),c=k%13,w=trWeights(d.range[r][c],d.acts);let p=0;const seg=[];
+    d.acts.forEach((ac,ai)=>{if(ai===fi||!(w[ai]>0))return;seg.push(ac.color+" "+p+"% "+(p+w[ai])+"%");p+=w[ai]});
+    const bg=seg.length?"linear-gradient(90deg,"+seg.join(",")+(p<100?",transparent "+p+"% 100%":"")+")":"none",me=k===x.ci;
+    grid+='<div class="rc-g'+(me?" me":"")+(seg.length?" in":"")+'"><span class="rc-g-bg" style="background:'+bg+'"></span><span class="rc-g-l">'+hl(r,c)+"</span></div>"}
+  grid+="</div>";
+  // how much of all hands each action takes (combo-weighted)
+  const tot={};let all=0;for(let r=0;r<13;r++)for(let c=0;c<13;c++){const n=r===c?6:r<c?4:12,w=trWeights(d.range[r][c],d.acts);all+=n;Object.keys(w).forEach(a=>tot[a]=(tot[a]||0)+w[a]*n/100)}
+  const legend=d.acts.map((a,ai)=>'<span class="rc-mx"><i style="background:'+(ai===fi?"rgba(255,255,255,.12)":a.color)+'"></i>'+escapeHtml(a.name)+" "+((tot[ai]||0)/all*100).toFixed(1)+"%</span>").join("");
+  let el=$("rcRangeM");if(!el){el=document.createElement("div");el.className="mov";el.id="rcRangeM";el.innerHTML='<div class="mdl rc-rpop"></div>';document.body.appendChild(el);el.addEventListener("click",e=>{if(e.target===el)closeM("rcRangeM")})}
+  el.querySelector(".mdl").innerHTML='<div class="edq-h"><div><h3 style="margin:0">'+escapeHtml(d.name)+'</h3><div class="rc-sub" style="margin:2px 0 0">'+escapeHtml(x.grp)+'</div></div><button class="btn btn-xs" onclick="closeM(\'rcRangeM\')">✕</button></div>'
+    +'<div class="rp-hand '+(x.ex?"excused":x.verdict)+'"><span class="rp-hcls">'+escapeHtml(x.h.cls)+'</span><div><div>You <b>'+escapeHtml(x.act)+'</b></div><div class="rc-row-g">'+ggRcMixHtml(x.mix)+"</div></div></div>"
+    +grid+'<div class="rc-legend">'+legend+"</div>"
+    +'<div class="mact"><button class="btn btn-s" onclick="closeM(\'rcRangeM\')">← Back to hand</button>'+(x.ri>=0?'<button class="btn btn-s" onclick="closeM(\'rcRangeM\');closeM(\'ggReplayM\');showViewerMode('+x.ri+')">Open in viewer</button>':"")+"</div>";
+  openM("rcRangeM");
 }
 function ggRcRefreshAfterEx(){const h=ggR.hand;const el=$("ggrRange");if(el&&h&&ggR.rc)el.innerHTML=ggRcReplayHtml(h);ggRenderList()}
 function ggRcExcuseOpen(i){
