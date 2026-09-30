@@ -1417,7 +1417,7 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 #bankrollV .goal-head .btn.pri{box-shadow:none}
 /* stats */
 #bankrollV .insight-narrative{background:var(--b1);border:1px solid var(--bd);border-radius:14px;box-shadow:none}
-#bankrollV .section-head h2,#bankrollV #brTitle{color:var(--t1)!important;-webkit-text-fill-color:var(--t1)!important;background:none!important}
+#bankrollV .section-head h2#brTitle,#bankrollV #brTitle{background:linear-gradient(90deg,var(--pk2),var(--li))!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
 #bankrollV .br-sub-nav#brNav{overflow:visible;-webkit-mask-image:none!important;mask-image:none!important}
 #bankrollV #brNav button{flex:1 1 0;min-width:0;padding:9px 2px;font-size:12px}
 #bankrollV .brs-val[style]{color:var(--t1)!important}
@@ -1487,6 +1487,73 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 #bankrollV .b3-empty b{font-family:var(--fd);font-style:italic;font-size:17px}
 #bankrollV .bsc-group-name{font-family:var(--fd)!important;font-style:italic!important;text-transform:none!important;letter-spacing:0!important;font-size:15px!important;color:var(--t1)!important}
 .b3-chip i{text-transform:none!important;letter-spacing:0!important;font-size:10.5px!important;font-weight:600!important}
+/* ═══ Bankroll colour ═══ */
+#bankrollV .section-head h2{background:linear-gradient(90deg,var(--pk2),var(--li))!important;-webkit-background-clip:text!important;background-clip:text!important}
+#bankrollV .br-chart-box h3,#bankrollV .br-form h3,#bankrollV .br-hist-hdr h3,#bankrollV .lsc-title,#bankrollV .b3-empty b{background:linear-gradient(90deg,var(--pk2),var(--li));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important}
+#bankrollV .br-chart-box h3 small,#bankrollV .br-chart-box h3 .b3-per,#bankrollV .br-chart-box h3 .b3-link{-webkit-text-fill-color:initial}
+#bankrollV .br-chart-box h3 small{color:var(--t4)}#bankrollV .br-chart-box h3 small.pos{-webkit-text-fill-color:var(--mt)}#bankrollV .br-chart-box h3 small.neg{-webkit-text-fill-color:var(--rs)}
+#bankrollV .b3-link{-webkit-text-fill-color:var(--pk2)}
+#bankrollV .br-hero-label{color:var(--pk2)!important}
+.b3-chip:nth-child(1) i{color:var(--li)}.b3-chip:nth-child(2) i{color:var(--pk2)}.b3-chip:nth-child(3) i{color:var(--gd2)}
+.b3-chip:nth-child(1){border-color:color-mix(in srgb,var(--li) 25%,var(--bd))}.b3-chip:nth-child(2){border-color:color-mix(in srgb,var(--pk) 25%,var(--bd))}.b3-chip:nth-child(3){border-color:color-mix(in srgb,var(--gd) 25%,var(--bd))}
+.b3-mood b.up{color:var(--mt)}.b3-mood b.dn{color:var(--rs)}.b3-mood b.stk{color:var(--gd2)}
+#bankrollV .br-hero-sub{color:var(--li)!important;opacity:.8}
+#bankrollV .br-stat:nth-child(1) .brs-label{color:var(--pk2)}
+#bankrollV .br-stat:nth-child(2) .brs-label{color:var(--li)}
+#bankrollV .br-stat:nth-child(3) .brs-label{color:var(--mt)}
+#bankrollV .br-stat:nth-child(4) .brs-label{color:var(--gd2)}
+#bankrollV .br-stat:nth-child(5) .brs-label{color:var(--ic)}
+#bankrollV .br-stat:nth-child(6) .brs-label{color:var(--pk2)}
+#bankrollV .br-stat:nth-child(2) .brs-val{color:var(--pk2)!important}
+#bankrollV .br-stat:nth-child(4) .brs-val{color:var(--li)!important}
+#bankrollV .br-stat:nth-child(1)[data-ic]::after{background:color-mix(in srgb,var(--pk) 16%,transparent)!important}
+#bankrollV .br-stat:nth-child(2)[data-ic]::after{background:color-mix(in srgb,var(--li) 16%,transparent)!important}
+#bankrollV .br-stat:nth-child(3)[data-ic]::after{background:color-mix(in srgb,var(--mt) 16%,transparent)!important}
+#bankrollV .br-stat:nth-child(4)[data-ic]::after{background:color-mix(in srgb,var(--gd) 18%,transparent)!important}
+#bankrollV .br-stat:nth-child(5)[data-ic]::after{background:color-mix(in srgb,var(--ic) 16%,transparent)!important}
+#bankrollV .br-stat:nth-child(6)[data-ic]::after{background:color-mix(in srgb,var(--pk) 16%,transparent)!important}
+#bankrollV .brs-sub{color:var(--t3)}
+.b2-t b{color:var(--pk2)!important}.b2-loc{color:var(--li)!important}
+.b2-date b{color:var(--t1)}.b2-date span{color:var(--gd2)!important}
+#bankrollV .bsc-group-name{background:linear-gradient(90deg,var(--pk2),var(--li));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#bankrollV .bsc-group-toggle-ico{color:var(--pk2)}
+.b3-gmeta{color:var(--li)!important;opacity:.85}
+#bankrollV .br-fg label{color:var(--li)!important}
+.b3-formsub{color:var(--gd2)}
+#bankrollV .lsc-sub{color:var(--t3)}
+#bankrollV #brNav button:not(.on){color:var(--t3)}
+#bankrollV .br-hist-count{color:var(--li)}
+#bankrollV .goal-summary b{color:var(--pk2)}
+.bal-hidden .b3-mood b{display:inline-block;min-width:2.8em;vertical-align:bottom}
+.bal-hidden .b3-mood b::before{font-size:11px}
+.b3-tx{display:flex;flex-direction:column;gap:4px}
+.b3-txr{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 10px;border-radius:11px;background:var(--b0);border:1px solid var(--bd)}
+.b3-txi{flex:0 0 32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
+.b3-txr.dep .b3-txi{background:color-mix(in srgb,var(--mt) 14%,transparent);color:var(--mt)}
+.b3-txr.wd .b3-txi{background:color-mix(in srgb,var(--rs) 14%,transparent);color:var(--rs)}
+.b3-txr.promo .b3-txi{background:color-mix(in srgb,var(--gd) 18%,transparent)}
+.b3-txm{flex:1;min-width:0;display:flex;flex-direction:column}.b3-txm b{font-size:12.5px;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.b3-txm span{font-size:10.5px;color:var(--li);opacity:.85;margin-top:1px}
+.b3-txa{font-family:var(--fm);font-size:14px;font-weight:800;white-space:nowrap}.b3-txa.pos{color:var(--mt)}.b3-txa.neg{color:var(--rs)}
+.b3-txe{flex:0 0 32px;height:32px;border-radius:9px;border:1px solid var(--bd2);background:transparent;color:var(--t3);font-size:13px;cursor:pointer}
+.b3-txe:hover{border-color:var(--pk);color:var(--pk2)}
+.b3-txmore{font-size:10.5px;color:var(--t4);text-align:center;margin-top:4px}
+#brDepHist h3 small{font-family:var(--fm)!important;font-style:normal!important;-webkit-text-fill-color:var(--t4)}
+.gg-gf{display:flex;flex-direction:column;gap:6px;margin:-2px 0 10px}
+.gg-gf-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.gg-gf-seg{display:inline-flex;gap:2px;padding:2px;border-radius:9px;background:var(--b0);border:1px solid var(--bd)}
+.gg-gf-seg button{border:0;background:transparent;color:var(--t4);font-size:10.5px;font-weight:800;padding:5px 8px;border-radius:7px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.gg-gf-seg button.on{background:var(--b3);color:var(--t1)}
+.gg-gf-pos{flex:1;min-width:110px}
+.gf-ln{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--bd2);background:transparent;color:var(--t4);font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:999px;cursor:pointer;font-family:inherit}
+.gf-ln i{width:12px;height:3px;border-radius:2px;background:var(--c);opacity:.35}
+.gf-ln.on{color:var(--t1);border-color:color-mix(in srgb,var(--c) 55%,transparent);background:color-mix(in srgb,var(--c) 10%,transparent)}.gf-ln.on i{opacity:1}
+.gg-gf-note{font-size:10.5px;color:var(--t3)}.gg-gf-note button{border:0;background:none;color:var(--pk2);font-weight:700;cursor:pointer;text-decoration:underline;font-size:10.5px}
+.ggr-hdr-r{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.ggr-hnav{display:flex;align-items:center;height:34px;padding:3px;gap:2px;border-radius:999px;background:var(--b0);border:1px solid var(--bd2)}
+.ggr-hnav button{height:26px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:var(--t1);font-size:11.5px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
+.ggr-hnav button:not(:disabled):hover{background:var(--b3)}
+.ggr-hnav button:disabled{opacity:.3;cursor:default}
+.ggr-hnav span{min-width:52px;text-align:center;font-family:var(--fm);font-size:11px;color:var(--t3)}
 .brsw-view{display:flex;align-items:center;gap:8px;margin:10px 0 4px;padding:10px 12px;border:1px dashed var(--bd2);border-radius:10px;font-size:12px;color:var(--t3);cursor:pointer}.brsw-view b{color:var(--t1);font-weight:700}.brsw-view .bvf-chevron{margin-left:auto}
 .br-view-chip{
   display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
@@ -2383,11 +2450,18 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 @media(max-width:480px){.br-stats{grid-template-columns:repeat(2,1fr)}}
 
 /* Hide-balance mode — actually blurs the numbers now */
-.bal-hidden .brs-val,.bal-hidden .brs-v,.bal-hidden .br-hero-val,.bal-hidden .lm-val,
-.bal-hidden .profit,.bal-hidden .live-timer,.bal-hidden .br-hero-sub{
-  filter:blur(8px);user-select:none;transition:filter .25s;
-}
-.bal-hidden .br-hero-spark{opacity:.15}
+/* Hide-balance mode — amounts swap for clean dots (no blur halos / boxy edges); charts with money axes are veiled */
+.bal-hidden :is(.brs-val,.brs-v,.br-hero-val,.lm-val,.profit,.live-timer,.b3-chip b,.b2-res,.bsc-group-sub,.b3-txa,.b3-mood b,.b3-pd,.b2-s .pos,.b2-s .neg,.br-result-live,.goal-nums b,.goal-nums span,.goal-nums em){
+  color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;filter:none!important;user-select:none;position:relative;white-space:nowrap}
+.bal-hidden :is(.brs-val,.brs-v,.br-hero-val,.lm-val,.profit,.live-timer,.b3-chip b,.b2-res,.bsc-group-sub,.b3-txa,.b3-mood b,.b3-pd,.b2-s .pos,.b2-s .neg,.br-result-live,.goal-nums b,.goal-nums span,.goal-nums em)::before{
+  content:"••••";position:absolute;left:0;top:50%;transform:translateY(-50%);color:var(--t3);-webkit-text-fill-color:var(--t3);letter-spacing:.12em;font-family:var(--fm);font-weight:800;font-style:normal;pointer-events:none}
+.bal-hidden :is(.b2-res,.b3-txa,.bsc-group-sub,.profit)::before{left:auto;right:0}
+.bal-hidden .br-hero-val::before{content:"••••••";letter-spacing:.14em}
+.bal-hidden .br-hero-sub{visibility:hidden}
+.bal-hidden .br-hero-spark{opacity:.22}
+.bal-hidden .br-chart-h,.bal-hidden #brAnalCharts .br-chart-h{position:relative}
+.bal-hidden .br-chart-h canvas{visibility:hidden}
+.bal-hidden .br-chart-h::after{content:"🙈 Hidden — tap the eye to show";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--t4);border:1px dashed var(--bd2);border-radius:12px}
 
 /* ════════════════════════════════════════════════════
    HAND HISTORY & PLAYER NOTES
@@ -4304,7 +4378,6 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 .ggr-act-pos{font-size:10px;font-weight:900;padding:2px 7px;border-radius:6px;background:var(--b3);color:var(--t2);letter-spacing:.5px}
 .ggr-actcard.hero .ggr-act-pos{background:var(--pk);color:#000}
 .ggr-size{font-size:10.5px;font-weight:800;font-family:var(--fm);padding:2px 7px;border-radius:6px;background:rgba(251,191,36,.14);color:var(--gd2)}
-.ggr-odds{margin-top:6px;font-size:11px;color:#93c5fd}
 .ggr-tl{display:flex;gap:4px;margin:0 14px 12px}
 .ggr-tl-seg{display:flex;flex-direction:column;gap:4px;min-width:34px}
 .ggr-tl-l{border:0;background:none;padding:0;text-align:left;font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--t4);cursor:pointer;font-family:inherit}
@@ -4531,13 +4604,13 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
     <div id="brHero"></div>
     <div class="br-actions">
       <button class="br-act log" onclick="switchBrTab('brSess');document.querySelector('.main').scrollTop=0"><b>＋</b>Log session</button>
-      <button class="br-act dep" onclick="openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit';depSetPromoMode(false)"><b>↓</b>Deposit</button>
-      <button class="br-act wd" onclick="openM('depM');$('depSign').value='-1';$('depMTitle').textContent='− Withdraw';depSetPromoMode(false)"><b>↑</b>Withdraw</button>
-      <button class="br-act promo" onclick="openM('depM');$('depSign').value='1';$('depMTitle').textContent='🎁 Add Promo';depSetPromoMode(true)"><b>🎁</b>Promo</button>
+      <button class="br-act dep" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit';depSetPromoMode(false)"><b>↓</b>Deposit</button>
+      <button class="br-act wd" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='-1';$('depMTitle').textContent='− Withdraw';depSetPromoMode(false)"><b>↑</b>Withdraw</button>
+      <button class="br-act promo" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='1';$('depMTitle').textContent='🎁 Add Promo';depSetPromoMode(true)"><b>🎁</b>Promo</button>
     </div>
     <div class="br-stats" id="brDashStats"></div>
     <div class="br-chart-box b3-recent" id="brRecent"></div>
-    <div class="br-chart-box"><h3>Your bankroll journey <small id="brPerDelta"></small><span class="b3-per" id="brPer"></span></h3><div class="br-chart-h"><canvas id="chBR"></canvas></div></div>
+    <div class="br-chart-box"><h3>Your bankroll journey <small id="brPerDelta" class="b3-pd"></small><span class="b3-per" id="brPer"></span></h3><div class="br-chart-h"><canvas id="chBR"></canvas></div></div>
     <div class="br-chart-grid">
       <div class="br-chart-box"><h3>Month by month</h3><div class="br-chart-h" style="height:200px"><canvas id="chMonth"></canvas></div></div>
       <div class="br-chart-box"><h3>Hourly rate <small>rolling, last 50 sessions</small></h3><div class="br-chart-h" style="height:200px"><canvas id="chHourly"></canvas></div></div>
@@ -5345,7 +5418,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 <div class="mov" id="moveM"><div class="mdl" style="max-width:400px"><h3>Move Range</h3><div id="moveName" style="font-size:13px;font-weight:700;color:var(--pk2);margin-bottom:12px"></div><div class="slbl">Destination</div><div id="moveTgts"></div><div class="mact"><button class="btn" onclick="closeM('moveM')">Cancel</button><button class="btn pri" onclick="doMove()">Move</button></div></div></div>
 <div class="mov" id="editM"><div class="mdl" style="max-width:400px"><h3>Edit Range</h3><div id="edIG"></div><div id="edCG"></div><input class="minp" id="edName" placeholder="Name..."/><select class="minp" id="edFolder" style="font-size:11px"><option value="/">Root</option></select><div class="tags-w" id="eTagsW"><input class="tinp" id="eTagsI" placeholder="Tags..."/></div><textarea class="rnote" id="edNote" placeholder="Notes..."></textarea><div class="mact"><button class="btn" onclick="closeM('editM')">Cancel</button><button class="btn pri" onclick="saveEd()">Save</button></div></div></div>
 <div class="mov" id="edFM"><div class="mdl" style="max-width:380px"><h3>Edit Folder</h3><input class="minp" id="efName" placeholder="Name..."/><div id="efIG"></div><div id="efCG"></div><div class="mact"><button class="btn" onclick="closeM('edFM')">Cancel</button><button class="btn pri" onclick="saveEdF()">Save</button></div></div></div>
-<div class="mov" id="depM"><div class="mdl" style="max-width:340px"><h3 id="depMTitle">+ Deposit</h3><input type="hidden" id="depSign" value="1"/>
+<div class="mov" id="depM"><div class="mdl" style="max-width:340px"><h3 id="depMTitle">+ Deposit</h3><input type="hidden" id="depSign" value="1"/><input type="hidden" id="depEditId" value=""/>
   <div id="depPromoTypeWrap" style="display:none;margin-bottom:10px">
     <label class="slbl">Type</label>
     <div class="seg-row" id="depPromoTypeRow">
@@ -5357,7 +5430,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
   </div>
   <div style="margin-bottom:10px"><label class="slbl" id="depAmtLabel">Amount</label><input class="minp" id="depAmt" type="number" placeholder="0.00" step="0.01" style="margin:0;font-size:16px;text-align:center;font-family:var(--fm)"/></div>
   <div style="margin-bottom:10px"><label class="slbl">Description</label><input class="minp" id="depDesc" placeholder="Optional..." style="margin:0"/></div>
-  <div class="mact"><button class="btn" onclick="closeM('depM')">Cancel</button><button class="btn pri" onclick="submitDep()">Confirm</button></div>
+  <div class="mact"><button class="btn btn-d" id="depDelBtn" style="display:none;margin-right:auto" onclick="deleteDep()">🗑 Remove</button><button class="btn" onclick="closeM('depM')">Cancel</button><button class="btn pri" id="depOkBtn" onclick="submitDep()">Confirm</button></div>
 </div></div>
 <div class="mov" id="ggDelM"><div class="mdl ggdel-mdl" id="ggDelBody"></div></div>
 <div class="mov" id="sessDetailM"><div class="mdl sess-detail-mdl" id="sessDetailContent"></div></div>
@@ -8693,8 +8766,10 @@ function renderGG(){
   sel.innerHTML='<option value="">All stakes</option>'+stakes.map(bb=>'<option value="'+bb+'">'+ggStakeLabel(bb)+"</option>").join("");
   sel.value=stakes.map(String).includes(cur)?cur:"";
   sel.style.display=stakes.length>1?"":"none";
-  const hands=ggStakeFiltered();
+  const full=ggStakeFiltered();
   if(ggChart){ggChart.destroy();ggChart=null}
+  let hands=full.length?ggGFApply(full):full,gfEmpty=false;
+  if(full.length&&!hands.length){hands=full;gfEmpty=true}
   if(!hands.length){
     ct.innerHTML='<div class="empty-state"><span class="es-icon">📈</span><div class="es-title">No hands imported yet</div><div class="es-sub">Download your hand histories from GGPoker (PokerCraft → Hand Histories), then import the .txt files here.</div><button class="btn pri" onclick="$(\'ggFileInput\').click()">📂 Import Hand Histories</button></div>';
     return;
@@ -8724,7 +8799,7 @@ function renderGG(){
     +tile("All-in EV",ev,allinCount+" all-in"+(allinCount!==1?"s":"")+" · "+(luck>=0?"running above EV ":"running below EV ")+fmt(Math.abs(luck)),GG_COLORS.ev)
     +'<div class="br-stat gg-rake-tile"><div class="brs-label"><span class="gg-dot" style="background:'+GG_COLORS.rake+'"></span>Rake Paid</div><div class="brs-val" style="color:'+GG_COLORS.rake+'">'+pos(rake)+'</div><div class="brs-sub">'+rakeBB100.toFixed(2)+" bb/100 · "+"pre-rake "+fmt(net+rake)+(fees>0.00001?" · jackpot/fees "+pos(fees):"")+(rakeUnknown?" · "+rakeUnknown+" older hand"+(rakeUnknown!==1?"s":"")+" not counted (re-import)":"")+"</div></div>"
     +'</div>'
-    +'<div class="br-chart-box gg-graph-box" onclick="openGGGraph()" title="Open the detailed graph"><h3><span class="cdot" style="background:'+GG_COLORS.net+'"></span>Winnings Graph<span class="gg-expand">⤢ Enlarge</span></h3><div class="br-chart-h gg-chart-h"><canvas id="chGG"></canvas></div></div>'
+    +'<div class="br-chart-box gg-graph-box" onclick="openGGGraph()" title="Open the detailed graph"><h3><span class="cdot" style="background:'+GG_COLORS.net+'"></span>Winnings Graph<span class="gg-expand">⤢ Enlarge</span></h3>'+ggGFBar(full,hands,gfEmpty)+'<div class="br-chart-h gg-chart-h"><canvas id="chGG"></canvas></div></div>'
     +'<div class="gg-foot"><span>'+(sel.value?ggStakeLabel(+sel.value):stakes.length>1?stakes.length+" stakes":ggStakeLabel(stakes[0]))+" · "+dfmt(hands[0].ts)+" – "+dfmt(hands[hands.length-1].ts)+'</span><span class="gg-foot-note">Delete imported hands in Settings › Danger Zone</span></div>'
     +(legacy?'<div class="gg-status" style="margin-top:12px">ℹ️ '+legacy+' hand'+(legacy!==1?"s were":" was")+' imported before replays existed. Re-import the same .txt files to add cards, positions &amp; replays — nothing is duplicated.</div>':"")
     +ggHandsSectionHtml();
@@ -8736,13 +8811,33 @@ function renderGG(){
 }
 let ggChartSpec=null;
 // one config builder for the small and the enlarged graph — each call returns fresh plain objects
+/* ── winnings-graph filters (period, position, which lines) — apply to the tiles + graph, not the hand list ── */
+let ggGF=Object.assign({per:"all",pos:"",lines:{net:1,sd:1,nsd:1,ev:1}},LG("ps_gg_gf",{}));
+const GG_GF_PER=[["all","All"],["last","Last day"],["7d","7D"],["30d","30D"],["90d","90D"]];
+function ggGFApply(hs){
+  let o=hs;
+  if(ggGF.per==="last"&&hs.length){const d=new Date(hs[hs.length-1].ts).toISOString().slice(0,10);o=o.filter(h=>new Date(h.ts).toISOString().slice(0,10)===d)}
+  else if(ggGF.per!=="all"){const days={"7d":7,"30d":30,"90d":90}[ggGF.per]||0;if(days){const cut=Date.now()-days*864e5;o=o.filter(h=>h.ts>=cut)}}
+  if(ggGF.pos)o=o.filter(h=>h.pos===ggGF.pos);
+  return o;
+}
+function ggGFSet(k,v){if(k==="line"){ggGF.lines[v]=ggGF.lines[v]?0:1;if(!Object.values(ggGF.lines).some(Boolean))ggGF.lines.net=1}else ggGF[k]=v;LS("ps_gg_gf",ggGF);renderGG()}
+function ggGFBar(full,hands,empty){
+  const poss=GG_POS_ORDER.filter(p=>full.some(h=>h.pos===p));
+  const per=GG_GF_PER.map(([k,l])=>'<button class="'+(ggGF.per===k?"on":"")+'" onclick="ggGFSet(\'per\',\''+k+'\')">'+l+"</button>").join("");
+  const ln=[["net","Net",GG_COLORS.net],["sd","Showdown",GG_COLORS.sd],["nsd","Non-SD",GG_COLORS.nsd],["ev","EV",GG_COLORS.ev]].map(([k,l,c])=>'<button class="gf-ln'+(ggGF.lines[k]?" on":"")+'" style="--c:'+c+'" onclick="ggGFSet(\'line\',\''+k+'\')"><i></i>'+l+"</button>").join("");
+  const active=ggGF.per!=="all"||ggGF.pos;
+  return'<div class="gg-gf" onclick="event.stopPropagation()"><div class="gg-gf-row"><div class="gg-gf-seg">'+per+'</div><select class="sel-sm gg-gf-pos" onchange="ggGFSet(\'pos\',this.value)"><option value="">All positions</option>'+poss.map(p=>'<option'+(ggGF.pos===p?" selected":"")+">"+p+"</option>").join("")+"</select></div>"
+    +'<div class="gg-gf-row gg-gf-lines">'+ln+"</div>"
+    +(empty?'<div class="gg-gf-note">No hands match that filter — showing everything. <button onclick="ggGF.per=\'all\';ggGF.pos=\'\';LS(\'ps_gg_gf\',ggGF);renderGG()">Reset</button></div>':active?'<div class="gg-gf-note">Showing '+hands.length.toLocaleString()+" of "+full.length.toLocaleString()+' hands <button onclick="ggGF.per=\'all\';ggGF.pos=\'\';LS(\'ps_gg_gf\',ggGF);renderGG()">Clear</button></div>':"")+"</div>";
+}
 function ggWinChartCfg(sp,large){
   const CT=getCT(),L=sp.L,fmt=sp.fmt,inBB=sp.inBB,w=large?0.6:0,fs=large?12:10;
   const ds=(label,data,color,width)=>({label,data:[...data],borderColor:color,backgroundColor:color,borderWidth:width+w,pointRadius:0,pointHoverRadius:3,tension:0,fill:false});
   return{type:"line",
-    data:{labels:[...sp.labels],datasets:[ds("Net won",L.net,GG_COLORS.net,2.5),ds("Showdown",L.sd,GG_COLORS.sd,1.8),ds("Non-showdown",L.nsd,GG_COLORS.nsd,1.8),ds("All-in EV",L.ev,GG_COLORS.ev,1.8)]},
+    data:{labels:[...sp.labels],datasets:[ds("Net won",L.net,GG_COLORS.net,2.5),ds("Showdown",L.sd,GG_COLORS.sd,1.8),ds("Non-showdown",L.nsd,GG_COLORS.nsd,1.8),ds("All-in EV",L.ev,GG_COLORS.ev,1.8)].map((d,i)=>Object.assign(d,{hidden:!ggGF.lines[["net","sd","nsd","ev"][i]]}))},
     options:{responsive:true,maintainAspectRatio:false,animation:(large||sp.big)?false:{duration:700},interaction:{intersect:false,mode:"index"},
-      plugins:{glowLine:false,legend:{display:true,position:"bottom",labels:{color:CT.tick,usePointStyle:true,pointStyle:"line",boxWidth:18,font:{size:large?12:11}}},
+      plugins:{glowLine:false,legend:{display:!!large,position:"bottom",labels:{color:CT.tick,usePointStyle:true,pointStyle:"line",boxWidth:18,font:{size:large?12:11}}},
         tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,callbacks:{title:c=>"Hand "+c[0].label,label:c=>" "+c.dataset.label+": "+fmt(c.raw)}}},
       scales:{x:{title:{display:true,text:"Hands",color:CT.tick,font:{size:fs}},ticks:{color:CT.tick,maxTicksLimit:large?10:7,font:{size:fs}},grid:{display:false}},
         y:{ticks:{color:CT.tick,font:{size:fs},callback:v=>inBB?(v<0?"−":"")+Math.abs(v)+" bb":(v<0?"−$":"$")+Math.abs(v).toFixed(2)},grid:{color:CT.grid,drawTicks:false}}}}};
@@ -10230,7 +10325,7 @@ function ggPlaceChips(){
   // work in the felt's own (unscaled) coordinates so placement is right even while the modal is still scaling open
   const F=felt.getBoundingClientRect(),W=felt.offsetWidth,H=felt.offsetHeight,k=F.width/W||1;
   const rel=e=>{const r=e.getBoundingClientRect();return{l:(r.left-F.left)/k,t:(r.top-F.top)/k,r:(r.right-F.left)/k,b:(r.bottom-F.top)/k}};
-  const obst=[...felt.querySelectorAll(".ggr-seat .ggr-plate,.ggr-seat .ggr-cards,.ggr-seat .ggr-status,.ggr-seat .ggr-pos,.ggr-center .hhb-pot,.ggr-center .comm-card,.ggr-center .ggr-slot")].map(rel);
+  const obst=[...felt.querySelectorAll(".ggr-seat .ggr-plate,.ggr-seat .ggr-cards,.ggr-seat .ggr-status,.ggr-seat .ggr-pos,.ggr-center .hhb-pot,.ggr-center .ggr-win,.ggr-center .comm-card,.ggr-center .ggr-slot")].map(rel);
   const gap=3,free=R=>R.l>=2&&R.t>=2&&R.r<=W-2&&R.b<=H-2&&obst.every(o=>!(R.l<o.r+gap&&o.l<R.r+gap&&R.t<o.b+gap&&o.t<R.b+gap));
   const cx=W/2,cy=H/2;
   felt.querySelectorAll(".ggr-bet[data-seat]").forEach(chip=>{
@@ -10292,7 +10387,7 @@ function ggRenderReplay(){
     const dateTxt=new Date(h.ts).toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
     const tab=ggR.tab||LG("ps_gg_rtab","log");ggR.tab=tab;
     $("ggReplayContent").innerHTML=
-      '<div class="ggr-hdr"><div><div class="ggr-title">'+(h.cls||"Hand")+(h.pos?' <span class="gg-badge">'+h.pos+"</span>":"")+'</div>'+ggRStakeHtml(R)+'<div class="ggr-sub">'+dateTxt+' · #'+escapeHtml(R.id)+'</div></div><div class="ggr-hdr-btns"><div class="br-toggle ggr-unit" id="ggrUnit"><button data-u="bb" class="'+(ggRUnit==="bb"?"on":"")+'" onclick="ggRSetUnit(\'bb\')">BB</button><button data-u="money" class="'+(ggRUnit!=="bb"?"on":"")+'" onclick="ggRSetUnit(\'money\')">$</button></div><button class="ggr-share-btn" onclick="openGGShare()" title="Share this hand as text">📤<span class="ggr-share-l"> Share</span></button><button class="sd-close" onclick="ggStopAuto();closeM(\'ggReplayM\')">✕</button></div></div>'
+      '<div class="ggr-hdr"><div><div class="ggr-title">'+(h.cls||"Hand")+(h.pos?' <span class="gg-badge">'+h.pos+"</span>":"")+'</div>'+ggRStakeHtml(R)+'<div class="ggr-sub">'+dateTxt+' · #'+escapeHtml(R.id)+'</div></div><div class="ggr-hdr-r"><div class="ggr-hdr-btns"><div class="br-toggle ggr-unit" id="ggrUnit"><button data-u="bb" class="'+(ggRUnit==="bb"?"on":"")+'" onclick="ggRSetUnit(\'bb\')">BB</button><button data-u="money" class="'+(ggRUnit!=="bb"?"on":"")+'" onclick="ggRSetUnit(\'money\')">$</button></div><button class="ggr-share-btn" onclick="openGGShare()" title="Share this hand as text">📤<span class="ggr-share-l"> Share</span></button><button class="sd-close" onclick="ggStopAuto();closeM(\'ggReplayM\')">✕</button></div><div class="ggr-hnav" id="ggrHNav"></div></div></div>'
       +'<div id="ggrRange">'+(ggR.rc?ggRcReplayHtml(h):"")+'</div>'
       +'<div class="ggr-body"><div class="ggr-main"><div id="ggrStage"></div></div>'
       +'<div class="ggr-side" data-tab="'+tab+'"><div class="br-toggle ggr-tabs" id="ggrTabs"><button data-t="log" class="'+(tab==="log"?"on":"")+'">📜 Actions</button><button data-t="notes" class="'+(tab==="notes"?"on":"")+'">📝 Notes<span id="ggrNoteCount"></span></button></div>'
@@ -10306,6 +10401,7 @@ function ggRenderReplay(){
   ggRenderStage();
   ggRenderLog();
   ggUpdatePinBox();
+  const hn=$("ggrHNav");if(hn)hn.innerHTML='<button '+(ggR.idx<=0?"disabled":"")+' onclick="ggReplayNav(-1)" title="Previous hand">‹ Prev</button><span>'+(ggR.idx+1)+" / "+ggR.list.length+'</span><button '+(ggR.idx>=ggR.list.length-1?"disabled":"")+' onclick="ggReplayNav(1)" title="Next hand">Next ›</button>';
   $("ggrNav").innerHTML='<div class="ggr-nav"><button class="btn" '+(ggR.idx<=0?"disabled":"")+' onclick="ggReplayNav(-1)">← Prev hand</button><span>Hand '+(ggR.idx+1)+" of "+ggR.list.length+'</span><button class="btn" '+(ggR.idx>=ggR.list.length-1?"disabled":"")+' onclick="ggReplayNav(1)">Next hand →</button></div>';
 }
 /* what a step means in context: bet size as % of the pot, raise multiple, pot odds on calls & folds */
@@ -10316,12 +10412,15 @@ function ggRStepInfo(k){
   const bb=ggR.rep.bb,out={};
   if(st.kind==="bet"&&potBefore>0)out.size=Math.round(delta/potBefore*100)+"% pot";
   else if(st.kind==="raise"&&maxPrev>0){const to=(st.bets||{})[a]||0;out.size=(to/maxPrev).toFixed(1).replace(/\.0$/,"")+"× raise"+(st.street!=="Preflop"&&potBefore>0?" · "+Math.round((to-maxPrev)/(potBefore+maxPrev)*100)+"% pot":"")}
-  else if(st.kind==="call"&&delta>0){const need=delta/(potBefore+delta);out.odds="Pot odds "+((potBefore)/delta).toFixed(1)+" : 1 — needs "+Math.round(need*100)+"% equity"}
-  else if(st.kind==="fold"){const face=maxPrev-mine;if(face>0&&st.street!=="Preflop"){out.odds="Folded to "+ggFmt(face,bb)+" — would have needed "+Math.round(face/(potBefore+face)*100)+"% equity"}}
   return out;
 }
 const GG_R_SHORT={Preflop:"Pre",Flop:"Flop",Turn:"Turn",River:"River",Showdown:"SD"};
-function ggRStreetKey(s){return s.street}
+/* the showdown starts at the first hand revealed after the last board card (not at the "*** SHOWDOWN" line) */
+function ggRStreetOf(R,k){
+  if(R._fs===undefined){let ls=-1;R.states.forEach((s,i)=>{if(s.kind==="street")ls=i});R._fs=R.states.findIndex((s,i)=>i>ls&&s.kind==="show")}
+  return R._fs>0&&k>=R._fs?"Showdown":R.states[k].street;
+}
+function ggRStreetKey(s,k){return ggRStreetOf(ggR.rep,k)}
 function ggRenderStage(){
   const R=ggR.rep,st=R.states[ggR.step],h=ggR.hand,n=R.states.length;
   const heroSeat=(R.seats.find(s=>s.name===R.hero)||R.seats[0]).seat;
@@ -10355,7 +10454,8 @@ function ggRenderStage(){
   const boardRow=cards=>'<div class="ggr-board">'+[0,1,2,3,4].map(k=>cards&&cards[k]?ggCardHtml(cards[k]):'<div class="ggr-slot"></div>').join("")+"</div>";
   const totalPot=st.pot+Object.values(st.bets).reduce((a,b)=>a+Math.max(0,b),0);
   // end of hand: show who won and with what instead of an empty pot
-  const winners=Object.keys(st.won||{});let centerTop='<div class="hhb-pot">Pot '+ggFmt(totalPot,R.bb)+"</div>";
+  const winners=Object.keys(st.won||{});
+  let centerTop='<div class="hhb-pot">Pot '+ggFmt(totalPot,R.bb)+"</div>";
   if(winners.length&&(st.kind==="win"||st.kind==="end"||totalPot===0)){
     const full=(st.board||[]).length===5;
     centerTop='<div class="ggr-win">'+winners.map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&full?ggHandDesc(c,st.board):"";const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));
@@ -10367,11 +10467,11 @@ function ggRenderStage(){
   // action card
   const info=ggRStepInfo(ggR.step)||{};const ap=st.actor&&R.pos?R.pos[st.actor]:"";const isHeroAct=st.actor&&st.actor===R.hero;
   let txt=ggMoneyText(st.text);if(st.actor&&txt.startsWith(st.actor))txt=(isHeroAct?"Hero":st.actor.slice(0,6))+txt.slice(st.actor.length);
-  const actCard='<div class="ggr-actcard'+(isHeroAct?" hero":"")+(st.kind?" k-"+st.kind:"")+'"><div class="ggr-act-top"><span class="ggr-street">'+escapeHtml(st.street)+'</span><span class="ggr-stepno">'+ggR.step+" / "+(n-1)+"</span></div>"
+  const actCard='<div class="ggr-actcard'+(isHeroAct?" hero":"")+(st.kind?" k-"+st.kind:"")+'"><div class="ggr-act-top"><span class="ggr-street">'+escapeHtml(ggRStreetOf(R,ggR.step))+'</span><span class="ggr-stepno">'+ggR.step+" / "+(n-1)+"</span></div>"
     +'<div class="ggr-action">'+(ap?'<span class="ggr-act-pos">'+escapeHtml(ap)+"</span>":"")+escapeHtml(txt)+(info.size?'<span class="ggr-size">'+info.size+"</span>":"")+"</div>"
-    +(info.odds?'<div class="ggr-odds">🎲 '+escapeHtml(info.odds)+"</div>":"")+"</div>";
+    +"</div>";
   // street timeline
-  const segs=[];R.states.forEach((s,k)=>{if(k===0)return;const key=ggRStreetKey(s);if(!segs.length||segs[segs.length-1].key!==key)segs.push({key,steps:[]});segs[segs.length-1].steps.push(k)});
+  const segs=[];R.states.forEach((s,k)=>{if(k===0)return;const key=ggRStreetKey(s,k);if(!segs.length||segs[segs.length-1].key!==key)segs.push({key,steps:[]});segs[segs.length-1].steps.push(k)});
   const tl='<div class="ggr-tl" id="ggrTl">'+segs.map(sg=>{const on=sg.steps.includes(ggR.step),past=sg.steps[sg.steps.length-1]<ggR.step;
     return'<div class="ggr-tl-seg'+(on?" on":"")+(past?" past":"")+'" style="flex:'+Math.max(2,sg.steps.length)+'"><button class="ggr-tl-l" data-go="'+sg.steps[0]+'">'+escapeHtml(GG_R_SHORT[sg.key]||sg.key.replace("Run ","R").replace(" · ",""))+"</button>"
       +'<div class="ggr-tl-ticks">'+sg.steps.map(k=>{const s=R.states[k];return'<button class="ggr-tk'+(k===ggR.step?" cur":"")+(k<ggR.step?" done":"")+(s.actor===R.hero&&/bet|raise|call|check|fold/.test(s.kind)?" hero":"")+(ps.includes(k)?" note":"")+'" data-go="'+k+'" title="'+escapeHtml(ggMoneyText(s.text))+'"></button>'}).join("")+"</div></div>"}).join("")+"</div>";
@@ -10400,7 +10500,7 @@ function ggRenderLog(){
   const sum=o=>Object.values(o||{}).reduce((t,v)=>t+Math.max(0,v),0);
   S.forEach((s,k)=>{
     if(k===0)return;
-    const key=s.street;
+    const key=ggRStreetOf(R,k);
     if(key!==cur){cur=key;const potAt=s.pot+sum(s.bets),brd=s.kind==="street"&&s.board&&s.board.length?s.board:null;
       h+='<div class="ggr-lg-h'+(k>ggR.step?" future":"")+'" data-s="'+k+'"><span>'+escapeHtml(key)+"</span>"+(brd?'<span class="ggr-lg-b">'+brd.map(c=>'<i class="'+(c[1]==="h"||c[1]==="d"?"r":"")+'">'+c[0].replace("T","10")+GG_SUIT_SYM[c[1]]+"</i>").join("")+"</span>":"")+(potAt>0&&key!=="Showdown"?'<em>pot '+ggFmt(potAt,R.bb)+"</em>":"")+"</div>"}
     if(s.kind==="street"&&s.board&&s.board.length)return; // the header already shows the new cards
@@ -11092,6 +11192,21 @@ function toggleBal(){balHidden=!balHidden;LS("ps_balhide",balHidden);applyBalHid
 function applyBalHide(){const bv=$("bankrollV");if(bv){balHidden?bv.classList.add("bal-hidden"):bv.classList.remove("bal-hidden")}syncBalToggles()}
 const PROMO_TYPE_LABELS={rakeback:"Rakeback",highhand:"High Hand Bonus",badbeat:"Bad Beat Jackpot",otherpromo:"Promo"};
 const PROMO_TYPE_ICONS={rakeback:"💵",highhand:"🃏",badbeat:"💥",otherpromo:"🎁"};
+function depResetEdit(){const e=$("depEditId");if(e)e.value="";const db=$("depDelBtn");if(db)db.style.display="none";const ok=$("depOkBtn");if(ok)ok.textContent="Confirm"}
+function openDepEdit(id){
+  const d=(BR.d.deposits||[]).find(x=>x.id===id);if(!d)return;
+  const isPromo=!!d.promoType,sign=d.amt<0?-1:1;
+  openM("depM");depSetPromoMode(isPromo);
+  if(isPromo)$("depPromoTypeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.ptype===d.promoType));
+  $("depSign").value=String(sign);$("depEditId").value=id;$("depAmt").value=(Math.abs(d.amt)/100).toFixed(2);$("depDesc").value=d.desc||"";
+  $("depMTitle").textContent=isPromo?"✎ Edit promo":sign>0?"✎ Edit deposit":"✎ Edit withdrawal";
+  $("depDelBtn").style.display="";$("depOkBtn").textContent="Save";
+}
+function deleteDep(){
+  const id=$("depEditId").value;const d=(BR.d.deposits||[]).find(x=>x.id===id);if(!d)return;
+  confirmAction("Remove this "+(d.promoType?"promo":d.amt<0?"withdrawal":"deposit")+"?",d.desc+" · "+(d.amt<0?"−":"+")+brFmt(Math.abs(d.amt)),()=>{
+    BR.d.deposits=BR.d.deposits.filter(x=>x.id!==id);BR.save();depResetEdit();closeM("depM");renderBrAll();toast("Removed");haptic("warn")});
+}
 function depSetPromoMode(isPromo){
   $("depPromoTypeWrap").style.display=isPromo?"":"none";
   if(isPromo){
@@ -11107,9 +11222,11 @@ function submitDep(){
   const isPromo=$("depPromoTypeWrap").style.display!=="none";
   const promoType=isPromo?($("depPromoTypeRow").querySelector("button.sel")?.dataset.ptype||"otherpromo"):null;
   const desc=$("depDesc").value.trim()||(isPromo?PROMO_TYPE_LABELS[promoType]:(sign>0?"Deposit":"Withdrawal"));
-  BR.d.deposits.push({id:"dep_"+Date.now(),amt:Math.round(amt*100)*sign,desc,promoType,ts:Date.now()});
-  BR.save();$("depAmt").value="";$("depDesc").value="";closeM("depM");renderBrAll();
-  toast((sign>0?"+":"-")+brSym()+amt.toFixed(2)+(isPromo?" "+PROMO_TYPE_ICONS[promoType]:" ✦"))
+  const eid=$("depEditId").value;
+  if(eid){const d=(BR.d.deposits||[]).find(x=>x.id===eid);if(d){d.amt=Math.round(amt*100)*sign;d.desc=desc;d.promoType=promoType}}
+  else BR.d.deposits.push({id:"dep_"+Date.now(),amt:Math.round(amt*100)*sign,desc,promoType,ts:Date.now()});
+  BR.save();$("depAmt").value="";$("depDesc").value="";depResetEdit();closeM("depM");renderBrAll();
+  toast(eid?"✎ Updated":(sign>0?"+":"-")+brSym()+amt.toFixed(2)+(isPromo?" "+PROMO_TYPE_ICONS[promoType]:" ✦"))
 }
 // Live session
 let liveData=LG("ps_live",null);let liveTimer=null;
@@ -11392,11 +11509,13 @@ function renderBrDashSingle(){
   {const rc=$("brRecent");if(rc){const last=sorted.slice(-5).reverse();rc.innerHTML=last.length?'<h3>Latest sessions <button class="b3-link" onclick="switchBrTab(\'brHistory\')">View all →</button></h3><div class="br-sess-list">'+last.map(brRowHtml).join("")+"</div>":'<div class="b3-empty"><b>🃏 Your first session awaits</b><span>Log a game and your bankroll story starts here — graphs, streaks and all.</span><button class="btn pri btn-s" onclick="switchBrTab(\'brSess\')">＋ Log session</button></div>'}}
   $("brDashStats").innerHTML='<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'" data-ic="💷"><div class="brs-label">Total profit</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+(sorted.length?"across "+sorted.length+" session"+(sorted.length!==1?"s":""):"nothing logged yet")+'</div></div><div class="br-stat" data-ic="🃏"><div class="brs-label">Sessions</div><div class="brs-val" style="color:var(--pk)">'+sorted.length+'</div><div class="brs-sub">'+wins+" won · "+losses+' lost</div></div><div class="br-stat '+(hourly>=0?"stat-pos":"stat-neg")+'" data-ic="⏱"><div class="brs-label">Hourly rate</div><div class="brs-val '+(hourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(hourly).toFixed(2)+'/hr</div><div class="brs-sub">'+(totalHrs>0?Math.round(totalHrs)+'h at the tables'+(untimed?' · '+untimed+' untimed':''):'log times to see this')+'</div></div><div class="br-stat" data-ic="🏆"><div class="brs-label">Win rate</div><div class="brs-val" style="color:var(--li)">'+winRate.toFixed(1)+'%</div><div class="brs-sub">'+(sorted.length?(winRate>=55?"winning more often than not":winRate>=45?"coin-flip territory — size matters more":"fewer wins — make them count"):"—")+'</div></div>'+(()=>{const bbh=computeBBPerHour(sorted);return'<div class="br-stat '+(bbh.overall>=0?"stat-pos":"stat-neg")+'" data-ic="📈" style="cursor:pointer" onclick="openBBPerHourBreakdown()"><div class="brs-label">BB / hr <span style="opacity:.5">▸</span></div><div class="brs-val '+(bbh.overall>=0?"pos":"neg")+'">'+(bbh.overall>=0?"+":"")+bbh.overall.toFixed(1)+'</div><div class="brs-sub">'+Math.round(bbh.totalHrs)+'h tracked · tap to break it down</div></div>'})()+'<div class="br-stat" data-ic="⚖️"><div class="brs-label">Avg / session</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+(sorted.length?brFmt(Math.round(total/sorted.length)):"—")+'</div><div class="brs-sub">'+(timed.length?"typical session: "+Math.round(totalMins/timed.length/60*10)/10+"h":"—")+'</div></div>';
   // Dep history
-  const depHist=(BR.d.deposits||[]).slice().reverse();const depArea=$("brDepHist");if(depArea&&depHist.length){depArea.innerHTML='<div style="font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Recent Transactions</div>'+depHist.slice(0,8).map(d=>{const isPos=d.amt>0;const icon=d.promoType?PROMO_TYPE_ICONS[d.promoType]:(isPos?"↓":"↑");return'<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd)"><div style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:'+(d.promoType?"rgba(200,165,92,.12)":isPos?"rgba(110,231,183,.08)":"rgba(251,113,133,.08)")+';font-size:13px">'+icon+'</div><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:12px">'+escapeHtml(d.desc)+'</div><div style="font-size:9px;color:var(--t4)">'+new Date(d.ts).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})+'</div></div><div style="font-family:var(--fm);font-size:13px;font-weight:700;color:'+(isPos?"var(--mt)":"var(--rs)")+'">'+(isPos?"+":"")+brFmt(d.amt)+'</div></div>'}).join("")}else if(depArea)depArea.innerHTML="";
+  const depHist=(BR.d.deposits||[]).slice().reverse();const depArea=$("brDepHist");
+  if(depArea&&depHist.length){depArea.innerHTML='<h3>Deposits &amp; withdrawals <small>'+depHist.length+'</small></h3><div class="b3-tx">'+depHist.slice(0,8).map(d=>{const isPos=d.amt>0,kind=d.promoType?"promo":isPos?"dep":"wd",icon=d.promoType?PROMO_TYPE_ICONS[d.promoType]:(isPos?"↓":"↑");
+    return'<div class="b3-txr '+kind+'"><div class="b3-txi">'+icon+'</div><div class="b3-txm"><b>'+escapeHtml(d.desc)+'</b><span>'+new Date(d.ts).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})+(kind==="promo"?" · promo":kind==="dep"?" · deposit":" · withdrawal")+'</span></div><div class="b3-txa '+(isPos?"pos":"neg")+'">'+(isPos?"+":"−")+brFmt(Math.abs(d.amt))+'</div><button class="b3-txe" onclick="openDepEdit(\''+d.id+'\')" title="Edit or remove">✎</button></div>'}).join("")+(depHist.length>8?'<div class="b3-txmore">Showing the latest 8 of '+depHist.length+"</div>":"")+"</div>"}else if(depArea)depArea.innerHTML="";
   destroyBrChart("br");const labels=[],data=[],dates=[];let cum=(parseFloat(BR.d.settings?.startBankroll)||0)*100+deps;sorted.forEach(s=>{cum+=s.resultCents;labels.push(brDayLbl(s.date));data.push(cum/100);dates.push(s.date)});
   {const cut=brPerCut();let whole=true;if(cut){let i=dates.findIndex(d=>d>=cut);if(i<0)i=dates.length;whole=i===0;i=Math.max(0,i-1);labels.splice(0,i);data.splice(0,i)}
    const pe=$("brPer");if(pe)pe.innerHTML=BR_PERS.map(([k,l])=>'<button class="'+(brPer===k?"on":"")+'" onclick="brSetPer(\''+k+'\')">'+l+"</button>").join("");
-   const dl=$("brPerDelta");if(dl){const dv=whole?total:data.length>1?Math.round((data[data.length-1]-data[0])*100):0;dl.className=dv>0?"pos":dv<0?"neg":"";dl.textContent=data.length>1?(dv>0?"+":dv<0?"−":"")+brFmt(Math.abs(dv))+(whole?" all-time":""):""}}
+   const dl=$("brPerDelta");if(dl){const dv=whole?total:data.length>1?Math.round((data[data.length-1]-data[0])*100):0;dl.className="b3-pd "+(dv>0?"pos":dv<0?"neg":"");dl.textContent=data.length>1?(dv>0?"+":dv<0?"−":"")+brFmt(Math.abs(dv))+(whole?" all-time":""):""}}
   if(sorted.length&&typeof Chart!=="undefined"){brCharts.br=new Chart($("chBR").getContext("2d"),{type:"line",data:{labels,datasets:[{label:"Bankroll",data,borderColor:CT.rose,backgroundColor:brAreaGrad(CT.rose),fill:true,tension:.35,pointRadius:0,pointHoverRadius:5,pointHitRadius:12,borderWidth:3,pointBackgroundColor:CT.rose,pointBorderColor:"#fff",pointBorderWidth:1.5,pointHoverBackgroundColor:CT.rose},...trendDataset("br",data,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toLocaleString()}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:7,font:{size:10}},grid:{color:CT.grid,drawTicks:false}},y:{ticks:{color:CT.tick,font:{size:10},callback:v=>brSym()+v.toLocaleString()},grid:{color:CT.grid,drawTicks:false}}}}})}
   destroyBrChart("month");const months={};sorted.forEach(s=>{const m=s.date.slice(0,7);months[m]=(months[m]||0)+s.resultCents});const mKeys=Object.keys(months).sort();if(mKeys.length&&typeof Chart!=="undefined"){const mVals=mKeys.map(k=>months[k]/100);brCharts.month=new Chart($("chMonth").getContext("2d"),{type:"bar",data:{labels:mKeys.map(brMonLbl),datasets:[{data:mVals,backgroundColor:mKeys.map(k=>months[k]>=0?CT.green_a:CT.red_a),borderRadius:6,borderSkipped:false},...trendDataset("month",mVals,CT).map(d=>({...d,type:"line"}))]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brFmt(Math.round(c.raw*100))}}},scales:{x:{ticks:{color:CT.tick,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
   destroyBrChart("hourly");const hrD=[],hrL=[];sorted.forEach((s,i)=>{if(!s.duration)return;const recent=sorted.slice(Math.max(0,i-49),i+1).filter(x=>x.duration>0);const avgHr=recent.reduce((a,x)=>a+x.resultCents/100/(x.duration/60),0)/recent.length;hrD.push(avgHr);hrL.push(brDayLbl(s.date))});if(hrD.length&&typeof Chart!=="undefined"){brCharts.hourly=new Chart($("chHourly").getContext("2d"),{type:"line",data:{labels:hrL,datasets:[{data:hrD,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.4,pointRadius:0,pointHoverRadius:4,borderWidth:2.5},...trendDataset("hourly",hrD,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,cornerRadius:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toFixed(2)+"/hr"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
@@ -11530,14 +11649,14 @@ function brRowHtml(s){const d=new Date((s.date||"")+"T00:00:00"),dur=s.duration|
 function brMood(ss,mp,mn,dp,dn,total){
   if(!ss.length)return"✨ A fresh start — log your first session and the story begins.";
   let st=0,sgn=0;for(let i=ss.length-1;i>=0;i--){const v=Math.sign(ss[i].resultCents);if(!v)break;if(!sgn)sgn=v;if(v!==sgn)break;st++}
-  const last=ss[ss.length-1],lr=last.resultCents,f=v=>brFmt(Math.abs(v));
-  if(st>=3&&sgn>0)return"🔥 "+st+" winning sessions in a row — you're on a heater.";
-  if(st>=3&&sgn<0)return"🧊 "+st+" losing sessions in a row — breathe, it's variance. Review, don't tilt.";
+  const last=ss[ss.length-1],lr=last.resultCents,f=v=>'<b class="'+(v>=0?"up":"dn")+'">'+brFmt(Math.abs(v))+"</b>";
+  if(st>=3&&sgn>0)return"🔥 <b class=\"up\">"+st+"</b> winning sessions in a row — you're on a heater.";
+  if(st>=3&&sgn<0)return"🧊 <b class=\"dn\">"+st+"</b> losing sessions in a row — breathe, it's variance. Review, don't tilt.";
   if(dn&&dp>0)return"📈 Up "+f(dp)+" over the last 30 days — keep it rolling.";
-  if(dn&&dp<0)return"📉 Down "+f(dp)+" over the last 30 days — stick to the plan, the edge shows over time.";
-  if(lr>0)return"🎉 Last session: +"+f(lr)+(last.stakes?" at "+escapeHtml(last.stakes):"")+". Nice work.";
-  if(lr<0)return"🌧 Last session: −"+f(lr)+". One session is noise — the long run is what counts.";
-  return total>=0?"🙂 Steady — you're up "+f(total)+" all-time.":"💪 Down "+f(total)+" all-time — every pro has been here.";
+  if(dn&&dp<0)return"📉 Down "+f(dp).replace('"up"','"dn"')+" over the last 30 days — stick to the plan, the edge shows over time.";
+  if(lr>0)return"🎉 Last session: +"+f(lr)+(last.stakes?' at <b class="stk">'+escapeHtml(last.stakes)+"</b>":"")+". Nice work.";
+  if(lr<0)return"🌧 Last session: −"+f(lr).replace('"up"','"dn"')+". One session is noise — the long run is what counts.";
+  return total>=0?"🙂 Steady — you're up "+f(total)+" all-time.":"💪 Down "+f(total).replace('"up"','"dn"')+" all-time — every pro has been here.";
 }
 function brDayLbl(d){const x=new Date(d+"T00:00:00");return isNaN(x)?d:x.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}
 function brMonLbl(m){const x=new Date(m+"-01T00:00:00");return isNaN(x)?m:x.toLocaleDateString("en-GB",{month:"short",year:"2-digit"})}
