@@ -1321,6 +1321,172 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 .rc-lg{border-radius:50%!important}
 .rc-legend{display:flex;flex-wrap:wrap;gap:4px 10px}
 .rc-sheet-b{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.rc-sheet-b .btn{flex:1;min-width:110px}
+.rc-row.excused{border-left-color:#60a5fa}
+.rc-exchip{font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:5px;background:rgba(96,165,250,.14);color:#93c5fd;margin-left:4px;white-space:nowrap}
+.rc-exnote{margin:2px 0 6px;font-size:10.5px;color:#93c5fd;line-height:1.45}.rc-exnote button{border:0;background:none;color:var(--t1);text-decoration:underline;font-size:10.5px;cursor:pointer;padding:0 2px}
+.rc-rp-row.excused{border-left-color:#60a5fa}.rc-v.excused{color:#93c5fd}
+.rc-rp-nm{margin-top:7px;border:1px dashed rgba(96,165,250,.45);background:rgba(96,165,250,.06);color:#93c5fd;font-size:11px;font-weight:700;border-radius:8px;padding:5px 10px;cursor:pointer;font-family:inherit}
+.rc-rp-ex{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:11px;color:#93c5fd}.rc-rp-ex span{flex:1;min-width:0}
+.rc-rp-ex button{border:1px solid var(--bd2);background:transparent;color:var(--t2);border-radius:7px;font-size:10.5px;padding:3px 8px;cursor:pointer}
+.rc-rp-exs{font-size:9.5px;color:var(--t4);margin-top:2px}
+.rc-g-mk.ex,.rc-lg.ex{background:#60a5fa}
+.rc-exr{display:flex;flex-wrap:wrap;gap:6px}.rc-exr button{border:1px solid var(--bd2);background:rgba(0,0,0,.18);color:var(--t2);border-radius:999px;padding:7px 11px;font-size:11.5px;cursor:pointer;font-family:inherit}
+.rc-exr button.on{border-color:#60a5fa;background:rgba(96,165,250,.16);color:#fff}
+/* ═══ Bankroll v2 — calm, flat, no decorative motion ═══ */
+#bankrollV *,#bankrollV *::before,#bankrollV *::after{animation:none!important}
+#bankrollV *:hover,#bankrollV *:active{transform:none!important}
+#bankrollV .br-hero::before,#bankrollV .br-hero::after,#bankrollV .br-chart-box::before,#bankrollV .br-chart-box::after,#bankrollV .br-stat::before,#bankrollV .br-stat::after,#bankrollV .section-head::after,#bankrollV .live-cta-card::before,#bankrollV .live-cta-card::after,#bankrollV .br-form::before{display:none!important}
+#bankrollV .section-head{margin-bottom:12px;padding-bottom:0;text-shadow:none;border:0;gap:10px}
+#bankrollV .section-head>span:first-child{display:none}
+#bankrollV .section-head h2{font-family:inherit;font-style:normal;font-size:22px;font-weight:800;color:var(--t1);text-shadow:none;letter-spacing:-.3px}
+#bankrollV .br-switcher{box-shadow:none}
+#bankrollV .br-sub-nav{display:flex;padding:3px;gap:2px;border-radius:12px;background:var(--b1);border:1px solid var(--bd);box-shadow:none;margin-bottom:14px;overflow-x:auto}
+#bankrollV .br-sub-nav button{flex:1 0 auto;padding:9px 10px;font-size:12px;font-weight:700;border-radius:9px;color:var(--t3);background:transparent;box-shadow:none!important;transition:background .15s,color .15s;white-space:nowrap}
+#bankrollV .br-sub-nav button.on{background:var(--b3);color:var(--t1)}
+#bankrollV .br-stats-subnav{max-width:320px}
+/* hero */
+#bankrollV .br-hero{position:relative;background:var(--b1)!important;border:1px solid var(--bd)!important;border-radius:16px;padding:18px 18px 10px;box-shadow:none!important;overflow:hidden;margin-bottom:10px}
+#bankrollV .br-hero-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t4)}
+#bankrollV .br-hero-val{font-family:var(--fm);font-size:38px;font-weight:800;letter-spacing:-1px;margin:4px 0 2px;text-shadow:none!important;color:var(--t1)!important}
+#bankrollV .br-hero-sub{font-size:12px;color:var(--t3)}
+#bankrollV .br-hero-spark{opacity:.9!important;height:56px;margin:8px -18px 0}
+/* actions */
+#bankrollV .br-actions{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:6px;margin-bottom:14px}
+#bankrollV .br-act{display:flex;align-items:center;justify-content:center;gap:6px;height:42px;border-radius:11px;border:1px solid var(--bd);background:var(--b1);color:var(--t1);font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s}
+#bankrollV .br-act b{font-size:14px}.br-act.dep b{color:var(--mt)}.br-act.wd b{color:var(--rs)}
+#bankrollV .br-act.eye{padding:0 12px;font-size:11.5px;color:var(--t3)}
+#bankrollV .br-act:hover{background:var(--b2);border-color:var(--bd2)}
+/* stat tiles */
+#bankrollV .br-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:14px}
+@media(min-width:760px){#bankrollV .br-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+#bankrollV .br-stat{background:var(--b1)!important;border:1px solid var(--bd)!important;border-left:1px solid var(--bd)!important;border-radius:13px;padding:12px 13px;box-shadow:none!important;min-height:0}
+#bankrollV .brs-label{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--t4)}
+#bankrollV .brs-val{font-family:var(--fm);font-size:20px;font-weight:800;margin:4px 0 2px;text-shadow:none!important;color:var(--t1)}
+#bankrollV .brs-val.pos{color:var(--mt)}#bankrollV .brs-val.neg{color:var(--rs)}
+#bankrollV .brs-sub{font-size:10.5px;color:var(--t4)}
+/* chart cards */
+#bankrollV .br-chart-box{background:var(--b1)!important;border:1px solid var(--bd)!important;border-radius:14px;padding:14px;box-shadow:none!important;margin-bottom:12px}
+#bankrollV .br-chart-box h3{font-family:inherit!important;font-style:normal!important;font-size:13px!important;font-weight:700!important;color:var(--t1)!important;margin:0 0 10px!important;text-shadow:none!important;display:flex;align-items:baseline;gap:8px}
+#bankrollV .br-chart-box h3 small{font-size:10.5px;font-weight:500;color:var(--t4)}
+#bankrollV .br-chart-box .cdot{display:none}
+#bankrollV .br-chart-grid{gap:12px}
+#bankrollV .br-chart-h canvas{background:transparent!important}
+/* log session */
+#bankrollV .live-cta-card{background:none!important;border:0!important;padding:0!important;box-shadow:none!important;margin-bottom:10px}
+#bankrollV .live-start-cta{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--b1);border:1px solid var(--bd);box-shadow:none!important}
+#bankrollV .lsc-icon{font-size:18px;width:auto;height:auto;background:none!important;box-shadow:none!important}
+#bankrollV .lsc-title{font-family:inherit!important;font-style:normal!important;font-size:13.5px!important;font-weight:700;color:var(--t1)}
+#bankrollV .lsc-sub{font-size:11px;color:var(--t4)}
+#bankrollV .live-start-cta .btn{margin-left:auto;white-space:nowrap}
+@media(max-width:520px){#bankrollV .live-start-cta{flex-wrap:wrap}#bankrollV .live-start-cta .btn{width:100%}}
+#bankrollV .br-form{background:var(--b1)!important;border:1px solid var(--bd)!important;border-radius:16px;padding:16px!important;box-shadow:none!important}
+#bankrollV .br-form h3{font-family:inherit!important;font-style:normal!important;font-size:16px!important;font-weight:800!important;color:var(--t1)!important;margin:0 0 12px!important;text-shadow:none!important}
+#bankrollV .br-fg label{font-family:inherit!important;font-style:normal!important;font-size:10.5px!important;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--t4)!important}
+#bankrollV .br-fg input,#bankrollV .br-fg select,#bankrollV .br-fg textarea{background:var(--b0)!important;border:1px solid var(--bd2)!important;border-radius:10px!important;box-shadow:none!important;font-size:13px!important}
+#bankrollV .br-fg input:focus,#bankrollV .br-fg select:focus,#bankrollV .br-fg textarea:focus{border-color:var(--pk)!important;outline:none}
+#bankrollV .br-result-live{border-radius:10px;box-shadow:none!important;font-family:var(--fm);font-size:18px;font-weight:800}
+#bankrollV .br-toggle{box-shadow:none}
+#bankrollV .br-toggle button{box-shadow:none!important}
+#bankrollV .br-toggle button.on{box-shadow:none!important}
+#bankrollV .lqs-row{margin-top:-2px}
+/* history */
+#bankrollV .br-hist-toolbar{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px}
+#bankrollV .br-hist-toolbar-left,#bankrollV .br-hist-toolbar-right{display:flex;gap:6px;flex-wrap:nowrap}
+#bankrollV .br-hist-toolbar-left .ac-wrap{flex:1;min-width:0!important}
+#bankrollV .br-hist-toolbar select,#bankrollV .br-hist-toolbar .btn{flex:1}
+@media(min-width:760px){#bankrollV .br-hist-toolbar{grid-template-columns:1fr auto}}
+#bankrollV .br-hist-hdr h3{font-family:inherit!important;font-style:normal!important;font-size:15px!important;font-weight:800;color:var(--t1)!important;text-shadow:none!important}
+#bankrollV .br-table-card{background:none!important;border:0!important;box-shadow:none!important;padding:0!important}
+#bankrollV .bsc-group-hdr{display:flex;align-items:center;justify-content:space-between;padding:10px 4px 6px;margin-top:6px;background:none!important;border:0!important;box-shadow:none!important;cursor:pointer}
+#bankrollV .bsc-group-name{font-family:inherit!important;font-style:normal!important;font-size:12px!important;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--t3)!important}
+#bankrollV .bsc-group-sub{font-family:var(--fm);font-size:12px;font-weight:800}
+#bankrollV .bsc-group-sub.pos{color:var(--mt)}#bankrollV .bsc-group-sub.neg{color:var(--rs)}
+#bankrollV .br-sess-list{display:flex;flex-direction:column;gap:6px}
+#bankrollV .br-sess-card.br2{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:var(--b1)!important;border:1px solid var(--bd)!important;border-left:3px solid var(--bd)!important;box-shadow:none!important;cursor:pointer;margin:0;transition:background .15s}
+#bankrollV .br-sess-card.br2.pos{border-left-color:var(--mt)!important}#bankrollV .br-sess-card.br2.neg{border-left-color:var(--rs)!important}
+#bankrollV .br-sess-card.br2:hover{background:var(--b2)!important}
+.b2-date{flex:0 0 38px;display:flex;flex-direction:column;align-items:center;line-height:1.05}.b2-date b{font-family:var(--fm);font-size:18px;color:var(--t1)}.b2-date span{font-size:9.5px;color:var(--t4);text-transform:uppercase;letter-spacing:.5px}
+.b2-mid{flex:1;min-width:0}.b2-t{display:flex;align-items:center;gap:6px;min-width:0}.b2-t b{font-family:var(--fm);font-size:13.5px;color:var(--t1)}
+.b2-loc{font-size:11.5px;color:var(--t3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.b2-tag{font-size:9px;font-weight:800;padding:1px 6px;border-radius:5px;background:var(--b3);color:var(--t2);white-space:nowrap}.b2-tag.live{background:rgba(248,113,113,.15);color:#fca5a5}
+.b2-s{font-size:11px;color:var(--t4);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.b2-s .pos{color:var(--mt)}.b2-s .neg{color:var(--rs)}
+.b2-res{font-family:var(--fm);font-size:15px;font-weight:800;white-space:nowrap}.b2-res.pos{color:var(--mt)}.b2-res.neg{color:var(--rs)}
+/* goals */
+#bankrollV .goal-card{box-shadow:none!important;background:var(--b1)!important;border:1px solid var(--bd)!important}
+#bankrollV .goal-ring circle{transition:none!important}
+#bankrollV .goal-head .btn.pri{box-shadow:none}
+/* stats */
+#bankrollV .insight-narrative{background:var(--b1);border:1px solid var(--bd);border-radius:14px;box-shadow:none}
+#bankrollV .section-head h2,#bankrollV #brTitle{color:var(--t1)!important;-webkit-text-fill-color:var(--t1)!important;background:none!important}
+#bankrollV .br-sub-nav#brNav{overflow:visible;-webkit-mask-image:none!important;mask-image:none!important}
+#bankrollV #brNav button{flex:1 1 0;min-width:0;padding:9px 2px;font-size:12px}
+#bankrollV .brs-val[style]{color:var(--t1)!important}
+#bankrollV .live-start-cta{background:var(--b1)!important;border:1px solid var(--bd)!important}
+#bankrollV .live-start-cta::before,#bankrollV .live-start-cta::after,#bankrollV .lsc-icon::before,#bankrollV .lsc-icon::after{display:none!important}
+#bankrollV .live-start-cta .btn.pri{box-shadow:none!important}
+#bankrollV .lqs-row{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:5px;padding-bottom:2px;scrollbar-width:none}#bankrollV .lqs-row::-webkit-scrollbar{display:none}
+#bankrollV .lqs-row>*{flex:0 0 auto}
+#bankrollV .br-hist-toolbar-left select{flex:0 0 auto;width:auto}
+/* ═══ Bankroll v3 — polish (static, no motion) ═══ */
+#bankrollV #brNav button.on{background:color-mix(in srgb,var(--pk) 16%,var(--b2));color:var(--pk2)}
+#bankrollV .br-stats-subnav button.on{background:color-mix(in srgb,var(--pk) 16%,var(--b2));color:var(--pk2)}
+#bankrollV .br-hero.b3{padding:18px 18px 0;border-radius:18px}
+#bankrollV .br-hero.b3.up{background:linear-gradient(150deg,color-mix(in srgb,var(--mt) 13%,var(--b1)) 0%,var(--b1) 55%)!important;border-color:color-mix(in srgb,var(--mt) 28%,var(--bd))!important}
+#bankrollV .br-hero.b3.down{background:linear-gradient(150deg,color-mix(in srgb,var(--rs) 13%,var(--b1)) 0%,var(--b1) 55%)!important;border-color:color-mix(in srgb,var(--rs) 28%,var(--bd))!important}
+.b3-top{display:flex;align-items:center;justify-content:space-between}
+.b3-eye{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd2);background:rgba(0,0,0,.2);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#bankrollV .br-hero.b3 .br-hero-val{font-size:40px;color:var(--t1)!important;margin:2px 0 10px}
+.b3-chips{display:flex;gap:6px;flex-wrap:wrap}
+.b3-chip{display:flex;flex-direction:column;padding:7px 10px;border-radius:11px;background:rgba(0,0,0,.22);border:1px solid var(--bd);min-width:0;flex:1 1 90px}
+.b3-chip i{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--t4)}
+.b3-chip b{font-family:var(--fm);font-size:14px;color:var(--t1);margin-top:2px}.b3-chip.pos b{color:var(--mt)}.b3-chip.neg b{color:var(--rs)}
+#bankrollV .br-hero.b3 .br-hero-sub{margin-top:10px;font-size:11px;color:var(--t4)}
+#bankrollV .br-hero.b3 .br-hero-spark{height:64px;margin:6px -18px 0}
+#bankrollV .br-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+#bankrollV .br-act.log{grid-column:1/-1;height:48px;font-size:14px;border:0;color:#140a12;background:linear-gradient(135deg,var(--pk),color-mix(in srgb,var(--pk) 60%,#fff))}
+#bankrollV .br-act.log b{color:#140a12;font-size:17px}
+#bankrollV .br-act.log:hover{filter:brightness(1.05);background:linear-gradient(135deg,var(--pk),color-mix(in srgb,var(--pk) 60%,#fff))}
+#bankrollV .br-act.promo b{font-size:13px}
+@media(min-width:760px){#bankrollV .br-actions{grid-template-columns:2fr 1fr 1fr 1fr}#bankrollV .br-act.log{grid-column:auto;height:44px}}
+#bankrollV .br-stat{position:relative;padding:13px 14px!important}
+#bankrollV .br-stat[data-ic]::after{content:attr(data-ic);display:flex!important;opacity:1!important;inset:auto;bottom:auto;left:auto;transform:none!important;position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:9px;align-items:center;justify-content:center;font-size:13px;background:color-mix(in srgb,var(--pk) 12%,transparent)}
+#bankrollV .br-stat.stat-pos[data-ic]::after{background:color-mix(in srgb,var(--mt) 14%,transparent)}
+#bankrollV .br-stat.stat-neg[data-ic]::after{background:color-mix(in srgb,var(--rs) 14%,transparent)}
+#bankrollV .brs-val{font-size:21px}
+#bankrollV .br-chart-box h3{flex-wrap:wrap}
+#bankrollV .br-chart-box h3 small.pos{color:var(--mt);font-weight:700;font-family:var(--fm)}#bankrollV .br-chart-box h3 small.neg{color:var(--rs);font-weight:700;font-family:var(--fm)}
+.b3-per{margin-left:auto;display:inline-flex;gap:2px;padding:2px;border-radius:9px;background:var(--b0);border:1px solid var(--bd)}
+.b3-per button{border:0;background:transparent;color:var(--t4);font-size:10.5px;font-weight:800;padding:4px 8px;border-radius:7px;cursor:pointer;font-family:inherit}
+.b3-per button.on{background:var(--b3);color:var(--t1)}
+.b3-link{margin-left:auto;border:0;background:none;color:var(--pk2);font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;padding:0}
+.b3-recent .br-sess-list{gap:5px}
+.b3-recent .br-sess-card.br2{background:var(--b0)!important}
+.b3-empty{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 8px;text-align:center}.b3-empty b{color:var(--t1)}.b3-empty span{font-size:11.5px;color:var(--t4)}
+#bankrollV .b3-sec{display:flex!important;flex-direction:row!important;justify-content:flex-start!important;text-align:left;align-items:center;gap:10px;margin:8px 0 -2px;font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--pk2)}
+#bankrollV .b3-sec::after{content:"";flex:1;height:1px;background:var(--bd)}
+#bankrollV .br-fgrid>.b3-sec:first-child{margin-top:0}
+#bankrollV .br-result-live{background:var(--b0)!important;border:1px solid var(--bd2)!important}
+.b3-resf{display:inline-flex;margin-bottom:10px}
+.b3-resf button{padding:6px 14px!important;font-size:11.5px!important}
+.b3-gmeta{margin-left:auto;margin-right:10px;font-size:10.5px;color:var(--t4)}
+#bankrollV .bsc-group-hdr{border-bottom:1px solid var(--bd)!important;margin-bottom:4px}
+#brDash.b3-none .br-stats,#brDash.b3-none .br-chart-box:not(.b3-recent),#brDash.b3-none .br-chart-grid,#brDash.b3-none .br-hero-spark{display:none!important}
+#brDash.b3-none .br-hero.b3{padding-bottom:16px}
+/* ═══ Bankroll type & voice ═══ */
+#bankrollV .section-head h2{font-family:var(--fd)!important;font-style:italic!important;font-size:28px!important;font-weight:800;letter-spacing:-.4px;background:linear-gradient(90deg,var(--t1),var(--pk2))!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+#bankrollV .br-chart-box h3,#bankrollV .br-form h3,#bankrollV .br-hist-hdr h3{font-family:var(--fd)!important;font-style:italic!important;font-size:17px!important;letter-spacing:-.2px}
+#bankrollV .br-chart-box h3 small,#bankrollV .br-chart-box h3 .b3-per,#bankrollV .br-chart-box h3 .b3-per button,#bankrollV .br-chart-box h3 .b3-link{font-family:var(--ff)!important;font-style:normal!important}#bankrollV .br-chart-box h3 small.pos,#bankrollV .br-chart-box h3 small.neg{font-family:var(--fm)!important}
+#bankrollV .br-form h3{font-size:22px!important;margin-bottom:2px!important}
+.b3-formsub{font-size:12px;color:var(--t4);margin-bottom:12px}
+#bankrollV .b3-sec{font-family:var(--fd);font-style:italic;text-transform:none!important;letter-spacing:0!important;font-size:14px!important;color:var(--pk2)}
+#bankrollV .br-hero-label{font-family:var(--fd);font-style:italic;text-transform:none;letter-spacing:0;font-size:15px;color:var(--t3)}
+.b3-mood{margin-top:12px;font-size:13px;line-height:1.45;color:var(--t2);font-weight:600}
+#bankrollV .brs-label{text-transform:none;letter-spacing:0;font-size:12px;font-weight:700;color:var(--t3)}
+#bankrollV .brs-sub{font-style:italic;color:var(--t4)}
+#bankrollV .lsc-title{font-family:var(--fd)!important;font-style:italic!important;font-size:16px!important}
+#bankrollV .b3-empty b{font-family:var(--fd);font-style:italic;font-size:17px}
+#bankrollV .bsc-group-name{font-family:var(--fd)!important;font-style:italic!important;text-transform:none!important;letter-spacing:0!important;font-size:15px!important;color:var(--t1)!important}
+.b3-chip i{text-transform:none!important;letter-spacing:0!important;font-size:10.5px!important;font-weight:600!important}
 .brsw-view{display:flex;align-items:center;gap:8px;margin:10px 0 4px;padding:10px 12px;border:1px dashed var(--bd2);border-radius:10px;font-size:12px;color:var(--t3);cursor:pointer}.brsw-view b{color:var(--t1);font-weight:700}.brsw-view .bvf-chevron{margin-left:auto}
 .br-view-chip{
   display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
@@ -4093,7 +4259,89 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 
 /* ══ Share hand ══ */
 .ggr-hdr-btns{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.ggr-stake{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;margin:5px 0 3px;padding:3px 9px 3px 8px;border-radius:999px;background:color-mix(in srgb,var(--gd2) 16%,transparent);border:1px solid color-mix(in srgb,var(--gd2) 40%,transparent)}
+.ggr-stake b{font-family:var(--fm);font-size:13px;color:var(--gd2);font-weight:800}.ggr-stake i{font-style:normal;font-size:10px;color:var(--t3);font-weight:700}
+.ggr-unit{flex-shrink:0}.ggr-hdr>div:first-child{min-width:0}
+@media(max-width:440px){.ggr-share-l{display:none}.ggr-hdr-btns{gap:6px}}.ggr-unit button{padding:5px 10px;font-size:11px;font-weight:800}
+/* ── replayer v2 ── */
+.ggr-body{display:block}
+.ggr-side{border-top:1px solid var(--bd)}
+.ggr-tabs{display:flex;margin:12px 16px 4px}.ggr-tabs button{flex:1}
+.ggr-side[data-tab="log"] .ggr-notes{display:none}.ggr-side[data-tab="notes"] .ggr-log{display:none}
+@media(min-width:980px){
+  .ggr-mdl{max-width:1080px}
+  .ggr-main .ggr-felt-wrap{padding:34px 40px 28px!important}
+  .ggr-main .ggr-felt{aspect-ratio:1.75/1!important;max-width:620px;margin:0 auto}
+  .ggr-body{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);align-items:start}
+  .ggr-side{border-top:0;border-left:1px solid var(--bd);position:sticky;top:0;max-height:calc(94vh - 90px);display:flex;flex-direction:column}
+  .ggr-side .ggr-log{max-height:none;flex:1;min-height:0}
+  .ggr-side .ggr-notes{overflow-y:auto;min-height:0}
+  .ggr-side[data-tab="notes"] .ggr-notes{flex:1}
+}
+.ggr-felt-wrap{padding:40px 18px 34px!important}
+.ggr-plate{padding:5px 9px 4px!important;min-width:64px;border-radius:11px}
+.ggr-seat .ggr-pos{position:static!important;transform:none!important;display:block;font-size:10px!important;font-weight:900;letter-spacing:.6px;padding:0!important;background:none!important;border:0!important;color:var(--t2);line-height:1.1}
+.ggr-seat.hero .ggr-pos{color:var(--pk2)}.ggr-pos em{font-style:normal;font-size:7.5px;padding:1px 4px;border-radius:4px;background:var(--pk);color:#000;vertical-align:1px;margin-left:2px}
+.ggr-seat .ggr-stack{font-size:11.5px!important;margin-top:1px}
+.ggr-seat .ggr-name{font-size:8px!important;color:var(--t4)!important;font-weight:600!important;margin-top:1px;font-family:var(--fm)}
+.ggr-dealer{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;background:#fff;color:#111;font-size:9px;font-weight:900;line-height:17px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.5);z-index:3}
+.ggr-seat.folded{opacity:.6;filter:grayscale(.7)}.ggr-seat.folded .ggr-top{opacity:1}
+.ggr-seat.folded .ggr-plate{border-style:dashed}
+.ggr-foldtag{font-size:7.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--t4);margin-top:1px}
+.ggr-status.bet,.ggr-status.raise{background:rgba(236,72,153,.18);border-color:rgba(236,72,153,.5);color:#f9a8d4}
+.ggr-status.call{background:rgba(110,231,183,.14);border-color:rgba(110,231,183,.45);color:var(--mt)}
+.ggr-status.check{background:rgba(148,163,184,.14);color:var(--t2)}
+.ggr-status.win{background:rgba(34,197,94,.2);border-color:#22c55e;color:#86efac}
+.ggr-win{display:flex;flex-direction:column;gap:3px;align-items:center;padding:5px 10px;border-radius:10px;background:rgba(0,0,0,.45);border:1px solid rgba(250,204,21,.45);text-align:center}
+.ggr-win>div{display:flex;flex-direction:column;align-items:center;gap:1px}.ggr-win b{font-size:11px;color:#fde68a;white-space:nowrap}.ggr-win span{font-size:9.5px;color:var(--t2)}
+.ggr-actcard{margin:0 14px 10px;padding:10px 12px;border-radius:12px;background:var(--b1);border:1px solid var(--bd2);transition:border-color .2s,background .2s}
+.ggr-actcard.hero{border-color:color-mix(in srgb,var(--pk) 55%,transparent);background:color-mix(in srgb,var(--pk) 8%,var(--b1))}
+.ggr-actcard.k-win{border-color:rgba(34,197,94,.5)}
+.ggr-act-top{display:flex;justify-content:space-between;align-items:center}
+.ggr-actcard .ggr-street{text-align:left}
+.ggr-stepno{font-size:9.5px;color:var(--t4);font-family:var(--fm)}
+.ggr-actcard .ggr-action{text-align:left;margin:4px 0 0!important;font-size:15px;display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.ggr-act-pos{font-size:10px;font-weight:900;padding:2px 7px;border-radius:6px;background:var(--b3);color:var(--t2);letter-spacing:.5px}
+.ggr-actcard.hero .ggr-act-pos{background:var(--pk);color:#000}
+.ggr-size{font-size:10.5px;font-weight:800;font-family:var(--fm);padding:2px 7px;border-radius:6px;background:rgba(251,191,36,.14);color:var(--gd2)}
+.ggr-odds{margin-top:6px;font-size:11px;color:#93c5fd}
+.ggr-tl{display:flex;gap:4px;margin:0 14px 12px}
+.ggr-tl-seg{display:flex;flex-direction:column;gap:4px;min-width:34px}
+.ggr-tl-l{border:0;background:none;padding:0;text-align:left;font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--t4);cursor:pointer;font-family:inherit}
+.ggr-tl-seg.on .ggr-tl-l{color:var(--pk2)}.ggr-tl-seg.past .ggr-tl-l{color:var(--t3)}
+.ggr-tl-ticks{display:flex;gap:2px;height:14px;padding:3px;border-radius:6px;background:rgba(0,0,0,.25)}
+.ggr-tl-seg.on .ggr-tl-ticks{background:color-mix(in srgb,var(--pk) 12%,rgba(0,0,0,.25))}
+.ggr-tk{flex:1;min-width:3px;border:0;padding:0;border-radius:2px;background:rgba(255,255,255,.12);cursor:pointer;position:relative}
+.ggr-tk.done{background:rgba(236,72,153,.45)}.ggr-tk.hero{box-shadow:inset 0 -3px 0 #fbbf24}
+.ggr-tk.cur{background:var(--pk);transform:scaleY(1.45);box-shadow:0 0 8px var(--pk)}
+.ggr-tk.note::after{content:"";position:absolute;top:-6px;left:50%;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:#60a5fa}
+.ggr-controls{gap:6px!important;padding:0 14px 12px!important}
+.ggr-cb{flex:1 1 0;max-width:54px;padding:10px 0!important;font-size:14px!important}
+.ggr-play{flex:2 1 0!important;max-width:130px!important;font-size:13px!important;font-weight:800}
+.ggr-spd{font-size:11px!important;font-family:var(--fm);font-weight:800}
+.ggr-result{gap:6px!important}.ggr-rchip{padding:4px 9px;border-radius:999px;background:rgba(0,0,0,.2);font-size:10.5px}.ggr-rchip b{font-family:var(--fm);color:var(--t1)}
+.ggr-rchip.pos b{color:var(--mt)}.ggr-rchip.neg b{color:var(--rs)}
+.ggr-log{max-height:260px;padding:6px 12px 10px!important;gap:1px!important}
+.ggr-lg-h{display:flex;align-items:center;gap:8px;margin-top:8px;padding:5px 6px;border-radius:7px;background:rgba(255,255,255,.03);font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--pk2);cursor:pointer}
+.ggr-lg-h em{margin-left:auto;font-style:normal;font-family:var(--fm);letter-spacing:0;text-transform:none;color:var(--t3);font-weight:700}
+.ggr-lg-b{display:flex;gap:3px;letter-spacing:0}.ggr-lg-b i{font-style:normal;font-family:var(--fm);font-size:10.5px;padding:1px 4px;border-radius:4px;background:#f5f1e8;color:#111;font-weight:800}.ggr-lg-b i.r{color:#c0262d}
+.ggr-li{display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:7px;font-size:11.5px;color:var(--t2);cursor:pointer}
+.ggr-li-p{flex:0 0 34px;font-size:9px;font-weight:900;letter-spacing:.4px;color:var(--t4);font-family:var(--fm)}.ggr-li-p.sys{text-align:center}
+.ggr-li-t{flex:1;min-width:0}.ggr-li-t b{color:var(--t1);font-weight:700}
+.ggr-li-s{font-size:9.5px;font-family:var(--fm);color:var(--gd2);white-space:nowrap}.ggr-li-n{font-size:10px}
+.ggr-li.hero{background:color-mix(in srgb,var(--pk) 7%,transparent)}.ggr-li.hero .ggr-li-p{color:var(--pk2)}.ggr-li.hero .ggr-li-t b{color:var(--pk2)}
+.ggr-li.fold{opacity:.6}.ggr-li.win .ggr-li-t{color:#86efac}
+.ggr-li.on{background:color-mix(in srgb,var(--pk) 22%,transparent);outline:1px solid color-mix(in srgb,var(--pk) 55%,transparent)}
+.ggr-li.future,.ggr-lg-h.future{opacity:.35}
+.ggr-li:hover{background:rgba(255,255,255,.04)}
 .ggr-share-btn{font-size:11px;font-weight:800;padding:6px 11px;border-radius:50px;background:var(--b0);border:1px solid var(--bd2);color:var(--pk2);cursor:pointer;white-space:nowrap}
+.ggr-hdr-btns{align-items:center!important;gap:6px!important}
+.ggr-hdr-btns .ggr-unit{display:inline-flex;align-items:center;height:34px;padding:3px;gap:2px;border-radius:999px;background:var(--b0);border:1px solid var(--bd2);box-shadow:none;margin:0}
+.ggr-hdr-btns .ggr-unit button{height:26px;width:40px;min-width:40px;padding:0;text-align:center;border-radius:999px;font-size:11px;font-weight:800;line-height:26px;transform:none!important;box-shadow:none!important;animation:none!important;margin:0}
+.ggr-hdr-btns .ggr-unit button.on{background:var(--pk);color:#0b0710}
+.ggr-hdr-btns .ggr-share-btn{height:34px;min-width:34px;padding:0 12px;display:inline-flex;align-items:center;justify-content:center;gap:5px;border-radius:999px;font-size:12px;line-height:1;margin:0}
+.ggr-hdr-btns .sd-close{position:static!important;width:34px;height:34px;min-width:34px;padding:0;margin:0!important;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-size:13px;line-height:1}
+@media(max-width:440px){.ggr-hdr-btns .ggr-share-btn{padding:0;width:34px}}
 .ggr-share-btn:hover{border-color:var(--pk)}
 #ggShareM{z-index:1100}
 .ggs-mdl{max-width:520px;max-height:92vh;overflow-y:auto}
@@ -4272,28 +4520,29 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 <div id="bankrollV" class="view" style="max-width:1100px;margin:0 auto">
   <div class="section-head"><span style="font-size:20px">💰</span><h2 id="brTitle">Bankroll</h2><span style="flex:1"></span><div class="br-switcher" id="brSwitcher" onclick="openBrSwitcher()"></div></div>
   <nav class="br-sub-nav" id="brNav">
-    <button class="on" data-bp="brDash">📊 Dashboard</button>
-    <button data-bp="brSess">🃏 Log Session</button>
-    <button data-bp="brHistory">📜 History</button>
-    <button data-bp="brStats">📈 Stats</button>
-    <button data-bp="brGoals">🎯 Goals</button>
+    <button class="on" data-bp="brDash">Overview</button>
+    <button data-bp="brSess">Log</button>
+    <button data-bp="brHistory">History</button>
+    <button data-bp="brStats">Stats</button>
+    <button data-bp="brGoals">Goals</button>
   </nav>
   <div class="br-sub on" id="brDash">
     
     <div id="brHero"></div>
-    <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
-      <button class="btn" style="color:var(--mt);border-color:rgba(110,231,183,.2)" onclick="openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit';depSetPromoMode(false)">+ Deposit</button>
-      <button class="btn" style="color:var(--rs);border-color:rgba(248,113,113,.15)" onclick="openM('depM');$('depSign').value='-1';$('depMTitle').textContent='− Withdraw';depSetPromoMode(false)">− Withdraw</button>
-      <button class="btn" style="color:var(--gd2);border-color:rgba(200,165,92,.2)" onclick="openM('depM');$('depSign').value='1';$('depMTitle').textContent='🎁 Add Promo';depSetPromoMode(true)">🎁 Promo</button>
-      <button class="btn btn-s" id="balToggle" onclick="toggleBal()">👁 Hide</button>
+    <div class="br-actions">
+      <button class="br-act log" onclick="switchBrTab('brSess');document.querySelector('.main').scrollTop=0"><b>＋</b>Log session</button>
+      <button class="br-act dep" onclick="openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit';depSetPromoMode(false)"><b>↓</b>Deposit</button>
+      <button class="br-act wd" onclick="openM('depM');$('depSign').value='-1';$('depMTitle').textContent='− Withdraw';depSetPromoMode(false)"><b>↑</b>Withdraw</button>
+      <button class="br-act promo" onclick="openM('depM');$('depSign').value='1';$('depMTitle').textContent='🎁 Add Promo';depSetPromoMode(true)"><b>🎁</b>Promo</button>
     </div>
     <div class="br-stats" id="brDashStats"></div>
-    <div class="br-chart-box"><h3><span class="cdot" style="background:var(--pk)"></span>Bankroll Over Time</h3><div class="br-chart-h"><canvas id="chBR"></canvas></div></div>
+    <div class="br-chart-box b3-recent" id="brRecent"></div>
+    <div class="br-chart-box"><h3>Your bankroll journey <small id="brPerDelta"></small><span class="b3-per" id="brPer"></span></h3><div class="br-chart-h"><canvas id="chBR"></canvas></div></div>
     <div class="br-chart-grid">
-      <div class="br-chart-box"><h3><span class="cdot" style="background:var(--mt)"></span>Monthly P&amp;L</h3><div class="br-chart-h" style="height:200px"><canvas id="chMonth"></canvas></div></div>
-      <div class="br-chart-box"><h3><span class="cdot" style="background:var(--li)"></span>Hourly Rate</h3><div class="br-chart-h" style="height:200px"><canvas id="chHourly"></canvas></div></div>
+      <div class="br-chart-box"><h3>Month by month</h3><div class="br-chart-h" style="height:200px"><canvas id="chMonth"></canvas></div></div>
+      <div class="br-chart-box"><h3>Hourly rate <small>rolling, last 50 sessions</small></h3><div class="br-chart-h" style="height:200px"><canvas id="chHourly"></canvas></div></div>
     </div>
-    <div class="br-chart-box"><h3><span class="cdot" style="background:var(--mg)"></span>Calendar Heatmap</h3><div class="heatmap-wrap" id="calendarHM"></div></div>
+    <div class="br-chart-box"><h3>Your year at the tables</h3><div class="heatmap-wrap" id="calendarHM"></div></div>
     <div class="br-chart-box" id="brDepHist"></div>
   </div>
   <div class="br-sub" id="brSess">
@@ -4301,24 +4550,23 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
       <div id="brLiveArea"></div>
     </div>
     <div class="br-form" id="brFormCard">
-      <h3 id="brFormTitle">✦ Log Session</h3>
+      <h3 id="brFormTitle">How did it go?</h3><div class="b3-formsub">Log a session — it takes ten seconds.</div>
       <input type="hidden" id="brEditId" value=""/>
       <div class="br-toggle" id="brFmtTog"><button class="on" data-f="cash" onclick="setBrFmt('cash')">Cash</button><button data-f="tourney" onclick="setBrFmt('tourney')">Tournament</button></div>
       <div class="br-fgrid">
-        <div class="br-fg"><label>Date</label><input type="date" id="brDate"/></div>
-        <div class="br-fg"><label>Game Type</label><select id="brGT"><option>NL Hold'em</option><option>PLO</option><option>Mixed</option><option>MTT</option><option>S&G</option></select></div>
+        <div class="br-fg full b3-sec">When did you play?</div>
+        <div class="br-fg full"><label>Date</label><input type="date" id="brDate"/></div>
         <div class="br-fg full"><div class="br-toggle br-time-tog" id="brTimeTog"><button class="on" data-m="exact" onclick="setBrTimeMode('exact')">⏱ Exact times</button><button data-m="day" onclick="setBrTimeMode('day')">📅 Just the day</button></div></div>
         <div class="br-fg" id="brStartG"><label>Start</label><input type="time" id="brStart"/></div>
         <div class="br-fg" id="brEndG"><label>End</label><input type="time" id="brEnd"/></div>
         <div class="br-fg" id="brHoursG" style="display:none"><label>Hours <span style="opacity:.55">(optional)</span></label><input type="number" id="brHours" placeholder="e.g. 3.5" min="0" max="48" step="0.25" inputmode="decimal"/></div>
+        <div class="br-fg full b3-sec">What did you play?</div>
+        <div class="br-fg"><label>Game Type</label><select id="brGT"><option>NL Hold'em</option><option>PLO</option><option>Mixed</option><option>MTT</option><option>S&G</option></select></div>
         <div class="br-fg ac-wrap" id="brStakesG"><label>Stakes</label><input type="text" id="brStakes" placeholder="e.g. 1/2" autocomplete="off" oninput="brAutoFillBuyin();renderStakePresetRow('brQuickStakes','brStakes')"/><div class="ac-list" id="brStakesAC"></div></div>
-        <div class="br-fg" id="brStartStackG" style="display:none"><label>Starting Stack</label><input type="number" id="brStartStack" placeholder="e.g. 20000"/></div>
-        <div class="br-fg ac-wrap"><label>Location</label><input type="text" id="brLoc" placeholder="PokerStars, etc." autocomplete="off"/><div class="ac-list" id="brLocAC"></div></div>
-        <div class="br-fg" id="brBuyinG"><label id="brBuyinLabel">Buy-in</label><input type="number" id="brBuyin" placeholder="e.g. 200" step="0.01" oninput="brBuyinTouched=true;updateBrResultLive()"/></div>
-        <div class="br-fg" id="brCashoutG"><label id="brCashoutLabel">Cash Out</label><input type="number" id="brCashout" placeholder="e.g. 650" step="0.01" oninput="updateBrResultLive()"/></div>
-        <div class="br-fg" id="brTableG"><label>Table Size</label><select id="brTable"><option>9-max</option><option>8-max</option><option>7-max</option><option>6-max</option><option>5-max</option><option>4-max</option><option>3-max</option><option>HU</option></select></div>
-        <div class="br-fg br-result-live-fg"><label>Session Result</label><div class="br-result-live" id="brResultLive">—</div></div>
         <div class="br-fg full" id="brQuickStakesG"><div class="lqs-row" id="brQuickStakes"></div></div>
+        <div class="br-fg" id="brTableG"><label>Table Size</label><select id="brTable"><option>9-max</option><option>8-max</option><option>7-max</option><option>6-max</option><option>5-max</option><option>4-max</option><option>3-max</option><option>HU</option></select></div>
+        <div class="br-fg ac-wrap"><label>Location</label><input type="text" id="brLoc" placeholder="e.g. Hippodrome" autocomplete="off"/><div class="ac-list" id="brLocAC"></div></div>
+        <div class="br-fg" id="brStartStackG" style="display:none"><label>Starting Stack</label><input type="number" id="brStartStack" placeholder="e.g. 20000"/></div>
         <div class="br-fg full" id="brMultiDayG" style="display:none">
           <label class="setting-row" style="border-bottom:none;padding:8px 12px;background:var(--b0);border-radius:var(--r1);cursor:pointer;margin-bottom:0">
             <span class="setting-label" style="font-size:12px">Multi-day event</span>
@@ -4326,10 +4574,14 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
           </label>
         </div>
         <div class="br-fg" id="brDayNumG" style="display:none"><label>Day</label><input type="number" id="brDayNum" placeholder="e.g. 2" min="1"/></div>
+        <div class="br-fg full b3-sec">How did it end?</div>
+        <div class="br-fg" id="brBuyinG"><label id="brBuyinLabel">Buy-in</label><input type="number" id="brBuyin" placeholder="e.g. 200" step="0.01" oninput="brBuyinTouched=true;updateBrResultLive()"/></div>
+        <div class="br-fg" id="brCashoutG"><label id="brCashoutLabel">Cash Out</label><input type="number" id="brCashout" placeholder="e.g. 650" step="0.01" oninput="updateBrResultLive()"/></div>
+        <div class="br-fg br-result-live-fg"><label>Session Result</label><div class="br-result-live" id="brResultLive">—</div></div>
         <div class="br-fg full"><label>Notes</label><textarea id="brNotes" style="padding:8px 12px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-size:11px;resize:vertical;min-height:50px" placeholder="Session notes..."></textarea></div>
       </div>
       <div style="display:flex;gap:8px;margin-top:12px">
-        <button class="btn pri" onclick="saveBrSess()">✦ Save</button>
+        <button class="btn pri" onclick="saveBrSess()">✓ Save session</button>
         <button class="btn" onclick="resetBrForm()">Cancel</button>
       </div>
     </div>
@@ -4357,7 +4609,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
         <button class="btn btn-s" id="brHistDirBtn" onclick="toggleBrHistDir()" title="Toggle sort direction">⬇ Newest</button>
       </div>
     </div>
-    <div class="br-hist-hdr"><h3>📜 Session History</h3><span class="br-hist-count" id="brHistCount"></span></div>
+    <div class="br-toggle b3-resf" id="brResChips"></div><div class="br-hist-hdr"><h3>Every session</h3><span class="br-hist-count" id="brHistCount"></span></div>
     <div class="br-table-card">
       <div style="overflow-x:auto">
         <div id="brSBody" class="br-sess-list"></div>
@@ -4366,8 +4618,8 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
   </div>
   <div class="br-sub" id="brStats">
     <nav class="br-sub-nav br-stats-subnav" id="brStatsNav">
-      <button class="on" data-sp="brAnal">📈 Analytics</button>
-      <button data-sp="brInsights">🔬 Insights</button>
+      <button class="on" data-sp="brAnal">Analytics</button>
+      <button data-sp="brInsights">Insights</button>
     </nav>
     <div class="br-substat on" id="brAnal"><div class="br-chart-grid" id="brAnalCharts"></div></div>
     <div class="br-substat" id="brInsights">
@@ -8283,10 +8535,10 @@ function ggSummary(h,hasRaw){return{id:h.id,ts:h.ts,bb:h.bb,sb:h.sb,net:h.net,sd
 function ggAmt(c){const v=c/100;return"$"+(v>=1&&Number.isInteger(v)?v:v.toFixed(2))}
 function ggStakeLabel(bb){const h=getGGHands().find(x=>x.bb===bb);return ggAmt(h&&h.sb!=null?h.sb:bb/2)+"/"+ggAmt(bb)}
 function ggFmt(c,bb){ // cents → "$1.23" or "12.5 bb" per unit toggle
-  if(ggUnit==="bb"&&bb){const v=c/bb;return(v<0?"−":"")+(Math.abs(v)%1===0?Math.abs(v).toFixed(0):Math.abs(v).toFixed(1))+" bb"}
+  if((window._ggUO||ggUnit)==="bb"&&bb){const v=c/bb;return(v<0?"−":"")+(Math.abs(v)%1===0?Math.abs(v).toFixed(0):Math.abs(v).toFixed(1))+" bb"}
   const v=c/100;return(v<0?"−$":"$")+Math.abs(v).toFixed(2);
 }
-function ggRakeFmt(c,bb){if(ggUnit==="bb")return(c/bb).toFixed(2)+" bb";const v=c/100;return"$"+(v<0.01?v.toFixed(4):v.toFixed(3))}
+function ggRakeFmt(c,bb){if((window._ggUO||ggUnit)==="bb")return(c/bb).toFixed(2)+" bb";const v=c/100;return"$"+(v<0.01?v.toFixed(4):v.toFixed(3))}
 function ggSigned(c,bb){return(c>0?"+":"")+ggFmt(c,bb)}
 
 async function initGG(){
@@ -8576,6 +8828,11 @@ function ggRcActIdx(acts,a,ai){
   return ai&&allI!=null?allI:(oth!=null?oth:rs[0]);
 }
 const GG_RC_ACT={f:"Fold",c:"Call",x:"Check",r:"Raise"};
+/* "Not a mistake" — per hand+spot excuses (exploit, read…). Excused decisions still count in overall stats, just not as a mistake on that hand. */
+const RC_EX_REASONS=[["exploit","🎯 Exploit"],["read","👁 Player read"],["dynamic","🔥 Table dynamic"],["stack","📏 Stack depth"],["disagree","🤔 Disagree with range"],["other","✏️ Other"]];
+function ggRcExc(){return window._rcExc||(window._rcExc=LG("ps_rc_excused",{}))}
+function ggRcExLabel(ex){const r=RC_EX_REASONS.find(x=>x[0]===ex.r);return r?r[1]:"Excused"}
+function ggRcSetExc(k,v){const m=ggRcExc();if(v)m[k]=v;else delete m[k];LS("ps_rc_excused",m)}
 function ggRcJudge(h,idx){
   const out=[];if(!h.sq||!h.cls||ggClsIdx[h.cls]==null)return out;
   for(const sp of ggRcSpots(h.sq)){
@@ -8587,7 +8844,7 @@ function ggRcJudge(h,idx){
     const mix=Object.keys(w).map(Number).filter(k=>w[k]>0).sort((a,b)=>w[b]-w[a]).map(k=>({n:d.acts[k].name,w:Math.round(w[k]),c:d.acts[k].color}));
     const rw=d.acts.reduce((t,x,i)=>t+(i!==fi&&!/^call/i.test(x.name)?(w[i]||0):0),0);
     out.push({h,d,ci,key:sp.key,grp:sp.grp,name:d.name,ri:hit.i,act:ai>=0?d.acts[ai].name:(sp.a==="c"&&sp.grp==="Opens"?"Limp":GG_RC_ACT[sp.a]+(sp.ai?" all-in":"")),hw:Math.round(hw),mix,verdict,kind,
-      pos:sp.key.split(" ")[0],play:sp.a!=="f",expPlay:100-fw,raised:sp.a==="r",expRaise:rw,sev:Math.round(Math.max(0,max-hw))});
+      pos:sp.key.split(" ")[0],play:sp.a!=="f",expPlay:100-fw,raised:sp.a==="r",expRaise:rw,sev:Math.round(Math.max(0,max-hw)),ex:verdict!=="ok"?(ggRcExc()[h.id+"|"+sp.key]||null):null});
   }
   return out;
 }
@@ -8605,16 +8862,16 @@ const RC_KIND={tight:["Too tight","folded hands the range plays"],loose:["Too lo
 function ggRcMixHtml(mix){return mix.map(m=>'<span class="rc-mx"><i style="background:'+m.c+'"></i>'+escapeHtml(m.n)+" "+m.w+"%</span>").join("")}
 function ggRcHasTag(h,t){return(h.tags||[]).some(x=>x.toLowerCase()===t.toLowerCase())}
 function ggRcSetTag(h,t,on){h.tags=h.tags||[];const i=h.tags.findIndex(x=>x.toLowerCase()===t.toLowerCase());if(on&&i<0)h.tags.push(t);if(!on&&i>=0)h.tags.splice(i,1);return ggSaveNote(h)}
-function ggRcOpen(i){const list=window._rcList||[];ggOpenReplay(i,list.map(r=>r.h))}
+function ggRcOpen(i){const list=window._rcList||[];ggOpenReplay(i,list.map(r=>r.h),{rc:true})}
 async function ggRcToggleFlag(i){const r=(window._rcList||[])[i];if(!r)return;await ggRcSetTag(r.h,RC_FLAG,!ggRcHasTag(r.h,RC_FLAG));ggRenderList();playSound("tick");haptic("light")}
 function ggRcFlagAll(){
-  const miss=(window._rcRes||[]).filter(r=>r.verdict==="miss"),hs=[...new Set(miss.map(r=>r.h))].filter(h=>!ggRcHasTag(h,RC_FLAG)&&!ggRcHasTag(h,RC_DONE));
+  const miss=(window._rcRes||[]).filter(r=>r.verdict==="miss"&&!r.ex),hs=[...new Set(miss.map(r=>r.h))].filter(h=>!ggRcHasTag(h,RC_FLAG)&&!ggRcHasTag(h,RC_DONE));
   if(!hs.length){toast("All mistakes are already flagged");return}
   Promise.all(hs.map(h=>ggRcSetTag(h,RC_FLAG,true))).then(()=>{ggRenderList();toast("🚩 Flagged "+hs.length+" hand"+(hs.length!==1?"s":"")+" — find them under Tagged")});
 }
 function ggRcPct(a,b){return b?Math.round(a/b*100):0}
 function ggRcAgg(rs){const n=rs.length,m=rs.filter(r=>r.verdict==="miss").length,lo=rs.filter(r=>r.verdict==="minor").length;
-  return{n,m,lo,ok:n-m-lo,acc:ggRcPct(n-m-lo,n),play:n?rs.filter(r=>r.play).length/n*100:0,exp:n?rs.reduce((t,r)=>t+r.expPlay,0)/n:0,rz:n?rs.filter(r=>r.raised).length/n*100:0,expR:n?rs.reduce((t,r)=>t+r.expRaise,0)/n:0}}
+  return{n,m,lo,ex:rs.filter(r=>r.ex).length,ok:n-m-lo,acc:ggRcPct(n-m-lo,n),play:n?rs.filter(r=>r.play).length/n*100:0,exp:n?rs.reduce((t,r)=>t+r.expPlay,0)/n:0,rz:n?rs.filter(r=>r.raised).length/n*100:0,expR:n?rs.reduce((t,r)=>t+r.expRaise,0)/n:0}}
 function ggRcGapTag(you,gto,n,loose,tight){const g=Math.round(you-gto);if(n<3)return'<span class="rc-gap sm">few hands</span>';if(Math.abs(g)<4)return'<span class="rc-gap ok">On point</span>';return g>0?'<span class="rc-gap loose">'+(loose||"Too loose")+" +"+g+"%</span>":'<span class="rc-gap tight">'+(tight||"Too tight")+" "+g+"%</span>"}
 function ggRcMeter(label,sub,you,gto,n,loose,tight){
   return'<div class="rc-m"><div class="rc-m-h"><div><b>'+label+'</b><span>'+sub+" · "+n+" hand"+(n!==1?"s":"")+"</span></div>"+ggRcGapTag(you,gto,n,loose,tight)+'</div>'
@@ -8630,15 +8887,15 @@ function ggRenderRangeCheck(body,arr){
     return;
   }
   const A=ggRcAgg(res),view=ggList.rcv||"ov";
-  const miss=res.filter(r=>r.verdict==="miss"),missHands=[...new Set(miss.map(r=>r.h))],reviewed=missHands.filter(h=>ggRcHasTag(h,RC_DONE)).length;
+  const miss=res.filter(r=>r.verdict==="miss"&&!r.ex),missHands=[...new Set(miss.map(r=>r.h))],reviewed=missHands.filter(h=>ggRcHasTag(h,RC_DONE)).length;
   // headline: the biggest single tendency
   const byGrp=RC_GROUPS.map(g=>({g,a:ggRcAgg(res.filter(r=>r.grp===g))})).filter(x=>x.a.n>=3).map(x=>({...x,gap:x.a.play-x.a.exp})).sort((a,b)=>Math.abs(b.gap)-Math.abs(a.gap));
   const top=byGrp[0],head=top&&Math.abs(top.gap)>=4?"Biggest tendency: <b>"+(top.gap>0?"too loose":"too tight")+"</b> in "+top.g.toLowerCase()+" spots ("+(top.gap>0?"+":"")+Math.round(top.gap)+"% vs GTO).":A.m?"No big frequency leak — your mistakes are one-off hands.":"Clean — every decision matched the ranges.";
   let h='<div class="gp rc-sum"><div class="rc-sum-top"><div class="rc-acc" style="--p:'+A.acc+'"><b>'+A.acc+'%</b><span>on range</span></div><div class="rc-sum-txt"><div class="rc-sum-t">Range check</div><div class="rc-sum-s">'+head+"</div></div></div>"
-    +'<div class="rc-kpis"><div><b>'+A.n+'</b><span>decisions</span></div><div class="miss"><b>'+A.m+'</b><span>mistakes</span></div><div class="minor"><b>'+A.lo+'</b><span>low-freq</span></div><div><b>'+hands+'</b><span>hands</span></div></div>'
+    +'<div class="rc-kpis"><div><b>'+A.n+'</b><span>decisions</span></div><div class="miss"><b>'+A.m+'</b><span>mistakes</span></div><div class="minor"><b>'+A.lo+'</b><span>low-freq</span></div><div><b>'+hands+'</b><span>hands</span></div></div>'+(A.ex?'<div class="rc-exnote">🛡 '+A.ex+' decision'+(A.ex!==1?"s":"")+' marked "not a mistake" — still counted in these stats, just not flagged on the hand. <button onclick="ggList.rcv=\'hands\';ggList.rcf=\'ex\';ggRenderList()">View</button></div>':"")
     +(missHands.length?'<div class="rc-prog"><div class="rc-prog-h"><span>Review queue</span><b>'+reviewed+" / "+missHands.length+' reviewed</b></div><div class="rc-prog-bar"><span style="width:'+ggRcPct(reviewed,missHands.length)+'%"></span></div>'
       +'<div class="rc-btns"><button class="btn pri" onclick="ggRcReview()">▶ '+(reviewed&&reviewed<missHands.length?"Continue review":"Review mistakes")+'</button><button class="btn" onclick="ggRcFlagAll()">🚩 Flag all</button></div></div>':'<div class="rc-clean">✨ No clear mistakes in these hands.</div>')
-    +'<div class="br-toggle rc-views">'+[["ov","Overview"],["spots","Spots "+new Set(res.map(r=>r.key)).size],["hands","Hands "+A.m]].map(([k,l])=>'<button class="'+(view===k?"on":"")+'" onclick="ggList.rcv=\''+k+'\';ggSavePrefs();ggRenderList()">'+l+"</button>").join("")+"</div></div>";
+    +'<div class="br-toggle rc-views">'+[["ov","Overview"],["spots","Spots "+new Set(res.map(r=>r.key)).size],["hands","Hands "+miss.length]].map(([k,l])=>'<button class="'+(view===k?"on":"")+'" onclick="ggList.rcv=\''+k+'\';ggSavePrefs();ggRenderList()">'+l+"</button>").join("")+"</div></div>";
   if(view==="spots")h+=ggRcSpotsHtml(res);
   else if(view==="hands")h+=ggRcHandsHtml(res);
   else h+=ggRcOverviewHtml(res,skip);
@@ -8697,17 +8954,17 @@ function ggRcSpotsHtml(res){
 }
 function ggRcHandsList(res){
   const f=ggList.rcf||"miss",p=ggList.rcp||"",g=ggList.rcg||"",srt=ggList.rcs||"sev";
-  let L=f==="miss"?res.filter(r=>r.verdict==="miss"):f==="minor"?res.filter(r=>r.verdict==="minor"):f==="todo"?res.filter(r=>r.verdict!=="ok"&&!ggRcHasTag(r.h,RC_DONE)):f==="flag"?res.filter(r=>ggRcHasTag(r.h,RC_FLAG)):f==="done"?res.filter(r=>ggRcHasTag(r.h,RC_DONE)):res;
+  let L=f==="miss"?res.filter(r=>r.verdict==="miss"&&!r.ex):f==="minor"?res.filter(r=>r.verdict==="minor"&&!r.ex):f==="ex"?res.filter(r=>r.ex):f==="todo"?res.filter(r=>r.verdict!=="ok"&&!r.ex&&!ggRcHasTag(r.h,RC_DONE)):f==="flag"?res.filter(r=>ggRcHasTag(r.h,RC_FLAG)):f==="done"?res.filter(r=>ggRcHasTag(r.h,RC_DONE)):res;
   if(p)L=L.filter(r=>r.pos===p);if(g)L=L.filter(r=>r.grp===g);if(ggList.rcq)L=L.filter(r=>r.key===ggList.rcq);
   return L.slice().sort(srt==="new"?(a,b)=>b.h.ts-a.h.ts:srt==="pot"?(a,b)=>(b.h.pot||0)/(b.h.bb||1)-(a.h.pot||0)/(a.h.bb||1):(a,b)=>b.sev-a.sev||b.h.ts-a.h.ts);
 }
 function ggRcHandsHtml(res){
   const f=ggList.rcf||"miss",p=ggList.rcp||"",g=ggList.rcg||"",srt=ggList.rcs||"sev";
   const L=ggRcHandsList(res);window._rcList=L;
-  const cnt=k=>k==="miss"?res.filter(r=>r.verdict==="miss").length:k==="minor"?res.filter(r=>r.verdict==="minor").length:k==="todo"?res.filter(r=>r.verdict!=="ok"&&!ggRcHasTag(r.h,RC_DONE)).length:k==="flag"?res.filter(r=>ggRcHasTag(r.h,RC_FLAG)).length:k==="done"?res.filter(r=>ggRcHasTag(r.h,RC_DONE)).length:res.length;
+  const cnt=k=>k==="miss"?res.filter(r=>r.verdict==="miss"&&!r.ex).length:k==="minor"?res.filter(r=>r.verdict==="minor"&&!r.ex).length:k==="ex"?res.filter(r=>r.ex).length:k==="todo"?res.filter(r=>r.verdict!=="ok"&&!r.ex&&!ggRcHasTag(r.h,RC_DONE)).length:k==="flag"?res.filter(r=>ggRcHasTag(r.h,RC_FLAG)).length:k==="done"?res.filter(r=>ggRcHasTag(r.h,RC_DONE)).length:res.length;
   const chip=(k,l)=>'<button class="'+(f===k?"on":"")+'" onclick="ggList.rcf=\''+k+'\';ggList.rcLimit=40;ggRenderList()">'+l+" <small>"+cnt(k)+"</small></button>";
   const poss=RC_POS_ORDER.filter(x=>res.some(r=>r.pos===x)),grps=RC_GROUPS.filter(x=>res.some(r=>r.grp===x));
-  let h='<div class="gp"><div class="br-toggle rc-f">'+chip("miss","Mistakes")+chip("todo","To review")+chip("minor","Low-freq")+chip("flag","🚩")+chip("done","✓ Reviewed")+chip("all","All")+"</div>"
+  let h='<div class="gp"><div class="br-toggle rc-f">'+chip("miss","Mistakes")+chip("todo","To review")+chip("minor","Low-freq")+chip("flag","🚩")+chip("done","✓ Reviewed")+chip("ex","🛡 Excused")+chip("all","All")+"</div>"
     +'<div class="rc-sel"><select class="sel-sm" onchange="ggList.rcp=this.value;ggRenderList()"><option value="">All positions</option>'+poss.map(x=>'<option'+(p===x?" selected":"")+">"+x+"</option>").join("")+'</select>'
     +'<select class="sel-sm" onchange="ggList.rcg=this.value;ggList.rcq=\'\';ggRenderList()"><option value="">All spots</option>'+grps.map(x=>'<option'+(g===x?" selected":"")+">"+x+"</option>").join("")+'</select>'
     +'<select class="sel-sm" onchange="ggList.rcs=this.value;ggRenderList()"><option value="sev"'+(srt==="sev"?" selected":"")+'>Worst first</option><option value="new"'+(srt==="new"?" selected":"")+'>Newest</option><option value="pot"'+(srt==="pot"?" selected":"")+">Biggest pot</option></select></div>"
@@ -8718,9 +8975,9 @@ function ggRcHandsHtml(res){
 }
 function ggRcRowHtml(r,i){
   const h=r.h,fl=ggRcHasTag(h,RC_FLAG),done=ggRcHasTag(h,RC_DONE);
-  return'<div class="rc-row '+r.verdict+(done?" done":"")+'" data-rci="'+i+'"><div class="gg-row-cards">'+ggMiniCards(h.hc)+'</div>'
+  return'<div class="rc-row '+(r.ex?"excused":r.verdict)+(done?" done":"")+'" data-rci="'+i+'"><div class="gg-row-cards">'+ggMiniCards(h.hc)+'</div>'
     +'<div class="rc-row-m"><div class="rc-row-t"><b>'+escapeHtml(r.name)+'</b>'+(done?'<span class="rc-done">✓ reviewed</span>':"")+'</div>'
-    +'<div class="rc-row-y">You <b class="'+r.verdict+'">'+escapeHtml(r.act)+"</b>"+(r.verdict!=="ok"?' <span class="rc-sev" title="How far from the range\'s main play">−'+r.sev+"</span>":"")+'</div><div class="rc-row-g">'+ggRcMixHtml(r.mix)+"</div></div>"
+    +'<div class="rc-row-y">You <b class="'+r.verdict+'">'+escapeHtml(r.act)+"</b>"+(r.ex?' <span class="rc-exchip" title="'+escapeHtml(r.ex.n||"")+'">'+ggRcExLabel(r.ex)+"</span>":r.verdict!=="ok"?' <span class="rc-sev" title="How far from the range\'s main play">−'+r.sev+"</span>":"")+'</div><div class="rc-row-g">'+ggRcMixHtml(r.mix)+"</div></div>"
     +'<div class="rc-row-r"><div class="profit '+(h.net>=0?"pos":"neg")+'">'+ggSigned(h.net,h.bb)+'</div><button class="rc-flag'+(fl?" on":"")+'" data-rcflag="'+i+'" title="Flag for review">🚩</button></div></div>';
 }
 function ggRcReview(){
@@ -8738,38 +8995,64 @@ function ggRcSpotSheet(key){
   for(let i=0;i<169;i++){const cell=d.range[Math.floor(i/13)][i%13],w=trWeights(cell,d.acts);let x=0;const seg=[];
     d.acts.forEach((ac,ai)=>{if(ai===fi||!(w[ai]>0))return;seg.push(ac.color+" "+x+"% "+(x+w[ai])+"%");x+=w[ai]});
     const bg=seg.length?"linear-gradient(90deg,"+seg.join(",")+(x<100?",transparent "+x+"% 100%":"")+")":"none";
-    const mk=byCell.get(i);let m="";if(mk){const v=mk.some(z=>z.verdict==="miss")?"miss":mk.some(z=>z.verdict==="minor")?"minor":"ok";m='<i class="rc-g-mk '+v+'">'+(mk.length>1?mk.length:"")+"</i>"}
+    const mk=byCell.get(i);let m="";if(mk){const v=mk.some(z=>z.verdict==="miss"&&!z.ex)?"miss":mk.some(z=>z.verdict==="minor"&&!z.ex)?"minor":mk.some(z=>z.ex)?"ex":"ok";m='<i class="rc-g-mk '+v+'">'+(mk.length>1?mk.length:"")+"</i>"}
     grid+='<div class="rc-g'+(mk?" has":"")+'"><span class="rc-g-bg" style="background:'+bg+'"></span><span class="rc-g-l">'+hl(Math.floor(i/13),i%13)+"</span>"+m+"</div>"}
   grid+="</div>";
-  const legend=d.acts.filter((x,ai)=>ai!==fi).map(x=>'<span class="rc-mx"><i style="background:'+x.color+'"></i>'+escapeHtml(x.name)+"</span>").join("")+'<span class="rc-mx"><i class="rc-lg ok"></i>on range</span><span class="rc-mx"><i class="rc-lg minor"></i>low-freq</span><span class="rc-mx"><i class="rc-lg miss"></i>mistake</span>';
+  const legend=d.acts.filter((x,ai)=>ai!==fi).map(x=>'<span class="rc-mx"><i style="background:'+x.color+'"></i>'+escapeHtml(x.name)+"</span>").join("")+'<span class="rc-mx"><i class="rc-lg ok"></i>on range</span><span class="rc-mx"><i class="rc-lg minor"></i>low-freq</span><span class="rc-mx"><i class="rc-lg miss"></i>mistake</span>'+(res.some(z=>z.ex)?'<span class="rc-mx"><i class="rc-lg ex"></i>not a mistake</span>':"");
   const list=res.slice().sort((x,y)=>y.sev-x.sev||y.h.ts-x.h.ts);window._rcSheetList=list;
-  const missCls=[...new Set(res.filter(r=>r.verdict!=="ok").map(r=>r.h.cls))];
+  const missCls=[...new Set(res.filter(r=>r.verdict!=="ok"&&!r.ex).map(r=>r.h.cls))];
   let el=$("rcSpotM");if(!el){el=document.createElement("div");el.className="mov";el.id="rcSpotM";el.innerHTML='<div class="mdl rc-sheet"></div>';document.body.appendChild(el);el.addEventListener("click",e=>{if(e.target===el)closeM("rcSpotM")})}
   el.querySelector(".mdl").innerHTML='<div class="edq-h"><div><h3 style="margin:0">'+escapeHtml(d.name)+'</h3><div class="rc-sub">'+r0.grp+" · "+a.n+" hand"+(a.n!==1?"s":"")+" · "+a.acc+'% on range</div></div><button class="btn btn-xs" onclick="closeM(\'rcSpotM\')">✕</button></div>'
     +(a.n>=2?ggRcMeter("How often you play","vs the range",a.play,a.exp,a.n):"")
     +grid+'<div class="rc-legend">'+legend+"</div>"
     +'<div class="rc-sheet-b">'+(r0.ri>=0?'<button class="btn btn-s" onclick="closeM(\'rcSpotM\');showViewerMode('+r0.ri+')">👁 Full range</button>'+(missCls.length?'<button class="btn btn-s pri" onclick="ggRcDrillKey(\''+escapeHtml(key)+'\')">🎯 Drill '+missCls.length+' missed</button>':"")+'<button class="btn btn-s" onclick="closeM(\'rcSpotM\');go(\'trainer\');pickTrRange(\''+r0.ri+'\')">Train range</button>':"")+"</div>"
     +'<div class="slbl" style="margin-top:12px">Your hands here</div><div class="rc-list">'+list.map((r,i)=>ggRcRowHtml(r,i).replace('data-rci="'+i+'"','data-rcs="'+i+'"').replace(/<button class="rc-flag[^>]*>🚩<\/button>/,"")).join("")+"</div>";
-  el.querySelector(".mdl").onclick=e=>{const row=e.target.closest("[data-rcs]");if(row){closeM("rcSpotM");ggOpenReplay(+row.dataset.rcs,(window._rcSheetList||[]).map(r=>r.h))}};
+  el.querySelector(".mdl").onclick=e=>{const row=e.target.closest("[data-rcs]");if(row){closeM("rcSpotM");ggOpenReplay(+row.dataset.rcs,(window._rcSheetList||[]).map(r=>r.h),{rc:true})}};
   openM("rcSpotM");
 }
 function ggRcDrillKey(key){
-  const res=(window._rcRes||[]).filter(r=>r.key===key&&r.verdict!=="ok");if(!res.length)return;const r0=res[0];if(r0.ri<0)return;const d=S.saved[r0.ri];if(!d)return;
+  const res=(window._rcRes||[]).filter(r=>r.key===key&&r.verdict!=="ok"&&!r.ex);if(!res.length)return;const r0=res[0];if(r0.ri<0)return;const d=S.saved[r0.ri];if(!d)return;
   closeM("rcSpotM");const cls=new Set(res.map(r=>r.h.cls));
   go("trainer");pickTrRange(String(r0.ri));window._trFocus=cls;Tr.start(d,d.name,Math.min(30,Math.max(10,cls.size*3)));
 }
 // strip at the top of the replay: what the range says about this hand
 function ggRcReplayHtml(h){
   const r=ggRcJudge(h,ggRcIndex());if(!r.length)return"";
-  const fl=ggRcHasTag(h,RC_FLAG),done=ggRcHasTag(h,RC_DONE);
-  return'<div class="rc-rp">'+r.map(x=>'<div class="rc-rp-row '+x.verdict+'"><div class="rc-rp-h"><span class="rc-v '+x.verdict+'">'+(x.verdict==="miss"?"✗ Mistake":x.verdict==="minor"?"◐ Low-freq":"✓ On range")+'</span><b>'+escapeHtml(x.name)+"</b></div>"
-    +'<div class="rc-rp-d">You: <b>'+escapeHtml(x.act)+"</b> · Range: "+ggRcMixHtml(x.mix)+"</div>"+(x.ri>=0?'<button class="rc-rp-v" onclick="closeM(\'ggReplayM\');showViewerMode('+x.ri+')">👁 Range</button>':"")+"</div>").join("")
+  const fl=ggRcHasTag(h,RC_FLAG),done=ggRcHasTag(h,RC_DONE);window._rcRp=r;
+  return'<div class="rc-rp">'+r.map((x,i)=>{const cls=x.ex?"excused":x.verdict;
+    return'<div class="rc-rp-row '+cls+'"><div class="rc-rp-h"><span class="rc-v '+cls+'">'+(x.ex?"🛡 Not a mistake":x.verdict==="miss"?"✗ Mistake":x.verdict==="minor"?"◐ Low-freq":"✓ On range")+'</span><b>'+escapeHtml(x.name)+"</b></div>"
+    +'<div class="rc-rp-d">You: <b>'+escapeHtml(x.act)+"</b> · Range: "+ggRcMixHtml(x.mix)+"</div>"
+    +(x.ex?'<div class="rc-rp-ex"><span>'+ggRcExLabel(x.ex)+(x.ex.n?" — “"+escapeHtml(x.ex.n)+"”":"")+'</span><button onclick="ggRcUnexcuse('+i+')">Undo</button></div><div class="rc-rp-exs">Still counts as off-range in your overall stats.</div>'
+      :x.verdict!=="ok"?'<button class="rc-rp-nm" onclick="ggRcExcuseOpen('+i+')">🛡 Not a mistake…</button>':"")
+    +(x.ri>=0?'<button class="rc-rp-v" onclick="closeM(\'ggReplayM\');showViewerMode('+x.ri+')">👁 Range</button>':"")+"</div>"}).join("")
     +'<div class="rc-rp-b"><button class="btn btn-s'+(fl?" pri":"")+'" onclick="ggRcReplayTag(\''+RC_FLAG+'\')">🚩 '+(fl?"Flagged":"Flag")+'</button><button class="btn btn-s'+(done?" pri":"")+'" onclick="ggRcReplayTag(\''+RC_DONE+'\')">✓ '+(done?"Reviewed":"Mark reviewed")+"</button></div></div>";
 }
+function ggRcRefreshAfterEx(){const h=ggR.hand;const el=$("ggrRange");if(el&&h&&ggR.rc)el.innerHTML=ggRcReplayHtml(h);ggRenderList()}
+function ggRcExcuseOpen(i){
+  const x=(window._rcRp||[])[i];if(!x)return;window._rcExTarget=x;window._rcExPick="exploit";
+  let el=$("rcExM");if(!el){el=document.createElement("div");el.className="mov";el.id="rcExM";el.innerHTML='<div class="mdl" style="max-width:420px"></div>';document.body.appendChild(el);el.addEventListener("click",e=>{if(e.target===el)closeM("rcExM")})}
+  el.querySelector(".mdl").innerHTML='<div class="edq-h"><h3 style="margin:0">🛡 Not a mistake</h3><button class="btn btn-xs" onclick="closeM(\'rcExM\')">✕</button></div>'
+    +'<div class="rc-sub" style="margin-top:6px"><b style="color:var(--t1)">'+escapeHtml(x.h.cls)+" · "+escapeHtml(x.name)+'</b><br>You '+escapeHtml(x.act)+' — the range: '+x.mix.map(m=>escapeHtml(m.n)+" "+m.w+"%").join(", ")+'</div>'
+    +'<label class="slbl" style="margin-top:10px">Why was it right here?</label><div class="rc-exr" id="rcExR">'+RC_EX_REASONS.map(([k,l])=>'<button data-k="'+k+'" class="'+(k==="exploit"?"on":"")+'">'+l+"</button>").join("")+"</div>"
+    +'<label class="slbl" style="margin-top:12px">Note <span class="tool-optional">(optional)</span></label><input class="minp" id="rcExNote" maxlength="120" placeholder="e.g. villain folds to 3-bets 80%"/>'
+    +'<div class="edq-ex">This hand stops showing as a mistake and leaves your review queue. It still counts as off-range in your overall accuracy, leaks and tendencies.</div>'
+    +'<div class="mact"><button class="btn" onclick="closeM(\'rcExM\')">Cancel</button><button class="btn pri" onclick="ggRcExcuseSave()">Save</button></div>';
+  el.querySelector("#rcExR").onclick=e=>{const b=e.target.closest("button");if(!b)return;window._rcExPick=b.dataset.k;el.querySelectorAll("#rcExR button").forEach(x=>x.classList.toggle("on",x===b))};
+  openM("rcExM");
+}
+async function ggRcExcuseSave(){
+  const x=window._rcExTarget;if(!x)return;
+  ggRcSetExc(x.h.id+"|"+x.key,{r:window._rcExPick||"exploit",n:($("rcExNote").value||"").trim(),ts:Date.now()});
+  closeM("rcExM");
+  const still=ggRcJudge(x.h,ggRcIndex()).some(r=>r.verdict!=="ok"&&!r.ex);
+  if(!still&&ggRcHasTag(x.h,RC_FLAG))await ggRcSetTag(x.h,RC_FLAG,false);
+  ggRcRefreshAfterEx();toast("🛡 Marked as not a mistake");playSound("save");haptic("success");
+}
+function ggRcUnexcuse(i){const x=(window._rcRp||[])[i];if(!x)return;ggRcSetExc(x.h.id+"|"+x.key,null);ggRcRefreshAfterEx();toast("Marked as a mistake again")}
 async function ggRcReplayTag(t){
   const h=ggR.hand;if(!h)return;const on=!ggRcHasTag(h,t);
   await ggRcSetTag(h,t,on);if(t===RC_DONE&&on)await ggRcSetTag(h,RC_FLAG,false);
-  const el=$("ggrRange");if(el)el.innerHTML=ggRcReplayHtml(h);
+  const el=$("ggrRange");if(el&&ggR.rc)el.innerHTML=ggRcReplayHtml(h);
   try{ggRenderNotesPanel()}catch(e){}ggRenderList();playSound("tick");haptic("light");
 }
 
@@ -9734,6 +10017,8 @@ function ggRenderNotesPanel(){
   const ti=$("ggrTagInput");ti.onkeydown=e=>{if(e.key==="Enter"&&ti.value.trim()){e.preventDefault();ggToggleTag(ti.value);setTimeout(()=>{const n=$("ggrTagInput");if(n)n.focus()},0)}};
 }
 
+ggRenderNotesPanel=ggRWrap(ggRenderNotesPanel);
+{const _gnp=ggRenderNotesPanel;ggRenderNotesPanel=function(){const r=_gnp.apply(this,arguments);const nc=$("ggrNoteCount");if(nc&&ggR.hand){const n=(ggR.hand.cm||[]).length;nc.textContent=n?" · "+n:""}return r}}
 /* ══ Share a hand as readable text (for a coach / friends) ══ */
 const GG_SUIT_SYM={s:"♠",h:"♥",d:"♦",c:"♣"};
 let ggShareOpts=Object.assign({fmt:"readable",unit:"money",sym:true,notes:true,quiz:false},LG("ps_gg_share",{}));
@@ -9894,8 +10179,9 @@ function openGGGraph(){
   ggBigChart=new Chart($("chGGBig").getContext("2d"),ggWinChartCfg(ggChartSpec,true));
 }
 function closeGGGraph(){if(ggBigChart){ggBigChart.destroy();ggBigChart=null}closeM("ggGraphM")}
-async function ggOpenReplay(i,list){
+async function ggOpenReplay(i,list,opts){
   const L=list||ggList.current,h=L[i];if(!h)return;
+  ggR.rc=opts?!!opts.rc:(list&&list===ggR.list?!!ggR.rc:false); // range-check verdicts only when opened from the Range check tab (kept while stepping hands)
   if(!h.raw){toast("Re-import this file to enable the replay for older hands");return}
   const text=await GGDB.raw(h.id);
   if(!text){toast("Couldn't load this hand's history");return}
@@ -9906,6 +10192,7 @@ async function ggOpenReplay(i,list){
   if(!$("ggReplayM").classList.contains("open"))openM("ggReplayM");
   playSound("tick");haptic("light");
 }
+ggRenderStage=ggRWrap(ggRenderStage);ggRenderLog=ggRWrap(ggRenderLog);ggUpdatePinBox=ggRWrap(ggUpdatePinBox);
 function ggReplayNav(d){const j=ggR.idx+d;if(j<0||j>=ggR.list.length)return;ggOpenReplay(j,ggR.list)}
 function ggStep(d){const n=ggR.rep.states.length;ggR.step=Math.max(0,Math.min(n-1,ggR.step+d));ggRenderReplay()}
 function ggGoto(s){ggR.step=Math.max(0,Math.min(ggR.rep.states.length-1,s));if(!ggR.timer)ggR.pausedAtNote=false;ggRenderReplay()}
@@ -9928,11 +10215,11 @@ function ggToggleAuto(){
       ggStopAuto();ggR.pausedAtNote=true;ggRenderReplay();ggShowStage();playSound("tick");haptic("light");return;
     }
     ggRenderReplay();
-  },900);
+  },Math.round(900/ggRSpd()));
   ggRenderReplay();
 }
 function ggChipFmt(c,bb){ // compact chip label for big amounts; the action line always shows the exact figure
-  if(ggUnit==="bb"&&bb){const v=c/bb;return(v>=100?v.toFixed(0):v%1===0?v.toFixed(0):v.toFixed(1))+" bb"}
+  if((window._ggUO||ggUnit)==="bb"&&bb){const v=c/bb;return(v>=100?v.toFixed(0):v%1===0?v.toFixed(0):v.toFixed(1))+" bb"}
   const v=c/100;if(v>=1000)return"$"+(v/1000).toFixed(v>=10000?0:1).replace(/\.0$/,"")+"K";
   return v>=100?"$"+Math.round(v):ggFmt(c,bb);
 }
@@ -9973,7 +10260,12 @@ function ggPlaceChips(){
   });
 }
 window.addEventListener("resize",()=>{if($("ggReplayM")&&$("ggReplayM").classList.contains("open"))ggPlaceChips()});
-function ggMoneyText(t){return t.replace(/\{\{(-?\d+)\}\}/g,(_,c)=>ggFmt(+c,ggR.rep.bb))}
+function ggMoneyText(t){const o=window._ggUO;window._ggUO=ggRUnit;try{return t.replace(/\{\{(-?\d+)\}\}/g,(_,c)=>ggFmt(+c,ggR.rep.bb))}finally{window._ggUO=o}}
+/* replayer has its own BB / $ unit (default BB), independent of the page toggle */
+let ggRUnit=LG("ps_gg_runit","bb");
+function ggRWrap(fn){return function(){const o=window._ggUO;window._ggUO=ggRUnit;try{return fn.apply(this,arguments)}finally{window._ggUO=o}}}
+function ggRSetUnit(u){ggRUnit=u;LS("ps_gg_runit",u);document.querySelectorAll("#ggrUnit button").forEach(b=>b.classList.toggle("on",b.dataset.u===u));ggRenderStage();ggRenderLog();ggUpdatePinBox();try{ggRenderNotesPanel()}catch(e){}playSound("tick");haptic("light")}
+function ggRStakeHtml(R){const n=R.maxSeats||(R.seats||[]).length;return'<span class="ggr-stake"><b>'+ggStakeLabel(R.bb)+'</b>'+(n?"<i>"+n+"-max</i>":"")+"</span>"}
 function ggCardHtml(code,big){const c={rank:code[0],suit:code[1]};return renderCommCardsHtml([c],true)}
 /* ── pins: a comment remembers its step index AND the action text; if the index ever drifts, re-find it by text ── */
 function ggPinStep(c){
@@ -9998,17 +10290,38 @@ function ggRenderReplay(){
   // so typing a comment is never interrupted (no lost focus / closing keyboard) while you step or play.
   if(ggR.built!==h.id){
     const dateTxt=new Date(h.ts).toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
+    const tab=ggR.tab||LG("ps_gg_rtab","log");ggR.tab=tab;
     $("ggReplayContent").innerHTML=
-      '<div class="ggr-hdr"><div><div class="ggr-title">'+(h.cls||"Hand")+(h.pos?' <span class="gg-badge">'+h.pos+"</span>":"")+'</div><div class="ggr-sub">'+ggStakeLabel(R.bb)+" · "+dateTxt+' · #'+escapeHtml(R.id)+'</div></div><div class="ggr-hdr-btns"><button class="ggr-share-btn" onclick="openGGShare()" title="Share this hand as text">📤 Share</button><button class="sd-close" onclick="ggStopAuto();closeM(\'ggReplayM\')">✕</button></div></div>'
-      +'<div id="ggrRange">'+ggRcReplayHtml(h)+'</div><div id="ggrStage"></div><div class="ggr-notes" id="ggrNotes"></div><div class="ggr-log" id="ggrLog"></div><div id="ggrNav"></div>';
+      '<div class="ggr-hdr"><div><div class="ggr-title">'+(h.cls||"Hand")+(h.pos?' <span class="gg-badge">'+h.pos+"</span>":"")+'</div>'+ggRStakeHtml(R)+'<div class="ggr-sub">'+dateTxt+' · #'+escapeHtml(R.id)+'</div></div><div class="ggr-hdr-btns"><div class="br-toggle ggr-unit" id="ggrUnit"><button data-u="bb" class="'+(ggRUnit==="bb"?"on":"")+'" onclick="ggRSetUnit(\'bb\')">BB</button><button data-u="money" class="'+(ggRUnit!=="bb"?"on":"")+'" onclick="ggRSetUnit(\'money\')">$</button></div><button class="ggr-share-btn" onclick="openGGShare()" title="Share this hand as text">📤<span class="ggr-share-l"> Share</span></button><button class="sd-close" onclick="ggStopAuto();closeM(\'ggReplayM\')">✕</button></div></div>'
+      +'<div id="ggrRange">'+(ggR.rc?ggRcReplayHtml(h):"")+'</div>'
+      +'<div class="ggr-body"><div class="ggr-main"><div id="ggrStage"></div></div>'
+      +'<div class="ggr-side" data-tab="'+tab+'"><div class="br-toggle ggr-tabs" id="ggrTabs"><button data-t="log" class="'+(tab==="log"?"on":"")+'">📜 Actions</button><button data-t="notes" class="'+(tab==="notes"?"on":"")+'">📝 Notes<span id="ggrNoteCount"></span></button></div>'
+      +'<div class="ggr-log" id="ggrLog"></div><div class="ggr-notes" id="ggrNotes"></div></div></div>'
+      +'<div id="ggrNav"></div>';
+    $("ggrTabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;ggR.tab=b.dataset.t;LS("ps_gg_rtab",ggR.tab);document.querySelector(".ggr-side").dataset.tab=ggR.tab;$("ggrTabs").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b))};
     ggR.built=h.id;
     ggRenderNotesPanel();
   }
+  const nc=$("ggrNoteCount");if(nc){const n=(h.cm||[]).length;nc.textContent=n?" · "+n:""}
   ggRenderStage();
   ggRenderLog();
   ggUpdatePinBox();
-  $("ggrNav").innerHTML='<div class="ggr-nav"><button class="btn" '+(ggR.idx<=0?"disabled":"")+' onclick="ggReplayNav(-1)">← Prev hand</button><span>'+(ggR.idx+1)+" / "+ggR.list.length+'</span><button class="btn" '+(ggR.idx>=ggR.list.length-1?"disabled":"")+' onclick="ggReplayNav(1)">Next hand →</button></div>';
+  $("ggrNav").innerHTML='<div class="ggr-nav"><button class="btn" '+(ggR.idx<=0?"disabled":"")+' onclick="ggReplayNav(-1)">← Prev hand</button><span>Hand '+(ggR.idx+1)+" of "+ggR.list.length+'</span><button class="btn" '+(ggR.idx>=ggR.list.length-1?"disabled":"")+' onclick="ggReplayNav(1)">Next hand →</button></div>';
 }
+/* what a step means in context: bet size as % of the pot, raise multiple, pot odds on calls & folds */
+function ggRStepInfo(k){
+  const S=ggR.rep.states,st=S[k],prev=S[k-1];if(!st||!prev||!st.actor)return null;
+  const a=st.actor,sum=o=>Object.values(o||{}).reduce((t,v)=>t+Math.max(0,v),0);
+  const potBefore=prev.pot+sum(prev.bets),delta=(prev.stacks[a]||0)-(st.stacks[a]||0),maxPrev=Math.max(0,...Object.values(prev.bets||{})),mine=Math.max(0,(prev.bets||{})[a]||0);
+  const bb=ggR.rep.bb,out={};
+  if(st.kind==="bet"&&potBefore>0)out.size=Math.round(delta/potBefore*100)+"% pot";
+  else if(st.kind==="raise"&&maxPrev>0){const to=(st.bets||{})[a]||0;out.size=(to/maxPrev).toFixed(1).replace(/\.0$/,"")+"× raise"+(st.street!=="Preflop"&&potBefore>0?" · "+Math.round((to-maxPrev)/(potBefore+maxPrev)*100)+"% pot":"")}
+  else if(st.kind==="call"&&delta>0){const need=delta/(potBefore+delta);out.odds="Pot odds "+((potBefore)/delta).toFixed(1)+" : 1 — needs "+Math.round(need*100)+"% equity"}
+  else if(st.kind==="fold"){const face=maxPrev-mine;if(face>0&&st.street!=="Preflop"){out.odds="Folded to "+ggFmt(face,bb)+" — would have needed "+Math.round(face/(potBefore+face)*100)+"% equity"}}
+  return out;
+}
+const GG_R_SHORT={Preflop:"Pre",Flop:"Flop",Turn:"Turn",River:"River",Showdown:"SD"};
+function ggRStreetKey(s){return s.street}
 function ggRenderStage(){
   const R=ggR.rep,st=R.states[ggR.step],h=ggR.hand,n=R.states.length;
   const heroSeat=(R.seats.find(s=>s.name===R.hero)||R.seats[0]).seat;
@@ -10024,46 +10337,84 @@ function ggRenderStage(){
       :(folded?"":'<div class="ggr-cards"><div class="ggr-back"></div><div class="ggr-back"></div></div>');
     const bet=st.bets[s.name];
     if(bet>0)chips.push('<div class="ggr-bet" data-seat="'+s.seat+'" title="'+ggFmt(bet,R.bb)+'"><span class="ggr-chipdot"></span>'+ggChipFmt(bet,R.bb)+"</div>");
-    const status=won?'<div class="ggr-status win">+'+ggFmt(won,R.bb)+"</div>":st.last[s.name]?'<div class="ggr-status'+(st.last[s.name]==="Fold"?" fold":"")+'">'+st.last[s.name]+"</div>":"";
+    const last=st.last[s.name];
+    const status=won?'<div class="ggr-status win">+'+ggFmt(won,R.bb)+"</div>":last&&last!=="Fold"?'<div class="ggr-status '+last.split(" ")[0].toLowerCase()+'">'+last+"</div>":"";
     const pos=R.pos&&R.pos[s.name];
-    const label=isHero?"Hero":s.name.slice(0,8);
     const allIn=st.allin.includes(s.name)&&st.stacks[s.name]===0;
     return'<div class="ggr-seat'+(isHero?" hero":"")+(folded?" folded":"")+(actor?" actor":"")+(won?" winner":"")+'" data-s="'+s.seat+'" style="left:'+x+"%;top:"+y+'%">'
       +'<div class="ggr-top">'+cardHtml+"</div>"
-      +'<div class="ggr-plate">'+(pos?'<span class="ggr-pos'+(pos.includes("BTN")?" btn":"")+'">'+pos+"</span>":"")
-      +'<div class="ggr-name">'+escapeHtml(label)+"</div>"
+      +'<div class="ggr-plate">'+(pos&&/BTN/.test(pos)?'<span class="ggr-dealer" title="Dealer button">D</span>':"")
+      +'<div class="ggr-pos">'+(pos||"")+(isHero?' <em>YOU</em>':"")+"</div>"
       +'<div class="ggr-stack">'+(allIn?"All-in":ggFmt(st.stacks[s.name],R.bb))+"</div>"
+      +(isHero?"":'<div class="ggr-name" title="'+escapeHtml(s.name)+'">'+escapeHtml(s.name.slice(0,6))+"</div>")
+      +(folded?'<div class="ggr-foldtag">folded</div>':"")
       +"</div>"
       +'<div class="ggr-under">'+status+"</div>"
       +"</div>";
   }).join("");
   const boardRow=cards=>'<div class="ggr-board">'+[0,1,2,3,4].map(k=>cards&&cards[k]?ggCardHtml(cards[k]):'<div class="ggr-slot"></div>').join("")+"</div>";
   const totalPot=st.pot+Object.values(st.bets).reduce((a,b)=>a+Math.max(0,b),0);
+  // end of hand: show who won and with what instead of an empty pot
+  const winners=Object.keys(st.won||{});let centerTop='<div class="hhb-pot">Pot '+ggFmt(totalPot,R.bb)+"</div>";
+  if(winners.length&&(st.kind==="win"||st.kind==="end"||totalPot===0)){
+    const full=(st.board||[]).length===5;
+    centerTop='<div class="ggr-win">'+winners.map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&full?ggHandDesc(c,st.board):"";const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));
+      return'<div><b>🏆 '+escapeHtml(pl)+" wins "+ggFmt(st.won[w],R.bb)+"</b>"+(desc?"<span>"+escapeHtml(desc)+"</span>":"")+"</div>"}).join("")+"</div>";
+  }
   const here=(h.cm||[]).filter(c=>ggPinStep(c)===ggR.step);
   const callouts=here.map(c=>'<div class="ggr-callout"><span class="ggr-callout-tag">💬 Your note</span>'+escapeHtml(c.text)+"</div>").join("");
-  const ps=ggPinnedSteps();
-  const marks=ps.map(s=>'<button class="ggr-mark'+(s===ggR.step?" on":"")+'" data-mk="'+s+'" style="left:calc(11px + (100% - 22px) * '+(n>1?s/(n-1):0)+')" title="Note at: '+escapeHtml(ggMoneyText(R.states[s].text))+'">💬</button>').join("");
-  const idx=ps.indexOf(ggR.step);
+  const ps=ggPinnedSteps(),idx=ps.indexOf(ggR.step);
+  // action card
+  const info=ggRStepInfo(ggR.step)||{};const ap=st.actor&&R.pos?R.pos[st.actor]:"";const isHeroAct=st.actor&&st.actor===R.hero;
+  let txt=ggMoneyText(st.text);if(st.actor&&txt.startsWith(st.actor))txt=(isHeroAct?"Hero":st.actor.slice(0,6))+txt.slice(st.actor.length);
+  const actCard='<div class="ggr-actcard'+(isHeroAct?" hero":"")+(st.kind?" k-"+st.kind:"")+'"><div class="ggr-act-top"><span class="ggr-street">'+escapeHtml(st.street)+'</span><span class="ggr-stepno">'+ggR.step+" / "+(n-1)+"</span></div>"
+    +'<div class="ggr-action">'+(ap?'<span class="ggr-act-pos">'+escapeHtml(ap)+"</span>":"")+escapeHtml(txt)+(info.size?'<span class="ggr-size">'+info.size+"</span>":"")+"</div>"
+    +(info.odds?'<div class="ggr-odds">🎲 '+escapeHtml(info.odds)+"</div>":"")+"</div>";
+  // street timeline
+  const segs=[];R.states.forEach((s,k)=>{if(k===0)return;const key=ggRStreetKey(s);if(!segs.length||segs[segs.length-1].key!==key)segs.push({key,steps:[]});segs[segs.length-1].steps.push(k)});
+  const tl='<div class="ggr-tl" id="ggrTl">'+segs.map(sg=>{const on=sg.steps.includes(ggR.step),past=sg.steps[sg.steps.length-1]<ggR.step;
+    return'<div class="ggr-tl-seg'+(on?" on":"")+(past?" past":"")+'" style="flex:'+Math.max(2,sg.steps.length)+'"><button class="ggr-tl-l" data-go="'+sg.steps[0]+'">'+escapeHtml(GG_R_SHORT[sg.key]||sg.key.replace("Run ","R").replace(" · ",""))+"</button>"
+      +'<div class="ggr-tl-ticks">'+sg.steps.map(k=>{const s=R.states[k];return'<button class="ggr-tk'+(k===ggR.step?" cur":"")+(k<ggR.step?" done":"")+(s.actor===R.hero&&/bet|raise|call|check|fold/.test(s.kind)?" hero":"")+(ps.includes(k)?" note":"")+'" data-go="'+k+'" title="'+escapeHtml(ggMoneyText(s.text))+'"></button>'}).join("")+"</div></div>"}).join("")+"</div>";
+  const spd=ggRSpd();
   $("ggrStage").innerHTML=
-    '<div class="ggr-felt-wrap"><div class="hhb-table-felt ggr-felt'+(R.seats.length>6?" many":"")+'">'+seatsHtml+chips.join("")
-    +'<div class="ggr-center"><div class="hhb-pot">Pot '+ggFmt(totalPot,R.bb)+"</div>"+boardRow(st.board)+(st.board2?boardRow(st.board2):"")+"</div></div></div>"
-    +'<div class="ggr-street">'+escapeHtml(st.street)+'</div><div class="ggr-action">'+escapeHtml(ggMoneyText(st.text))+"</div>"+callouts
-    +'<div class="ggr-scrubwrap">'+(marks?'<div class="ggr-marks">'+marks+"</div>":"")+'<input type="range" class="wsl ggr-scrub" min="0" max="'+(n-1)+'" value="'+ggR.step+'" oninput="ggGoto(+this.value)"/></div>'
+    '<div class="ggr-felt-wrap"><div class="hhb-table-felt ggr-felt'+(R.seats.length>6?" many":"")+'" id="ggrFelt">'+seatsHtml+chips.join("")
+    +'<div class="ggr-center">'+centerTop+boardRow(st.board)+(st.board2?boardRow(st.board2):"")+"</div></div></div>"
+    +actCard+callouts+tl
     +(ps.length?'<div class="ggr-notenav"><button class="btn btn-s" onclick="ggJumpNote(-1)">◀ Prev note</button><span>💬 '+(idx>=0?"Note "+(idx+1)+" of "+ps.length:ps.length+" pinned note"+(ps.length!==1?"s":""))+'</span><button class="btn btn-s" onclick="ggJumpNote(1)">Next note ▶</button></div>':"")
-    +'<div class="ggr-controls"><button class="btn btn-s" onclick="ggGoto(0)" title="Start">⏮</button><button class="btn btn-s" onclick="ggJumpStreet(-1)" title="Previous street">⏪</button><button class="btn btn-s" onclick="ggStep(-1)" title="Back">◀</button>'
-    +'<button class="btn btn-s pri ggr-play" onclick="ggToggleAuto()">'+(ggR.timer?"⏸":"▶ Play")+'</button>'
-    +'<button class="btn btn-s" onclick="ggStep(1)" title="Forward">▶</button><button class="btn btn-s" onclick="ggJumpStreet(1)" title="Next street">⏩</button><button class="btn btn-s" onclick="ggGoto('+(n-1)+')" title="End">⏭</button></div>'
+    +'<div class="ggr-controls"><button class="btn ggr-cb" onclick="ggJumpStreet(-1)" title="Previous street (↑)">⏮</button><button class="btn ggr-cb" onclick="ggStep(-1)" title="Back (←)">◀</button>'
+    +'<button class="btn pri ggr-play" onclick="ggToggleAuto()" title="Play / pause (space)">'+(ggR.timer?"⏸ Pause":"▶ Play")+'</button>'
+    +'<button class="btn ggr-cb" onclick="ggStep(1)" title="Forward (→)">▶</button><button class="btn ggr-cb" onclick="ggJumpStreet(1)" title="Next street (↓)">⏭</button><button class="btn ggr-cb ggr-spd" onclick="ggRCycleSpd()" title="Playback speed">'+spd+"×</button></div>"
     +(ggR.pausedAtNote&&here.length?'<div class="ggr-paused">⏸ Paused at your note — press ▶ Play to continue</div>':"")
-    +'<div class="ggr-result"><span>Result <b class="'+(h.net>=0?"pos":"neg")+'">'+ggSigned(h.net,h.bb)+"</b></span>"+(h.ev!=null?"<span>All-in EV <b>"+ggSigned(h.ev,h.bb)+"</b></span>":"")+(h.rk>0?"<span>Rake paid <b>"+ggRakeFmt(h.rk,h.bb)+"</b></span>":"")+(h.sd?"<span>Showdown</span>":"<span>No showdown</span>")+"</div>";
-  const mk=$("ggrStage").querySelector(".ggr-marks");if(mk)mk.onclick=e=>{const b=e.target.closest("[data-mk]");if(b){ggStopAuto();ggGoto(+b.dataset.mk)}};
+    +'<div class="ggr-result"><span class="ggr-rchip '+(h.net>=0?"pos":"neg")+'">Result <b>'+ggSigned(h.net,h.bb)+"</b></span>"+(h.ev!=null?'<span class="ggr-rchip">All-in EV <b>'+ggSigned(h.ev,h.bb)+"</b></span>":"")+(h.rk>0?'<span class="ggr-rchip">Rake <b>'+ggRakeFmt(h.rk,h.bb)+"</b></span>":"")+'<span class="ggr-rchip">'+(h.sd?"Showdown":"No showdown")+"</span></div>";
+  $("ggrTl").onclick=e=>{const b=e.target.closest("[data-go]");if(b){ggStopAuto();ggGoto(+b.dataset.go)}};
+  const felt=$("ggrFelt");let sx=null,sy=null;
+  felt.addEventListener("touchstart",e=>{const t=e.touches[0];sx=t.clientX;sy=t.clientY},{passive:true});
+  felt.addEventListener("touchend",e=>{if(sx==null)return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;sx=null;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.5){ggStopAuto();ggStep(dx<0?1:-1)}},{passive:true});
   ggPlaceChips();
 }
+function ggRSpd(){return window._ggRSpd||(window._ggRSpd=LG("ps_gg_rspd",1))}
+function ggRCycleSpd(){const L=[1,1.5,2,0.5],i=L.indexOf(ggRSpd());window._ggRSpd=L[(i+1)%L.length];LS("ps_gg_rspd",window._ggRSpd);if(ggR.timer){ggStopAuto();ggToggleAuto()}else ggRenderStage()}
 function ggRenderLog(){
-  const R=ggR.rep,pinned=new Set(ggPinnedSteps());
-  const logEl=$("ggrLog");
-  logEl.innerHTML=R.states.map((s,k)=>k===0?"":'<div class="'+(s.kind==="street"?"ggr-log-street":"ggr-log-item")+(k===ggR.step?" on":"")+(k>ggR.step?" future":"")+(pinned.has(k)?" has-cm":"")+'" data-s="'+k+'">'+escapeHtml(ggMoneyText(s.text))+"</div>").join("");
+  const R=ggR.rep,pinned=new Set(ggPinnedSteps()),S=R.states;
+  const logEl=$("ggrLog");let h="",cur=null;
+  const sum=o=>Object.values(o||{}).reduce((t,v)=>t+Math.max(0,v),0);
+  S.forEach((s,k)=>{
+    if(k===0)return;
+    const key=s.street;
+    if(key!==cur){cur=key;const potAt=s.pot+sum(s.bets),brd=s.kind==="street"&&s.board&&s.board.length?s.board:null;
+      h+='<div class="ggr-lg-h'+(k>ggR.step?" future":"")+'" data-s="'+k+'"><span>'+escapeHtml(key)+"</span>"+(brd?'<span class="ggr-lg-b">'+brd.map(c=>'<i class="'+(c[1]==="h"||c[1]==="d"?"r":"")+'">'+c[0].replace("T","10")+GG_SUIT_SYM[c[1]]+"</i>").join("")+"</span>":"")+(potAt>0&&key!=="Showdown"?'<em>pot '+ggFmt(potAt,R.bb)+"</em>":"")+"</div>"}
+    if(s.kind==="street"&&s.board&&s.board.length)return; // the header already shows the new cards
+    const isHero=s.actor&&s.actor===R.hero,pos=s.actor&&R.pos?R.pos[s.actor]:"";
+    let t=ggMoneyText(s.text);if(s.actor&&t.startsWith(s.actor))t=t.slice(s.actor.length).trim();
+    const info=s.actor?ggRStepInfo(k):null;
+    h+='<div class="ggr-li'+(isHero?" hero":"")+(s.kind==="fold"?" fold":"")+(s.kind==="win"?" win":"")+(k===ggR.step?" on":"")+(k>ggR.step?" future":"")+(pinned.has(k)?" has-cm":"")+'" data-s="'+k+'">'
+      +(s.actor?'<span class="ggr-li-p">'+escapeHtml(pos||"")+"</span>":'<span class="ggr-li-p sys">•</span>')
+      +'<span class="ggr-li-t">'+(s.actor?'<b>'+(isHero?"Hero":escapeHtml(s.actor.slice(0,6)))+"</b> ":"")+escapeHtml(t)+"</span>"
+      +(info&&info.size?'<span class="ggr-li-s">'+info.size.split(" · ")[0]+"</span>":"")+(pinned.has(k)?'<span class="ggr-li-n">💬</span>':"")+"</div>";
+  });
+  logEl.innerHTML=h;
   logEl.onclick=e=>{const it=e.target.closest("[data-s]");if(it){ggStopAuto();ggGoto(+it.dataset.s)}};
-  const on=logEl.querySelector(".on");if(on){const r=on.getBoundingClientRect(),lr=logEl.getBoundingClientRect();logEl.scrollTop+=(r.top-lr.top)-lr.height/2+r.height/2}
+  const on=logEl.querySelector(".on");if(on&&logEl.offsetParent){const r=on.getBoundingClientRect(),lr=logEl.getBoundingClientRect();logEl.scrollTop+=(r.top-lr.top)-lr.height/2+r.height/2}
 }
 /* the "pin to" line under the comment box — updated every step without touching the box itself */
 function ggUpdatePinBox(){
@@ -10090,6 +10441,10 @@ document.addEventListener("keydown",e=>{
   if(e.key==="ArrowRight"){e.preventDefault();ggStep(1)}
   else if(e.key==="ArrowLeft"){e.preventDefault();ggStep(-1)}
   else if(e.key===" "){e.preventDefault();ggToggleAuto()}
+  else if(e.key==="ArrowUp"){e.preventDefault();ggStopAuto();ggJumpStreet(-1)}
+  else if(e.key==="ArrowDown"){e.preventDefault();ggStopAuto();ggJumpStreet(1)}
+  else if(e.key==="Home"){e.preventDefault();ggGoto(0)}
+  else if(e.key==="End"){e.preventDefault();ggGoto(ggR.rep.states.length-1)}
 });
 
 /* ══════════════════════ SHIFT LOG ══════════════════════ */
@@ -10727,9 +11082,9 @@ function brSessDurLabel(s){if(s.timeMode==="day")return s.duration?"📅 ~"+brFm
 function setBrFmt(f){brFmt_=f;$("brFmtTog").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.f===f));const isCash=f==="cash";$("brStakesG").style.display=isCash?"":"none";$("brQuickStakesG").style.display=isCash?"":"none";$("brStartStackG").style.display=isCash?"none":"";$("brMultiDayG").style.display=isCash?"none":"";if(isCash){$("brMultiDay").checked=false;toggleBrMultiDay();brAutoFillBuyin()}}
 function toggleBrMultiDay(){$("brDayNumG").style.display=$("brMultiDay").checked?"":"none"}
 function saveBrSess(){const date=$("brDate").value;if(!date)return toast("Enter date");const buyin=parseFloat($("brBuyin").value)||0;const cashout=parseFloat($("brCashout").value)||0;const result=cashout-buyin;const dayMode=brTimeMode_==="day";const start=dayMode?"":$("brStart").value,end=dayMode?"":$("brEnd").value;const hrsIn=parseFloat($("brHours").value);const duration=dayMode?(hrsIn>0?Math.round(Math.min(hrsIn,48)*60):0):brParseDur(start,end);const isMultiDay=brFmt_!=="cash"&&$("brMultiDay").checked;const s={id:$("brEditId").value||"bs_"+Date.now(),date,format:brFmt_,gameType:$("brGT").value,tableSize:$("brTable").value,start,end,duration,timeMode:dayMode?"day":"exact",stakes:$("brStakes").value,startStack:brFmt_!=="cash"?(parseFloat($("brStartStack").value)||null):null,multiDay:isMultiDay,dayNum:isMultiDay?(parseInt($("brDayNum").value)||null):null,location:$("brLoc").value,buyin,cashout,buyinCents:Math.round(buyin*100),cashoutCents:Math.round(cashout*100),result,resultCents:Math.round(result*100),notes:$("brNotes").value,created:new Date().toISOString()};const ss=[...BR.d.sessions];const ei=ss.findIndex(x=>x.id===s.id);if(ei>=0){s.stackHistory=ss[ei].stackHistory;if(ss[ei].ggSrc){s.ggSrc=ss[ei].ggSrc;s.created=ss[ei].created}ss[ei]=s}else ss.push(s);BR.d.sessions=ss;BR.save();resetBrForm();renderBrAll();playSound(result>=0?"save":"wrong");haptic("light");toast("Session saved ✦")}
-function resetBrForm(){$("brEditId").value="";$("brFormTitle").textContent="✦ Log Session";["brDate","brStart","brEnd","brStakes","brBuyin","brCashout","brNotes","brLoc","brStartStack","brDayNum","brHours"].forEach(id=>$(id).value="");setBrTimeMode("exact");$("brDate").value=new Date().toISOString().slice(0,10);$("brTable").value="9-max";$("brMultiDay").checked=false;brBuyinTouched=false;updateBrResultLive();setBrFmt("cash");renderStakePresetRow("brQuickStakes","brStakes");brAutoFillBuyin()}
-function editBrSess(id,bid){if(bid&&bid!==getActiveBankrollId())switchActiveBankroll(bid);const s=BR.d.sessions.find(x=>x.id===id);if(!s)return;switchBrTab("brSess");$("brEditId").value=s.id;$("brFormTitle").textContent="✦ Edit Session";$("brDate").value=s.date;$("brGT").value=s.gameType;$("brTable").value=s.tableSize||"9-max";$("brStart").value=s.start||"";$("brEnd").value=s.end||"";$("brHours").value=s.timeMode==="day"&&s.duration?+(s.duration/60).toFixed(2):"";setBrTimeMode(s.timeMode==="day"?"day":"exact");$("brStakes").value=s.stakes||"";$("brLoc").value=s.location||"";$("brBuyin").value=s.buyin!=null?s.buyin:"";$("brCashout").value=s.cashout!=null?s.cashout:(s.buyin!=null?"":(s.result!=null?s.result:""));$("brNotes").value=s.notes||"";$("brStartStack").value=s.startStack!=null?s.startStack:"";$("brMultiDay").checked=!!s.multiDay;$("brDayNum").value=s.dayNum!=null?s.dayNum:"";brBuyinTouched=true;updateBrResultLive();setBrFmt(s.format||"cash");toggleBrMultiDay();renderStakePresetRow("brQuickStakes","brStakes");setTimeout(()=>$("brFormCard").scrollIntoView({behavior:"smooth"}),80)}
-function switchBrTab(bp){const btn=$("brNav")?.querySelector('button[data-bp="'+bp+'"]');if(!btn)return;$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");document.querySelectorAll("#bankrollV .br-sub").forEach(p=>p.classList.remove("on"));const pg=$(bp);if(pg)pg.classList.add("on")}
+function resetBrForm(){$("brEditId").value="";$("brFormTitle").textContent="How did it go?";["brDate","brStart","brEnd","brStakes","brBuyin","brCashout","brNotes","brLoc","brStartStack","brDayNum","brHours"].forEach(id=>$(id).value="");setBrTimeMode("exact");$("brDate").value=new Date().toISOString().slice(0,10);$("brTable").value="9-max";$("brMultiDay").checked=false;brBuyinTouched=false;updateBrResultLive();setBrFmt("cash");renderStakePresetRow("brQuickStakes","brStakes");brAutoFillBuyin()}
+function editBrSess(id,bid){if(bid&&bid!==getActiveBankrollId())switchActiveBankroll(bid);const s=BR.d.sessions.find(x=>x.id===id);if(!s)return;switchBrTab("brSess");$("brEditId").value=s.id;$("brFormTitle").textContent="Tweak this session";$("brDate").value=s.date;$("brGT").value=s.gameType;$("brTable").value=s.tableSize||"9-max";$("brStart").value=s.start||"";$("brEnd").value=s.end||"";$("brHours").value=s.timeMode==="day"&&s.duration?+(s.duration/60).toFixed(2):"";setBrTimeMode(s.timeMode==="day"?"day":"exact");$("brStakes").value=s.stakes||"";$("brLoc").value=s.location||"";$("brBuyin").value=s.buyin!=null?s.buyin:"";$("brCashout").value=s.cashout!=null?s.cashout:(s.buyin!=null?"":(s.result!=null?s.result:""));$("brNotes").value=s.notes||"";$("brStartStack").value=s.startStack!=null?s.startStack:"";$("brMultiDay").checked=!!s.multiDay;$("brDayNum").value=s.dayNum!=null?s.dayNum:"";brBuyinTouched=true;updateBrResultLive();setBrFmt(s.format||"cash");toggleBrMultiDay();renderStakePresetRow("brQuickStakes","brStakes");setTimeout(()=>$("brFormCard").scrollIntoView({behavior:"smooth"}),80)}
+function switchBrTab(bp){const btn=$("brNav")?.querySelector('button[data-bp="'+bp+'"]');if(!btn)return;$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");document.querySelectorAll("#bankrollV .br-sub").forEach(p=>p.classList.remove("on"));const pg=$(bp);if(pg)pg.classList.add("on");if(bp==="brHistory")renderBrSessions();if(bp==="brStats"){const sp=$("brStatsNav").querySelector("button.on")?.dataset.sp||"brAnal";if(sp==="brAnal")renderBrAnalytics();else renderBrInsights()}}
 function delBrSess(id,bid){confirmAction("Delete session?","",()=>{const b=bid?getBankrollById(bid):BR.d;if(!b)return;b.sessions=b.sessions.filter(s=>s.id!==id);saveBankrollsList();renderBrAll();toast("Deleted")})}
 function setupAC(inputId,acId,getList){const inp=$(inputId),ac=$(acId);if(!inp||!ac)return;inp.addEventListener("input",()=>{const v=inp.value.toLowerCase();if(!v){ac.classList.remove("show");return}const m=getList().filter(x=>x.toLowerCase().includes(v));if(!m.length){ac.classList.remove("show");return}ac.innerHTML=m.slice(0,6).map(x=>"<div>"+x+"</div>").join("");ac.classList.add("show");ac.querySelectorAll("div").forEach(d=>d.onclick=()=>{inp.value=d.textContent;ac.classList.remove("show")})});inp.addEventListener("blur",()=>setTimeout(()=>ac.classList.remove("show"),200))}
 let balHidden=LG("ps_balhide",false);
@@ -10854,7 +11209,7 @@ function updateLiveTimerDisplay(){
   timerEl.textContent=String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
   const durEl=$("liveDurTxt");if(durEl)durEl.textContent=brFmtDur(Math.round(elapsed/60000));
 }
-function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML='<div class="live-start-cta"><div class="lsc-icon">🔴</div><div class="lsc-text"><div class="lsc-title">Ready to play?</div><div class="lsc-sub">Start a live session to track buy-ins, rebuys, and time in real time.</div></div><button class="btn pri" onclick="openM(\'liveStartM\')">🔴 Start Live Session</button></div>';return}
+function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML='<div class="live-start-cta"><div class="lsc-icon">🔴</div><div class="lsc-text"><div class="lsc-title">Heading to the tables?</div><div class="lsc-sub">Start a live session — we\'ll run the clock and track every buy-in and rebuy for you.</div></div><button class="btn pri" onclick="openM(\'liveStartM\')">🔴 Start Live Session</button></div>';return}
   const elapsed=Date.now()-liveData.start;const h=Math.floor(elapsed/3600000);const m=Math.floor((elapsed%3600000)/60000);const s=Math.floor((elapsed%60000)/1000);const lb=liveData.bankrollId?getBankrollById(liveData.bankrollId):null;
   const isTourney=liveData.format==="tourney";
   const hasStack=liveData.currentStack!=null;
@@ -10926,7 +11281,7 @@ function submitEndLive(){if(!liveData)return;const stack=parseFloat($("liveEndSt
   const _bSym={USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[b.settings?.currency||"GBP"]||"£";playSound(pnl>=0?"win":"wrong");haptic(pnl>=0?"success":"warn");toast("Session: "+(pnl>=0?"+":"-")+_bSym+(Math.abs(pnl)/100).toFixed(2)+" · +"+xpGain+" XP ✦"+(b!==BR.d?" → "+b.icon+" "+b.name:""))}
 // Charts
 let brCharts={};
-const glowLinePlugin={id:"glowLine",beforeDatasetsDraw(chart){const ctx=chart.ctx;const t=chart.config.type;ctx.save();if(t==="line"){ctx.shadowColor=(chart.data.datasets[0]&&chart.data.datasets[0].borderColor)||getComputedStyle(document.documentElement).getPropertyValue("--pk").trim()||"#c8a55c";ctx.shadowBlur=16;}else if(t==="bar"){ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=10;ctx.shadowOffsetY=3;}},afterDatasetsDraw(chart){chart.ctx.restore();}};
+const glowLinePlugin={id:"glowLine",beforeDatasetsDraw(chart){const ctx=chart.ctx;const t=chart.config.type;ctx.save();if(chart.canvas&&chart.canvas.closest&&chart.canvas.closest("#bankrollV"))return;/* bankroll charts stay flat */if(t==="line"){ctx.shadowColor=(chart.data.datasets[0]&&chart.data.datasets[0].borderColor)||getComputedStyle(document.documentElement).getPropertyValue("--pk").trim()||"#c8a55c";ctx.shadowBlur=16;}else if(t==="bar"){ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=10;ctx.shadowOffsetY=3;}},afterDatasetsDraw(chart){chart.ctx.restore();}};
 if(window.Chart){Chart.register(glowLinePlugin);Chart.defaults.animation={duration:900,easing:"easeOutQuart"};Chart.defaults.animations.colors={duration:900};Chart.defaults.transitions.active.animation.duration=300;}
 function brAreaGrad(color){return(context)=>{const{chart}=context;const{ctx,chartArea}=chart;if(!chartArea)return"transparent";const g=ctx.createLinearGradient(0,chartArea.top,0,chartArea.bottom);g.addColorStop(0,color+"66");g.addColorStop(.6,color+"14");g.addColorStop(1,color+"00");return g}}
 function destroyBrChart(k){if(brCharts[k]){brCharts[k].destroy();delete brCharts[k]}}
@@ -11024,15 +11379,27 @@ function renderBrDash(){
 function renderBrDashSingle(){
   const CT=getCT();const sorted=getViewedSessions();const total=sorted.reduce((a,s)=>a+s.resultCents,0);const bankroll=getViewedBankrollValue();const deps=getViewedDepositsTotal();const wins=sorted.filter(s=>s.resultCents>0).length;const losses=sorted.filter(s=>s.resultCents<0).length;const timed=sorted.filter(s=>s.duration>0);const totalMins=timed.reduce((a,s)=>a+s.duration,0);const totalHrs=totalMins/60;const hourly=totalHrs>0?timed.reduce((a,s)=>a+s.resultCents,0)/100/totalHrs:0;const untimed=sorted.length-timed.length;const winRate=sorted.length?(wins/sorted.length)*100:0;
   const heroPos=total>=0;
-  $("brHero").innerHTML='<div class="br-hero"><div class="br-hero-label">Current Bankroll</div><div class="br-hero-val '+(heroPos?"pos":"neg")+'" id="brHeroVal">'+brFmt(bankroll)+'</div><div class="br-hero-sub">'+(heroPos?"▲":"▼")+' '+brFmt(Math.abs(total))+' all-time · '+sorted.length+" session"+(sorted.length!==1?"s":"")+(deps?" · net deposits "+brFmt(deps):"")+'</div><div class="br-hero-spark"><canvas id="chHeroSpark"></canvas></div></div>';
-  animateCount($("brHeroVal"),bankroll);
-  $("brDashStats").innerHTML='<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Total Profit</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+sorted.length+" session"+(sorted.length!==1?"s":"")+'</div></div><div class="br-stat"><div class="brs-label">Sessions Played</div><div class="brs-val" style="color:var(--pk)">'+sorted.length+'</div><div class="brs-sub">'+wins+"W / "+losses+'L</div></div><div class="br-stat '+(hourly>=0?"stat-pos":"stat-neg")+'"><div class="brs-label">Hourly Rate</div><div class="brs-val '+(hourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(hourly).toFixed(2)+'/hr</div><div class="brs-sub">'+(totalHrs>0?totalHrs.toFixed(1)+'h played'+(untimed?' · '+untimed+' untimed':''):'No timed sessions')+'</div></div><div class="br-stat"><div class="brs-label">Win Rate</div><div class="brs-val" style="color:var(--li)">'+winRate.toFixed(1)+'%</div><div class="brs-sub">'+wins+"W / "+losses+'L</div></div>'+(()=>{const bbh=computeBBPerHour(sorted);return'<div class="br-stat '+(bbh.overall>=0?"stat-pos":"stat-neg")+'" style="cursor:pointer" onclick="openBBPerHourBreakdown()"><div class="brs-label">BB/hr <span style="opacity:.5">▸</span></div><div class="brs-val '+(bbh.overall>=0?"pos":"neg")+'">'+(bbh.overall>=0?"+":"")+bbh.overall.toFixed(1)+'</div><div class="brs-sub">'+bbh.totalHrs.toFixed(1)+'h · tap for breakdown</div></div>'})();
+  const _now=new Date(),_mk=_now.toISOString().slice(0,7),_c30=new Date(_now.getTime()-30*864e5).toISOString().slice(0,10);
+  const _m=sorted.filter(x=>(x.date||"").slice(0,7)===_mk),_mp=_m.reduce((a,x)=>a+x.resultCents,0),_d=sorted.filter(x=>(x.date||"")>=_c30),_dp=_d.reduce((a,x)=>a+x.resultCents,0);
+  const _sg=v=>(v>0?"+":v<0?"−":"")+brFmt(Math.abs(v)),_pc=v=>v>0?"pos":v<0?"neg":"";
+  $("brHero").innerHTML='<div class="br-hero b3 '+(heroPos?"up":"down")+'"><div class="b3-top"><span class="br-hero-label">Bankroll</span><button class="b3-eye" id="balToggle" onclick="toggleBal()" title="Hide amounts">👁</button></div>'
+    +'<div class="br-hero-val '+(heroPos?"pos":"neg")+'" id="brHeroVal">'+brFmt(bankroll)+'</div>'
+    +'<div class="b3-chips"><span class="b3-chip '+_pc(total)+'"><i>All-time</i><b>'+_sg(total)+'</b></span><span class="b3-chip '+_pc(_mp)+'"><i>'+_now.toLocaleDateString("en-GB",{month:"long"})+'</i><b>'+(_m.length?_sg(_mp):"—")+'</b></span><span class="b3-chip '+_pc(_dp)+'"><i>Last 30 days</i><b>'+(_d.length?_sg(_dp):"—")+'</b></span></div>'
+    +'<div class="b3-mood">'+brMood(sorted,_mp,_m.length,_dp,_d.length,total)+'</div><div class="br-hero-sub">'+sorted.length+" session"+(sorted.length!==1?"s":"")+(totalHrs>0?" · "+Math.round(totalHrs)+"h at the tables":"")+(deps?" · "+brFmt(deps)+" deposited":"")+'</div><div class="br-hero-spark"><canvas id="chHeroSpark"></canvas></div></div>';
+  syncBalToggles();
+  {const dp=$("brDash");if(dp)dp.classList.toggle("b3-none",!sorted.length)}
+  // recent sessions
+  {const rc=$("brRecent");if(rc){const last=sorted.slice(-5).reverse();rc.innerHTML=last.length?'<h3>Latest sessions <button class="b3-link" onclick="switchBrTab(\'brHistory\')">View all →</button></h3><div class="br-sess-list">'+last.map(brRowHtml).join("")+"</div>":'<div class="b3-empty"><b>🃏 Your first session awaits</b><span>Log a game and your bankroll story starts here — graphs, streaks and all.</span><button class="btn pri btn-s" onclick="switchBrTab(\'brSess\')">＋ Log session</button></div>'}}
+  $("brDashStats").innerHTML='<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'" data-ic="💷"><div class="brs-label">Total profit</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+(sorted.length?"across "+sorted.length+" session"+(sorted.length!==1?"s":""):"nothing logged yet")+'</div></div><div class="br-stat" data-ic="🃏"><div class="brs-label">Sessions</div><div class="brs-val" style="color:var(--pk)">'+sorted.length+'</div><div class="brs-sub">'+wins+" won · "+losses+' lost</div></div><div class="br-stat '+(hourly>=0?"stat-pos":"stat-neg")+'" data-ic="⏱"><div class="brs-label">Hourly rate</div><div class="brs-val '+(hourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(hourly).toFixed(2)+'/hr</div><div class="brs-sub">'+(totalHrs>0?Math.round(totalHrs)+'h at the tables'+(untimed?' · '+untimed+' untimed':''):'log times to see this')+'</div></div><div class="br-stat" data-ic="🏆"><div class="brs-label">Win rate</div><div class="brs-val" style="color:var(--li)">'+winRate.toFixed(1)+'%</div><div class="brs-sub">'+(sorted.length?(winRate>=55?"winning more often than not":winRate>=45?"coin-flip territory — size matters more":"fewer wins — make them count"):"—")+'</div></div>'+(()=>{const bbh=computeBBPerHour(sorted);return'<div class="br-stat '+(bbh.overall>=0?"stat-pos":"stat-neg")+'" data-ic="📈" style="cursor:pointer" onclick="openBBPerHourBreakdown()"><div class="brs-label">BB / hr <span style="opacity:.5">▸</span></div><div class="brs-val '+(bbh.overall>=0?"pos":"neg")+'">'+(bbh.overall>=0?"+":"")+bbh.overall.toFixed(1)+'</div><div class="brs-sub">'+Math.round(bbh.totalHrs)+'h tracked · tap to break it down</div></div>'})()+'<div class="br-stat" data-ic="⚖️"><div class="brs-label">Avg / session</div><div class="brs-val '+(total>=0?"pos":"neg")+'">'+(sorted.length?brFmt(Math.round(total/sorted.length)):"—")+'</div><div class="brs-sub">'+(timed.length?"typical session: "+Math.round(totalMins/timed.length/60*10)/10+"h":"—")+'</div></div>';
   // Dep history
   const depHist=(BR.d.deposits||[]).slice().reverse();const depArea=$("brDepHist");if(depArea&&depHist.length){depArea.innerHTML='<div style="font-size:10px;font-weight:700;color:var(--t4);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Recent Transactions</div>'+depHist.slice(0,8).map(d=>{const isPos=d.amt>0;const icon=d.promoType?PROMO_TYPE_ICONS[d.promoType]:(isPos?"↓":"↑");return'<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd)"><div style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:'+(d.promoType?"rgba(200,165,92,.12)":isPos?"rgba(110,231,183,.08)":"rgba(251,113,133,.08)")+';font-size:13px">'+icon+'</div><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:12px">'+escapeHtml(d.desc)+'</div><div style="font-size:9px;color:var(--t4)">'+new Date(d.ts).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})+'</div></div><div style="font-family:var(--fm);font-size:13px;font-weight:700;color:'+(isPos?"var(--mt)":"var(--rs)")+'">'+(isPos?"+":"")+brFmt(d.amt)+'</div></div>'}).join("")}else if(depArea)depArea.innerHTML="";
-  destroyBrChart("br");const labels=[],data=[];let cum=(parseFloat(BR.d.settings?.startBankroll)||0)*100+deps;sorted.forEach(s=>{cum+=s.resultCents;labels.push(s.date);data.push(cum/100)});
+  destroyBrChart("br");const labels=[],data=[],dates=[];let cum=(parseFloat(BR.d.settings?.startBankroll)||0)*100+deps;sorted.forEach(s=>{cum+=s.resultCents;labels.push(brDayLbl(s.date));data.push(cum/100);dates.push(s.date)});
+  {const cut=brPerCut();let whole=true;if(cut){let i=dates.findIndex(d=>d>=cut);if(i<0)i=dates.length;whole=i===0;i=Math.max(0,i-1);labels.splice(0,i);data.splice(0,i)}
+   const pe=$("brPer");if(pe)pe.innerHTML=BR_PERS.map(([k,l])=>'<button class="'+(brPer===k?"on":"")+'" onclick="brSetPer(\''+k+'\')">'+l+"</button>").join("");
+   const dl=$("brPerDelta");if(dl){const dv=whole?total:data.length>1?Math.round((data[data.length-1]-data[0])*100):0;dl.className=dv>0?"pos":dv<0?"neg":"";dl.textContent=data.length>1?(dv>0?"+":dv<0?"−":"")+brFmt(Math.abs(dv))+(whole?" all-time":""):""}}
   if(sorted.length&&typeof Chart!=="undefined"){brCharts.br=new Chart($("chBR").getContext("2d"),{type:"line",data:{labels,datasets:[{label:"Bankroll",data,borderColor:CT.rose,backgroundColor:brAreaGrad(CT.rose),fill:true,tension:.35,pointRadius:0,pointHoverRadius:5,pointHitRadius:12,borderWidth:3,pointBackgroundColor:CT.rose,pointBorderColor:"#fff",pointBorderWidth:1.5,pointHoverBackgroundColor:CT.rose},...trendDataset("br",data,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toLocaleString()}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:7,font:{size:10}},grid:{color:CT.grid,drawTicks:false}},y:{ticks:{color:CT.tick,font:{size:10},callback:v=>brSym()+v.toLocaleString()},grid:{color:CT.grid,drawTicks:false}}}}})}
-  destroyBrChart("month");const months={};sorted.forEach(s=>{const m=s.date.slice(0,7);months[m]=(months[m]||0)+s.resultCents});const mKeys=Object.keys(months).sort();if(mKeys.length&&typeof Chart!=="undefined"){const mVals=mKeys.map(k=>months[k]/100);brCharts.month=new Chart($("chMonth").getContext("2d"),{type:"bar",data:{labels:mKeys,datasets:[{data:mVals,backgroundColor:mKeys.map(k=>months[k]>=0?CT.green_a:CT.red_a),borderRadius:6,borderSkipped:false},...trendDataset("month",mVals,CT).map(d=>({...d,type:"line"}))]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brFmt(Math.round(c.raw*100))}}},scales:{x:{ticks:{color:CT.tick,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
-  destroyBrChart("hourly");const hrD=[],hrL=[];sorted.forEach((s,i)=>{if(!s.duration)return;const recent=sorted.slice(Math.max(0,i-49),i+1).filter(x=>x.duration>0);const avgHr=recent.reduce((a,x)=>a+x.resultCents/100/(x.duration/60),0)/recent.length;hrD.push(avgHr);hrL.push(s.date)});if(hrD.length&&typeof Chart!=="undefined"){brCharts.hourly=new Chart($("chHourly").getContext("2d"),{type:"line",data:{labels:hrL,datasets:[{data:hrD,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.4,pointRadius:0,pointHoverRadius:4,borderWidth:2.5},...trendDataset("hourly",hrD,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,cornerRadius:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toFixed(2)+"/hr"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
+  destroyBrChart("month");const months={};sorted.forEach(s=>{const m=s.date.slice(0,7);months[m]=(months[m]||0)+s.resultCents});const mKeys=Object.keys(months).sort();if(mKeys.length&&typeof Chart!=="undefined"){const mVals=mKeys.map(k=>months[k]/100);brCharts.month=new Chart($("chMonth").getContext("2d"),{type:"bar",data:{labels:mKeys.map(brMonLbl),datasets:[{data:mVals,backgroundColor:mKeys.map(k=>months[k]>=0?CT.green_a:CT.red_a),borderRadius:6,borderSkipped:false},...trendDataset("month",mVals,CT).map(d=>({...d,type:"line"}))]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brFmt(Math.round(c.raw*100))}}},scales:{x:{ticks:{color:CT.tick,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
+  destroyBrChart("hourly");const hrD=[],hrL=[];sorted.forEach((s,i)=>{if(!s.duration)return;const recent=sorted.slice(Math.max(0,i-49),i+1).filter(x=>x.duration>0);const avgHr=recent.reduce((a,x)=>a+x.resultCents/100/(x.duration/60),0)/recent.length;hrD.push(avgHr);hrL.push(brDayLbl(s.date))});if(hrD.length&&typeof Chart!=="undefined"){brCharts.hourly=new Chart($("chHourly").getContext("2d"),{type:"line",data:{labels:hrL,datasets:[{data:hrD,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.4,pointRadius:0,pointHoverRadius:4,borderWidth:2.5},...trendDataset("hourly",hrD,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,cornerRadius:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toFixed(2)+"/hr"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
   renderBrHeatmap()}
 function renderBrHeatmap(){const c=$("calendarHM");const sorted=BR.sorted;const dayMap={};sorted.forEach(s=>{dayMap[s.date]=(dayMap[s.date]||0)+s.resultCents});const today=new Date();const start=new Date(today.getFullYear(),0,1);const weeks=[];let cw=[];for(let i=0;i<start.getDay();i++)cw.push(null);const d=new Date(start);while(d<=today){const ds=d.toISOString().slice(0,10);cw.push({date:ds,val:dayMap[ds]||0,has:!!dayMap[ds]});if(cw.length===7){weeks.push(cw);cw=[]}d.setDate(d.getDate()+1)}if(cw.length)weeks.push(cw);const gc=v=>{const cv=v/100;if(cv>=500)return"hm-l4";if(cv>=200)return"hm-l3";if(cv>=50)return"hm-l2";if(cv>0)return"hm-l1";if(cv<=-500)return"hm-d4";if(cv<=-200)return"hm-d3";if(cv<=-50)return"hm-d2";return"hm-d1"};const legend='<div class="heatmap-legend"><span>Loss</span><span class="hml-box" style="background:var(--rs)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--rs) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--b3);border:1px solid var(--bd)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--mt) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--mt)"></span><span>Profit</span></div>';c.innerHTML='<div class="heatmap">'+weeks.map(w=>'<div class="heatmap-week">'+w.map(d=>!d?'<div class="heatmap-day" style="visibility:hidden"></div>':'<div class="heatmap-day '+(d.has?gc(d.val):'')+'\" data-tip="'+d.date+": "+(d.has?(d.val>=0?"+":"-")+brSym()+Math.abs(d.val/100).toFixed(0):"—")+'"></div>').join("")+"</div>").join("")+"</div>"+legend}
 let brHistDir=LG("ps_brhist_dir","desc");
@@ -11056,6 +11423,8 @@ function renderBrSessions(){
   let ss=getViewedSessions();
   const multiView=new Set(ss.map(s=>s._bid)).size>1;
   if(fmtFilter)ss=ss.filter(s=>(s.format||"cash")===fmtFilter);
+  const rf=window._brResF||"";if(rf==="win")ss=ss.filter(s=>s.resultCents>0);else if(rf==="loss")ss=ss.filter(s=>s.resultCents<0);
+  {const rc=$("brResChips");if(rc)rc.innerHTML=[["","All"],["win","Wins"],["loss","Losses"]].map(([k,l])=>'<button class="'+(rf===k?"on":"")+'" onclick="window._brResF=\''+k+'\';renderBrSessions()">'+l+"</button>").join("")}
   if(q)ss=ss.filter(s=>(s.stakes||"").toLowerCase().includes(q)||(s.location||"").toLowerCase().includes(q)||(s.notes||"").toLowerCase().includes(q)||(s.gameType||"").toLowerCase().includes(q));
   const mul=brHistDir==="asc"?1:-1;
   ss.sort((a,b)=>{
@@ -11082,10 +11451,11 @@ function renderBrSessions(){
     const dObj=new Date(s.date+"T00:00:00");
     const dateStr=isNaN(dObj.getTime())?s.date:dObj.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
     const fmtIcon=s.format==="tourney"?"🏆":"🃏";
-    return'<div class="br-sess-card '+cls+'" style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openSessDetail(\''+s.id+'\',\''+s._bid+'\')">'
-      +'<div class="bsc-top"><span class="bsc-date">'+fmtIcon+" "+dateStr+'</span>'+(s.fromLive?'<span class="bsc-live-badge" title="Started from a live session">🔴 Live</span>':"")+(multiView?'<span class="hh-tag-chip">'+s._bicon+" "+escapeHtml(s._bname||"")+'</span>':"")+'<span class="bsc-result '+cls+'">'+fmtForSess(s,p)+'</span></div>'
-      +'<div class="bsc-mid"><span class="bsc-stakes">'+escapeHtml(s.stakes||"-")+'</span><span class="bsc-dot">·</span><span>'+escapeHtml(s.gameType||"")+(s.tableSize&&s.tableSize!=="9-max"?" · "+escapeHtml(s.tableSize):"")+'</span>'+(s.location?'<span class="bsc-dot">·</span><span class="bsc-loc">📍 '+escapeHtml(s.location)+'</span>':"")+'</div>'
-      +'<div class="bsc-bot"><span>'+brSessDurLabel(s)+'</span>'+(dur>15?'<span class="bsc-hr" style="color:'+(hrRate>=0?"var(--mt)":"var(--rs)")+'">'+sSym+Math.abs(hrRate).toFixed(0)+"/hr</span>":"")+'<span style="flex:1"></span><button class="bsc-act" onclick="event.stopPropagation();editBrSess(\''+s.id+'\',\''+s._bid+'\')" title="Edit">✎</button><button class="bsc-act del" onclick="event.stopPropagation();delBrSess(\''+s.id+'\',\''+s._bid+'\')" title="Delete">✕</button></div>'
+    return'<div class="br-sess-card br2 '+cls+'" onclick="openSessDetail(\''+s.id+'\',\''+s._bid+'\')">'
+      +'<div class="b2-date"><b>'+(isNaN(dObj.getTime())?"?":dObj.getDate())+'</b><span>'+(isNaN(dObj.getTime())?"":dObj.toLocaleDateString("en-GB",{weekday:"short"}))+'</span></div>'
+      +'<div class="b2-mid"><div class="b2-t"><b>'+escapeHtml(s.stakes||"—")+'</b>'+(s.format==="tourney"?'<span class="b2-tag">MTT</span>':"")+(s.location?'<span class="b2-loc">'+escapeHtml(s.location)+'</span>':"")+(s.fromLive?'<span class="b2-tag live">Live</span>':"")+(multiView?'<span class="b2-tag">'+s._bicon+" "+escapeHtml(s._bname||"")+'</span>':"")+'</div>'
+      +'<div class="b2-s">'+brSessDurLabel(s)+(dur>15?' · <span class="'+(hrRate>=0?"pos":"neg")+'">'+(hrRate<0?"−":"")+sSym+Math.abs(hrRate).toFixed(0)+"/hr</span>":"")+(s.notes?' · <span class="b2-note">📝</span>':"")+'</div></div>'
+      +'<div class="b2-res '+cls+'">'+(s.resultCents>0?"+":"")+fmtForSess(s,p)+'</div>'
       +"</div>";
   };
   if(sortField==="date"){
@@ -11102,7 +11472,7 @@ function renderBrSessions(){
       const subtotal=g.sessions.reduce((a,s)=>a+s.resultCents,0);
       const groupId="brSessGroup_"+gi;
       const collapsed=brCollapsedMonths.has(g.key);
-      return'<div class="bsc-group-hdr" onclick="toggleBrSessGroup(\''+groupId+"','"+g.key.replace(/'/g,"\\'")+'\')"><span class="bsc-group-left"><span class="bsc-group-toggle-ico">'+(collapsed?"▸":"▾")+'</span><span class="bsc-group-name">'+g.key+"</span></span>"+'<span class="bsc-group-sub '+(subtotal>=0?"pos":"neg")+'">'+brFmt(subtotal)+"</span></div>"
+      return'<div class="bsc-group-hdr" onclick="toggleBrSessGroup(\''+groupId+"','"+g.key.replace(/'/g,"\\'")+'\')"><span class="bsc-group-left"><span class="bsc-group-toggle-ico">'+(collapsed?"▸":"▾")+'</span><span class="bsc-group-name">'+g.key+"</span></span>"+'<span class="b3-gmeta">'+g.sessions.length+" session"+(g.sessions.length!==1?"s":"")+(()=>{const m=g.sessions.reduce((a,x)=>a+(x.duration||0),0);return m?" · "+Math.round(m/60)+"h":""})()+'</span><span class="bsc-group-sub '+(subtotal>=0?"pos":"neg")+'">'+(subtotal>0?"+":"")+brFmt(subtotal)+"</span></div>"
         +'<div class="bsc-group-body" id="'+groupId+'"'+(collapsed?' style="display:none"':"")+">"
         +g.sessions.map((s,i)=>cardHtml(s,i)).join("")
         +"</div>";
@@ -11147,6 +11517,32 @@ function renderSessDetailStackChart(){
 }
 function renderBrAnalytics(){const CT=getCT();const sorted=getViewedSessions();if(!sorted.length){$("brAnalCharts").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--t4)">No data yet</div>';return}let h='<div class="br-chart-box"><h3><span class="cdot" style="background:var(--gd)"></span>By Stakes</h3><div class="br-chart-h" style="height:180px"><canvas id="chStk"></canvas></div></div><div class="br-chart-box"><h3><span class="cdot" style="background:var(--ic)"></span>By Day of Week</h3><div class="br-chart-h" style="height:180px"><canvas id="chDOW"></canvas></div></div>';$("brAnalCharts").innerHTML=h;const stakeMap={};sorted.filter(s=>s.stakes).forEach(s=>{if(!stakeMap[s.stakes])stakeMap[s.stakes]=0;stakeMap[s.stakes]+=s.resultCents});const sKeys=Object.keys(stakeMap).sort();if(sKeys.length&&typeof Chart!=="undefined"){destroyBrChart("stk");brCharts.stk=new Chart($("chStk").getContext("2d"),{type:"bar",data:{labels:sKeys,datasets:[{data:sKeys.map(k=>stakeMap[k]/100),backgroundColor:sKeys.map(k=>stakeMap[k]>=0?CT.green_a:CT.red_a),borderRadius:6}]},options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:CT.tick},grid:{color:CT.grid}},y:{ticks:{color:CT.tick},grid:{display:false}}}}})}
   const dow=Array(7).fill(null).map(()=>({s:0,c:0}));sorted.forEach(s=>{const d=new Date(s.date).getDay();dow[d].s+=s.resultCents;dow[d].c++});const dowL=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];const dowA=dow.map(d=>d.c?d.s/d.c/100:0);if(typeof Chart!=="undefined"){destroyBrChart("dow");brCharts.dow=new Chart($("chDOW").getContext("2d"),{type:"bar",data:{labels:dowL,datasets:[{data:dowA,backgroundColor:dowA.map(v=>v>=0?CT.green_a:CT.red_a),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:CT.tick},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}}
+/* bankroll charts draw instantly — no grow/slide animations */
+const BR_PERS=[["1m","1M"],["3m","3M"],["6m","6M"],["1y","1Y"],["all","All"]];
+let brPer=LG("ps_br_per","all");
+function brPerCut(){const m={"1m":1,"3m":3,"6m":6,"1y":12}[brPer];if(!m)return null;const d=new Date();d.setMonth(d.getMonth()-m);return d.toISOString().slice(0,10)}
+function brSetPer(k){brPer=k;LS("ps_br_per",k);renderBrDash()}
+function brRowHtml(s){const d=new Date((s.date||"")+"T00:00:00"),dur=s.duration||0,hr=dur>15?s.resultCents/100/(dur/60):null,cls=s.resultCents>0?"pos":s.resultCents<0?"neg":"even",sy=brSym();
+  return'<div class="br-sess-card br2 '+cls+'" onclick="openSessDetail(\''+s.id+'\',\''+(s._bid||getActiveBankrollId())+'\')"><div class="b2-date"><b>'+(isNaN(d)?"?":d.getDate())+'</b><span>'+(isNaN(d)?"":d.toLocaleDateString("en-GB",{month:"short"}))+'</span></div>'
+    +'<div class="b2-mid"><div class="b2-t"><b>'+escapeHtml(s.stakes||"—")+'</b>'+(s.location?'<span class="b2-loc">'+escapeHtml(s.location)+"</span>":"")+'</div><div class="b2-s">'+brSessDurLabel(s)+(hr!=null?' · <span class="'+(hr>=0?"pos":"neg")+'">'+(hr<0?"−":"")+sy+Math.abs(hr).toFixed(0)+"/hr</span>":"")+"</div></div>"
+    +'<div class="b2-res '+cls+'">'+(s.resultCents>0?"+":"")+brFmt(s.resultCents)+"</div></div>"}
+// a short, human line about how you're running
+function brMood(ss,mp,mn,dp,dn,total){
+  if(!ss.length)return"✨ A fresh start — log your first session and the story begins.";
+  let st=0,sgn=0;for(let i=ss.length-1;i>=0;i--){const v=Math.sign(ss[i].resultCents);if(!v)break;if(!sgn)sgn=v;if(v!==sgn)break;st++}
+  const last=ss[ss.length-1],lr=last.resultCents,f=v=>brFmt(Math.abs(v));
+  if(st>=3&&sgn>0)return"🔥 "+st+" winning sessions in a row — you're on a heater.";
+  if(st>=3&&sgn<0)return"🧊 "+st+" losing sessions in a row — breathe, it's variance. Review, don't tilt.";
+  if(dn&&dp>0)return"📈 Up "+f(dp)+" over the last 30 days — keep it rolling.";
+  if(dn&&dp<0)return"📉 Down "+f(dp)+" over the last 30 days — stick to the plan, the edge shows over time.";
+  if(lr>0)return"🎉 Last session: +"+f(lr)+(last.stakes?" at "+escapeHtml(last.stakes):"")+". Nice work.";
+  if(lr<0)return"🌧 Last session: −"+f(lr)+". One session is noise — the long run is what counts.";
+  return total>=0?"🙂 Steady — you're up "+f(total)+" all-time.":"💪 Down "+f(total)+" all-time — every pro has been here.";
+}
+function brDayLbl(d){const x=new Date(d+"T00:00:00");return isNaN(x)?d:x.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}
+function brMonLbl(m){const x=new Date(m+"-01T00:00:00");return isNaN(x)?m:x.toLocaleDateString("en-GB",{month:"short",year:"2-digit"})}
+function brNoAnim(fn){return function(){if(typeof Chart==="undefined")return fn.apply(this,arguments);const a=Chart.defaults.animation;Chart.defaults.animation=false;try{return fn.apply(this,arguments)}finally{Chart.defaults.animation=a}}}
+renderBrDash=brNoAnim(renderBrDash);renderBrAnalytics=brNoAnim(renderBrAnalytics);renderBrInsights=brNoAnim(renderBrInsights);renderHeroSpark=brNoAnim(renderHeroSpark);
 /* ══════════════════════ BANKROLL GOALS ══════════════════════ */
 const GOAL_TYPES={
   balance:{icon:"💰",label:"Reach balance",unit:"money",auto:(t,sym)=>"Reach "+sym+t},
@@ -12880,7 +13276,7 @@ function setEditorRadius(px){LS("ps_editor_radius",px);applyEditorAppearance();r
 function renderEditorSizeUI(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);const szr=$("editorSizeRow");if(szr){szr.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.sz===sz))}const radr=$("editorRadiusRow");if(radr){radr.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.rad===rad))}}
 function renderStreakUI(){const s=getStreak();const el=$("setStreakVal");if(el)el.textContent=s.count;const d=$("setStreakDesc");if(d)d.textContent=s.count>0?"Best: "+s.best+" day"+(s.best!==1?"s":"")+" · keep it going!":"Keep training daily to build your streak"}
 function openHudRef(){openM("hudRefM")}
-function syncBalToggles(){$("balToggle").textContent=balHidden?"👁 Show":"👁 Hide";const sb=$("setBalToggle");if(sb)sb.textContent=balHidden?"👁 Show":"👁 Hide"}
+function syncBalToggles(){const bt=$("balToggle");if(bt){bt.textContent=balHidden?"🙈":"👁";bt.title=balHidden?"Show amounts":"Hide amounts"}const sb=$("setBalToggle");if(sb)sb.textContent=balHidden?"👁 Show":"👁 Hide"}
 function updateUserGreeting(){const name=LG("ps_username","");const icon=LG("ps_user_icon","😎");const el=$("headerGreeting");if(el)el.textContent=name?icon+" Hey "+name+" ♡":"";const hg=$("hdGreeting");if(hg)hg.textContent=name?icon+" Hey "+name+" ♡":"Welcome ♠"}
 
 /* ══ NAVIGATION STYLE (Bottom Bar / Top Bar / Hamburger) ══ */
