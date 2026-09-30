@@ -10311,7 +10311,7 @@ async function ggOpenReplay(i,list,opts){
   // start at "Cards are dealt" so the opening frame isn't an empty table
   const dealtAt=ggR.rep.states.findIndex(s=>s.text==="Cards are dealt");if(dealtAt>0)ggR.step=dealtAt;
   ggRenderReplay();
-  if(!$("ggReplayM").classList.contains("open"))openM("ggReplayM");
+  if(!$("ggReplayM").classList.contains("open")){openM("ggReplayM");requestAnimationFrame(()=>requestAnimationFrame(ggPlaceChips));setTimeout(ggPlaceChips,260);setTimeout(ggPlaceChips,520)}
   playSound("tick");haptic("light");
 }
 ggRenderStage=ggRWrap(ggRenderStage);ggRenderLog=ggRWrap(ggRenderLog);ggUpdatePinBox=ggRWrap(ggUpdatePinBox);
@@ -10351,6 +10351,7 @@ function ggPlaceChips(){
   const felt=document.querySelector("#ggReplayM .ggr-felt");if(!felt)return;
   // work in the felt's own (unscaled) coordinates so placement is right even while the modal is still scaling open
   const F=felt.getBoundingClientRect(),W=felt.offsetWidth,H=felt.offsetHeight,k=F.width/W||1;
+  if(!W||!H||!felt.offsetParent){felt.querySelectorAll(".ggr-bet").forEach(c=>c.classList.remove("placed"));return} // not on screen yet — placed again once the replayer is visible
   const rel=e=>{const r=e.getBoundingClientRect();return{l:(r.left-F.left)/k,t:(r.top-F.top)/k,r:(r.right-F.left)/k,b:(r.bottom-F.top)/k}};
   const obst=[...felt.querySelectorAll(".ggr-seat .ggr-plate,.ggr-seat .ggr-cards,.ggr-seat .ggr-status,.ggr-seat .ggr-pos,.ggr-center .hhb-pot,.ggr-center .ggr-win,.ggr-center .comm-card,.ggr-center .ggr-slot")].map(rel);
   const gap=3,free=R=>R.l>=2&&R.t>=2&&R.r<=W-2&&R.b<=H-2&&obst.every(o=>!(R.l<o.r+gap&&o.l<R.r+gap&&R.t<o.b+gap&&o.t<R.b+gap));
