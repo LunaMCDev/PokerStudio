@@ -1562,6 +1562,48 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 .rp-hand{display:flex;align-items:center;gap:10px;margin-top:10px;padding:8px 10px;border-radius:10px;background:rgba(0,0,0,.2);border-left:3px solid var(--mt);font-size:12px;color:var(--t3)}
 .rp-hand.miss{border-left-color:var(--rs)}.rp-hand.minor{border-left-color:var(--gd2)}.rp-hand.excused{border-left-color:#60a5fa}
 .rp-hand b{color:var(--t1)}.rp-hcls{font-family:var(--fm);font-size:16px;font-weight:800;color:var(--t1);padding:3px 8px;border-radius:7px;background:var(--b3)}
+.cb-card{padding:16px!important}
+.cb-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.cb-hdr h3{margin:0}
+.cb-sub{font-size:11.5px;color:var(--t3);margin-top:3px}.cb-sub b{color:var(--pk2)}
+.cb-spots{margin-top:12px;padding:12px;border-radius:12px;background:var(--b0);border:1px solid var(--bd)}
+.cb-sg{margin-bottom:10px}.cb-sg>span{display:block;font-size:10.5px;font-weight:800;color:var(--li);margin-bottom:6px}
+.cb-sg>div{display:flex;flex-wrap:wrap;gap:5px}
+.cb-sg button{border:1px solid var(--bd2);background:transparent;color:var(--t3);font-size:11.5px;font-weight:700;padding:6px 10px;border-radius:999px;cursor:pointer;font-family:inherit}
+.cb-sg button.on{border-color:var(--pk);background:color-mix(in srgb,var(--pk) 16%,transparent);color:var(--t1)}.cb-sg button i{font-style:normal;font-size:9px;color:var(--gd2);margin-left:2px}
+.cb-sg-b{display:flex;gap:6px;justify-content:flex-end}
+.cb-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:12px 0}
+.cb-stats div{display:flex;flex-direction:column;align-items:center;padding:8px 4px;border-radius:10px;background:rgba(0,0,0,.2)}
+.cb-stats b{font-family:var(--fm);font-size:15px;color:var(--t1)}.cb-stats span{font-size:9px;color:var(--t4);text-align:center}
+.cb-spot{font-size:13px;color:var(--t2);display:flex;align-items:center;gap:6px;flex-wrap:wrap}.cb-spot b{color:var(--t1)}
+.cb-pot{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:3px 7px;border-radius:6px;background:color-mix(in srgb,var(--li) 16%,transparent);color:var(--li)}
+.cb-board{display:flex;flex-direction:column;align-items:center;gap:8px;margin:14px 0 6px;padding:18px 10px 14px;border-radius:16px;background:radial-gradient(ellipse at center,color-mix(in srgb,var(--pk) 10%,var(--b1)),var(--b0) 75%);border:1px solid var(--bd)}
+.cb-cards{display:flex;gap:6px}.cb-cards .comm-card{width:54px!important;height:76px!important;font-size:20px!important}
+.cb-pot-sz{font-family:var(--fm);font-size:11.5px;font-weight:800;color:var(--gd2)}
+.cb-tex{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}.cb-tex span{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.06);color:var(--t3)}
+.cb-ask{text-align:center;font-size:14px;color:var(--t2);margin:12px 0 10px}.cb-ask b{color:var(--pk2)}
+.cb-grid{display:grid;grid-template-columns:52px 1fr 1fr;gap:6px;align-items:stretch}
+.cb-ax{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--t4);text-align:center;align-self:end}
+.cb-axr{align-self:center;text-align:right;padding-right:4px}
+.cb-opt{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:62px;border-radius:13px;border:1.5px solid var(--bd2);background:var(--b1);color:var(--t1);cursor:pointer;font-family:inherit}
+.cb-opt b{font-size:13px}.cb-opt span{font-family:var(--fm);font-size:12px;color:var(--gd2);font-weight:800}
+.cb-opt:not(:disabled):hover{border-color:var(--pk)}
+.cb-opt:disabled{cursor:default;opacity:.5}
+.cb-opt.right{opacity:1;border-color:var(--mt);background:color-mix(in srgb,var(--mt) 14%,var(--b1))}
+.cb-opt.wrong{opacity:1;border-color:var(--rs);background:color-mix(in srgb,var(--rs) 14%,var(--b1))}
+.cb-opt.mine{box-shadow:0 0 0 2px var(--b0),0 0 0 4px color-mix(in srgb,var(--t1) 40%,transparent)}
+.cb-res{margin-top:14px;padding:14px;border-radius:14px;background:var(--b0);border:1px solid var(--bd);border-left:4px solid var(--mt)}.cb-res.bad{border-left-color:var(--rs)}
+.cb-res-h{font-size:14px;font-weight:800;color:var(--t1)}.cb-res.ok .cb-res-h{color:var(--mt)}.cb-res.bad .cb-res-h{color:#fca5a5}.cb-res-h b{color:var(--t1)}
+.cb-close{display:block;font-size:10.5px;font-weight:700;color:var(--gd2);margin-top:3px}
+.cb-m{margin-top:12px}.cb-m-h{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px}.cb-m-h b{color:var(--t1)}
+.cb-m-h span{font-size:11px;font-weight:700}.cb-m-h .yes{color:var(--mt)}.cb-m-h .no{color:var(--t3)}
+.cb-bar{display:flex;height:9px;border-radius:5px;overflow:hidden;margin:6px 0 4px;background:rgba(255,255,255,.06)}.cb-bar span{display:block;height:100%}
+.cb-m-l{display:flex;justify-content:space-between;font-size:11px;color:var(--t3)}.cb-m-l b{font-family:var(--fm);color:var(--t1)}
+.cb-m-n{font-size:10.5px;color:var(--t4);margin-top:4px;line-height:1.5}
+.cb-next{width:100%;margin-top:14px}
+.cb-sg>span{display:flex!important;align-items:center;gap:8px}.cb-sg>span em{font-style:normal;font-family:var(--fm);color:var(--t4);font-size:10px}
+.cb-sg>span b{margin-left:auto;font-size:10px;color:var(--pk2);cursor:pointer;font-weight:800}.cb-sg>span b+b{margin-left:6px}
+.cb-sg-x{font-size:11px;color:var(--t4);line-height:1.45;margin:2px 0 10px}.cb-sg-n{font-size:10.5px;color:var(--t4);margin-bottom:10px}
+.cb-pot.p3bet{background:color-mix(in srgb,var(--gd) 18%,transparent);color:var(--gd2)}.cb-pot.p4bet{background:color-mix(in srgb,var(--rs) 16%,transparent);color:#fca5a5}
 .brsw-view{display:flex;align-items:center;gap:8px;margin:10px 0 4px;padding:10px 12px;border:1px dashed var(--bd2);border-radius:10px;font-size:12px;color:var(--t3);cursor:pointer}.brsw-view b{color:var(--t1);font-weight:700}.brsw-view .bvf-chevron{margin-left:auto}
 .br-view-chip{
   display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
@@ -4932,6 +4974,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
       <button class="tk" style="--tc:#22c55e" onclick="showToolsSection('tlPotOdds')"><span class="tk-ico">💰</span><span class="tk-label">Pot Odds</span><span class="tk-sub">Call or fold?</span></button>
       <button class="tk" style="--tc:#f59e0b" onclick="showToolsSection('tlSpr')"><span class="tk-ico">📐</span><span class="tk-label">SPR &amp; Sizing</span><span class="tk-sub">Stack-to-pot, bet sizes</span></button>
       <button class="tk" style="--tc:#a78bfa" onclick="showToolsSection('tlCombo')"><span class="tk-ico">🔢</span><span class="tk-label">Combos</span><span class="tk-sub">Count combinations</span></button>
+      <button class="tk" style="--tc:#f472b6" onclick="showToolsSection('tlCbet');cbStart()"><span class="tk-ico">🎯</span><span class="tk-label">C-Bet Trainer</span><span class="tk-sub">Range &amp; nut advantage</span></button>
       <button class="tk" style="--tc:#ec4899" onclick="showToolsSection('tlPLO');genPLOHand()"><span class="tk-ico">🎰</span><span class="tk-label">PLO Trainer</span><span class="tk-sub">Spot the best hand</span></button>
     </div>
     <div class="tk-sec">Study &amp; records</div>
@@ -5066,6 +5109,14 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
   </div>
 
   <!-- PLO Trainer -->
+  <div class="br-sub" id="tlCbet">
+    <div class="tool-card cb-card">
+      <div class="cb-hdr"><div><h3>🎯 C-Bet Trainer</h3><div class="cb-sub">Range advantage sets how <b>often</b>. Nut advantage sets the <b>size</b>.</div></div><button class="btn btn-s" onclick="cbToggleSpots()">⚙ Spots</button></div>
+      <div class="cb-spots" id="cbSpots" style="display:none"></div>
+      <div class="cb-stats" id="cbStats"></div>
+      <div id="cbQ"></div>
+    </div>
+  </div>
   <div class="br-sub" id="tlPLO">
     <div class="tool-card">
       <h3>🎰 Hand Strength Trainer</h3>
@@ -6612,7 +6663,7 @@ function showToolsSection(tab){
   switchToolsTab(tab);
   playSound("tick");haptic("light");
 }
-function switchToolsTab(tab){$("toolsNav").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tl===tab));document.querySelectorAll("#toolsV .br-sub").forEach(p=>p.classList.toggle("on",p.id===tab))}
+function switchToolsTab(tab){const tn=$("toolsNav");if(tn)tn.style.display=(tab==="tlCbet"||tab==="tlPLO")?"none":"";$("toolsNav").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.tl===tab));document.querySelectorAll("#toolsV .br-sub").forEach(p=>p.classList.toggle("on",p.id===tab))}
 
 /* ── Equity Calculator ── */
 let eqCards={hero:[],villain:[],board:[]};
@@ -11690,6 +11741,153 @@ function brDayLbl(d){const x=new Date(d+"T00:00:00");return isNaN(x)?d:x.toLocal
 function brMonLbl(m){const x=new Date(m+"-01T00:00:00");return isNaN(x)?m:x.toLocaleDateString("en-GB",{month:"short",year:"2-digit"})}
 function brNoAnim(fn){return function(){if(typeof Chart==="undefined")return fn.apply(this,arguments);const a=Chart.defaults.animation;Chart.defaults.animation=false;try{return fn.apply(this,arguments)}finally{Chart.defaults.animation=a}}}
 renderBrDash=brNoAnim(renderBrDash);renderBrAnalytics=brNoAnim(renderBrAnalytics);renderBrInsights=brNoAnim(renderBrInsights);renderHeroSpark=brNoAnim(renderHeroSpark);
+/* ══════════════════════ C-BET TRAINER ══════════════════════
+   Range advantage (raiser's equity vs the caller's range on the flop) decides how OFTEN to c-bet;
+   nut advantage (who holds more very strong hands) decides the SIZE (75% with it, 33% without). */
+const CB_RANKS="23456789TJQKA",CB_SUITS="shdc";
+// fast integer evaluator for 5–7 cards (card = rank*4+suit, rank 0=2 … 12=A); higher score wins
+function cbStraightHi(m){for(let h=12;h>=4;h--)if(((m>>(h-4))&31)===31)return h;if((m&0x100F)===0x100F)return 3;return-1}
+function cbEval(cs){
+  const cnt=[0,0,0,0,0,0,0,0,0,0,0,0,0],sm=[0,0,0,0],sc=[0,0,0,0];let m=0;
+  for(let i=0;i<cs.length;i++){const c=cs[i],r=c>>2,s=c&3;cnt[r]++;sm[s]|=1<<r;sc[s]++;m|=1<<r}
+  const pack=(cat,k)=>{let v=cat;for(let i=0;i<5;i++)v=v*16+(k[i]||0);return v};
+  let fs=-1;for(let s=0;s<4;s++)if(sc[s]>=5)fs=s;
+  if(fs>=0){const sf=cbStraightHi(sm[fs]);if(sf>=0)return pack(8,[sf])}
+  const q=[],t=[],p=[],sg=[];for(let r=12;r>=0;r--){const n=cnt[r];if(n===4)q.push(r);else if(n===3)t.push(r);else if(n===2)p.push(r);else if(n===1)sg.push(r)}
+  if(q.length){const k=[...t,...p,...sg].sort((a,b)=>b-a)[0];return pack(7,[q[0],k])}
+  if(t.length&&(t.length>1||p.length))return pack(6,[t[0],t.length>1?Math.max(t[1],p[0]||-1):p[0]]);
+  if(fs>=0){const k=[];for(let r=12;r>=0&&k.length<5;r--)if(sm[fs]>>r&1)k.push(r);return pack(5,k)}
+  const st=cbStraightHi(m);if(st>=0)return pack(4,[st]);
+  if(t.length){const k=[...p,...sg].sort((a,b)=>b-a);return pack(3,[t[0],k[0],k[1]])}
+  if(p.length>=2){const k=[...p.slice(2),...sg].sort((a,b)=>b-a);return pack(2,[p[0],p[1],k[0]])}
+  if(p.length)return pack(1,[p[0],sg[0],sg[1],sg[2]]);
+  return pack(0,sg.slice(0,5));
+}
+function cbCat(score){return Math.floor(score/1048576)}
+// the spots the trainer deals — ranges come from your default GTO pack (your edits count)
+// every heads-up spot the default pack covers: single-raised, 3-bet and 4-bet pots, for every position pair
+const CB_PRE=["UTG","HJ","CO","BU","SB","BB"],CB_POST=["SB","BB","UTG","HJ","CO","BU"],CB_D=p=>p==="BU"?"BTN":p;
+const CB_SPOTS=(()=>{const out=[],dead=(a,b)=>(a!=="SB"&&b!=="SB"?0.5:0)+(a!=="BB"&&b!=="BB"?1:0);
+  for(let i=0;i<5;i++)for(let j=i+1;j<6;j++){const o=CB_PRE[i],c=CB_PRE[j],oIP=CB_POST.indexOf(o)>CB_POST.indexOf(c),dd=dead(o,c);
+    out.push({id:"srp-"+o+"-"+c,pot:"SRP",pfr:CB_D(o),cal:CB_D(c),ip:oIP,pr:[o+" open","Raise"],cr:[c+" vs "+o+" open","Call"],size:2*(o==="SB"?3:2.5)+dd});
+    out.push({id:"3b-"+c+"-"+o,pot:"3-bet",pfr:CB_D(c),cal:CB_D(o),ip:!oIP,pr:[c+" vs "+o+" open","3-bet"],cr:[o+" open vs "+c+" 3-bet","Call"],dead:dd});
+    out.push({id:"4b-"+o+"-"+c,pot:"4-bet",pfr:CB_D(o),cal:CB_D(c),ip:oIP,pr:[o+" open vs "+c+" 3-bet","4-bet"],cr:[c+" 3-bet vs "+o+" 4-bet","Call"],dead:dd});
+  }
+  return out})();
+// pot on the flop from the raise size in the range's own action name (e.g. "3-bet 12bb")
+function cbPot(sp){if(sp.size)return sp.size;const d=cbRange(sp.pr[0]);const a=d&&d.acts.find(x=>x.name.toLowerCase().startsWith(sp.pr[1].toLowerCase()));const m=a&&a.name.match(/([\d.]+)\s*bb/i);sp.size=m?Math.round((2*parseFloat(m[1])+(sp.dead||0))*10)/10:null;return sp.size}
+function cbAvail(sp){if(sp._ok===undefined){const dp=cbRange(sp.pr[0]),dc=cbRange(sp.cr[0]);sp._ok=!!(dp&&dc&&cbCombos(dp,sp.pr[1],[]).length&&cbCombos(dc,sp.cr[1],[]).length)}return sp._ok}
+const CB_EQ=0.52,CB_EQ_BAND=0.01,CB_NUT=1.3,CB_NUT_LO=1.15,CB_NUT_HI=1.45;
+// weighted combos (as card-int pairs) for one action of a range, minus dead cards
+function cbCombos(d,actPrefix,dead){
+  const ai=d.acts.findIndex(a=>a.name.toLowerCase().startsWith(actPrefix.toLowerCase()));if(ai<0)return[];
+  const out=[],deadSet=new Set(dead);
+  for(let r=0;r<13;r++)for(let c=0;c<13;c++){
+    const w=(trWeights(d.range[r][c],d.acts)[ai]||0)/100;if(w<=0.001)continue;
+    const lab=hl(r,c),r1=CB_RANKS.indexOf(lab[0]),r2=CB_RANKS.indexOf(lab[1]),kind=lab.length===2?"p":lab[2];
+    for(let s1=0;s1<4;s1++)for(let s2=0;s2<4;s2++){
+      if(kind==="p"&&s2<=s1)continue;if(kind==="s"&&s1!==s2)continue;if(kind==="o"&&s1===s2)continue;
+      const a=r1*4+s1,b=r2*4+s2;if(deadSet.has(a)||deadSet.has(b))continue;out.push({a,b,w});
+    }
+  }
+  return out;
+}
+function cbPick(list,cum,tot){const x=Math.random()*tot;let lo=0,hi=cum.length-1;while(lo<hi){const mid=(lo+hi)>>1;if(cum[mid]<x)lo=mid+1;else hi=mid}return list[lo]}
+function cbEquity(A,B,board,n){
+  const cA=[],cB=[];let tA=0,tB=0;A.forEach(x=>{tA+=x.w;cA.push(tA)});B.forEach(x=>{tB+=x.w;cB.push(tB)});
+  let win=0,done=0,tries=0;const used=new Uint8Array(52);
+  while(done<n&&tries<n*6){tries++;
+    const a=cbPick(A,cA,tA),b=cbPick(B,cB,tB);if(a.a===b.a||a.a===b.b||a.b===b.a||a.b===b.b)continue;
+    used.fill(0);board.forEach(c=>used[c]=1);used[a.a]=used[a.b]=used[b.a]=used[b.b]=1;
+    let t,rv;do{t=(Math.random()*52)|0}while(used[t]);used[t]=1;do{rv=(Math.random()*52)|0}while(used[rv]);
+    const sa=cbEval([a.a,a.b,board[0],board[1],board[2],t,rv]),sb=cbEval([b.a,b.b,board[0],board[1],board[2],t,rv]);
+    win+=sa>sb?1:sa===sb?.5:0;done++;
+  }
+  return done?win/done:.5;
+}
+// "nutted" = hands that are genuinely strong on this flop: sets/trips using a hole card, two pair using both hole cards, straights, flushes, boats+
+function cbNuts(list,board){
+  const bc=cbCat(cbEval(board)),brd=board.map(c=>c>>2),boardPaired=new Set(brd).size<3;
+  let tot=0,nut=0;const br={set:0,two:0,str:0,fl:0,fh:0};
+  list.forEach(x=>{tot+=x.w;const sc=cbEval([x.a,x.b,...board]),cat=cbCat(sc);let k=null;
+    if(cat>=6)k="fh";else if(cat===5)k="fl";else if(cat===4)k="str";
+    else if(cat===3&&bc<3)k="set";
+    else if(cat===2&&!boardPaired)k="two";
+    if(k){nut+=x.w;br[k]+=x.w}});
+  return{pct:tot?nut/tot:0,br:Object.fromEntries(Object.entries(br).map(([k,v])=>[k,tot?v/tot:0])),tot};
+}
+function cbRange(key){const idx=ggRcIndex();const hit=idx.get(key);return hit?hit.r:null}
+function cbAnalyse(spot,board){
+  const dp=cbRange(spot.pr[0]),dc=cbRange(spot.cr[0]);if(!dp||!dc)return null;
+  const A=cbCombos(dp,spot.pr[1],board),B=cbCombos(dc,spot.cr[1],board);if(!A.length||!B.length)return null;
+  const eq=cbEquity(A,B,board,5000),np=cbNuts(A,board),nc=cbNuts(B,board);
+  const ratio=nc.pct>0?np.pct/nc.pct:(np.pct>0?9:1);
+  const often=eq>=CB_EQ,big=ratio>=CB_NUT&&np.pct-nc.pct>=0.01;
+  return{eq,np,nc,ratio,often,big,freqClose:Math.abs(eq-CB_EQ)<CB_EQ_BAND,sizeClose:ratio>=CB_NUT_LO&&ratio<=CB_NUT_HI&&Math.abs(np.pct-nc.pct)>=0.005};
+}
+
+/* C-bet trainer UI */
+let CB={spot:null,board:null,a:null,answered:false,stats:LG("ps_cb_stats",{n:0,ok:0,freq:0,size:0,streak:0,best:0}),on:LG("ps_cb_spots",null)};
+function cbSpotsOn(){const av=CB_SPOTS.filter(cbAvail);let on=CB.on&&CB.on.length?av.filter(s=>CB.on.includes(s.id)):[];if(!on.length)on=av;return on}
+function cbToggleSpots(){const el=$("cbSpots");el.style.display=el.style.display==="none"?"":"none";cbRenderSpots()}
+function cbRenderSpots(){const el=$("cbSpots");if(!el)return;const on=new Set(cbSpotsOn().map(s=>s.id));
+  const grp=p=>{const L=CB_SPOTS.filter(s=>s.pot===p&&cbAvail(s)),n=L.filter(s=>on.has(s.id)).length;return'<div class="cb-sg"><span>'+(p==="SRP"?"Single-raised pots":p==="3-bet"?"3-bet pots":"4-bet pots")+' <em>'+n+"/"+L.length+'</em><b onclick="cbGroup(\''+p+'\',1)">All</b><b onclick="cbGroup(\''+p+'\',0)">None</b></span><div>'+L.map(s=>'<button class="'+(on.has(s.id)?"on":"")+'" onclick="cbFlipSpot(\''+s.id+'\')">'+s.pfr+" vs "+s.cal+(s.ip?"":" <i>OOP</i>")+"</button>").join("")+"</div></div>"};
+  el.innerHTML='<div class="cb-sg-n">'+on.size+' of '+CB_SPOTS.filter(cbAvail).length+' spots in the mix · the first player named is the one c-betting</div>'+grp("SRP")+grp("3-bet")+grp("4-bet")+(()=>{const x=CB_SPOTS.filter(s=>!cbAvail(s));return x.length?'<div class="cb-sg-x">Not in the mix: '+x.map(s=>s.pfr+" vs "+s.cal+" "+s.pot).join(", ")+'. Your ranges never flat these ('+x.map(s=>s.cal).filter((v,i,a)=>a.indexOf(v)===i).join("/")+' jam or fold), so no flop is seen.</div>':""})()+'<div class="cb-sg-b"><button class="btn btn-s" onclick="CB.on=null;LS(\'ps_cb_spots\',null);cbRenderSpots()">Reset</button><button class="btn btn-s pri" onclick="$(\'cbSpots\').style.display=\'none\';cbNext()">Done</button></div>'}
+function cbGroup(p,onOff){let on=cbSpotsOn().map(s=>s.id);const ids=CB_SPOTS.filter(s=>s.pot===p&&cbAvail(s)).map(s=>s.id);on=onOff?[...new Set([...on,...ids])]:on.filter(x=>!ids.includes(x));if(!on.length)return toast("Keep at least one spot");CB.on=on;LS("ps_cb_spots",on);cbRenderSpots()}
+function cbFlipSpot(id){let on=cbSpotsOn().map(s=>s.id);on=on.includes(id)?on.filter(x=>x!==id):[...on,id];if(!on.length)return toast("Keep at least one spot");CB.on=on;LS("ps_cb_spots",on);cbRenderSpots()}
+function cbRenderStats(){const s=CB.stats,el=$("cbStats");if(!el)return;const p=(a,b)=>b?Math.round(a/b*100)+"%":"—";
+  el.innerHTML='<div><b>'+s.ok+"/"+s.n+'</b><span>correct</span></div><div><b>'+p(s.freq,s.n)+'</b><span>frequency</span></div><div><b>'+p(s.size,s.n)+'</b><span>sizing</span></div><div><b>'+s.streak+'</b><span>streak · best '+s.best+"</span></div>"}
+function cbStart(){cbRenderStats();if(!CB.board)cbNext();else cbRenderQ()}
+function cbNext(){
+  const spots=cbSpotsOn();let tries=0,a=null,spot,board;
+  do{spot=spots[(Math.random()*spots.length)|0];board=cbDealFlop();a=cbAnalyse(spot,board);tries++}while(!a&&tries<8);
+  if(!a){$("cbQ").innerHTML='<div class="empty-state"><div class="es-title">Default ranges missing</div><div class="es-sub">Restore the default ranges in Settings to use the C-bet trainer.</div></div>';return}
+  CB.spot=spot;CB.board=board;CB.a=a;CB.answered=false;CB.pick=null;cbRenderQ();
+}
+function cbRenderQ(){
+  const sp=CB.spot,a=CB.a,b=CB.board,el=$("cbQ");if(!el||!sp)return;
+  const cards=renderCommCardsHtml(b.map(cbCardObj),true);
+  const tex=cbBoardTexture(b).map(t=>'<span>'+t+"</span>").join("");
+  const opt=(often,big)=>{const k=(often?"o":"r")+(big?"b":"s");let cls="";
+    if(CB.answered){const fOK=often===a.often||a.freqClose,sOK=big===a.big||a.sizeClose;if(fOK&&sOK)cls=" right";else if(CB.pick===k)cls=" wrong"}
+    else if(CB.pick===k)cls=" picked";
+    return'<button class="cb-opt'+cls+(CB.pick===k?" mine":"")+'" '+(CB.answered?"disabled":"")+' onclick="cbAnswer('+often+","+big+')"><b>'+(often?"Bet often":"Bet rarely")+'</b><span>'+(big?"75% pot":"33% pot")+"</span></button>"};
+  const verb=sp.pot==="SRP"?"opened":sp.pot==="3-bet"?"3-bet":"4-bet";
+  let h='<div class="cb-spot"><span class="cb-pot p'+sp.pot.replace(/\W/g,"")+'">'+(sp.pot==="SRP"?"Single-raised":sp.pot+" pot")+'</span><b>'+sp.pfr+'</b> '+verb+', <b>'+sp.cal+'</b> called · '+(sp.ip?sp.pfr+" in position":sp.pfr+" out of position")+'</div>'
+    +'<div class="cb-board"><div class="cb-cards">'+cards+'</div><div class="cb-pot-sz">Pot '+(cbPot(sp)||"?")+' bb</div><div class="cb-tex">'+tex+"</div></div>"
+    +'<div class="cb-ask">How should <b>'+sp.pfr+'</b> c-bet this flop?</div>'
+    +'<div class="cb-grid"><div class="cb-ax"></div><div class="cb-ax">Small</div><div class="cb-ax">Big</div><div class="cb-ax cb-axr">Often</div>'+opt(true,false)+opt(true,true)+'<div class="cb-ax cb-axr">Rarely</div>'+opt(false,false)+opt(false,true)+"</div>";
+  if(CB.answered)h+=cbExplain();
+  el.innerHTML=h;
+}
+function cbAnswer(often,big){
+  if(CB.answered)return;const a=CB.a;CB.pick=(often?"o":"r")+(big?"b":"s");CB.answered=true;
+  const fOK=often===a.often||a.freqClose,sOK=big===a.big||a.sizeClose,ok=fOK&&sOK,s=CB.stats;
+  s.n++;if(ok){s.ok++;s.streak++;s.best=Math.max(s.best,s.streak)}else s.streak=0;if(fOK)s.freq++;if(sOK)s.size++;LS("ps_cb_stats",s);
+  playSound(ok?"correct":"wrong");haptic(ok?"success":"warn");cbRenderStats();cbRenderQ();
+}
+function cbExplain(){
+  const a=CB.a,sp=CB.spot,pe=Math.round(a.eq*1000)/10,ce=Math.round((1-a.eq)*1000)/10,np=a.np.pct*100,nc=a.nc.pct*100;
+  const fOK=(CB.pick[0]==="o")===a.often||a.freqClose,sOK=(CB.pick[1]==="b")===a.big||a.sizeClose,ok=fOK&&sOK;
+  const bar=(l,r,lc,rc)=>{const t=l+r||1;return'<div class="cb-bar"><span style="width:'+(l/t*100)+'%;background:'+lc+'"></span><span style="width:'+(r/t*100)+'%;background:'+rc+'"></span></div>'};
+  const brk=x=>[["set","sets/trips"],["two","two pair"],["str","straights"],["fl","flushes"],["fh","boats+"]].filter(([k])=>x.br[k]>0.0005).map(([k,l])=>(x.br[k]*100).toFixed(1)+"% "+l).join(" · ")||"none";
+  const ans=(a.often?"Bet often":"Bet rarely")+" · "+(a.big?"75%":"33%");
+  return'<div class="cb-res '+(ok?"ok":"bad")+'"><div class="cb-res-h">'+(ok?"✓ Correct":"✗ Not quite")+' — <b>'+ans+"</b>"+(a.freqClose||a.sizeClose?' <span class="cb-close">close spot — '+(a.freqClose&&a.sizeClose?"either frequency or size":a.freqClose?"either frequency":"either size")+" accepted</span>":"")+"</div>"
+    +'<div class="cb-m"><div class="cb-m-h"><b>Range advantage</b><span class="'+(a.often?"yes":"no")+'">'+(a.often?sp.pfr+" ✓ → bet often":"no clear edge → bet rarely")+'</span></div>'+bar(pe,ce,"var(--pk)","var(--li)")
+    +'<div class="cb-m-l"><span>'+sp.pfr+" <b>"+pe.toFixed(1)+'%</b> equity</span><span>'+sp.cal+" <b>"+ce.toFixed(1)+"%</b></span></div><div class=\"cb-m-n\">Line: "+(CB_EQ*100).toFixed(0)+"% equity or more = range advantage.</div></div>"
+    +'<div class="cb-m"><div class="cb-m-h"><b>Nut advantage</b><span class="'+(a.big?"yes":"no")+'">'+(a.big?sp.pfr+" ✓ → size up to 75%":"not enough → keep it 33%")+'</span></div>'+bar(np,nc,"var(--gd2)","var(--ic)")
+    +'<div class="cb-m-l"><span>'+sp.pfr+" <b>"+np.toFixed(1)+'%</b> nutted</span><span>'+sp.cal+" <b>"+nc.toFixed(1)+"%</b></span></div>"
+    +'<div class="cb-m-n">'+sp.pfr+": "+brk(a.np)+"<br>"+sp.cal+": "+brk(a.nc)+"<br>Line: "+CB_NUT.toFixed(1)+"× the caller's share of strong hands = nut advantage.</div></div>"
+    +'<button class="btn pri cb-next" onclick="cbNext()">Next flop →</button></div>';
+}
+document.addEventListener("keydown",e=>{const p=$("tlCbet");if(!p||!p.classList.contains("on")||!$("toolsV").classList.contains("on")||$("toolsCalcArea").style.display==="none")return;if(/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||""))return;
+  if(CB.answered&&(e.key===" "||e.key==="Enter")){e.preventDefault();cbNext();return}
+  if(!CB.answered){const m={"1":[1,0],"2":[1,1],"3":[0,0],"4":[0,1]}[e.key];if(m){e.preventDefault();cbAnswer(!!m[0],!!m[1])}}});
+
+function cbDealFlop(){const d=[...Array(52).keys()];for(let i=51;i>0;i--){const j=(Math.random()*(i+1))|0;[d[i],d[j]]=[d[j],d[i]]}return d.slice(0,3).sort((a,b)=>b-a)}
+function cbCardObj(c){return{rank:CB_RANKS[c>>2],suit:CB_SUITS[c&3]}}
+function cbBoardTexture(b){const r=b.map(c=>c>>2),s=b.map(c=>c&3),su=new Set(s).size,pr=new Set(r).size<3,hi=Math.max(...r),conn=Math.max(...r)-Math.min(...r)<=4&&!pr;
+  return[su===1?"monotone":su===2?"two-tone":"rainbow",pr?"paired":null,conn?"connected":null,hi>=12?(CB_RANKS[hi]==="A"?"ace-high":"king-high"):hi>=9?"broadway":hi<=6?"low":"middling"].filter(Boolean)}
 /* ══════════════════════ BANKROLL GOALS ══════════════════════ */
 const GOAL_TYPES={
   balance:{icon:"💰",label:"Reach balance",unit:"money",auto:(t,sym)=>"Reach "+sym+t},
