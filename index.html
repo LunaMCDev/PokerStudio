@@ -5271,11 +5271,13 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 button:focus:not(:focus-visible),a:focus:not(:focus-visible){outline:none}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
-/* notch / home-indicator safe areas: grow the bars instead of squeezing their contents */
-.hdr{height:calc(56px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);box-sizing:border-box}
-.bnav{height:calc(60px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box;align-items:stretch}
-.bnav .bnav-t{height:60px;align-self:flex-start}
-.bnav .nav-indicator{top:6px;bottom:auto;height:48px}
+/* notch / home-indicator safe areas (v73): the page itself is padded and the gaps are painted in the bar colour,
+   so the header and bottom nav keep their normal size and nothing inside them gets squeezed or clipped */
+html{background:var(--b1)}
+html body{box-sizing:border-box;height:100%;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  background:linear-gradient(var(--b1),var(--b1)) top/100% env(safe-area-inset-top,0px) no-repeat,linear-gradient(var(--b1),var(--b1)) bottom/100% env(safe-area-inset-bottom,0px) no-repeat,var(--b0)}
+html body .hdr{height:56px;min-height:56px;padding-top:0;flex-shrink:0}
+html body .bnav{height:60px;min-height:60px;padding-bottom:0;flex-shrink:0}
 @media (pointer:coarse){
   .btn-s,.btn.btn-s,.gg-chip,.seg-row button,.br-toggle button,.nb-tab,.ds-seg button,.mode-tab{min-height:36px}
   select.sel-sm,.sel-sm{min-height:36px}
@@ -5372,7 +5374,7 @@ body.hhq-on #handHistoryV>.hhq-top,body.hhq-on #handHistoryV>.br-stats,body.hhq-
 </style>
 </head>
 <body>
-<header class="hdr">
+<header class="hdr" data-build="v73">
   <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleHamburgerMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -6233,6 +6235,7 @@ body.hhq-on #handHistoryV>.hhq-top,body.hhq-on #handHistoryV>.br-stats,body.hhq-
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v73</div>
   </div>
 </div>
 </div>
