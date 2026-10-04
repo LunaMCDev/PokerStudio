@@ -5278,11 +5278,17 @@ body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-ri
 /* notch / home-indicator safe areas (v73): the page itself is padded and the gaps are painted in the bar colour,
    so the header and bottom nav keep their normal size and nothing inside them gets squeezed or clipped */
 html{background:var(--b1)}
-html{height:100%;height:100dvh;height:var(--app-h,100dvh)}
-html body{box-sizing:border-box;height:100%;height:100dvh;height:var(--app-h,100dvh);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+html{height:100%;height:100lvh;min-height:var(--app-h,100dvh)}
+html body{box-sizing:border-box;height:100%;height:100lvh;min-height:var(--app-h,100dvh);padding-top:env(safe-area-inset-top,0px);padding-bottom:0;
   background:linear-gradient(var(--b1),var(--b1)) top/100% env(safe-area-inset-top,0px) no-repeat,linear-gradient(var(--b1),var(--b1)) bottom/100% env(safe-area-inset-bottom,0px) no-repeat,var(--b0)}
 html body .hdr{height:56px;min-height:56px;padding-top:0;flex-shrink:0}
-html body .bnav{height:60px;min-height:60px;padding-bottom:0;flex-shrink:0}
+html body .bnav{height:calc(60px + env(safe-area-inset-bottom,0px));min-height:0;padding-bottom:env(safe-area-inset-bottom,0px);flex-shrink:0}
+/* bottom bar pinned to the very bottom of the screen (follows Safari's toolbar as it shows/hides) */
+body.nav-bottom .bnav{position:fixed!important;left:0;right:0;bottom:0;z-index:60;align-items:flex-start}
+body.nav-bottom .bnav .bnav-t{height:60px}
+body.nav-bottom .bnav .nav-indicator{top:6px;bottom:auto;height:48px}
+body.nav-bottom .main{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
+body.nav-bottom :is(.hhq-bar,.fs-bulk-bar){bottom:calc(60px + env(safe-area-inset-bottom,0px))}
 /* pop-ups: keep clear of the Dynamic Island / status bar and the home indicator, and size to the real visible height */
 .mov,.cfov{top:0;bottom:auto;height:var(--app-h,100dvh);padding-top:calc(env(safe-area-inset-top,0px) + 12px)!important;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 12px)!important}
 .mov .mdl,.cfov .cfbox{max-height:calc(var(--app-h,100dvh) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 24px)!important}
@@ -5384,10 +5390,30 @@ body.hhq-on #handHistoryV>.hhq-top,body.hhq-on #handHistoryV>.br-stats,body.hhq-
 .hhq-bar{position:sticky;bottom:0;z-index:6;display:flex;gap:8px;padding:10px 0;background:linear-gradient(transparent,var(--b0) 30%)}
 .hhq-bar .btn{flex:1;min-height:44px}.hhq-bar .btn.pri{flex:1.4}
 @media(min-width:900px){.hhq-d{height:42px;font-size:14px}}
+
+/* ===== Motion & colour (v76) ===== */
+@keyframes psGrowX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes psGrowY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.ps-grow{transform-origin:left center;animation:psGrowX .85s cubic-bezier(.2,.8,.2,1) both}
+.ps-grow-y{transform-origin:center bottom;animation:psGrowY .85s cubic-bezier(.2,.8,.2,1) both}
+@keyframes psCount{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.view.on .brs-val,.view.on .g2-v,.view.on .hm-big,.view.on .tl2-big b,.view.on .eq2-big b{animation:psCount .55s cubic-bezier(.2,.8,.2,1) both}
+:root{--c1:var(--pk);--c2:var(--li);--c3:var(--ic);--c4:var(--mt);--c5:var(--gd);--c6:#fb7185}
+[data-theme="daylight"]{--c6:#d9485f}
+:is(.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip):nth-child(6n+1){--acc:var(--c1)}
+:is(.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip):nth-child(6n+2){--acc:var(--c2)}
+:is(.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip):nth-child(6n+3){--acc:var(--c3)}
+:is(.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip):nth-child(6n+4){--acc:var(--c4)}
+:is(.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip):nth-child(6n+5){--acc:var(--c5)}
+:is(.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip):nth-child(6n){--acc:var(--c6)}
+html body :is(#bankrollV .br-stat,.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip){position:relative;overflow:hidden;background:linear-gradient(155deg,color-mix(in srgb,var(--acc,var(--pk)) 16%,var(--ds-card,var(--b1))) 0%,var(--ds-card,var(--b1)) 72%)!important;border:1px solid color-mix(in srgb,var(--acc,var(--pk)) 32%,var(--bd))!important}
+html body :is(#bankrollV .br-stat,.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip)::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc,var(--pk));opacity:.85;border-radius:3px 0 0 3px;pointer-events:none}
+html body :is(.brs-label,.shm>span,.gg-bs-l,.hm-kv>div>span,.shp-stats span,.tl2-kv span,.wk-kv span){color:color-mix(in srgb,var(--acc,var(--pk)) 70%,var(--t2))!important}
+html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(in srgb,var(--acc,var(--pk)) 35%,var(--t1))}
 </style>
 </head>
 <body>
-<header class="hdr" data-build="v75">
+<header class="hdr" data-build="v77">
   <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleHamburgerMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -6248,7 +6274,7 @@ body.hhq-on #handHistoryV>.hhq-top,body.hhq-on #handHistoryV>.br-stats,body.hhq-
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v75</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v77</div>
   </div>
 </div>
 </div>
@@ -8068,13 +8094,20 @@ function closeM(id){const el=$(id);if(!el||!el.classList.contains("open"))return
 function a11yModalFocus(el){const d=el.querySelector(".mdl,.cfm,[class*=mdl]")||el;d.setAttribute("tabindex","-1");setTimeout(()=>{if(!el.classList.contains("open"))return;if(!d.contains(document.activeElement))try{d.focus({preventScroll:true})}catch(e){}},60)}
 const A11Y_SYM={"✕":"Close","×":"Close","‹":"Back","←":"Back","›":"Next","→":"Next","⚙":"Settings","⚙️":"Settings","↺":"Reset","⇄":"Swap","🎲":"Random","⋯":"More options","☰":"Menu","🔍":"Search","✎":"Edit","★":"Favourite","☆":"Favourite","📌":"Pin","↶":"Undo","↷":"Redo","+":"Add","−":"Decrease","⏸":"Pause","▶":"Play","⏹":"Stop","🗑":"Delete","💾":"Save"};
 let _a11yT=0;
-function a11yScan(){_a11yT=0;
+function a11yScan(){_a11yT=0;try{psAnimBars()}catch(e){}
   document.querySelectorAll(".mov:not([role]),.cfov:not([role])").forEach(m=>{m.setAttribute("role","dialog");m.setAttribute("aria-modal","true");const h=m.querySelector("h2,h3");if(h){if(!h.id)h.id="dlg_"+Math.random().toString(36).slice(2,8);m.setAttribute("aria-labelledby",h.id)}});
   document.querySelectorAll("button:not([aria-label])").forEach(b=>{const t=(b.textContent||"").trim();if(/[A-Za-z0-9]{2,}/.test(t))return;const nm=b.getAttribute("title")||A11Y_SYM[t]||A11Y_SYM[t.replace(/\uFE0F/g,"")]||(b.classList.contains("eq2-s")?"Card slot":"");if(nm)b.setAttribute("aria-label",nm)});
   document.querySelectorAll("div[onclick]:not([role]),span[onclick]:not([role]),li[onclick]:not([role])").forEach(e=>{if(e.closest("button"))return;e.setAttribute("role","button");if(!e.hasAttribute("tabindex"))e.setAttribute("tabindex","0")});
   document.querySelectorAll("input:not([aria-label]):not([type=hidden]),textarea:not([aria-label]),select:not([aria-label])").forEach(i=>{if(i.id&&document.querySelector('label[for="'+i.id+'"]'))return;if(i.closest("label"))return;const nm=i.getAttribute("placeholder")||i.getAttribute("title")||(i.previousElementSibling&&i.previousElementSibling.tagName==="LABEL"?i.previousElementSibling.textContent.trim():"")||i.id;if(nm)i.setAttribute("aria-label",nm.replace(/…|\.\.\./g,"").trim())});
 }
-function a11yInit(){a11yScan();new MutationObserver(()=>{if(!_a11yT)_a11yT=setTimeout(a11yScan,200)}).observe(document.body,{childList:true,subtree:true});
+// grow progress/stat bars in from zero when a screen or tab is opened (not while typing)
+let _psAnimUntil=0;
+function psAnimBars(){if(Date.now()>_psAnimUntil||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))return;
+  document.querySelectorAll('.view.on [style*="width:"]:not([data-ga]),.mov.open [style*="width:"]:not([data-ga]),.view.on [style*="height:"]:not([data-ga])').forEach(el=>{const st=el.getAttribute("style")||"";const p=el.parentElement;if(!p||!/%/.test(st))return;const pc=(p.className||"")+" "+(el.className||"");
+    if(!/^(DIV|SPAN|I|B)$/.test(el.tagName))return;if(/(toolbar|topbar|statusbar|sidebar|navbar|actions-bar|folder-bar|viewbar|posbar|loaded-bar|viewer-bar|hhq-bar|tl-nav)/i.test(pc))return;if(!/(bar|meter|track|trk|fill|prog|gauge|cbar|vb|dist|db|lbar|hud|streets|spark|mini|heat)/i.test(pc))return;if(el.offsetWidth===0&&el.offsetHeight===0)return;el.dataset.ga="1";
+    const vert=/height:\s*[\d.]+%/.test(st)&&!/width:\s*[\d.]+%/.test(st);el.classList.add(vert?"ps-grow-y":"ps-grow")})}
+document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("input,textarea,select"))return;_psAnimUntil=Date.now()+1400;setTimeout(psAnimBars,30)},true);
+function a11yInit(){a11yScan();_psAnimUntil=Date.now()+2000;setTimeout(psAnimBars,60);new MutationObserver(()=>{if(!_a11yT)_a11yT=setTimeout(a11yScan,200)}).observe(document.body,{childList:true,subtree:true});
   document.addEventListener("keydown",e=>{const t=e.target;
     if((e.key==="Enter"||e.key===" ")&&t&&t.getAttribute&&t.getAttribute("role")==="button"&&t.tagName!=="BUTTON"){e.preventDefault();t.click();return}
     if(e.key==="Tab"){const ms=[...document.querySelectorAll(".mov.open,.cfov.open")];const m=ms[ms.length-1];if(!m)return;const f=[...m.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.disabled&&x.offsetParent!==null);if(!f.length)return;const first=f[0],last=f[f.length-1];if(!m.contains(document.activeElement)){e.preventDefault();first.focus();return}if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}})}
@@ -11015,7 +11048,7 @@ function ggTrChart(){
   if(def[5])ds.push({data:lab.map(()=>0),borderColor:"rgba(148,163,184,.35)",borderWidth:1,pointRadius:0,pointHoverRadius:0,order:4});
   const tip={backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10};
   const ax={ticks:{color:CT.tick,font:{size:10}},grid:{color:CT.grid,drawTicks:false},border:{display:false}};
-  ggACharts.tr=new Chart($("chGGTr"),{type:"line",data:{labels:lab,datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{intersect:false,mode:"index"},
+  ggACharts.tr=new Chart($("chGGTr"),{type:"line",data:{labels:lab,datasets:ds},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},
     plugins:{legend:{display:false},glowLine:false,tooltip:{...tip,filter:c=>c.datasetIndex===0&&c.raw!=null,callbacks:{label:c=>{const p=pts[c.dataIndex];return[" "+def[1]+": "+(def[5]?ggSgn(c.raw,def[3]):c.raw.toFixed(def[3])+(def[4]==="af"?"":"%"))," "+p.a.n.toLocaleString()+" hands · "+ggSgn(p.a.bb100)+" bb/100"]}}}},
     scales:{x:{...ax,grid:{display:false},ticks:{...ax.ticks,maxTicksLimit:8,maxRotation:0}},y:{...ax}}}});
 }
@@ -11197,7 +11230,7 @@ function ggRenderAnalysis(body,arrIn){
   /* charts */
   if(typeof Chart==="undefined")return;
   ggTrChart();
-  const CT=getCT(),G="#22c55e",R="#ef4444",anim=n>5000?false:{duration:500};
+  const CT=getCT(),G="#22c55e",R="#ef4444",anim=n>20000?false:{duration:900,easing:"easeOutQuart"};
   const tip={backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10};
   const ax={ticks:{color:CT.tick,font:{size:10}},grid:{color:CT.grid,drawTicks:false},border:{display:false}};
   if(pg.length&&$("chGGPos"))ggACharts.pos=new Chart($("chGGPos"),{type:"bar",data:{labels:pg.map(p=>p.k),datasets:[{data:pg.map(p=>+p.a.bb100.toFixed(1)),backgroundColor:pg.map(p=>p.a.bb100>=0?G:R),borderRadius:4,borderSkipped:false,barThickness:16}]},
@@ -12689,7 +12722,11 @@ function submitEndLive(){if(!liveData)return;const stack=parseFloat($("liveEndSt
 // Charts
 let brCharts={};
 const glowLinePlugin={id:"glowLine",beforeDatasetsDraw(chart){const ctx=chart.ctx;const t=chart.config.type;ctx.save();if(chart.canvas&&chart.canvas.closest&&chart.canvas.closest("#bankrollV"))return;/* bankroll charts stay flat */if(t==="line"){ctx.shadowColor=(chart.data.datasets[0]&&chart.data.datasets[0].borderColor)||getComputedStyle(document.documentElement).getPropertyValue("--pk").trim()||"#c8a55c";ctx.shadowBlur=16;}else if(t==="bar"){ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=10;ctx.shadowOffsetY=3;}},afterDatasetsDraw(chart){chart.ctx.restore();}};
-if(window.Chart){Chart.register(glowLinePlugin);Chart.defaults.animation={duration:900,easing:"easeOutQuart"};Chart.defaults.animations.colors={duration:900};Chart.defaults.transitions.active.animation.duration=300;}
+if(window.Chart){Chart.register(glowLinePlugin);
+  // draw-in: lines and bars rise from the baseline, sweeping left to right (first render only; updates glide from where they are)
+  try{const RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+    Chart.defaults.animations.y={duration:RM?0:950,easing:"easeOutQuart",from:ctx=>{if(ctx.type!=="data"||ctx.mode!=="default"||ctx.chart.options.indexAxis==="y")return undefined;const sc=ctx.chart.scales&&(ctx.chart.scales.y||ctx.chart.scales.y1);return sc?sc.getPixelForValue(Math.max(sc.min,Math.min(0,sc.max))):undefined},delay:ctx=>{if(RM||ctx.type!=="data"||ctx.mode!=="default")return 0;const n=(ctx.chart.data.labels||[]).length||1;return Math.min(700,ctx.dataIndex*(700/n))}};
+  }catch(e){}Chart.defaults.animation={duration:900,easing:"easeOutQuart"};Chart.defaults.animations.colors={duration:900};Chart.defaults.transitions.active.animation.duration=300;}
 function brAreaGrad(color){return(context)=>{const{chart}=context;const{ctx,chartArea}=chart;if(!chartArea)return"transparent";const g=ctx.createLinearGradient(0,chartArea.top,0,chartArea.bottom);g.addColorStop(0,color+"66");g.addColorStop(.6,color+"14");g.addColorStop(1,color+"00");return g}}
 function destroyBrChart(k){if(brCharts[k]){brCharts[k].destroy();delete brCharts[k]}}
 function getCT(){const s=getComputedStyle(document.documentElement);const g=v=>s.getPropertyValue(v).trim();return{grid:g("--bd"),tick:g("--t3"),tbg:g("--b3"),tt:g("--t1"),tb:g("--t2"),tbdr:g("--bd2"),rose:g("--pk"),rose_bg:g("--pk")+"18",li:g("--li"),li_bg:g("--li")+"18",green_a:g("--mt")+"88",red_a:g("--rs")+"88",gold:g("--gd2")}}
@@ -12994,13 +13031,13 @@ function renderBrAnalytics(){
   if(typeof Chart==="undefined")return;
   const CT=getCT(),mv=r=>brAn.metric==="hourly"?(r.a.hourly==null?null:r.a.hourly/100):brAn.metric==="avg"?r.a.avg/100:r.a.p/100;
   brCharts.an=new Chart($("chBA").getContext("2d"),{type:"bar",data:{labels:rows.map(r=>dim[0]==="month"?brMonLbl(r.k):r.k),datasets:[{data:rows.map(mv),backgroundColor:rows.map(r=>(mv(r)||0)>=0?CT.green_a:CT.red_a),borderRadius:6,borderSkipped:false,barThickness:18}]},
-    options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,displayColors:false,callbacks:{label:c=>{const r=rows[c.dataIndex];return[" "+money(Math.round(c.raw*100))+(brAn.metric==="hourly"?"/hr":brAn.metric==="avg"?" a session":""),"  "+r.a.n+" sessions · "+r.a.hrs.toFixed(0)+"h · "+r.a.win.toFixed(0)+"% won"]}}}},
+    options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,displayColors:false,callbacks:{label:c=>{const r=rows[c.dataIndex];return[" "+money(Math.round(c.raw*100))+(brAn.metric==="hourly"?"/hr":brAn.metric==="avg"?" a session":""),"  "+r.a.n+" sessions · "+r.a.hrs.toFixed(0)+"h · "+r.a.win.toFixed(0)+"% won"]}}}},
       scales:{x:{ticks:{color:CT.tick,font:{size:10},callback:v=>(v<0?"−":"")+sy+Math.abs(v).toLocaleString()},grid:{color:CT.grid,drawTicks:false},border:{display:false}},y:{ticks:{color:CT.tick,font:{size:11}},grid:{display:false},border:{display:false}}}}});
 }
 /* bankroll charts draw instantly — no grow/slide animations */
 // charts below the fold are drawn one frame after the screen appears, so opening Bankroll feels instant
 const _brDeferT={};
-function brDefer(fn,key){key=key||"dash";const t=_brDeferT[key]=(_brDeferT[key]||0)+1;requestAnimationFrame(()=>setTimeout(()=>{if(t!==_brDeferT[key])return;let a;try{if(typeof Chart!=="undefined"){a=Chart.defaults.animation;Chart.defaults.animation=false}fn()}finally{if(typeof Chart!=="undefined"&&a!==undefined)Chart.defaults.animation=a}},0))}
+function brDefer(fn,key){key=key||"dash";const t=_brDeferT[key]=(_brDeferT[key]||0)+1;requestAnimationFrame(()=>setTimeout(()=>{if(t!==_brDeferT[key])return;fn()},0))}
 const BR_PERS=[["1m","1M"],["3m","3M"],["6m","6M"],["1y","1Y"],["all","All"]];
 let brPer=LG("ps_br_per","all");
 function brRenderGGCard(sorted){
@@ -13041,7 +13078,7 @@ function brMood(ss,mp,mn,dp,dn,total){
 }
 function brDayLbl(d){const x=new Date(d+"T00:00:00");return isNaN(x)?d:x.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}
 function brMonLbl(m){const x=new Date(m+"-01T00:00:00");return isNaN(x)?m:x.toLocaleDateString("en-GB",{month:"short",year:"2-digit"})}
-function brNoAnim(fn){return function(){if(typeof Chart==="undefined")return fn.apply(this,arguments);const a=Chart.defaults.animation;Chart.defaults.animation=false;try{return fn.apply(this,arguments)}finally{Chart.defaults.animation=a}}}
+function brNoAnim(fn){return fn}
 renderBrDash=brNoAnim(renderBrDash);renderBrAnalytics=brNoAnim(renderBrAnalytics);renderBrInsights=brNoAnim(renderBrInsights);renderHeroSpark=brNoAnim(renderHeroSpark);
 
 /* ══════════════════════ EQUITY CALCULATOR v2 ══════════════════════
@@ -13306,7 +13343,7 @@ function varChart(){
     {data:S.band[2],borderColor:pk,borderWidth:2.5,pointRadius:0,tension:.2,order:1},
     {data:lab.map((_,j)=>S.EV*j*S.k),borderColor:CT.tick,borderDash:[5,4],borderWidth:1.2,pointRadius:0,order:2},
     ...(S.showRuin?[{data:lab.map(()=>-S.B),borderColor:"#ef4444",borderDash:[3,3],borderWidth:1.2,pointRadius:0,order:2}]:[])];
-  window._varChartObj=new Chart(cv,{type:"line",data:{labels:lab,datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,interaction:{intersect:false,mode:"index"},
+  window._varChartObj=new Chart(cv,{type:"line",data:{labels:lab,datasets:ds},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},
     plugins:{legend:{display:false},glowLine:false,tooltip:{enabled:false}},
     scales:{x:{ticks:{color:CT.tick,maxTicksLimit:6,font:{size:10},callback:function(v){const n=this.getLabelForValue(v);return S.F.live?n+"h":(n>=1000?(n/1000)+"k":n)}},grid:{display:false},border:{display:false}},
       y:{ticks:{color:CT.tick,font:{size:10},callback:v=>S.F.money(v)},grid:{color:CT.grid,drawTicks:false},border:{display:false}}}}});
