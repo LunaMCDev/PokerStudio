@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#120c18"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="mobile-web-app-capable" content="yes"/>
@@ -5573,6 +5573,34 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
 #ggV.gg-pvmode .gg-exp,#ggV.gg-pvmode #ggBrLink,#ggV.gg-pvmode .gg-gear{display:none!important}
 #ggV .gg-pv{white-space:nowrap}@media(max-width:430px){#ggV .gg-exp .gg-bl{display:none}}
 @media(max-width:430px){#ggV .gg-toolbar .btn{padding-left:10px!important;padding-right:10px!important}.gg-pv-k{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* no double-tap zoom: taps act instantly, pinch still works */
+:where(html,body,*){touch-action:manipulation}
+.rc-pprule{margin:0 0 10px;padding:9px 12px;border-radius:12px;font-size:12px;color:var(--t2);background:color-mix(in srgb,var(--mt) 10%,var(--b2));border:1px solid color-mix(in srgb,var(--mt) 30%,transparent)}.rc-pprule b{color:var(--t1)}
+
+/* bb/100 breakdown */
+.bbx-link{display:inline-flex;align-items:center;gap:4px;padding:0;border:0;background:none;font:inherit;font-weight:800;cursor:pointer;color:var(--t1)}.bbx-link.pos{color:var(--mt)}.bbx-link.neg{color:var(--rs)}.bbx-link i,.bbx-click i{font-style:normal;font-size:.85em;opacity:.7}
+.bbx-click{cursor:pointer;transition:transform .15s}.bbx-click:active{transform:scale(.97)}
+.bbx-mdl{max-width:520px}
+.bbx-hero{margin-top:6px;padding:16px;border-radius:16px;background:radial-gradient(100% 120% at 100% 0%,color-mix(in srgb,var(--pk) 18%,transparent),transparent 60%),var(--b2);border:1px solid var(--bd)}
+.bbx-hero span{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}.bbx-hero b{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--t1);line-height:1.15}.bbx-hero b small{font-size:14px;font-weight:700;color:var(--t3);letter-spacing:0}.bbx-hero i{font-style:normal;font-size:12px;color:var(--t3)}
+.bbx-mdl .pos{color:var(--mt)}.bbx-mdl .neg{color:var(--rs)}
+.bbx-sec{margin-top:16px}.bbx-h{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--t4);margin-bottom:8px}
+.bbx-step{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:10px 0;border-bottom:1px dashed var(--bd)}.bbx-step:last-of-type{border-bottom:0}
+.bbx-n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:900;background:color-mix(in srgb,var(--pk) 18%,var(--b2));color:var(--pk2,var(--pk))}
+.bbx-step b{font-size:13.5px;color:var(--t1)}.bbx-step p{margin:3px 0 0;font-size:12px;color:var(--t3);line-height:1.45}
+.bbx-eg{margin-top:6px;font-size:12px;color:var(--t2);padding:7px 10px;border-radius:9px;background:var(--b2)}.bbx-eg b{color:var(--t1)}
+.bbx-eq{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:6px;padding:9px 12px;border-radius:10px;background:var(--b2);font-size:13px;color:var(--t2);font-variant-numeric:tabular-nums}.bbx-eq b{font-size:15px}.bbx-eq.big b{font-size:18px}
+.bbx-ok{margin-top:10px;font-size:11.5px;color:var(--mt);padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--mt) 10%,transparent)}
+.bbx-t{border:1px solid var(--bd);border-radius:12px;overflow:hidden;font-size:12px;font-variant-numeric:tabular-nums}
+.bbx-th,.bbx-tr{display:grid;grid-template-columns:1.3fr .8fr 1fr .9fr .9fr;gap:6px;padding:8px 10px;align-items:center}.bbx-th{background:var(--b2);font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--t4)}
+.bbx-tr{border-top:1px solid var(--bd);color:var(--t2)}.bbx-tr>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}@media(max-width:430px){.bbx-t{font-size:11px}.bbx-th,.bbx-tr{gap:4px;padding:8px}}.bbx-tr span:first-child{font-weight:700;color:var(--t1)}.bbx-tr b{text-align:right}.bbx-th span:last-child{text-align:right}.bbx-tr.tot{background:color-mix(in srgb,var(--pk) 6%,transparent);font-weight:800}
+.bbx-note,.bbx-p{margin:8px 0 0;font-size:11.5px;color:var(--t3);line-height:1.45}
+.bbx-r{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--bd)}.bbx-r:last-child{border-bottom:0}.bbx-r span{font-size:12.5px;color:var(--t2)}.bbx-r span i{display:block;font-style:normal;font-size:10.5px;color:var(--t4)}.bbx-r b{font-size:13.5px;font-weight:800;white-space:nowrap;color:var(--t1)}
+.bbx-ci{padding:6px 2px 4px}.bbx-ci-bar{position:relative;height:12px;border-radius:99px;background:var(--b3)}.bbx-ci-bar .rng{position:absolute;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,color-mix(in srgb,var(--rs) 55%,transparent),color-mix(in srgb,var(--li) 55%,transparent),color-mix(in srgb,var(--mt) 55%,transparent))}
+.bbx-ci-bar .z{position:absolute;top:-4px;bottom:-4px;width:2px;margin-left:-1px;background:var(--t3)}.bbx-ci-bar .pt{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;border:3px solid var(--pk)}
+.bbx-ci-l{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--t3);font-variant-numeric:tabular-nums}.bbx-ci-l b{color:var(--t2);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
+.bbx-foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--bd);font-size:11px;color:var(--t4);line-height:1.5}
+.bbx-empty{padding:20px;text-align:center;color:var(--t3)}
 </style>
 </head>
 <body>
@@ -6445,7 +6473,7 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v84</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v88</div>
   </div>
 </div>
 </div>
@@ -6511,6 +6539,7 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
   <div class="mact"><button class="btn btn-d" id="depDelBtn" style="display:none;margin-right:auto" onclick="deleteDep()">🗑 Remove</button><button class="btn" onclick="closeM('depM')">Cancel</button><button class="btn pri" id="depOkBtn" onclick="submitDep()">Confirm</button></div>
 </div></div>
 <div class="mov" id="resetM"><div class="mdl" style="max-width:380px"><h3 style="color:var(--rs)">Factory reset</h3><p class="setting-desc" style="margin:6px 0 12px">This erases <b>everything</b> on this device — ranges, sessions, shifts, GG hands, notes and settings. It can't be undone.</p><button class="btn" style="width:100%;margin-bottom:12px" onclick="dlJSON()">💾 Download a backup first</button><label class="slbl" for="resetConfirm">Type RESET to confirm</label><input class="minp" id="resetConfirm" autocomplete="off" autocapitalize="characters" oninput="$('resetGo').disabled=this.value.trim().toUpperCase()!=='RESET'" placeholder="RESET"/><div class="mact"><button class="btn" onclick="closeM('resetM')">Cancel</button><button class="btn btn-d" id="resetGo" disabled onclick="doFactoryReset()">Erase everything</button></div></div></div>
+<div class="mov" id="bb100M"><div class="mdl edq-mdl bbx-mdl" id="bb100Body"></div></div>
 <div class="mov" id="chalM"><div class="mdl edq-mdl chal-mdl" id="chalBody"></div></div>
 <div class="mov" id="hxM"><div class="mdl edq-mdl hx-mdl" id="hxBody"></div></div>
 <div class="mov" id="ggDelM"><div class="mdl ggdel-mdl" id="ggDelBody"></div></div>
@@ -9539,7 +9568,10 @@ function ggParseHand(txt){
     if(/and is all-in/.test(act))allin.add(p);
     let a;
     if((a=act.match(/^posts (?:the )?ante \$?([\d.,]+)/))){add(p,ggMoney(a[1]));continue}          // dead money
-    if((a=act.match(/^posts (?:small blind|big blind|straddle|missed blind|dead blind|small & big blinds?) \$?([\d.,]+)/))){
+    if((a=act.match(/^posts small & big blinds? \$?([\d.,]+)/))){ // returning player: the big blind is live, the small blind part is dead
+      const v=ggMoney(a[1]);streetPut[p]=(streetPut[p]||0)+Math.min(v,h.bb);add(p,v);continue}
+    if((a=act.match(/^posts (?:missed blind|dead blind|dead small blind) \$?([\d.,]+)/))){add(p,ggMoney(a[1]));continue} // dead money, doesn't count toward calling
+    if((a=act.match(/^posts (?:small blind|big blind|straddle) \$?([\d.,]+)/))){
       const v=ggMoney(a[1]);streetPut[p]=(streetPut[p]||0)+v;add(p,v);continue}
     if((a=act.match(/^posts [^$]*\$?([\d.,]+)/))){add(p,ggMoney(a[1]));continue}
     const pre=street==="preflop",isH=p===hero;
@@ -9772,7 +9804,7 @@ const GGDB={db:null,cache:null,failed:false,
     try{await this.open();await new Promise((res,rej)=>{const tx=this.db.transaction(["hands","raw"],"readwrite");tx.objectStore("hands").clear();tx.objectStore("raw").clear();tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}catch(e){}
   }
 };
-const GG_SV=6; // summary schema version — older saved hands are re-read from their stored text
+const GG_SV=7; // summary schema version — older saved hands are re-read from their stored text
 let GGPV=null; // view-only GG session: parsed in memory, never written to storage
 function getGGHands(){return GGPV?GGPV.hands:(GGDB.cache||[])}
 function ggSavedHands(){return GGDB.cache||[]}
@@ -9995,7 +10027,7 @@ function renderGG(topOnly){
     L.net.push(+net.toFixed(4));L.sd.push(+sd.toFixed(4));L.nsd.push(+nsd.toFixed(4));L.ev.push(+ev.toFixed(4));
   });
   const fmt=v=>inBB?(v<0?"−":"")+Math.abs(v).toFixed(1)+" BB":(v<0?"−$":"$")+Math.abs(v).toFixed(2);
-  const bb100=nBB/hands.length*100,cls=v=>Math.abs(v)<0.005?"zero":v>0?"pos":"neg",luck=net-ev;
+  const bb100=nBB/hands.length*100,cls=v=>Math.abs(v)<0.005?"zero":v>0?"pos":"neg",luck=net-ev;window.ggBBHands=hands;
   const tile=(label,v,sub,color)=>'<div class="br-stat"><div class="brs-label"><span class="gg-dot" style="background:'+color+'"></span>'+label+'</div><div class="brs-val '+cls(v)+'">'+fmt(v)+'</div><div class="brs-sub">'+sub+"</div></div>";
   const legacy=hands.filter(h=>!h.raw).length;
   let rake=0,fees=0,rakeUnknown=0;
@@ -10005,7 +10037,7 @@ function renderGG(topOnly){
   const dfmt=ts=>new Date(ts).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
   const ins=ggHeroInsights(hands),rng=(sel.value?ggStakeLabel(+sel.value):stakes.length>1?stakes.length+" stakes":ggStakeLabel(stakes[0]))+" · "+dfmt(hands[0].ts)+" – "+dfmt(hands[hands.length-1].ts);
   const mini=(c,l,v,sub,vc)=>'<div class="g2-m" style="--mc:'+c+'"><span><i></i>'+l+'</span><b class="'+(vc||"")+'">'+v+"</b><small>"+sub+"</small></div>";
-  const topHtml='<div class="gg-hero2"><div class="g2-top"><div class="g2-main"><span class="g2-l">Net won</span><b class="g2-v profit '+cls(net)+'">'+(net>=0?"+":"")+fmt(net)+'</b><div class="g2-sub"><b class="'+cls(bb100)+'">'+(bb100>=0?"+":"")+bb100.toFixed(1)+' bb/100</b> · '+hands.length.toLocaleString()+" hands</div></div>"
+  const topHtml='<div class="gg-hero2"><div class="g2-top"><div class="g2-main"><span class="g2-l">Net won</span><b class="g2-v profit '+cls(net)+'">'+(net>=0?"+":"")+fmt(net)+'</b><div class="g2-sub"><button class="bbx-link '+cls(bb100)+'" onclick="openBB100(bbSet(\'gg\',ggBBHands,\'GG Results\'+(ggGF.per!==\'all\'||ggGF.pos||$(\'ggStakeFilter\')?.value?\' · filtered\':\'\')))" title="See how this is calculated">'+(bb100>=0?"+":"")+bb100.toFixed(1)+' bb/100 <i>ⓘ</i></button> · '+hands.length.toLocaleString()+" hands</div></div>"
     +(allinCount?'<div class="g2-badge '+cls(luck)+'" title="Actual result minus all-in EV over '+allinCount+' all-in'+(allinCount>1?"s":"")+'"><span>'+(luck>=0?"🍀 Above EV":"🌧 Below EV")+"</span><b>"+(luck>=0?"+":"−")+fmt(Math.abs(luck)).replace(/^−/,"")+"</b></div>":"")+"</div>"
     +'<div class="g2-rng">'+rng+"</div>"
     +'<div class="g2-row">'+mini(GG_COLORS.sd,"Showdown",(sd>=0?"+":"")+fmt(sd),sdCount.toLocaleString()+" hands","profit "+cls(sd))+mini(GG_COLORS.nsd,"Non-SD",(nsd>=0?"+":"")+fmt(nsd),(hands.length-sdCount).toLocaleString()+" hands","profit "+cls(nsd))
@@ -10147,18 +10179,22 @@ const RC_EX_REASONS=[["exploit","🎯 Exploit"],["read","👁 Player read"],["dy
 function ggRcExc(){return window._rcExc||(window._rcExc=LG("ps_rc_excused",{}))}
 function ggRcExLabel(ex){const r=RC_EX_REASONS.find(x=>x[0]===ex.r);return r?r[1]:"Excused"}
 function ggRcSetExc(k,v){const m=ggRcExc();if(v)m[k]=v;else delete m[k];LS("ps_rc_excused",m)}
+const RC_PP_UNTIL=200; // big blind in cents: $2 = 200NL
 function ggRcJudge(h,idx){
   const out=[];if(!h.sq||!h.cls||ggClsIdx[h.cls]==null)return out;
   for(const sp of ggRcSpots(h.sq)){
     const hit=idx.get(sp.key);if(!hit)continue;
     const d=hit.r,ci=ggClsIdx[h.cls],cell=d.range[Math.floor(ci/13)][ci%13],w=trWeights(cell,d.acts);
     const ai=ggRcActIdx(d.acts,sp.a,sp.ai),hw=ai>=0?(w[ai]||0):0,max=Math.max(0,...Object.values(w)),fi=d.acts.findIndex(x=>arIsFold(x)),fw=w[fi]||0;
-    const verdict=hw===0?"miss":(hw<25&&hw<max)?"minor":"ok";
+    let verdict=hw===0?"miss":(hw<25&&hw<max)?"minor":"ok";
+    // House rule: opening any pocket pair is fine until 200NL (bb < $2)
+    const ppKind=sp.grp==="Opens"&&sp.a==="r"?"pp":(sp.grp==="vs Open"||sp.grp==="vs Open + Caller")&&sp.a==="c"?"ppc":null;
+    const ppRule=verdict!=="ok"&&!!ppKind&&/^([2-9TJQKA])\1$/.test(h.cls||"")&&h.bb>0&&h.bb<RC_PP_UNTIL;if(ppRule)verdict="ok";
     const kind=sp.a==="f"?"tight":(hw===0&&fw>=50)?"loose":"wrong";
     const mix=Object.keys(w).map(Number).filter(k=>w[k]>0).sort((a,b)=>w[b]-w[a]).map(k=>({n:d.acts[k].name,w:Math.round(w[k]),c:d.acts[k].color}));
     const rw=d.acts.reduce((t,x,i)=>t+(i!==fi&&!/^call/i.test(x.name)?(w[i]||0):0),0);
     out.push({h,d,ci,key:sp.key,grp:sp.grp,name:d.name,ri:hit.i,act:ai>=0?d.acts[ai].name:(sp.a==="c"&&sp.grp==="Opens"?"Limp":GG_RC_ACT[sp.a]+(sp.ai?" all-in":"")),hw:Math.round(hw),mix,verdict,kind,
-      pos:sp.key.split(" ")[0],play:sp.a!=="f",expPlay:100-fw,raised:sp.a==="r",expRaise:rw,sev:Math.round(Math.max(0,max-hw)),ex:verdict!=="ok"?(ggRcExc()[h.id+"|"+sp.key]||null):null});
+      pos:sp.key.split(" ")[0],play:sp.a!=="f",expPlay:ppRule?100:100-fw,raised:sp.a==="r",expRaise:ppRule&&ppKind==="pp"?100:rw,sev:ppRule?0:Math.round(Math.max(0,max-hw)),rule:ppRule?ppKind:null,ex:verdict!=="ok"?(ggRcExc()[h.id+"|"+sp.key]||null):null});
   }
   return out;
 }
@@ -10223,7 +10259,8 @@ function ggRenderRangeCheck(body,arr){
 function ggRcOverviewHtml(res,skip){
   const G=gs=>res.filter(r=>gs.includes(r.grp));
   const o=ggRcAgg(G(["Opens"])),v=ggRcAgg(G(["vs Open","vs Open + Caller"])),t=ggRcAgg(G(["vs 3-Bet","vs Squeeze","vs Shove"])),f=ggRcAgg(G(["vs 4-Bet","Called, then Squeezed"])),c=ggRcAgg(G(["Cold 4-Bet"]));
-  let h='<div class="gp"><div class="slbl">How you deviate from GTO</div><div class="rc-sub">The dot is you, the line is GTO. The shaded gap is how far off you are.</div>';
+  const ppN=res.filter(r=>r.rule==="pp").length,ppC=res.filter(r=>r.rule==="ppc").length;
+  let h=(ppN||ppC?'<div class="rc-pprule">🃏 <b>'+[ppN?ppN+' pair open'+(ppN!==1?"s":""):"",ppC?ppC+' pair call'+(ppC!==1?"s":"")+' vs an open':""].filter(Boolean).join(" + ")+'</b> counted as fine — opening or flatting any pocket pair isn\'t a mistake below 200NL.</div>':'')+'<div class="gp"><div class="slbl">How you deviate from GTO</div><div class="rc-sub">The dot is you, the line is GTO. The shaded gap is how far off you are.</div>';
   if(o.n)h+=ggRcMeter("Opening","hands you could open",o.play,o.exp,o.n);
   if(v.n){h+=ggRcMeter("Defending vs opens","call + 3-bet",v.play,v.exp,v.n);h+=ggRcMeter("3-betting vs opens","3-bet / squeeze",v.rz,v.expR,v.n,"Too aggressive","Too passive")}
   if(t.n){h+=ggRcMeter("Facing a 3-bet","continue (call / 4-bet)",t.play,t.exp,t.n,"Too sticky","Folding too much");h+=ggRcMeter("4-betting","4-bet / jam",t.rz,t.expR,t.n,"Too aggressive","Too passive")}
@@ -10291,7 +10328,7 @@ function ggRcRowHtml(r,i){
   const h=r.h,fl=ggRcHasTag(h,RC_FLAG),done=ggRcHasTag(h,RC_DONE);
   return'<div class="rc-row '+(r.ex?"excused":r.verdict)+(done?" done":"")+'" data-rci="'+i+'"><div class="gg-row-cards">'+ggMiniCards(h.hc)+'</div>'
     +'<div class="rc-row-m"><div class="rc-row-t"><b>'+escapeHtml(r.name)+'</b>'+(done?'<span class="rc-done">✓ reviewed</span>':"")+'</div>'
-    +'<div class="rc-row-y">You <b class="'+r.verdict+'">'+escapeHtml(r.act)+"</b>"+(r.ex?' <span class="rc-exchip" title="'+escapeHtml(r.ex.n||"")+'">'+ggRcExLabel(r.ex)+"</span>":r.verdict!=="ok"?' <span class="rc-sev" title="How far from the range\'s main play">−'+r.sev+"</span>":"")+'</div><div class="rc-row-g">'+ggRcMixHtml(r.mix)+"</div></div>"
+    +'<div class="rc-row-y">You <b class="'+r.verdict+'">'+escapeHtml(r.act)+"</b>"+(r.rule?' <span class="rc-exchip">🃏 Pair rule</span>':r.ex?' <span class="rc-exchip" title="'+escapeHtml(r.ex.n||"")+'">'+ggRcExLabel(r.ex)+"</span>":r.verdict!=="ok"?' <span class="rc-sev" title="How far from the range\'s main play">−'+r.sev+"</span>":"")+'</div><div class="rc-row-g">'+ggRcMixHtml(r.mix)+"</div></div>"
     +'<div class="rc-row-r"><div class="profit '+(Math.abs(h.net)<1e-9?"zero":h.net>0?"pos":"neg")+'">'+ggSigned(h.net,h.bb)+'</div><button class="rc-flag'+(fl?" on":"")+'" data-rcflag="'+i+'" title="Flag for review">🚩</button></div></div>';
 }
 function ggRcReview(){
@@ -10334,7 +10371,7 @@ function ggRcReplayHtml(h){
   const r=ggRcJudge(h,ggRcIndex());if(!r.length)return"";
   const fl=ggRcHasTag(h,RC_FLAG),done=ggRcHasTag(h,RC_DONE);window._rcRp=r;
   return'<div class="rc-rp">'+r.map((x,i)=>{const cls=x.ex?"excused":x.verdict;
-    return'<div class="rc-rp-row '+cls+'"><div class="rc-rp-h"><span class="rc-v '+cls+'">'+(x.ex?"🛡 Not a mistake":x.verdict==="miss"?"✗ Mistake":x.verdict==="minor"?"◐ Low-freq":"✓ On range")+'</span><b>'+escapeHtml(x.name)+"</b></div>"
+    return'<div class="rc-rp-row '+cls+'"><div class="rc-rp-h"><span class="rc-v '+cls+'">'+(x.rule==="pp"?"✓ Pair open — fine below 200NL":x.rule==="ppc"?"✓ Pair call — fine below 200NL":x.ex?"🛡 Not a mistake":x.verdict==="miss"?"✗ Mistake":x.verdict==="minor"?"◐ Low-freq":"✓ On range")+'</span><b>'+escapeHtml(x.name)+"</b></div>"
     +'<div class="rc-rp-d">You: <b>'+escapeHtml(x.act)+"</b> · Range: "+ggRcMixHtml(x.mix)+"</div>"
     +(x.ex?'<div class="rc-rp-ex"><span>'+ggRcExLabel(x.ex)+(x.ex.n?" — “"+escapeHtml(x.ex.n)+"”":"")+'</span><button onclick="ggRcUnexcuse('+i+')">Undo</button></div><div class="rc-rp-exs">Still counts as off-range in your overall stats.</div>'
       :x.verdict!=="ok"?'<button class="rc-rp-nm" onclick="ggRcExcuseOpen('+i+')">🛡 Not a mistake…</button>':"")
@@ -13319,7 +13356,7 @@ function brRenderGGCard(sorted){
   const days=last?Math.floor((Date.now()-last)/864e5):null;
   el.innerHTML='<h3><span class="b3-ggi">GG</span> Online <button class="b3-link" onclick="go(\'gg\')">GG Results →</button></h3>'
     +'<div class="b3-ggs">'
-    +(hands.length?'<div><span>Win rate</span><b class="'+pc(bb100)+'">'+(bb100>=0?"+":"−")+Math.abs(bb100).toFixed(1)+"<small> bb/100</small></b></div>"
+    +(hands.length?'<div class="bbx-click" onclick="openBB100(bbSet(\'brgg\',ggSavedHands(),\'All GG hands\'))" role="button" title="See how this is calculated"><span>Win rate ⓘ</span><b class="'+pc(bb100)+'">'+(bb100>=0?"+":"−")+Math.abs(bb100).toFixed(1)+"<small> bb/100</small></b></div>"
       +'<div><span>Net (all GG)</span><b class="'+pc(net)+'">'+(net>=0?"+$":"−$")+Math.abs(net/100).toFixed(2)+"</b></div>"
       +"<div><span>Hands</span><b>"+hands.length.toLocaleString()+"</b></div>":"")
     +(gs.length?'<div><span>Logged here</span><b class="'+pc(brNet)+'">'+(brNet>0?"+":"")+brFmt(brNet)+"</b><small>"+gs.length+" session"+(gs.length!==1?"s":"")+" · "+brH.toLocaleString()+" hands</small></div>":'<div><span>Logged here</span><b>—</b><small><a onclick="go(\'gg\')">Link imports to this bankroll</a></small></div>')
@@ -13818,7 +13855,7 @@ async function renderHome(){
     if(!hs.length){el.outerHTML='<button class="hm-card hm-empty" onclick="go(\'gg\')"><div class="hm-ch"><span>📈 GG Results</span><em>Import →</em></div><div class="hm-foot">Import GGPoker hand histories for graphs, stats and leak finding.</div></button>';return}
     let net=0,nbb=0,last=0;hs.forEach(x=>{net+=x.net;nbb+=x.net/x.bb;last=Math.max(last,x.ts)});const bb100=nbb/hs.length*100,days=Math.floor((Date.now()-last)/864e5);
     el.outerHTML='<button class="hm-card hm-gg" onclick="go(\'gg\')"><div class="hm-ch"><span>📈 GG online</span><em>'+(days===0?"played today":days===1?"yesterday":days+" days ago")+"</em></div>"
-      +'<div class="hm-kv"><div><b class="'+pc(bb100)+'">'+(bb100>=0?"+":"−")+Math.abs(bb100).toFixed(1)+'</b><span>bb/100</span></div><div><b class="'+pc(net)+' profit">'+(net>=0?"+$":"−$")+Math.abs(net/100).toFixed(2)+'</b><span>net</span></div><div><b>'+hs.length.toLocaleString()+"</b><span>hands</span></div></div></button>"}catch(e){}
+      +'<div class="hm-kv"><div onclick="event.stopPropagation();openBB100(bbSet(\'home\',ggSavedHands(),\'All GG hands\'))" role="button" title="See how this is calculated" style="cursor:pointer"><b class="'+pc(bb100)+'">'+(bb100>=0?"+":"−")+Math.abs(bb100).toFixed(1)+'</b><span>bb/100 ⓘ</span></div><div><b class="'+pc(net)+' profit">'+(net>=0?"+$":"−$")+Math.abs(net/100).toFixed(2)+'</b><span>net</span></div><div><b>'+hs.length.toLocaleString()+"</b><span>hands</span></div></div></button>"}catch(e){}
 }
 /* ══════════════════════ BANKROLL GOALS ══════════════════════ */
 try{localStorage.removeItem("ps_cb_stats");localStorage.removeItem("ps_cb_spots")}catch(e){}
@@ -16089,6 +16126,7 @@ function renderChal(){const el=$("brChal");if(!el)return;const b=BR.d,ch=chalGet
   h+='<div class="chx-acts"><button class="btn pri" onclick="switchBrTab(\'brSess\')">＋ Log session</button><button class="btn" onclick="chalCopy()">📋 Copy progress update</button><button class="btn" onclick="chalOpenSetup(true)">⚙ Challenge settings</button></div>'
    +'<div class="chx-foot">Started '+chDateY(ch.startDate)+' with '+chC(ch.start)+' · '+CH_LADDERS[ch.ladder]?.name+' · '+CH_STYLE_INFO[ch.style]?.[1]+' bankroll rules'+(b.settings.challenge&&BR.d.name?' · bankroll “'+escapeHtml(BR.d.name)+'”':'')+'</div>';
   el.innerHTML=h;
+  {const wt=el.querySelectorAll(".chx-tile")[3];if(wt&&M.unit==="cash"&&G.n){wt.classList.add("bbx-click");wt.setAttribute("role","button");wt.title="See how this is calculated";wt.querySelector(".chx-tl").textContent="Win rate ⓘ";const t0=chalStartTs(ch);wt.onclick=()=>openBB100(bbSet("chal",ggSavedHands().filter(x=>{try{return ggToInstant(x.ts)>=t0}catch(e){return x.ts>=t0}}),"Since your challenge started"))}}
   brDefer(()=>chalCharts(ch,C,M),"chal");
   if(!CHV.mc||CHV.mcKey!==chalMcKey(ch,C,M))chalRunMC(ch,C,M)}
 function chPct(p){if(p==null)return"—";const v=p*100;return v<0.1?"<0.1%":v>99.5?">99%":(v<10?v.toFixed(1):Math.round(v))+"%"}
@@ -16168,6 +16206,63 @@ function chalEnd(){const b=BR.d,ch=chalGet(b);if(!ch)return;closeM("chalM");cons
 // Overview strip
 function chalStripHtml(){const b=BR.d,ch=chalGet(b);if(!ch||ch.ended)return"";const C=chalCompute(b,ch),J=chalJourney(ch,C.bal),st=C.steps[C.idx],nx=C.steps[C.idx+1];
   return'<button class="chx-strip" onclick="switchBrTab(\'brChal\')" aria-label="Open challenge"><div class="chx-strip-t"><span>🚀 '+chC(ch.start,1)+' → '+chC(ch.target,1)+'</span><b>'+(C.bal/ch.start).toFixed(2)+'×</b></div><div class="chx-bar sm"><div class="chx-fill" style="--w:'+(J*100).toFixed(2)+'%"></div>'+C.ms.map(m=>'<span class="chx-tick'+(C.bal>=m?" on":"")+'" style="left:'+(chalJourney(ch,m)*100).toFixed(2)+'%"></span>').join("")+'</div><div class="chx-strip-f"><span>Play <b>'+st.l+'</b> · '+(C.bal/st.bi).toFixed(1)+' BI</span><span>'+(nx?"↑ "+chC(ch.up*nx.bi,1):"top stake")+' · Day '+C.dayN+' →</span></div></button>'}
+
+</script>
+
+<script>
+// Belt-and-braces for iOS: swallow the second tap of a quick double-tap so Safari never zooms, but still deliver it as a normal tap.
+(function(){let lt=0,lx=0,ly=0;const skip=el=>!el||!el.closest||el.closest('input,textarea,select,[contenteditable="true"],canvas,.no-dtfix');
+  document.addEventListener("touchend",e=>{if(e.touches.length||e.changedTouches.length!==1)return;const t=e.changedTouches[0],now=Date.now(),near=Math.abs(t.clientX-lx)<30&&Math.abs(t.clientY-ly)<30;
+    if(now-lt<320&&near&&!skip(e.target)&&e.cancelable){e.preventDefault();const el=e.target;try{el.dispatchEvent(new MouseEvent("click",{bubbles:true,cancelable:true,view:window,clientX:t.clientX,clientY:t.clientY}))}catch(err){}lt=0;return}
+    lt=now;lx=t.clientX;ly=t.clientY},{passive:false})})();
+</script>
+<script>
+// ═══ bb/100 — the calculation, shown step by step ═══
+// bb/100 = (sum over hands of: hand result ÷ that hand's big blind) ÷ hands × 100. Same definition as PokerTracker / Hold'em Manager.
+const BB100={sets:{}};
+function bbSet(key,hands,title){BB100.sets[key]={hands:hands||[],title:title||"Win rate"};return key}
+function bbCalc(H){const n=H.length;let nbb=0,net=0,s2=0,sdbb=0,sdn=0,nsdbb=0,evbb=0,evn=0,rkbb=0,rk=0;const per=new Map();
+  H.forEach(h=>{const x=h.net/h.bb;nbb+=x;net+=h.net;s2+=x*x;if(h.sd){sdbb+=x;sdn++}else nsdbb+=x;if(h.ev!=null){evbb+=h.ev/h.bb;evn++}else evbb+=x;rkbb+=(h.rk||0)/h.bb;rk+=h.rk||0;
+    const p=per.get(h.bb)||{bb:h.bb,sb:h.sb,n:0,net:0,nbb:0};p.n++;p.net+=h.net;p.nbb+=x;per.set(h.bb,p)});
+  const mean=n?nbb/n:0,sd=n>1?Math.sqrt(Math.max(0,(s2-n*mean*mean)/(n-1))):0;
+  return{n,nbb,net,bb100:mean*100,sd100:sd*10,se100:n?sd*10/Math.sqrt(n/100):0,sdbb,sdn,nsdbb,evbb,evn,rkbb,rk,per:[...per.values()].sort((a,b)=>a.bb-b.bb)}}
+function bbF(v,d=1){return(v>0?"+":v<0?"−":"")+Math.abs(v).toFixed(d)}
+function bbUsd(c){return(c>0?"+":c<0?"−":"")+"$"+Math.abs(c/100).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function openBB100(key){const S=BB100.sets[key];if(!S)return;const H=S.hands;const el=$("bb100Body");if(!el)return;
+  if(!H.length){el.innerHTML='<div class="edq-h"><h3>bb/100</h3><button class="btn btn-xs" onclick="closeM(\'bb100M\')" aria-label="Close">✕</button></div><div class="bbx-empty">No hands yet.</div>';openM("bb100M");return}
+  const R=bbCalc(H),last=H.reduce((m,h)=>!m||h.ts>m.ts?h:m,null),lb=last.net/last.bb,pc=v=>v>0?"pos":v<0?"neg":"";
+  const lo=R.bb100-1.96*R.se100,hi=R.bb100+1.96*R.se100,need5=R.sd100?Math.ceil(Math.pow(1.96*R.sd100/5,2)*100):null;
+  const top=[...H].sort((a,b)=>b.net/b.bb-a.net/a.bb),best=top.slice(0,3),worst=top.slice(-3).reverse().filter(h=>h.net<0);
+  const bestSum=best.reduce((a,h)=>a+h.net/h.bb,0),restBB=R.nbb-bestSum;
+  const step=(n,t,body)=>'<div class="bbx-step"><span class="bbx-n">'+n+'</span><div><b>'+t+'</b>'+body+'</div></div>';
+  const row=(l,v,sub,cls)=>'<div class="bbx-r"><span>'+l+(sub?'<i>'+sub+'</i>':'')+'</span><b class="'+(cls||"")+'">'+v+'</b></div>';
+  let h='<div class="edq-h"><h3>📐 How your bb/100 is worked out</h3><button class="btn btn-xs" onclick="closeM(\'bb100M\')" aria-label="Close">✕</button></div>'
+   +'<div class="bbx-hero"><div><span>'+escapeHtml(S.title)+'</span><b class="'+pc(R.bb100)+'">'+bbF(R.bb100)+'<small> bb/100</small></b><i>'+R.n.toLocaleString()+' hand'+(R.n!==1?"s":"")+' · '+bbUsd(R.net)+' net · '+bbUsd(R.n?R.net/R.n*100:0)+' per 100 hands</i></div></div>'
+   +'<div class="bbx-sec"><div class="bbx-h">The calculation</div>'
+   +step(1,"Turn every hand into big blinds",'<p>Each hand’s result ÷ the big blind of that hand. Every hand you were dealt counts — folds too.</p><div class="bbx-eg">Latest hand: '+bbUsd(last.net)+' ÷ '+ggAmt(last.bb)+' = <b>'+bbF(lb,2)+' bb</b></div>')
+   +step(2,"Add them up",'<div class="bbx-eq"><span>'+R.n.toLocaleString()+' hands</span><span>→</span><b class="'+pc(R.nbb)+'">'+bbF(R.nbb,2)+' bb</b></div>')
+   +step(3,"Divide by hands, × 100",'<div class="bbx-eq big"><span>'+bbF(R.nbb,2)+' ÷ '+R.n.toLocaleString()+' × 100</span><span>=</span><b class="'+pc(R.bb100)+'">'+bbF(R.bb100,2)+' bb/100</b></div>')
+   +'<div class="bbx-ok">✓ Cross-check: your hands add up to '+bbUsd(R.net)+', the same as the end of your graph.</div></div>';
+  {h+='<div class="bbx-sec"><div class="bbx-h">By stake</div><div class="bbx-t"><div class="bbx-th"><span>Stake</span><span>Hands</span><span>Net</span><span>bb won</span><span>bb/100</span></div>'
+    +R.per.map(p=>'<div class="bbx-tr"><span>'+ggAmt(p.sb!=null?p.sb:p.bb/2)+'/'+ggAmt(p.bb)+'</span><span>'+p.n.toLocaleString()+'</span><span class="'+pc(p.net)+'">'+bbUsd(p.net)+'</span><span>'+bbF(p.nbb,1)+'</span><b class="'+pc(p.nbb)+'">'+bbF(p.nbb/p.n*100)+'</b></div>').join("")
+    +(R.per.length>1?'<div class="bbx-tr tot"><span>All</span><span>'+R.n.toLocaleString()+'</span><span class="'+pc(R.net)+'">'+bbUsd(R.net)+'</span><span>'+bbF(R.nbb,1)+'</span><b class="'+pc(R.bb100)+'">'+bbF(R.bb100)+'</b></div>':'')+'</div>'
+    +(R.per.length>1?'<div class="bbx-note">Mixed stakes are combined in big blinds, not dollars — a 2NL hand counts as much as a 25NL hand. That’s how trackers do it too.</div>':'')+'</div>'}
+  h+='<div class="bbx-sec"><div class="bbx-h">What it’s made of</div>'
+   +row("Showdown hands",bbF(R.sdbb/R.n*100)+" bb/100",R.sdn+" hands",pc(R.sdbb))
+   +row("Non-showdown hands",bbF(R.nsdbb/R.n*100)+" bb/100",(R.n-R.sdn)+" hands",pc(R.nsdbb))
+   +row("Rake you paid",bbF(-R.rkbb/R.n*100)+" bb/100",bbUsd(-R.rk)+" · already taken off","neg")
+   +row("Before rake",bbF((R.nbb+R.rkbb)/R.n*100)+" bb/100","what you’d win with no rake",pc(R.nbb+R.rkbb))
+   +row("All-in EV",bbF(R.evbb/R.n*100)+" bb/100",R.evn+" all-in"+(R.evn!==1?"s":"")+" · luck taken out",pc(R.evbb))
+   +(best.length&&R.n>=10?row("Your best "+best.length+" hands",bbF(bestSum,1)+" bb","everything else: "+bbF(restBB,1)+" bb ("+bbF(restBB/R.n*100)+" bb/100)",pc(bestSum)):"")
+   +'</div>';
+  h+='<div class="bbx-sec"><div class="bbx-h">How sure can you be?</div>'
+   +(R.n<2?'<p class="bbx-p">Not enough hands yet.</p>':'<div class="bbx-ci"><div class="bbx-ci-bar"><span class="z" style="left:'+bbPos(0,lo,hi)+'%"></span><span class="rng" style="left:'+bbPos(lo,lo,hi)+'%;width:'+(bbPos(hi,lo,hi)-bbPos(lo,lo,hi)).toFixed(1)+'%"></span><span class="pt" style="left:'+bbPos(R.bb100,lo,hi)+'%"></span></div><div class="bbx-ci-l"><span>'+bbF(lo)+'</span><b>95% range</b><span>'+bbF(hi)+'</span></div></div>'
+   +row("Swing (std dev)",Math.round(R.sd100)+" bb/100","typical 6-max: 80–110")
+   +(need5?row("Hands for ±5 bb/100",need5.toLocaleString(),R.n>=need5?"✓ you’re there":(need5-R.n).toLocaleString()+" to go"):"")
+   +'<p class="bbx-p">'+(R.n<1000?"With "+R.n.toLocaleString()+" hands this is mostly luck — the true win rate could be anywhere in that range.":R.n<20000?"Getting there: the range narrows as you play more.":"A solid sample — this is a good read of your real win rate.")+'</p>')+'</div>'
+   +'<div class="bbx-foot">Results are after rake — exactly what GGPoker paid you, including uncalled bets returned, run-it-twice splits and EV cashouts. Antes, straddles and dead blinds are counted as money you put in.</div>';
+  el.innerHTML=h;openM("bb100M")}
+function bbPos(v,lo,hi){const a=Math.min(lo,0),b=Math.max(hi,0),w=b-a||1;return Math.max(0,Math.min(100,(v-a)/w*100)).toFixed(1)}
 
 </script>
 </body>
