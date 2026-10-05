@@ -2140,9 +2140,6 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 }
 .br-chart-h{
   position:relative;height:240px;width:100%;flex-shrink:0;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--pk) 2%,transparent) 0%,color-mix(in srgb,var(--pk) 0.8%,transparent) 100%);
-  border-radius:8px;
-  border:1px solid color-mix(in srgb,var(--pk) 6%,transparent);
 }
 .br-chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
 @media(max-width:640px){.br-chart-grid{grid-template-columns:1fr;gap:12px}}
@@ -5554,6 +5551,28 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
 .chs-check{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;color:var(--t2)}.chs-check input{width:18px;height:18px;accent-color:var(--pk)}
 @media(max-width:420px){.chx-bal{font-size:38px}.chx-st-name{font-size:26px}.chx-mc-q b{font-size:12px}}
 @media (prefers-reduced-motion:reduce){.chx-fill,.chx-gauge-f,.chx-mc-bar span,.chx-empty-ic,.chx-tick.nx{animation:none}}
+
+/* ═══ Stats polish (v83): numbers in the UI sans, crisp tiles ═══ */
+:root{--fm:var(--ff)}
+code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.edq-ex code,.ggdel-lbl code{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace!important}
+.gg-table .num,.gg-table td,table td,.chx-wk,.shr-r b,.gg-an-kv b,.gg-fun-r b{font-variant-numeric:tabular-nums}
+:is(.brs-val,.brs-v,.br-hero-val,.hm-big,.gg-hero-v,.gg-an-bigv,.lm-val,.shift-sum-val,.chx-bal,.g2-v,.gg-bs-v,.bcg-val,.eq-pct-val,.ar-hero-pct){letter-spacing:-.025em;font-feature-settings:"ss01"}
+#bankrollV .brs-val,.view:not(#bankrollV) .brs-val{font-weight:800!important;letter-spacing:-.03em}
+#bankrollV .brs-sub,.brs-sub{font-style:normal!important;opacity:.9}
+.b3-chip b,.hm-kv b,.gg-an-sv b,.wk-kv b,.shp-stats b,.shm b{font-weight:800;letter-spacing:-.01em}.gg-an-kv b{font-weight:700}
+
+/* GG view-only preview */
+.gg-pvbar{margin:0 0 12px;padding:14px;border-radius:16px;border:1.5px dashed color-mix(in srgb,var(--li) 60%,transparent);background:radial-gradient(100% 120% at 100% 0%,color-mix(in srgb,var(--li) 16%,transparent),transparent 60%),var(--b1)}
+.gg-pv-top{display:flex;align-items:center;gap:10px}.gg-pv-eye{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:17px;background:color-mix(in srgb,var(--li) 18%,var(--b2));flex:none}
+.gg-pv-t{flex:1;min-width:0}.gg-pv-t b{display:block;font-size:14px;color:var(--t1)}.gg-pv-t i{display:block;font-style:normal;font-size:11px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gg-pv-x{width:30px;height:30px;border-radius:50%;background:var(--b2);border:1px solid var(--bd2);color:var(--t2);font-size:13px;flex:none}
+.gg-pv-k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:12px}.gg-pv-k>div{display:flex;flex-direction:column;gap:1px;padding:9px 8px;border-radius:11px;background:var(--b2);border:1px solid var(--bd);min-width:0}
+.gg-pv-k span{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--t4)}.gg-pv-k b{font-size:15px;font-weight:800;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gg-pv-k b.sm{font-size:11px;font-weight:700;white-space:normal;line-height:1.3}.gg-pv-k .pos{color:var(--mt)}.gg-pv-k .neg{color:var(--rs)}
+.gg-pv-n{margin-top:10px;font-size:11.5px;color:var(--t3);line-height:1.45}
+.gg-pv-a{display:flex;gap:8px;margin-top:10px}.gg-pv-a .btn{flex:1}
+#ggV.gg-pvmode .gg-exp,#ggV.gg-pvmode #ggBrLink,#ggV.gg-pvmode .gg-gear{display:none!important}
+#ggV .gg-pv{white-space:nowrap}@media(max-width:430px){#ggV .gg-exp .gg-bl{display:none}}
+@media(max-width:430px){#ggV .gg-toolbar .btn{padding-left:10px!important;padding-right:10px!important}.gg-pv-k{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
@@ -6283,9 +6302,11 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
   <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
   <div class="section-head"><span style="font-size:20px">📈</span><h2>GG Results</h2></div>
   <input type="file" id="ggFileInput" accept=".txt,text/plain" multiple style="display:none" onchange="ggImportFiles(this.files)"/>
+  <input type="file" id="ggPvInput" accept=".txt,text/plain" multiple style="display:none" onchange="ggPreviewFiles(this.files)"/>
   <div class="gg-toolbar">
     <button class="btn pri gg-imp" onclick="$('ggFileInput').click()" title="Import GGPoker .txt hand histories — re-importing is safe, duplicates are skipped">📂 Import</button>
-    <button class="btn gg-exp" onclick="openHandExport('gg')" title="Export hands from a time frame as GGPoker .txt">⬇ Export</button>
+    <button class="btn gg-pv" onclick="$('ggPvInput').click()" title="Look at a GG file's stats without saving it">👁 View</button>
+    <button class="btn gg-exp" onclick="openHandExport('gg')" title="Export hands from a time frame as GGPoker .txt" aria-label="Export">⬇<span class="gg-bl"> Export</span></button>
     <select id="ggStakeFilter" class="sel-sm" onchange="renderGG()"></select>
     <div class="br-toggle gg-unit-tog" id="ggUnitTog">
       <button class="on" data-u="money" onclick="ggSetUnit('money')">$</button>
@@ -6294,6 +6315,7 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
     <button class="gg-gear" id="ggGear" onclick="ggList.brOpen=!ggList.brOpen;ggRenderBrLink()" title="Import settings">⚙</button>
   </div>
   <div id="ggBrLink" class="gg-brlink"></div>
+  <div id="ggPvBar" class="gg-pvbar" style="display:none"></div>
   <div id="ggImportStatus" class="gg-status" style="display:none"></div>
   <div id="ggContent"></div>
 </div>
@@ -6423,7 +6445,7 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v82</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v84</div>
   </div>
 </div>
 </div>
@@ -9751,7 +9773,35 @@ const GGDB={db:null,cache:null,failed:false,
   }
 };
 const GG_SV=6; // summary schema version — older saved hands are re-read from their stored text
-function getGGHands(){return GGDB.cache||[]}
+let GGPV=null; // view-only GG session: parsed in memory, never written to storage
+function getGGHands(){return GGPV?GGPV.hands:(GGDB.cache||[])}
+function ggSavedHands(){return GGDB.cache||[]}
+async function ggPreviewFiles(files){const inp=$("ggPvInput");if(!files||!files.length)return;const list=[...files];
+  const hands=[],raw=new Map(),src=[];let errors=0,lastError="";const seen=new Set();
+  try{await GGDB.all()}catch(e){}
+  for(const f of list){let text;try{text=await f.text()}catch(e){errors++;lastError="couldn't read "+f.name;continue}
+    const texts=ggSplitHands(text);if(!texts.length){errors++;lastError=f.name+" has no GGPoker hands in it";continue}
+    src.push({name:f.name,text});
+    for(const t of texts){const h=ggParseHand(t);if(h.error){errors++;lastError=h.error;continue}if(seen.has(h.id))continue;seen.add(h.id);
+      const rec=ggSummary(h,true);rec.pv=1;try{ggAttachNote(rec)}catch(e){}hands.push(rec);raw.set(h.id,t)}}
+  if(inp)inp.value="";
+  if(!hands.length){toast("⚠️ Nothing to show — "+(lastError||"no hands found"));return}
+  hands.sort((a,b)=>a.ts-b.ts||(a.id<b.id?-1:1));
+  const savedIds=new Set(ggSavedHands().map(h=>h.id)),already=hands.filter(h=>savedIds.has(h.id)).length;
+  if(!GGPV)GGPV={keep:{f:JSON.parse(JSON.stringify(ggList.f)),per:ggGF.per,pos:ggGF.pos,stake:$("ggStakeFilter")?.value||"",tab:ggList.tab}};
+  Object.assign(GGPV,{hands,raw,src,errors,lastError,already,files:src.map(x=>x.name)});
+  ggList.f=JSON.parse(JSON.stringify(GG_F0));ggGF.per="all";ggGF.pos="";ggList.limit=50;const sf=$("ggStakeFilter");if(sf)sf.value="";
+  const st=$("ggImportStatus");if(st)st.style.display="none";
+  renderGG();const m=document.querySelector(".main");if(m)m.scrollTop=0;haptic("light");toast("👁 Viewing "+hands.length.toLocaleString()+" hand"+(hands.length!==1?"s":"")+" — not saved")}
+function ggPvBarHtml(){if(!GGPV)return"";const H=GGPV.hands,net=H.reduce((a,h)=>a+h.net,0),nbb=H.reduce((a,h)=>a+h.net/h.bb,0),bb100=H.length?nbb/H.length*100:0;
+  const t0=Math.min(...H.map(h=>h.ts)),t1=Math.max(...H.map(h=>h.ts)),d=t=>new Date(t).toLocaleString("en-GB",{timeZone:"UTC",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"});
+  const fresh=H.length-GGPV.already;
+  return'<div class="gg-pv-top"><span class="gg-pv-eye">👁</span><div class="gg-pv-t"><b>View only — not saved</b><i>'+escapeHtml(GGPV.files.length===1?GGPV.files[0]:GGPV.files.length+" files")+'</i></div><button class="gg-pv-x" onclick="ggPvClose()" aria-label="Close view">✕</button></div>'
+   +'<div class="gg-pv-k"><div><span>Hands</span><b>'+H.length.toLocaleString()+'</b></div><div><span>Net</span><b class="'+(net>0?"pos":net<0?"neg":"")+'">'+(net<0?"−":net>0?"+":"")+"$"+Math.abs(net/100).toFixed(2)+'</b></div><div><span>bb/100</span><b class="'+(bb100>0?"pos":bb100<0?"neg":"")+'">'+(bb100>0?"+":bb100<0?"−":"")+Math.abs(bb100).toFixed(1)+'</b></div><div><span>When</span><b class="sm">'+d(t0)+(d(t0)!==d(t1)?" – "+new Date(t1).toLocaleTimeString("en-GB",{timeZone:"UTC",hour:"2-digit",minute:"2-digit"}):"")+'</b></div></div>'
+   +'<div class="gg-pv-n">Everything below — graph, stats, analysis, replays — is just this file. Nothing goes into your results, bankroll or backups'+(GGPV.already?' · '+GGPV.already+' of these hands are already in your results':'')+(GGPV.errors?' · '+GGPV.errors+' skipped':'')+'.</div>'
+   +'<div class="gg-pv-a"><button class="btn" onclick="ggPvClose()">Close</button><button class="btn pri" onclick="ggPvSave()" '+(fresh?"":"disabled ")+'>'+(fresh?"💾 Save "+fresh.toLocaleString()+" to my results":"Already saved")+'</button></div>'}
+function ggPvClose(){if(!GGPV)return;const k=GGPV.keep;GGPV=null;if(k){ggList.f=k.f;ggGF.per=k.per;ggGF.pos=k.pos;ggList.tab=k.tab||ggList.tab}ggList.limit=50;renderGG();const sf=$("ggStakeFilter");if(k&&sf&&[...sf.options].some(o=>o.value===k.stake)){sf.value=k.stake;renderGG()}toast("Closed — back to your saved results")}
+async function ggPvSave(){if(!GGPV)return;const src=GGPV.src.map(x=>({name:x.name,text:async()=>x.text}));const k=GGPV.keep;GGPV=null;if(k){ggList.f=k.f;ggGF.per=k.per;ggGF.pos=k.pos;ggList.tab=k.tab||ggList.tab}await ggImportFiles(src)}
 function ggAttachNote(h){const n=GGDB.notes&&GGDB.notes.get(h.id);h.cm=n?n.comments||[]:[];h.tags=n?n.tags||[]:[];h.nu=n?n.upd||0:0}
 function ggSummary(h,hasRaw){return{id:h.id,ts:h.ts,bb:h.bb,sb:h.sb,net:h.net,sd:h.showdown?1:0,ev:h.allinEv,pos:h.pos,hc:h.hc,cls:h.cls,pot:h.pot,board:h.board,table:h.table,rk:+h.rakePaid.toFixed(4),fe:+h.feesPaid.toFixed(4),pf:h.pf,pt:h.pt,st:h.st,vpip:h.vpip,pfr:h.pfr,ax:h.ax,sq:h.sq,sv:GG_SV,raw:hasRaw?1:0}}
 
@@ -9773,7 +9823,7 @@ async function initGG(){
 // Hands saved before rake tracking existed: recalculate rake from their stored text (no re-import needed)
 let ggBackfilling=false;
 async function ggBackfillRake(){
-  const need=getGGHands().filter(h=>h.raw&&(h.sv||0)<GG_SV);
+  const need=ggSavedHands().filter(h=>h.raw&&(h.sv||0)<GG_SV);
   if(!need.length||ggBackfilling)return;
   ggBackfilling=true;
   const status=$("ggImportStatus");status.style.display="";status.textContent="⏳ Updating "+need.length.toLocaleString()+" saved hands with new stats…";
@@ -9797,6 +9847,7 @@ function ggSetUnit(u){ggUnit=u;LS("ps_gg_unit",u);$("ggUnitTog").querySelectorAl
 
 async function ggImportFiles(files){
   if(!files||!files.length)return;
+  if(GGPV){const k=GGPV.keep;GGPV=null;if(k){ggList.f=k.f;ggGF.per=k.per;ggGF.pos=k.pos}}
   const list=[...files],status=$("ggImportStatus");
   const cache=await GGDB.all();
   const byId=new Map(cache.map(h=>[h.id,h]));
@@ -9918,6 +9969,7 @@ function ggStakeFiltered(){const v=$("ggStakeFilter")?.value;const all=getGGHand
 
 function renderGG(topOnly){
   const all=getGGHands(),ct=$("ggContent");if(!ct)return;
+  {const pb=$("ggPvBar");if(pb){pb.style.display=GGPV?"":"none";pb.innerHTML=ggPvBarHtml()}const gv=$("ggV");if(gv)gv.classList.toggle("gg-pvmode",!!GGPV)}
   if(topOnly&&!$("ggTop"))topOnly=false;
   ggRenderBrLink();
   const stakes=[...new Set(all.map(h=>h.bb))].sort((a,b)=>a-b);
@@ -11489,6 +11541,7 @@ function ggTagColor(t){const fixed={Review:"#fbbf24",Mistake:"#f87171","Good pla
 function ggTagHtml(t,extra){return'<span class="gg-tag" style="--tg:'+ggTagColor(t)+'">'+escapeHtml(t)+(extra||"")+"</span>"}
 function ggAllTags(){const m=new Map();getGGHands().forEach(h=>(h.tags||[]).forEach(t=>m.set(t,(m.get(t)||0)+1)));return[...m.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))}
 async function ggSaveNote(h){
+  if(h.pv){if(!ggSaveNote._w){ggSaveNote._w=1;toast("👁 View only — notes on these hands aren't saved")}return}
   h.nu=Date.now();
   const empty=!(h.cm||[]).length&&!(h.tags||[]).length;
   await GGDB.putNote({id:h.id,comments:h.cm||[],tags:h.tags||[],upd:h.nu},empty);
@@ -11723,7 +11776,7 @@ async function ggOpenReplay(i,list,opts){
   const L=list||ggList.current,h=L[i];if(!h)return;
   ggR.rc=opts?!!opts.rc:(list&&list===ggR.list?!!ggR.rc:false); // range-check verdicts only when opened from the Range check tab (kept while stepping hands)
   if(!h.raw){toast("Re-import this file to enable the replay for older hands");return}
-  const text=await GGDB.raw(h.id);
+  const text=h.pv&&GGPV?GGPV.raw.get(h.id):await GGDB.raw(h.id);
   if(!text){toast("Couldn't load this hand's history");return}
   ggR.list=L;ggR.idx=i;ggR.raw=text;ggR.rep=ggBuildReplay(text);ggR.hand=h;ggR.step=0;ggR.draft="";ggR.pinStep=null;ggR.pin=true;ggR.built=null;ggR.pausedAtNote=false;ggStopAuto();
   // start at "Cards are dealt" so the opening frame isn't an empty table
@@ -12873,11 +12926,75 @@ function submitEndLive(){if(!liveData)return;const stack=parseFloat($("liveEndSt
 // Charts
 let brCharts={};
 const glowLinePlugin={id:"glowLine",beforeDatasetsDraw(chart){const ctx=chart.ctx;const t=chart.config.type;ctx.save();if(chart.canvas&&chart.canvas.closest&&chart.canvas.closest("#bankrollV"))return;/* bankroll charts stay flat */if(t==="line"){ctx.shadowColor=(chart.data.datasets[0]&&chart.data.datasets[0].borderColor)||getComputedStyle(document.documentElement).getPropertyValue("--pk").trim()||"#c8a55c";ctx.shadowBlur=16;}else if(t==="bar"){ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=10;ctx.shadowOffsetY=3;}},afterDatasetsDraw(chart){chart.ctx.restore();}};
-if(window.Chart){Chart.register(glowLinePlugin);
+// ═══ Chart polish: one visual system for every chart in the app ═══
+function psCss(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+const _psCC={};
+function psRGB(c){if(!c||typeof c!=="string")return null;if(_psCC[c])return _psCC[c];let r=null;const h=c.trim();
+  let m=h.match(/^#([0-9a-f]{3,8})$/i);if(m){let x=m[1];if(x.length===3||x.length===4)x=x.split("").map(ch=>ch+ch).join("");r=[parseInt(x.slice(0,2),16),parseInt(x.slice(2,4),16),parseInt(x.slice(4,6),16),x.length===8?parseInt(x.slice(6,8),16)/255:1]}
+  else if((m=h.match(/^rgba?\(([^)]+)\)$/i))){const p=m[1].split(/[\s,/]+/).filter(Boolean).map(parseFloat);r=[p[0],p[1],p[2],p[3]!=null?p[3]:1]}
+  else{try{const cv=psRGB._c||(psRGB._c=document.createElement("canvas").getContext("2d"));cv.fillStyle="#000";cv.fillStyle=h;const f=cv.fillStyle;if(f!==h)r=psRGB(f)}catch(e){}}
+  if(r)_psCC[c]=r;return r}
+function psA(c,a){const r=psRGB(c);return r?"rgba("+r[0]+","+r[1]+","+r[2]+","+a+")":c}
+function psSolid(c){const r=psRGB(c);return r?"rgb("+r[0]+","+r[1]+","+r[2]+")":c}
+function psIsColor(c){return typeof c==="string"&&!!psRGB(c)}
+// Prepare a chart config before Chart.js builds it: quiet axes, one tooltip style, consistent legend.
+function psPrep(cfg){try{if(!cfg||cfg._ps)return cfg;cfg._ps=1;const t=cfg.type,o=cfg.options=cfg.options||{};const hz=o.indexAxis==="y";
+  const cart=["line","bar","scatter","bubble"].includes(t);
+  if(cart){o.scales=o.scales||{};["x","y"].forEach(k=>{if(!o.scales[k])o.scales[k]={}});
+    Object.keys(o.scales).forEach(k=>{const s=o.scales[k];if(!s||s.display===false)return;const isCat=hz?k.startsWith("y"):k.startsWith("x");
+      s.border=Object.assign({},s.border,{display:false});s.grid=s.grid||{};
+      if(isCat){if(s.grid.display!==true||!s.grid._keep)s.grid.display=false}else{s.grid.color=c=>c.tick&&c.tick.value===0?"transparent":psA(psCss("--t1"),.07);s.grid.lineWidth=1;s.grid.drawTicks=false}
+      s.ticks=s.ticks||{};if(isCat&&!hz){if(s.ticks.autoSkip===false&&s.ticks.maxRotation>0)s.ticks.minRotation=Math.min(45,s.ticks.maxRotation);else if(s.ticks.maxRotation==null){s.ticks.maxRotation=0;if(s.ticks.autoSkipPadding==null)s.ticks.autoSkipPadding=14}}if(s.ticks.padding==null)s.ticks.padding=isCat?6:8;s.ticks.color=psCss("--t4")||s.ticks.color;s.ticks.font=Object.assign({size:10.5,weight:"500"},s.ticks.font||{});if(!isCat&&s.ticks.maxTicksLimit==null&&s.type!=="logarithmic")s.ticks.maxTicksLimit=6;
+      if(s.title&&s.title.display)s.title.color=psCss("--t4")})}
+  o.plugins=o.plugins||{};const tp=o.plugins.tooltip=o.plugins.tooltip||{};
+  Object.assign(tp,{backgroundColor:psA(psCss("--b3")||"#1e1e26",.96),borderColor:psA(psCss("--t1"),.12),borderWidth:1,cornerRadius:12,padding:{x:12,y:10},titleColor:psCss("--t3"),titleFont:{size:10.5,weight:"600"},titleMarginBottom:5,bodyColor:psCss("--t1"),bodyFont:{size:13,weight:"700"},footerColor:psCss("--t3"),footerFont:{size:10.5,weight:"500"},caretSize:5,caretPadding:8,boxPadding:5,usePointStyle:true,boxWidth:8,boxHeight:8});
+  if(o.plugins.legend&&o.plugins.legend.display!==false){const L=o.plugins.legend;L.labels=Object.assign({usePointStyle:true,pointStyle:"circle",boxWidth:7,boxHeight:7,padding:14,color:psCss("--t2"),font:{size:11,weight:"600"}},L.labels||{})}
+  if(t==="line"&&!o.interaction)o.interaction={intersect:false,mode:"index"};
+  if(t==="line"&&o.layout?.padding==null&&!(o.scales&&o.scales.x&&o.scales.x.display===false)){o.layout=Object.assign({},o.layout,{padding:{top:8,right:10,left:2,bottom:0}})}
+  if(t==="doughnut"||t==="pie"){if(o.cutout==null&&t==="doughnut")o.cutout="70%"}
+  }catch(e){console.warn("psPrep",e)}return cfg}
+function psBarFill(chart,base,hz){return ctx=>{const c=Array.isArray(base)?base[ctx.dataIndex%base.length]:base;if(!psIsColor(c))return c;const sc=hz?chart.scales.x:chart.scales.y,v=ctx.raw;
+  if(!chart.chartArea||!sc||typeof v!=="number"||!isFinite(v))return psSolid(c);const z=Math.max(sc.min,Math.min(0,sc.max));const p0=sc.getPixelForValue(z),p1=sc.getPixelForValue(v);if(!isFinite(p0)||!isFinite(p1)||Math.abs(p1-p0)<2)return psSolid(c);
+  const g=hz?chart.ctx.createLinearGradient(p0,0,p1,0):chart.ctx.createLinearGradient(0,p0,0,p1);const a=Math.min(1,(psRGB(c)||[0,0,0,1])[3]*1.6);g.addColorStop(0,psA(c,.38*a+.12));g.addColorStop(1,psA(c,Math.max(.9,a)));return g}}
+function psAreaFill(chart,color,ds){return ctx=>{const ca=chart.chartArea;if(!ca)return"transparent";const vals=(ds.data||[]).map(v=>typeof v==="object"&&v?v.y:v).filter(v=>typeof v==="number");const neg=vals.length&&Math.max(...vals)<=0;
+  const g=chart.ctx.createLinearGradient(0,ca.top,0,ca.bottom);if(neg){g.addColorStop(0,psA(color,0));g.addColorStop(1,psA(color,.34))}else{g.addColorStop(0,psA(color,.32));g.addColorStop(.55,psA(color,.1));g.addColorStop(1,psA(color,0))}return g}}
+function psStyleDatasets(chart){const cfg=chart.config,t=cfg.type,hz=chart.options.indexAxis==="y",surf=psCss("--b1")||"#101014";
+  (chart.data.datasets||[]).forEach(ds=>{if(ds._ps)return;ds._ps=1;const dt=ds.type||t;const trend=ds.label==="Trend"||(ds.borderDash&&ds.borderDash.length);
+    if(dt==="line"){if(!trend){ds.borderWidth=Math.max(2,Math.min(ds.borderWidth!=null?ds.borderWidth:2.5,3));ds.borderCapStyle="round";ds.borderJoinStyle="round"}
+      const bc=typeof ds.borderColor==="string"?ds.borderColor:null;
+      if(ds.pointHoverRadius==null)ds.pointHoverRadius=5;ds.pointHoverBorderWidth=2.5;ds.pointHoverBorderColor=surf;if(bc&&!ds.pointHoverBackgroundColor)ds.pointHoverBackgroundColor=bc;if(ds.pointHitRadius==null)ds.pointHitRadius=12;
+      if(ds.fill&&ds.fill!==false&&bc&&!trend&&(typeof ds.backgroundColor==="string"||ds.backgroundColor==null||typeof ds.backgroundColor==="function"&&ds.backgroundColor._psArea!==false))ds.backgroundColor=psAreaFill(chart,bc,ds)}
+    else if(dt==="bar"){const stacked=chart.options.scales&&((chart.options.scales.x&&chart.options.scales.x.stacked)||(chart.options.scales.y&&chart.options.scales.y.stacked));
+      if(ds.borderRadius==null||typeof ds.borderRadius==="number")ds.borderRadius=Math.max(5,Math.min(8,ds.borderRadius||6));if(!stacked)ds.borderSkipped="start";
+      if(ds.maxBarThickness==null&&ds.barThickness==null)ds.maxBarThickness=hz?22:30;ds.borderWidth=0;
+      const bg=ds.backgroundColor;if(!stacked&&psIsColor(bg)||(!stacked&&Array.isArray(bg)&&bg.length&&bg.every(psIsColor))){ds.hoverBackgroundColor=Array.isArray(bg)?bg.map(psSolid):psSolid(bg);ds.backgroundColor=psBarFill(chart,bg,hz)}}
+    else if(dt==="doughnut"||dt==="pie"){ds.borderColor=surf;ds.borderWidth=2;if(ds.borderRadius==null)ds.borderRadius=6;if(ds.spacing==null)ds.spacing=1;if(ds.hoverOffset==null)ds.hoverOffset=6}})}
+const PS_POLISH={id:"psPolish",
+  beforeUpdate(chart){try{psStyleDatasets(chart)}catch(e){console.warn("psPolish",e)}},
+  beforeDatasetDraw(chart,args){const ds=chart.data.datasets[args.index];if(!ds||args.meta.type!=="line"||chart.options.plugins?.psPolish?.glow===false)return;const trend=ds.label==="Trend"||(ds.borderDash&&ds.borderDash.length);const bc=typeof ds.borderColor==="string"?ds.borderColor:(ds._psSeg||null);if(trend||!bc)return;
+    const ctx=chart.ctx;ctx.save();ctx.shadowColor=psA(bc,.42);ctx.shadowBlur=chart.height<90?6:10;ctx.shadowOffsetY=chart.height<90?2:4;chart._psGlow=(chart._psGlow||0)+1},
+  afterDatasetDraw(chart){if(chart._psGlow){chart.ctx.restore();chart._psGlow--}},
+  afterDatasetsDraw(chart){try{const ctx=chart.ctx,ca=chart.chartArea,t=chart.config.type,hz=chart.options.indexAxis==="y";if(!ca)return;
+    // zero baseline
+    if(t==="line"||t==="bar"){const sc=hz?chart.scales.x:chart.scales.y;if(sc&&sc.type!=="logarithmic"&&sc.min<0&&sc.max>0){const p=sc.getPixelForValue(0);ctx.save();ctx.strokeStyle=psA(psCss("--t1"),.28);ctx.lineWidth=1;ctx.beginPath();if(hz){ctx.moveTo(p,ca.top);ctx.lineTo(p,ca.bottom)}else{ctx.moveTo(ca.left,p);ctx.lineTo(ca.right,p)}ctx.stroke();ctx.restore()}}
+    // end dot on the lead series
+    if(t==="line"&&chart.options.plugins?.psPolish?.endDot!==false&&chart.options.scales?.x?.display!==false){const i=chart.data.datasets.findIndex((d,k)=>chart.isDatasetVisible(k)&&d.label!=="Trend"&&!(d.borderDash&&d.borderDash.length));if(i<0)return;const ds=chart.data.datasets[i],meta=chart.getDatasetMeta(i);
+      if(Array.isArray(ds.pointRadius)||ds.pointRadius>0)return;const pts=meta.data||[];let k=pts.length-1;while(k>=0&&(pts[k].skip||ds.data[k]==null))k--;if(k<1)return;const el=pts[k];if(!el||!isFinite(el.x)||!isFinite(el.y))return;
+      const col=typeof ds.borderColor==="string"?ds.borderColor:(ds._psSeg||psCss("--pk"));const r=chart.height<90?2.6:3.6;
+      ctx.save();ctx.fillStyle=psA(col,.22);ctx.beginPath();ctx.arc(el.x,el.y,r*2.4,0,7);ctx.fill();ctx.fillStyle=col;ctx.strokeStyle=psCss("--b1")||"#000";ctx.lineWidth=2;ctx.beginPath();ctx.arc(el.x,el.y,r,0,7);ctx.fill();ctx.stroke();ctx.restore()}}catch(e){}},
+  afterDraw(chart){try{const a=chart.tooltip&&chart.tooltip.getActiveElements&&chart.tooltip.getActiveElements();if(!a||!a.length||chart.config.type!=="line")return;const ca=chart.chartArea,x=a[0].element.x;if(!isFinite(x))return;const ctx=chart.ctx;
+    ctx.save();ctx.strokeStyle=psA(psCss("--t1"),.22);ctx.lineWidth=1;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(x,ca.top);ctx.lineTo(x,ca.bottom);ctx.stroke();ctx.restore()}catch(e){}}};
+if(window.Chart){const _C=window.Chart;try{_C.register(PS_POLISH)}catch(e){}
+  try{_C.defaults.font.family=getComputedStyle(document.body||document.documentElement).fontFamily||_C.defaults.font.family;_C.defaults.font.size=11;_C.defaults.elements.line.borderWidth=2.5;_C.defaults.elements.point.radius=0;_C.defaults.elements.point.hoverRadius=5;_C.defaults.elements.bar.borderRadius=6;_C.defaults.layout=_C.defaults.layout||{};}catch(e){}
+  class PSChart extends _C{constructor(item,cfg){super(item,psPrep(cfg))}}
+  window.Chart=PSChart}
+
+if(window.Chart){
   // draw-in: lines and bars rise from the baseline, sweeping left to right (first render only; updates glide from where they are)
   try{const RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
     Chart.defaults.animations.y={duration:RM?0:950,easing:"easeOutQuart",from:ctx=>{if(ctx.type!=="data"||ctx.mode!=="default"||ctx.chart.options.indexAxis==="y")return undefined;const sc=ctx.chart.scales&&(ctx.chart.scales.y||ctx.chart.scales.y1);return sc?sc.getPixelForValue(Math.max(sc.min,Math.min(0,sc.max))):undefined},delay:ctx=>{if(RM||ctx.type!=="data"||ctx.mode!=="default")return 0;const n=(ctx.chart.data.labels||[]).length||1;return Math.min(700,ctx.dataIndex*(700/n))}};
   }catch(e){}Chart.defaults.animation={duration:900,easing:"easeOutQuart"};Chart.defaults.animations.colors={duration:900};Chart.defaults.transitions.active.animation.duration=300;}
+function brTick(v){const a=Math.abs(v),sg=v<0?"−":"";return sg+brSym()+(a>=1e4?(a/1e3).toFixed(0)+"K":a>=1e3?(a/1e3).toFixed(1).replace(/\.0$/,"")+"K":(+a.toFixed(a<10&&a%1?1:0)).toLocaleString("en-GB"))}
 function brAreaGrad(color){return(context)=>{const{chart}=context;const{ctx,chartArea}=chart;if(!chartArea)return"transparent";const g=ctx.createLinearGradient(0,chartArea.top,0,chartArea.bottom);g.addColorStop(0,color+"66");g.addColorStop(.6,color+"14");g.addColorStop(1,color+"00");return g}}
 function destroyBrChart(k){if(brCharts[k]){brCharts[k].destroy();delete brCharts[k]}}
 function getCT(){const s=getComputedStyle(document.documentElement);const g=v=>s.getPropertyValue(v).trim();return{grid:g("--bd"),tick:g("--t3"),tbg:g("--b3"),tt:g("--t1"),tb:g("--t2"),tbdr:g("--bd2"),rose:g("--pk"),rose_bg:g("--pk")+"18",li:g("--li"),li_bg:g("--li")+"18",green_a:g("--mt")+"88",red_a:g("--rs")+"88",gold:g("--gd2")}}
@@ -12998,8 +13115,8 @@ function renderBrDashSingle(){
    const pe=$("brPer");if(pe)pe.innerHTML=BR_PERS.map(([k,l])=>'<button class="'+(brPer===k?"on":"")+'" onclick="brSetPer(\''+k+'\')">'+l+"</button>").join("");
    const dl=$("brPerDelta");if(dl){const dv=whole?total:data.length>1?Math.round((data[data.length-1]-data[0])*100):0;dl.className="b3-pd "+(dv>0?"pos":dv<0?"neg":"");dl.textContent=data.length>1?(dv>0?"+":dv<0?"−":"")+brFmt(Math.abs(dv))+(whole?" all-time":""):""}}
   if(sorted.length&&typeof Chart!=="undefined"){brCharts.br=new Chart($("chBR").getContext("2d"),{type:"line",data:{labels,datasets:[{label:"Bankroll",data,borderColor:CT.rose,backgroundColor:brAreaGrad(CT.rose),fill:true,tension:.3,cubicInterpolationMode:"monotone",pointRadius:0,pointHoverRadius:5,pointHitRadius:12,borderWidth:3,pointBackgroundColor:CT.rose,pointBorderColor:"#fff",pointBorderWidth:1.5,pointHoverBackgroundColor:CT.rose},...trendDataset("br",data,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toLocaleString()}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:7,font:{size:10}},grid:{color:CT.grid,drawTicks:false}},y:{ticks:{color:CT.tick,font:{size:10},callback:v=>brSym()+v.toLocaleString()},grid:{color:CT.grid,drawTicks:false}}}}})}
-  destroyBrChart("month");const months={};sorted.forEach(s=>{const m=s.date.slice(0,7);months[m]=(months[m]||0)+s.resultCents});const mKeys=Object.keys(months).sort();if(mKeys.length&&typeof Chart!=="undefined"){const mVals=mKeys.map(k=>months[k]/100);brCharts.month=new Chart($("chMonth").getContext("2d"),{type:"bar",data:{labels:mKeys.map(brMonLbl),datasets:[{data:mVals,backgroundColor:mKeys.map(k=>months[k]>=0?CT.green_a:CT.red_a),borderRadius:6,borderSkipped:false},...trendDataset("month",mVals,CT).map(d=>({...d,type:"line"}))]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brFmt(Math.round(c.raw*100))}}},scales:{x:{ticks:{color:CT.tick,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
-  destroyBrChart("hourly");const hrD=[],hrL=[];{const tm=sorted.filter(x=>x.duration>0),minN=Math.min(10,tm.length);tm.forEach((s,i)=>{if(i+1<minN)return;const recent=tm.slice(Math.max(0,i-49),i+1);const mins=recent.reduce((a,x)=>a+x.duration,0),res=recent.reduce((a,x)=>a+x.resultCents,0);hrD.push(mins?res/100/(mins/60):0);hrL.push(brDayLbl(s.date))})}if(hrD.length&&typeof Chart!=="undefined"){brCharts.hourly=new Chart($("chHourly").getContext("2d"),{type:"line",data:{labels:hrL,datasets:[{data:hrD,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.3,cubicInterpolationMode:"monotone",pointRadius:0,pointHoverRadius:4,borderWidth:2.5},...trendDataset("hourly",hrD,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,cornerRadius:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toFixed(2)+"/hr"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
+  destroyBrChart("month");const months={};sorted.forEach(s=>{const m=s.date.slice(0,7);months[m]=(months[m]||0)+s.resultCents});const mKeys=Object.keys(months).sort();if(mKeys.length&&typeof Chart!=="undefined"){const mVals=mKeys.map(k=>months[k]/100);brCharts.month=new Chart($("chMonth").getContext("2d"),{type:"bar",data:{labels:mKeys.map(brMonLbl),datasets:[{data:mVals,backgroundColor:mKeys.map(k=>months[k]>=0?CT.green_a:CT.red_a),borderRadius:6,borderSkipped:false},...trendDataset("month",mVals,CT).map(d=>({...d,type:"line"}))]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brFmt(Math.round(c.raw*100))}}},scales:{x:{ticks:{color:CT.tick,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick,callback:v=>brTick(v)},grid:{color:CT.grid}}}}})}
+  destroyBrChart("hourly");const hrD=[],hrL=[];{const tm=sorted.filter(x=>x.duration>0),minN=Math.min(10,tm.length);tm.forEach((s,i)=>{if(i+1<minN)return;const recent=tm.slice(Math.max(0,i-49),i+1);const mins=recent.reduce((a,x)=>a+x.duration,0),res=recent.reduce((a,x)=>a+x.resultCents,0);hrD.push(mins?res/100/(mins/60):0);hrL.push(brDayLbl(s.date))})}if(hrD.length&&typeof Chart!=="undefined"){brCharts.hourly=new Chart($("chHourly").getContext("2d"),{type:"line",data:{labels:hrL,datasets:[{data:hrD,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.3,cubicInterpolationMode:"monotone",pointRadius:0,pointHoverRadius:4,borderWidth:2.5},...trendDataset("hourly",hrD,CT)]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,cornerRadius:10,displayColors:false,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toFixed(2)+"/hr"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick,callback:v=>brTick(v)+"/h"},grid:{color:CT.grid}}}}})}
   renderBrHeatmap()
   })}
 function renderBrHeatmap(){brHeatmap0();const c=$("calendarHM");if(c)requestAnimationFrame(()=>{[c,c.querySelector(".heatmap")].forEach(x=>{if(x)x.scrollLeft=x.scrollWidth})})}
@@ -13193,7 +13310,7 @@ const BR_PERS=[["1m","1M"],["3m","3M"],["6m","6M"],["1y","1Y"],["all","All"]];
 let brPer=LG("ps_br_per","all");
 function brRenderGGCard(sorted){
   const el=$("brGG");if(!el)return;
-  const gs=sorted.filter(s=>s.ggSrc),hands=typeof getGGHands==="function"?getGGHands():[];
+  const gs=sorted.filter(s=>s.ggSrc),hands=typeof ggSavedHands==="function"?ggSavedHands():[];
   if(!gs.length&&!hands.length){el.style.display="none";return}
   el.style.display="";
   let net=0,nbb=0,last=0;hands.forEach(h=>{net+=h.net;nbb+=h.net/h.bb;last=Math.max(last,h.ts)});
@@ -13419,7 +13536,7 @@ function varEstimate(src){
     return{ok:true,unit:"hr",wr:mu,sd:Math.sqrt(v),bank:Math.max(0,Math.round(getViewedBankrollValue()/100)),horizon:500,note:ss.length+" live sessions · "+Math.round(H)+"h"};
   }
   if(src==="gg"){
-    const hs=typeof getGGHands==="function"?getGGHands():[];
+    const hs=typeof ggSavedHands==="function"?ggSavedHands():[];
     if(hs.length<500)return{ok:false,msg:"Import at least 500 GG hands to use your own numbers"+(hs.length?" (you have "+hs.length+")":"")+".",unit:"100",wr:5,sd:90,bank:3000,horizon:50000};
     const a=ggAgg(hs);return{ok:true,unit:"100",wr:a.bb100,sd:a.sdev100||90,bank:3000,horizon:50000,note:hs.length.toLocaleString()+" GG hands"};
   }
@@ -13697,7 +13814,7 @@ async function renderHome(){
   let wk="";try{wk=wkCardHtml()}catch(e){}
   g.innerHTML=wk+cards+'<div class="hm-card hm-gg" id="hmGG" style="display:none"></div>';
   /* GG (loads from the database, so it fills in a moment later) */
-  try{await GGDB.all();const hs=getGGHands(),el=$("hmGG");if(!el)return;el.style.display="";
+  try{await GGDB.all();const hs=ggSavedHands(),el=$("hmGG");if(!el)return;el.style.display="";
     if(!hs.length){el.outerHTML='<button class="hm-card hm-empty" onclick="go(\'gg\')"><div class="hm-ch"><span>📈 GG Results</span><em>Import →</em></div><div class="hm-foot">Import GGPoker hand histories for graphs, stats and leak finding.</div></button>';return}
     let net=0,nbb=0,last=0;hs.forEach(x=>{net+=x.net;nbb+=x.net/x.bb;last=Math.max(last,x.ts)});const bb100=nbb/hs.length*100,days=Math.floor((Date.now()-last)/864e5);
     el.outerHTML='<button class="hm-card hm-gg" onclick="go(\'gg\')"><div class="hm-ch"><span>📈 GG online</span><em>'+(days===0?"played today":days===1?"yesterday":days+" days ago")+"</em></div>"
@@ -13936,12 +14053,12 @@ function renderBrInsights(){
   destroyBrChart("dist");
   const buckets={};results.forEach(r=>{const b=Math.round(r/Math.max(1,Math.round(stdev/4||10)))*Math.max(1,Math.round(stdev/4||10));buckets[b]=(buckets[b]||0)+1});
   const bKeys=Object.keys(buckets).map(Number).sort((a,b)=>a-b);
-  if(bKeys.length&&typeof Chart!=="undefined"){brCharts.dist=new Chart($("chDist").getContext("2d"),{type:"bar",data:{labels:bKeys.map(k=>brSym()+k),datasets:[{data:bKeys.map(k=>buckets[k]),backgroundColor:bKeys.map(k=>k>=0?CT.green_a:CT.red_a),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,callbacks:{label:c=>c.raw+" session"+(c.raw!==1?"s":"")}}},scales:{x:{ticks:{color:CT.tick,font:{size:9},maxRotation:0},grid:{display:false}},y:{ticks:{color:CT.tick,stepSize:1},grid:{color:CT.grid}}}}})}
+  if(bKeys.length&&typeof Chart!=="undefined"){brCharts.dist=new Chart($("chDist").getContext("2d"),{type:"bar",data:{labels:bKeys.map(k=>brTick(k)),datasets:[{data:bKeys.map(k=>buckets[k]),backgroundColor:bKeys.map(k=>k>=0?CT.green_a:CT.red_a),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,callbacks:{label:c=>c.raw+" session"+(c.raw!==1?"s":"")}}},scales:{x:{ticks:{color:CT.tick,font:{size:9},maxRotation:0},grid:{display:false}},y:{ticks:{color:CT.tick,stepSize:1},grid:{color:CT.grid}}}}})}
 
   destroyBrChart("rolling");
   const roll=[];let cum2=0;const window_=10;
   sorted.forEach((s,i)=>{const start=Math.max(0,i-window_+1);const slice=sorted.slice(start,i+1);const avg=slice.reduce((a,x)=>a+x.resultCents,0)/slice.length/100;roll.push(avg)});
-  if(roll.length&&typeof Chart!=="undefined"){brCharts.rolling=new Chart($("chRolling").getContext("2d"),{type:"line",data:{labels:roll.map((_,i)=>i+1),datasets:[{data:roll,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.4,pointRadius:0,borderWidth:2.5},...trendDataset("rolling",roll,CT)]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toFixed(2)+" avg"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick},grid:{color:CT.grid}}}}})}
+  if(roll.length&&typeof Chart!=="undefined"){brCharts.rolling=new Chart($("chRolling").getContext("2d"),{type:"line",data:{labels:roll.map((_,i)=>i+1),datasets:[{data:roll,borderColor:CT.li,backgroundColor:brAreaGrad(CT.li),fill:true,tension:.4,pointRadius:0,borderWidth:2.5},...trendDataset("rolling",roll,CT)]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,filter:c=>c.dataset.label!=="Trend",callbacks:{label:c=>brSym()+c.raw.toFixed(2)+" avg"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:8,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick,callback:v=>brTick(v)},grid:{color:CT.grid}}}}})}
 }
 
 // ═══ NOTES ═══
@@ -15861,7 +15978,7 @@ function chalCompute(b,ch){const steps=ch.steps,ev=chalEvents(b,ch),ms=chalMiles
     bestS:sess.reduce((m,e)=>!m||e.v>m.v?e:m,null),worstS:sess.reduce((m,e)=>!m||e.v<m.v?e:m,null),
     bestD:dayKeys.reduce((m,k)=>!m||days[k]>days[m]?k:m,null),worstD:dayKeys.reduce((m,k)=>!m||days[k]<days[m]?k:m,null),
     winDays:dayKeys.filter(k=>days[k]>0).length}}
-function chalGG(ch,C){const hs=(typeof getGGHands==="function"?getGGHands():[])||[];const t0=chalStartTs(ch);const list=hs.filter(h=>{try{return ggToInstant(h.ts)>=t0}catch(e){return h.ts>=t0}});
+function chalGG(ch,C){const hs=(typeof ggSavedHands==="function"?ggSavedHands():[])||[];const t0=chalStartTs(ch);const list=hs.filter(h=>{try{return ggToInstant(h.ts)>=t0}catch(e){return h.ts>=t0}});
   let net=0,nbb=0,s2=0;const per={},daysH={};list.forEach(h=>{const x=h.net/h.bb;net+=h.net;nbb+=x;s2+=x*x;const p=per[h.bb]||(per[h.bb]={bb:h.bb,n:0,net:0,nbb:0,s2:0});p.n++;p.net+=h.net;p.nbb+=x;p.s2+=x*x;const dk=hxGGDate(h.ts).slice(0,10);daysH[dk]=(daysH[dk]||0)+1});
   const n=list.length,mean=n?nbb/n:0,sd=n>1?Math.sqrt(Math.max(0,s2/n-mean*mean)):0,ad=Object.keys(daysH).length;
   return{n,net,bb100:mean*100,sd100:sd*10,per,activeDays:ad,hpd:ad?n/ad:0,daysH}}
