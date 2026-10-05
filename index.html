@@ -5410,10 +5410,154 @@ html body :is(#bankrollV .br-stat,.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stat
 html body :is(#bankrollV .br-stat,.br-stat,.shm,.gg-bs-tile,.hm-kv>div,.shp-stats>div,.tl2-kv>div,.wk-kv>div,.trr-kpi,.shift-stats-grid>div,.hm-chips>.b3-chip)::after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc,var(--pk));opacity:.85;border-radius:3px 0 0 3px;pointer-events:none}
 html body :is(.brs-label,.shm>span,.gg-bs-l,.hm-kv>div>span,.shp-stats span,.tl2-kv span,.wk-kv span){color:color-mix(in srgb,var(--acc,var(--pk)) 70%,var(--t2))!important}
 html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(in srgb,var(--acc,var(--pk)) 35%,var(--t1))}
+
+.hx-mdl{max-width:460px}
+.hx-src{display:flex;margin:6px 0 12px}.hx-src button{flex:1}
+.hx-lbl{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin:6px 0}
+.hx-chips{display:flex;flex-wrap:wrap;gap:6px}
+.hx-dates{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.hx-dates label{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--t3)}.hx-dates input{margin:0!important}
+.hx-sum{margin-top:14px;padding:12px;border-radius:12px;background:var(--ds-sunk,var(--b2));border:1px solid var(--bd);font-size:12.5px;color:var(--t2)}
+.hx-sum b{font-size:20px;color:var(--pk);font-family:var(--fm)}
+.hx-quick{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px}.hx-quick span{font-size:11px;color:var(--t4);font-weight:700}
+.hx-dates input{font-size:14px;min-height:42px;width:100%;min-width:0;box-sizing:border-box}.hx-dates label{min-width:0}@media(max-width:560px){.hx-dates{grid-template-columns:1fr}.hx-dates label{flex-direction:row;align-items:center;gap:10px}.hx-dates label span{width:38px;flex:none}}.hx-quick .gg-chip{padding:6px 11px}
+.hx-warn{margin-top:6px;font-size:11.5px;color:var(--gd)}
+.hx-last{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:10px 12px;border-radius:12px;border:1px solid var(--bd);background:var(--ds-sunk,var(--b2))}.hx-last.on{border-color:color-mix(in srgb,var(--pk) 55%,transparent);background:color-mix(in srgb,var(--pk) 9%,var(--ds-sunk,var(--b2)))}.hx-last>div{display:flex;flex-direction:column;gap:2px;min-width:0}.hx-last-k{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--t4)}.hx-last b{font-size:13.5px;color:var(--t1)}.hx-last-s{font-size:11px;color:var(--t3)}.hx-last.none{display:block;font-size:11.5px;color:var(--t3);line-height:1.45}
+.hx-tz{margin-top:12px;border-radius:12px;border:1px solid var(--bd);background:var(--ds-sunk,var(--b2));overflow:hidden}.hx-tz summary{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:10px 12px;cursor:pointer;list-style:none;font-size:12.5px}.hx-tz summary::-webkit-details-marker{display:none}.hx-tz summary::after{content:"▾";order:4;margin-left:4px;color:var(--t4);transition:transform .2s}.hx-tz[open] summary::after{transform:rotate(180deg)}.hx-tz-ic{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;flex:none}.hx-tz.ok .hx-tz-ic{background:color-mix(in srgb,var(--gd) 22%,transparent);color:var(--gd)}.hx-tz.warn{border-color:color-mix(in srgb,#f5a524 55%,transparent)}.hx-tz.warn .hx-tz-ic{background:color-mix(in srgb,#f5a524 22%,transparent);color:#f5a524}.hx-tz-t{font-weight:800;color:var(--t1);white-space:nowrap}.hx-tz-m{margin-left:auto;order:3;font-size:11px;color:var(--t3);font-variant-numeric:tabular-nums;white-space:nowrap}.hx-tz-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 12px}.hx-tz-g>div{display:flex;flex-direction:column;gap:2px;padding:9px 10px;border-radius:10px;background:var(--b1);border:1px solid var(--bd);min-width:0}.hx-tz-g span{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--t4)}.hx-tz-g b{font-size:13px;color:var(--t1);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hx-tz-g i{font-style:normal;font-size:11px;color:var(--t3);font-variant-numeric:tabular-nums}.hx-tz-sel{display:flex;flex-direction:column;gap:4px;padding:10px 12px 0;font-size:11px;color:var(--t3)}.hx-tz-sel select{margin:0!important;min-height:40px;font-size:14px}.hx-tz-chk{margin:10px 12px 0;padding:9px 10px;border-radius:10px;font-size:11.5px;line-height:1.45;color:var(--t2);background:color-mix(in srgb,var(--pk) 7%,transparent)}.hx-tz-chk b{color:var(--t1)}.hx-tz .hx-note{padding:0 12px 12px}
+.hx-note{margin-top:10px;font-size:11.5px;color:var(--t3);line-height:1.45}
+.gg-exp{white-space:nowrap}
+</style>
+<style>
+/* ═══ Bankroll challenge ═══ */
+#brChal{--chg:color-mix(in srgb,var(--pk) 14%,var(--b1))}
+.chx-hero{position:relative;overflow:hidden;border-radius:20px;padding:16px 16px 14px;margin-bottom:12px;border:1px solid color-mix(in srgb,var(--pk) 35%,var(--bd));
+  background:radial-gradient(120% 90% at 100% 0%,color-mix(in srgb,var(--li) 22%,transparent),transparent 60%),radial-gradient(90% 80% at 0% 100%,color-mix(in srgb,var(--pk) 26%,transparent),transparent 60%),var(--b1)}
+.chx-hero.done{border-color:color-mix(in srgb,var(--gd) 60%,transparent)}
+.chx-hero-top{display:flex;align-items:center;gap:8px}
+.chx-tag{font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--pk2,var(--pk))}
+.chx-day{margin-left:auto;font-size:11px;font-weight:800;padding:3px 9px;border-radius:99px;background:color-mix(in srgb,var(--t1) 8%,transparent);color:var(--t2);font-variant-numeric:tabular-nums}
+.chx-ic{width:30px;height:30px;border-radius:50%;border:1px solid var(--bd2);background:var(--b2);color:var(--t2);font-size:14px;display:grid;place-items:center;cursor:pointer}
+.chx-route{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:var(--t3)}.chx-route b{color:var(--t2);font-weight:800}.chx-route i{flex:0 0 34px;height:1.5px;background:linear-gradient(90deg,var(--t4),var(--pk));position:relative}.chx-route i::after{content:"";position:absolute;right:-1px;top:-3px;border:4px solid transparent;border-left:6px solid var(--pk);border-right:0}
+.chx-bal{font-family:var(--fd);font-size:44px;line-height:1.05;font-weight:800;font-style:italic;letter-spacing:-.01em;margin:4px 0 2px;background:linear-gradient(135deg,var(--t1),var(--pk2,var(--pk)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-variant-numeric:tabular-nums}
+.chx-sub{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;color:var(--t3);font-weight:700}
+.chx-sub .pos,.chx-tiles .pos,.chx-card .pos{color:var(--mt)}.chx-sub .neg,.chx-tiles .neg,.chx-card .neg{color:var(--rs)}.chx-card .warn{color:#f5a524}
+.chx-mult{padding:2px 8px;border-radius:8px;font-weight:900;font-size:13px}.chx-mult.pos{background:color-mix(in srgb,var(--mt) 16%,transparent)}.chx-mult.neg{background:color-mix(in srgb,var(--rs) 16%,transparent)}
+.chx-bar{position:relative;height:12px;border-radius:99px;background:color-mix(in srgb,var(--t1) 7%,var(--b2));margin:30px 6px 8px;box-shadow:inset 0 1px 2px rgba(0,0,0,.35)}
+.chx-bar.sm{height:7px;margin:8px 0 6px}
+.chx-fill{position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:99px;background:linear-gradient(90deg,var(--li),var(--pk),var(--gd));box-shadow:0 0 14px color-mix(in srgb,var(--pk) 55%,transparent);animation:chxGrow 1.1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes chxGrow{from{width:0}}
+.chx-tick{position:absolute;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:var(--b3);border:1.5px solid var(--t4);z-index:1}
+.chx-bar.sm .chx-tick{width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-width:1px}
+.chx-tick.on{background:var(--gd);border-color:#fff8}.chx-tick.nx{border-color:var(--pk);box-shadow:0 0 0 3px color-mix(in srgb,var(--pk) 30%,transparent);animation:chxPulse 1.8s ease-in-out infinite}
+@keyframes chxPulse{50%{box-shadow:0 0 0 6px color-mix(in srgb,var(--pk) 8%,transparent)}}
+.chx-tick em{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);font-style:normal;font-size:9px;font-weight:800;color:var(--t4);white-space:nowrap}
+.chx-tick:nth-child(odd) em{bottom:auto;top:13px}
+.chx-tick.on em{color:var(--gd)}.chx-tick.nx em{color:var(--pk)}
+.chx-hero-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;margin-top:22px;font-size:12px;color:var(--t3)}.chx-hero-foot b{color:var(--t1)}.chx-lin{color:var(--t4)}
+.chx-card{background:var(--b1);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.chx-h{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.chx-h h3{margin:0;font-size:15px;font-weight:800;color:var(--t1)}.chx-hs{margin-left:auto;font-size:11px;color:var(--t4)}
+.chx-seg{margin-left:auto}.chx-seg button{padding:5px 12px;font-size:11.5px}
+.chx-k{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--t4)}
+.chx-stake{border-color:color-mix(in srgb,var(--sc) 40%,var(--bd));background:linear-gradient(160deg,color-mix(in srgb,var(--sc) 10%,var(--b1)),var(--b1) 55%)}
+.chx-st-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.chx-st-name{font-size:30px;font-weight:900;color:var(--sc);line-height:1.1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.chx-st-meta{font-size:11.5px;color:var(--t3)}
+.chx-bi{text-align:center;padding:8px 12px;border-radius:14px;background:color-mix(in srgb,var(--sc) 14%,var(--b2));border:1px solid color-mix(in srgb,var(--sc) 35%,transparent)}.chx-bi b{display:block;font-size:22px;font-weight:900;color:var(--t1);font-variant-numeric:tabular-nums}.chx-bi span{font-size:10px;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:.06em}
+.chx-gauge{margin:14px 0 4px}.chx-gauge-tr{position:relative;height:10px;border-radius:99px;background:linear-gradient(90deg,color-mix(in srgb,var(--rs) 45%,var(--b2)),var(--b2) 30%,var(--b2) 70%,color-mix(in srgb,var(--mt) 45%,var(--b2)))}
+.chx-gauge-f{position:absolute;inset:0 auto 0 0;width:var(--w);border-radius:99px;background:color-mix(in srgb,var(--sc) 55%,transparent);animation:chxGrow 1s cubic-bezier(.2,.8,.2,1) both}
+.chx-gauge-dot{position:absolute;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--sc);border:3px solid var(--b1);box-shadow:0 0 0 1px var(--sc),0 2px 8px rgba(0,0,0,.4)}
+.chx-gauge-l{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;font-weight:700;color:var(--t3);font-variant-numeric:tabular-nums}
+.chx-st-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.chx-st-grid>div{display:flex;flex-direction:column;gap:2px;padding:10px;border-radius:12px;background:var(--b2);border:1px solid var(--bd);min-width:0}
+.chx-st-grid span{font-size:10.5px;font-weight:700;color:var(--t3)}.chx-st-grid b{font-size:15px;font-weight:900;color:var(--t1);font-variant-numeric:tabular-nums}.chx-st-grid i{font-style:normal;font-size:10.5px;color:var(--t4);line-height:1.35}
+.chx-st-grid .up{border-color:color-mix(in srgb,var(--mt) 30%,var(--bd))}.chx-st-grid .up b{color:var(--mt)}
+.chx-st-grid .down{border-color:color-mix(in srgb,var(--rs) 25%,var(--bd))}
+.chx-moves{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chx-moves span{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:99px}.chx-moves .up{background:color-mix(in srgb,var(--mt) 14%,transparent);color:var(--mt)}.chx-moves .down{background:color-mix(in srgb,var(--rs) 14%,transparent);color:var(--rs)}
+.chx-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+@media(min-width:700px){.chx-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.chx-tile{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:2px;padding:11px 12px 11px 14px;border-radius:14px;background:var(--b1);border:1px solid var(--bd);min-width:0}
+.chx-tile::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--acc)}
+.chx-tile::after{content:"";position:absolute;right:-30px;top:-30px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 22%,transparent),transparent 70%);pointer-events:none}
+.chx-ti{position:absolute;right:10px;top:9px;font-size:15px;opacity:.85}
+.chx-tl{font-size:10.5px;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;padding-right:22px}
+.chx-tile b{font-size:19px;font-weight:900;color:var(--t1);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chx-tile b small{font-size:11px;font-weight:700;color:var(--t3)}
+.chx-tile i{font-style:normal;font-size:10.5px;color:var(--t4);line-height:1.35}
+.chx-legend{display:flex;flex-wrap:wrap;gap:4px 10px;margin:-2px 0 8px;font-size:10.5px;color:var(--t3);font-weight:700}.chx-legend span{display:inline-flex;align-items:center;gap:5px}.chx-legend span::before{content:"";width:10px;height:3px;border-radius:2px;background:var(--sc)}.chx-legend .ms::before{display:none}
+.chx-chart{position:relative;height:250px}.chx-chart.sm{height:170px}
+.chx-chart-empty{position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:var(--t4)}
+.chx-ms{display:flex;flex-direction:column;position:relative}
+.chx-m{position:relative;display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:10px;padding:8px 0}
+.chx-m:not(:last-child)::after{content:"";position:absolute;left:14px;top:34px;bottom:-8px;width:2px;background:var(--bd2)}
+.chx-m.on:not(:last-child)::after{background:linear-gradient(var(--gd),color-mix(in srgb,var(--gd) 40%,var(--bd2)))}
+.chx-m-dot{position:relative;z-index:1;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900;background:var(--b2);border:1.5px solid var(--bd2);color:var(--t3)}
+.chx-m.on .chx-m-dot{background:var(--gd);border-color:var(--gd);color:#1a1405}
+.chx-m.nx .chx-m-dot{border-color:var(--pk);color:var(--pk);box-shadow:0 0 0 4px color-mix(in srgb,var(--pk) 18%,transparent)}
+.chx-m-v b{display:block;font-size:15px;font-weight:900;color:var(--t1)}.chx-m-v i,.chx-m-r i{font-style:normal;font-size:10.5px;color:var(--t4)}
+.chx-m:not(.on) .chx-m-v b{color:var(--t2)}
+.chx-m-r{text-align:right}.chx-m-r b{display:block;font-size:12.5px;font-weight:800;color:var(--t2)}.chx-m.on .chx-m-r b{color:var(--gd)}
+.chx-sl{display:grid;gap:12px}.chx-sl label{display:flex;flex-direction:column;gap:4px}.chx-sl span{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--t2)}.chx-sl span b{color:var(--pk);font-variant-numeric:tabular-nums}.chx-sl i{font-style:normal;font-size:10.5px;color:var(--t4)}
+.chx-sl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:26px;padding:0!important;margin:2px 0!important;border:0!important;background:transparent!important;box-shadow:none!important;min-height:0!important}.chx-sl input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--pk) var(--p,50%),var(--b3) var(--p,50%))}.chx-sl input[type=range]::-moz-range-track{height:6px;border-radius:99px;background:var(--b3)}.chx-sl input[type=range]::-moz-range-progress{height:6px;border-radius:99px;background:var(--pk)}.chx-sl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-8px;border-radius:50%;background:#fff;border:4px solid var(--pk);box-shadow:0 2px 8px rgba(0,0,0,.4)}.chx-sl input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--pk)}
+#bankrollV #brNav button{flex:1 1 auto!important;min-width:0;padding:9px 3px!important;font-size:12px!important;letter-spacing:-.01em}@media(max-width:430px){#bankrollV #brNav button{font-size:11px!important;padding:9px 2px!important}}
+.chx-reset{justify-self:start}
+.chx-proj-out{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.chx-po{display:flex;flex-direction:column;gap:2px;padding:12px;border-radius:12px;background:color-mix(in srgb,var(--pk) 9%,var(--b2));border:1px solid color-mix(in srgb,var(--pk) 25%,var(--bd))}
+.chx-po span{font-size:10.5px;font-weight:800;color:var(--t3);text-transform:uppercase;letter-spacing:.05em}.chx-po b{font-size:18px;font-weight:900;color:var(--t1);font-variant-numeric:tabular-nums}.chx-po i{font-style:normal;font-size:11px;color:var(--t3)}
+.chx-po.big{grid-column:1/-1;align-items:center;text-align:center}.chx-po.big span{font-size:24px;text-transform:none}.chx-po.warn{background:color-mix(in srgb,#f5a524 10%,var(--b2));border-color:color-mix(in srgb,#f5a524 35%,transparent)}
+.chx-legs{display:flex;gap:2px;margin-top:10px;border-radius:8px;overflow:hidden}
+.chx-legs>div{flex:0 0 var(--w);min-width:0;display:flex;flex-direction:column;gap:2px}.chx-legs i{height:8px;background:var(--sc)}.chx-legs span,.chx-legs b{font-size:9px;font-weight:800;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:clip;padding-left:1px}.chx-legs b{color:var(--t4);font-weight:700}
+.chx-mc{margin-top:14px;padding-top:12px;border-top:1px dashed var(--bd2)}
+.chx-mc-load{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t3)}
+.chx-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--bd2);border-top-color:var(--pk);animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.chx-mc-h b{display:block;font-size:13px;font-weight:800;color:var(--t1)}.chx-mc-h i{font-style:normal;font-size:10.5px;color:var(--t4)}
+.chx-mc-bar{display:flex;height:12px;border-radius:99px;overflow:hidden;margin:10px 0 8px;background:var(--b2)}.chx-mc-bar span{width:var(--w);animation:chxGrow 1s ease both}.chx-mc-bar .ok{background:var(--mt)}.chx-mc-bar .op{background:var(--li)}.chx-mc-bar .bu{background:var(--rs)}
+.chx-mc-k{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;color:var(--t3)}.chx-mc-k span{display:inline-flex;align-items:center;gap:5px}.chx-mc-k span::before{content:"";width:8px;height:8px;border-radius:50%}.chx-mc-k .ok::before{background:var(--mt)}.chx-mc-k .op::before{background:var(--li)}.chx-mc-k .bu::before{background:var(--rs)}.chx-mc-k b{color:var(--t1)}
+.chx-mc-q{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}.chx-mc-q>div{display:flex;flex-direction:column;gap:1px;padding:9px 8px;border-radius:10px;background:var(--b2);text-align:center;min-width:0}.chx-mc-q .mid{background:color-mix(in srgb,var(--mt) 12%,var(--b2));outline:1px solid color-mix(in srgb,var(--mt) 30%,transparent)}
+.chx-mc-q span{font-size:9.5px;font-weight:800;color:var(--t4);text-transform:uppercase;letter-spacing:.04em}.chx-mc-q b{font-size:13.5px;font-weight:900;color:var(--t1)}.chx-mc-q i{font-style:normal;font-size:10px;color:var(--t3)}
+.chx-lad{display:flex;flex-direction:column-reverse;gap:6px}
+.chx-lr{display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;background:var(--b2);border:1px solid var(--bd);opacity:.6}
+.chx-lr.done{opacity:1}.chx-lr.cur{opacity:1;border-color:var(--sc);background:color-mix(in srgb,var(--sc) 12%,var(--b2));box-shadow:0 0 0 3px color-mix(in srgb,var(--sc) 14%,transparent)}
+.chx-lr-dot{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:11px;background:color-mix(in srgb,var(--sc) 20%,var(--b3));color:var(--sc);font-weight:900}
+.chx-lr-n b{display:block;font-size:14px;font-weight:900;color:var(--sc);font-variant-numeric:tabular-nums}.chx-lr-n i,.chx-lr-s i{font-style:normal;font-size:10.5px;color:var(--t4)}
+.chx-lr-s{text-align:right}.chx-lr-s b{display:block;font-size:13px;font-weight:800}
+.chx-note{margin-top:8px;font-size:11px;color:var(--t4);line-height:1.45}
+.chx-wk{margin-top:12px;display:flex;flex-direction:column;gap:2px;font-size:12px}
+.chx-wk-h,.chx-wk-r{display:grid;grid-template-columns:1.1fr 1.6fr .8fr;gap:8px;align-items:center;padding:6px 2px}
+.chx-wk-h{font-size:10px;font-weight:800;color:var(--t4);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--bd)}
+.chx-wk-r span:first-child{color:var(--t2);font-weight:700}.chx-wk-r span i{font-style:normal;display:block;font-size:10px;color:var(--t4);font-weight:600}
+.chx-wk-r span:nth-child(2){position:relative;font-weight:800;font-variant-numeric:tabular-nums;padding:3px 6px;z-index:0}
+.chx-wk-r em{position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:6px;z-index:-1;opacity:.18}.chx-wk-r em.pos{background:var(--mt)}.chx-wk-r em.neg{background:var(--rs)}
+.chx-wk-r b{text-align:right;font-weight:900;font-variant-numeric:tabular-nums}
+.chx-rec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.chx-rec>div{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto auto;column-gap:8px;padding:10px;border-radius:12px;background:var(--b2);border:1px solid var(--bd);min-width:0}
+.chx-rec span{grid-row:1/4;font-size:18px}.chx-rec i{font-style:normal;font-size:10.5px;font-weight:700;color:var(--t3)}.chx-rec b{font-size:15px;font-weight:900;color:var(--t1);font-variant-numeric:tabular-nums}.chx-rec em{font-style:normal;font-size:10.5px;color:var(--t4)}
+.chx-acts{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 8px}.chx-acts .btn{flex:1 1 140px}
+.chx-foot{font-size:10.5px;color:var(--t4);text-align:center;margin:6px 0 14px;line-height:1.5}
+.chx-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:30px 18px;border-radius:20px;border:1px dashed var(--bd2);background:radial-gradient(80% 60% at 50% 0%,color-mix(in srgb,var(--pk) 14%,transparent),transparent 70%),var(--b1)}
+.chx-empty-ic{font-size:44px;filter:drop-shadow(0 6px 18px color-mix(in srgb,var(--pk) 50%,transparent));animation:chxFloat 3s ease-in-out infinite}@keyframes chxFloat{50%{transform:translateY(-6px)}}
+.chx-empty b{font-size:17px;color:var(--t1)}.chx-empty>span{font-size:12.5px;color:var(--t3);max-width:420px;line-height:1.5}
+.chx-empty-pts{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.chx-empty-pts span{font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;background:var(--b2);border:1px solid var(--bd);color:var(--t2)}
+.chx-strip{display:block;width:100%;text-align:left;padding:12px 14px;margin:0 0 10px;border-radius:16px;border:1px solid color-mix(in srgb,var(--pk) 35%,var(--bd));background:linear-gradient(120deg,color-mix(in srgb,var(--pk) 12%,var(--b1)),var(--b1) 70%);color:var(--t1);cursor:pointer;font:inherit}
+.chx-strip-t{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:800}.chx-strip-t b{font-size:15px;color:var(--pk);font-variant-numeric:tabular-nums}
+.chx-strip-f{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--t3)}.chx-strip-f b{color:var(--t1)}
+/* setup */
+.chal-mdl{max-width:500px}
+.chs-row{margin-top:12px}.chs-row .hx-lbl{margin-bottom:6px}
+.chs-num{width:96px!important;margin:0!important;min-height:34px;padding:6px 10px!important;font-size:13px}
+.chs-seg{display:flex}.chs-seg button{flex:1;font-size:12px;padding:8px 4px;min-width:0}
+.chs-styles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.chs-style{display:grid;grid-template-columns:auto 1fr;column-gap:8px;text-align:left;padding:10px;border-radius:12px;border:1.5px solid var(--bd);background:var(--b2);color:var(--t2);cursor:pointer;font:inherit}
+.chs-style span{grid-row:1/4;font-size:18px}.chs-style b{font-size:13px;color:var(--t1)}.chs-style i{font-style:normal;font-size:11px;font-weight:700;color:var(--pk)}.chs-style em{font-style:normal;font-size:10.5px;color:var(--t4)}
+.chs-style.on{border-color:var(--pk);background:color-mix(in srgb,var(--pk) 12%,var(--b2))}
+.chs-cust{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;font-size:12px;color:var(--t2)}.chs-cust input{width:70px!important;display:inline-block;margin:0 4px!important;padding:6px 8px!important}
+.chs-prev{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:12px}.chs-prev>div{display:flex;flex-direction:column;gap:1px;padding:10px 8px;border-radius:12px;background:color-mix(in srgb,var(--pk) 8%,var(--b2));border:1px solid color-mix(in srgb,var(--pk) 22%,var(--bd));min-width:0}
+.chs-prev span{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--t4)}.chs-prev b{font-size:16px;font-weight:900;color:var(--t1)}.chs-prev i{font-style:normal;font-size:10px;color:var(--t3);line-height:1.35}
+.chs-where{display:flex;flex-direction:column;gap:6px}.chs-where button{display:flex;flex-direction:column;gap:2px;text-align:left;padding:10px 12px;border-radius:12px;border:1.5px solid var(--bd);background:var(--b2);color:var(--t1);cursor:pointer;font:inherit}.chs-where button b{font-size:13px}.chs-where button i{font-style:normal;font-size:11px;color:var(--t3)}.chs-where button.on{border-color:var(--pk);background:color-mix(in srgb,var(--pk) 12%,var(--b2))}
+.chs-check{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;color:var(--t2)}.chs-check input{width:18px;height:18px;accent-color:var(--pk)}
+@media(max-width:420px){.chx-bal{font-size:38px}.chx-st-name{font-size:26px}.chx-mc-q b{font-size:12px}}
+@media (prefers-reduced-motion:reduce){.chx-fill,.chx-gauge-f,.chx-mc-bar span,.chx-empty-ic,.chx-tick.nx{animation:none}}
 </style>
 </head>
 <body>
-<header class="hdr" data-build="v77">
+<header class="hdr" data-build="v79">
   <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleHamburgerMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -5598,11 +5742,13 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
     <button data-bp="brSess">Log</button>
     <button data-bp="brHistory">History</button>
     <button data-bp="brStats">Stats</button>
+    <button data-bp="brChal">Challenge</button>
     <button data-bp="brGoals">Goals</button>
   </nav>
   <div class="br-sub on" id="brDash">
     
     <div id="brHero"></div>
+    <div id="brChalStrip"></div>
     <div class="br-actions">
       <button class="br-act log" onclick="switchBrTab('brSess');document.querySelector('.main').scrollTop=0"><b>＋</b>Log session</button>
       <button class="br-act dep" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit';depSetPromoMode(false)"><b>↓</b>Deposit</button>
@@ -5710,6 +5856,7 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
       <div class="br-chart-box"><h3><span class="cdot" style="background:var(--li)"></span>Rolling 10-Session Average</h3><div class="br-chart-h" style="height:200px"><canvas id="chRolling"></canvas></div></div>
     </div>
   </div>
+  <div class="br-sub" id="brChal"></div>
   <div class="br-sub" id="brGoals">
     <div class="goal-head"><div class="goal-summary" id="brGoalSummary"></div><button class="btn pri" onclick="openGoalForm()">+ New goal</button></div>
     <div class="gg-quick" id="brGoalChips"></div>
@@ -5903,6 +6050,7 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
           <option value="position">Sort: Position</option>
         </select>
         <button class="btn btn-s" id="hhDirBtn" onclick="toggleHhDir()">⬇ Newest</button>
+        <button class="btn btn-s" onclick="openHandExport('live')" title="Export logged hands from a time frame in GGPoker text format">⬇ GG export</button>
       </div>
     </div>
     <div class="br-hist-hdr"><h3>📝 Logged Hands</h3><span class="br-hist-count" id="hhCount"></span></div>
@@ -6137,6 +6285,7 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
   <input type="file" id="ggFileInput" accept=".txt,text/plain" multiple style="display:none" onchange="ggImportFiles(this.files)"/>
   <div class="gg-toolbar">
     <button class="btn pri gg-imp" onclick="$('ggFileInput').click()" title="Import GGPoker .txt hand histories — re-importing is safe, duplicates are skipped">📂 Import</button>
+    <button class="btn gg-exp" onclick="openHandExport('gg')" title="Export hands from a time frame as GGPoker .txt">⬇ Export</button>
     <select id="ggStakeFilter" class="sel-sm" onchange="renderGG()"></select>
     <div class="br-toggle gg-unit-tog" id="ggUnitTog">
       <button class="on" data-u="money" onclick="ggSetUnit('money')">$</button>
@@ -6274,7 +6423,7 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v77</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v82</div>
   </div>
 </div>
 </div>
@@ -6340,6 +6489,8 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
   <div class="mact"><button class="btn btn-d" id="depDelBtn" style="display:none;margin-right:auto" onclick="deleteDep()">🗑 Remove</button><button class="btn" onclick="closeM('depM')">Cancel</button><button class="btn pri" id="depOkBtn" onclick="submitDep()">Confirm</button></div>
 </div></div>
 <div class="mov" id="resetM"><div class="mdl" style="max-width:380px"><h3 style="color:var(--rs)">Factory reset</h3><p class="setting-desc" style="margin:6px 0 12px">This erases <b>everything</b> on this device — ranges, sessions, shifts, GG hands, notes and settings. It can't be undone.</p><button class="btn" style="width:100%;margin-bottom:12px" onclick="dlJSON()">💾 Download a backup first</button><label class="slbl" for="resetConfirm">Type RESET to confirm</label><input class="minp" id="resetConfirm" autocomplete="off" autocapitalize="characters" oninput="$('resetGo').disabled=this.value.trim().toUpperCase()!=='RESET'" placeholder="RESET"/><div class="mact"><button class="btn" onclick="closeM('resetM')">Cancel</button><button class="btn btn-d" id="resetGo" disabled onclick="doFactoryReset()">Erase everything</button></div></div></div>
+<div class="mov" id="chalM"><div class="mdl edq-mdl chal-mdl" id="chalBody"></div></div>
+<div class="mov" id="hxM"><div class="mdl edq-mdl hx-mdl" id="hxBody"></div></div>
 <div class="mov" id="ggDelM"><div class="mdl ggdel-mdl" id="ggDelBody"></div></div>
 <div class="mov" id="sessDetailM"><div class="mdl sess-detail-mdl" id="sessDetailContent"></div></div>
 <div class="mov" id="hhDetailM"><div class="mdl sess-detail-mdl" id="hhDetailContent"></div></div>
@@ -12497,7 +12648,7 @@ let _brEditBid=null;
 function saveBrSess(){const date=$("brDate").value;if(!date)return brFieldErr("brDate","Enter the date");if($("brBuyin").value.trim()===""||!(parseFloat($("brBuyin").value)>=0))return brFieldErr("brBuyin","Enter your buy-in");if($("brCashout").value.trim()===""||!(parseFloat($("brCashout").value)>=0))return brFieldErr("brCashout",brIsTour(brFmt_)?"Enter what you cashed for (0 if you busted)":"Enter your cash out (0 if you lost it all)");if(brTimeMode_!=="day"&&$("brStart").value&&$("brEnd").value&&$("brStart").value===$("brEnd").value)return brFieldErr("brEnd","Start and end times are the same");const buyin=parseFloat($("brBuyin").value)||0;const cashout=parseFloat($("brCashout").value)||0;const result=cashout-buyin;const dayMode=brTimeMode_==="day";const start=dayMode?"":$("brStart").value,end=dayMode?"":$("brEnd").value;const hrsIn=parseFloat($("brHours").value);const duration=dayMode?(hrsIn>0?Math.round(Math.min(hrsIn,48)*60):0):brParseDur(start,end);const isMultiDay=brFmt_!=="cash"&&$("brMultiDay").checked;const s={id:$("brEditId").value||"bs_"+Date.now(),date,format:brFmt_,gameType:$("brGT").value,tableSize:$("brTable").value,start,end,duration,timeMode:dayMode?"day":"exact",stakes:$("brStakes").value,startStack:brFmt_!=="cash"?(parseFloat($("brStartStack").value)||null):null,multiDay:isMultiDay,dayNum:isMultiDay?(parseInt($("brDayNum").value)||null):null,location:$("brLoc").value,buyin,cashout,buyinCents:Math.round(buyin*100),cashoutCents:Math.round(cashout*100),result,resultCents:Math.round(result*100),notes:$("brNotes").value,mg:mgPick("brMG"),created:new Date().toISOString()};const tgt=(_brEditBid&&typeof getBankrollById==="function"&&getBankrollById(_brEditBid))||BR.d;const ss=[...tgt.sessions];const ei=ss.findIndex(x=>x.id===s.id);if(ei>=0){const old=ss[ei];const keep=Object.assign({},old,s);keep.created=old.created||s.created;keep.updated=new Date().toISOString();ss[ei]=keep}else ss.push(s);tgt.sessions=ss;if(tgt===BR.d)BR.save();else saveBankrollsList();_brEditBid=null;resetBrForm();renderBrAll();playSound(result>=0?"save":"wrong");haptic("light");toast("Session saved ✦")}
 function resetBrForm(){mgSet("brMG",null);_brEditBid=null;$("brEditId").value="";$("brFormTitle").textContent="How did it go?";["brDate","brStart","brEnd","brStakes","brBuyin","brCashout","brNotes","brLoc","brStartStack","brDayNum","brHours"].forEach(id=>$(id).value="");setBrTimeMode("exact");$("brDate").value=shD(new Date());$("brTable").value="9-max";$("brMultiDay").checked=false;brBuyinTouched=false;updateBrResultLive();setBrFmt("cash");renderStakePresetRow("brQuickStakes","brStakes");brAutoFillBuyin()}
 function editBrSess(id,bid){const src=(bid&&typeof getBankrollById==="function"&&getBankrollById(bid))||BR.d;_brEditBid=src===BR.d?null:bid;const s=src.sessions.find(x=>x.id===id);if(!s)return;switchBrTab("brSess");$("brEditId").value=s.id;$("brFormTitle").textContent="Tweak this session";$("brDate").value=s.date;$("brGT").value=s.gameType;$("brTable").value=s.tableSize||"9-max";$("brStart").value=s.start||"";$("brEnd").value=s.end||"";$("brHours").value=s.timeMode==="day"&&s.duration?+(s.duration/60).toFixed(2):"";setBrTimeMode(s.timeMode==="day"?"day":"exact");$("brStakes").value=s.stakes||"";$("brLoc").value=s.location||"";$("brBuyin").value=s.buyin!=null?s.buyin:"";$("brCashout").value=s.cashout!=null?s.cashout:(s.buyin!=null?"":(s.result!=null?s.result:""));$("brNotes").value=s.notes||"";mgSet("brMG",s.mg);$("brStartStack").value=s.startStack!=null?s.startStack:"";$("brMultiDay").checked=!!s.multiDay;$("brDayNum").value=s.dayNum!=null?s.dayNum:"";brBuyinTouched=true;updateBrResultLive();setBrFmt(s.format||"cash");toggleBrMultiDay();renderStakePresetRow("brQuickStakes","brStakes");setTimeout(()=>$("brFormCard").scrollIntoView({behavior:"smooth"}),80)}
-function switchBrTab(bp){const btn=$("brNav")?.querySelector('button[data-bp="'+bp+'"]');if(!btn)return;if(bp!=="brSess")LS("ps_br_tab",bp);$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");document.querySelectorAll("#bankrollV .br-sub").forEach(p=>p.classList.remove("on"));const pg=$(bp);if(pg)pg.classList.add("on");if(bp==="brHistory")renderBrSessions();if(bp==="brStats"){const sp=$("brStatsNav").querySelector("button.on")?.dataset.sp||"brAnal";if(sp==="brAnal")renderBrAnalytics();else renderBrInsights()}}
+function switchBrTab(bp){const btn=$("brNav")?.querySelector('button[data-bp="'+bp+'"]');if(!btn)return;if(bp!=="brSess")LS("ps_br_tab",bp);$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");document.querySelectorAll("#bankrollV .br-sub").forEach(p=>p.classList.remove("on"));const pg=$(bp);if(pg)pg.classList.add("on");if(bp==="brHistory")renderBrSessions();if(bp==="brChal")renderChal();if(bp==="brStats"){const sp=$("brStatsNav").querySelector("button.on")?.dataset.sp||"brAnal";if(sp==="brAnal")renderBrAnalytics();else renderBrInsights()}}
 function delBrSess(id,bid){const b=bid?getBankrollById(bid):BR.d;if(!b)return;const ix=b.sessions.findIndex(s=>s.id===id);if(ix<0)return;const old=b.sessions[ix];b.sessions=b.sessions.filter(s=>s.id!==id);saveBankrollsList();try{closeM("sessDetailM")}catch(e){}renderBrAll();haptic("warn");toastUndo("Session deleted",()=>{b.sessions.splice(ix,0,old);saveBankrollsList();renderBrAll()})}
 function setupAC(inputId,acId,getList){const inp=$(inputId),ac=$(acId);if(!inp||!ac)return;inp._acList=getList;if(inp._acBound)return;inp._acBound=true;getList=()=>inp._acList();inp.addEventListener("input",()=>{const v=inp.value.toLowerCase();if(!v){ac.classList.remove("show");return}const m=getList().filter(x=>x.toLowerCase().includes(v));if(!m.length){ac.classList.remove("show");return}ac.innerHTML=m.slice(0,6).map(x=>"<div>"+escapeHtml(x)+"</div>").join("");ac.classList.add("show");ac.querySelectorAll("div").forEach(d=>d.onclick=()=>{inp.value=d.textContent;ac.classList.remove("show")})});inp.addEventListener("blur",()=>setTimeout(()=>ac.classList.remove("show"),200))}
 let balHidden=LG("ps_balhide",false);
@@ -12751,7 +12902,7 @@ function trendDataset(key,values,CT){
 }
 function animateCount(el,targetCents){if(!el)return;const dur=650;const start=performance.now();const from=0;const to=targetCents/100;const isNeg=to<0;const sym=brSym();function step(now){const p=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-p,3);const cur=from+(to-from)*eased;el.textContent=(cur<0?"−":"")+sym+Math.abs(cur).toLocaleString(undefined,{maximumFractionDigits:0});if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 function renderHeroSpark(){if(Object.keys(getViewedCurrencyGroups()).length>1)return;const CT=getCT();const sorted=getViewedSessions();const canvas=$("chHeroSpark");if(!canvas)return;destroyBrChart("spark");if(!sorted.length||typeof Chart==="undefined")return;const deps=getViewedDepositsTotal();let cum=getViewedStartBankroll()+deps;const data=[];sorted.forEach(s=>{cum+=s.resultCents;data.push(cum/100)});const pos=data[data.length-1]>=data[0];const col=pos?CT.green_a.slice(0,7):CT.red_a.slice(0,7);brCharts.spark=new Chart(canvas.getContext("2d"),{type:"line",data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:col,backgroundColor:brAreaGrad(col),fill:true,tension:.4,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}})}
-function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();if(Object.keys(getViewedCurrencyGroups()).length<=1){brDefer(renderHeroSpark,"spark");if($("brHistory")&&$("brHistory").classList.contains("on"))renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
+function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();try{const cs=$("brChalStrip");if(cs)cs.innerHTML=chalStripHtml();if($("brChal")&&$("brChal").classList.contains("on"))renderChal()}catch(e){console.warn("chal",e)}if(Object.keys(getViewedCurrencyGroups()).length<=1){brDefer(renderHeroSpark,"spark");if($("brHistory")&&$("brHistory").classList.contains("on"))renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
 let currentCurrencyTab=null;
 function renderBrDashMixedCurrency(groups){
   const keys=Object.keys(groups);
@@ -14664,6 +14815,129 @@ function hhToggleNotesPanel(){
 }
 
 /* ── Hand History CRUD ── */
+/* ══ Export hand histories in GGPoker text format (v78) ══
+   GG Results: the original GG text of each imported hand, untouched.
+   Hand History (your logged live hands): converted to the same GGPoker/PokerStars-style text, so PokerTracker,
+   Hand2Note, GTO Wizard etc. — and this app's own GG importer — can read them. */
+const HX={src:"gg",preset:"30",from:"",to:""};
+function hxFmt(v){v=Math.round(v*100)/100;return"$"+(Number.isInteger(v)?String(v):v.toFixed(2).replace(/0$/,""))}
+function hxRange(){const n=new Date(),d=x=>shD(x);let a="",b="";const p=HX.preset;
+  if(p==="today"){a=b=d(n)}else if(p==="7"||p==="30"||p==="90"){a=d(new Date(n.getTime()-(+p-1)*864e5));b=d(n)}
+  else if(p==="month"){a=d(new Date(n.getFullYear(),n.getMonth(),1));b=d(n)}
+  else if(p==="lmonth"){a=d(new Date(n.getFullYear(),n.getMonth()-1,1));b=d(new Date(n.getFullYear(),n.getMonth(),0))}
+  else if(p==="year"){a=n.getFullYear()+"-01-01";b=d(n)}
+  else if(p==="since"){const L=hxLast();return[L?(HX.src==="gg"?hxGGDate(L.maxTs):hxLocalDT(new Date(L.maxTs))):"0000-00-00T00:00","9999-12-31T23:59"]}
+  else if(p==="custom"){const f=(HX.from||"").replace(" ","T"),t=(HX.to||"").replace(" ","T");const A=f?(f.length===10?f+"T00:00":f.slice(0,16)):"0000-00-00T00:00",B=t?(t.length===10?t+"T23:59":t.slice(0,16)):"9999-12-31T23:59";return A>B?[B,A]:[A,B]}
+  return[(a||"0000-00-00")+"T00:00",(b||"9999-12-31")+"T23:59"]}
+// GG header times are stored as written (wall clock). GGPoker prints them in the time zone of the device running the GG client.
+function ggTz(){return LG("ps_gg_tz","device")||"device"}
+function tzOffMin(zone,ms){try{const f=new Intl.DateTimeFormat("en-US",{timeZone:zone,hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"});const o={};f.formatToParts(new Date(ms)).forEach(x=>o[x.type]=x.value);return Math.round((Date.UTC(+o.year,+o.month-1,+o.day,+o.hour%24,+o.minute,+o.second)-Math.floor(ms/1000)*1000)/60000)}catch(e){return 0}}
+function ggToInstant(ts,zone){zone=zone||ggTz();const d=new Date(ts);if(zone==="device")return new Date(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),d.getUTCHours(),d.getUTCMinutes(),d.getUTCSeconds()).getTime();const g=ts-tzOffMin(zone,ts)*6e4;return ts-tzOffMin(zone,g)*6e4}
+function hxGGDate(ts){return hxLocalDT(new Date(ggToInstant(ts)))}
+function myTz(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||"Local"}catch(e){return"Local"}}
+function fmtOff(m){const s=m<0?"−":"+",a=Math.abs(m);return"UTC"+s+String(Math.floor(a/60)).padStart(2,"0")+":"+String(a%60).padStart(2,"0")}
+function tzAbbr(zone,ms){try{const p=new Intl.DateTimeFormat("en-GB",{timeZone:zone,timeZoneName:"short"}).formatToParts(new Date(ms)).find(x=>x.type==="timeZoneName");return p?p.value:""}catch(e){return""}}
+function ggTzList(){let l=[];try{l=Intl.supportedValuesOf("timeZone")}catch(e){}if(!l.length)l=["Europe/London","Europe/Dublin","Europe/Paris","Europe/Malta","America/New_York","America/Toronto","America/Los_Angeles","Asia/Manila","Asia/Shanghai","Asia/Tokyo","Australia/Sydney"];return l}
+function ggSetTz(v){LS("ps_gg_tz",v);hxRender();toast("GG time zone: "+(v==="device"?"same as this device":v.replace(/_/g," ")))}
+function hxTzHtml(){const zone=ggTz(),me=myTz(),now=Date.now(),myOff=-new Date().getTimezoneOffset();
+  const cache=GGDB.cache||[];const newest=cache.reduce((m,h)=>h.ts>m?h.ts:m,0);
+  const ggOff=zone==="device"?myOff:zone==="UTC"?0:tzOffMin(zone,now);const same=zone==="device"||ggOff===myOff;
+  const diff=ggOff-myOff;
+  const ggName=zone==="device"?me.replace(/_/g," "):zone.replace(/_/g," ");
+  const nowGG=zone==="device"?now:now+(ggOff-myOff)*6e4;const hm=ms=>new Date(ms).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+  const opts=['<option value="device"'+(zone==="device"?" selected":"")+'>Same as my device</option>','<option value="UTC"'+(zone==="UTC"?" selected":"")+'>UTC</option>'].concat(ggTzList().filter(z=>z!=="UTC").map(z=>'<option value="'+z+'"'+(zone===z?" selected":"")+">"+z.replace(/_/g," ")+" ("+fmtOff(tzOffMin(z,now))+")</option>")).join("");
+  return'<details class="hx-tz'+(same?" ok":" warn")+'"><summary><span class="hx-tz-ic">'+(same?"✓":"⚠")+'</span><span class="hx-tz-t">'+(same?"Time zones match":"GG time is "+(Math.abs(diff)/60)+"h "+(diff<0?"behind":"ahead of")+" yours")+'</span><span class="hx-tz-m">You '+fmtOff(myOff)+' · GG '+fmtOff(ggOff)+'</span></summary>'
+   +'<div class="hx-tz-g"><div><span>Your time zone</span><b>'+me.replace(/_/g," ")+'</b><i>'+tzAbbr(me,now)+" · "+fmtOff(myOff)+" · now "+hm(now)+'</i></div><div><span>GG file time zone</span><b>'+ggName+'</b><i>'+(zone==="device"?"this device · ":"")+fmtOff(ggOff)+" · now "+hm(nowGG)+'</i></div></div>'
+   +'<label class="hx-tz-sel"><span>GG times are written in · default: same as my device</span><select class="minp" onchange="ggSetTz(this.value)">'+opts+'</select></label>'
+   +(newest?'<div class="hx-tz-chk">Newest hand: <b>'+new Date(newest).toLocaleString("en-GB",{timeZone:"UTC",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})+'</b> GG time = <b>'+hxFmtDT(ggToInstant(newest))+'</b> your time. If that’s not when you played it, change the GG zone above.</div>':"")
+   +'<div class="hx-note" style="margin-top:8px">GGPoker writes hand times in the time zone of the device running the GG app. If you play on this phone or a computer set to the same zone, leave it on “Same as my device”.</div></details>'}
+function hxCandidates(){const[a,b]=hxRange();
+  if(HX.preset==="since"){const L=hxLast(),t0=L?L.maxTs:-Infinity;const src=HX.src==="gg"?(GGDB.cache||[]):HH.d.hands;const all=src.filter(h=>hxHandTs(h)>t0);const okf=HX.src==="gg"?(h=>h.raw):hxConvertible;return{all,ok:all.filter(okf),noRaw:all.filter(h=>!okf(h)).length}}
+  if(HX.src==="gg"){const all=(GGDB.cache||[]).filter(h=>{const k=hxGGDate(h.ts);return k>=a&&k<=b});return{all,ok:all.filter(h=>h.raw),noRaw:all.filter(h=>!h.raw).length}}
+  const all=HH.d.hands.filter(h=>{const k=hxLiveKey(h);return k>=a&&k<=b});return{all,ok:all.filter(h=>hxConvertible(h)),noRaw:all.filter(h=>!hxConvertible(h)).length}}
+function hxLast(src){const m=LG("ps_hx_last",{})||{};return m[src||HX.src]||null}
+function hxHandTs(h){return HX.src==="gg"?(h.ts||0):(h.ts||Date.parse((h.date||"1970-01-01")+"T12:00:00")||0)}
+function hxFmtDT(ms,utc){return new Date(ms).toLocaleString("en-GB",Object.assign({day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"},utc?{timeZone:"UTC"}:{}))}
+function hxForgetLast(){const m=LG("ps_hx_last",{})||{};const old=m[HX.src];if(!old)return;delete m[HX.src];LS("ps_hx_last",m);if(HX.preset==="since")HX.preset="30";hxRender();toastUndo("Export marker cleared",()=>{const k=LG("ps_hx_last",{})||{};k[HX.src]=old;LS("ps_hx_last",k);hxRender()})}
+function hxLiveKey(h){const t=h.ts?new Date(h.ts):null;return(h.date||(t?shD(t):""))+"T"+(t?String(t.getHours()).padStart(2,"0")+":"+String(t.getMinutes()).padStart(2,"0"):"12:00")}
+function hxConvertible(h){return!!(h.players&&h.players.length>=2&&h.blinds&&h.blinds.bb>0&&h.players[0].cards&&h.players[0].cards.length===2)}
+function hxLocalDT(d){return shD(d)+"T"+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
+function openHandExport(src){HX.src=src||"gg";if(hxLast())HX.preset="since";else if(HX.preset==="since")HX.preset="30";if(!HX.from){const n=new Date();HX.to=hxLocalDT(n);const f=new Date(n.getTime()-864e5);f.setMinutes(0);HX.from=hxLocalDT(f)}hxRender();openM("hxM")}
+function hxQuick(h){const n=new Date();HX.preset="custom";HX.to=hxLocalDT(n);HX.from=hxLocalDT(new Date(n.getTime()-h*36e5));hxRender()}
+function hxRender(){const el=$("hxBody");if(!el)return;const c=hxCandidates(),[a,b]=hxRange();const lbl=x=>x.startsWith("0000")||x.startsWith("9999")?"…":new Date(x).toLocaleString("en-GB",HX.preset==="custom"?{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"}:{day:"numeric",month:"short",year:"numeric"});
+  el.innerHTML='<div class="edq-h"><h3>⬇ Export hands · GG format</h3><button class="btn btn-xs" onclick="closeM(\'hxM\')" aria-label="Close">✕</button></div>'
+    +'<div class="ds-seg hx-src">'+[["gg","📈 GG Results"],["live","📔 Logged hands"]].map(([k,l])=>'<button class="'+(HX.src===k?"on":"")+'" onclick="HX.src=\''+k+'\';hxRender()">'+l+"</button>").join("")+"</div>"
+    +'<div class="hx-lbl">Time frame</div><div class="hx-chips">'+(hxLast()?[["since","↻ Since last export"]]:[]).concat([["today","Today"],["7","Last 7 days"],["30","Last 30 days"],["90","Last 90 days"],["month","This month"],["lmonth","Last month"],["year","This year"],["all","All time"],["custom","Custom…"]]).map(([k,l])=>'<button class="gg-chip'+(HX.preset===k?" on":"")+'" onclick="HX.preset=\''+k+'\';hxRender()">'+l+"</button>").join("")+"</div>"
+    +(()=>{const L=hxLast();if(!L)return'<div class="hx-last none">No exports from '+(HX.src==="gg"?"GG Results":"logged hands")+' yet — after your first one, “Since last export” picks up only new hands.</div>';return'<div class="hx-last'+(HX.preset==="since"?" on":"")+'"><div><span class="hx-last-k">Last export</span><b>'+hxFmtDT(L.at)+'</b><span class="hx-last-s">'+L.n.toLocaleString()+' hand'+(L.n!==1?"s":"")+(L.label?" · "+escapeHtml(L.label):"")+' · newest hand '+hxFmtDT(HX.src==="gg"?ggToInstant(L.maxTs):L.maxTs)+'</span></div><button class="btn btn-xs" onclick="hxForgetLast()" title="Forget this marker">Reset</button></div>'})()
+    +(HX.preset==="custom"?'<div class="hx-dates"><label><span>From</span><input type="datetime-local" class="minp" value="'+(HX.from.length===10?HX.from+"T00:00":HX.from)+'" onchange="HX.from=this.value;hxRender()"/></label><label><span>To</span><input type="datetime-local" class="minp" value="'+(HX.to.length===10?HX.to+"T23:59":HX.to)+'" onchange="HX.to=this.value;hxRender()"/></label></div><div class="hx-quick"><span>Quick:</span>'+[[1,"Last hour"],[3,"3h"],[6,"6h"],[12,"12h"],[24,"24h"]].map(([h,l])=>'<button class="gg-chip" onclick="hxQuick('+h+')">'+l+"</button>").join("")+'</div>'+"":"")+(HX.src==="gg"?hxTzHtml():"")
+    +'<div class="hx-sum"><b>'+c.ok.length.toLocaleString()+'</b> '+(HX.preset==="since"?"new ":"")+'hand'+(c.ok.length!==1?"s":"")+' ready · '+(HX.preset==="all"?"all time":HX.preset==="since"?(hxLast()?"played after "+hxFmtDT(HX.src==="gg"?ggToInstant(hxLast().maxTs):hxLast().maxTs):"nothing exported yet, so everything"):lbl(a)+" – "+lbl(b))
+    +(c.noRaw?'<div class="hx-warn">'+c.noRaw+(HX.src==="gg"?" older hand"+(c.noRaw>1?"s were":" was")+" imported before full text was kept — re-import the original files to include "+(c.noRaw>1?"them":"it"):" logged hand"+(c.noRaw>1?"s":"")+" skipped — "+(c.noRaw>1?"they need":"it needs")+" blinds and your two cards")+"</div>":"")+"</div>"
+    +(HX.src==="live"?'<div class="hx-note">Logged hands are written in GGPoker’s text layout. Amounts use “$” like real GG files (trackers read them as your stakes’ units). Stacks you didn’t record are set to 100bb, or to the all-in amount.</div>':"")
+    +'<div class="mact"><button class="btn" onclick="closeM(\'hxM\')">Cancel</button><button class="btn pri" '+(c.ok.length?"":"disabled ")+'onclick="hxDownload()">⬇ Download .txt</button></div>'}
+async function hxDownload(){const c=hxCandidates();if(!c.ok.length)return toast("No hands in that time frame");let texts=[];
+  if(HX.src==="gg"){const want=new Set(c.ok.map(h=>h.id));const raws=await GGDB.allRaw();const byId=new Map(raws.filter(r=>want.has(r.id)).map(r=>[r.id,r.text]));c.ok.slice().sort((x,y)=>y.ts-x.ts).forEach(h=>{const t=byId.get(h.id);if(t)texts.push(t.trim())})}
+  else{c.ok.slice().sort((x,y)=>((y.date||"")+(y.ts||"")).localeCompare((x.date||"")+(x.ts||""))).forEach(h=>{try{const t=hxLiveToGG(h);if(t)texts.push(t)}catch(e){console.warn("export",h.id,e)}})}
+  if(!texts.length)return toast("Nothing could be exported");const[a,b]=hxRange();
+  const fn=x=>x.replace("T00:00","").replace("T23:59","").replace("T","_").replace(":","");const name=(HX.src==="gg"?"GG":"PokerStudio_live")+"_"+(HX.preset==="since"&&!a.startsWith("0000")?"since_":"")+(a.startsWith("0000")?"all":fn(a))+(fn(a)!==fn(b)&&!b.startsWith("9999")?"_to_"+fn(b):"")+"_"+texts.length+"hands.txt";
+  const blob=new Blob([texts.join("\n\n\n")+"\n\n\n"],{type:"text/plain;charset=utf-8"});const el=document.createElement("a");el.href=URL.createObjectURL(blob);el.download=name;el.click();setTimeout(()=>URL.revokeObjectURL(el.href),5000);
+  try{const m=LG("ps_hx_last",{})||{};const prev=m[HX.src];const mx=Math.max(...c.ok.map(hxHandTs));const PL={since:"since last export",today:"today","7":"last 7 days","30":"last 30 days","90":"last 90 days",month:"this month",lmonth:"last month",year:"this year",all:"all time",custom:"custom period"};m[HX.src]={at:Date.now(),maxTs:prev&&prev.maxTs>mx?prev.maxTs:mx,n:texts.length,label:PL[HX.preset]||""};LS("ps_hx_last",m)}catch(e){}
+  closeM("hxM");toast("⬇ Exported "+texts.length+" hand"+(texts.length>1?"s":"")+" · GG format")}
+// Convert one logged live hand into GGPoker hand-history text
+function hxLiveToGG(h){if(!hxConvertible(h))return null;const bl=h.blinds,bb=bl.bb,sb=bl.sb!=null?bl.sb:bb/2,P=h.players,n=P.length;
+  const posSet=(HH_POS_SETS[n]||HH_POS_SETS[8]).slice();const order=P.map((p,i)=>i).sort((a,b)=>posSet.indexOf(P[a].position)-posSet.indexOf(P[b].position));
+  const seatOf={};order.forEach((pi,k)=>seatOf[pi]=k+1);
+  const used=new Set();const nm=P.map((p,i)=>{if(i===0)return"Hero";let s=(/^Player \d+$/.test(p.name||"")||!p.name?"Player_"+(p.position||i):p.name).replace(/[:\[\]()$]/g,"").replace(/\s+/g,"_").slice(0,24)||"Player"+i;while(used.has(s))s+="_";used.add(s);return s});used.add("Hero");
+  const btnIdx=P.findIndex(p=>p.position==="BTN"||p.position==="BTN/SB"),sbIdx=P.findIndex(p=>p.position==="SB"||p.position==="BTN/SB"),bbIdx=P.findIndex(p=>p.position==="BB");
+  const C=(cs)=>(cs||[]).map(c=>c.rank+c.suit).join(" ");
+  const SA=h.streetActions||{preflop:[],flop:[],turn:[],river:[]};const streets=["preflop","flop","turn","river"];
+  // money in per player (to size stacks + work out the pot)
+  const contrib=new Array(n).fill(0);const folded=new Set();
+  const sim=(emit)=>{contrib.fill(0);folded.clear();const out=[];
+    streets.forEach(st=>{const com=new Array(n).fill(0);let cur=0;
+      if(st==="preflop"){if(sbIdx>=0&&sbIdx!==bbIdx){com[sbIdx]=sb;contrib[sbIdx]+=sb}if(bbIdx>=0){com[bbIdx]=bb;contrib[bbIdx]+=bb}cur=bb}
+      (SA[st]||[]).forEach(a=>{const i=a.playerIdx,who=nm[i];if(i==null||!who)return;
+        if(a.action==="fold"){folded.add(i);out.push(st,who+": folds");return}
+        if(a.action==="check"){out.push(st,who+": checks");return}
+        let to=a.amount!=null?+a.amount:(a.action==="call"?cur:null);if(to==null||isNaN(to))return;
+        if(a.action==="call"){to=Math.max(to,com[i]);const inc=to-com[i];com[i]=to;contrib[i]+=inc;out.push(st,who+": calls "+hxFmt(inc));return}
+        if(a.action==="bet"){const inc=to-com[i];com[i]=to;contrib[i]+=inc;cur=Math.max(cur,to);out.push(st,who+": bets "+hxFmt(inc));return}
+        if(a.action==="raise"){const inc=to-com[i],by=to-cur;com[i]=to;contrib[i]+=inc;out.push(st,who+": raises "+hxFmt(Math.max(by,0))+" to "+hxFmt(to));cur=Math.max(cur,to);return}
+        if(a.action==="allin"){const inc=Math.max(0,to-com[i]);let line;if(cur===0||(st==="preflop"&&false))line=who+": bets "+hxFmt(inc)+" and is all-in";else if(to>cur)line=who+": raises "+hxFmt(to-cur)+" to "+hxFmt(to)+" and is all-in";else line=who+": calls "+hxFmt(inc)+" and is all-in";com[i]=to;contrib[i]+=inc;cur=Math.max(cur,to);out.push(st,line);(sim.allin=sim.allin||new Set()).add(i)}})});
+    return out};
+  sim.allin=new Set();const lines=sim();
+  // uncalled bet: top contributor's excess over the next biggest
+  const sorted=contrib.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]);let ret=null;if(sorted.length>1&&sorted[0][0]>sorted[1][0]+1e-9)ret={i:sorted[0][1],amt:sorted[0][0]-sorted[1][0]};
+  const pot=contrib.reduce((a,b)=>a+b,0)-(ret?ret.amt:0);
+  const stacks=P.map((p,i)=>sim.allin.has(i)?Math.max(contrib[i],bb):Math.max(100*bb,contrib[i]+bb));
+  // board
+  const fl=h.flopCards||[],tu=h.turnCards||[],rv=h.riverCards||[],board=[...fl,...tu,...rv];
+  const live=P.map((p,i)=>i).filter(i=>!folded.has(i));
+  // who wins
+  let winners=[];if(live.length===1)winners=live;else{const known=live.filter(i=>P[i].cards&&P[i].cards.length===2);
+    if(known.length===live.length&&board.length===5&&typeof best5of7==="function"){let best=null;known.forEach(i=>{const sc=best5of7([...P[i].cards,...board]);const c=best?compareHands(sc,best):1;if(c>0){best=sc;winners=[i]}else if(c===0)winners.push(i)})}
+    else{const r=+h.result||0;winners=r>0?[0]:r<0?live.filter(i=>i!==0).slice(0,1):[live[0]]}}
+  const dt=new Date(h.ts||Date.now()),pad=x=>String(x).padStart(2,"0");const d=(h.date||shD(dt)).replace(/-/g,"/");
+  const id="PS"+String(h.id||"").replace(/\D/g,"").slice(-10);const tbl=("PokerStudio "+(h.location||h.stakes||"Live")).replace(/'/g,"");
+  const T=[];T.push("Poker Hand #"+id+": Hold'em No Limit ("+hxFmt(sb)+"/"+hxFmt(bb)+") - "+d+" "+pad(dt.getHours())+":"+pad(dt.getMinutes())+":"+pad(dt.getSeconds()));
+  T.push("Table '"+tbl+"' "+n+"-max Seat #"+(btnIdx>=0?seatOf[btnIdx]:1)+" is the button");
+  order.forEach(i=>T.push("Seat "+seatOf[i]+": "+nm[i]+" ("+hxFmt(stacks[i])+" in chips)"));
+  if(sbIdx>=0&&sbIdx!==bbIdx)T.push(nm[sbIdx]+": posts small blind "+hxFmt(sb));if(bbIdx>=0)T.push(nm[bbIdx]+": posts big blind "+hxFmt(bb));
+  T.push("*** HOLE CARDS ***");order.forEach(i=>T.push("Dealt to "+nm[i]+(i===0?" ["+C(P[0].cards)+"]":" ")));
+  const hdr={flop:"*** FLOP *** ["+C(fl)+"]",turn:"*** TURN *** ["+C(fl)+"] ["+C(tu)+"]",river:"*** RIVER *** ["+C([...fl,...tu])+"] ["+C(rv)+"]"};
+  const lastSt=["river","turn","flop"].find(st=>(SA[st]||[]).length||({flop:fl,turn:tu,river:rv}[st]).length)||"preflop";
+  let curSt="preflop";for(let k=0;k<lines.length;k+=2){const st=lines[k];if(st!==curSt){streets.slice(streets.indexOf(curSt)+1,streets.indexOf(st)+1).forEach(s=>T.push(hdr[s]));curSt=st}T.push(lines[k+1])}
+  if(live.length>1)streets.slice(streets.indexOf(curSt)+1,streets.indexOf(lastSt)+1).forEach(s=>T.push(hdr[s]));
+  if(ret)T.push("Uncalled bet ("+hxFmt(ret.amt)+") returned to "+nm[ret.i]);
+  const showd=live.length>1?live.filter(i=>P[i].cards&&P[i].cards.length===2):[];
+  const hname=i=>{try{return board.length>=3?HAND_NAMES[best5of7([...P[i].cards,...board].length>=7?[...P[i].cards,...board]:[...P[i].cards,...board]).category].toLowerCase():""}catch(e){return""}};
+  showd.forEach(i=>T.push(nm[i]+": shows ["+C(P[i].cards)+"]"+(board.length===5?" ("+hname(i)+")":"")));
+  T.push("*** SHOWDOWN ***");const share=winners.length?Math.round(pot/winners.length*100)/100:0;winners.forEach(i=>T.push(nm[i]+" collected "+hxFmt(share)+" from pot"));
+  T.push("*** SUMMARY ***");T.push("Total pot "+hxFmt(pot)+" | Rake $0 | Jackpot $0 | Bingo $0 | Fortune $0 | Tax $0");if(board.length)T.push("Board ["+C(board)+"]");
+  const tag=i=>i===btnIdx?" (button)":i===sbIdx?" (small blind)":i===bbIdx?" (big blind)":"";
+  order.forEach(i=>{let s="Seat "+seatOf[i]+": "+nm[i]+tag(i)+" ";if(folded.has(i)){const st=streets.find(x=>(SA[x]||[]).some(a=>a.playerIdx===i&&a.action==="fold"));s+="folded "+(st==="preflop"?"before Flop":"on the "+st[0].toUpperCase()+st.slice(1))}
+    else if(showd.includes(i))s+="showed ["+C(P[i].cards)+"] and "+(winners.includes(i)?"won ("+hxFmt(share)+")":"lost");else s+=winners.includes(i)?"collected ("+hxFmt(share)+")":"mucked";T.push(s.trimEnd())});
+  return T.join("\n")}
+
 /* ══ Quick hand builder (v71): list-first, one-tap setup, inline card decks, size chips, auto result ══ */
 let hhqBoardOpen=null;
 function hhPName(i){const p=hhPlayersState[i];if(i===0)return"Hero";if(!p)return"?";return/^Player \d+$/.test(p.name||"")&&p.position?p.position:p.name}
@@ -15422,6 +15696,7 @@ function renderNavPinUI(){const el=$("navPinRow");if(!el)return;const on=navItem
   el.innerHTML=NAV_ORDER.map(k=>'<button class="gg-chip'+(on.includes(k)?" on":"")+(k==="settings"?" fixed":"")+'" onclick="toggleNavPin(\''+k+'\')">'+NAV_ITEMS[k][0]+" "+NAV_ITEMS[k][1]+"</button>").join("")+'<button class="gg-chip" onclick="LS(\'ps_bnav\',null);renderBottomNav();renderNavPinUI()">Reset</button>'}
 // search commands: every screen and common action, reachable by typing
 const NAV_CMDS=[
+  ["⬇","Export GG hands","export download hand history txt gg format time frame","go('gg');openHandExport('gg')"],["⬇","Export logged hands (GG format)","export live hands hand history txt gg format","go('handHistory');openHandExport('live')"],
   ["🌙","Theme: Rose","dark pink theme colour","applyTheme('rose')"],["☀️","Theme: Daylight","light mode bright theme colour","applyTheme('daylight')"],["🖤","Theme: Obsidian","dark gold theme colour","applyTheme('obsidian')"],["🌊","Theme: Ocean","dark blue theme colour","applyTheme('ocean')"],["🌿","Theme: Emerald","dark green theme colour","applyTheme('emerald')"],["👑","Theme: Royale","dark purple theme colour","applyTheme('royale')"],
   ["🙈","Hide / show amounts","privacy balance money hide","toggleBal()"],["💾","Back up now","backup export save download json","dlJSON()"],["⬇","Export sessions CSV","spreadsheet excel download sessions","exportSessionsCSV()"],["⬇","Export shifts CSV","spreadsheet excel download shifts hours","exportShiftsCSV()"],["💷","Pay settings","salary overtime payday wage","go('shifts');openShiftSettings()"],
   ["🏠","Home","dashboard start","go('home')"],["♠","Range editor","editor paint grid","go('editor')"],["🎯","Train","trainer practice drill","go('trainer')"],["📁","My ranges","files folders library","go('files')"],
@@ -15482,7 +15757,7 @@ const fd=getDACTS();DACTS[0]=fd[0];DACTS[1]=fd[1];DACTS[2]=fd[2];if(!LG("ps_cur"
 (function(){const set=()=>{const h=Math.max(window.innerHeight||0,(window.visualViewport&&window.visualViewport.height)||0,document.documentElement.clientHeight||0);if(h>0)document.documentElement.style.setProperty("--app-h",h+"px")};set();window.addEventListener("resize",set);window.addEventListener("orientationchange",()=>setTimeout(set,250));if(window.visualViewport)window.visualViewport.addEventListener("resize",set);setTimeout(set,500)})();
 Ed.init();checkDirty();resetBrForm();initNoteTags();try{a11yInit()}catch(e){console.warn(e)}
 // Wire up delegated nav listeners
-$("brNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;if(e.target.dataset.bp!=="brSess")LS("ps_br_tab",e.target.dataset.bp);$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));e.target.classList.add("on");document.querySelectorAll("#bankrollV .br-sub").forEach(p=>p.classList.remove("on"));const pg=$(e.target.dataset.bp);if(pg)pg.classList.add("on");if(e.target.dataset.bp==="brHistory")renderBrSessions();if(e.target.dataset.bp==="brSess"&&!$("brEditId").value&&!brBuyinTouched)brAutoFillBuyin();if(e.target.dataset.bp==="brStats"){const activeSp=$("brStatsNav").querySelector("button.on")?.dataset.sp||"brAnal";if(activeSp==="brAnal")renderBrAnalytics();if(activeSp==="brInsights")renderBrInsights()}});
+$("brNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;if(e.target.dataset.bp!=="brSess")LS("ps_br_tab",e.target.dataset.bp);$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));e.target.classList.add("on");document.querySelectorAll("#bankrollV .br-sub").forEach(p=>p.classList.remove("on"));const pg=$(e.target.dataset.bp);if(pg)pg.classList.add("on");if(e.target.dataset.bp==="brHistory")renderBrSessions();if(e.target.dataset.bp==="brChal")renderChal();if(e.target.dataset.bp==="brSess"&&!$("brEditId").value&&!brBuyinTouched)brAutoFillBuyin();if(e.target.dataset.bp==="brStats"){const activeSp=$("brStatsNav").querySelector("button.on")?.dataset.sp||"brAnal";if(activeSp==="brAnal")renderBrAnalytics();if(activeSp==="brInsights")renderBrInsights()}});
 $("brStatsNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;$("brStatsNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));e.target.classList.add("on");document.querySelectorAll("#brStats .br-substat").forEach(p=>p.classList.remove("on"));const pg=$(e.target.dataset.sp);if(pg)pg.classList.add("on");if(e.target.dataset.sp==="brAnal")renderBrAnalytics();if(e.target.dataset.sp==="brInsights")renderBrInsights();playSound("tick");haptic("light")});
 $("goalTypeRow")?.addEventListener("click",e=>{const b=e.target.closest("[data-gt]");if(!b)return;goalFormType=b.dataset.gt;goalFormRefresh()});
 $("notesHubNav").addEventListener("click",e=>{if(e.target.tagName!=="BUTTON")return;switchNotesHub(e.target.dataset.nh)});
@@ -15538,6 +15813,245 @@ window.routeFromHash=function(sub){const p=decodeURIComponent((location.hash||""
 {const _hf=decodeURIComponent((location.hash||"").slice(1)),_parts=_hf.split("/"),_h=_parts[0],_sub=_parts[1]||"",_dt=(_h&&$(_h+"V"))?_h:LG("ps_default_tab","home");try{history.replaceState({v:_dt},"","#"+_dt)}catch(e){}if(_dt&&_dt!=="editor")setTimeout(()=>{_navPop=true;try{go(_dt)}finally{_navPop=false}},0);
   if(_sub)setTimeout(()=>{try{if(_dt==="tools"&&$(_sub))showToolsSection(_sub);else if(_dt==="bankroll"&&$(_sub))switchBrTab(_sub);else if(_dt==="notes"&&$(_sub))switchNotesHub(_sub);else if(_dt==="shifts"&&(_sub==="history"||_sub==="overview"))shiftSwitchTab(_sub)}catch(e){}},60)}
 })();
+</script>
+<script>
+// ═══ Bankroll Challenge ($X → $Y) ═══
+const CH_LADDERS={
+  gg:{name:"GG cash · NL Hold'em",short:"Online cash",unit:"cash",steps:[[1,2],[2,5],[5,10],[10,25],[25,50],[50,100],[100,200],[200,500],[500,1000],[1000,2000]]},
+  live:{name:"Live cash",short:"Live cash",unit:"cash",steps:[[100,200],[100,300],[200,500],[500,1000],[1000,2000],[2500,5000]]},
+  mtt:{name:"Tournaments & Spins",short:"MTT / Spins",unit:"mtt",steps:[25,50,100,250,500,1000,2500,5000,10000,20000]}};
+const CH_STYLES={cash:{conservative:[50,40],standard:[35,25],aggressive:[25,15]},mtt:{conservative:[200,150],standard:[100,70],aggressive:[60,40]}};
+const CH_STYLE_INFO={conservative:["🛡","Conservative","Fewer swings, slower climb"],standard:["⚖️","Standard","The usual challenge pace"],aggressive:["🔥","Aggressive","Faster, but expect move-downs"]};
+const CH_COLS=["#94a3b8","#38bdf8","#34d399","#a3e635","#facc15","#fb923c","#f472b6","#c084fc","#818cf8","#f87171"];
+let CHV={scale:"log",mc:null,mcKey:"",mcBusy:false,wr:null,hpd:null,setup:null};
+function chalStepsFor(key,custom){const L=CH_LADDERS[key];if(!L)return(custom||[]).slice();return L.unit==="cash"?L.steps.map(([sb,bb])=>({l:chStakeLbl(sb,bb),bi:bb*100,bb,sb})):L.steps.map(bi=>({l:"$"+chNum(bi/100),bi}))}
+function chNum(v){return(+v.toFixed(2)).toString()}
+function chStakeLbl(sb,bb){const f=c=>{const v=c/100;return v<1?v.toFixed(2):chNum(v)};return f(sb)+"/"+f(bb)}
+function chalGet(b){b=b||BR.d;return b&&b.settings&&b.settings.challenge||null}
+function chalOwner(){return getBankrollsList().find(b=>b.settings&&b.settings.challenge&&!b.settings.challenge.ended)||null}
+function chC(c,compact){const s=CHV.sym||brSym(),v=c/100,a=Math.abs(v);let t;if(compact&&a>=1000)t=(a/1000).toFixed(a>=10000||a%1000===0?0:1).replace(/\.0$/,"")+"K";else if(compact&&a>=100)t=Math.round(a).toLocaleString("en-GB");else t=a.toLocaleString("en-GB",{minimumFractionDigits:a<1000&&a%1?2:0,maximumFractionDigits:2});return(v<0?"−":"")+s+t}
+function chSg(c){return(c>0?"+":c<0?"−":"")+chC(Math.abs(c))}
+function chPc(v){return v>0?"pos":v<0?"neg":""}
+function chalMilestones(ch){const out=[];let m=ch.start*2;while(m<ch.target*0.98){out.push(m);m*=2}out.push(ch.target);return out}
+function chalStartTs(ch){return new Date(ch.startDate+"T00:00:00").getTime()}
+function chalEvents(b,ch){const ev=[];const st=ch.startDate,t0=chalStartTs(ch);
+  (b.sessions||[]).forEach(s=>{if(!s.date||s.date<st)return;ev.push({k:s.date+"T"+(s.end||s.start||"12:00"),date:s.date,v:s.resultCents||0,t:"s",s})});
+  (b.deposits||[]).forEach(d=>{if(!d.ts||d.ts<t0)return;const dt=new Date(d.ts);ev.push({k:hxLocalDT(dt),date:shD(dt),v:d.amt||0,t:"d",d})});
+  ev.sort((a,b)=>a.k<b.k?-1:a.k>b.k?1:0);return ev}
+function chalIdxFor(bal,steps,up){let i=0;for(let j=1;j<steps.length;j++)if(bal>=up*steps[j].bi)i=j;return i}
+function chalStep(bal,idx,steps,up,down){let moved=0;while(idx<steps.length-1&&bal>=up*steps[idx+1].bi){idx++;moved=1}while(idx>0&&bal<down*steps[idx].bi){idx--;moved=moved||-1}return idx}
+function chalCompute(b,ch){const steps=ch.steps,ev=chalEvents(b,ch),ms=chalMilestones(ch);let bal=ch.start,idx=chalIdxFor(bal,steps,ch.up),peak=bal,peakK=ch.startDate,maxDD=0,ddFrom=null,ddTo=null,curDDstart=ch.startDate;
+  const pts=[{k:ch.startDate+"T00:00",date:ch.startDate,bal,idx}],moves=[],reached={},sess=[],deps=[],wds=[];let low=bal;
+  ms.forEach(m=>{if(bal>=m)reached[m]={date:ch.startDate,i:0}});
+  ev.forEach((e,n)=>{bal+=e.v;if(e.t==="s")sess.push(e);else if(e.v>0)deps.push(e);else wds.push(e);
+    const ni=chalStep(bal,idx,steps,ch.up,ch.down);if(ni!==idx){moves.push({date:e.date,from:idx,to:ni,bal,n:pts.length});idx=ni}
+    if(bal>peak){peak=bal;peakK=e.date}const dd=peak-bal;if(dd>maxDD){maxDD=dd;ddFrom=peakK;ddTo=e.date}low=Math.min(low,bal);
+    ms.forEach(m=>{if(bal>=m&&!reached[m])reached[m]={date:e.date,i:sess.length}});pts.push({k:e.k,date:e.date,bal,idx,e})});
+  // daily nets
+  const days={};sess.forEach(e=>{days[e.date]=(days[e.date]||0)+e.v});
+  const dayKeys=Object.keys(days).sort();
+  const today=shD(new Date()),dayN=Math.max(1,Math.floor((new Date(today+"T12:00:00")-new Date(ch.startDate+"T12:00:00"))/864e5)+1);
+  // streaks
+  let ws=0,ls=0,bw=0,bl=0;sess.forEach(e=>{if(e.v>0){ws++;ls=0}else if(e.v<0){ls++;ws=0}bw=Math.max(bw,ws);bl=Math.max(bl,ls)});
+  let dstreak=0;{const d=new Date();for(let i=0;i<400;i++){const k=shD(d);if(days[k]!==undefined)dstreak++;else if(i>0)break;d.setDate(d.getDate()-1)}}
+  const mins=sess.reduce((a,e)=>a+(e.s.duration||0),0);
+  return{steps,ev,pts,bal,idx,peak,peakK,maxDD,ddFrom,ddTo,low,moves,reached,ms,sess,deps,wds,days,dayKeys,dayN,today,
+    profit:sess.reduce((a,e)=>a+e.v,0),topups:deps.reduce((a,e)=>a+e.v,0),cashed:-wds.reduce((a,e)=>a+e.v,0),
+    curStreak:ws?ws:-ls,bestW:bw,bestL:bl,dstreak,mins,
+    bestS:sess.reduce((m,e)=>!m||e.v>m.v?e:m,null),worstS:sess.reduce((m,e)=>!m||e.v<m.v?e:m,null),
+    bestD:dayKeys.reduce((m,k)=>!m||days[k]>days[m]?k:m,null),worstD:dayKeys.reduce((m,k)=>!m||days[k]<days[m]?k:m,null),
+    winDays:dayKeys.filter(k=>days[k]>0).length}}
+function chalGG(ch,C){const hs=(typeof getGGHands==="function"?getGGHands():[])||[];const t0=chalStartTs(ch);const list=hs.filter(h=>{try{return ggToInstant(h.ts)>=t0}catch(e){return h.ts>=t0}});
+  let net=0,nbb=0,s2=0;const per={},daysH={};list.forEach(h=>{const x=h.net/h.bb;net+=h.net;nbb+=x;s2+=x*x;const p=per[h.bb]||(per[h.bb]={bb:h.bb,n:0,net:0,nbb:0,s2:0});p.n++;p.net+=h.net;p.nbb+=x;p.s2+=x*x;const dk=hxGGDate(h.ts).slice(0,10);daysH[dk]=(daysH[dk]||0)+1});
+  const n=list.length,mean=n?nbb/n:0,sd=n>1?Math.sqrt(Math.max(0,s2/n-mean*mean)):0,ad=Object.keys(daysH).length;
+  return{n,net,bb100:mean*100,sd100:sd*10,per,activeDays:ad,hpd:ad?n/ad:0,daysH}}
+function chalModel(ch,C,G){const unit=CH_LADDERS[ch.ladder]?.unit||ch.unit||"cash";
+  if(unit==="cash"){const autoWr=G.n>=3000?Math.max(-20,Math.min(30,G.bb100)):5;const wr=CHV.wr!=null?CHV.wr:(ch.wr!=null?ch.wr:autoWr);const sd=G.n>=2000?Math.max(50,Math.min(160,G.sd100)):90;
+    const autoH=G.activeDays>=2?Math.round(G.hpd/50)*50||300:500;const hpd=CHV.hpd!=null?CHV.hpd:(ch.hpd!=null?ch.hpd:autoH);
+    return{unit,wr,sd,hpd,autoWr,autoH,wrSrc:G.n>=3000?"your "+G.n.toLocaleString()+" GG hands":"a typical 5 bb/100",mean:i=>wr*C.steps[i].bb,sdU:i=>sd*C.steps[i].bb,perDay:hpd/100,unitLbl:"hands",unitMul:100}}
+  const autoWr=10;const wr=CHV.wr!=null?CHV.wr:(ch.wr!=null?ch.wr:autoWr);const autoH=20;const hpd=CHV.hpd!=null?CHV.hpd:(ch.hpd!=null?ch.hpd:autoH);
+  return{unit,wr,sd:5,hpd,autoWr,autoH,wrSrc:"a 10% ROI",mean:i=>wr/100*C.steps[i].bi,sdU:i=>5*C.steps[i].bi,perDay:hpd,unitLbl:"games",unitMul:1}}
+// Hands (units) needed to go from bal to target if you win at expectation, following the ladder
+function chalPlan(ch,C,M,from,fromIdx,target){let bal=from,idx=fromIdx,u=0;const legs=[];if(M.wr<=0)return null;
+  for(let g=0;g<40&&bal<target;g++){const nextUp=idx<C.steps.length-1?ch.up*C.steps[idx+1].bi:Infinity;const goal=Math.min(target,nextUp);const mu=M.mean(idx);const need=Math.max(0,goal-bal)/mu;legs.push({idx,from:bal,to:goal,units:need});u+=need;bal=goal;if(goal===nextUp)idx++}
+  return{units:u,legs}}
+function chalGauss(){let u=0,v=0;while(!u)u=Math.random();v=Math.random();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)}
+function chalMC(ch,C,M,runs){const steps=C.steps,cap=M.unit==="cash"?20000:30000,res=[];let ok=0,bust=0,open=0;const floor=steps[0].bi;
+  const mu=steps.map((_,i)=>M.mean(i)),sg=steps.map((_,i)=>M.sdU(i));
+  for(let r=0;r<runs;r++){let bal=C.bal,idx=C.idx,u=0,done=0;while(u<cap){bal+=mu[idx]+sg[idx]*chalGauss();u++;
+      if(bal>=ch.target){done=1;break}if(bal<floor){done=-1;break}
+      while(idx<steps.length-1&&bal>=ch.up*steps[idx+1].bi)idx++;while(idx>0&&bal<ch.down*steps[idx].bi)idx--}
+    if(done===1){ok++;res.push(u)}else if(done===-1)bust++;else open++}
+  res.sort((a,b)=>a-b);const q=p=>res.length?res[Math.min(res.length-1,Math.floor(p*res.length))]:null;
+  return{runs,ok,bust,open,p25:q(.25),p50:q(.5),p75:q(.75),p10:q(.1),p90:q(.9)}}
+function chalRoR(M,C,cushion){if(M.unit!=="cash")return null;const bb=C.steps[C.idx].bb;const B=cushion/bb;if(B<=0)return 1;if(M.wr<=0)return 1;return Math.min(1,Math.exp(-2*M.wr*B/(M.sd*M.sd)))}
+function chFmtUnits(u,M){const h=u*M.unitMul;return h>=1e6?(h/1e6).toFixed(1)+"M":h>=1e4?Math.round(h/1000)+"K":h>=1000?(h/1000).toFixed(1)+"K":Math.round(h).toLocaleString()}
+function chFmtDays(d){if(d==null||!isFinite(d))return"—";if(d<1)return"under a day";if(d<60)return Math.round(d)+" day"+(Math.round(d)!==1?"s":"");if(d<730)return(d/30.4).toFixed(d<300?1:0).replace(/\.0$/,"")+" months";return(d/365).toFixed(1)+" years"}
+function chDate(k){return k?new Date(k.slice(0,10)+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short"}):"—"}
+function chDateF(ms){const d=new Date(ms);return(ms-Date.now()>300*864e5)?d.toLocaleDateString("en-GB",{month:"short",year:"numeric"}):d.toLocaleDateString("en-GB",{day:"numeric",month:"short"})}
+function chDateY(k){return k?new Date(k.slice(0,10)+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"—"}
+function chalJourney(ch,bal){return Math.max(0,Math.min(1,Math.log(Math.max(bal,1)/ch.start)/Math.log(ch.target/ch.start)))}
+
+function renderChal(){const el=$("brChal");if(!el)return;const b=BR.d,ch=chalGet(b);
+  if(!ch||ch.ended){const other=chalOwner();el.innerHTML=chalEmptyHtml(other,ch);return}
+  if(!GGDB.cache&&!CHV.ggLoading){CHV.ggLoading=1;GGDB.all().then(()=>{CHV.ggLoading=0;if($("brChal").classList.contains("on"))renderChal()}).catch(()=>{CHV.ggLoading=0})}
+  const C=chalCompute(b,ch),G=chalGG(ch,C),M=chalModel(ch,C,G);chalNotify(b,ch,C);
+  const st=C.steps[C.idx],nx=C.steps[C.idx+1],bis=C.bal/st.bi,upAt=nx?ch.up*nx.bi:null,downAt=C.idx>0?ch.down*st.bi:null;
+  const J=chalJourney(ch,C.bal),lin=Math.max(0,Math.min(1,(C.bal-ch.start)/(ch.target-ch.start))),mult=C.bal/ch.start;
+  const nextM=C.ms.find(m=>C.bal<m),prevM=[ch.start,...C.ms].filter(m=>C.bal>=m).pop()||ch.start,done=C.bal>=ch.target;
+  const plan=chalPlan(ch,C,M,C.bal,C.idx,ch.target),planDays=plan?plan.units/M.perDay:null;
+  const daysIn=C.dayN,gRate=C.bal>0&&daysIn>=3&&C.bal!==ch.start?Math.pow(C.bal/ch.start,1/daysIn)-1:null;
+  const paceDays=gRate&&gRate>0?Math.log(ch.target/C.bal)/Math.log(1+gRate):null;
+  const curDD=C.peak-C.bal;
+  let h='';
+  // HERO
+  h+='<div class="chx-hero'+(done?" done":"")+'"><div class="chx-hero-top"><span class="chx-tag">🚀 Bankroll challenge</span><span class="chx-day">Day '+daysIn+'</span><button class="chx-ic" onclick="chalOpenSetup(true)" aria-label="Edit challenge" title="Edit challenge">⚙</button></div>'
+   +'<div class="chx-route"><b>'+chC(ch.start,1)+'</b><i></i><b>'+chC(ch.target,1)+'</b></div>'
+   +'<div class="chx-bal" data-bal>'+chC(C.bal)+'</div>'
+   +'<div class="chx-sub"><span class="chx-mult '+(mult>=1?"pos":"neg")+'">'+(mult>=10?mult.toFixed(0):mult.toFixed(2))+'×</span><span class="'+chPc(C.bal-ch.start)+'">'+chSg(C.bal-ch.start)+'</span><span>'+(done?"Target smashed 🏆":Math.round(J*100)+"% of the climb")+'</span></div>'
+   +'<div class="chx-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+Math.round(J*100)+'" aria-label="Challenge progress"><div class="chx-fill" style="--w:'+(J*100).toFixed(2)+'%"></div>'
+   +C.ms.map(m=>{const x=chalJourney(ch,m)*100,r=C.bal>=m;return'<span class="chx-tick'+(r?" on":"")+(m===nextM?" nx":"")+'" style="left:'+x.toFixed(2)+'%"><em>'+chC(m,1)+'</em></span>'}).join("")+'</div>'
+   +'<div class="chx-hero-foot">'+(done?'<span>You turned '+chC(ch.start,1)+' into '+chC(C.bal,1)+' in '+daysIn+' days.</span>':'<span>Next milestone <b>'+chC(nextM,1)+'</b> · '+chC(nextM-C.bal)+' to go</span><span class="chx-lin">'+(lin*100).toFixed(lin<0.1?2:1)+'% in cash terms</span>')+'</div></div>';
+  // STAKE CARD
+  {const lo=downAt!=null?downAt:0,hi=upAt||ch.target,pos=Math.max(0,Math.min(1,(C.bal-lo)/(hi-lo)));
+   const cushion=downAt!=null?C.bal-downAt:C.bal-st.bi,rorDown=chalRoR(M,C,cushion),rorBust=chalRoR(M,C,C.bal);
+   const upHands=upAt&&M.wr>0?Math.max(0,upAt-C.bal)/M.mean(C.idx):null;
+   h+='<div class="chx-card chx-stake" style="--sc:'+CH_COLS[C.idx%CH_COLS.length]+'"><div class="chx-st-head"><div><span class="chx-k">Play now</span><div class="chx-st-name">'+st.l+'</div><span class="chx-st-meta">'+CH_LADDERS[ch.ladder]?.short+' · buy-in '+chC(st.bi)+'</span></div><div class="chx-bi"><b>'+(bis>=100?Math.round(bis):bis.toFixed(1))+'</b><span>buy-ins</span></div></div>'
+    +'<div class="chx-gauge"><div class="chx-gauge-tr"><div class="chx-gauge-f" style="--w:'+(pos*100).toFixed(1)+'%"></div><span class="chx-gauge-dot" style="left:'+(pos*100).toFixed(1)+'%"></span></div><div class="chx-gauge-l"><span>'+(downAt!=null?"↓ "+chC(downAt,1):"floor")+'</span><span>'+(upAt?"↑ "+chC(upAt,1):"🏁 "+chC(ch.target,1))+'</span></div></div>'
+    +'<div class="chx-st-grid">'
+    +(nx?'<div class="up"><span>Move up to '+nx.l+'</span><b>'+chC(Math.max(0,upAt-C.bal))+' to go</b><i>at '+chC(upAt)+' ('+ch.up+' BI)'+(upHands!=null?' · ≈'+chFmtUnits(upHands,M)+' '+M.unitLbl:'')+'</i></div>':'<div class="up"><span>Top of your ladder</span><b>'+st.l+'</b><i>Add stakes in settings to keep climbing</i></div>')
+    +(downAt!=null?'<div class="down"><span>Move down below</span><b>'+chC(downAt)+'</b><i>cushion '+chC(cushion)+' · '+(cushion/st.bi).toFixed(1)+' BI</i></div>':'<div class="down"><span>Lowest stake</span><b>No move-down</b><i>stay disciplined — it\'s the floor</i></div>')
+    +(rorDown!=null?'<div class="risk"><span>'+(downAt!=null?"Chance of a move-down":"Chance of busting")+'</span><b class="'+((downAt!=null?rorDown:rorBust)>0.3?"neg":(downAt!=null?rorDown:rorBust)>0.1?"warn":"pos")+'">'+chPct(downAt!=null?rorDown:rorBust)+'</b><i>at '+M.wr.toFixed(1)+' bb/100 · SD '+Math.round(M.sd)+'</i></div>':'')
+    +(rorBust!=null&&downAt!=null?'<div class="risk"><span>Risk of ruin at this stake</span><b class="'+(rorBust>0.05?"warn":"pos")+'">'+chPct(rorBust)+'</b><i>if you never moved down</i></div>':'')
+    +'</div>'+(C.moves.length?'<div class="chx-moves">'+C.moves.slice(-4).reverse().map(m=>'<span class="'+(m.to>m.from?"up":"down")+'">'+(m.to>m.from?"▲":"▼")+" "+C.steps[m.to].l+" · "+chDate(m.date)+"</span>").join("")+"</div>":"")+'</div>'}
+  // TILES
+  const hrs=C.mins/60,hourly=hrs>0?C.sess.filter(e=>e.s.duration>0).reduce((a,e)=>a+e.v,0)/hrs:null;
+  const tiles=[
+    ["💰","Challenge profit",chSg(C.profit),chPc(C.profit),C.sess.length+" session"+(C.sess.length!==1?"s":"")+(C.winDays?" · "+C.winDays+"/"+C.dayKeys.length+" winning days":""),"--c4"],
+    ["⛰","Peak",chC(C.peak),"",C.peak>ch.start?"on "+chDate(C.peakK):"you're at the start","--c5"],
+    ["📉","From peak",curDD>0?"−"+chC(curDD):"At peak ✦",curDD>0?"neg":"pos",curDD>0?(curDD/st.bi).toFixed(1)+" BI · worst "+chC(C.maxDD):"worst swing "+(C.maxDD?chC(C.maxDD):"—"),"--c6"],
+    M.unit!=="cash"?(()=>{const ts=C.sess.filter(e=>e.s.buyin>0),bi=ts.reduce((a,e)=>a+e.s.buyin*100,0),pl=ts.reduce((a,e)=>a+e.v,0),roi=bi?pl/bi*100:null;return["🏅","ROI",roi!=null?(roi>=0?"+":"−")+Math.abs(roi).toFixed(0)+"%":"—",roi!=null?chPc(roi):"",ts.length?ts.length+" game"+(ts.length>1?"s":"")+" · "+chC(bi)+" in buy-ins"+(ts.length<200?" · small sample":""):"log games with buy-ins","--c2"]})():["🃏","Win rate",G.n?(G.bb100>=0?"+":"−")+Math.abs(G.bb100).toFixed(1)+"<small> bb/100</small>":"—",G.n?chPc(G.bb100):"",G.n?G.n.toLocaleString()+" GG hands"+(G.n<10000?" · small sample":""):"import GG hands to see this","--c2"],
+    ["⏱","Hourly",hourly!=null?chSg(Math.round(hourly))+"<small>/hr</small>":"—",hourly!=null?chPc(hourly):"",hrs?Math.round(hrs)+"h played":"log session times","--c3"],
+    ["🔥","Streak",C.dstreak?C.dstreak+" day"+(C.dstreak>1?"s":""):"—",C.dstreak?"pos":"",(C.curStreak>0?C.curStreak+" winning session"+(C.curStreak>1?"s":"")+" in a row":C.curStreak<0?-C.curStreak+" losing in a row — reset":"best run "+C.bestW+" wins"),"--c1"],
+    ["📈","Growth pace",gRate!=null?(gRate>=0?"+":"−")+Math.abs(gRate*100).toFixed(gRate*100<1?2:1)+"%<small>/day</small>":"—",gRate!=null?chPc(gRate):"",paceDays!=null&&!done?"🏁 "+chDateY(shD(new Date(Date.now()+paceDays*864e5)))+" at this pace":gRate!=null?"compound daily growth":"needs 3+ days","--c2"],
+    ["🧼","Top-ups",C.topups>0?chC(C.topups):"None",C.topups>0?"neg":"pos",C.topups>0?C.deps.length+" deposit"+(C.deps.length>1?"s":"")+" — not a clean run":"clean run"+(C.cashed>0?" · "+chC(C.cashed)+" cashed out":""),"--c4"]];
+  h+='<div class="chx-tiles">'+tiles.map(t=>'<div class="chx-tile" style="--acc:var('+t[5]+')"><span class="chx-ti">'+t[0]+'</span><span class="chx-tl">'+t[1]+'</span><b class="'+t[3]+'">'+t[2]+'</b><i>'+t[4]+'</i></div>').join("")+'</div>';
+  // CHART
+  h+='<div class="chx-card"><div class="chx-h"><h3>The climb</h3><div class="ds-seg chx-seg"><button class="'+(CHV.scale==="log"?"on":"")+'" onclick="CHV.scale=\'log\';renderChal()">Log</button><button class="'+(CHV.scale==="lin"?"on":"")+'" onclick="CHV.scale=\'lin\';renderChal()">Linear</button></div></div><div class="chx-legend">'+C.steps.map((s,i)=>i<=Math.max(C.idx,...C.pts.map(p=>p.idx))?'<span style="--sc:'+CH_COLS[i%CH_COLS.length]+'">'+s.l+'</span>':"").join("")+'<span class="ms">┄ milestones</span></div><div class="chx-chart"><canvas id="chChal"></canvas>'+(C.pts.length<2?'<div class="chx-chart-empty">Your line starts with your first session</div>':'')+'</div></div>';
+  // MILESTONES
+  {let prev={date:ch.startDate,i:0};const sim=CHV.mc&&CHV.mcKey===chalMcKey(ch,C,M)?CHV.mc:null;
+   h+='<div class="chx-card"><div class="chx-h"><h3>Milestones</h3><span class="chx-hs">every double, then the finish</span></div><div class="chx-ms">'+C.ms.map((m,k)=>{const r=C.reached[m];let right,cls;
+     if(r){const d=Math.max(0,Math.round((new Date(r.date+"T12:00:00")-new Date(prev.date+"T12:00:00"))/864e5));right='<b>'+chDate(r.date)+'</b><i>'+(d?d+" day"+(d>1?"s":""):"same day")+' · '+(r.i-prev.i)+' sess.</i>';prev=r;cls="on"}
+     else{const p=chalPlan(ch,C,M,C.bal,C.idx,m);right=p?'<b>≈ '+chDateF(Date.now()+p.units/M.perDay*864e5)+'</b><i>'+chFmtUnits(p.units,M)+' '+M.unitLbl+' away</i>':'<b>—</b><i>needs a winning rate</i>';cls=m===nextM?"nx":""}
+     return'<div class="chx-m '+cls+'"><span class="chx-m-dot">'+(r?"✓":m===ch.target?"🏁":k+1)+'</span><div class="chx-m-v"><b>'+chC(m,1)+'</b><i>'+(m===ch.target?"the goal":Math.round(m/ch.start)+"× start")+'</i></div><div class="chx-m-r">'+right+'</div></div>'}).join("")+'</div></div>'}
+  // PROJECTION
+  h+='<div class="chx-card chx-proj"><div class="chx-h"><h3>Road to '+chC(ch.target,1)+'</h3><span class="chx-hs">what-if planner</span></div>'
+   +'<div class="chx-sl"><label><span>'+(M.unit==="cash"?"Win rate":"ROI")+' <b>'+(M.wr>0?"+":"")+M.wr.toFixed(M.unit==="cash"?1:0)+(M.unit==="cash"?" bb/100":"%")+'</b></span><input type="range" min="'+(M.unit==="cash"?-5:-20)+'" max="'+(M.unit==="cash"?20:60)+'" step="'+(M.unit==="cash"?0.5:1)+'" value="'+M.wr+'" style="--p:'+((M.wr-(M.unit==="cash"?-5:-20))/(M.unit==="cash"?25:80)*100).toFixed(1)+'%" oninput="CHV.wr=+this.value;chalSlP(this);chalProjLive()" onchange="renderChal()" aria-label="Win rate"/><i>default: '+M.wrSrc+'</i></label>'
+   +'<label><span>'+(M.unit==="cash"?"Hands":"Games")+' per day <b>'+Math.round(M.hpd).toLocaleString()+'</b></span><input type="range" min="'+(M.unit==="cash"?100:1)+'" max="'+(M.unit==="cash"?5000:150)+'" step="'+(M.unit==="cash"?50:1)+'" value="'+M.hpd+'" style="--p:'+((M.hpd-(M.unit==="cash"?100:1))/(M.unit==="cash"?4900:149)*100).toFixed(1)+'%" oninput="CHV.hpd=+this.value;chalSlP(this);chalProjLive()" onchange="renderChal()" aria-label="Volume per day"/><i>'+(M.unit==="cash"&&G.activeDays>=2?"you average "+Math.round(G.hpd).toLocaleString()+" on days you play":"set your usual volume")+'</i></label>'
+   +(CHV.wr!=null||CHV.hpd!=null?'<button class="btn btn-xs chx-reset" onclick="CHV.wr=null;CHV.hpd=null;renderChal()">↺ Use my numbers</button>':'')+'</div>'
+   +'<div class="chx-proj-out" id="chxProjOut">'+chalProjOutHtml(ch,C,M,plan,planDays,done)+'</div>'
+   +'<div class="chx-legs">'+(plan&&!done?plan.legs.map(l=>'<div style="--sc:'+CH_COLS[l.idx%CH_COLS.length]+';--w:'+Math.max(3,l.units/plan.units*100).toFixed(1)+'%" title="'+C.steps[l.idx].l+'"><i></i>'+(l.units/plan.units>0.11?'<span>'+C.steps[l.idx].l+'</span><b>'+chFmtUnits(l.units,M)+'</b>':'')+'</div>').join(""):"")+'</div>'
+   +'<div class="chx-mc" id="chxMC">'+chalMcHtml(ch,C,M)+'</div></div>';
+  // LADDER
+  {const per={};C.sess.forEach(e=>{const s=e.s;const bb=s.ggSrc?s.ggSrc.bb:chParseBB(s.stakes);const i=chStepOf(C.steps,bb,s);const k=i<0?"x":i;const p=per[k]||(per[k]={n:0,net:0,mins:0});p.n++;p.net+=e.v;p.mins+=s.duration||0});
+   h+='<div class="chx-card"><div class="chx-h"><h3>Stake ladder</h3><span class="chx-hs">move up '+ch.up+' BI · down '+ch.down+' BI</span></div><div class="chx-lad">'+C.steps.map((s,i)=>{if(i>0&&i!==C.idx&&ch.up*s.bi>ch.target&&!per[i])return"";const p=per[i],g=M.unit==="cash"?G.per[s.bb]:null,unlocked=i===0||C.peak>=ch.up*s.bi,cur=i===C.idx;
+     return'<div class="chx-lr'+(cur?" cur":unlocked||p?" done":"")+'" style="--sc:'+CH_COLS[i%CH_COLS.length]+'"><span class="chx-lr-dot" title="'+(cur?"Your stake now":unlocked?"Unlocked":p?"Shot taken before unlocking":"Locked")+'">'+(cur?"▶":unlocked?"✓":p?"🎯":"🔒")+'</span><div class="chx-lr-n"><b>'+s.l+'</b><i>'+(i===0?"start here":"unlock "+chC(ch.up*s.bi,1))+(i>0?" · down "+chC(ch.down*s.bi,1):"")+'</i></div><div class="chx-lr-s">'+(p||g?'<b class="'+chPc(p?p.net:g.net)+'">'+chSg(p?p.net:g.net)+'</b><i>'+(g&&g.n?(g.nbb/g.n*100>=0?"+":"")+(g.nbb/g.n*100).toFixed(1)+" bb/100 · "+g.n.toLocaleString()+" h":p.n+" sess"+(p.mins?" · "+Math.round(p.mins/60)+"h":""))+'</i>':'<i>—</i>')+'</div></div>'}).join("")+'</div>'+(per.x?'<div class="chx-note">'+per.x.n+' session'+(per.x.n>1?"s":"")+' at stakes outside this ladder ('+chSg(per.x.net)+').</div>':'')+'</div>'}
+  // DAILY + WEEKLY
+  h+='<div class="chx-card"><div class="chx-h"><h3>Day by day</h3><span class="chx-hs">last 30 days</span></div><div class="chx-chart sm"><canvas id="chChalDay"></canvas>'+(C.dayKeys.length?'':'<div class="chx-chart-empty">No sessions yet</div>')+'</div>'+chalWeeksHtml(ch,C)+'</div>';
+  // RECORDS
+  {const r=[["🏆","Best session",C.bestS&&C.bestS.v>0?chSg(C.bestS.v):"—",C.bestS&&C.bestS.v>0?chDate(C.bestS.date)+(C.bestS.s.stakes?" · "+C.bestS.s.stakes:""):"","pos"],
+    ["🥶","Worst session",C.worstS&&C.worstS.v<0?chSg(C.worstS.v):"—",C.worstS&&C.worstS.v<0?chDate(C.worstS.date)+(C.worstS.s.stakes?" · "+C.worstS.s.stakes:""):"","neg"],
+    ["☀️","Best day",C.bestD&&C.days[C.bestD]>0?chSg(C.days[C.bestD]):"—",C.bestD&&C.days[C.bestD]>0?chDate(C.bestD):"","pos"],
+    ["🌧","Worst day",C.worstD&&C.days[C.worstD]<0?chSg(C.days[C.worstD]):"—",C.worstD&&C.days[C.worstD]<0?chDate(C.worstD):"","neg"],
+    ["🌊","Biggest downswing",C.maxDD?"−"+chC(C.maxDD):"—",C.maxDD?chDate(C.ddFrom)+" → "+chDate(C.ddTo):"","neg"],
+    ["🔗","Longest win streak",C.bestW?C.bestW+" sessions":"—",C.bestL?"longest losing run "+C.bestL:"",""],
+    ["⚡","Fastest double",chalFastestDouble(ch,C),"","pos"],
+    ["🪜","Moves",C.moves.filter(m=>m.to>m.from).length+" up · "+C.moves.filter(m=>m.to<m.from).length+" down",C.moves.length?"last "+chDate(C.moves[C.moves.length-1].date):"none yet",""]];
+   h+='<div class="chx-card"><div class="chx-h"><h3>Records</h3></div><div class="chx-rec">'+r.map(x=>'<div><span>'+x[0]+'</span><i>'+x[1]+'</i><b class="'+(x[2]==="—"?"":x[4])+'">'+x[2]+'</b><em>'+x[3]+'</em></div>').join("")+'</div></div>'}
+  // ACTIONS
+  h+='<div class="chx-acts"><button class="btn pri" onclick="switchBrTab(\'brSess\')">＋ Log session</button><button class="btn" onclick="chalCopy()">📋 Copy progress update</button><button class="btn" onclick="chalOpenSetup(true)">⚙ Challenge settings</button></div>'
+   +'<div class="chx-foot">Started '+chDateY(ch.startDate)+' with '+chC(ch.start)+' · '+CH_LADDERS[ch.ladder]?.name+' · '+CH_STYLE_INFO[ch.style]?.[1]+' bankroll rules'+(b.settings.challenge&&BR.d.name?' · bankroll “'+escapeHtml(BR.d.name)+'”':'')+'</div>';
+  el.innerHTML=h;
+  brDefer(()=>chalCharts(ch,C,M),"chal");
+  if(!CHV.mc||CHV.mcKey!==chalMcKey(ch,C,M))chalRunMC(ch,C,M)}
+function chPct(p){if(p==null)return"—";const v=p*100;return v<0.1?"<0.1%":v>99.5?">99%":(v<10?v.toFixed(1):Math.round(v))+"%"}
+function chParseBB(st){if(!st)return null;const m=String(st).replace(/[£$€]/g,"").match(/([\d.]+)\s*\/\s*([\d.]+)/);return m?Math.round(parseFloat(m[2])*100):null}
+function chStepOf(steps,bb,s){if(steps[0]&&steps[0].bb==null){const bi=s&&s.buyin!=null?Math.round(s.buyin*100):null;return bi==null?-1:steps.findIndex(x=>x.bi===bi)}if(bb==null)return-1;return steps.findIndex(x=>x.bb===bb)}
+function chalFastestDouble(ch,C){let best=null;const pts=C.pts;for(let i=0;i<pts.length;i++){const tgt=pts[i].bal*2;for(let j=i+1;j<pts.length;j++){if(pts[j].bal>=tgt){const d=Math.round((new Date(pts[j].date+"T12:00:00")-new Date(pts[i].date+"T12:00:00"))/864e5);if(best==null||d<best)best=d;break}}}return best==null?"—":best===0?"same day":best+" day"+(best>1?"s":"")}
+function chalWeeksHtml(ch,C){if(!C.sess.length)return"";const wk={};let bal=ch.start;const mon=d=>{const x=new Date(d+"T12:00:00");x.setDate(x.getDate()-((x.getDay()+6)%7));return shD(x)};
+  C.pts.slice(1).forEach(p=>{const k=mon(p.date);if(!wk[k])wk[k]={start:bal,pl:0,n:0};if(p.e.t==="s"){wk[k].pl+=p.e.v;wk[k].n++}bal=p.bal;wk[k].end=bal});
+  const ks=Object.keys(wk).sort().reverse().slice(0,8);const mx=Math.max(...ks.map(k=>Math.abs(wk[k].pl)),1);
+  return'<div class="chx-wk"><div class="chx-wk-h"><span>Week of</span><span>P/L</span><span>Growth</span></div>'+ks.map(k=>{const w=wk[k],g=w.start>0?w.pl/w.start:0;return'<div class="chx-wk-r"><span>'+chDate(k)+'<i>'+w.n+' sess</i></span><span class="'+chPc(w.pl)+'"><em style="--w:'+(Math.abs(w.pl)/mx*100).toFixed(0)+'%" class="'+chPc(w.pl)+'"></em>'+chSg(w.pl)+'</span><b class="'+chPc(g)+'">'+(g>=0?"+":"−")+Math.abs(g*100).toFixed(1)+'%</b></div>'}).join("")+'</div>'}
+function chalProjOutHtml(ch,C,M,plan,planDays,done){if(done)return'<div class="chx-po big"><span>🏆</span><b>Challenge complete</b><i>Set a new target in settings to keep going</i></div>';
+  if(!plan)return'<div class="chx-po big warn"><span>⚠</span><b>Needs a winning '+(M.unit==="cash"?"rate":"ROI")+'</b><i>At '+M.wr+(M.unit==="cash"?" bb/100":"% ROI")+' the target can\'t be reached on average</i></div>';
+  return'<div class="chx-po"><span>Finish around</span><b>'+chDateY(shD(new Date(Date.now()+planDays*864e5)))+'</b><i>'+chFmtDays(planDays)+' from today</i></div><div class="chx-po"><span>'+(M.unit==="cash"?"Hands":"Games")+' to go</span><b>'+chFmtUnits(plan.units,M)+'</b><i>at '+M.wr+(M.unit==="cash"?" bb/100":"% ROI")+', no swings</i></div>'}
+function chalSlP(el){el.style.setProperty("--p",((el.value-el.min)/(el.max-el.min)*100).toFixed(1)+"%")}
+function chalProjLive(){const b=BR.d,ch=chalGet(b);if(!ch)return;const C=chalCompute(b,ch),G=chalGG(ch,C),M=chalModel(ch,C,G);const plan=chalPlan(ch,C,M,C.bal,C.idx,ch.target);const o=$("chxProjOut");if(o)o.innerHTML=chalProjOutHtml(ch,C,M,plan,plan?plan.units/M.perDay:null,C.bal>=ch.target);
+  document.querySelectorAll(".chx-sl label").forEach((l,i)=>{const b2=l.querySelector("b");if(b2)b2.textContent=i===0?(M.wr>0?"+":"")+M.wr.toFixed(M.unit==="cash"?1:0)+(M.unit==="cash"?" bb/100":"%"):Math.round(M.hpd).toLocaleString()})}
+function chalMcKey(ch,C,M){return[ch.target,ch.up,ch.down,ch.ladder,C.bal,C.idx,M.wr,Math.round(M.sd),M.hpd,C.steps.length].join("|")}
+function chalRunMC(ch,C,M){const key=chalMcKey(ch,C,M);if(CHV.mcBusy===key)return;CHV.mcBusy=key;setTimeout(()=>{const r=chalMC(ch,C,M,M.wr<=0?150:M.unit==="cash"?400:500);CHV.mc=r;CHV.mcKey=key;CHV.mcBusy=false;const el=$("chxMC");if(el)el.innerHTML=chalMcHtml(ch,C,M)},60)}
+function chalMcHtml(ch,C,M){if(C.bal>=ch.target)return"";const r=CHV.mc&&CHV.mcKey===chalMcKey(ch,C,M)?CHV.mc:null;if(!r)return'<div class="chx-mc-load"><span class="chx-spin"></span>Simulating your challenge with real swings…</div>';
+  const pOk=r.ok/r.runs,pB=r.bust/r.runs,pO=r.open/r.runs;const d=u=>u==null?"—":chDateF(Date.now()+u/M.perDay*864e5);
+  return'<div class="chx-mc-h"><b>With real swings</b><i>'+r.runs+' simulated runs · your ladder & move-down rules · SD '+Math.round(M.sd)+(M.unit==="cash"?" bb/100":"")+'</i></div>'
+   +'<div class="chx-mc-bar"><span class="ok" style="--w:'+(pOk*100).toFixed(1)+'%"></span><span class="op" style="--w:'+(pO*100).toFixed(1)+'%"></span><span class="bu" style="--w:'+(pB*100).toFixed(1)+'%"></span></div>'
+   +'<div class="chx-mc-k"><span class="ok"><b>'+chPct(pOk)+'</b> reach '+chC(ch.target,1)+'</span>'+(pO>0.005?'<span class="op"><b>'+chPct(pO)+'</b> still climbing after '+chFmtUnits(M.unit==="cash"?20000:30000,M)+'</span>':'')+'<span class="bu"><b>'+chPct(pB)+'</b> go broke</span></div>'
+   +(r.ok?'<div class="chx-mc-q"><div><span>Lucky (top 25%)</span><b>'+d(r.p25)+'</b><i>'+chFmtUnits(r.p25,M)+'</i></div><div class="mid"><span>Typical</span><b>'+d(r.p50)+'</b><i>'+chFmtUnits(r.p50,M)+' '+M.unitLbl+'</i></div><div><span>Unlucky (bottom 25%)</span><b>'+d(r.p75)+'</b><i>'+chFmtUnits(r.p75,M)+'</i></div></div>':'')}
+function chalCharts(ch,C,M){if(typeof Chart==="undefined")return;const CT=getCT();destroyBrChart("chal");destroyBrChart("chalDay");
+  const cv=$("chChal");if(cv&&C.pts.length>=2){const labels=C.pts.map((p,i)=>i===0?"Start":chDate(p.date)),data=C.pts.map(p=>Math.max(p.bal,1)/100),col=i=>CH_COLS[C.pts[i].idx%CH_COLS.length];
+    const msPlug={id:"chxMs",beforeDatasetsDraw(c){const{ctx,chartArea:a,scales:{y}}=c;ctx.save();ctx.setLineDash([3,4]);ctx.lineWidth=1;ctx.font="600 9px system-ui";ctx.textAlign="right";
+      C.ms.forEach(m=>{const v=m/100;if(v<y.min||v>y.max)return;const yy=y.getPixelForValue(v);const r=C.bal>=m;ctx.strokeStyle=r?CT.gold+"aa":CT.grid;ctx.beginPath();ctx.moveTo(a.left,yy);ctx.lineTo(a.right,yy);ctx.stroke();ctx.fillStyle=r?CT.gold:CT.tick;ctx.fillText(chC(m,1),a.right-2,yy-3)});ctx.restore()}};
+    const top=Math.max(...data);const yMax=CHV.scale==="log"?Math.max(top*1.6,(C.ms.find(m=>m/100>top)||ch.target)/100*1.05):undefined;
+    brCharts.chal=new Chart(cv.getContext("2d"),{type:"line",plugins:[msPlug],data:{labels,datasets:[{label:"Balance",data,borderWidth:3,tension:.25,cubicInterpolationMode:"monotone",fill:true,backgroundColor:brAreaGrad(CT.rose),
+      segment:{borderColor:c=>col(c.p1DataIndex)},pointRadius:C.pts.map((p,i)=>C.moves.some(m=>m.n===i)?5:0),pointStyle:C.pts.map((p,i)=>{const m=C.moves.find(m=>m.n===i);return m?"triangle":"circle"}),pointRotation:C.pts.map((p,i)=>{const m=C.moves.find(m=>m.n===i);return m&&m.to<m.from?180:0}),pointBackgroundColor:C.pts.map((p,i)=>col(i)),pointBorderColor:"#fff",pointBorderWidth:1,pointHoverRadius:5,pointHitRadius:10}]},
+      options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:"index"},plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10,displayColors:false,callbacks:{label:c=>{const p=C.pts[c.dataIndex];return[chC(p.bal)+" · "+C.steps[p.idx].l,p.e?(p.e.t==="s"?"Session "+chSg(p.e.v):p.e.v>0?"Deposit "+chSg(p.e.v):"Withdrawal "+chSg(p.e.v)):"Challenge start"]}}}},
+      scales:{x:{ticks:{color:CT.tick,maxTicksLimit:6,font:{size:10}},grid:{display:false}},y:CHV.scale==="log"?{type:"logarithmic",min:Math.min(ch.start,C.low)/100*0.8,max:yMax,ticks:{color:CT.tick,font:{size:10},callback:v=>{const s=[1,2,5].some(k=>{const l=Math.log10(v/k);return Math.abs(l-Math.round(l))<1e-6});return s?chC(v*100,1):""}},grid:{color:CT.grid}}:{ticks:{color:CT.tick,font:{size:10},callback:v=>chC(v*100,1)},grid:{color:CT.grid}}}}})}
+  const cd=$("chChalDay");if(cd&&C.dayKeys.length){const keys=[];const d=new Date();for(let i=29;i>=0;i--){const x=new Date(d);x.setDate(d.getDate()-i);const k=shD(x);if(k>=ch.startDate)keys.push(k)}
+    const vals=keys.map(k=>(C.days[k]||0)/100);brCharts.chalDay=new Chart(cd.getContext("2d"),{type:"bar",data:{labels:keys.map(k=>chDate(k)),datasets:[{data:vals,backgroundColor:vals.map(v=>v>=0?CT.green_a:CT.red_a),borderRadius:5,borderSkipped:false,minBarLength:vals.map(v=>v?3:0)}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:CT.tbg,displayColors:false,callbacks:{label:c=>c.raw?chSg(Math.round(c.raw*100)):"No sessions"}}},scales:{x:{ticks:{color:CT.tick,maxTicksLimit:7,font:{size:10}},grid:{display:false}},y:{ticks:{color:CT.tick,font:{size:10},callback:v=>chC(v*100,1)},grid:{color:CT.grid}}}}})}}
+function chalNotify(b,ch,C){let dirty=false;ch.seen=ch.seen||[];const fresh=C.ms.filter(m=>C.reached[m]&&!ch.seen.includes(m)&&m>ch.start);
+  if(fresh.length){ch.seen.push(...fresh);dirty=true;const m=Math.max(...fresh);setTimeout(()=>{celebrate();haptic("success");toast(m>=ch.target?"🏆 Challenge complete — "+chC(m,1)+"!":"🎉 Milestone: "+chC(m,1)+" reached")},250)}
+  if(ch.lastIdx==null){ch.lastIdx=C.idx;dirty=true}else if(ch.lastIdx!==C.idx){const up=C.idx>ch.lastIdx;const l=C.steps[C.idx].l;ch.lastIdx=C.idx;dirty=true;setTimeout(()=>toast(up?"▲ Move up — you're rolled for "+l:"▼ Move down to "+l+" — protect the roll"),fresh.length?2600:200)}
+  if(dirty)saveBankrollsList()}
+function chalCopy(){const b=BR.d,ch=chalGet(b);if(!ch)return;const C=chalCompute(b,ch),G=chalGG(ch,C);const st=C.steps[C.idx];
+  const t="🚀 "+chC(ch.start,1)+" → "+chC(ch.target,1)+" challenge · Day "+C.dayN+"\n💰 "+chC(C.bal)+" ("+(C.bal/ch.start).toFixed(2)+"×, "+Math.round(chalJourney(ch,C.bal)*100)+"% of the way)\n🎯 Playing "+st.l+" · "+(C.bal/st.bi).toFixed(1)+" buy-ins"+(G.n?"\n🃏 "+(G.bb100>=0?"+":"")+G.bb100.toFixed(1)+" bb/100 over "+G.n.toLocaleString()+" hands":"")+"\n⛰ Peak "+chC(C.peak)+(C.topups?"":" · no top-ups");
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Progress update copied ✦")).catch(()=>{prompt("Copy your update:",t)})}
+function chalEmptyHtml(other,ended){if(other&&other.id!==BR.d.id){const ch=other.settings.challenge;return'<div class="chx-empty"><div class="chx-empty-ic">🚀</div><b>Your '+chC(ch.start,1)+' → '+chC(ch.target,1)+' challenge lives in “'+escapeHtml(other.name)+'”</b><span>Switch to that bankroll to see it.</span><button class="btn pri" onclick="switchActiveBankroll(\''+other.id+'\');setTimeout(()=>switchBrTab(\'brChal\'),50)">Open challenge</button><button class="btn btn-s" onclick="chalOpenSetup(false)">Start another here</button></div>'}
+  return'<div class="chx-empty"><div class="chx-empty-ic">🚀</div><b>Start a bankroll challenge</b><span>Pick a start and a target — like $50 → $10K. You get a stake ladder with move-up and move-down points, milestones for every double, finish-date projections and real-swing simulations.</span>'
+   +'<div class="chx-empty-pts"><span>🪜 Stake ladder</span><span>🎯 Milestones</span><span>📈 Log-scale climb chart</span><span>🎲 Success odds</span></div><button class="btn pri" onclick="chalOpenSetup(false)">Set up my challenge</button>'+(ended?'<div class="chx-note">Your last challenge ('+chC(ended.start,1)+' → '+chC(ended.target,1)+') ended '+chDateY(ended.ended)+'.</div>':'')+'</div>'}
+// ── setup modal
+function chalOpenSetup(edit){const b=BR.d,ch=edit?chalGet(b):null;const prevGG=LG("ps_gg_bankroll","");
+  CHV.setup=ch?{edit:true,start:ch.start/100,target:ch.target/100,date:ch.startDate,ladder:ch.ladder,style:ch.style,up:ch.up,down:ch.down,custom:ch.style==="custom",where:"here",gg:prevGG===b.id}:{edit:false,start:50,target:10000,date:shD(new Date()),ladder:"gg",style:"standard",up:35,down:25,custom:false,where:"new",gg:true};
+  chalSetupRender();openM("chalM")}
+function chalSetupRender(){const S=CHV.setup,el=$("chalBody");if(!el||!S)return;CHV.sym=!S.edit&&S.where==="new"?"$":null;try{chalSetupRender0(S,el)}finally{CHV.sym=null}}
+function chalSetupRender0(S,el){const unit=CH_LADDERS[S.ladder].unit;const styles=CH_STYLES[unit];if(!S.custom){const r=styles[S.style]||styles.standard;S.up=r[0];S.down=r[1]}
+  const steps=chalStepsFor(S.ladder),startC=Math.round(S.start*100),idx0=chalIdxFor(startC,steps,S.up),st=steps[idx0],bis=startC/st.bi,tgt=Math.round(S.target*100);
+  const ms=tgt>startC?chalMilestones({start:startC,target:tgt}):[];const nx=steps[idx0+1];
+  const chip=(arr,cur,fn)=>arr.map(v=>'<button class="gg-chip'+(+cur===v?" on":"")+'" onclick="'+fn+'('+v+')">$'+(v>=1000?v/1000+"K":v)+"</button>").join("");
+  el.innerHTML='<div class="edq-h"><h3>🚀 '+(S.edit?"Challenge settings":"New bankroll challenge")+'</h3><button class="btn btn-xs" onclick="closeM(\'chalM\')" aria-label="Close">✕</button></div>'
+   +'<div class="chs-row"><div class="hx-lbl">Start with</div><div class="hx-chips">'+chip([20,50,100,250,500],S.start,"chalSet('start',")+'<input class="minp chs-num" type="number" min="1" step="1" inputmode="decimal" value="'+S.start+'" onchange="chalSet(\'start\',+this.value)" aria-label="Starting amount"/></div></div>'
+   +'<div class="chs-row"><div class="hx-lbl">Target</div><div class="hx-chips">'+chip([1000,2500,5000,10000,25000],S.target,"chalSet('target',")+'<input class="minp chs-num" type="number" min="2" step="1" inputmode="decimal" value="'+S.target+'" onchange="chalSet(\'target\',+this.value)" aria-label="Target amount"/></div></div>'
+   +'<div class="chs-row"><div class="hx-lbl">Game</div><div class="ds-seg chs-seg">'+Object.entries(CH_LADDERS).map(([k,l])=>'<button class="'+(S.ladder===k?"on":"")+'" onclick="chalSet(\'ladder\',\''+k+'\')">'+l.short+"</button>").join("")+'</div></div>'
+   +'<div class="chs-row"><div class="hx-lbl">Bankroll rules</div><div class="chs-styles">'+Object.keys(styles).map(k=>{const i=CH_STYLE_INFO[k],r=styles[k];return'<button class="chs-style'+(!S.custom&&S.style===k?" on":"")+'" onclick="chalSet(\'style\',\''+k+'\')"><span>'+i[0]+'</span><b>'+i[1]+'</b><i>up '+r[0]+' · down '+r[1]+' BI</i><em>'+i[2]+'</em></button>'}).join("")
+   +'<button class="chs-style'+(S.custom?" on":"")+'" onclick="chalSet(\'custom\',1)"><span>✏️</span><b>Custom</b><i>your own numbers</i><em>set below</em></button></div>'
+   +(S.custom?'<div class="chs-cust"><label>Move up at <input class="minp" type="number" min="5" max="500" value="'+S.up+'" onchange="chalSet(\'up\',+this.value)"/> BI</label><label>Move down below <input class="minp" type="number" min="1" max="400" value="'+S.down+'" onchange="chalSet(\'down\',+this.value)"/> BI</label></div>':'')+'</div>'
+   +'<div class="chs-prev"><div><span>You start at</span><b>'+st.l+'</b><i>'+bis.toFixed(1)+' buy-ins'+(bis<S.down&&unit==="cash"?' · ⚠ short-rolled':'')+'</i></div><div><span>First move up</span><b>'+(nx?chC(S.up*nx.bi,1):"—")+'</b><i>'+(nx?"to "+nx.l:"top stake")+'</i></div><div><span>Milestones</span><b>'+ms.length+'</b><i>'+(ms.length?ms.slice(0,4).map(m=>chC(m,1)).join(" · ")+(ms.length>4?" …":""):"target must be above start")+'</i></div></div>'
+   +'<div class="chs-row"><div class="hx-lbl">Start date</div><input class="minp" type="date" value="'+S.date+'" onchange="chalSet(\'date\',this.value)" style="margin:0;max-width:200px"/></div>'
+   +(S.edit?'':'<div class="chs-row"><div class="hx-lbl">Track it in</div><div class="chs-where"><button class="'+(S.where==="new"?"on":"")+'" onclick="chalSet(\'where\',\'new\')"><b>✨ A new “'+chC(startC,1)+' → '+chC(tgt,1)+'” bankroll</b><i>Recommended — a clean slate starting at '+chC(startC)+'</i></button><button class="'+(S.where==="here"?"on":"")+'" onclick="chalSet(\'where\',\'here\')"><b>'+BR.d.icon+' “'+escapeHtml(BR.d.name)+'”</b><i>Counts sessions here from the start date on</i></button></div></div>')
+   +(CH_LADDERS[S.ladder].unit==="cash"&&S.ladder==="gg"?'<label class="chs-check"><input type="checkbox" '+(S.gg?"checked":"")+' onchange="CHV.setup.gg=this.checked"/> <span>Log my GG imports into this challenge automatically</span></label>':'')
+   +'<div class="mact">'+(S.edit?'<button class="btn btn-d" onclick="chalEnd()">End challenge</button><span style="flex:1"></span>':'')+'<button class="btn" onclick="closeM(\'chalM\')">Cancel</button><button class="btn pri" '+(tgt>startC?"":"disabled ")+'onclick="chalSave()">'+(S.edit?"Save":"🚀 Start challenge")+'</button></div>'}
+function chalSet(k,v){const S=CHV.setup;if(!S)return;if(k==="custom"){S.custom=true;S.style="custom"}else if(k==="style"){S.custom=false;S.style=v}else if(k==="ladder"){S.ladder=v;if(!S.custom)S.style=S.style==="custom"?"standard":S.style;else{const r=CH_STYLES[CH_LADDERS[v].unit].standard;S.up=r[0];S.down=r[1]}}else if(k==="up"||k==="down"){S[k]=Math.max(1,v||1);if(S.down>=S.up)S.down=Math.max(1,S.up-5)}else if(k==="start"||k==="target"){if(v>0)S[k]=v}else S[k]=v;chalSetupRender()}
+function chalSave(){const S=CHV.setup;if(!S)return;const start=Math.round(S.start*100),target=Math.round(S.target*100);if(!(target>start))return toast("Target needs to be above your start");
+  let b=BR.d;const prev=S.edit?chalGet(b):null;
+  if(!S.edit&&S.where==="new"){const list=getBankrollsList();CHV.sym="$";const nm=chC(start,1)+" → "+chC(target,1);CHV.sym=null;b={id:"br_"+Date.now(),name:nm,icon:"🚀",sessions:[],goals:[],deposits:[],settings:{startBankroll:start/100,currency:"USD",onlineBankroll:S.ladder!=="live"}};list.push(b);LS("ps_active_bankroll",b.id)}
+  const ch=Object.assign({},prev||{},{v:1,start,target,startDate:S.date,ladder:S.ladder,style:S.custom?"custom":S.style,up:S.up,down:S.down,steps:chalStepsFor(S.ladder),created:prev?.created||Date.now()});
+  if(!prev||prev.start!==start||prev.target!==target||prev.startDate!==S.date){ch.seen=[];ch.lastIdx=null}if(prev&&(prev.ladder!==S.ladder||prev.up!==S.up||prev.down!==S.down))ch.lastIdx=null;
+  delete ch.ended;b.settings.challenge=ch;if(S.gg&&S.ladder==="gg")LS("ps_gg_bankroll",b.id);
+  saveBankrollsList();closeM("chalM");CHV.mc=null;renderBrAll();renderBankrollSwitcher();updateCurrencyLabels();switchBrTab("brChal");
+  if(!S.edit){celebrate();haptic("success");toast("🚀 Challenge on — "+chC(start,1)+" → "+chC(target,1))}else toast("Challenge updated ✦")}
+function chalEnd(){const b=BR.d,ch=chalGet(b);if(!ch)return;closeM("chalM");const old=JSON.parse(JSON.stringify(ch));ch.ended=shD(new Date());saveBankrollsList();renderBrAll();renderChal();toastUndo("Challenge ended",()=>{b.settings.challenge=old;saveBankrollsList();renderBrAll();renderChal()},8000)}
+// Overview strip
+function chalStripHtml(){const b=BR.d,ch=chalGet(b);if(!ch||ch.ended)return"";const C=chalCompute(b,ch),J=chalJourney(ch,C.bal),st=C.steps[C.idx],nx=C.steps[C.idx+1];
+  return'<button class="chx-strip" onclick="switchBrTab(\'brChal\')" aria-label="Open challenge"><div class="chx-strip-t"><span>🚀 '+chC(ch.start,1)+' → '+chC(ch.target,1)+'</span><b>'+(C.bal/ch.start).toFixed(2)+'×</b></div><div class="chx-bar sm"><div class="chx-fill" style="--w:'+(J*100).toFixed(2)+'%"></div>'+C.ms.map(m=>'<span class="chx-tick'+(C.bal>=m?" on":"")+'" style="left:'+(chalJourney(ch,m)*100).toFixed(2)+'%"></span>').join("")+'</div><div class="chx-strip-f"><span>Play <b>'+st.l+'</b> · '+(C.bal/st.bi).toFixed(1)+' BI</span><span>'+(nx?"↑ "+chC(ch.up*nx.bi,1):"top stake")+' · Day '+C.dayN+' →</span></div></button>'}
+
 </script>
 </body>
 </html>
