@@ -5807,6 +5807,207 @@ html body .gg-hud-t.warn::before{background:var(--gd);box-shadow:0 0 0 3px color
 [data-theme="blush"] .b2-gg{color:var(--pk3)!important;background:color-mix(in srgb,var(--pk) 10%,#fff)!important;opacity:1!important}
 
 .gg-flash{animation:ggFlash 1.2s ease}@keyframes ggFlash{0%,60%{box-shadow:0 0 0 2px color-mix(in srgb,var(--pk) 55%,transparent);border-radius:12px}100%{box-shadow:none}}
+
+.gg-cnt{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;font-size:9.5px;font-weight:800;font-variant-numeric:tabular-nums;background:color-mix(in srgb,var(--t1) 8%,transparent);color:var(--t3);vertical-align:1px}
+.gg-chip.on .gg-cnt{background:color-mix(in srgb,var(--pk) 24%,transparent);color:var(--pk2)}
+[data-theme="blush"] .gg-chip.on .gg-cnt,[data-theme="daylight"] .gg-chip.on .gg-cnt{color:var(--pk3)}
+.gg-cnt.z{opacity:.55}.gg-chip-z{opacity:.5}
+.gg-pmatch{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px;padding:10px 12px;margin-bottom:10px;border-radius:12px;background:color-mix(in srgb,var(--pk) 8%,var(--b2));border:1px solid color-mix(in srgb,var(--pk) 18%,transparent);font-size:12px;color:var(--t2)}
+.gg-pmatch b{font-size:16px;color:var(--t1);font-variant-numeric:tabular-nums}.gg-pmatch span{color:var(--t3)}
+.gg-pmatch em{flex-basis:100%;font-style:normal;font-size:10px;color:var(--t4)}
+.gg-amatch{display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;font-size:11px;color:var(--t2);background:color-mix(in srgb,var(--pk) 10%,transparent);margin-right:2px}.gg-amatch b{color:var(--t1);margin-right:3px;font-variant-numeric:tabular-nums}
+
+/* ═══ v101 · colour pass ═══ */
+/* filter panel: each section has its own accent; chips carry it, selected chips fill with it */
+#ggPanel .gg-panel{background:radial-gradient(120% 60% at 0% 0%,color-mix(in srgb,var(--pk) 7%,transparent),transparent 60%),radial-gradient(100% 50% at 100% 100%,color-mix(in srgb,var(--li) 6%,transparent),transparent 60%),var(--b2)}
+#ggPanel .gg-psec{--sc:var(--pk);position:relative;padding:10px 10px 8px 12px;margin:0 0 8px;border-radius:12px;background:linear-gradient(100deg,color-mix(in srgb,var(--sc) 7%,transparent),transparent 65%);border-left:3px solid color-mix(in srgb,var(--sc) 70%,transparent)}
+#ggPanel .gg-plbl{color:color-mix(in srgb,var(--sc) 80%,var(--t1));display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#ggPanel .gg-plbl .gg-hint{color:var(--t4)}
+#ggPanel .gg-chip{--cc:var(--sc,var(--pk));background:color-mix(in srgb,var(--cc) 7%,var(--b2));border-color:color-mix(in srgb,var(--cc) 26%,var(--bd));color:color-mix(in srgb,var(--cc) 35%,var(--t2))}
+#ggPanel .gg-chip:hover{border-color:color-mix(in srgb,var(--cc) 55%,transparent)}
+#ggPanel .gg-chip.on{background:linear-gradient(135deg,color-mix(in srgb,var(--cc) 38%,var(--b2)),color-mix(in srgb,var(--cc) 20%,var(--b2)));border-color:var(--cc);color:var(--t1);box-shadow:0 4px 14px -8px var(--cc)}
+#ggPanel .gg-chip .gg-cnt{background:color-mix(in srgb,var(--cc) 16%,transparent);color:color-mix(in srgb,var(--cc) 70%,var(--t1))}
+#ggPanel .gg-chip.on .gg-cnt{background:color-mix(in srgb,var(--cc) 45%,transparent);color:var(--t1)}
+#ggPanel .gg-chip-z{opacity:.42}
+#ggPanel .gg-pmatch{background:linear-gradient(120deg,color-mix(in srgb,var(--pri1,var(--pk)) 20%,var(--b2)),color-mix(in srgb,var(--pri2,var(--li)) 14%,var(--b2)));border-color:color-mix(in srgb,var(--pk) 30%,transparent)}
+#ggPanel .gg-pmatch b{background:linear-gradient(120deg,var(--pk2),var(--li));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#ggPanel .gg-rcell.on{background:linear-gradient(135deg,var(--pri1,var(--pk)),var(--pri2,var(--li)))!important;color:#fff!important}
+#ggPanel .gg-rcell.pair:not(.on){background:color-mix(in srgb,var(--pk) 14%,var(--b3))}
+#ggPanel .gg-rcell.suited:not(.on){background:color-mix(in srgb,var(--li) 9%,var(--b3))}
+#ggPanel input.minp{border-color:color-mix(in srgb,var(--sc,var(--pk)) 28%,var(--bd))!important}
+[data-theme="blush"] #ggPanel .gg-chip.on,[data-theme="daylight"] #ggPanel .gg-chip.on{color:var(--t1)}
+
+/* quick filter chips + active pills */
+#ggQuick .gg-chip:nth-child(6n+1){--cc:var(--c1)}#ggQuick .gg-chip:nth-child(6n+2){--cc:var(--c2)}#ggQuick .gg-chip:nth-child(6n+3){--cc:var(--c3)}#ggQuick .gg-chip:nth-child(6n+4){--cc:var(--c4)}#ggQuick .gg-chip:nth-child(6n+5){--cc:var(--c5)}#ggQuick .gg-chip:nth-child(6n){--cc:var(--c6)}
+#ggQuick .gg-chip[data-q="won"]{--cc:var(--mt)}#ggQuick .gg-chip[data-q="lost"]{--cc:var(--rs)}
+#ggQuick .gg-chip{background:color-mix(in srgb,var(--cc) 8%,var(--b2));border-color:color-mix(in srgb,var(--cc) 30%,var(--bd));color:color-mix(in srgb,var(--cc) 45%,var(--t2))}
+#ggQuick .gg-chip.on{background:linear-gradient(135deg,color-mix(in srgb,var(--cc) 36%,var(--b2)),color-mix(in srgb,var(--cc) 18%,var(--b2)));border-color:var(--cc);color:var(--t1)}
+#ggActive .gg-pill{background:color-mix(in srgb,var(--li) 14%,var(--b2));border:1px solid color-mix(in srgb,var(--li) 34%,transparent);color:var(--t1)}
+#ggActive .gg-pill:nth-of-type(3n+2){background:color-mix(in srgb,var(--pk) 14%,var(--b2));border-color:color-mix(in srgb,var(--pk) 34%,transparent)}
+#ggActive .gg-pill:nth-of-type(3n){background:color-mix(in srgb,var(--ic) 13%,var(--b2));border-color:color-mix(in srgb,var(--ic) 32%,transparent)}
+#ggFilterBtn{border-color:color-mix(in srgb,var(--li) 40%,var(--bd))!important;background:color-mix(in srgb,var(--li) 10%,var(--b2))!important;color:color-mix(in srgb,var(--li) 70%,var(--t1))!important}
+#ggFilterBtn .gg-fcount{background:linear-gradient(135deg,var(--pri1,var(--pk)),var(--pri2,var(--li)));color:#fff}
+
+/* GG section tabs: each tab its own colour when active */
+#ggTabs button[data-tab="analysis"]{--tc:var(--pk)}#ggTabs button[data-tab="list"]{--tc:var(--ic)}#ggTabs button[data-tab="grid"]{--tc:var(--gd)}#ggTabs button[data-tab="breakdown"]{--tc:var(--li)}#ggTabs button[data-tab="rc"]{--tc:var(--mt)}
+#ggTabs button.on{background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 30%,transparent),color-mix(in srgb,var(--tc) 14%,transparent))!important;color:var(--t1)!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--tc) 50%,transparent)!important}
+
+/* secondary buttons & small selects: soft tint instead of flat grey */
+html body .btn.btn-s:not(.pri):not(.btn-d),html body .btn:not(.pri):not(.btn-d):not(.btn-xs){background:linear-gradient(135deg,color-mix(in srgb,var(--pk) 9%,var(--b2)),color-mix(in srgb,var(--li) 7%,var(--b2)));border:1px solid color-mix(in srgb,var(--pk) 20%,var(--bd))!important;color:var(--t1)}
+html body .btn.btn-d{background:color-mix(in srgb,var(--rs) 12%,var(--b2));border:1px solid color-mix(in srgb,var(--rs) 30%,var(--bd))!important;color:var(--rs)}
+html body select.sel-sm{background-color:color-mix(in srgb,var(--li) 8%,var(--b2))!important;border:1px solid color-mix(in srgb,var(--li) 26%,var(--bd))!important;color:var(--t1)!important}
+html body .btn.btn-xs{background:color-mix(in srgb,var(--li) 8%,var(--b2));border:1px solid color-mix(in srgb,var(--li) 20%,var(--bd))}
+
+/* Wins / Losses */
+#brResChips button:nth-child(2).on{background:color-mix(in srgb,var(--mt) 26%,var(--b2))!important;color:var(--t1)!important;box-shadow:inset 0 0 0 1px var(--mt)!important}
+#brResChips button:nth-child(3).on{background:color-mix(in srgb,var(--rs) 26%,var(--b2))!important;color:var(--t1)!important;box-shadow:inset 0 0 0 1px var(--rs)!important}
+#brResChips button:nth-child(2):not(.on){color:color-mix(in srgb,var(--mt) 70%,var(--t2))}
+#brResChips button:nth-child(3):not(.on){color:color-mix(in srgb,var(--rs) 70%,var(--t2))}
+
+/* hand history street tabs */
+.hhb-street-tabs button:nth-child(1){--tc:var(--li)}.hhb-street-tabs button:nth-child(2){--tc:var(--mt)}.hhb-street-tabs button:nth-child(3){--tc:var(--gd)}.hhb-street-tabs button:nth-child(4){--tc:var(--pk)}.hhb-street-tabs button:nth-child(5){--tc:var(--ic)}
+.hhb-street-tabs button:not(.on){color:color-mix(in srgb,var(--tc) 60%,var(--t3))!important}
+html body .hhb-street-tabs button.on{background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 40%,var(--b2)),color-mix(in srgb,var(--tc) 20%,var(--b2)))!important;color:var(--t1)!important;box-shadow:inset 0 0 0 1px var(--tc)!important}
+
+/* settings icons + tool section labels */
+
+#settingsV .settings-category .sc-icon{background:linear-gradient(135deg,color-mix(in srgb,var(--ic2,var(--pk)) 30%,var(--b2)),color-mix(in srgb,var(--ic2,var(--pk)) 12%,var(--b2)))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ic2,var(--pk)) 36%,transparent)}
+#settingsV .settings-category{border-left:3px solid color-mix(in srgb,var(--ic2,var(--pk)) 0%,transparent)}
+.tk-sec{background:linear-gradient(90deg,var(--pk2),var(--li));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:max-content}
+.tk-sec::after{content:"";display:inline-block;width:28px;height:2px;margin-left:8px;vertical-align:middle;border-radius:2px;background:linear-gradient(90deg,var(--pk),var(--li))}
+
+/* sub-nav tabs (notes hub, br sub-tabs) and generic toggles get the gradient fill */
+html body .br-toggle button.on:not(#brResChips button){background:linear-gradient(135deg,color-mix(in srgb,var(--pri1,var(--pk)) 34%,var(--b2)),color-mix(in srgb,var(--pri2,var(--li)) 22%,var(--b2)))!important;color:var(--t1)!important}
+
+/* breakdown table: tinted header + coloured first column */
+#ggBody table thead th{background:linear-gradient(180deg,color-mix(in srgb,var(--li) 12%,var(--b2)),color-mix(in srgb,var(--li) 4%,var(--b2)))!important}
+#ggBody table tbody tr:nth-child(odd) td{background:color-mix(in srgb,var(--pk) 3%,transparent)}
+#ggBody table tbody tr:hover td{background:color-mix(in srgb,var(--pk) 9%,transparent)}
+/* ═══ v102 · ink: less white text ═══ */
+/* card headings */
+html body :is(.gg-an-h h4,.brd-h h3,.cx-h h3,.chx-h h3,.wk-sec h4,.sr-h h3){background:linear-gradient(110deg,var(--pk2),var(--pk) 40%,var(--li));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;width:max-content;max-width:100%}
+[data-theme="blush"] :is(.gg-an-h h4,.brd-h h3){background:linear-gradient(110deg,var(--pk3),var(--pk) 45%,var(--li));-webkit-background-clip:text;background-clip:text}
+.gg-an-sub,.brd-h p{color:color-mix(in srgb,var(--li) 45%,var(--t3))!important}
+/* insight card icon bubbles cycle colours */
+.brd-card:nth-of-type(6n+1){--ca:var(--c1)}.brd-card:nth-of-type(6n+2){--ca:var(--c2)}.brd-card:nth-of-type(6n+3){--ca:var(--c3)}.brd-card:nth-of-type(6n+4){--ca:var(--c4)}.brd-card:nth-of-type(6n+5){--ca:var(--c5)}.brd-card:nth-of-type(6n){--ca:var(--c6)}
+.brd-hi{background:linear-gradient(135deg,color-mix(in srgb,var(--ca,var(--pk)) 34%,var(--b2)),color-mix(in srgb,var(--ca,var(--pk)) 12%,var(--b2)))!important;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--ca,var(--pk)) 40%,transparent)}
+.brd-card{border-top:2px solid color-mix(in srgb,var(--ca,var(--pk)) 45%,transparent)!important}
+.brd-k>span:first-child,.brd-k>small:first-child{color:color-mix(in srgb,var(--ca,var(--pk)) 70%,var(--t2))!important}
+html body .brd-k b:not(.pos):not(.neg),html body .brd-hg b:not(.pos):not(.neg){color:color-mix(in srgb,var(--ca,var(--li)) 78%,var(--t1))!important}
+.brd-br .brd-bl b{color:color-mix(in srgb,var(--ca,var(--pk)) 35%,var(--t1))}
+/* takeaways */
+.gg-an-tk{position:relative;border-radius:12px;padding:10px 10px 10px 12px!important;margin:6px 0;border:none!important;background:linear-gradient(100deg,color-mix(in srgb,var(--ta) 12%,transparent),transparent 70%);box-shadow:inset 3px 0 0 var(--ta)}
+.gg-an-tk:nth-child(6n+2){--ta:var(--c1)}.gg-an-tk:nth-child(6n+3){--ta:var(--c2)}.gg-an-tk:nth-child(6n+4){--ta:var(--c3)}.gg-an-tk:nth-child(6n+5){--ta:var(--c4)}.gg-an-tk:nth-child(6n){--ta:var(--c5)}.gg-an-tk:nth-child(6n+1){--ta:var(--c6)}
+.gg-an-tk>span:first-child{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;flex:none;background:color-mix(in srgb,var(--ta) 22%,var(--b2))}
+.gg-an-tk b{color:color-mix(in srgb,var(--ta) 65%,var(--t1))}
+/* key/value rows: values pick up colour */
+.gg-an-kv>div:nth-child(4n+1){--kc:var(--c1)}.gg-an-kv>div:nth-child(4n+2){--kc:var(--c2)}.gg-an-kv>div:nth-child(4n+3){--kc:var(--c3)}.gg-an-kv>div:nth-child(4n){--kc:var(--c5)}
+.gg-an-kv>div{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--kc) 70%,transparent);background:linear-gradient(100deg,color-mix(in srgb,var(--kc) 9%,var(--b3)),var(--b3) 70%)!important}
+.gg-an-kv b:not(.pos):not(.neg){color:color-mix(in srgb,var(--kc) 60%,var(--t1))!important}
+/* explanatory notes: tinted callouts */
+html body :is(.gg-an-note,.brd-note,.ba-hint,.hm-foot,.shc-hint,.chx-foot,.cx-p,.srb-sub,.gg-brl-done){position:relative;border-radius:12px;padding:10px 12px 10px 14px;background:linear-gradient(110deg,color-mix(in srgb,var(--li) 11%,transparent),color-mix(in srgb,var(--pk) 5%,transparent) 70%);box-shadow:inset 3px 0 0 color-mix(in srgb,var(--li) 65%,transparent);color:var(--t2)}
+/* inked numbers & key terms inside prose (added by psInk) */
+span:is(.ink-pos,.ink-neg,.ink-num,.ink-pct){text-transform:none!important;letter-spacing:inherit!important;font-size:inherit!important;display:inline!important;padding:0!important;background:none!important;margin:0!important;border:0!important}
+.ink-pos{color:var(--mt)!important;font-weight:700;font-variant-numeric:tabular-nums}
+.ink-neg{color:var(--rs)!important;font-weight:700;font-variant-numeric:tabular-nums}
+.ink-num{color:color-mix(in srgb,var(--li) 70%,var(--t1))!important;font-weight:700;font-variant-numeric:tabular-nums}
+.ink-pct{color:color-mix(in srgb,var(--ic) 70%,var(--t1))!important;font-weight:700;font-variant-numeric:tabular-nums}
+.ink-key{color:var(--pk2)!important;font-weight:800}
+[data-theme="blush"] .ink-key,[data-theme="daylight"] .ink-key{color:var(--pk3)}
+[data-theme="blush"] .ink-num,[data-theme="daylight"] .ink-num{color:var(--li)}
+[data-theme="blush"] .ink-pct,[data-theme="daylight"] .ink-pct{color:var(--ic)}
+/* funnel / bar row labels */
+.gg-fn-l,.gg-funnel-l{color:color-mix(in srgb,var(--pk) 30%,var(--t1))}
+/* table first column */
+.view table tbody td:first-child{color:color-mix(in srgb,var(--pk2) 40%,var(--t1))}
+
+/* home cards: coloured headings + accent per card */
+.hm-card:nth-of-type(6n+1){--hc:var(--c1)}.hm-card:nth-of-type(6n+2){--hc:var(--c2)}.hm-card:nth-of-type(6n+3){--hc:var(--c3)}.hm-card:nth-of-type(6n+4){--hc:var(--c4)}.hm-card:nth-of-type(6n+5){--hc:var(--c5)}.hm-card:nth-of-type(6n){--hc:var(--c6)}
+html body .hm-ch>span:first-child{color:color-mix(in srgb,var(--hc,var(--pk)) 80%,var(--t1))!important;font-weight:800}
+html body .hm-card{border-top:2px solid color-mix(in srgb,var(--hc,var(--pk)) 45%,transparent)!important}
+html body .hm-kv>div b:not(.pos):not(.neg){color:color-mix(in srgb,var(--acc,var(--li)) 70%,var(--t1))}
+.hm-jump button,.hm-jb{color:color-mix(in srgb,var(--pk) 25%,var(--t1))}
+
+/* ═══ v103 · remaining white text, by component ═══ */
+/* tools */
+html body .tk .tk-label{color:color-mix(in srgb,var(--tc,var(--pk)) 55%,var(--t1))!important}
+html body .tk2 .tk2-t b{color:color-mix(in srgb,var(--tc,var(--pk)) 60%,var(--t1))!important}
+.tk2:nth-child(6n+1){--tc:var(--c1)}.tk2:nth-child(6n+2){--tc:var(--c2)}.tk2:nth-child(6n+3){--tc:var(--c3)}.tk2:nth-child(6n+4){--tc:var(--c4)}.tk2:nth-child(6n+5){--tc:var(--c5)}.tk2:nth-child(6n){--tc:var(--c6)}
+/* GG */
+html body .gf-ln.on{color:var(--c,var(--pk))!important}
+html body .gg-fun-r b{color:var(--pk2)!important}
+html body .gg-brl-mini b,html body .brsw-name,html body .chx-strip-t span{background:linear-gradient(110deg,var(--pk2),var(--li));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+html body .gg-row-top b{color:color-mix(in srgb,var(--li) 70%,var(--t1))}
+html body .gg-hero-m b.gg-tev{color:var(--li)!important}
+html body .gg-hero-m b:not([class]){color:color-mix(in srgb,var(--ic) 70%,var(--t1))}
+html body .g2-ins b{color:var(--pk2)!important}
+html body .gg-bs-v:not(.pos):not(.neg){color:color-mix(in srgb,var(--acc,var(--li)) 70%,var(--t1))!important}
+html body .gg-total td{color:color-mix(in srgb,var(--pk2) 55%,var(--t1))!important}
+html body :is(.rc-m-h b,.rc-leak-h b,.rc-sum-t,.rc-prog-h b,.rc-sum-s b){color:var(--pk2)!important}
+html body .rc-cls{color:var(--li)!important}
+html body .rc-pos-n{color:color-mix(in srgb,var(--ic) 65%,var(--t1))!important}
+html body .rc-res .good b{color:var(--mt)!important}html body .rc-res .bad b{color:var(--rs)!important}
+html body .rc-kpis b,html body .rc-m-l b{color:color-mix(in srgb,var(--li) 75%,var(--t1))!important}
+/* challenge */
+html body .cx-bdg b{color:var(--gd2)!important}
+html body :is(.chx-po b,.chx-mc-q b){color:color-mix(in srgb,var(--li) 80%,var(--t1))!important}
+html body .chx-mc-h b,html body .cx-ds-h span{color:var(--pk2)!important}
+html body :is(.chx-rec b,.cx-vk b,.chx-st-grid b){color:color-mix(in srgb,var(--ic) 70%,var(--t1))!important}
+html body .chx-st-grid .down b{color:color-mix(in srgb,var(--gd) 75%,var(--t1))!important}
+html body .cx-guard b,html body .hm-safe b{color:var(--gd2)!important}
+html body .cx-guard.cx-sync b{color:var(--ic)!important}
+html body .cx-hm-k b,html body .chx-strip-f b,html body .brh-st b,html body .brh-nk b{color:color-mix(in srgb,var(--li) 80%,var(--t1))!important}
+/* bankroll / home / trainer */
+html body .b2-date b{color:var(--pk2)!important}
+html body .goal-idea b{color:color-mix(in srgb,var(--mt) 70%,var(--t1))!important}
+html body :is(.srb-title,.daily-goal,.hm-tr .hm-t){color:var(--gd2)!important}
+html body .brd-tr>span:first-child{color:var(--pk2)!important}
+/* shifts / files / settings */
+html body .shp-h b,html body .sh-pay-empty b{color:var(--pk2)!important}
+html body .di-name,html body .fc-name{color:color-mix(in srgb,var(--pk2) 45%,var(--t1))!important}
+html body .tc-name{color:color-mix(in srgb,var(--pk2) 50%,var(--t1))!important}
+html body .theme-card.sel .tc-name{color:var(--pk2)!important}
+html body .settings-category .sc-txt b{color:color-mix(in srgb,var(--ic2,var(--pk)) 70%,var(--t1))!important}
+html body .gp .setting-row>:first-child,html body .gp>div>div:first-child:not(:has(*)){color:color-mix(in srgb,var(--pk2) 30%,var(--t1))}
+html body .section-head h2{filter:drop-shadow(0 2px 10px color-mix(in srgb,var(--pk) 25%,transparent))}
+/* secondary buttons: pink-tinted label instead of white */
+html body .btn.btn-s:not(.pri):not(.btn-d),html body .btn:not(.pri):not(.btn-d):not(.btn-xs){color:color-mix(in srgb,var(--pk2) 55%,var(--t1))!important}
+
+html body .setting-label,html body #settingsV div[style*="font-weight:600"]{color:color-mix(in srgb,var(--pk2) 40%,var(--t1))!important}
+html body .setting-desc{color:color-mix(in srgb,var(--li) 30%,var(--t3))!important}
+html body .gg-gc-l{color:color-mix(in srgb,var(--li) 35%,var(--t1))}
+
+html body :is(.br-hero-val,.hm-big.br-hero-val){background:linear-gradient(110deg,var(--t1) 0%,var(--pk2) 55%,var(--li));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+html body .br-act.dep{color:var(--mt)!important}html body .br-act.wd{color:var(--rs)!important}html body .br-act.promo{color:var(--gd2)!important}
+html body .brv-h b{color:var(--pk2)!important}html body .brh-next b{color:var(--gd2)!important}
+html body :is(.hm-safe-b,.gp,.cx-guard,.setting-row) .btn:not(.pri):not(.btn-d){color:color-mix(in srgb,var(--pk2) 60%,var(--t1))!important}
+html body .fs-addr span{color:color-mix(in srgb,var(--pk2) 50%,var(--t1))!important}
+/* ═══ v104 · unselected tabs, toggles and chips: each in its own soft colour ═══ */
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:nth-child(6n+1){--tg:var(--c1)}
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:nth-child(6n+2){--tg:var(--c2)}
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:nth-child(6n+3){--tg:var(--c3)}
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:nth-child(6n+4){--tg:var(--c4)}
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:nth-child(6n+5){--tg:var(--c5)}
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:nth-child(6n+6){--tg:var(--c6)}
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:is(button,.lqs,.gg-chip):not(.on):not(.sel):not(.active){color:color-mix(in srgb,var(--tg,var(--pk)) 62%,var(--t2))!important}
+html body :is(.br-toggle,.br-sub-nav,.gg-ant,.gg-gf-seg,.seg-row,.gg-bsets,.ds-seg,.sh-tabs,.brd-per,.gg-quick,.ed-fchips,.lqs-row,.rc-views,.b3-per)>:is(button,.gg-chip):not(.on):not(.sel):not(.active):hover{color:var(--tg,var(--pk))!important}
+html body .lqs-row .lqs{border-color:color-mix(in srgb,var(--tg) 30%,var(--bd))!important;background:color-mix(in srgb,var(--tg) 7%,var(--b2))!important}
+html body .gg-bsets .gg-chip:not(.on){border-color:color-mix(in srgb,var(--tg) 28%,var(--bd))!important;background:color-mix(in srgb,var(--tg) 7%,var(--b2))!important}
+html body .mode-tab:not(.on){color:color-mix(in srgb,var(--li) 62%,var(--t2))!important}
+html body .flow-back-btn{color:color-mix(in srgb,var(--pk2) 60%,var(--t2))!important}
+html body .es-sub{color:color-mix(in srgb,var(--li) 40%,var(--t3))!important}
+html body .br-chart-box>h3>small{color:color-mix(in srgb,var(--li) 45%,var(--t3))!important}
+html body .gg-gc-v{opacity:.95}
+
+/* leak rows: each row its own colour, status overrides */
+.gg-lk:nth-child(6n+1){--cc:var(--c1)}.gg-lk:nth-child(6n+2){--cc:var(--c2)}.gg-lk:nth-child(6n+3){--cc:var(--c3)}.gg-lk:nth-child(6n+4){--cc:var(--c5)}.gg-lk:nth-child(6n+5){--cc:var(--c4)}.gg-lk:nth-child(6n){--cc:var(--c6)}
+.gg-lk.ok{--cc:var(--mt)}.gg-lk.warn{--cc:var(--gd)}
+html body .gg-lk{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--cc) 70%,transparent);background:linear-gradient(100deg,color-mix(in srgb,var(--cc) 8%,var(--b2)),var(--b2) 65%)!important}
+/* HUD + leak-finder tiles: per-stat colour even before there are enough hands */
+.gg-hud-t:nth-child(6n+1){--cc:var(--c1)}.gg-hud-t:nth-child(6n+2){--cc:var(--c2)}.gg-hud-t:nth-child(6n+3){--cc:var(--c3)}.gg-hud-t:nth-child(6n+4){--cc:var(--c4)}.gg-hud-t:nth-child(6n+5){--cc:var(--c5)}.gg-hud-t:nth-child(6n){--cc:var(--c6)}
+.gg-hud-t.ok{--cc:var(--mt)}.gg-hud-t.warn{--cc:var(--gd)}
+html body .gg-hud-t:is(.wait,.na,.n){background:linear-gradient(160deg,color-mix(in srgb,var(--cc) 9%,var(--b2)),var(--b2) 70%)}
+html body .gg-lk:is(.wait,.na){opacity:1}html body .gg-lk:is(.wait,.na) .gg-lk-v{opacity:.85}
 </style>
 </head>
 <body>
@@ -6560,7 +6761,7 @@ html body .gg-hud-t.warn::before{background:var(--gd);box-shadow:0 0 0 3px color
 <div id="settingsV" class="view" style="max-width:800px;margin:0 auto">
   <div class="section-head"><span style="font-size:20px">⚙</span><h2>Settings</h2></div>
   
-<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🎨</span><span class="sc-txt"><b>Appearance &amp; Navigation</b><small>Theme, deck, font, navigation and launch tab</small></span></div>
+<div style="--ic2:var(--c1)" class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🎨</span><span class="sc-txt"><b>Appearance &amp; Navigation</b><small>Theme, deck, font, navigation and launch tab</small></span></div>
 <div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px"><div class="slbl">🎨 Theme</div><div class="theme-grid" id="themeGrid"></div></div>
 <div class="gp" style="margin-bottom:12px"><div class="slbl">🃏 Deck Design</div><div class="theme-grid" id="deckGrid"></div></div>
@@ -6589,7 +6790,7 @@ html body .gg-hud-t.warn::before{background:var(--gd);box-shadow:0 0 0 3px color
   </div>
 </div>
   
-<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">👤</span><span class="sc-txt"><b>Profile &amp; Progress</b><small>Your name, XP level and achievements</small></span></div>
+<div style="--ic2:var(--c2)" class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">👤</span><span class="sc-txt"><b>Profile &amp; Progress</b><small>Your name, XP level and achievements</small></span></div>
 <div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">👤 Profile</div>
@@ -6610,7 +6811,7 @@ html body .gg-hud-t.warn::before{background:var(--gd);box-shadow:0 0 0 3px color
   </div>
 </div>
   
-<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🎮</span><span class="sc-txt"><b>Training</b><small>Trainer speed, sound, haptics and grid style</small></span></div>
+<div style="--ic2:var(--c3)" class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🎮</span><span class="sc-txt"><b>Training</b><small>Trainer speed, sound, haptics and grid style</small></span></div>
 <div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">🎯 Trainer</div>
@@ -6647,7 +6848,7 @@ html body .gg-hud-t.warn::before{background:var(--gd);box-shadow:0 0 0 3px color
   </div>
 </div>
   
-<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">♠</span><span class="sc-txt"><b>Content Management</b><small>Range editor defaults</small></span></div>
+<div style="--ic2:var(--c5)" class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">♠</span><span class="sc-txt"><b>Content Management</b><small>Range editor defaults</small></span></div>
 <div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">♠ Editor</div>
@@ -6656,7 +6857,7 @@ html body .gg-hud-t.warn::before{background:var(--gd);box-shadow:0 0 0 3px color
   </div>
 </div>
   
-<div class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🗄️</span><span class="sc-txt"><b>Data &amp; Backup</b><small>Storage, backups, import and reset</small></span></div>
+<div style="--ic2:var(--c4)" class="settings-category closed" onclick="toggleSettingsSection(this)"><span class="settings-category-toggle">▼</span><span class="sc-icon">🗄️</span><span class="sc-txt"><b>Data &amp; Backup</b><small>Storage, backups, import and reset</small></span></div>
 <div class="settings-section-content closed">
 <div class="gp" style="margin-bottom:12px">
     <div class="slbl">📊 Storage</div>
@@ -6682,7 +6883,7 @@ html body .gg-hud-t.warn::before{background:var(--gd);box-shadow:0 0 0 3px color
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v99</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v104</div>
   </div>
 </div>
 </div>
@@ -11782,41 +11983,61 @@ function ggActiveFilters(){
 function ggRenderActive(){
   const el=$("ggActive"),act=ggActiveFilters();if(!el)return;
   const btn=$("ggFilterBtn");if(btn){btn.innerHTML="⚙ Filters"+(act.length?' <span class="gg-fcount">'+act.length+"</span>":"");btn.classList.toggle("on",ggList.panel)}
-  el.innerHTML=act.length?act.map(([k,l])=>'<span class="gg-pill">'+escapeHtml(l)+'<button data-rm="'+k+'" title="Remove">✕</button></span>').join("")+'<button class="gg-clear" onclick="ggResetFilters()">Clear all</button>':"";
+  el.innerHTML=act.length?'<span class="gg-amatch"><b>'+(ggList.current||[]).length.toLocaleString()+'</b> hand'+((ggList.current||[]).length===1?"":"s")+'</span>'+act.map(([k,l])=>'<span class="gg-pill">'+escapeHtml(l)+'<button data-rm="'+k+'" title="Remove">✕</button></span>').join("")+'<button class="gg-clear" onclick="ggResetFilters()">Clear all</button>':"";
   el.onclick=e=>{const b=e.target.closest("[data-rm]");if(!b)return;const f=ggList.f,k=b.dataset.rm;
     if(k==="date"){f.from="";f.to=""}else if(k==="net"){f.minNet="";f.maxNet=""}else f[k]=JSON.parse(JSON.stringify(GG_F0[k]));ggRefresh()};
 }
 function ggResetFilters(){ggList.f=JSON.parse(JSON.stringify(GG_F0));ggList.q="";const s=$("ggSearch");if(s)s.value="";ggRefresh()}
+// ── faceted counts: how many hands each filter option would give, with every OTHER filter applied ──
+const GG_FACET_T={pos:(h,v)=>ggPosMatch(h,v),pf:(h,v)=>h.pf===v,pt:(h,v)=>h.pt===v,st:(h,v)=>!+v||(h.st||0)>=+v,
+  res:(h,v)=>!v||(v==="won"?h.net>0:v==="lost"?h.net<0:h.net===0),
+  sd:(h,v)=>!v||(v==="sd"?!!h.sd:v==="nsd"?!h.sd:v==="sdwon"?h.sd&&h.net>0:h.sd&&h.net<0),
+  mh:(h,v)=>ggMhMatch(h,[v]),allin:(h,v)=>String(v)!=="true"||h.ev!=null,
+  study:(h,v)=>{const c=(h.cm||[]).length,t=(h.tags||[]).length;return!v||(v==="cm"?c:v==="tag"?t:v==="any"?c||t:!c&&!t)},
+  tags:(h,v)=>(h.tags||[]).some(x=>x.toLowerCase()===String(v).toLowerCase())};
+const GG_CHIP_COL={
+  mh:{nf:"var(--t4)",hc:"color-mix(in srgb,var(--t3) 70%,var(--li))",pr:"var(--ic)",bp:"color-mix(in srgb,var(--ic) 60%,var(--t3))",wp:"var(--ic)",tp:"var(--c5,var(--ic))","op":"var(--li)","2p":"var(--li)","2p+":"var(--pk)","3k":"var(--pk)",st:"var(--pk2)",fl:"var(--gd)",fh:"var(--gd)",qx:"var(--gd2)"},
+  res:{won:"var(--mt)",lost:"var(--rs)",even:"var(--t3)"},sd:{sd:"var(--ic)",nsd:"var(--li)",sdwon:"var(--mt)",sdlost:"var(--rs)"},
+  st:{1:"var(--mt)",2:"var(--gd)",3:"var(--pk)",4:"var(--li)"},
+  pos:{UTG:"var(--rs)","UTG+1":"var(--rs)",LJ:"var(--gd)",HJ:"var(--gd)",CO:"var(--mt)",BTN:"var(--mt)",SB:"var(--li)",BB:"var(--ic)"},
+  pf:{fold:"var(--t4)",check:"var(--t3)",walk:"var(--t3)",limp:"var(--gd)",call:"var(--ic)",open:"var(--mt)",iso:"var(--mt)","3bet":"var(--pk)","4bet":"var(--li)"},
+  study:{cm:"var(--ic)",tag:"var(--li)",any:"var(--pk)",none:"var(--t4)"},allin:{true:"var(--gd)"}};
+function ggFacetBase(field,base){const f=ggList.f,keep=f[field];f[field]=JSON.parse(JSON.stringify(GG_F0[field]));try{return ggFilterHands(base)}finally{f[field]=keep}}
+function ggFacetCounter(base){const cache={};return(field,v)=>{const T=GG_FACET_T[field];if(!T)return null;const arr=cache[field]||(cache[field]=ggFacetBase(field,base));let n=0;for(const h of arr)if(T(h,v))n++;return n}}
+function ggCntHtml(n){return n==null?"":'<span class="gg-cnt'+(n?"":" z")+'">'+(n>=10000?(n/1000).toFixed(n>=100000?0:1)+"k":n.toLocaleString())+"</span>"}
 function ggRenderPanel(){
   const el=$("ggPanel");if(!el)return;
   if(!ggList.panel){el.innerHTML="";return}
   const f=ggList.f;if(!Array.isArray(f.mh))f.mh=[];
-  const chips=(field,opts)=>'<div class="gg-chiprow">'+opts.map(([v,l])=>'<button class="gg-chip'+(f[field].includes(v)?" on":"")+'" data-multi="'+field+'" data-v="'+v+'">'+l+"</button>").join("")+"</div>";
-  const seg=(field,opts)=>'<div class="gg-chiprow">'+opts.map(([v,l])=>'<button class="gg-chip'+(String(f[field])===String(v)?" on":"")+'" data-one="'+field+'" data-v="'+v+'">'+l+"</button>").join("")+"</div>";
+  const _base=ggStakeFiltered(),cnt=ggFacetCounter(_base),_tot=ggFilterHands(_base).length;
+  const _cc=(field,v)=>{const c=(GG_CHIP_COL[field]||{})[v];return c?' style="--cc:'+c+'"':""};
+  const chips=(field,opts)=>'<div class="gg-chiprow">'+opts.map(([v,l])=>{const n=cnt(field,v),on=f[field].includes(v);return'<button class="gg-chip'+(on?" on":"")+(!n&&!on?" gg-chip-z":"")+'"'+_cc(field,v)+' data-multi="'+field+'" data-v="'+v+'">'+l+ggCntHtml(n)+"</button>"}).join("")+"</div>";
+  const seg=(field,opts)=>'<div class="gg-chiprow">'+opts.map(([v,l])=>{const n=cnt(field,v),on=String(f[field])===String(v);return'<button class="gg-chip'+(on?" on":"")+(!n&&!on?" gg-chip-z":"")+'"'+_cc(field,v)+' data-one="'+field+'" data-v="'+v+'">'+l+ggCntHtml(n)+"</button>"}).join("")+"</div>";
   const latest=ggStakeFiltered().reduce((m,h)=>Math.max(m,h.ts),0);
   const sel=new Set(f.range);
   let grid="";for(let r=0;r<13;r++)for(let c=0;c<13;c++){const k=hl(r,c);grid+='<div class="gg-rcell'+(sel.has(k)?" on":"")+(r===c?" pair":c>r?" suited":"")+'" data-r="'+k+'">'+k+"</div>"}
   const tagOpts=ggAllTags();
   el.innerHTML='<div class="gg-panel">'
-    +'<div class="gg-psec"><div class="gg-plbl">Study notes</div>'+seg("study",[["","Any"],["cm","Has comments"],["tag","Has tags"],["any","Either"],["none","No notes"]])
-    +(tagOpts.length?'<div class="gg-chiprow" style="margin-top:6px">'+tagOpts.map(([t,n])=>'<button class="gg-chip'+(f.tags.includes(t)?" on":"")+'" data-multi="tags" data-v="'+escapeHtml(t)+'">'+escapeHtml(t)+' <span class="gg-hint">'+n+"</span></button>").join("")+"</div>":'<div class="gg-hint" style="margin-top:4px">Tags you add to hands in the replayer appear here</div>')+"</div>"
-    +'<div class="gg-psec"><div class="gg-plbl">Position</div>'+chips("pos",GG_POS_FILTER.map(p=>[p,p]))+"</div>"
-    +'<div class="gg-psec"><div class="gg-plbl">Your preflop action</div>'+chips("pf",GG_PF)+"</div>"
-    +'<div class="gg-psec"><div class="gg-plbl">Pot type</div>'+chips("pt",GG_PT)+"</div>"
-    +'<div class="gg-psec" id="ggMhSec"><div class="gg-plbl">Hand ranking <span class="gg-hint">your best made hand by the last street you saw</span></div>'+chips("mh",GG_MH.slice(0,3).concat([["2p+","Two pair +"]]))+chips("mh",GG_MH.slice(3,7))+chips("mh",GG_MH.slice(7))+"</div>"
-    +'<div class="gg-psec"><div class="gg-plbl">You reached</div>'+seg("st",[[0,"Any"],[1,"Flop+"],[2,"Turn+"],[3,"River+"],[4,"Showdown"]])+"</div>"
-    +'<div class="gg-psec"><div class="gg-plbl">Result</div>'+seg("res",[["","Any"],["won","Won"],["lost","Lost"],["even","Broke even"]])+"</div>"
-    +'<div class="gg-psec"><div class="gg-plbl">Showdown</div>'+seg("sd",[["","Any"],["sd","Went to SD"],["nsd","No SD"],["sdwon","Won at SD"],["sdlost","Lost at SD"]])+"</div>"
-    +'<div class="gg-psec gg-prow"><div><div class="gg-plbl">Pot at least</div><div class="gg-inp"><input type="number" class="minp" data-num="minPot" value="'+f.minPot+'" placeholder="0"/><span>bb</span></div></div>'
+    +'<div class="gg-pmatch"><b>'+_tot.toLocaleString()+'</b> of '+_base.length.toLocaleString()+' hands match'+(_tot<_base.length?' <span>· '+(_base.length?(_tot/_base.length*100).toFixed(_tot/_base.length<0.1?1:0):0)+'%</span>':'')+'<em>Numbers show how many hands each option gives with your other filters</em></div>'
+    +'<div class="gg-psec" style="--sc:var(--c2)"><div class="gg-plbl">Study notes</div>'+seg("study",[["","Any"],["cm","Has comments"],["tag","Has tags"],["any","Either"],["none","No notes"]])
+    +(tagOpts.length?'<div class="gg-chiprow" style="margin-top:6px">'+tagOpts.map(([t,n])=>'<button class="gg-chip'+(f.tags.includes(t)?" on":"")+'" data-multi="tags" data-v="'+escapeHtml(t)+'">'+escapeHtml(t)+ggCntHtml(cnt("tags",t))+"</button>").join("")+"</div>":'<div class="gg-hint" style="margin-top:4px">Tags you add to hands in the replayer appear here</div>')+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c1)"><div class="gg-plbl">Position</div>'+chips("pos",GG_POS_FILTER.map(p=>[p,p]))+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c3)"><div class="gg-plbl">Your preflop action</div>'+chips("pf",GG_PF)+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c5)"><div class="gg-plbl">Pot type</div>'+chips("pt",GG_PT)+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c1)" id="ggMhSec"><div class="gg-plbl">Hand ranking <span class="gg-hint">your best made hand by the last street you saw</span></div>'+chips("mh",GG_MH.slice(0,3).concat([["2p+","Two pair +"]]))+chips("mh",GG_MH.slice(3,7))+chips("mh",GG_MH.slice(7))+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c4)"><div class="gg-plbl">You reached</div>'+seg("st",[[0,"Any"],[1,"Flop+"],[2,"Turn+"],[3,"River+"],[4,"Showdown"]])+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c6)"><div class="gg-plbl">Result</div>'+seg("res",[["","Any"],["won","Won"],["lost","Lost"],["even","Broke even"]])+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c3)"><div class="gg-plbl">Showdown</div>'+seg("sd",[["","Any"],["sd","Went to SD"],["nsd","No SD"],["sdwon","Won at SD"],["sdlost","Lost at SD"]])+"</div>"
+    +'<div class="gg-psec gg-prow" style="--sc:var(--c5)"><div><div class="gg-plbl">Pot at least</div><div class="gg-inp"><input type="number" class="minp" data-num="minPot" value="'+f.minPot+'" placeholder="0"/><span>bb</span></div></div>'
     +'<div><div class="gg-plbl">Result from</div><div class="gg-inp"><input type="number" class="minp" data-num="minNet" value="'+f.minNet+'" placeholder="−∞"/><span>bb</span></div></div>'
     +'<div><div class="gg-plbl">to</div><div class="gg-inp"><input type="number" class="minp" data-num="maxNet" value="'+f.maxNet+'" placeholder="∞"/><span>bb</span></div></div></div>'
-    +'<div class="gg-psec"><div class="gg-plbl">Date</div><div class="gg-prow"><input type="date" class="minp" data-num="from" value="'+f.from+'"/><input type="date" class="minp" data-num="to" value="'+f.to+'"/></div>'
+    +'<div class="gg-psec" style="--sc:var(--c2)"><div class="gg-plbl">Date</div><div class="gg-prow"><input type="date" class="minp" data-num="from" value="'+f.from+'"/><input type="date" class="minp" data-num="to" value="'+f.to+'"/></div>'
     +'<div class="gg-chiprow">'+[["day","Latest day"],["7","Last 7 days"],["30","Last 30 days"],["all","All time"]].map(([k,l])=>'<button class="gg-chip" data-dp="'+k+'">'+l+"</button>").join("")+'</div><div class="gg-hint">Relative to your most recent hand</div></div>'
-    +'<div class="gg-psec"><div class="gg-plbl">All-in</div>'+seg("allin",[[false,"Any"],[true,"Only all-in hands"]])+"</div>"
-    +'<div class="gg-psec"><div class="gg-plbl">Starting hands <span class="gg-hint">'+(f.range.length?f.range.length+" selected":"tap or drag to select")+'</span></div>'
+    +'<div class="gg-psec" style="--sc:var(--rs)"><div class="gg-plbl">All-in</div>'+seg("allin",[[false,"Any"],[true,"Only all-in hands"]])+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c4)"><div class="gg-plbl">Starting hands <span class="gg-hint">'+(f.range.length?f.range.length+" selected · "+ggFacetBase("range",_base).filter(h=>f.range.includes(h.cls)).length.toLocaleString()+" hands":"tap or drag to select")+'</span></div>'
     +'<div class="gg-chiprow">'+[["pairs","Pairs"],["suited","Suited"],["offsuit","Offsuit"],["bway","Broadway"],["ax","Ax"],["clear","Clear"]].map(([k,l])=>'<button class="gg-chip" data-rp="'+k+'">'+l+"</button>").join("")+"</div>"
     +'<div class="gg-rgrid" id="ggRGrid">'+grid+"</div></div>"
-    +'<div class="gg-pfoot"><button class="btn btn-s" onclick="ggResetFilters()">Reset all</button><button class="btn btn-s pri" onclick="ggList.panel=false;ggRenderList()">Done</button></div></div>';
+    +'<div class="gg-pfoot"><button class="btn btn-s" onclick="ggResetFilters()">Reset all</button><button class="btn btn-s pri" onclick="ggList.panel=false;ggRenderList()">Show '+_tot.toLocaleString()+' hand'+(_tot===1?"":"s")+'</button></div></div>';
   el.onclick=e=>{
     const t=e.target.closest("[data-multi],[data-one],[data-dp],[data-rp]");if(!t)return;
     if(t.dataset.multi){const a=f[t.dataset.multi],v=t.dataset.v,i=a.indexOf(v);if(i>=0)a.splice(i,1);else a.push(v)}
@@ -16718,7 +16939,7 @@ function renderBrDeep(ss,el){if(!el)return;const n=ss.length;
     {l:"Average loss",v:brdSg(-avgL),c:"neg",s:losses.length+" losing sessions"},
     {l:"Win ÷ loss size",v:avgL?(avgW/avgL).toFixed(2)+"×":"—",s:avgL&&avgW/avgL>=1?"your wins are bigger":"your losses are bigger"},
     {l:"Best session",v:brdSg(best.resultCents),c:"pos",s:brdDate(best.date)+(best.stakes?" · "+escapeHtml(best.stakes):"")},
-    {l:"Worst session",v:brdSg(worst.resultCents),c:"neg",s:brdDate(worst.date)+(worst.stakes?" · "+escapeHtml(worst.stakes):"")},
+    {l:"Worst session",v:brdSg(worst.resultCents),c:worst.resultCents<0?"neg":"pos",s:brdDate(worst.date)+(worst.stakes?" · "+escapeHtml(worst.stakes):"")},
     bestHr?{l:"Best hourly session",v:brdSg(bestHr.resultCents/(bestHr.duration/60))+"/h",c:"pos",s:brdDate(bestHr.date)+" · "+brFmtDur(bestHr.duration)}:null,
     {l:"Gross won / lost",v:brFmt(gw)+" / "+brFmt(gl),s:"profit factor "+(gl?(gw/gl).toFixed(2):"∞")}]));
   // hourly confidence
@@ -17148,6 +17369,78 @@ psSyncChCols();
 (function(){const _at=applyTheme;applyTheme=function(id){document.documentElement.setAttribute("data-theme",id);psSyncChCols();_at(id)}})();
 // re-render whatever is on screen after a theme change so charts pick up the new palette
 (function(){if(typeof applyTheme!=="function")return;const _at=applyTheme;applyTheme=function(id){_at(id);try{const v=(document.querySelector(".view.on")||{}).id||"";if(v==="ggV"&&typeof renderGG==="function")renderGG();else if(v==="homeV"&&typeof renderHome==="function")renderHome()}catch(e){}}})();
+</script>
+<script>// ═══ v102 · psInk: colour numbers and key terms inside plain paragraphs, everywhere ═══
+(function(){
+  const SKIP="input,textarea,select,option,button,svg,canvas,code,pre,script,style,[contenteditable],.pos,.neg,.ink-pos,.ink-neg,.ink-num,.ink-pct,.ink-key,th,.brs-val,.g2-v,.hm-big,#notesV,.note-preview,.hh-note,.gg-rcell,.bnav-t,.gg-chip,.gg-cnt,.tc-dot,label,.logo,h1,h2";
+  const NUM=/([+−\-–]\s?)?([$£€]\s?)?\d[\d,]*(?:\.\d+)?(?:\s?(?:k|K|M)(?![a-z]))?(?:\s?(?:bb\/100|bb\/hand|bb\/hr|bb\/h(?![a-z])|bb(?![a-z\/])|BB(?![a-z])|\/hr|\/h(?![a-z])|%|×|x(?![a-z])|hands|sessions|session|hrs|days|hours|buy-ins|BI|h)(?![A-Za-z]))?/g;
+  function cls(m,sign,cur){const unit=/(%|bb|BB|\/100|\/hand|\/hr?|×|x|hands|sessions?|hrs|days|hours|buy-ins|BI|k|K|M)\s*$/.test(m);
+    if(sign){const neg=/[−\-–]/.test(sign);if(!cur&&!unit)return null;return neg?"ink-neg":"ink-pos"}
+    if(cur)return"ink-num";if(/%$/.test(m))return"ink-pct";if(unit||/\dh$/.test(m)||/\d,\d{3}/.test(m))return"ink-num";return null}
+  function inkText(node){const t=node.nodeValue;if(!t||!/\d/.test(t))return;NUM.lastIndex=0;let m,last=0,frag=null;
+    while((m=NUM.exec(t))){const s=m[0];if(!s.trim())continue;
+      // skip times (20:05), dates (2026-10-06), ids
+      const pre=t[m.index-1]||"",post=t[m.index+s.length]||"";if(pre===":"||post===":"||pre==="#"||/[A-Za-z]/.test(pre)||(post==="/"&&!/bb/.test(s)))continue;
+      if(/^\d{4}$/.test(s.trim()))continue;
+      const c=cls(s.trim(),m[1],m[2]);if(!c)continue;
+      frag=frag||document.createDocumentFragment();frag.appendChild(document.createTextNode(t.slice(last,m.index)));const sp=document.createElement("span");sp.className=c;sp.textContent=s;frag.appendChild(sp);last=m.index+s.length}
+    if(frag){frag.appendChild(document.createTextNode(t.slice(last)));node.parentNode.replaceChild(frag,node)}}
+  function plainColour(el){const c=getComputedStyle(el).color;const r=psRGB(c);if(!r)return true;const t1=psRGB(psCss("--t1")),t2=psRGB(psCss("--t2")),t3=psRGB(psCss("--t3"));const d=a=>a?Math.abs(a[0]-r[0])+Math.abs(a[1]-r[1])+Math.abs(a[2]-r[2]):999;return Math.min(d(t1),d(t2),d(t3))<40}
+  // read pass (no DOM writes): decide what to colour
+  function plan(el,out){if(el.closest(SKIP))return;
+    const kids=[...el.childNodes];const own=kids.filter(n=>n.nodeType===3).map(n=>n.nodeValue).join("");
+    if(own.replace(/\s+/g," ").trim().length<18)return;if(!plainColour(el))return;
+    kids.forEach(n=>{if(n.nodeType===3){if(/\d/.test(n.nodeValue))out.push([0,n])}else if(n.nodeType===1&&(n.tagName==="B"||n.tagName==="STRONG")&&!n.className&&!n.firstElementChild&&plainColour(n)){const t=n.textContent.trim();
+      const sg=t.match(/^([+−\-–])\s?[$£€]?\d/);out.push([1,n,sg?(/[+]/.test(sg[1])?"ink-pos":"ink-neg"):/^[$£€]?\d/.test(t)?(/%$/.test(t)?"ink-pct":"ink-num"):"ink-key"])}})}
+  let busy=false,queued=false;
+  function run(){queued=false;if(busy)return;busy=true;try{const roots=[...document.querySelectorAll(".view.on,.modal.on,.mbg.on,[id$='M'].on")];const todo=[],seen=[];
+      roots.forEach(r=>{const w=document.createTreeWalker(r,NodeFilter.SHOW_ELEMENT);let e,n=0;while((e=w.nextNode())&&n<8000){n++;if(e._ink)continue;
+        let has=false;for(const c of e.childNodes)if(c.nodeType===3&&c.nodeValue.trim().length>2){has=true;break}if(!has){e._ink=1;continue}if(!e.getClientRects().length)continue;e._ink=1;plan(e,todo)}});
+      roots.forEach(r=>r.querySelectorAll("b:not([class]),strong:not([class])").forEach(b=>{if(b._inkb)return;b._inkb=1;if(b.firstElementChild||b.closest(SKIP))return;const t=b.textContent.trim();if(!t||t.length>26)return;
+        const par=b.parentElement,good=par&&/(^|\s)(good|pos|win|ok|up)(\s|$)/.test(par.className),bad=par&&/(^|\s)(bad|neg|loss|down|warn)(\s|$)/.test(par.className);
+        const sg=t.match(/^([+−\-–])\s?[$£€]?\d/);let c=null;if(sg)c=/[+]/.test(sg[1])?"ink-pos":"ink-neg";else if(/^[$£€]?\d/.test(t))c=good?"ink-pos":bad?"ink-neg":/%$/.test(t)?"ink-pct":"ink-num";
+        if(c&&plainColour(b))todo.push([1,b,c])}));
+      todo.forEach(([k,n,c])=>{if(k===1)n.classList.add(c);else if(n.parentNode)inkText(n)})}catch(err){console.warn("psInk",err)}mo.takeRecords();busy=false}
+  function schedule(){if(queued)return;queued=true;setTimeout(run,160)}
+  const mo=new MutationObserver(ms=>{if(busy)return;for(const m of ms){if(m.addedNodes.length){schedule();break}}});
+  function start(){mo.observe(document.body,{childList:true,subtree:true});schedule();
+    try{const _go=go;go=function(){const r=_go.apply(this,arguments);schedule();return r}}catch(e){}
+    try{const _om=openM;openM=function(){const r=_om.apply(this,arguments);schedule();return r}}catch(e){}}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
+  window.psInkRun=run;
+})();
+</script>
+<script>// ═══ v104 · psTint: no plain white/grey text — neutral text takes its card's accent ═══
+(function(){
+  const SKIP="input,textarea,select,option,svg,canvas,code,pre,script,style,[contenteditable],.btn.pri,button.on,.on>button.on,.bnav-t,#bnav,.pcard,.comm-card,.tcard,.qh-card,.lr-card,.lr-qcard,[class*='cards'],.mc-suit,.gg-rcell,.gg-gcell,.cell,.rg-cell,#editorV .grid,#notesV .note-body,#notesV textarea,.note-preview,.toast,.logo,.tc-dot,.hha-btn,[data-notint]";
+  const ACC=["--ta","--kc","--cc","--hc","--ca","--tc","--sc","--acc","--ic2","--c"];
+  const PAL=["--c1","--c2","--c3","--c4","--c5","--c6"];
+  const BLOCK=/(^|[\s-])(card|tile|box|sec|panel|row|kv|stat|item|lk|hud-t|tk|tk2|br|k|m|r|t|c|po|rec|bdg|ch|chip|lane|pill|leg|grp|group)(\s|$)/;
+  let neutrals=null,theme=null;
+  function rgb(c){const r=psRGB(c);return r?r.slice(0,3):null}
+  function refreshNeutrals(){const t=document.documentElement.getAttribute("data-theme");if(t===theme&&neutrals)return;theme=t;neutrals=["--t1","--t2","--t3","--t4"].map(v=>rgb(psCss(v)))}
+  function level(c){let best=-1,bd=34;neutrals.forEach((n,i)=>{if(!n)return;const d=Math.abs(n[0]-c[0])+Math.abs(n[1]-c[1])+Math.abs(n[2]-c[2]);if(d<bd){bd=d;best=i}});return best}
+  function accentFor(e,cs){for(const v of ACC){const x=cs.getPropertyValue(v).trim();if(x)return"var("+v+")"}
+    let p=e;for(let i=0;i<8&&p&&!p.classList.contains("view");i++,p=p.parentElement){if(p.className&&typeof p.className==="string"&&p.parentElement&&p.parentElement.children.length>1&&/(card|tile|box|sec|panel|row|kv|stat|item|lk|hud|tk|bdg|rec|chip|pill)/.test(p.className)){const idx=[...p.parentElement.children].indexOf(p);return"var("+PAL[idx%PAL.length]+")"}}
+    return"var(--pk2)"}
+  function run(){try{refreshNeutrals();const roots=[...document.querySelectorAll(".view.on,[id$='M'].on,.hdr")];const todo=[];
+      roots.forEach(r=>{const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT);let n,k=0;while((n=w.nextNode())&&k<9000){k++;const e=n.parentElement;if(!e||e._tint)continue;const s=n.nodeValue;if(!/[A-Za-z0-9£$€%]/.test(s))continue;
+        e._tint=1;if(e.closest(SKIP)||!e.getClientRects().length)continue;{const b=e.closest("button,[role=tab]");if(b&&b.parentElement&&b.parentElement.querySelector(":scope>.on,:scope>.sel,:scope>.active"))continue}const cs=getComputedStyle(e);const fill=cs.webkitTextFillColor;if(fill&&/rgba\(0, 0, 0, 0\)|transparent/.test(fill))continue;
+        const c=rgb(cs.color);if(!c)continue;const L=level(c);if(L<0)continue;
+        const big=(+cs.fontWeight>=700)||parseFloat(cs.fontSize)>=15;const acc=accentFor(e,cs);
+        const val=big&&L<=1?"color-mix(in srgb,"+acc+" 72%,var(--t1))":L===0?(big?"color-mix(in srgb,"+acc+" 72%,var(--t1))":"color-mix(in srgb,"+acc+" 48%,var(--t1))"):L===1?"color-mix(in srgb,"+acc+" 55%,var(--t2))":"color-mix(in srgb,"+acc+" 42%,var(--t3))";
+        todo.push([e,val])}});
+      todo.forEach(([e,v])=>{e.style.setProperty("color",v,"important");e.dataset.tinted="1"})}catch(err){console.warn("psTint",err)}}
+  let q=false;function schedule(){if(q)return;q=true;setTimeout(()=>{q=false;run()},220)}
+  const mo=new MutationObserver(ms=>{for(const m of ms)if(m.addedNodes.length){schedule();break}});
+  function start(){mo.observe(document.body,{childList:true,subtree:true});schedule();
+    try{const _go=go;go=function(){const r=_go.apply(this,arguments);schedule();return r}}catch(e){}
+    try{const _om=openM;openM=function(){const r=_om.apply(this,arguments);schedule();return r}}catch(e){}
+    try{const _at=applyTheme;applyTheme=function(id){document.querySelectorAll("[data-tinted]").forEach(e=>{e.style.removeProperty("color");delete e.dataset.tinted;e._tint=0});document.querySelectorAll("*").forEach(e=>{e._tint=0});neutrals=null;const r=_at.apply(this,arguments);schedule();return r}}catch(e){}
+    document.addEventListener("click",()=>schedule(),true)}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
+  window.psTintRun=run;
+})();
 </script>
 </body>
 </html>
