@@ -5601,6 +5601,82 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
 .bbx-ci-l{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--t3);font-variant-numeric:tabular-nums}.bbx-ci-l b{color:var(--t2);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
 .bbx-foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--bd);font-size:11px;color:var(--t4);line-height:1.5}
 .bbx-empty{padding:20px;text-align:center;color:var(--t3)}
+
+/* tournament blind clock */
+.lb-set3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.lb-lenrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.lb-lenrow .hx-chips{flex:1}
+.lb-note{margin-top:8px;font-size:11px;color:var(--t3);line-height:1.45}
+.lb-card{margin:10px 0;padding:14px;border-radius:16px;border:1px solid color-mix(in srgb,var(--li) 35%,var(--bd));background:radial-gradient(120% 100% at 100% 0%,color-mix(in srgb,var(--li) 16%,transparent),transparent 60%),var(--b2);text-align:center}
+.lb-card.due{border-color:var(--pk);box-shadow:0 0 0 3px color-mix(in srgb,var(--pk) 25%,transparent);animation:lbPulse 1.6s ease-in-out infinite}@keyframes lbPulse{50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--pk) 8%,transparent)}}
+.lb-card.paused{opacity:.85;border-style:dashed}
+.lb-top{display:flex;justify-content:space-between;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--t3)}.lb-lvl{color:var(--li)}
+.lb-blinds{margin-top:6px;font-size:30px;font-weight:800;letter-spacing:-.02em;color:var(--t1);line-height:1.1}.lb-blinds small{display:block;font-size:12px;font-weight:700;color:var(--t3);letter-spacing:0;margin-top:2px}
+.lb-clock{margin-top:8px;font-size:34px;font-weight:800;color:var(--pk2,var(--pk));font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.lb-card.due .lb-clock{font-size:24px}
+.lb-bar{height:6px;border-radius:99px;background:var(--b3);overflow:hidden;margin:6px 0 8px}.lb-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--li),var(--pk));border-radius:99px;transition:width 1s linear}
+.lb-next{font-size:12px;color:var(--t2)}.lb-next b{color:var(--t1)}.lb-next span{font-size:10.5px;color:var(--t4)}
+.lb-stack{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 16px;margin-top:10px;padding:9px;border-radius:12px;background:var(--b1);border:1px solid var(--bd)}
+.lb-stack>div:not(.lb-zone){display:flex;flex-direction:column}.lb-stack b{font-size:20px;font-weight:800;color:var(--t1);line-height:1.1}.lb-stack span{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--t4)}
+.lb-zone{flex-basis:100%;font-size:11.5px;font-weight:700;color:var(--t2)}
+.lb-hint{margin-top:8px;font-size:11px;color:var(--t4)}
+.lb-acts{display:flex;gap:6px;margin-top:10px}.lb-acts .btn{flex:1;padding-left:6px!important;padding-right:6px!important}
+.lb-hist{margin-top:10px;text-align:left;font-size:12px}.lb-hist summary{cursor:pointer;color:var(--t3);font-weight:700;font-size:11.5px}.lb-hist>div{display:grid;grid-template-columns:34px 1fr auto;gap:8px;padding:5px 2px;border-bottom:1px solid var(--bd)}.lb-hist span{color:var(--li);font-weight:800}.lb-hist b{color:var(--t1)}.lb-hist i{font-style:normal;color:var(--t4);font-variant-numeric:tabular-nums}
+.lb-mdl{max-width:440px}.lb-was{margin:6px 0 12px;font-size:12.5px;color:var(--t3)}.lb-was b{color:var(--t1)}
+.lb-in{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}.lb-in.two{grid-template-columns:1fr 1fr}.lb-in:has(#lbELvl){grid-template-columns:repeat(4,minmax(0,1fr))}.lb-in label,.lb-len2{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--t3)}.lb-in input{margin:0!important;font-size:16px;font-weight:700}
+.lb-len2{flex-direction:row;align-items:center;gap:8px;margin-top:12px}.lb-len2 input{width:80px!important;margin:0!important}.lb-len2 i{font-style:normal}
+
+/* bankroll deep stats */
+.brd-per{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin:0 0 12px;padding:3px;border-radius:12px;background:var(--b1);border:1px solid var(--bd)}.brd-per::-webkit-scrollbar{display:none}
+.brd-per button{flex:1 0 auto;padding:8px 10px;border-radius:9px;font-size:12px;font-weight:700;color:var(--t3);white-space:nowrap}.brd-per button.on{background:color-mix(in srgb,var(--pk) 17%,var(--b2));color:var(--pk2,var(--pk))}
+.brd-hero{padding:16px;border-radius:18px;margin-bottom:12px;border:1px solid color-mix(in srgb,var(--pk) 30%,var(--bd));background:radial-gradient(120% 100% at 100% 0%,color-mix(in srgb,var(--li) 18%,transparent),transparent 60%),radial-gradient(90% 90% at 0% 100%,color-mix(in srgb,var(--pk) 18%,transparent),transparent 60%),var(--b1)}
+.brd-hm span,.brd-hg span{font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--t3)}.brd-hm b{display:block;font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--t1)}.brd-hm i{font-style:normal;font-size:11.5px;color:var(--t3)}
+.brd-hg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:12px}.brd-hg>div{padding:9px 8px;border-radius:12px;background:var(--b2);border:1px solid var(--bd);min-width:0}.brd-hg b{display:block;font-size:15px;font-weight:800;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brd-card{background:var(--b1);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px}
+.brd-h{display:flex;align-items:center;gap:10px;margin-bottom:12px}.brd-hi{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:17px;background:color-mix(in srgb,var(--pk) 12%,var(--b2));flex:none}.brd-h h3{margin:0;font-size:15px;font-weight:800;color:var(--t1)}.brd-h p{margin:1px 0 0;font-size:11.5px;color:var(--t3)}
+.brd-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}@media(min-width:700px){.brd-kv{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.brd-k{display:flex;flex-direction:column;gap:2px;padding:10px;border-radius:12px;background:var(--b2);border:1px solid var(--bd);min-width:0}.brd-k span{font-size:10.5px;font-weight:700;color:var(--t3)}.brd-k b{font-size:15.5px;font-weight:800;color:var(--t1);letter-spacing:-.01em}.brd-k i{font-style:normal;font-size:10.5px;color:var(--t4);line-height:1.35}
+.brd-card .pos,.brd-hero .pos{color:var(--mt)}.brd-card .neg,.brd-hero .neg{color:var(--rs)}
+.brd-sub{margin:14px 0 6px;font-size:10.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--t4)}.brd-sub:first-of-type{margin-top:0}
+.brd-bars{display:flex;flex-direction:column;gap:4px}
+.brd-br{display:grid;grid-template-columns:minmax(82px,1fr) 1.4fr minmax(78px,auto);align-items:center;gap:10px;padding:6px 8px;border-radius:10px}.brd-br.best{background:color-mix(in srgb,var(--mt) 9%,transparent)}.brd-br.none{opacity:.45}
+.brd-bl b{display:block;font-size:12.5px;color:var(--t1);font-weight:700}.brd-bl i,.brd-bv i{display:block;font-style:normal;font-size:10px;color:var(--t4)}
+.brd-bt{position:relative;height:10px;border-radius:99px;background:var(--b3)}.brd-mid{position:absolute;left:50%;top:-3px;bottom:-3px;width:1px;background:var(--t4)}
+.brd-fill{position:absolute;top:0;bottom:0;border-radius:99px;animation:brdGrow .8s cubic-bezier(.2,.8,.2,1) both}.brd-fill.pos{background:linear-gradient(90deg,color-mix(in srgb,var(--mt) 55%,transparent),var(--mt))}.brd-fill.neg{background:linear-gradient(270deg,color-mix(in srgb,var(--rs) 55%,transparent),var(--rs))}@keyframes brdGrow{from{width:0}}
+.brd-bv{text-align:right}.brd-bv b{font-size:13px;font-weight:800;color:var(--t1)}
+.brd-note{margin-top:10px;padding:9px 11px;border-radius:11px;font-size:12px;line-height:1.45;color:var(--t2);background:color-mix(in srgb,var(--li) 9%,var(--b2))}
+.brd-ci{padding:4px 2px 10px}.brd-ci-bar{position:relative;height:12px;border-radius:99px;background:var(--b3)}.brd-ci-bar .rng{position:absolute;top:0;bottom:0;border-radius:99px;background:linear-gradient(90deg,color-mix(in srgb,var(--rs) 55%,transparent),color-mix(in srgb,var(--li) 55%,transparent),color-mix(in srgb,var(--mt) 55%,transparent))}.brd-ci-bar .z{position:absolute;top:-4px;bottom:-4px;width:2px;margin-left:-1px;background:var(--t3)}.brd-ci-bar .pt{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;border:3px solid var(--pk)}
+.brd-ci-l{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--t3)}.brd-ci-l b{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--t2)}
+.brd-t{border:1px solid var(--bd);border-radius:12px;overflow:hidden;font-size:12px;font-variant-numeric:tabular-nums}.brd-th,.brd-tr{display:grid;grid-template-columns:.9fr .6fr .7fr 1.6fr .8fr;gap:6px;padding:8px 10px;align-items:center}.brd-th{background:var(--b2);font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--t4)}.brd-tr{border-top:1px solid var(--bd);color:var(--t2)}.brd-tr span:first-child{color:var(--t1);font-weight:700}
+.brd-tp{position:relative;font-weight:800;padding:2px 6px;z-index:0}.brd-tp em{position:absolute;left:0;top:0;bottom:0;border-radius:6px;z-index:-1;opacity:.2}.brd-tp.pos em{background:var(--mt)}.brd-tp.neg em{background:var(--rs)}
+@media(max-width:430px){.brd-hg{grid-template-columns:repeat(2,minmax(0,1fr))}.brd-br{grid-template-columns:minmax(74px,1fr) 1fr minmax(70px,auto);gap:8px}}
+
+/* v92 more stats */
+.brh-bank{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}.brh-bank span{font-size:11px;font-weight:700;color:var(--t3)}.brh-bank b{font-size:18px;font-weight:800;color:var(--t1)}
+.brh-rows{display:flex;flex-direction:column;gap:6px}.brh-r{display:grid;grid-template-columns:1.1fr .7fr 1.4fr;gap:8px;align-items:center;padding:10px;border-radius:12px;background:var(--b2);border:1px solid var(--bd)}.brh-r.ok{border-color:color-mix(in srgb,var(--mt) 35%,var(--bd))}.brh-r.warn{border-color:color-mix(in srgb,#f5a524 40%,var(--bd))}.brh-r.bad{border-color:color-mix(in srgb,var(--rs) 40%,var(--bd))}
+.brh-st b{display:block;font-size:15px;font-weight:800;color:var(--t1)}.brh-st i,.brh-v i{display:block;font-style:normal;font-size:10.5px;color:var(--t4);line-height:1.35}.brh-bi{text-align:center}.brh-bi b{display:block;font-size:18px;font-weight:800;color:var(--t1)}.brh-bi span{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--t4)}
+.brh-v b{font-size:12.5px}.brh-v.pos b{color:var(--mt)}.brh-v.warn b{color:#f5a524}.brh-v.neg b{color:var(--rs)}
+.brh-next{margin-top:10px;padding:12px;border-radius:12px;border:1px dashed var(--bd2);background:color-mix(in srgb,var(--li) 7%,var(--b2))}.brh-next.ok{border-style:solid;border-color:color-mix(in srgb,var(--mt) 45%,transparent);background:color-mix(in srgb,var(--mt) 9%,var(--b2))}
+.brh-next>div:first-child{display:flex;justify-content:space-between;align-items:baseline}.brh-next span{font-size:12px;font-weight:700;color:var(--t2)}.brh-next>div:first-child b{font-size:13px;color:var(--t1)}
+.brh-nk{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:8px}.brh-nk>div{padding:7px 8px;border-radius:10px;background:var(--b1)}.brh-nk i{display:block;font-style:normal;font-size:10px;color:var(--t4)}.brh-nk b{font-size:13px;font-weight:800;color:var(--t1)}.brh-nk .pos{color:var(--mt)}.brh-nk .neg{color:var(--rs)}
+.brv{display:flex;flex-direction:column;gap:8px}.brv-r{padding:10px 12px;border-radius:12px;background:var(--b2);border:1px solid var(--bd)}.brv-h{display:flex;justify-content:space-between;align-items:baseline}.brv-h b{font-size:14px;color:var(--t1)}.brv-h span{font-size:15px;font-weight:800}
+.brv-share{height:4px;border-radius:99px;background:var(--b3);margin:6px 0}.brv-share i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--li),var(--pk))}
+.brv-k{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;color:var(--t3)}.brv-k em{font-style:normal;color:var(--t4);font-weight:600}.brv-k .pos{color:var(--mt);font-weight:800}.brv-k .neg{color:var(--rs);font-weight:800}
+.brp{margin:0 0 10px;padding:12px 14px;border-radius:16px;background:var(--b1);border:1px solid var(--bd)}.brp-h{display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:var(--t2)}.brp-h em{font-style:normal;font-weight:600;color:var(--t4);font-size:11px}
+.brp-v{display:flex;align-items:baseline;gap:10px;margin:4px 0 8px;flex-wrap:wrap}.brp-v b{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--t1)}.brp-v i{font-style:normal;font-size:11px;color:var(--t3)}.brp .pos{color:var(--mt)}.brp .neg{color:var(--rs)}
+.brp-bars{display:flex;flex-direction:column;gap:5px}.brp-r{display:grid;grid-template-columns:96px 1fr auto;gap:8px;align-items:center;font-size:11.5px;color:var(--t3)}.brp-r b{font-size:12px;font-weight:800}
+.brp-t{height:8px;border-radius:99px;background:var(--b3);overflow:hidden}.brp-t i{display:block;height:100%;border-radius:99px;animation:brdGrow .8s ease both}.brp-t i.pos{background:var(--mt)}.brp-t i.neg{background:var(--rs)}.brp-r.proj .brp-t i{opacity:.55;background-image:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,255,255,.25) 4px 8px)}.brp-r.avg .brp-t i{background:var(--t4)}
+.brp-f{margin-top:8px;font-size:11.5px;color:var(--t2)}
+.ggs-rows{display:flex;flex-direction:column;gap:8px}.ggs-r{padding:10px 12px;border-radius:12px;background:var(--b2);border:1px solid var(--bd)}.ggs-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}.ggs-h b{font-size:14px;color:var(--t1)}.ggs-h span{font-size:10.5px;color:var(--t4)}
+.ggs-k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}.ggs-k span{display:flex;flex-direction:column}.ggs-k i{font-style:normal;font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--t4)}.ggs-k b{font-size:13px;font-weight:800;color:var(--t1)}.ggs-k .pos{color:var(--mt)}.ggs-k .neg{color:var(--rs)}
+.ggb{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:700px){.ggb{grid-template-columns:1fr 1fr}}
+.ggb-r{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:100%;padding:8px 10px;margin-top:5px;border-radius:11px;background:var(--b2);border:1px solid var(--bd);text-align:left;font:inherit;color:inherit;cursor:pointer}
+.ggb-c{display:flex;gap:2px;min-width:56px}.ggb-c .comm-card{width:24px!important;height:34px!important;font-size:11px!important;border-radius:4px!important;margin:0!important}.ggb-c .comm-card .mc-suit{font-size:9px!important}
+.ggb-m b{display:block;font-size:12px;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ggb-m i,.ggb-v i{display:block;font-style:normal;font-size:10px;color:var(--t4)}.ggb-m{min-width:0}.ggb-v{text-align:right}.ggb-v b{font-size:13px;font-weight:800}.ggb-v.pos b{color:var(--mt)}.ggb-v.neg b{color:var(--rs)}
+.sr-mdl{max-width:460px}.sr-hero{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;padding:16px;border-radius:16px;background:var(--b2);border:1px solid var(--bd)}.sr-hero.pos{background:radial-gradient(100% 120% at 100% 0%,color-mix(in srgb,var(--mt) 20%,transparent),transparent 60%),var(--b2);border-color:color-mix(in srgb,var(--mt) 35%,var(--bd))}.sr-hero.neg{background:radial-gradient(100% 120% at 100% 0%,color-mix(in srgb,var(--rs) 18%,transparent),transparent 60%),var(--b2);border-color:color-mix(in srgb,var(--rs) 30%,var(--bd))}
+.sr-hero span{font-size:11px;font-weight:700;color:var(--t3)}.sr-hero b{display:block;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--t1);line-height:1.15}.sr-hero.pos>div>b{color:var(--mt)}.sr-hero.neg>div>b{color:var(--rs)}.sr-hero i{font-style:normal;font-size:12px;color:var(--t3)}
+.sr-grade{text-align:center;flex:none}.sr-grade b{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;margin:0 auto;font-size:24px!important;background:var(--b1);border:2px solid var(--pk);color:var(--pk2,var(--pk))!important}.sr-grade span{display:block;max-width:90px;margin-top:4px;font-size:10px!important;line-height:1.3}
+.sr-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}.sr-kv>div{padding:10px;border-radius:12px;background:var(--b2);border:1px solid var(--bd);min-width:0}.sr-kv span{display:block;font-size:10.5px;font-weight:700;color:var(--t3)}.sr-kv b{font-size:15px;font-weight:800;color:var(--t1)}.sr-kv i{display:block;font-style:normal;font-size:10.5px;color:var(--t4);line-height:1.35}.sr-kv .pos{color:var(--mt)}.sr-kv .neg{color:var(--rs)}
+.wk-mode{margin:8px 0 4px}.wk-mode button{flex:1}
 </style>
 </head>
 <body>
@@ -5796,6 +5872,7 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
     
     <div id="brHero"></div>
     <div id="brChalStrip"></div>
+    <div id="brPace"></div>
     <div class="br-actions">
       <button class="br-act log" onclick="switchBrTab('brSess');document.querySelector('.main').scrollTop=0"><b>＋</b>Log session</button>
       <button class="br-act dep" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit';depSetPromoMode(false)"><b>↓</b>Deposit</button>
@@ -5845,6 +5922,7 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
         <div class="br-fg full b3-sec">How did it end?</div>
         <div class="br-fg" id="brBuyinG"><label id="brBuyinLabel">Buy-in</label><input type="number" id="brBuyin" placeholder="e.g. 200" step="0.01" oninput="brBuyinTouched=true;updateBrResultLive()"/></div>
         <div class="br-fg" id="brCashoutG"><label id="brCashoutLabel">Cash Out</label><input type="number" id="brCashout" placeholder="e.g. 650" step="0.01" oninput="updateBrResultLive()"/></div>
+        <div class="br-fg" id="brTipsG"><label>Tips / tokes <span style="opacity:.55">(optional)</span></label><input type="number" id="brTips" placeholder="e.g. 10" step="0.01" min="0" inputmode="decimal"/></div>
         <div class="br-fg br-result-live-fg"><label>Session Result</label><div class="br-result-live" id="brResultLive">—</div></div>
         <div class="br-fg full mg-fg"><label>How did you feel? <span class="mg-opt">optional · helps you spot what affects your results</span></label><div class="mg-rows" id="brMG"></div></div>
         <div class="br-fg full"><label>Notes</label><textarea id="brNotes" style="padding:8px 12px;background:var(--b0);border:1px solid var(--bd);border-radius:var(--r1);color:var(--t1);font-size:11px;resize:vertical;min-height:50px" placeholder="Session notes..."></textarea></div>
@@ -5897,7 +5975,8 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
     <div class="br-substat on" id="brAnal"><div class="br-chart-grid" id="brAnalCharts"></div></div>
     <div class="br-substat" id="brInsights">
       
-      <div class="br-stats" id="brInsightsStats"></div>
+      <div id="brDeep"></div>
+      <div class="br-stats" id="brInsightsStats" style="display:none"></div>
       <div class="insight-narrative" id="brInsightsNarrative"></div>
       <div class="br-chart-box"><h3><span class="cdot" style="background:var(--ic)"></span>Result Distribution</h3><div class="br-chart-h" style="height:200px"><canvas id="chDist"></canvas></div></div>
       <div class="br-chart-box"><h3><span class="cdot" style="background:var(--li)"></span>Rolling 10-Session Average</h3><div class="br-chart-h" style="height:200px"><canvas id="chRolling"></canvas></div></div>
@@ -6473,7 +6552,7 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v89</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v92</div>
   </div>
 </div>
 </div>
@@ -6540,6 +6619,8 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
 </div></div>
 <div class="mov" id="resetM"><div class="mdl" style="max-width:380px"><h3 style="color:var(--rs)">Factory reset</h3><p class="setting-desc" style="margin:6px 0 12px">This erases <b>everything</b> on this device — ranges, sessions, shifts, GG hands, notes and settings. It can't be undone.</p><button class="btn" style="width:100%;margin-bottom:12px" onclick="dlJSON()">💾 Download a backup first</button><label class="slbl" for="resetConfirm">Type RESET to confirm</label><input class="minp" id="resetConfirm" autocomplete="off" autocapitalize="characters" oninput="$('resetGo').disabled=this.value.trim().toUpperCase()!=='RESET'" placeholder="RESET"/><div class="mact"><button class="btn" onclick="closeM('resetM')">Cancel</button><button class="btn btn-d" id="resetGo" disabled onclick="doFactoryReset()">Erase everything</button></div></div></div>
 <div class="mov" id="bb100M"><div class="mdl edq-mdl bbx-mdl" id="bb100Body"></div></div>
+<div class="mov" id="lbM"><div class="mdl edq-mdl lb-mdl" id="lbBody"></div></div>
+<div class="mov" id="srM"><div class="mdl edq-mdl sr-mdl" id="srBody"></div></div>
 <div class="mov" id="chalM"><div class="mdl edq-mdl chal-mdl" id="chalBody"></div></div>
 <div class="mov" id="hxM"><div class="mdl edq-mdl hx-mdl" id="hxBody"></div></div>
 <div class="mov" id="ggDelM"><div class="mdl ggdel-mdl" id="ggDelBody"></div></div>
@@ -6799,6 +6880,14 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
       </div>
       <div class="lqs-row" id="liveQuickStakes"></div>
     </div>
+    <div class="live-sec" id="liveBlindSec" style="display:none">
+      <div class="live-sec-title">⏱ Blind clock</div>
+      <div class="lb-set3"><div><label class="slbl">Small blind</label><input class="minp" id="lbS_SB" type="number" inputmode="numeric" placeholder="100" style="margin:0"/></div><div><label class="slbl">Big blind</label><input class="minp" id="lbS_BB" type="number" inputmode="numeric" placeholder="200" style="margin:0" oninput="if(!$('lbS_SB').value||$('lbS_SB')._auto){$('lbS_SB').value=Math.round(this.value/2)||'';$('lbS_SB')._auto=1}"/></div><div><label class="slbl">Ante</label><input class="minp" id="lbS_Ante" type="number" inputmode="numeric" placeholder="0" style="margin:0"/></div></div>
+      <label class="slbl" style="margin-top:10px;display:block">Level length (minutes)</label>
+      <div class="lb-lenrow"><div class="hx-chips" id="lbLenChips"><button type="button" class="gg-chip" data-v="10" onclick="lbSetLen(10)">10</button><button type="button" class="gg-chip" data-v="15" onclick="lbSetLen(15)">15</button><button type="button" class="gg-chip" data-v="20" onclick="lbSetLen(20)">20</button><button type="button" class="gg-chip" data-v="30" onclick="lbSetLen(30)">30</button><button type="button" class="gg-chip" data-v="40" onclick="lbSetLen(40)">40</button><button type="button" class="gg-chip" data-v="60" onclick="lbSetLen(60)">60</button></div><input class="minp" id="lbS_Len" type="number" inputmode="numeric" placeholder="20" style="margin:0;width:80px" oninput="lbSetLenChip()"/></div>
+      <div class="lb-set3" style="margin-top:10px"><div><label class="slbl">Starting chips</label><input class="minp" id="lbS_Stack" type="number" inputmode="numeric" placeholder="e.g. 20000" style="margin:0"/></div><div><label class="slbl">Current level</label><input class="minp" id="lbS_Lvl" type="number" inputmode="numeric" value="1" style="margin:0"/></div><div><label class="slbl">Mins left</label><input class="minp" id="lbS_Left" type="number" inputmode="decimal" placeholder="full" style="margin:0"/></div></div>
+      <div class="lb-note">Late registration? Set the level you're joining and how long is left on it. When the clock runs out we'll ask you for the new blinds.</div>
+    </div>
     <div class="live-sec">
       <div class="live-sec-title">Table Setup</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
@@ -6835,7 +6924,7 @@ code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.
   <div class="qh-tags" id="qhTags"></div>
   <div class="mact"><button class="btn" onclick="closeM('qhM')">Cancel</button><button class="btn pri" onclick="saveQuickHand()">⚡ Save hand</button></div>
 </div></div>
-<div class="mov" id="liveEndM"><div class="mdl" style="max-width:360px"><h3>End Session</h3><p style="font-size:12px;color:var(--t2);margin-bottom:12px" id="liveEndHint">How much did you finish with?</p><div style="margin-bottom:10px"><label class="slbl" id="liveEndLabel">Final Stack</label><input class="minp" id="liveEndStack" type="number" placeholder="0.00" step="0.01" style="margin:0;font-size:18px;text-align:center;font-family:var(--fm)"/></div><div id="liveEndSummary" style="font-size:11px;color:var(--t3);text-align:center;margin-bottom:10px"></div><div class="mg-live"><label class="slbl">How did you feel? <span class="mg-opt">optional</span></label><div class="mg-rows" id="liveMG"></div></div><div class="mact"><button class="btn" onclick="closeM('liveEndM')">Cancel</button><button class="btn pri" onclick="submitEndLive()">✦ End &amp; Save</button></div><button class="live-discard" onclick="discardLive()">Discard this session without saving</button></div></div>
+<div class="mov" id="liveEndM"><div class="mdl" style="max-width:360px"><h3>End Session</h3><p style="font-size:12px;color:var(--t2);margin-bottom:12px" id="liveEndHint">How much did you finish with?</p><div style="margin-bottom:10px"><label class="slbl">Tips / tokes <span style="opacity:.55">(optional)</span></label><input class="minp" id="liveEndTips" type="number" step="0.01" min="0" inputmode="decimal" placeholder="0" style="margin:0"/></div><div style="margin-bottom:10px"><label class="slbl" id="liveEndLabel">Final Stack</label><input class="minp" id="liveEndStack" type="number" placeholder="0.00" step="0.01" style="margin:0;font-size:18px;text-align:center;font-family:var(--fm)"/></div><div id="liveEndSummary" style="font-size:11px;color:var(--t3);text-align:center;margin-bottom:10px"></div><div class="mg-live"><label class="slbl">How did you feel? <span class="mg-opt">optional</span></label><div class="mg-rows" id="liveMG"></div></div><div class="mact"><button class="btn" onclick="closeM('liveEndM')">Cancel</button><button class="btn pri" onclick="submitEndLive()">✦ End &amp; Save</button></div><button class="live-discard" onclick="discardLive()">Discard this session without saving</button></div></div>
 <div class="mov" id="actM"><div class="mdl" style="max-width:360px"><h3>New Action</h3><input class="minp" id="actName" placeholder="Action name..."/><div class="slbl">Color</div><div class="acp-custom"><input type="color" id="actColorPicker" value="#ec4899"/><span>Tap to choose a colour</span></div><div class="mact"><button class="btn" onclick="closeM('actM')">Cancel</button><button class="btn pri" onclick="addAct()">Add</button></div></div></div>
 <div class="mov" id="editActsM"><div class="mdl" style="max-width:420px"><h3>Edit Actions</h3><div style="font-size:10px;color:var(--t4);margin-bottom:10px">Click colour dot to change.</div><div id="editActsList"></div><div class="glow-line"></div><div class="slbl">Add New Action</div><div style="display:flex;gap:8px;align-items:center"><input class="minp" id="newActName" placeholder="Action name..." style="margin:0;flex:1"/><input type="color" id="newActColor" value="#ec4899" style="width:36px;height:36px;border:none;background:none;cursor:pointer;padding:0;border-radius:6px;flex-shrink:0"/><button class="btn pri btn-s" onclick="addActFromEditor()" style="border-radius:var(--r1);padding:8px 14px;font-size:11px">+ Add</button></div><div class="mact" style="margin-top:16px"><button class="btn pri" onclick="closeM('editActsM')">✦ Done</button></div></div></div>
 <div class="mov" id="newNbM"><div class="mdl" style="max-width:380px"><h3>New Notebook</h3><input class="minp" id="newNbName" placeholder="Notebook name..."/><div id="nbIG"></div><div id="nbCG"></div><div class="mact"><button class="btn" onclick="closeM('newNbM')">Cancel</button><button class="btn pri" onclick="createNotebook()">Create</button></div></div></div>
@@ -9916,8 +10005,10 @@ async function ggImportFiles(files){
   GGDB.sortCache();
   if(!added&&!upgraded&&!dupes&&errors){status.innerHTML='<span style="color:var(--rs)">⚠️ Nothing imported — '+escapeHtml(lastError)+'. Export hand histories from GGPoker (PokerCraft → Download) and import the .txt files.</span>';return}
   status.innerHTML="✓ Imported <b>"+added+"</b> new hand"+(added!==1?"s":"")+(upgraded?" · "+upgraded+" upgraded for replay":"")+(dupes?" · "+dupes+" already imported":"")+(errors?' · <span style="color:var(--rs)">'+errors+" skipped ("+escapeHtml(lastError)+")</span>":"");
+  window._ggLastImport=perFile.flatMap(f=>f.hands);
   const logged=ggLogToBankroll(perFile);
   if(logged)status.innerHTML+='<div class="gg-brl-done">💰 '+(logged.made?"Logged <b>"+logged.made+"</b> new session"+(logged.made!==1?"s":""):"")+(logged.made&&logged.updated?" · ":"")+(logged.updated?"updated <b>"+logged.updated+"</b> session"+(logged.updated!==1?"s":""):"")+" in "+escapeHtml(logged.name)+' (<span class="profit '+(logged.total>=0?"pos":"neg")+'">'+logged.fmt+'</span>) <button class="gg-brl-view" onclick="ggOpenBankroll(\''+logged.id+'\')">View in Bankroll →</button></div>';
+  if(window._ggLastImport.length)status.innerHTML+='<div class="gg-brl-done"><button class="gg-brl-view" onclick="srGGOpen()">📋 Session report</button></div>';
   status.innerHTML='<button class="gg-st-x" onclick="this.parentElement.style.display=\'none\'" aria-label="Dismiss">✕</button>'+status.innerHTML;
   clearTimeout(window._ggStT);if(!errors&&!logged)window._ggStT=setTimeout(()=>{status.style.display="none"},7000);
   renderGG();
@@ -11305,7 +11396,7 @@ function ggRenderAnalysis(body,arrIn){
   const arr=[...arrIn].sort((x,y)=>x.ts-y.ts),n=arr.length;
   if(n<10){body.innerHTML='<div class="empty-state"><span class="es-icon">🔬</span><div class="es-title">Not enough hands</div><div class="es-sub">The analysis needs at least 10 hands in the current filter.</div></div>';return}
   const t=ggAgg(arr),pn=v=>v>=0?"pos":"neg",fbb=(v,d=1)=>(v<0?"−":v>0?"+":"")+Math.abs(v).toFixed(d)+" bb";
-  const ANT_IDS={ov:["ggAnRel"],lk:["ggAnLeaks"],pre:["ggAnDeep","ggAnPre","ggAnRange","ggAnSizePre"],post:["ggAnDeep","ggAnStreets","ggAnPost","ggAnTex","ggAnFs","ggAnSize","ggAnFE"],res:["ggAnLines","ggAnPos","ggAnSwing","ggAnDist","ggAnEnd","ggAnCats","ggAnRL"],tr:["ggAnTrend"],ses:["ggAnSess","ggAnTilt","ggAnTbl","ggAnCtx"]};
+  const ANT_IDS={ov:["ggAnRel"],lk:["ggAnLeaks"],pre:["ggAnDeep","ggAnPre","ggAnRange","ggAnSizePre"],post:["ggAnDeep","ggAnStreets","ggAnPost","ggAnTex","ggAnFs","ggAnSize","ggAnFE"],res:["ggAnStakes","ggAnBig","ggAnLines","ggAnPos","ggAnSwing","ggAnDist","ggAnEnd","ggAnCats","ggAnRL"],tr:["ggAnTrend","ggAnRB"],ses:["ggAnSess","ggAnWhen","ggAnTilt","ggAnTbl","ggAnCtx"]};
   const _an=ANT_IDS[ggList.an]?ggList.an:"ov",needS=id=>ANT_IDS[_an].includes(id); // only build what the open sub-tab shows
   const SEC={},sec=(id,title,sub,inner)=>{const x='<section class="gg-an-sec" id="'+id+'"><div class="gg-an-h"><h4>'+title+"</h4>"+(sub?'<span class="gg-an-sub">'+sub+"</span>":"")+"</div>"+inner+"</section>";SEC[id]=x;return x};
   let h="";
@@ -11397,10 +11488,14 @@ function ggRenderAnalysis(body,arrIn){
     +kv("Hands per hour",hrs>0?Math.round(n/hrs).toLocaleString():"—")+kv("Win rate per hour",hrs>0?'<span class="profit '+pn(t.nbb)+'">'+ggMoneyFmt(t.net/hrs,t.nbb/hrs)+"/hr</span>":"—")
     +kv("Avg session",Math.round(n/Math.max(1,sg.length))+" hands · "+brFmtDur(Math.round(totMin/Math.max(1,sg.length))))
     +(sg.length>1?kv("Best / worst session",'<span class="profit '+pn(bestS.a.nbb)+'">'+fbb(bestS.a.nbb,0)+'</span> / <span class="profit '+pn(worstS.a.nbb)+'">'+fbb(worstS.a.nbb,0)+"</span>"):"")
-    +(hb?kv("Best hour (UTC)",escapeHtml(hb[0].l)+" · "+ggSgn(hb[0].a.bb100)+" bb/100")+kv("Worst hour (UTC)",escapeHtml(hb[1].l)+" · "+ggSgn(hb[1].a.bb100)+" bb/100"):"")
+    +(hb?kv("Best hour (GG time)",escapeHtml(hb[0].l)+" · "+ggSgn(hb[0].a.bb100)+" bb/100")+kv("Worst hour (GG time)",escapeHtml(hb[1].l)+" · "+ggSgn(hb[1].a.bb100)+" bb/100"):"")
     +(wb?kv("Best day",escapeHtml(wb[0].l)+" · "+ggSgn(wb[0].a.bb100)+" bb/100")+kv("Worst day",escapeHtml(wb[1].l)+" · "+ggSgn(wb[1].a.bb100)+" bb/100"):"")
     +"</div>"+(!hb&&!wb?'<div class="gg-an-note">Best and worst hours and days appear once each has at least '+minH+" hands.</div>":""));
   }
+  if(needS("ggAnStakes"))h+=sec("ggAnStakes","Stake by stake","bb/100, net and red/blue lines at each stake",ggStakesHtml(arr));
+  if(needS("ggAnBig"))h+=sec("ggAnBig","Biggest pots","your 10 largest wins and losses · tap to replay",ggBigHtml(arr));
+  if(needS("ggAnRB"))h+=sec("ggAnRB","Showdown vs non-showdown over time","bb/100 in each block of hands",ggRBHtml(arr));
+  if(needS("ggAnWhen"))h+=sec("ggAnWhen","When you play best","bb/100 by time of day and weekday",ggWhenHtml(arr));
   /* 9 · rake & luck */
   const gross=t.nbb+t.rkB,rakeShare=gross>0?t.rkB/gross*100:null;
   h+=sec("ggAnRL","Rake & luck","",
@@ -11424,7 +11519,7 @@ function ggRenderAnalysis(body,arrIn){
     const aL=chron.filter(x=>ids.has(x.id));if(aL.length>=50){const a=ggAgg(aL);if(a.vpip!=null&&t.vpip!=null&&a.vpip-t.vpip>=5)tk.splice(1,0,["😤","After losing a big pot your VPIP jumps to <b>"+a.vpip.toFixed(0)+"%</b> (normally "+t.vpip.toFixed(0)+"%) and you win "+ggSgn(a.bb100)+" bb/100. Watch for tilt."])}
     const sf=arr.filter(x=>x.ax&&x.ax.vcb==="f"&&["2p","op","tp"].includes(x.ax.fs)).length;if(sf>=3)tk.push(["🧐","You folded <b>top pair or better</b> to a flop c-bet "+sf+" times — see Hand strength."])}}
   }
-  const TABS=[["ov","Overview",["ggAnRel"]],["lk","Leaks",["ggAnLeaks"]],["pre","Preflop",["ggAnDeep","ggAnPre","ggAnRange","ggAnSizePre"]],["post","Postflop",["ggAnDeep","ggAnStreets","ggAnPost","ggAnTex","ggAnFs","ggAnSize","ggAnFE"]],["res","Results",["ggAnLines","ggAnPos","ggAnSwing","ggAnDist","ggAnEnd","ggAnCats","ggAnRL"]],["tr","Trends",["ggAnTrend"]],["ses","Sessions",["ggAnSess","ggAnTilt","ggAnTbl","ggAnCtx"]]];
+  const TABS=[["ov","Overview",["ggAnRel"]],["lk","Leaks",["ggAnLeaks"]],["pre","Preflop",["ggAnDeep","ggAnPre","ggAnRange","ggAnSizePre"]],["post","Postflop",["ggAnDeep","ggAnStreets","ggAnPost","ggAnTex","ggAnFs","ggAnSize","ggAnFE"]],["res","Results",["ggAnStakes","ggAnBig","ggAnLines","ggAnPos","ggAnSwing","ggAnDist","ggAnEnd","ggAnCats","ggAnRL"]],["tr","Trends",["ggAnTrend","ggAnRB"]],["ses","Sessions",["ggAnSess","ggAnWhen","ggAnTilt","ggAnTbl","ggAnCtx"]]];
   const NAMES={ggAnRel:"Trust",ggAnPre:"By position",ggAnRange:"Ranges",ggAnSizePre:"Sizing",ggAnStreets:"Streets",ggAnPost:"Lines",ggAnTex:"Textures",ggAnFs:"Hand strength",ggAnSize:"Sizing",ggAnFE:"Fold equity",ggAnLines:"Decisions",ggAnPos:"Positions",ggAnSwing:"Swings",ggAnDist:"Distribution",ggAnEnd:"Streets",ggAnCats:"Hands",ggAnRL:"Rake & luck",ggAnSess:"Volume",ggAnTilt:"Tilt",ggAnTbl:"Tables",ggAnCtx:"Context"};
   if(!TABS.some(x=>x[0]===ggList.an))ggList.an="ov";
   if(ggList.an==="tr")ggAnTrendHtml(arr,sec);
@@ -11469,7 +11564,7 @@ function ggRenderAnalysis(body,arrIn){
   body.querySelectorAll(".gg-an-hc").forEach(b=>b.onclick=()=>{ggList.f.range=[b.dataset.cls];ggList.tab="list";ggRefresh();haptic("light")});
   /* charts */
   if(typeof Chart==="undefined")return;
-  ggTrChart();
+  ggTrChart();try{if($("chGGRB"))ggRBChart([...arrIn].sort((x,y)=>x.ts-y.ts))}catch(e){console.warn(e)}
   const CT=getCT(),G="#22c55e",R="#ef4444",anim=n>20000?false:{duration:900,easing:"easeOutQuart"};
   const tip={backgroundColor:CT.tbg,titleColor:CT.tt,bodyColor:CT.tb,borderColor:CT.tbdr,borderWidth:1,cornerRadius:10,padding:10};
   const ax={ticks:{color:CT.tick,font:{size:10}},grid:{color:CT.grid,drawTicks:false},border:{display:false}};
@@ -12735,9 +12830,9 @@ function setBrFmt(f){brFmt_=f;const tg=brIsTour(f)?"tourney":"cash";$("brFmtTog"
 function toggleBrMultiDay(){$("brDayNumG").style.display=$("brMultiDay").checked?"":"none"}
 function brFieldErr(id,msg){const e=$(id);if(e){e.classList.add("inv");e.focus();e.addEventListener("input",()=>e.classList.remove("inv"),{once:true})}toast("⚠ "+msg);return false}
 let _brEditBid=null;
-function saveBrSess(){const date=$("brDate").value;if(!date)return brFieldErr("brDate","Enter the date");if($("brBuyin").value.trim()===""||!(parseFloat($("brBuyin").value)>=0))return brFieldErr("brBuyin","Enter your buy-in");if($("brCashout").value.trim()===""||!(parseFloat($("brCashout").value)>=0))return brFieldErr("brCashout",brIsTour(brFmt_)?"Enter what you cashed for (0 if you busted)":"Enter your cash out (0 if you lost it all)");if(brTimeMode_!=="day"&&$("brStart").value&&$("brEnd").value&&$("brStart").value===$("brEnd").value)return brFieldErr("brEnd","Start and end times are the same");const buyin=parseFloat($("brBuyin").value)||0;const cashout=parseFloat($("brCashout").value)||0;const result=cashout-buyin;const dayMode=brTimeMode_==="day";const start=dayMode?"":$("brStart").value,end=dayMode?"":$("brEnd").value;const hrsIn=parseFloat($("brHours").value);const duration=dayMode?(hrsIn>0?Math.round(Math.min(hrsIn,48)*60):0):brParseDur(start,end);const isMultiDay=brFmt_!=="cash"&&$("brMultiDay").checked;const s={id:$("brEditId").value||"bs_"+Date.now(),date,format:brFmt_,gameType:$("brGT").value,tableSize:$("brTable").value,start,end,duration,timeMode:dayMode?"day":"exact",stakes:$("brStakes").value,startStack:brFmt_!=="cash"?(parseFloat($("brStartStack").value)||null):null,multiDay:isMultiDay,dayNum:isMultiDay?(parseInt($("brDayNum").value)||null):null,location:$("brLoc").value,buyin,cashout,buyinCents:Math.round(buyin*100),cashoutCents:Math.round(cashout*100),result,resultCents:Math.round(result*100),notes:$("brNotes").value,mg:mgPick("brMG"),created:new Date().toISOString()};const tgt=(_brEditBid&&typeof getBankrollById==="function"&&getBankrollById(_brEditBid))||BR.d;const ss=[...tgt.sessions];const ei=ss.findIndex(x=>x.id===s.id);if(ei>=0){const old=ss[ei];const keep=Object.assign({},old,s);keep.created=old.created||s.created;keep.updated=new Date().toISOString();ss[ei]=keep}else ss.push(s);tgt.sessions=ss;if(tgt===BR.d)BR.save();else saveBankrollsList();_brEditBid=null;resetBrForm();renderBrAll();playSound(result>=0?"save":"wrong");haptic("light");toast("Session saved ✦")}
-function resetBrForm(){mgSet("brMG",null);_brEditBid=null;$("brEditId").value="";$("brFormTitle").textContent="How did it go?";["brDate","brStart","brEnd","brStakes","brBuyin","brCashout","brNotes","brLoc","brStartStack","brDayNum","brHours"].forEach(id=>$(id).value="");setBrTimeMode("exact");$("brDate").value=shD(new Date());$("brTable").value="9-max";$("brMultiDay").checked=false;brBuyinTouched=false;updateBrResultLive();setBrFmt("cash");renderStakePresetRow("brQuickStakes","brStakes");brAutoFillBuyin()}
-function editBrSess(id,bid){const src=(bid&&typeof getBankrollById==="function"&&getBankrollById(bid))||BR.d;_brEditBid=src===BR.d?null:bid;const s=src.sessions.find(x=>x.id===id);if(!s)return;switchBrTab("brSess");$("brEditId").value=s.id;$("brFormTitle").textContent="Tweak this session";$("brDate").value=s.date;$("brGT").value=s.gameType;$("brTable").value=s.tableSize||"9-max";$("brStart").value=s.start||"";$("brEnd").value=s.end||"";$("brHours").value=s.timeMode==="day"&&s.duration?+(s.duration/60).toFixed(2):"";setBrTimeMode(s.timeMode==="day"?"day":"exact");$("brStakes").value=s.stakes||"";$("brLoc").value=s.location||"";$("brBuyin").value=s.buyin!=null?s.buyin:"";$("brCashout").value=s.cashout!=null?s.cashout:(s.buyin!=null?"":(s.result!=null?s.result:""));$("brNotes").value=s.notes||"";mgSet("brMG",s.mg);$("brStartStack").value=s.startStack!=null?s.startStack:"";$("brMultiDay").checked=!!s.multiDay;$("brDayNum").value=s.dayNum!=null?s.dayNum:"";brBuyinTouched=true;updateBrResultLive();setBrFmt(s.format||"cash");toggleBrMultiDay();renderStakePresetRow("brQuickStakes","brStakes");setTimeout(()=>$("brFormCard").scrollIntoView({behavior:"smooth"}),80)}
+function saveBrSess(){const date=$("brDate").value;if(!date)return brFieldErr("brDate","Enter the date");if($("brBuyin").value.trim()===""||!(parseFloat($("brBuyin").value)>=0))return brFieldErr("brBuyin","Enter your buy-in");if($("brCashout").value.trim()===""||!(parseFloat($("brCashout").value)>=0))return brFieldErr("brCashout",brIsTour(brFmt_)?"Enter what you cashed for (0 if you busted)":"Enter your cash out (0 if you lost it all)");if(brTimeMode_!=="day"&&$("brStart").value&&$("brEnd").value&&$("brStart").value===$("brEnd").value)return brFieldErr("brEnd","Start and end times are the same");const buyin=parseFloat($("brBuyin").value)||0;const cashout=parseFloat($("brCashout").value)||0;const result=cashout-buyin;const dayMode=brTimeMode_==="day";const start=dayMode?"":$("brStart").value,end=dayMode?"":$("brEnd").value;const hrsIn=parseFloat($("brHours").value);const duration=dayMode?(hrsIn>0?Math.round(Math.min(hrsIn,48)*60):0):brParseDur(start,end);const isMultiDay=brFmt_!=="cash"&&$("brMultiDay").checked;const s={id:$("brEditId").value||"bs_"+Date.now(),date,format:brFmt_,gameType:$("brGT").value,tableSize:$("brTable").value,start,end,duration,timeMode:dayMode?"day":"exact",stakes:$("brStakes").value,startStack:brFmt_!=="cash"?(parseFloat($("brStartStack").value)||null):null,multiDay:isMultiDay,dayNum:isMultiDay?(parseInt($("brDayNum").value)||null):null,location:$("brLoc").value,buyin,cashout,buyinCents:Math.round(buyin*100),cashoutCents:Math.round(cashout*100),result,resultCents:Math.round(result*100),notes:$("brNotes").value,mg:mgPick("brMG"),tipsCents:Math.round((parseFloat($("brTips")?.value)||0)*100)||undefined,created:new Date().toISOString()};const tgt=(_brEditBid&&typeof getBankrollById==="function"&&getBankrollById(_brEditBid))||BR.d;const ss=[...tgt.sessions];const ei=ss.findIndex(x=>x.id===s.id);if(ei>=0){const old=ss[ei];const keep=Object.assign({},old,s);keep.created=old.created||s.created;keep.updated=new Date().toISOString();ss[ei]=keep}else ss.push(s);tgt.sessions=ss;if(tgt===BR.d)BR.save();else saveBankrollsList();_brEditBid=null;resetBrForm();renderBrAll();playSound(result>=0?"save":"wrong");haptic("light");toast("Session saved ✦");if(ei<0)setTimeout(()=>{try{srOpen(s,tgt)}catch(e){console.warn(e)}},350)}
+function resetBrForm(){mgSet("brMG",null);_brEditBid=null;$("brEditId").value="";$("brFormTitle").textContent="How did it go?";["brDate","brStart","brEnd","brStakes","brBuyin","brCashout","brNotes","brLoc","brStartStack","brDayNum","brHours","brTips"].forEach(id=>{if($(id))$(id).value=""});setBrTimeMode("exact");$("brDate").value=shD(new Date());$("brTable").value="9-max";$("brMultiDay").checked=false;brBuyinTouched=false;updateBrResultLive();setBrFmt("cash");renderStakePresetRow("brQuickStakes","brStakes");brAutoFillBuyin()}
+function editBrSess(id,bid){const src=(bid&&typeof getBankrollById==="function"&&getBankrollById(bid))||BR.d;_brEditBid=src===BR.d?null:bid;const s=src.sessions.find(x=>x.id===id);if(!s)return;switchBrTab("brSess");$("brEditId").value=s.id;$("brFormTitle").textContent="Tweak this session";$("brDate").value=s.date;$("brGT").value=s.gameType;$("brTable").value=s.tableSize||"9-max";$("brStart").value=s.start||"";$("brEnd").value=s.end||"";$("brHours").value=s.timeMode==="day"&&s.duration?+(s.duration/60).toFixed(2):"";setBrTimeMode(s.timeMode==="day"?"day":"exact");$("brStakes").value=s.stakes||"";$("brLoc").value=s.location||"";$("brBuyin").value=s.buyin!=null?s.buyin:"";$("brCashout").value=s.cashout!=null?s.cashout:(s.buyin!=null?"":(s.result!=null?s.result:""));$("brNotes").value=s.notes||"";if($("brTips"))$("brTips").value=s.tipsCents?(s.tipsCents/100):"";mgSet("brMG",s.mg);$("brStartStack").value=s.startStack!=null?s.startStack:"";$("brMultiDay").checked=!!s.multiDay;$("brDayNum").value=s.dayNum!=null?s.dayNum:"";brBuyinTouched=true;updateBrResultLive();setBrFmt(s.format||"cash");toggleBrMultiDay();renderStakePresetRow("brQuickStakes","brStakes");setTimeout(()=>$("brFormCard").scrollIntoView({behavior:"smooth"}),80)}
 function switchBrTab(bp){const btn=$("brNav")?.querySelector('button[data-bp="'+bp+'"]');if(!btn)return;if(bp!=="brSess")LS("ps_br_tab",bp);$("brNav").querySelectorAll("button").forEach(b=>b.classList.remove("on"));btn.classList.add("on");document.querySelectorAll("#bankrollV .br-sub").forEach(p=>p.classList.remove("on"));const pg=$(bp);if(pg)pg.classList.add("on");if(bp==="brHistory")renderBrSessions();if(bp==="brChal")renderChal();if(bp==="brStats"){const sp=$("brStatsNav").querySelector("button.on")?.dataset.sp||"brAnal";if(sp==="brAnal")renderBrAnalytics();else renderBrInsights()}}
 function delBrSess(id,bid){const b=bid?getBankrollById(bid):BR.d;if(!b)return;const ix=b.sessions.findIndex(s=>s.id===id);if(ix<0)return;const old=b.sessions[ix];b.sessions=b.sessions.filter(s=>s.id!==id);saveBankrollsList();try{closeM("sessDetailM")}catch(e){}renderBrAll();haptic("warn");toastUndo("Session deleted",()=>{b.sessions.splice(ix,0,old);saveBankrollsList();renderBrAll()})}
 function setupAC(inputId,acId,getList){const inp=$(inputId),ac=$(acId);if(!inp||!ac)return;inp._acList=getList;if(inp._acBound)return;inp._acBound=true;getList=()=>inp._acList();inp.addEventListener("input",()=>{const v=inp.value.toLowerCase();if(!v){ac.classList.remove("show");return}const m=getList().filter(x=>x.toLowerCase().includes(v));if(!m.length){ac.classList.remove("show");return}ac.innerHTML=m.slice(0,6).map(x=>"<div>"+escapeHtml(x)+"</div>").join("");ac.classList.add("show");ac.querySelectorAll("div").forEach(d=>d.onclick=()=>{inp.value=d.textContent;ac.classList.remove("show")})});inp.addEventListener("blur",()=>setTimeout(()=>ac.classList.remove("show"),200))}
@@ -12784,7 +12879,7 @@ function submitDep(){
 }
 // Live session
 let liveData=LG("ps_live",null);let liveTimer=null;
-function onLiveFmtChange(){const fmt=$("liveFmt")?.value;const buyinLabel=$("liveBuyinLabel");if(buyinLabel){buyinLabel.textContent=fmt==="tourney"||fmt==="sng"?"Entry Fee":fmt==="bomb"?"Min Buy-in":"Buy-in"}liveAutoFillBuyin()}
+function onLiveFmtChange(){try{lbSetupToggle()}catch(e){}const fmt=$("liveFmt")?.value;const buyinLabel=$("liveBuyinLabel");if(buyinLabel){buyinLabel.textContent=fmt==="tourney"||fmt==="sng"?"Entry Fee":fmt==="bomb"?"Min Buy-in":"Buy-in"}liveAutoFillBuyin()}
 function onLiveGoalChange(){const goal=$("liveGoal")?.value;const extra=$("liveGoalExtra");if(extra)extra.style.display=goal?"block":"none";const val=$("liveGoalVal");if(val){val.placeholder=goal==="win"?"Win target (e.g. 500)":goal==="time"?"Time limit (e.g. 4)":goal==="stop_loss"?"Stop-loss amount (e.g. 200)":goal==="hands"?"Hand count (e.g. 200)":"Value"}}
 function setLiveStakes(el,val){document.querySelectorAll(".lqs").forEach(x=>x.classList.remove("on"));el.classList.add("on");$("liveStakes").value=val}
 const STAKE_PRESETS=["0.01/0.02","0.02/0.05","0.05/0.10","0.10/0.25","0.25/0.50","0.50/1","1/2","1/3","2/5","3/5","5/10","10/20","10/25","25/50","50/100","100/200"];
@@ -12867,11 +12962,12 @@ function prefillLive(){
   $("liveBuyin").value="";
   liveAutoFillBuyin();
   renderStakePresetRow("liveQuickStakes","liveStakes");
+  try{lbSetupToggle()}catch(e){}
 }
 function populateLiveBankrollSelect(){const sel=$("liveBankroll");if(!sel)return;const list=getBankrollsList();const activeId=getActiveBankrollId();sel.innerHTML=list.map(b=>'<option value="'+b.id+'"'+(b.id===activeId?" selected":"")+'>'+b.icon+" "+b.name+"</option>").join("")}
 function getBankrollById(id){return getBankrollsList().find(b=>b.id===id)}
-function submitStartLive(){const stakes=$("liveStakes").value.trim();if(!stakes)return toast("Enter stakes");const buyin=parseFloat($("liveBuyin").value)||0;const bankrollId=$("liveBankroll").value||getActiveBankrollId();liveData={bankrollId,start:Date.now(),stakes,location:$("liveLoc").value.trim(),gameType:$("liveGT").value,format:$("liveFmt").value,tableSize:$("liveTable").value,seat:$("liveSeat").value,goal:$("liveGoal").value,goalVal:$("liveGoalVal")?.value||"",buyin:Math.round(buyin*100),invested:Math.round(buyin*100),rebuys:0,events:[],stackHistory:[{ts:Date.now(),amount:Math.round(buyin*100)}]};const notes=$("liveStartNotes").value.trim();if(notes)liveData.events.push({time:new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}),text:"📝 "+notes});LS("ps_live",liveData);closeM("liveStartM");startLiveTimer();renderBrAll();const b=getBankrollById(bankrollId);toast("🔴 Live session started"+(b?" · "+b.icon+" "+b.name:""))}
-function startLiveTimer(){if(liveTimer)clearInterval(liveTimer);liveTimer=setInterval(()=>{if(liveData){updateLiveTimerDisplay();if(Date.now()%15000<1000)liveGoalCheck()}},1000)}
+function submitStartLive(){const _tour=brIsTour($("liveFmt").value);let _lb=null;if(_tour){_lb=lbSetupRead();if(_lb.err)return toast(_lb.err)}const stakes=$("liveStakes").value.trim()||(_tour?($("liveFmt").value==="sng"?"Sit & Go":"MTT"):"");if(!stakes)return toast("Enter stakes");const buyin=parseFloat($("liveBuyin").value)||0;const bankrollId=$("liveBankroll").value||getActiveBankrollId();liveData={bankrollId,start:Date.now(),stakes,location:$("liveLoc").value.trim(),gameType:$("liveGT").value,format:$("liveFmt").value,tableSize:$("liveTable").value,seat:$("liveSeat").value,goal:$("liveGoal").value,goalVal:$("liveGoalVal")?.value||"",buyin:Math.round(buyin*100),invested:Math.round(buyin*100),rebuys:0,events:[],stackHistory:[{ts:Date.now(),amount:Math.round(buyin*100)}]};if(_lb){liveData.blinds=_lb.blinds;liveData.tName=$("liveStakes").value.trim();if(_lb.stack>0){liveData.currentStack=_lb.stack;liveData.startStack=_lb.stack;liveData.stackHistory=[{ts:Date.now(),amount:_lb.stack}]}}const notes=$("liveStartNotes").value.trim();if(notes)liveData.events.push({time:new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}),text:"📝 "+notes});LS("ps_live",liveData);closeM("liveStartM");startLiveTimer();renderBrAll();const b=getBankrollById(bankrollId);toast("🔴 Live session started"+(b?" · "+b.icon+" "+b.name:""))}
+function startLiveTimer(){if(liveTimer)clearInterval(liveTimer);liveTimer=setInterval(()=>{if(liveData){updateLiveTimerDisplay();try{lbTick()}catch(e){}if(Date.now()%15000<1000)liveGoalCheck()}},1000)}
 function liveGoalInfo(){if(!liveData||!liveData.goal)return null;const v=parseFloat(String(liveData.goalVal||"").replace(/[^0-9.]/g,""));if(!(v>0))return null;const el=Date.now()-liveData.start,tour=brIsTour(liveData.format),pnl=liveData.currentStack!=null&&!tour?liveData.currentStack-liveData.invested:0,sym=brSym();
   if(liveData.goal==="win"){const cur=pnl/100;return{label:"Win target "+sym+v,prog:(cur>=0?"+":"−")+sym+Math.abs(cur).toFixed(0)+" / "+sym+v,pct:Math.max(0,cur)/v,hit:cur>=v,msg:"🎯 Win target reached — lock it up?"}}
   if(liveData.goal==="stop_loss"){const loss=-pnl/100;return{label:"Stop-loss "+sym+v,prog:(loss>0?"−"+sym+loss.toFixed(0):"±0")+" / "+sym+v,pct:Math.max(0,loss)/v,hit:loss>=v,danger:true,msg:"🛑 Stop-loss hit — time to rack up"}}
@@ -12895,7 +12991,7 @@ function renderLivePanel(){const la=$("brLiveArea");if(!liveData){la.innerHTML='
   const pnl=hasStack&&!isTourney?liveData.currentStack-liveData.invested:0;
   const hasStackHistory=liveData.stackHistory&&liveData.stackHistory.length>=2;
   const stackBlock=hasStack?'<div class="live-stack-block"><div class="live-stack-row"><span class="live-stack-lbl">'+(isTourney?"🎰 Chip Count":"💰 Current Stack")+'</span><span class="live-stack-val">'+(isTourney?liveData.currentStack.toLocaleString():brSym()+(liveData.currentStack/100).toFixed(0))+'</span></div>'+(isTourney?"":'<div class="live-stack-pnl '+(pnl>=0?"pos":"neg")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(0)+" so far</div>")+(hasStackHistory?'<div class="live-stack-chart-h"><canvas id="chLiveStack"></canvas></div>':"")+"</div>":"";
-  la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION'+(lb?' <span class="live-bankroll-tag">'+lb.icon+" "+lb.name+"</span>":"")+'</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer" id="liveTimerTxt">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div>'+liveGoalHtml()+stackBlock+'<div class="live-action-grid"><button class="live-action-btn" onclick="openLiveInput(\'stack\',\''+(isTourney?"🎰 Update Chip Count":"💰 Update Stack")+'\')">'+(isTourney?"🎰 Chips":"💰 Stack")+'</button><button class="live-action-btn" onclick="openLiveInput(\'rebuy\',\'↻ Rebuy\')">↻ Rebuy</button><button class="live-action-btn" onclick="openLiveInput(\'note\',\'📝 Note\')">📝 Note</button><button class="live-action-btn qh-btn" onclick="openQuickHand()">⚡ Hand'+(qhLiveCount()?" <b>"+qhLiveCount()+"</b>":"")+'</button><button class="live-action-btn" style="color:var(--rs)" onclick="openEndLive()">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val" id="liveDurTxt">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>";
+  la.innerHTML='<div class="live-panel"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-size:11px;font-weight:700;color:var(--mt);display:flex;align-items:center"><span class="live-dot"></span>LIVE SESSION'+(lb?' <span class="live-bankroll-tag">'+lb.icon+" "+lb.name+"</span>":"")+'</div><div style="font-size:10px;color:var(--t3)">'+liveData.stakes+(liveData.location?" · "+liveData.location:"")+(liveData.tableSize?" · "+liveData.tableSize:"")+'</div></div><div class="live-timer" id="liveTimerTxt">'+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")+'</div><div style="font-size:10px;color:var(--t3);text-align:center;margin-bottom:8px">Buy-in: '+brSym()+(liveData.buyin/100).toFixed(0)+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")+'</div>'+liveGoalHtml()+liveBlindHtml()+stackBlock+'<div class="live-action-grid"><button class="live-action-btn" onclick="openLiveInput(\'stack\',\''+(isTourney?"🎰 Update Chip Count":"💰 Update Stack")+'\')">'+(isTourney?"🎰 Chips":"💰 Stack")+'</button><button class="live-action-btn" onclick="openLiveInput(\'rebuy\',\'↻ Rebuy\')">↻ Rebuy</button><button class="live-action-btn" onclick="openLiveInput(\'note\',\'📝 Note\')">📝 Note</button><button class="live-action-btn qh-btn" onclick="openQuickHand()">⚡ Hand'+(qhLiveCount()?" <b>"+qhLiveCount()+"</b>":"")+'</button><button class="live-action-btn" style="color:var(--rs)" onclick="openEndLive()">⏹ End</button></div><div class="live-meta"><div class="live-meta-item"><div class="lm-val">'+brSym()+(liveData.invested/100).toFixed(0)+'</div><div class="lm-lbl">Invested</div></div><div class="live-meta-item"><div class="lm-val" id="liveDurTxt">'+brFmtDur(Math.round(elapsed/60000))+'</div><div class="lm-lbl">Duration</div></div></div>'+(liveData.events.length?'<div style="margin-top:8px;max-height:80px;overflow-y:auto;font-size:10px;color:var(--t3)">'+liveData.events.slice(-5).reverse().map(e=>'<div style="padding:2px 0;border-bottom:1px solid var(--bd)"><span style="color:var(--t4)">'+e.time+"</span> — "+e.text+"</div>").join("")+"</div>":"")+"</div>";
   if(hasStackHistory)renderLiveStackChart();
   setTimeout(liveGoalCheck,0);
 }
@@ -12957,9 +13053,9 @@ function openEndLive(){
   setTimeout(()=>$("liveEndStack").focus(),100);
 }
 function discardLive(){confirmAction("Discard this live session?","Nothing will be saved — the timer, stack updates and notes are thrown away. Quick hands you logged stay in Hand History.",()=>{liveData=null;LS("ps_live",null);if(liveTimer){clearInterval(liveTimer);liveTimer=null}closeM("liveEndM");renderBrAll();try{renderHome()}catch(e){}toast("Live session discarded")})}
-function submitEndLive(){if(!liveData)return;const stack=parseFloat($("liveEndStack").value);if(isNaN(stack))return toast(brIsTour(liveData.format)?"Enter your cash result (£0 if you busted)":"Enter your final stack");const inv=liveData.invested;const pnl=Math.round(stack*100)-inv;const elapsed=Date.now()-liveData.start;const hrs=Math.floor(elapsed/3600000);const mins=Math.floor((elapsed%3600000)/60000);const s={id:"bs_"+Date.now(),date:shD(new Date(liveData.start)),format:liveData.format||"cash",gameType:liveData.gameType||"NL Hold'em",tableSize:liveData.tableSize||"6-max",start:new Date(liveData.start).toTimeString().slice(0,5),end:new Date().toTimeString().slice(0,5),duration:Math.round(elapsed/60000),stakes:liveData.stakes,buyin:inv/100,cashout:stack,buyinCents:inv,cashoutCents:Math.round(stack*100),rebuys:liveData.rebuys||0,location:liveData.location,result:pnl/100,resultCents:pnl,stackHistory:liveData.stackHistory||[],events:(liveData.events||[]).slice(),fromLive:true,liveId:liveData.start,mg:mgPick("liveMG"),notes:["Live: "+hrs+"h "+mins+"m"+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")].concat((liveData.events||[]).filter(e=>e&&e.text&&/^(📝|⚡)/.test(e.text)).map(e=>(e.time?e.time+" ":"")+e.text)).join("\n"),created:new Date().toISOString()};const targetB=liveData.bankrollId?getBankrollById(liveData.bankrollId):BR.d;const b=targetB||BR.d;b.sessions.push(s);try{let lk=0;HH.d.hands.forEach(x=>{if(x.liveId===liveData.start){x.sessionId=s.id;lk++}});if(lk)HH.save()}catch(e){}saveBankrollsList();liveData=null;LS("ps_live",null);if(liveTimer){clearInterval(liveTimer);liveTimer=null}closeM("liveEndM");renderBrAll();
+function submitEndLive(){if(!liveData)return;const stack=parseFloat($("liveEndStack").value);if(isNaN(stack))return toast(brIsTour(liveData.format)?"Enter your cash result (£0 if you busted)":"Enter your final stack");const inv=liveData.invested;const pnl=Math.round(stack*100)-inv;const elapsed=Date.now()-liveData.start;const hrs=Math.floor(elapsed/3600000);const mins=Math.floor((elapsed%3600000)/60000);const s={id:"bs_"+Date.now(),date:shD(new Date(liveData.start)),format:liveData.format||"cash",gameType:liveData.gameType||"NL Hold'em",tableSize:liveData.tableSize||"6-max",start:new Date(liveData.start).toTimeString().slice(0,5),end:new Date().toTimeString().slice(0,5),duration:Math.round(elapsed/60000),stakes:liveData.stakes,buyin:inv/100,cashout:stack,buyinCents:inv,cashoutCents:Math.round(stack*100),rebuys:liveData.rebuys||0,tipsCents:Math.round((parseFloat($("liveEndTips")?.value)||0)*100)||undefined,blindLevels:liveData.blinds?liveData.blinds.history:undefined,startStack:liveData.startStack!=null?liveData.startStack:undefined,location:liveData.location,result:pnl/100,resultCents:pnl,stackHistory:liveData.stackHistory||[],events:(liveData.events||[]).slice(),fromLive:true,liveId:liveData.start,mg:mgPick("liveMG"),notes:["Live: "+hrs+"h "+mins+"m"+(liveData.rebuys?" · "+liveData.rebuys+" rebuy"+(liveData.rebuys>1?"s":""):"")].concat((liveData.events||[]).filter(e=>e&&e.text&&/^(📝|⚡)/.test(e.text)).map(e=>(e.time?e.time+" ":"")+e.text)).join("\n"),created:new Date().toISOString()};const targetB=liveData.bankrollId?getBankrollById(liveData.bankrollId):BR.d;const b=targetB||BR.d;b.sessions.push(s);try{let lk=0;HH.d.hands.forEach(x=>{if(x.liveId===liveData.start){x.sessionId=s.id;lk++}});if(lk)HH.save()}catch(e){}saveBankrollsList();liveData=null;LS("ps_live",null);if(liveTimer){clearInterval(liveTimer);liveTimer=null}closeM("liveEndM");renderBrAll();
   bumpLifetimeLive();const xpGain=pnl>=0?60:30;addXp(xpGain);checkAchievements();
-  const _bSym={USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[b.settings?.currency||"GBP"]||"£";playSound(pnl>=0?"win":"wrong");haptic(pnl>=0?"success":"warn");toast("Session: "+(pnl>=0?"+":"-")+_bSym+(Math.abs(pnl)/100).toFixed(2)+" · +"+xpGain+" XP ✦"+(b!==BR.d?" → "+b.icon+" "+b.name:""))}
+  const _bSym={USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[b.settings?.currency||"GBP"]||"£";playSound(pnl>=0?"win":"wrong");haptic(pnl>=0?"success":"warn");toast("Session: "+(pnl>=0?"+":"-")+_bSym+(Math.abs(pnl)/100).toFixed(2)+" · +"+xpGain+" XP ✦"+(b!==BR.d?" → "+b.icon+" "+b.name:""));try{if($("liveEndTips"))$("liveEndTips").value=""}catch(e){}setTimeout(()=>{try{srOpen(s,b)}catch(e){console.warn(e)}},400)}
 // Charts
 let brCharts={};
 const glowLinePlugin={id:"glowLine",beforeDatasetsDraw(chart){const ctx=chart.ctx;const t=chart.config.type;ctx.save();if(chart.canvas&&chart.canvas.closest&&chart.canvas.closest("#bankrollV"))return;/* bankroll charts stay flat */if(t==="line"){ctx.shadowColor=(chart.data.datasets[0]&&chart.data.datasets[0].borderColor)||getComputedStyle(document.documentElement).getPropertyValue("--pk").trim()||"#c8a55c";ctx.shadowBlur=16;}else if(t==="bar"){ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=10;ctx.shadowOffsetY=3;}},afterDatasetsDraw(chart){chart.ctx.restore();}};
@@ -13101,7 +13197,7 @@ function trendDataset(key,values,CT){
 }
 function animateCount(el,targetCents){if(!el)return;const dur=650;const start=performance.now();const from=0;const to=targetCents/100;const isNeg=to<0;const sym=brSym();function step(now){const p=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-p,3);const cur=from+(to-from)*eased;el.textContent=(cur<0?"−":"")+sym+Math.abs(cur).toLocaleString(undefined,{maximumFractionDigits:0});if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 function renderHeroSpark(){if(Object.keys(getViewedCurrencyGroups()).length>1)return;const CT=getCT();const sorted=getViewedSessions();const canvas=$("chHeroSpark");if(!canvas)return;destroyBrChart("spark");if(!sorted.length||typeof Chart==="undefined")return;const deps=getViewedDepositsTotal();let cum=getViewedStartBankroll()+deps;const data=[];sorted.forEach(s=>{cum+=s.resultCents;data.push(cum/100)});const pos=data[data.length-1]>=data[0];const col=pos?CT.green_a.slice(0,7):CT.red_a.slice(0,7);brCharts.spark=new Chart(canvas.getContext("2d"),{type:"line",data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:col,backgroundColor:brAreaGrad(col),fill:true,tension:.4,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}})}
-function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();try{const cs=$("brChalStrip");if(cs)cs.innerHTML=chalStripHtml();if($("brChal")&&$("brChal").classList.contains("on"))renderChal()}catch(e){console.warn("chal",e)}if(Object.keys(getViewedCurrencyGroups()).length<=1){brDefer(renderHeroSpark,"spark");if($("brHistory")&&$("brHistory").classList.contains("on"))renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
+function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();try{const bp=$("brPace");if(bp)bp.innerHTML=brPaceHtml()}catch(e){console.warn("pace",e)}try{const cs=$("brChalStrip");if(cs)cs.innerHTML=chalStripHtml();if($("brChal")&&$("brChal").classList.contains("on"))renderChal()}catch(e){console.warn("chal",e)}if(Object.keys(getViewedCurrencyGroups()).length<=1){brDefer(renderHeroSpark,"spark");if($("brHistory")&&$("brHistory").classList.contains("on"))renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
 let currentCurrencyTab=null;
 function renderBrDashMixedCurrency(groups){
   const keys=Object.keys(groups);
@@ -13777,8 +13873,8 @@ function homeSafetyHtml(){
 }
 /* ══════════════════════ WEEK IN REVIEW ══════════════════════ */
 let WK_OFF=0;
-function wkRange(off){const d=new Date();d.setHours(0,0,0,0);const dow=(d.getDay()+6)%7,start=new Date(d);start.setDate(d.getDate()-dow+7*off);const end=new Date(start);end.setDate(start.getDate()+7);return{start,end}}
-function wkLabel(off){const {start,end}=wkRange(off),e=new Date(end-864e5),f=d=>d.toLocaleDateString("en-GB",{day:"numeric",month:"short"});return(off===0?"This week":off===-1?"Last week":"Week of "+f(start))+" · "+f(start)+" – "+f(e)}
+function wkRange(off){if(WK_MODE==="month"){const n=new Date(),start=new Date(n.getFullYear(),n.getMonth()+off,1),end=new Date(n.getFullYear(),n.getMonth()+off+1,1);return{start,end}}const d=new Date();d.setHours(0,0,0,0);const dow=(d.getDay()+6)%7,start=new Date(d);start.setDate(d.getDate()-dow+7*off);const end=new Date(start);end.setDate(start.getDate()+7);return{start,end}}
+function wkLabel(off){if(WK_MODE==="month"){const {start}=wkRange(off),m=start.toLocaleDateString("en-GB",{month:"long",year:"numeric"});return(off===0?"This month · ":off===-1?"Last month · ":"")+m}const {start,end}=wkRange(off),e=new Date(end-864e5),f=d=>d.toLocaleDateString("en-GB",{day:"numeric",month:"short"});return(off===0?"This week":off===-1?"Last week":"Week of "+f(start))+" · "+f(start)+" – "+f(e)}
 function wkData(off){
   const {start,end}=wkRange(off),a=start.getTime(),b=end.getTime(),inR=t=>t>=a&&t<b,dT=x=>new Date((x||"")+"T12:00:00").getTime();
   const W={off,start,end};
@@ -13797,15 +13893,15 @@ function wkHasData(W){return!!((W.live&&W.live.n)||W.gg||W.sh||(W.tr&&W.tr.n)||(
 function wkFocus(W){
   const L=W.live||{};
   if(L.n>=2&&W.mg.n>=2){const low=L.ss.filter(s=>s.mg&&s.mg.f&&s.mg.f<=2),hi=L.ss.filter(s=>s.mg&&s.mg.f>=4);const lp=low.reduce((x,s)=>x+s.resultCents,0);
-    if(low.length&&lp<0)return["🎯","Your low-focus sessions this week lost "+brFmt(Math.abs(lp))+". If you're tired or distracted, that's a good night to skip."]}
+    if(low.length&&lp<0)return["🎯","Your low-focus sessions this "+(WK_MODE==="month"?"month":"week")+" lost "+brFmt(Math.abs(lp))+". If you're tired or distracted, that's a good night to skip."]}
   if(W.gg&&W.gg.n>=200){try{const t=ggAgg(W.gg.hs),lk=ggBenchFor(t).map(b=>({b,r:ggBenchStat(b,t)})).filter(x=>x.r.st==="warn").sort((x,y)=>y.r.dist-x.r.dist)[0];if(lk)return["📈","Online: "+lk.b.l+" was "+lk.r.dir.toLowerCase()+" ("+lk.r.txt+"). "+(lk.r.tip||"")]}catch(e){}}
   if(L.n&&L.p<0&&L.worst)return["🔍","Losing week live. Look back at your "+brDayLbl(L.worst.date)+" session ("+brFmt(L.worst.resultCents)+") — what would you do differently?"];
-  if(!W.tr||!W.tr.n)return["🧠","No range training this week — even 10 minutes on a weak spot keeps your preflop sharp."];
+  if(!W.tr||!W.tr.n)return["🧠","No range training this "+(WK_MODE==="month"?"month":"week")+" — even 10 minutes on a weak spot keeps your preflop sharp."];
   if(W.tr.acc!=null&&W.tr.acc<80)return["🧠","Training accuracy was "+W.tr.acc.toFixed(0)+"% — drill the ranges you missed until they're automatic."];
   return["✅","Solid week. Keep the same routine going."];
 }
 function wkMoney(c){return(c>0?"+":c<0?"−":"")+brFmt(Math.abs(c))}
-function wkDelta(cur,prev,fmt){if(prev==null||cur==null)return"";const d=cur-prev;if(Math.abs(d)<1e-9)return'<em class="wk-d">same as last week</em>';return'<em class="wk-d '+(d>0?"up":"down")+'">'+(d>0?"▲ ":"▼ ")+fmt(Math.abs(d))+" vs last week</em>"}
+function wkDelta(cur,prev,fmt){if(prev==null||cur==null)return"";const d=cur-prev;if(Math.abs(d)<1e-9)return'<em class="wk-d">same as last "+(WK_MODE==="month"?"month":"week")+"</em>';return'<em class="wk-d '+(d>0?"up":"down")+'">'+(d>0?"▲ ":"▼ ")+fmt(Math.abs(d))+" vs last "+(WK_MODE==="month"?"month":"week")+"</em>"}
 function wkCardHtml(){
   let off=0,W=wkData(0);if(!wkHasData(W)){const P=wkData(-1);if(wkHasData(P)){off=-1;W=P}}
   if(!wkHasData(W))return"";
@@ -13823,14 +13919,14 @@ function openWeekReview(off){WK_OFF=off||0;renderWeekReview();openM("wkM")}
 function renderWeekReview(){
   const W=wkData(WK_OFF),P=wkData(WK_OFF-1),el=$("wkBody");if(!el)return;
   const L=W.live||{},PL=P.live||{},sec=(t,inner)=>'<div class="wk-sec"><div class="wk-st">'+t+"</div>"+inner+"</div>",kv=(l,v,sub)=>'<div class="wk-kv"><span>'+l+"</span><b>"+v+"</b>"+(sub||"")+"</div>";
-  let h='<div class="wk-top"><button class="wk-nav" onclick="WK_OFF--;renderWeekReview()" aria-label="Previous week">‹</button><div><h3>Week in review</h3><div class="wk-lbl">'+wkLabel(WK_OFF)+'</div></div><button class="wk-nav" onclick="if(WK_OFF<0){WK_OFF++;renderWeekReview()}"'+(WK_OFF>=0?" disabled":"")+' aria-label="Next week">›</button><button class="qh-x" onclick="closeM(\'wkM\')">✕</button></div>';
-  if(!wkHasData(W)){el.innerHTML=h+'<div class="wk-empty">Nothing logged this week yet.<br>Sessions, shifts, GG hands and training all show up here.</div>';return}
+  let h='<div class="wk-top"><button class="wk-nav" onclick="WK_OFF--;renderWeekReview()" aria-label="Previous week">‹</button><div><h3>'+(WK_MODE==="month"?"Month":"Week")+' in review</h3><div class="wk-lbl">'+wkLabel(WK_OFF)+'</div></div><button class="wk-nav" onclick="if(WK_OFF<0){WK_OFF++;renderWeekReview()}"'+(WK_OFF>=0?" disabled":"")+' aria-label="Next week">›</button><button class="qh-x" onclick="closeM(\'wkM\')">✕</button></div><div class="ds-seg wk-mode"><button class="'+(WK_MODE==="week"?"on":"")+'" onclick="wkSetMode(\'week\')">Week</button><button class="'+(WK_MODE==="month"?"on":"")+'" onclick="wkSetMode(\'month\')">Month</button></div>';
+  if(!wkHasData(W)){el.innerHTML=h+'<div class="wk-empty">Nothing logged this '+(WK_MODE==="month"?"month":"week")+' yet.<br>Sessions, shifts, GG hands and training all show up here.</div>';return}
   const f=wkFocus(W);
   h+='<div class="wk-focus"><span>'+f[0]+'</span><div><b>One thing to work on</b><p>'+escapeHtml(f[1])+"</p></div></div>";
   if(L.n)h+=sec("💰 Live poker",'<div class="wk-grid">'+kv("Result",'<span class="'+(Math.abs(L.p)<1e-9?"zero":L.p>0?"pos":"neg")+'">'+wkMoney(L.p)+"</span>",wkDelta(L.p,PL.n?PL.p:null,v=>brFmt(v)))+kv("Sessions",L.n+" · "+L.won+" won")+kv("Hours",L.hrs.toFixed(1)+"h",wkDelta(L.hrs,PL.n?PL.hrs:null,v=>v.toFixed(1)+"h"))+kv("Hourly",L.hr==null?"—":(L.hr<0?"−":"+")+brSym()+Math.abs(L.hr/100).toFixed(2))+"</div>"
     +(L.best&&L.n>1?'<div class="wk-line">Best: <b class="pos">'+wkMoney(L.best.resultCents)+"</b> "+brDayLbl(L.best.date)+(L.best.location?" · "+escapeHtml(L.best.location):"")+' · Worst: <b class="'+(L.worst.resultCents>=0?"pos":"neg")+'">'+wkMoney(L.worst.resultCents)+"</b> "+brDayLbl(L.worst.date)+"</div>":""));
   if(W.mg&&W.mg.n)h+=sec("🧠 How you felt",'<div class="wk-mg">'+MG_F.map((m,i)=>W.mg.avg[i]==null?"":'<span><i>'+m[1]+"</i>"+m[2]+" <b>"+W.mg.avg[i].toFixed(1)+"</b></span>").join("")+'</div><div class="wk-line">Average of '+W.mg.n+" rated session"+(W.mg.n!==1?"s":"")+" (out of 5)</div>");
-  if(W.gg)h+=sec("📈 Online (GG)",'<div class="wk-grid">'+kv("Win rate",'<span class="'+(W.gg.bb100>=0?"pos":"neg")+'">'+(W.gg.bb100>=0?"+":"−")+Math.abs(W.gg.bb100).toFixed(1)+" bb/100</span>",wkDelta(W.gg.bb100,P.gg?P.gg.bb100:null,v=>v.toFixed(1)))+kv("Net",'<span class="'+(W.gg.net>=0?"pos":"neg")+'">'+(W.gg.net>=0?"+$":"−$")+Math.abs(W.gg.net/100).toFixed(2)+"</span>")+kv("Hands",W.gg.n.toLocaleString(),wkDelta(W.gg.n,P.gg?P.gg.n:0,v=>Math.round(v).toLocaleString()))+"</div>");
+  if(W.gg)h+=sec("📈 Online (GG)",'<div class="wk-grid">'+kv("Win rate",'<span class="'+(W.gg.bb100>=0?"pos":"neg")+'">'+(W.gg.bb100>=0?"+":"−")+Math.abs(W.gg.bb100).toFixed(1)+" bb/100</span>",wkDelta(W.gg.bb100,P.gg?P.gg.bb100:null,v=>v.toFixed(1)))+kv("Net",'<span class="'+(W.gg.net>=0?"pos":"neg")+'">'+(W.gg.net>=0?"+$":"−$")+Math.abs(W.gg.net/100).toFixed(2)+"</span>")+kv("Hands",W.gg.n.toLocaleString(),wkDelta(W.gg.n,P.gg?P.gg.n:0,v=>Math.round(v).toLocaleString()))+"</div>"+wkGGExtra(W.gg.hs));
   if(W.sh)h+=sec("⏱ Work",'<div class="wk-grid">'+kv("Worked",W.sh.hrs.toFixed(1)+"h",wkDelta(W.sh.hrs,P.sh?P.sh.hrs:0,v=>v.toFixed(1)+"h"))+kv("Overtime",W.sh.ot.toFixed(1)+"h")+kv("Shifts",W.sh.n)+kv("Late",W.sh.late)+"</div>");
   if((W.tr&&W.tr.n)||(W.hh&&W.hh.n))h+=sec("🎯 Study",'<div class="wk-grid">'+kv("Hands trained",W.tr&&W.tr.hands?W.tr.hands:0,wkDelta(W.tr?W.tr.hands:0,P.tr?P.tr.hands:0,v=>Math.round(v)))+kv("Accuracy",W.tr&&W.tr.acc!=null?W.tr.acc.toFixed(0)+"%":"—")+kv("Ranges drilled",W.tr?W.tr.ranges:0)+kv("Hands logged",(W.hh?W.hh.n:0)+(W.hh&&W.hh.quick?" · "+W.hh.quick+" quick":""))+"</div>");
   h+='<div class="mact"><button class="btn" onclick="wkCopy()">📋 Copy summary</button><button class="btn pri" onclick="closeM(\'wkM\')">Done</button></div>';
@@ -14085,7 +14181,8 @@ function reopenGoal(){
 /* ── ADVANCED INSIGHTS ── */
 function renderBrInsights(){
   const CT=getCT();
-  const sorted=getViewedSessions();
+  const sorted=brdFilter(getViewedSessions());
+  try{renderBrDeep(sorted,$("brDeep"))}catch(e){console.warn("deep",e)}
   const n=sorted.length;
   if(!n){$("brInsightsStats").innerHTML="";$("brInsightsNarrative").innerHTML='<div class="empty-state"><span class="es-icon">🔬</span><div class="es-title">No data yet</div><div class="es-sub">Log a few sessions to unlock deep insights.</div></div>';destroyBrChart("dist");destroyBrChart("rolling");return}
   const results=sorted.map(s=>s.resultCents/100);
@@ -16308,6 +16405,284 @@ function openBB100(key){const S=BB100.sets[key];if(!S)return;const H=S.hands;con
    +'<div class="bbx-foot">Results are after rake — exactly what GGPoker paid you, including uncalled bets returned, run-it-twice splits and EV cashouts. Antes, straddles and dead blinds are counted as money you put in.</div>';
   el.innerHTML=h;openM("bb100M")}
 function bbPos(v,lo,hi){const a=Math.min(lo,0),b=Math.max(hi,0),w=b-a||1;return Math.max(0,Math.min(100,(v-a)/w*100)).toFixed(1)}
+
+</script>
+<script>
+// ═══ Tournament blind clock (live sessions) ═══
+const LB_STD=[10,20,25,30,40,50,60,80,100,120,150,200,250,300,400,500,600,800,1000,1200,1500,2000,2500,3000,4000,5000,6000,8000,10000,12000,15000,20000,25000,30000,40000,50000,60000,80000,100000,120000,150000,200000,250000,300000,400000,500000,600000,800000,1000000];
+function lbNum(v){return(+v||0).toLocaleString("en-GB")}
+function lbFmt(b){if(!b)return"";return lbNum(b.sb)+"/"+lbNum(b.bb)+(b.ante?" ("+lbNum(b.ante)+(b.ante===b.bb?" BBA":" ante")+")":"")}
+function lbNice(v){if(v<=0)return 0;const i=LB_STD.findIndex(x=>x>=v);if(i<0)return Math.round(v/1000)*1000;const a=LB_STD[i],b=LB_STD[i-1];return b!=null&&v-b<=a-v?b:a}
+// best guess for the next level: keep the room's step if we've seen two levels, otherwise the next standard big blind
+function lbSuggest(B){const h=B.history,cur=h[h.length-1],prev=h[h.length-2];let bb;
+  if(prev&&prev.bb>0&&cur.bb>prev.bb){const r=Math.max(1.15,Math.min(2.2,cur.bb/prev.bb));bb=lbNice(cur.bb*r);if(bb<=cur.bb)bb=LB_STD.find(x=>x>cur.bb)||cur.bb*2}
+  else{bb=lbNice(cur.bb*1.5);if(bb<=cur.bb)bb=LB_STD.find(x=>x>cur.bb)||cur.bb*2}
+  const out=[];const mk=bb=>{const sb=!cur.sb||cur.sb*2===cur.bb?bb/2:lbNice(bb*cur.sb/cur.bb);const ante=!cur.ante?0:cur.ante===cur.bb?bb:lbNice(bb*cur.ante/cur.bb);return{sb:sb||Math.round(bb/2),bb,ante}};
+  out.push(mk(bb));const i=LB_STD.indexOf(bb);[LB_STD[i+1],LB_STD[i-1],cur.bb*2].forEach(x=>{if(x&&x>cur.bb&&!out.some(o=>o.bb===x))out.push(mk(x))});return out.slice(0,4)}
+function lbLevelEnd(B){return B.levelStart+B.len*60000+(B.pausedMs||0)+(B.pausedAt?Date.now()-B.pausedAt:0)}
+function lbRemaining(B){return Math.max(0,lbLevelEnd(B)-Date.now())}
+function lbClockTxt(ms){const s=Math.ceil(ms/1000),m=Math.floor(s/60);return String(m).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function lbStackInfo(){const B=liveData&&liveData.blinds;if(!B||liveData.currentStack==null)return null;const cur=B.history[B.history.length-1];if(!cur.bb)return null;
+  const bbs=liveData.currentStack/cur.bb,orbit=cur.sb+cur.bb+(cur.ante?(cur.ante===cur.bb?cur.ante:cur.ante*(parseInt(liveData.tableSize)||9)):0),M=orbit?liveData.currentStack/orbit:null;return{bbs,M}}
+function liveBlindHtml(){if(!liveData||!liveData.blinds)return"";const B=liveData.blinds,cur=B.history[B.history.length-1],rem=lbRemaining(B),pct=Math.min(100,(1-rem/(B.len*60000))*100),due=!B.pausedAt&&rem<=0;
+  const nx=lbSuggest(B)[0],si=lbStackInfo();const zone=si?si.bbs>=40?"deep":si.bbs>=20?"mid":si.bbs>=10?"short":"push":"";
+  return'<div class="lb-card'+(due?" due":"")+(B.pausedAt?" paused":"")+'"><div class="lb-top"><span class="lb-lvl">Level '+B.lvl+'</span><span class="lb-len">'+B.len+' min levels</span></div>'
+   +'<div class="lb-blinds">'+lbNum(cur.sb)+' / '+lbNum(cur.bb)+(cur.ante?'<small>'+(cur.ante===cur.bb?"BB ante ":"ante ")+lbNum(cur.ante)+'</small>':'')+'</div>'
+   +'<div class="lb-clock" id="lbClock">'+(B.pausedAt?"⏸ "+lbClockTxt(rem):due?"Blinds up!":lbClockTxt(rem))+'</div><div class="lb-bar"><i id="lbBar" style="width:'+pct.toFixed(1)+'%"></i></div>'
+   +'<div class="lb-next">Next: <b>'+lbFmt(nx)+'</b> <span>(guess — you confirm when it goes up)</span></div>'
+   +(si?'<div class="lb-stack '+zone+'"><div><b>'+(si.bbs>=10?Math.round(si.bbs):si.bbs.toFixed(1))+'</b><span>big blinds</span></div>'+(si.M!=null?'<div><b>'+(si.M>=10?Math.round(si.M):si.M.toFixed(1))+'</b><span>M</span></div>':'')+'<div class="lb-zone">'+({deep:"🟢 Deep — play your game",mid:"🟡 Mid stack — pick spots",short:"🟠 Short — reshove / push-fold soon",push:"🔴 Push-or-fold"})[zone]+'</div></div>':'<div class="lb-hint">Update your chips to see your stack in big blinds.</div>')
+   +'<div class="lb-acts">'+(due?'<button class="btn pri btn-s" onclick="lbPrompt()">⏫ Enter new blinds</button>':'<button class="btn btn-s" onclick="lbPrompt(true)">⏫ Blinds up now</button>')+'<button class="btn btn-s" onclick="lbPause()">'+(B.pausedAt?"▶ Resume":"⏸ Break")+'</button><button class="btn btn-s" onclick="lbEditOpen()">✎ Fix</button></div>'
+   +(B.history.length>1?'<details class="lb-hist"><summary>'+B.history.length+' levels played</summary>'+B.history.slice().reverse().map(x=>'<div><span>L'+x.lvl+'</span><b>'+lbFmt(x)+'</b><i>'+new Date(x.ts).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})+'</i></div>').join("")+'</details>':'')+'</div>'}
+function lbTick(){if(!liveData||!liveData.blinds)return;const B=liveData.blinds,rem=lbRemaining(B);const c=$("lbClock"),bar=$("lbBar");
+  if(c)c.textContent=B.pausedAt?"⏸ "+lbClockTxt(rem):rem<=0?"Blinds up!":lbClockTxt(rem);if(bar)bar.style.width=Math.min(100,(1-rem/(B.len*60000))*100).toFixed(1)+"%";
+  if(!B.pausedAt&&rem<=60000&&rem>0&&!B.warned){B.warned=B.lvl;LS("ps_live",liveData);toast("⏳ 1 minute left in level "+B.lvl);haptic("light")}
+  if(!B.pausedAt&&rem<=0&&B.promptedFor!==B.lvl){B.promptedFor=B.lvl;LS("ps_live",liveData);playSound("win");haptic("warn");if($("brLiveArea"))renderLivePanel();lbPrompt()}}
+function lbPrompt(early){if(!liveData||!liveData.blinds)return;const B=liveData.blinds,cur=B.history[B.history.length-1],sg=lbSuggest(B);B._early=!!early;
+  const el=$("lbBody");el.innerHTML='<div class="edq-h"><h3>⏫ '+(early?"Blinds going up":"Blinds are up")+' — Level '+(B.lvl+1)+'</h3><button class="btn btn-xs" onclick="closeM(\'lbM\')" aria-label="Close">✕</button></div>'
+   +'<div class="lb-was">Level '+B.lvl+' was <b>'+lbFmt(cur)+'</b></div>'
+   +'<div class="hx-lbl">Quick pick</div><div class="hx-chips">'+sg.map((x,i)=>'<button class="gg-chip'+(i===0?" on":"")+'" onclick="lbFill('+x.sb+','+x.bb+','+x.ante+',this)">'+lbFmt(x)+'</button>').join("")+'</div>'
+   +'<div class="lb-in"><label><span>Small blind</span><input class="minp" id="lbSB" type="number" inputmode="numeric" value="'+sg[0].sb+'"/></label><label><span>Big blind</span><input class="minp" id="lbBB" type="number" inputmode="numeric" value="'+sg[0].bb+'" oninput="lbAutoAnte()"/></label><label><span>Ante</span><input class="minp" id="lbAnte" type="number" inputmode="numeric" value="'+sg[0].ante+'" placeholder="0"/></label></div>'
+   +'<label class="lb-len2"><span>Level length</span><input class="minp" id="lbLen" type="number" inputmode="numeric" value="'+B.len+'"/> <i>min</i></label>'
+   +'<div class="mact"><button class="btn" onclick="closeM(\'lbM\')">Later</button><button class="btn pri" onclick="lbConfirm()">✓ Save level '+(B.lvl+1)+'</button></div>';
+  openM("lbM")}
+function lbFill(sb,bb,ante,btn){$("lbSB").value=sb;$("lbBB").value=bb;$("lbAnte").value=ante;btn.parentElement.querySelectorAll(".gg-chip").forEach(b=>b.classList.toggle("on",b===btn))}
+function lbAutoAnte(){const B=liveData&&liveData.blinds;if(!B)return;const cur=B.history[B.history.length-1],bb=+$("lbBB").value||0;if(cur.ante&&cur.ante===cur.bb)$("lbAnte").value=bb;$("lbSB").value=lbNice(bb/2)||Math.round(bb/2)}
+function lbConfirm(){const B=liveData.blinds,sb=+$("lbSB").value||0,bb=+$("lbBB").value||0,ante=+$("lbAnte").value||0,len=Math.max(1,+$("lbLen").value||B.len);if(!(bb>0))return toast("Enter the big blind");
+  const now=Date.now(),end=lbLevelEnd(B);const start=B._early||end>now?now:end; // keep the clock honest if you confirm late
+  B.lvl++;B.len=len;B.levelStart=start;B.pausedMs=0;B.pausedAt=null;B.warned=0;B.history.push({lvl:B.lvl,sb,bb,ante,ts:start});
+  liveData.events.push({time:new Date(start).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}),text:"⏫ Level "+B.lvl+": "+lbFmt({sb,bb,ante})});
+  LS("ps_live",liveData);closeM("lbM");renderLivePanel();haptic("success");toast("Level "+B.lvl+" · "+lbFmt({sb,bb,ante}));
+  if(lbRemaining(B)<=0)setTimeout(()=>{B.promptedFor=null;lbTick()},400)}
+function lbPause(){const B=liveData&&liveData.blinds;if(!B)return;if(B.pausedAt){B.pausedMs=(B.pausedMs||0)+(Date.now()-B.pausedAt);B.pausedAt=null;toast("▶ Clock running")}else{B.pausedAt=Date.now();toast("⏸ Clock paused for the break")}LS("ps_live",liveData);renderLivePanel()}
+function lbEditOpen(){const B=liveData.blinds,cur=B.history[B.history.length-1],rem=lbRemaining(B);const el=$("lbBody");
+  el.innerHTML='<div class="edq-h"><h3>✎ Fix the clock</h3><button class="btn btn-xs" onclick="closeM(\'lbM\')" aria-label="Close">✕</button></div>'
+   +'<div class="lb-in"><label><span>Level</span><input class="minp" id="lbELvl" type="number" value="'+B.lvl+'"/></label><label><span>Small blind</span><input class="minp" id="lbSB" type="number" value="'+cur.sb+'"/></label><label><span>Big blind</span><input class="minp" id="lbBB" type="number" value="'+cur.bb+'"/></label><label><span>Ante</span><input class="minp" id="lbAnte" type="number" value="'+cur.ante+'"/></label></div>'
+   +'<div class="lb-in two"><label><span>Minutes left this level</span><input class="minp" id="lbELeft" type="number" step="0.5" value="'+(Math.round(rem/30000)/2)+'"/></label><label><span>Level length</span><input class="minp" id="lbLen" type="number" value="'+B.len+'"/></label></div>'
+   +'<div class="mact"><button class="btn" onclick="closeM(\'lbM\')">Cancel</button><button class="btn pri" onclick="lbEditSave()">Save</button></div>';openM("lbM")}
+function lbEditSave(){const B=liveData.blinds,cur=B.history[B.history.length-1];cur.sb=+$("lbSB").value||0;cur.bb=+$("lbBB").value||cur.bb;cur.ante=+$("lbAnte").value||0;const lv=+$("lbELvl").value||B.lvl;cur.lvl=lv;B.lvl=lv;B.len=Math.max(1,+$("lbLen").value||B.len);
+  const left=Math.max(0,+$("lbELeft").value||0);B.pausedMs=0;if(B.pausedAt)B.pausedAt=Date.now();B.levelStart=Date.now()-(B.len-left)*60000;B.promptedFor=null;B.warned=0;
+  LS("ps_live",liveData);closeM("lbM");renderLivePanel();toast("Clock updated")}
+// setup modal
+function lbSetupToggle(){const t=brIsTour($("liveFmt")?.value),sec=$("liveBlindSec");if(sec)sec.style.display=t?"":"none";const qs=$("liveQuickStakes");if(qs)qs.style.display=t?"none":"";const st=$("liveStakes");if(st){st.placeholder=t?"Tournament name (optional)":"e.g. 1/2";const lab=st.closest(".live-sec")?.querySelector(".slbl");if(lab)lab.textContent=t?"Tournament":"Stakes / Level"}
+  const ttl=st&&st.closest(".live-sec")?.querySelector(".live-sec-title");if(ttl)ttl.innerHTML=t?"Tournament &amp; Entry":"Stakes &amp; Buy-in";if(t)lbSetupDefaults()}
+function lbSetupDefaults(){const m=LG("ps_lb_last",null);if(!m)return;[["lbS_SB","sb"],["lbS_BB","bb"],["lbS_Ante","ante"],["lbS_Len","len"],["lbS_Stack","stack"]].forEach(([id,k])=>{const e=$(id);if(e&&!e.value&&m[k])e.value=m[k]});lbSetLenChip()}
+function lbSetLen(v){$("lbS_Len").value=v;lbSetLenChip()}
+function lbSetLenChip(){const v=+$("lbS_Len")?.value;document.querySelectorAll("#lbLenChips .gg-chip").forEach(b=>b.classList.toggle("on",+b.dataset.v===v))}
+function lbSetupRead(){const sb=+$("lbS_SB").value||0,bb=+$("lbS_BB").value||0,ante=+$("lbS_Ante").value||0,len=+$("lbS_Len").value||0,stack=+$("lbS_Stack").value||0,lvl=Math.max(1,+$("lbS_Lvl").value||1),left=$("lbS_Left").value===""?null:Math.max(0,+$("lbS_Left").value);
+  if(!(bb>0))return{err:"Enter the starting big blind"};if(!(len>0))return{err:"Enter how long each level lasts"};
+  LS("ps_lb_last",{sb,bb,ante,len,stack});const now=Date.now(),start=left!=null&&left<len?now-(len-left)*60000:now;
+  return{blinds:{lvl,len,levelStart:start,pausedMs:0,pausedAt:null,history:[{lvl,sb:sb||Math.round(bb/2),bb,ante,ts:start}]},stack}}
+
+</script>
+<script>
+// ═══ Bankroll deep stats (Stats › Insights) ═══
+const BRD_PERS=[["all","All time"],["365","12 months"],["90","90 days"],["30","30 days"],["ytd","This year"]];
+let brdPer=LG("ps_brd_per","all");
+function brdSetPer(k){brdPer=k;LS("ps_brd_per",k);renderBrInsights()}
+function brdFilter(ss){if(brdPer==="all")return ss;const now=new Date();let cut;if(brdPer==="ytd")cut=now.getFullYear()+"-01-01";else cut=shD(new Date(now.getTime()-(+brdPer-1)*864e5));return ss.filter(s=>(s.date||"")>=cut)}
+const BRD_DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+function brdDow(d){const x=new Date(d+"T12:00:00");return(x.getDay()+6)%7}
+function brdTod(s){if(!s.start||s.timeMode==="day")return null;const h=+s.start.slice(0,2);if(isNaN(h))return null;return h>=6&&h<12?0:h>=12&&h<17?1:h>=17&&h<22?2:3}
+const BRD_TOD=[["🌅","Morning","6am–noon"],["☀️","Afternoon","noon–5pm"],["🌆","Evening","5–10pm"],["🌙","Late night","10pm–6am"]];
+const BRD_LEN=[["Under 2h",0,120],["2–4 hours",120,240],["4–6 hours",240,360],["6h +",360,1e9]];
+function brdAgg(list){const n=list.length,p=list.reduce((a,s)=>a+s.resultCents,0),tm=list.filter(s=>s.duration>0),mins=tm.reduce((a,s)=>a+s.duration,0),tp=tm.reduce((a,s)=>a+s.resultCents,0);
+  return{n,p,mins,hr:mins?tp/(mins/60):null,avg:n?p/n:0,won:list.filter(s=>s.resultCents>0).length}}
+function brdBars(rows,metric){// rows:{l,sub,a}
+  const val=r=>metric==="hr"?(r.a.hr==null?null:r.a.hr):r.a.avg,vals=rows.map(val).filter(v=>v!=null),mx=Math.max(1,...vals.map(Math.abs));
+  const best=rows.filter(r=>r.a.n>=2&&val(r)!=null).sort((a,b)=>val(b)-val(a))[0];
+  return'<div class="brd-bars">'+rows.map(r=>{const v=val(r),w=v==null?0:Math.abs(v)/mx*50;return'<div class="brd-br'+(r.a.n?"":" none")+(best&&r===best?" best":"")+'"><div class="brd-bl"><b>'+r.l+'</b>'+(r.sub?'<i>'+r.sub+'</i>':'')+'</div><div class="brd-bt"><span class="brd-mid"></span>'+(v!=null&&r.a.n?'<span class="brd-fill '+(v>=0?"pos":"neg")+'" style="'+(v>=0?"left:50%":"right:50%")+';width:'+w.toFixed(1)+'%"></span>':'')+'</div><div class="brd-bv">'+(r.a.n?'<b class="'+(v>0?"pos":v<0?"neg":"")+'">'+(v==null?"—":(v>0?"+":v<0?"−":"")+brFmt(Math.abs(Math.round(v)))+(metric==="hr"?"/h":""))+'</b><i>'+r.a.n+' sess'+(r.a.n?" · "+Math.round(r.a.won/r.a.n*100)+"% won":"")+'</i>':'<i>—</i>')+'</div></div>'}).join("")+'</div>'}
+function brdKV(items){return'<div class="brd-kv">'+items.filter(Boolean).map(x=>'<div class="brd-k'+(x.cls?" "+x.cls:"")+'"><span>'+x.l+'</span><b class="'+(x.c||"")+'">'+x.v+'</b>'+(x.s?'<i>'+x.s+'</i>':'')+'</div>').join("")+'</div>'}
+function brdCard(icon,title,sub,body,id){return'<section class="brd-card"'+(id?' id="'+id+'"':'')+'><div class="brd-h"><span class="brd-hi">'+icon+'</span><div><h3>'+title+'</h3>'+(sub?'<p>'+sub+'</p>':'')+'</div></div>'+body+'</section>'}
+function brdSg(c){return(c>0?"+":c<0?"−":"")+brFmt(Math.abs(Math.round(c)))}
+function brdPc(v){return v>0?"pos":v<0?"neg":""}
+function brdDate(d){return d?new Date(d+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"2-digit"}):"—"}
+function renderBrDeep(ss,el){if(!el)return;const n=ss.length;
+  const per='<div class="brd-per">'+BRD_PERS.map(([k,l])=>'<button class="'+(brdPer===k?"on":"")+'" onclick="brdSetPer(\''+k+'\')">'+l+'</button>').join("")+'</div>';
+  if(!n){el.innerHTML=per+'<div class="empty-state"><span class="es-icon">🔬</span><div class="es-title">No sessions in this period</div><div class="es-sub">Pick a longer period, or log a session.</div></div>';return}
+  const A=brdAgg(ss),hrs=A.mins/60,res=ss.map(s=>s.resultCents),wins=res.filter(r=>r>0),losses=res.filter(r=>r<0);
+  const gw=wins.reduce((a,b)=>a+b,0),gl=-losses.reduce((a,b)=>a+b,0),avgW=wins.length?gw/wins.length:0,avgL=losses.length?gl/losses.length:0;
+  const srt=[...res].sort((a,b)=>a-b),median=n%2?srt[(n-1)/2]:(srt[n/2-1]+srt[n/2])/2,mean=A.p/n,sd=n>1?Math.sqrt(res.reduce((a,r)=>a+(r-mean)**2,0)/(n-1)):0;
+  // hourly + its swing (time-weighted)
+  const tm=ss.filter(s=>s.duration>0),h=A.hr;let sdh=null;if(tm.length>2&&h!=null){const T=A.mins/60;sdh=Math.sqrt(tm.reduce((a,s)=>{const t=s.duration/60;return a+t*Math.pow(s.resultCents/t-h,2)},0)/T)}
+  const ciLo=sdh!=null?h-1.96*sdh/Math.sqrt(hrs):null,ciHi=sdh!=null?h+1.96*sdh/Math.sqrt(hrs):null,needH=sdh&&h>0?Math.pow(1.96*sdh/h,2):null;
+  const bank=typeof getViewedBankrollValue==="function"?getViewedBankrollValue():0,ror=h>0&&sdh>0&&bank>0?Math.exp(-2*h*bank/(sdh*sdh)):null;
+  // drawdowns + streaks
+  let cum=0,peak=0,peakD=ss[0].date,mdd=0,mddF=null,mddT=null,since=0,longest=0,longFrom=null,longTo=null,stretchStart=ss[0].date,rec=null;
+  const ddStart={i:0};let ws=0,ls=0,bw=0,bl=0;
+  ss.forEach((s,i)=>{cum+=s.resultCents;if(cum>peak){if(since>longest){longest=since;longFrom=stretchStart;longTo=s.date}peak=cum;peakD=s.date;since=0;stretchStart=s.date}else{since++}
+    const dd=peak-cum;if(dd>mdd){mdd=dd;mddF=peakD;mddT=s.date}
+    if(s.resultCents>0){ws++;ls=0}else if(s.resultCents<0){ls++;ws=0}bw=Math.max(bw,ws);bl=Math.max(bl,ls)});
+  if(since>longest){longest=since;longFrom=stretchStart;longTo=null}
+  const curDD=peak-cum,curStreak=ws?ws:-ls;
+  // days / weeks / months
+  const grp=k=>{const m=new Map();ss.forEach(s=>{const key=k(s);m.set(key,(m.get(key)||0)+s.resultCents)});return[...m.values()]};
+  const wk=s=>{const x=new Date(s.date+"T12:00:00");x.setDate(x.getDate()-((x.getDay()+6)%7));return shD(x)};
+  const dV=grp(s=>s.date),wV=grp(wk),mV=grp(s=>s.date.slice(0,7)),share=a=>a.length?Math.round(a.filter(v=>v>0).length/a.length*100):0;
+  // after a loss / big loss
+  const nextAfter=f=>{const r=[];for(let i=0;i<n-1;i++)if(f(ss[i]))r.push(ss[i+1].resultCents);return r.length?{n:r.length,avg:r.reduce((a,b)=>a+b,0)/r.length}:null};
+  const aL=nextAfter(s=>s.resultCents<0),aW=nextAfter(s=>s.resultCents>0),aBig=sd?nextAfter(s=>s.resultCents<-sd):null;
+  const best=ss.reduce((m,s)=>!m||s.resultCents>m.resultCents?s:m,null),worst=ss.reduce((m,s)=>!m||s.resultCents<m.resultCents?s:m,null);
+  const tmH=tm.slice().sort((a,b)=>b.resultCents/b.duration-a.resultCents/a.duration),bestHr=tm.filter(s=>s.duration>=60).sort((a,b)=>b.resultCents/b.duration-a.resultCents/a.duration)[0];
+  let h2=per;
+  // hero
+  h2+='<div class="brd-hero"><div class="brd-hm"><span>Profit</span><b class="'+brdPc(A.p)+'">'+brdSg(A.p)+'</b><i>'+n+' session'+(n!==1?"s":"")+(hrs?" · "+Math.round(hrs)+"h":"")+" · "+brdDate(ss[0].date)+" – "+brdDate(ss[n-1].date)+'</i></div>'
+    +'<div class="brd-hg"><div><span>Hourly</span><b class="'+brdPc(h||0)+'">'+(h==null?"—":brdSg(h)+"/h")+'</b></div><div><span>Per session</span><b class="'+brdPc(mean)+'">'+brdSg(mean)+'</b></div><div><span>Win rate</span><b>'+Math.round(A.won/n*100)+'%</b></div><div><span>Profit factor</span><b class="'+(gl&&gw/gl>=1?"pos":"neg")+'">'+(gl?(gw/gl).toFixed(2):"∞")+'</b></div></div></div>';
+  // results
+  h2+=brdCard("💷","Results","what a typical session looks like",brdKV([
+    {l:"Average session",v:brdSg(mean),c:brdPc(mean),s:"median "+brdSg(median)},
+    {l:"Average win",v:brdSg(avgW),c:"pos",s:wins.length+" winning sessions"},
+    {l:"Average loss",v:brdSg(-avgL),c:"neg",s:losses.length+" losing sessions"},
+    {l:"Win ÷ loss size",v:avgL?(avgW/avgL).toFixed(2)+"×":"—",s:avgL&&avgW/avgL>=1?"your wins are bigger":"your losses are bigger"},
+    {l:"Best session",v:brdSg(best.resultCents),c:"pos",s:brdDate(best.date)+(best.stakes?" · "+escapeHtml(best.stakes):"")},
+    {l:"Worst session",v:brdSg(worst.resultCents),c:"neg",s:brdDate(worst.date)+(worst.stakes?" · "+escapeHtml(worst.stakes):"")},
+    bestHr?{l:"Best hourly session",v:brdSg(bestHr.resultCents/(bestHr.duration/60))+"/h",c:"pos",s:brdDate(bestHr.date)+" · "+brFmtDur(bestHr.duration)}:null,
+    {l:"Gross won / lost",v:brFmt(gw)+" / "+brFmt(gl),s:"profit factor "+(gl?(gw/gl).toFixed(2):"∞")}]));
+  // hourly confidence
+  if(h!=null)h2+=brdCard("⏱","Your hourly, honestly","how sure the number is",
+    (sdh!=null?'<div class="brd-ci"><div class="brd-ci-bar">'+(()=>{const a=Math.min(ciLo,0),b=Math.max(ciHi,0),w=b-a||1,P=v=>((v-a)/w*100).toFixed(1);return'<span class="rng" style="left:'+P(ciLo)+'%;width:'+(P(ciHi)-P(ciLo))+'%"></span><span class="z" style="left:'+P(0)+'%"></span><span class="pt" style="left:'+P(h)+'%"></span>'})()+'</div><div class="brd-ci-l"><span>'+brdSg(ciLo)+'/h</span><b>95% range</b><span>'+brdSg(ciHi)+'/h</span></div></div>':'')
+    +brdKV([{l:"Hourly",v:brdSg(h)+"/h",c:brdPc(h),s:Math.round(hrs)+" timed hours"},
+      sdh!=null?{l:"Swing per hour",v:brFmt(Math.round(sdh))+"/h",s:"std deviation"}:null,
+      needH?{l:"Hours to prove you win",v:Math.ceil(needH).toLocaleString()+"h",s:hrs>=needH?"✓ you’re there":Math.ceil(needH-hrs).toLocaleString()+"h to go"}:null,
+      ror!=null?{l:"Risk of ruin",v:ror<0.001?"<0.1%":(ror*100).toFixed(ror<0.1?1:0)+"%",c:ror>0.05?"neg":"pos",s:"with "+brFmt(bank)+" at this hourly"}:null]));
+  try{h2+=brhHtml(ss)}catch(e){console.warn(e)}
+  // swings
+  h2+=brdCard("🌊","Swings & streaks","the ride, not just the result",brdKV([
+    {l:"Biggest downswing",v:mdd?"−"+brFmt(mdd):"—",c:mdd?"neg":"",s:mdd?brdDate(mddF)+" → "+brdDate(mddT):"never below a peak"},
+    {l:"Right now",v:curDD>0?"−"+brFmt(curDD)+" from peak":"At your peak ✦",c:curDD>0?"neg":"pos",s:curDD>0&&mdd?Math.round(curDD/mdd*100)+"% of your worst":""},
+    {l:"Longest without a new high",v:longest+" session"+(longest!==1?"s":""),s:longFrom?brdDate(longFrom)+(longTo?" → "+brdDate(longTo):" → still going"):""},
+    {l:"Session swing",v:brFmt(Math.round(sd)),s:"std deviation per session"},
+    {l:"Longest win streak",v:bw+" in a row",c:"pos"},
+    {l:"Longest losing streak",v:bl+" in a row",c:bl?"neg":""},
+    {l:"Current streak",v:curStreak>0?curStreak+" win"+(curStreak>1?"s":""):curStreak<0?(-curStreak)+" loss"+(curStreak<-1?"es":""):"—",c:brdPc(curStreak)},
+    {l:"Winning days / weeks / months",v:share(dV)+"% · "+share(wV)+"% · "+share(mV)+"%",s:dV.length+" days · "+wV.length+" weeks · "+mV.length+" months"}]));
+  // after losses
+  if(aL||aW)h2+=brdCard("🧠","After a loss","does a bad session follow you into the next one?",brdKV([
+    aW?{l:"After a winning session",v:brdSg(aW.avg),c:brdPc(aW.avg),s:aW.n+" times"}:null,
+    aL?{l:"After a losing session",v:brdSg(aL.avg),c:brdPc(aL.avg),s:aL.n+" times"}:null,
+    aBig&&aBig.n>=2?{l:"After a big loss",v:brdSg(aBig.avg),c:brdPc(aBig.avg),s:aBig.n+" times · losses over "+brFmt(Math.round(sd))}:null])
+    +(aL&&aW&&aL.n>=3&&aW.n>=3?'<div class="brd-note">'+(aL.avg<aW.avg-sd*0.15?"⚠️ You do noticeably worse straight after a loss — a short break or a stop-loss could help.":"✓ No sign that losses carry into your next session.")+'</div>':''));
+  // patterns
+  const metric=hrs>0?"hr":"avg";
+  const dowRows=BRD_DOW.map((l,i)=>({l,a:brdAgg(ss.filter(s=>brdDow(s.date)===i))}));
+  const todRows=BRD_TOD.map((t,i)=>({l:t[0]+" "+t[1],sub:t[2],a:brdAgg(ss.filter(s=>brdTod(s)===i))}));
+  const lenRows=BRD_LEN.map(([l,a,b])=>({l,a:brdAgg(ss.filter(s=>s.duration>=a&&s.duration<b&&s.duration>0))}));
+  const pick=(rows)=>{const v=r=>metric==="hr"?r.a.hr:r.a.avg;const ok=rows.filter(r=>r.a.n>=3&&v(r)!=null).sort((a,b)=>v(b)-v(a));return ok.length>=2?[ok[0],ok[ok.length-1]]:null};
+  const pd=pick(dowRows),pt=pick(todRows),pl=pick(lenRows);
+  const tip=[pd?"Best day <b>"+pd[0].l+"</b>, worst <b>"+pd[1].l+"</b>.":"",pt?"You do best in the <b>"+pt[0].l.slice(3).toLowerCase()+"</b>.":"",pl?"Most profitable session length: <b>"+pl[0].l.toLowerCase()+"</b>.":""].filter(Boolean).join(" ");
+  h2+=brdCard("📅","When you win",(metric==="hr"?brSym()+" per hour":"average result")+" · green = winning",'<div class="brd-sub">Day of the week</div>'+brdBars(dowRows,metric)+'<div class="brd-sub">Time you start</div>'+brdBars(todRows,metric)+(tm.length?'<div class="brd-sub">Session length</div>'+brdBars(lenRows,metric):'')+(tip?'<div class="brd-note">💡 '+tip+'</div>':''),"brdWhen");
+  try{h2+=brVenueHtml(ss)+brTipsHtml(ss)}catch(e){console.warn(e)}
+  // months table
+  const ms=new Map();ss.forEach(s=>{const k=s.date.slice(0,7);if(!ms.has(k))ms.set(k,[]);ms.get(k).push(s)});
+  const mrows=[...ms.entries()].sort((a,b)=>b[0].localeCompare(a[0])).slice(0,12).map(([k,l])=>({k,a:brdAgg(l)})),mmx=Math.max(1,...mrows.map(r=>Math.abs(r.a.p)));
+  h2+=brdCard("🗓","Month by month","latest first",'<div class="brd-t"><div class="brd-th"><span>Month</span><span>Sess</span><span>Hours</span><span>Profit</span><span>£/h</span></div>'
+    +mrows.map(r=>'<div class="brd-tr"><span>'+new Date(r.k+"-15").toLocaleDateString("en-GB",{month:"short",year:"2-digit"})+'</span><span>'+r.a.n+'</span><span>'+(r.a.mins?Math.round(r.a.mins/60):"—")+'</span><span class="brd-tp '+brdPc(r.a.p)+'"><em style="width:'+(Math.abs(r.a.p)/mmx*100).toFixed(0)+'%"></em>'+brdSg(r.a.p)+'</span><span class="'+brdPc(r.a.hr||0)+'">'+(r.a.hr==null?"—":brdSg(r.a.hr))+'</span></div>').join("")+'</div>');
+  el.innerHTML=h2}
+
+// GG: when you play best (your time zone)
+function ggWhenHtml(arr){const loc=h=>{const k=hxGGDate(h.ts);return{dow:(new Date(k.slice(0,10)+"T12:00:00").getDay()+6)%7,hr:+k.slice(11,13)}};
+  const blk=hr=>hr>=6&&hr<12?0:hr>=12&&hr<17?1:hr>=17&&hr<22?2:3;const D=BRD_DOW.map(()=>[]),T=[[],[],[],[]];
+  arr.forEach(h=>{const L=loc(h);D[L.dow].push(h);T[blk(L.hr)].push(h)});
+  const bars=rows=>{const v=rows.map(r=>r.n?r.nbb/r.n*100:null),mx=Math.max(1,...v.filter(x=>x!=null).map(Math.abs));return'<div class="brd-bars">'+rows.map((r,i)=>{const x=v[i];return'<div class="brd-br'+(r.n?"":" none")+'"><div class="brd-bl"><b>'+r.l+'</b>'+(r.sub?'<i>'+r.sub+'</i>':'')+'</div><div class="brd-bt"><span class="brd-mid"></span>'+(x!=null?'<span class="brd-fill '+(x>=0?"pos":"neg")+'" style="'+(x>=0?"left:50%":"right:50%")+';width:'+(Math.abs(x)/mx*50).toFixed(1)+'%"></span>':'')+'</div><div class="brd-bv">'+(r.n?'<b class="'+(x>0?"pos":x<0?"neg":"")+'">'+(x>0?"+":x<0?"−":"")+Math.abs(x).toFixed(1)+'</b><i>'+r.n.toLocaleString()+' hands</i>':'<i>—</i>')+'</div></div>'}).join("")+'</div>'};
+  const ag=list=>({n:list.length,nbb:list.reduce((a,h)=>a+h.net/h.bb,0)});
+  return'<div class="brd-sub">Time of day <span class="gg-an-dim">· bb/100, your time zone</span></div>'+bars(BRD_TOD.map((t,i)=>Object.assign({l:t[0]+" "+t[1],sub:t[2]},ag(T[i]))))+'<div class="brd-sub">Day of the week</div>'+bars(BRD_DOW.map((l,i)=>Object.assign({l},ag(D[i]))))+(arr.length<1000?'<div class="gg-an-note">Small sample — a few big pots can swing these a lot.</div>':'')}
+
+</script>
+<script>
+// ═══ More stats (v92): bankroll health, venues, tips, pace, GG stakes/big pots/red-blue trend, session report, monthly review ═══
+const BRH_LADDER=[[0.5,1],[1,1],[1,2],[1,3],[2,3],[2,5],[3,5],[5,5],[5,10],[10,20],[10,25],[25,50],[50,100]];
+function brhStakeKey(s){return String(s||"").replace(/[£$€\s]/g,"")}
+function brhCalc(ss,bank){// cash sessions only, grouped by stake
+  const cash=ss.filter(s=>!brIsTour(s.format)&&chParseBB(s.stakes)>0);if(!cash.length)return null;
+  const toBB=s=>s.resultCents/chParseBB(s.stakes);
+  // pooled hourly and swing in big blinds (time-weighted)
+  const tm=cash.filter(s=>s.duration>0),T=tm.reduce((a,s)=>a+s.duration/60,0);
+  const hBB=T?tm.reduce((a,s)=>a+toBB(s),0)/T:null;
+  const sdBB=T&&tm.length>2&&hBB!=null?Math.sqrt(tm.reduce((a,s)=>{const t=s.duration/60;return a+t*Math.pow(toBB(s)/t-hBB,2)},0)/T):null;
+  const g=new Map();cash.forEach(s=>{const k=brhStakeKey(s.stakes);if(!g.has(k))g.set(k,[]);g.get(k).push(s)});
+  const rows=[...g.entries()].map(([k,l])=>{const bb=chParseBB(l[0].stakes),bi=l.filter(s=>s.buyin>0),avgBI=bi.length?bi.reduce((a,s)=>a+s.buyin*100,0)/bi.length:bb*100,maxBI=bi.length?Math.max(...bi.map(s=>s.buyin*100)):avgBI;
+    const A=brdAgg(l);const h=hBB!=null?hBB*bb:null,sd=sdBB!=null?sdBB*bb:null;const need=h>0&&sd>0?-Math.log(0.05)*sd*sd/(2*h):null;
+    const bis=bank/avgBI;return{k,bb,n:l.length,A,avgBI,maxBI,bis,need,ok:bis>=30&&(need==null||bank>=need)?"ok":bis>=20?"warn":"bad"}}).sort((a,b)=>a.bb-b.bb);
+  const top=rows[rows.length-1],nx=BRH_LADDER.find(([sb,bb])=>bb*100>top.bb);let next=null;
+  if(nx){const bb=nx[1]*100,bi=bb*100,h=hBB!=null?hBB*0.7*bb:null,sd=sdBB!=null?sdBB*bb:null,need=h>0&&sd>0?-Math.log(0.05)*sd*sd/(2*h):null;next={l:nx[0]+"/"+nx[1],bb,bi,need30:bi*30,need,ready:bank>=Math.max(bi*30,need||0)}}
+  return{rows,hBB,sdBB,next}}
+function brhHtml(ss){const bank=typeof getViewedBankrollValue==="function"?getViewedBankrollValue():0,R=brhCalc(ss,bank);if(!R)return"";
+  const v={ok:["✓","Well rolled","pos"],warn:["⚠","Borderline","warn"],bad:["✗","Under-rolled","neg"]};
+  let h='<div class="brh-bank"><span>Bankroll</span><b>'+brFmt(bank)+'</b></div><div class="brh-rows">'+R.rows.map(r=>'<div class="brh-r '+r.ok+'"><div class="brh-st"><b>'+escapeHtml(r.k)+'</b><i>'+r.n+' sess · buy-in ~'+brFmt(brR(r.avgBI))+'</i></div><div class="brh-bi"><b>'+(r.bis>=100?Math.round(r.bis):r.bis.toFixed(1))+'</b><span>buy-ins</span></div><div class="brh-v '+v[r.ok][2]+'"><b>'+v[r.ok][0]+' '+v[r.ok][1]+'</b><i>'+(r.need!=null?"your swings need "+brFmt(brR(r.need)):"30+ buy-ins is the usual rule")+'</i></div></div>').join("")+'</div>';
+  if(R.next){const n=R.next;h+='<div class="brh-next '+(n.ready?"ok":"")+'"><div><span>Move up to '+n.l+'?</span><b>'+(n.ready?"✓ You're rolled for it":"Not yet")+'</b></div><div class="brh-nk"><div><i>30 buy-ins</i><b>'+brFmt(n.need30)+'</b></div>'+(n.need!=null?'<div><i>Your swings</i><b>'+brFmt(brR(n.need))+'</b></div>':'')+'<div><i>'+(bank>=Math.max(n.need30,n.need||0)?"Spare":"Still need")+'</i><b class="'+(bank>=Math.max(n.need30,n.need||0)?"pos":"neg")+'">'+brFmt(brR(Math.abs(bank-Math.max(n.need30,n.need||0))))+'</b></div></div></div>'}
+  h+='<div class="brd-note">“Your swings” = the bankroll that keeps your risk of going broke under 5%, using your own hourly'+(R.hBB!=null?" ("+(R.hBB>=0?"+":"")+R.hBB.toFixed(1)+" bb/h)":"")+' and swing'+(R.sdBB!=null?" ("+Math.round(R.sdBB)+" bb/h)":"")+'. One stake up assumes you win 30% less.</div>';
+  return brdCard("🏦","Bankroll health","buy-ins at each stake you play",h)}
+function brVenueHtml(ss){const g=new Map();ss.forEach(s=>{const k=(s.location||"").trim()||"Unknown";if(!g.has(k))g.set(k,[]);g.get(k).push(s)});if(g.size<1)return"";
+  const rows=[...g.entries()].map(([k,l])=>{const A=brdAgg(l),res=l.map(s=>s.resultCents),m=A.p/A.n,sd=l.length>1?Math.sqrt(res.reduce((a,r)=>a+(r-m)**2,0)/(l.length-1)):0;
+    const tm=l.filter(s=>s.duration>0),T=A.mins/60;let ci=null;if(A.hr!=null&&tm.length>2){const sdh=Math.sqrt(tm.reduce((a,s)=>{const t=s.duration/60;return a+t*Math.pow(s.resultCents/t-A.hr,2)},0)/T);ci=1.96*sdh/Math.sqrt(T)}
+    return{k,A,sd,ci}}).sort((a,b)=>b.A.n-a.A.n);const N=ss.length;
+  return brdCard("📍","Where you play","every room and site, side by side",'<div class="brv">'+rows.map(r=>'<div class="brv-r"><div class="brv-h"><b>'+escapeHtml(r.k)+'</b><span class="'+brdPc(r.A.p)+'">'+brdSg(r.A.p)+'</span></div><div class="brv-share"><i style="width:'+(r.A.n/N*100).toFixed(1)+'%"></i></div>'
+    +'<div class="brv-k"><span>'+r.A.n+' sess · '+Math.round(r.A.n/N*100)+'%</span><span>'+(r.A.mins?Math.round(r.A.mins/60)+'h':'—')+'</span><span class="'+brdPc(r.A.hr||0)+'">'+(r.A.hr==null?"—":brdSg(r.A.hr)+"/h"+(r.ci!=null?' <em>±'+brFmt(Math.round(r.ci))+'</em>':''))+'</span><span>'+Math.round(r.A.won/r.A.n*100)+'% won</span><span>swing '+brFmt(Math.round(r.sd))+'</span></div></div>').join("")+'</div>'
+    +(rows.some(r=>r.ci!=null)?'<div class="brd-note">± is the 95% range on that hourly — the smaller it is, the more you can trust the number.</div>':''))}
+function brTipsHtml(ss){const t=ss.filter(s=>s.tipsCents>0);if(!t.length)return brdCard("🪙","Cost of play","tips and tokes",'<div class="brd-note">Add your tips and tokes when you log a session (there’s a field under Cash Out) to see what they cost your hourly.</div>');
+  const tot=t.reduce((a,s)=>a+s.tipsCents,0),A=brdAgg(ss),hrs=A.mins/60,gross=A.p+tot;
+  return brdCard("🪙","Cost of play","tips and tokes you logged",brdKV([{l:"Total tipped",v:brFmt(tot>=10000?brR(tot):tot),c:"neg",s:t.length+" of "+ss.length+" sessions"},{l:"Per session",v:brFmt(Math.round(tot/t.length)),s:"when you tipped"},
+    hrs?{l:"Per hour",v:brFmt(Math.round(tot/hrs))+"/h",s:"across all timed hours"}:null,hrs?{l:"Hourly before tips",v:brdSg(gross/hrs)+"/h",c:brdPc(gross),s:"vs "+brdSg(A.p/hrs)+"/h after"}:null,
+    gross>0?{l:"Share of winnings",v:Math.round(tot/gross*100)+"%",s:"of what you won before tipping"}:null]))}
+// ── month pace (Overview)
+function brR(c){return Math.round(c/100)*100}
+function brPaceHtml(){const ss=getViewedSessions();if(!ss.length)return"";const now=new Date(),mk=shD(now).slice(0,7),cur=ss.filter(s=>(s.date||"").slice(0,7)===mk);
+  const dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(),day=now.getDate(),A=brdAgg(cur);
+  const past=new Map();ss.forEach(s=>{const k=(s.date||"").slice(0,7);if(k&&k<mk)past.set(k,(past.get(k)||0)+s.resultCents)});const pv=[...past.entries()].sort((a,b)=>b[0].localeCompare(a[0])).slice(0,12).map(x=>x[1]);
+  const avg=pv.length?pv.reduce((a,b)=>a+b,0)/pv.length:null,proj=cur.length&&day>=3?A.p/day*dim:null;const mx=Math.max(Math.abs(A.p),Math.abs(proj||0),Math.abs(avg||0),1);
+  const P=v=>(Math.abs(v)/mx*100).toFixed(1);const mon=now.toLocaleDateString("en-GB",{month:"long"});
+  return'<div class="brp"><div class="brp-h"><span>📆 '+mon+' so far</span><em>day '+day+' of '+dim+'</em></div><div class="brp-v"><b class="'+brdPc(A.p)+'">'+(cur.length?brdSg(A.p):"—")+'</b><i>'+A.n+' session'+(A.n!==1?"s":"")+(A.mins?" · "+Math.round(A.mins/60)+"h":"")+(A.hr!=null?" · "+brdSg(A.hr)+"/h":"")+'</i></div>'
+   +'<div class="brp-bars">'+[["This month",A.p,""],proj!=null?["On pace for",brR(proj),"proj"]:null,avg!=null?["Average month",brR(avg),"avg"]:null].filter(Boolean).map(([l,v,c])=>'<div class="brp-r '+c+'"><span>'+l+'</span><div class="brp-t"><i class="'+(v>=0?"pos":"neg")+'" style="width:'+P(v)+'%"></i></div><b class="'+brdPc(v)+'">'+brdSg(v)+'</b></div>').join("")+'</div>'
+   +(proj!=null&&avg!=null?'<div class="brp-f">'+(proj>=avg?"🔥 Ahead of your usual month by "+brFmt(brR(proj-avg)):"Behind your usual month by "+brFmt(brR(avg-proj))+" — "+(dim-day)+" days left")+'</div>':'')+'</div>'}
+// ── GG: stakes, biggest pots, red/blue over time
+function ggStakesHtml(arr){const g=new Map();arr.forEach(h=>{if(!g.has(h.bb))g.set(h.bb,[]);g.get(h.bb).push(h)});const rows=[...g.entries()].sort((a,b)=>a[0]-b[0]).map(([bb,l])=>{const n=l.length,nbb=l.reduce((a,h)=>a+h.net/h.bb,0),net=l.reduce((a,h)=>a+h.net,0),sd=l.filter(h=>h.sd).reduce((a,h)=>a+h.net/h.bb,0),ts=l.map(h=>h.ts);return{bb,sb:l[0].sb,n,nbb,net,b100:nbb/n*100,sd100:sd/n*100,nsd100:(nbb-sd)/n*100,t0:Math.min(...ts),t1:Math.max(...ts)}});
+  const mx=Math.max(1,...rows.map(r=>Math.abs(r.b100))),d=t=>new Date(t).toLocaleDateString("en-GB",{timeZone:"UTC",day:"numeric",month:"short"});
+  return'<div class="ggs-rows">'+rows.map(r=>'<div class="ggs-r"><div class="ggs-h"><b>'+ggAmt(r.sb!=null?r.sb:r.bb/2)+'/'+ggAmt(r.bb)+'</b><span>'+r.n.toLocaleString()+' hands · '+d(r.t0)+(d(r.t0)!==d(r.t1)?" – "+d(r.t1):"")+'</span></div><div class="brd-bt"><span class="brd-mid"></span><span class="brd-fill '+(r.b100>=0?"pos":"neg")+'" style="'+(r.b100>=0?"left:50%":"right:50%")+';width:'+(Math.abs(r.b100)/mx*50).toFixed(1)+'%"></span></div>'
+    +'<div class="ggs-k"><span><i>bb/100</i><b class="'+(r.b100>=0?"pos":"neg")+'">'+ggSgn(r.b100)+'</b></span><span><i>Net</i><b class="'+(r.net>=0?"pos":"neg")+'">'+bbUsd(r.net)+'</b></span><span><i style="color:#3b82f6">Showdown</i><b>'+ggSgn(r.sd100)+'</b></span><span><i style="color:#ef4444">Non-SD</i><b>'+ggSgn(r.nsd100)+'</b></span></div></div>').join("")+'</div>'+(rows.length===1?'<div class="gg-an-note">As you move up, each stake gets its own row so you can compare.</div>':'')}
+function ggBigHtml(arr){const s=[...arr].sort((a,b)=>b.net/b.bb-a.net/a.bb),W=s.slice(0,10).filter(h=>h.net>0),L=s.slice(-10).reverse().filter(h=>h.net<0);window._ggBig={W,L};
+  const row=(h,i,k)=>'<button class="ggb-r" onclick="ggOpenReplay('+i+',window._ggBig.'+k+')"><span class="ggb-c">'+ggMiniCards(h.hc)+'</span><span class="ggb-m"><b>'+(h.pos||"")+(h.board&&h.board.length?' · '+ggCardTxt(Array.isArray(h.board)?h.board.join(""):h.board).split(" ").slice(0,5).join(" "):'')+'</b><i>'+new Date(h.ts).toLocaleString("en-GB",{timeZone:"UTC",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})+(h.sd?" · showdown":"")+'</i></span><span class="ggb-v '+(h.net>0?"pos":"neg")+'"><b>'+ggSgn(h.net/h.bb)+' bb</b><i>'+bbUsd(h.net)+'</i></span></button>';
+  return'<div class="ggb"><div><div class="gg-an-ctitle">🏆 Biggest wins</div>'+(W.map((h,i)=>row(h,i,"W")).join("")||'<div class="gg-an-note">None yet.</div>')+'</div><div><div class="gg-an-ctitle">💥 Biggest losses</div>'+(L.map((h,i)=>row(h,i,"L")).join("")||'<div class="gg-an-note">None yet.</div>')+'</div></div>'}
+function ggRBHtml(arr){if(arr.length<20)return'<div class="gg-an-note">Needs at least 20 hands.</div>';return'<div class="gg-an-chart" style="height:200px"><canvas id="chGGRB"></canvas></div><div class="gg-an-note" id="ggRBNote"></div>'}
+function ggRBChart(arr){const cv=$("chGGRB");if(!cv||typeof Chart==="undefined")return;const n=arr.length,chunk=n>=20000?2000:n>=5000?1000:n>=1000?250:Math.max(10,Math.round(n/8));const labs=[],R=[],B=[],T=[];
+  for(let i=0;i<n;i+=chunk){const sl=arr.slice(i,i+chunk);if(sl.length<chunk*0.5&&labs.length)break;const sd=sl.filter(h=>h.sd).reduce((a,h)=>a+h.net/h.bb,0),all=sl.reduce((a,h)=>a+h.net/h.bb,0);labs.push((i+sl.length).toLocaleString());B.push(+(sd/sl.length*100).toFixed(1));R.push(+((all-sd)/sl.length*100).toFixed(1));T.push(+(all/sl.length*100).toFixed(1))}
+  if(window._ggRBc)try{window._ggRBc.destroy()}catch(e){}
+  window._ggRBc=new Chart(cv,{type:"line",data:{labels:labs,datasets:[{label:"Total",data:T,borderColor:"#22c55e",tension:.3,pointRadius:3,pointHoverRadius:5,borderWidth:2.5},{label:"Showdown",data:B,borderColor:"#3b82f6",tension:.3,pointRadius:2,borderWidth:2},{label:"Non-showdown",data:R,borderColor:"#ef4444",tension:.3,pointRadius:2,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:"bottom"},tooltip:{callbacks:{title:c=>"Hands up to "+c[0].label,label:c=>" "+c.dataset.label+": "+(c.raw>0?"+":"")+c.raw+" bb/100"}}},scales:{x:{title:{display:true,text:"hands ("+chunk.toLocaleString()+" per point)"}},y:{ticks:{callback:v=>v}}}}});
+  const nt=$("ggRBNote");if(nt&&R.length>=2){const d=R[R.length-1]-R[0];nt.textContent="Each point is "+chunk.toLocaleString()+" hands. Your red line "+(d>=0?"went up":"went down")+" by "+Math.abs(d).toFixed(1)+" bb/100 from first to last — "+(d>=0?"you’re winning more pots without showdown.":"you’re winning fewer pots without showdown.")}}
+// ── session report card
+function srOpen(s,b,extra){if(!s)return;b=b||BR.d;const all=[...(b.sessions||[])].sort((a,c)=>(a.date||"").localeCompare(c.date||""));const n=all.length,r=s.resultCents;
+  const others=all.filter(x=>x.id!==s.id),avg=others.length?others.reduce((a,x)=>a+x.resultCents,0)/others.length:null,tm=others.filter(x=>x.duration>0),om=tm.reduce((a,x)=>a+x.duration,0),avgHr=om?tm.reduce((a,x)=>a+x.resultCents,0)/(om/60):null;
+  const hr=s.duration>0?r/(s.duration/60):null,rank=[...all].sort((a,c)=>c.resultCents-a.resultCents).findIndex(x=>x.id===s.id)+1;
+  let st=0;for(let i=all.length-1;i>=0;i--){const v=all[i].resultCents;if(i===all.length-1){st=v>0?1:v<0?-1:0;continue}if(st>0&&v>0)st++;else if(st<0&&v<0)st--;else break}
+  const mk=(s.date||"").slice(0,7),mtd=all.filter(x=>(x.date||"").slice(0,7)===mk).reduce((a,x)=>a+x.resultCents,0),bal=getBankrollBalance(b);
+  const grade=avg==null?null:r>=avg+Math.abs(avg)*2&&r>0?["A+","Big win"]:r>avg&&r>0?["A","Above your average"]:r>=0?["B","Small win"]:r>avg?["C","Small loss — better than your average loss"]:["D","Tough one"];
+  const kv=(l,v,c,sub)=>'<div><span>'+l+'</span><b class="'+(c||"")+'">'+v+'</b>'+(sub?'<i>'+sub+'</i>':'')+'</div>';
+  const el=$("srBody");el.innerHTML='<div class="edq-h"><h3>📋 Session report</h3><button class="btn btn-xs" onclick="closeM(\'srM\')" aria-label="Close">✕</button></div>'
+   +'<div class="sr-hero '+(r>0?"pos":r<0?"neg":"")+'"><div><span>'+brDayLbl(s.date)+(s.stakes?" · "+escapeHtml(s.stakes):"")+(s.location?" · "+escapeHtml(s.location):"")+'</span><b>'+brdSg(r)+'</b><i>'+(s.duration?brFmtDur(s.duration):"no time logged")+(hr!=null?" · "+brdSg(hr)+"/h":"")+'</i></div>'+(grade?'<div class="sr-grade"><b>'+grade[0]+'</b><span>'+grade[1]+'</span></div>':'')+'</div>'
+   +'<div class="sr-kv">'+(avgHr!=null&&hr!=null?kv("vs your hourly",brdSg(hr-avgHr)+"/h",brdPc(hr-avgHr),"your average "+brdSg(avgHr)+"/h"):"")+(avg!=null?kv("vs your average session",brdSg(r-avg),brdPc(r-avg),"average "+brdSg(avg)):"")
+   +kv("Rank",rank+" of "+n,"",rank===1?"🏆 your best session ever":rank===n&&n>1?"your toughest so far":"")+kv("Streak",st>0?st+" win"+(st>1?"s":"")+" in a row":st<0?(-st)+" loss"+(st<-1?"es":"")+" in a row":"—",brdPc(st))
+   +kv("This month",brdSg(mtd),brdPc(mtd))+kv("Bankroll now",brFmt(bal),"",b.icon+" "+escapeHtml(b.name))+(s.tipsCents?kv("Tips",brFmt(s.tipsCents),"neg"):"")+(extra||"")+'</div>'
+   +(s.blindLevels&&s.blindLevels.length?'<div class="brd-note">⏱ Reached level '+s.blindLevels[s.blindLevels.length-1].lvl+' · '+lbFmt(s.blindLevels[s.blindLevels.length-1])+'</div>':'')
+   +'<div class="mact"><button class="btn" onclick="closeM(\'srM\');switchBrTab(\'brStats\');setTimeout(()=>$(\'brStatsNav\').querySelector(\'[data-sp=brInsights]\')?.click(),60)">📊 All stats</button><button class="btn pri" onclick="closeM(\'srM\')">Done</button></div>';
+  openM("srM")}
+function srGGOpen(){const L=window._ggLastImport||[];if(!L.length)return toast("Import a file first");const H=L.slice().sort((a,b)=>a.ts-b.ts),R=bbCalc(H),all=bbCalc(ggSavedHands()),best=H.reduce((m,h)=>!m||h.net/h.bb>m.net/m.bb?h:m,null),worst=H.reduce((m,h)=>!m||h.net/h.bb<m.net/m.bb?h:m,null);
+  const mins=Math.max(1,(H[H.length-1].ts-H[0].ts)/60000),kv=(l,v,c,sub)=>'<div><span>'+l+'</span><b class="'+(c||"")+'">'+v+'</b>'+(sub?'<i>'+sub+'</i>':'')+'</div>',pc=v=>v>0?"pos":v<0?"neg":"";
+  $("srBody").innerHTML='<div class="edq-h"><h3>📋 GG session report</h3><button class="btn btn-xs" onclick="closeM(\'srM\')" aria-label="Close">✕</button></div>'
+   +'<div class="sr-hero '+pc(R.net)+'"><div><span>'+H.length.toLocaleString()+' hands · '+brFmtDur(Math.round(mins))+'</span><b>'+bbUsd(R.net)+'</b><i>'+bbF(R.bb100)+' bb/100 · '+Math.round(H.length/(mins/60))+' hands/h</i></div></div>'
+   +'<div class="sr-kv">'+kv("vs your overall",bbF(R.bb100-all.bb100)+" bb/100",pc(R.bb100-all.bb100),"overall "+bbF(all.bb100)+" over "+all.n.toLocaleString())+kv("Showdown",bbF(R.sdbb/R.n*100)+" bb/100",pc(R.sdbb))+kv("Non-showdown",bbF(R.nsdbb/R.n*100)+" bb/100",pc(R.nsdbb))+kv("All-in EV",bbF(R.evbb/R.n*100)+" bb/100",pc(R.evbb),R.evn+" all-ins")
+   +(best&&best.net>0?kv("Best hand",bbF(best.net/best.bb)+" bb","pos",ggCardTxt(best.hc||"")+" · "+(best.pos||"")):"")+(worst&&worst.net<0?kv("Worst hand",bbF(worst.net/worst.bb)+" bb","neg",ggCardTxt(worst.hc||"")+" · "+(worst.pos||"")):"")+kv("Rake",bbUsd(-R.rk),"neg",bbF(-R.rkbb/R.n*100)+" bb/100")+'</div>'
+   +'<div class="mact"><button class="btn pri" onclick="closeM(\'srM\')">Done</button></div>';openM("srM")}
+// ── review: week or month + range check + GG big pots
+let WK_MODE=LG("ps_wk_mode","week");
+function wkSetMode(m){WK_MODE=m;LS("ps_wk_mode",m);WK_OFF=0;renderWeekReview()}
+
+</script>
+<script>
+
+function wkGGExtra(hs){if(!hs||!hs.length)return"";let h="";const best=hs.reduce((m,x)=>!m||x.net/x.bb>m.net/m.bb?x:m,null),worst=hs.reduce((m,x)=>!m||x.net/x.bb<m.net/m.bb?x:m,null);
+  if(best&&best.net>0)h+='<div class="wk-line">Biggest pot won: <b class="pos">'+ggSgn(best.net/best.bb)+' bb</b> '+ggCardTxt(best.hc||"")+(worst&&worst.net<0?' · lost: <b class="neg">'+ggSgn(worst.net/worst.bb)+' bb</b> '+ggCardTxt(worst.hc||""):"")+'</div>';
+  try{const r=ggRcRun(hs),miss=r.res.filter(x=>x.verdict==="miss"&&!x.ex);if(r.res.length){const L=new Map();miss.forEach(x=>L.set(x.key,(L.get(x.key)||0)+1));const top=[...L.entries()].sort((a,b)=>b[1]-a[1])[0];
+    h+='<div class="wk-line">🎯 Range check: <b>'+r.res.length+'</b> preflop decisions · <b class="'+(miss.length?"neg":"pos")+'">'+miss.length+' mistake'+(miss.length!==1?"s":"")+'</b>'+(top?' · most in <b>'+escapeHtml(top[0])+'</b> ('+top[1]+')':'')+'</div>'}}catch(e){}
+  return h}
 
 </script>
 </body>
