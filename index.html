@@ -6203,6 +6203,19 @@ html[data-deck="ggfull"] body .pcard .ctl span:last-child{font-size:33px!importa
 .hdr-gg{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 10px;margin-right:6px;border-radius:999px;font-family:"Roboto","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:12px;letter-spacing:.04em;color:#fff;background:linear-gradient(135deg,#e0283c,#b31b2c);box-shadow:0 0 0 1px rgba(255,255,255,.14) inset,0 4px 12px -6px rgba(224,40,60,.8);transition:transform .15s}
 .hdr-gg:active{transform:scale(.94)}
 #ggV.on~* .hdr-gg,html:has(#ggV.on) .hdr-gg{box-shadow:0 0 0 2px #fff inset,0 4px 14px -4px rgba(224,40,60,.9)}
+
+/* v120 · daily reward button + 4-up actions */
+#bankrollV .br-actions{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+html body .br-act.daily{color:var(--ic)!important}
+html body .br-act.daily.done{color:var(--mt)!important;border-color:color-mix(in srgb,var(--mt) 45%,var(--bd))!important;background:color-mix(in srgb,var(--mt) 10%,var(--b2))!important}
+.br-act.daily small{font-size:10px;margin-left:2px}
+/* charts: no glow on canvases anywhere */
+canvas{filter:none!important}
+
+.dd-pre{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.dd-pre button{padding:9px 8px;border-radius:10px;font-size:11px;font-weight:700;text-align:left;line-height:1.25;background:color-mix(in srgb,var(--gd) 9%,var(--b2));border:1px solid color-mix(in srgb,var(--gd) 30%,var(--bd));color:var(--t1)}
+.dd-pre button b{display:block;color:var(--gd2);font-size:12px}
+.dd-pre button.on{background:color-mix(in srgb,var(--gd) 24%,var(--b2));border-color:var(--gd)}
 </style>
 </head>
 <body>
@@ -6404,6 +6417,7 @@ html[data-deck="ggfull"] body .pcard .ctl span:last-child{font-size:33px!importa
       <button class="br-act dep" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='1';$('depMTitle').textContent='+ Deposit';depSetPromoMode(false)"><b>↓</b>Deposit</button>
       <button class="br-act wd" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='-1';$('depMTitle').textContent='− Withdraw';depSetPromoMode(false)"><b>↑</b>Withdraw</button>
       <button class="br-act promo" onclick="depResetEdit();$('depAmt').value='';$('depDesc').value='';openM('depM');$('depSign').value='1';$('depMTitle').textContent='🎁 Add Promo';depSetPromoMode(true)"><b>🎁</b>Promo</button>
+      <button class="br-act daily" id="brDailyBtn" onclick="brDailyOpen()"><b>📆</b>Daily</button>
     </div>
     <div class="br-stats" id="brDashStats"></div>
     <div class="br-chart-box b3-recent" id="brRecent"></div>
@@ -7078,7 +7092,7 @@ html[data-deck="ggfull"] body .pcard .ctl span:last-child{font-size:33px!importa
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v119</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v121</div>
   </div>
 </div>
 </div>
@@ -7133,14 +7147,21 @@ html[data-deck="ggfull"] body .pcard .ctl span:last-child{font-size:33px!importa
   <div id="depPromoTypeWrap" style="display:none;margin-bottom:10px">
     <label class="slbl">Type</label>
     <div class="seg-row" id="depPromoTypeRow">
+      <button data-ptype="daily">📆 Daily</button>
       <button data-ptype="rakeback" class="sel">💵 Rakeback</button>
       <button data-ptype="highhand">🃏 High Hand</button>
       <button data-ptype="badbeat">💥 Bad Beat</button>
       <button data-ptype="otherpromo">🎁 Other</button>
     </div>
   </div>
+  <div id="depDailyPresets" style="display:none;margin-bottom:10px"><label class="slbl">GG Daily Freebie</label><div class="dd-pre">
+      <button type="button" data-amt="0.25" data-desc="Daily Freebie · Spin & Gold $0.25">🎟 Spin &amp; Gold <b>$0.25</b></button>
+      <button type="button" data-amt="0.25" data-desc="Daily Freebie · Mystery Battle Royale $0.25">🎟 Mystery Battle Royale <b>$0.25</b></button>
+      <button type="button" data-amt="" data-desc="Daily Freebie · ticket cashed">🏆 Ticket cashed <b>prize</b></button>
+      <button type="button" data-amt="" data-desc="Weekly mystery code">✉️ Weekly mystery code</button></div></div>
   <div style="margin-bottom:10px"><label class="slbl" id="depAmtLabel">Amount</label><input class="minp" id="depAmt" type="number" placeholder="0.00" step="0.01" style="margin:0;font-size:16px;text-align:center;font-family:var(--fm)"/></div>
   <div style="margin-bottom:10px"><label class="slbl">Description</label><input class="minp" id="depDesc" placeholder="Optional..." style="margin:0"/></div>
+  <div style="margin-bottom:10px"><label class="slbl">Date</label><input class="minp" id="depDate" type="date" style="margin:0"/></div>
   <div class="mact"><button class="btn btn-d" id="depDelBtn" style="display:none;margin-right:auto" onclick="deleteDep()">🗑 Remove</button><button class="btn" onclick="closeM('depM')">Cancel</button><button class="btn pri" id="depOkBtn" onclick="submitDep()">Confirm</button></div>
 </div></div>
 <div class="mov" id="resetM"><div class="mdl" style="max-width:380px"><h3 style="color:var(--rs)">Factory reset</h3><p class="setting-desc" style="margin:6px 0 12px">This erases <b>everything</b> on this device — ranges, sessions, shifts, GG hands, notes and settings. It can't be undone.</p><button class="btn" style="width:100%;margin-bottom:12px" onclick="dlJSON()">💾 Download a backup first</button><label class="slbl" for="resetConfirm">Type RESET to confirm</label><input class="minp" id="resetConfirm" autocomplete="off" autocapitalize="characters" oninput="$('resetGo').disabled=this.value.trim().toUpperCase()!=='RESET'" placeholder="RESET"/><div class="mact"><button class="btn" onclick="closeM('resetM')">Cancel</button><button class="btn btn-d" id="resetGo" disabled onclick="doFactoryReset()">Erase everything</button></div></div></div>
@@ -13384,6 +13405,9 @@ function getViewFilterIds(){const f=getBrViewFilter();const all=getBankrollsList
 let _currencyTabOverrideIds=null;
 function getViewedBankrolls(){if(_currencyTabOverrideIds)return getBankrollsList().filter(b=>_currencyTabOverrideIds.includes(b.id));const ids=getViewFilterIds();return getBankrollsList().filter(b=>ids.includes(b.id))}
 function getViewedSessions(){const bs=getViewedBankrolls();let out=[];bs.forEach(b=>{(b.sessions||[]).forEach(s=>out.push(Object.assign({},s,{_bid:b.id,_bicon:b.icon,_bname:b.name})))});out.sort((a,b)=>new Date(a.date)-new Date(b.date));return out}
+// promos (daily rewards, rakeback, high hand, bad beat…) are EARNINGS, not deposits
+function brPromoSum(from,to){return getViewedBankrolls().reduce((a,b)=>a+(b.deposits||[]).reduce((x,d)=>{if(!d.promoType)return x;const k=shD(new Date(d.ts||0));if(from&&k<from)return x;if(to&&k>to)return x;return x+d.amt},0),0)}
+function brCashDepositsTotal(){return getViewedBankrolls().reduce((a,b)=>a+(b.deposits||[]).reduce((x,d)=>x+(d.promoType?0:d.amt),0),0)}
 function getViewedDepositsTotal(){return getViewedBankrolls().reduce((a,b)=>a+(b.deposits||[]).reduce((x,d)=>x+d.amt,0),0)}
 function getViewedStartBankroll(){return getViewedBankrolls().reduce((a,b)=>a+(parseFloat(b.settings?.startBankroll)||0)*100,0)}
 function getViewedBankrollValue(){const total=getViewedSessions().reduce((a,s)=>a+s.resultCents,0);return getViewedStartBankroll()+total+getViewedDepositsTotal()}
@@ -13428,15 +13452,15 @@ function setupAC(inputId,acId,getList){const inp=$(inputId),ac=$(acId);if(!inp||
 let balHidden=LG("ps_balhide",false);
 function toggleBal(){balHidden=!balHidden;LS("ps_balhide",balHidden);applyBalHide()}
 function applyBalHide(){["bankrollV","homeV"].forEach(id=>{const bv=$(id);if(bv)bv.classList.toggle("bal-hidden",!!balHidden)});syncBalToggles()}
-const PROMO_TYPE_LABELS={rakeback:"Rakeback",highhand:"High Hand Bonus",badbeat:"Bad Beat Jackpot",otherpromo:"Promo"};
-const PROMO_TYPE_ICONS={rakeback:"💵",highhand:"🃏",badbeat:"💥",otherpromo:"🎁"};
+const PROMO_TYPE_LABELS={daily:"Daily Reward",rakeback:"Rakeback",highhand:"High Hand Bonus",badbeat:"Bad Beat Jackpot",otherpromo:"Promo"};
+const PROMO_TYPE_ICONS={daily:"📆",rakeback:"💵",highhand:"🃏",badbeat:"💥",otherpromo:"🎁"};
 function depResetEdit(){const e=$("depEditId");if(e)e.value="";const db=$("depDelBtn");if(db)db.style.display="none";const ok=$("depOkBtn");if(ok)ok.textContent="Confirm"}
 function openDepEdit(id){
   const d=(BR.d.deposits||[]).find(x=>x.id===id);if(!d)return;
   const isPromo=!!d.promoType,sign=d.amt<0?-1:1;
   openM("depM");depSetPromoMode(isPromo);
   if(isPromo)$("depPromoTypeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.ptype===d.promoType));
-  $("depSign").value=String(sign);$("depEditId").value=id;$("depAmt").value=(Math.abs(d.amt)/100).toFixed(2);$("depDesc").value=d.desc||"";
+  $("depSign").value=String(sign);$("depEditId").value=id;$("depAmt").value=(Math.abs(d.amt)/100).toFixed(2);$("depDesc").value=d.desc||"";try{$("depDate").value=shD(new Date(d.ts||Date.now()))}catch(e){}
   $("depMTitle").textContent=isPromo?"✎ Edit promo":sign>0?"✎ Edit deposit":"✎ Edit withdrawal";
   $("depDelBtn").style.display="";$("depOkBtn").textContent="Save";
 }
@@ -13445,11 +13469,11 @@ function deleteDep(){
   confirmAction("Remove this "+(d.promoType?"promo":d.amt<0?"withdrawal":"deposit")+"?",d.desc+" · "+(d.amt<0?"−":"+")+brFmt(Math.abs(d.amt)),()=>{
     BR.d.deposits=BR.d.deposits.filter(x=>x.id!==id);BR.save();depResetEdit();closeM("depM");renderBrAll();toast("Removed");haptic("warn")});
 }
-function depSetPromoMode(isPromo){
-  $("depPromoTypeWrap").style.display=isPromo?"":"none";
-  if(isPromo){
-    $("depPromoTypeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.ptype==="rakeback"));
-    $("depDesc").placeholder=PROMO_TYPE_LABELS.rakeback;
+function depSetPromoMode(isPromo,ptype){
+  $("depPromoTypeWrap").style.display=isPromo?"":"none";try{$("depDate").value=shD(new Date())}catch(e){}
+  if(isPromo){const pt=ptype||"rakeback";
+    $("depPromoTypeRow").querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.ptype===pt));
+    $("depDesc").placeholder=PROMO_TYPE_LABELS[pt];
   }else{
     $("depDesc").placeholder="Optional...";
   }
@@ -13461,8 +13485,9 @@ function submitDep(){
   const promoType=isPromo?($("depPromoTypeRow").querySelector("button.sel")?.dataset.ptype||"otherpromo"):null;
   const desc=$("depDesc").value.trim()||(isPromo?PROMO_TYPE_LABELS[promoType]:(sign>0?"Deposit":"Withdrawal"));
   const eid=$("depEditId").value;
-  if(eid){const d=(BR.d.deposits||[]).find(x=>x.id===eid);if(d){d.amt=Math.round(amt*100)*sign;d.desc=desc;d.promoType=promoType}}
-  else BR.d.deposits.push({id:"dep_"+Date.now(),amt:Math.round(amt*100)*sign,desc,promoType,ts:Date.now()});
+  const dv=($("depDate")&&$("depDate").value)||"",today=shD(new Date());const ts=!dv||dv===today?Date.now():new Date(dv+"T12:00:00").getTime();
+  if(eid){const d=(BR.d.deposits||[]).find(x=>x.id===eid);if(d){d.amt=Math.round(amt*100)*sign;d.desc=desc;d.promoType=promoType;if(dv&&shD(new Date(d.ts||0))!==dv)d.ts=ts}}
+  else BR.d.deposits.push({id:"dep_"+Date.now(),amt:Math.round(amt*100)*sign,desc,promoType,ts});
   BR.save();$("depAmt").value="";$("depDesc").value="";depResetEdit();closeM("depM");renderBrAll();
   toast(eid?"✎ Updated":(sign>0?"+":"-")+brSym()+amt.toFixed(2)+(isPromo?" "+PROMO_TYPE_ICONS[promoType]:" ✦"))
 }
@@ -13647,7 +13672,7 @@ function submitEndLive(){if(!liveData)return;const stack=parseFloat($("liveEndSt
   const _bSym={USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$"}[b.settings?.currency||"GBP"]||"£";playSound(pnl>=0?"win":"wrong");haptic(pnl>=0?"success":"warn");toast("Session: "+(pnl>=0?"+":"-")+_bSym+(Math.abs(pnl)/100).toFixed(2)+" · +"+xpGain+" XP ✦"+(b!==BR.d?" → "+b.icon+" "+b.name:""));try{if($("liveEndTips"))$("liveEndTips").value=""}catch(e){}setTimeout(()=>{try{srOpen(s,b)}catch(e){console.warn(e)}},400)}
 // Charts
 let brCharts={};
-const glowLinePlugin={id:"glowLine",beforeDatasetsDraw(chart){const ctx=chart.ctx;const t=chart.config.type;ctx.save();if(chart.canvas&&chart.canvas.closest&&chart.canvas.closest("#bankrollV"))return;/* bankroll charts stay flat */if(t==="line"){ctx.shadowColor=(chart.data.datasets[0]&&chart.data.datasets[0].borderColor)||getComputedStyle(document.documentElement).getPropertyValue("--pk").trim()||"#c8a55c";ctx.shadowBlur=16;}else if(t==="bar"){ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=10;ctx.shadowOffsetY=3;}},afterDatasetsDraw(chart){chart.ctx.restore();}};
+const glowLinePlugin={id:"glowLine",beforeDatasetsDraw(chart){const ctx=chart.ctx;const t=chart.config.type;ctx.save();if(true)return;if(chart.canvas&&chart.canvas.closest&&chart.canvas.closest("#bankrollV"))return;/* bankroll charts stay flat */if(t==="line"){ctx.shadowColor=(chart.data.datasets[0]&&chart.data.datasets[0].borderColor)||getComputedStyle(document.documentElement).getPropertyValue("--pk").trim()||"#c8a55c";ctx.shadowBlur=16;}else if(t==="bar"){ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=10;ctx.shadowOffsetY=3;}},afterDatasetsDraw(chart){chart.ctx.restore();}};
 // ═══ Chart polish: one visual system for every chart in the app ═══
 function psCss(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
 const _psCC={};
@@ -13680,7 +13705,7 @@ function psBarFill(chart,base,hz){return ctx=>{const c=Array.isArray(base)?base[
   if(!chart.chartArea||!sc||typeof v!=="number"||!isFinite(v))return psSolid(c);const z=Math.max(sc.min,Math.min(0,sc.max));const p0=sc.getPixelForValue(z),p1=sc.getPixelForValue(v);if(!isFinite(p0)||!isFinite(p1)||Math.abs(p1-p0)<2)return psSolid(c);
   const g=hz?chart.ctx.createLinearGradient(p0,0,p1,0):chart.ctx.createLinearGradient(0,p0,0,p1);const a=Math.min(1,(psRGB(c)||[0,0,0,1])[3]*1.6);g.addColorStop(0,psA(c,.38*a+.12));g.addColorStop(1,psA(c,Math.max(.9,a)));return g}}
 function psAreaFill(chart,color,ds){return ctx=>{const ca=chart.chartArea;if(!ca)return"transparent";const vals=(ds.data||[]).map(v=>typeof v==="object"&&v?v.y:v).filter(v=>typeof v==="number");const neg=vals.length&&Math.max(...vals)<=0;
-  const g=chart.ctx.createLinearGradient(0,ca.top,0,ca.bottom);if(neg){g.addColorStop(0,psA(color,0));g.addColorStop(1,psA(color,.34))}else{g.addColorStop(0,psA(color,.32));g.addColorStop(.55,psA(color,.1));g.addColorStop(1,psA(color,0))}return g}}
+  const g=chart.ctx.createLinearGradient(0,ca.top,0,ca.bottom);if(neg){g.addColorStop(0,psA(color,0));g.addColorStop(1,psA(color,.16))}else{g.addColorStop(0,psA(color,.16));g.addColorStop(.6,psA(color,.04));g.addColorStop(1,psA(color,0))}return g}}
 function psStyleDatasets(chart){const cfg=chart.config,t=cfg.type,hz=chart.options.indexAxis==="y",surf=psCss("--b1")||"#101014";
   (chart.data.datasets||[]).forEach(ds=>{if(ds._ps)return;ds._ps=1;const dt=ds.type||t;const trend=ds.label==="Trend"||(ds.borderDash&&ds.borderDash.length);
     if(dt==="line"){if(!trend){ds.borderWidth=Math.max(2,Math.min(ds.borderWidth!=null?ds.borderWidth:2.5,3));ds.borderCapStyle="round";ds.borderJoinStyle="round"}
@@ -13694,7 +13719,7 @@ function psStyleDatasets(chart){const cfg=chart.config,t=cfg.type,hz=chart.optio
     else if(dt==="doughnut"||dt==="pie"){ds.borderColor=surf;ds.borderWidth=2;if(ds.borderRadius==null)ds.borderRadius=6;if(ds.spacing==null)ds.spacing=1;if(ds.hoverOffset==null)ds.hoverOffset=6}})}
 const PS_POLISH={id:"psPolish",
   beforeUpdate(chart){try{psStyleDatasets(chart)}catch(e){console.warn("psPolish",e)}},
-  beforeDatasetDraw(chart,args){const ds=chart.data.datasets[args.index];if(!ds||args.meta.type!=="line"||chart.options.plugins?.psPolish?.glow===false)return;const trend=ds.label==="Trend"||(ds.borderDash&&ds.borderDash.length);const bc=typeof ds.borderColor==="string"?ds.borderColor:(ds._psSeg||null);if(trend||!bc)return;
+  beforeDatasetDraw(chart,args){const ds=chart.data.datasets[args.index];if(!ds||args.meta.type!=="line"||chart.options.plugins?.psPolish?.glow!==true)return;const trend=ds.label==="Trend"||(ds.borderDash&&ds.borderDash.length);const bc=typeof ds.borderColor==="string"?ds.borderColor:(ds._psSeg||null);if(trend||!bc)return;
     const ctx=chart.ctx;ctx.save();ctx.shadowColor=psA(bc,.42);ctx.shadowBlur=chart.height<90?6:10;ctx.shadowOffsetY=chart.height<90?2:4;chart._psGlow=(chart._psGlow||0)+1},
   afterDatasetDraw(chart){if(chart._psGlow){chart.ctx.restore();chart._psGlow--}},
   afterDatasetsDraw(chart){try{const ctx=chart.ctx,ca=chart.chartArea,t=chart.config.type,hz=chart.options.indexAxis==="y";if(!ca)return;
@@ -13704,7 +13729,7 @@ const PS_POLISH={id:"psPolish",
     if(t==="line"&&chart.options.plugins?.psPolish?.endDot!==false&&chart.options.scales?.x?.display!==false){const i=chart.data.datasets.findIndex((d,k)=>chart.isDatasetVisible(k)&&d.label!=="Trend"&&!(d.borderDash&&d.borderDash.length));if(i<0)return;const ds=chart.data.datasets[i],meta=chart.getDatasetMeta(i);
       if(Array.isArray(ds.pointRadius)||ds.pointRadius>0)return;const pts=meta.data||[];let k=pts.length-1;while(k>=0&&(pts[k].skip||ds.data[k]==null))k--;if(k<1)return;const el=pts[k];if(!el||!isFinite(el.x)||!isFinite(el.y))return;
       const col=typeof ds.borderColor==="string"?ds.borderColor:(ds._psSeg||psCss("--pk"));const r=chart.height<90?2.6:3.6;
-      ctx.save();ctx.fillStyle=psA(col,.22);ctx.beginPath();ctx.arc(el.x,el.y,r*2.4,0,7);ctx.fill();ctx.fillStyle=col;ctx.strokeStyle=psCss("--b1")||"#000";ctx.lineWidth=2;ctx.beginPath();ctx.arc(el.x,el.y,r,0,7);ctx.fill();ctx.stroke();ctx.restore()}}catch(e){}},
+      ctx.save();ctx.fillStyle=psA(col,.10);ctx.beginPath();ctx.arc(el.x,el.y,r*2,0,7);ctx.fill();ctx.fillStyle=col;ctx.strokeStyle=psCss("--b1")||"#000";ctx.lineWidth=2;ctx.beginPath();ctx.arc(el.x,el.y,r,0,7);ctx.fill();ctx.stroke();ctx.restore()}}catch(e){}},
   afterDraw(chart){try{const a=chart.tooltip&&chart.tooltip.getActiveElements&&chart.tooltip.getActiveElements();if(!a||!a.length||chart.config.type!=="line")return;const ca=chart.chartArea,x=a[0].element.x;if(!isFinite(x))return;const ctx=chart.ctx;
     ctx.save();ctx.strokeStyle=psA(psCss("--t1"),.22);ctx.lineWidth=1;ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(x,ca.top);ctx.lineTo(x,ca.bottom);ctx.stroke();ctx.restore()}catch(e){}}};
 function ggCardTxt(hc){return String(hc).replace(/([2-9TJQKA])([shdc])/g,(m,r,u)=>r+{s:"♠",h:"♥",d:"♦",c:"♣"}[u]+" ").trim()}
@@ -13857,25 +13882,25 @@ function renderBrDash(){
   renderBrDashSingle();
 }
 function renderBrDashSingle(){
-  const CT=getCT();const sorted=getViewedSessions();const total=sorted.reduce((a,s)=>a+s.resultCents,0);const bankroll=getViewedBankrollValue();const deps=getViewedDepositsTotal();const wins=sorted.filter(s=>s.resultCents>0).length;const losses=sorted.filter(s=>s.resultCents<0).length;const timed=sorted.filter(s=>s.duration>0);const totalMins=timed.reduce((a,s)=>a+s.duration,0);const totalHrs=totalMins/60;const hourly=totalHrs>0?timed.reduce((a,s)=>a+s.resultCents,0)/100/totalHrs:0;const untimed=sorted.length-timed.length;const winRate=sorted.length?(wins/sorted.length)*100:0;
+  const CT=getCT();const sorted=getViewedSessions();const sessTotal=sorted.reduce((a,s)=>a+s.resultCents,0);const promoAll=brPromoSum();const total=sessTotal+promoAll;const bankroll=getViewedBankrollValue();const deps=brCashDepositsTotal();const wins=sorted.filter(s=>s.resultCents>0).length;const losses=sorted.filter(s=>s.resultCents<0).length;const timed=sorted.filter(s=>s.duration>0);const totalMins=timed.reduce((a,s)=>a+s.duration,0);const totalHrs=totalMins/60;const hourly=totalHrs>0?timed.reduce((a,s)=>a+s.resultCents,0)/100/totalHrs:0;const untimed=sorted.length-timed.length;const winRate=sorted.length?(wins/sorted.length)*100:0;
   const heroPos=total>=0;
   const _now=new Date(),_mk=shD(_now).slice(0,7),_c30=shD(new Date(_now.getTime()-30*864e5));
-  const _m=sorted.filter(x=>(x.date||"").slice(0,7)===_mk),_mp=_m.reduce((a,x)=>a+x.resultCents,0),_d=sorted.filter(x=>(x.date||"")>=_c30),_dp=_d.reduce((a,x)=>a+x.resultCents,0);
+  const _pm=brPromoSum(_mk+"-01",_mk+"-31"),_p30=brPromoSum(_c30);const _m=sorted.filter(x=>(x.date||"").slice(0,7)===_mk),_mp=_m.reduce((a,x)=>a+x.resultCents,0)+_pm,_d=sorted.filter(x=>(x.date||"")>=_c30),_dp=_d.reduce((a,x)=>a+x.resultCents,0)+_p30;
   const _sg=v=>(v>0?"+":v<0?"−":"")+brFmt(Math.abs(v)),_pc=v=>v>0?"pos":v<0?"neg":"";
   $("brHero").innerHTML='<div class="br-hero b3 '+(heroPos?"up":"down")+'"><div class="b3-top"><span class="br-hero-label">Bankroll</span><button class="b3-eye" id="balToggle" onclick="toggleBal()" title="Hide amounts">👁</button></div>'
     +'<div class="br-hero-val '+(heroPos?"pos":"neg")+'" id="brHeroVal">'+brFmt(bankroll)+'</div>'
-    +'<div class="b3-chips"><span class="b3-chip '+_pc(total)+'"><i>All-time</i><b>'+_sg(total)+'</b></span><span class="b3-chip '+_pc(_mp)+'"><i>'+_now.toLocaleDateString("en-GB",{month:"long"})+'</i><b>'+(_m.length?_sg(_mp):"—")+'</b></span><span class="b3-chip '+_pc(_dp)+'"><i>Last 30 days</i><b>'+(_d.length?_sg(_dp):"—")+'</b></span></div>'
-    +'<div class="b3-mood">'+brMood(sorted,_mp,_m.length,_dp,_d.length,total)+'</div><div class="br-hero-sub">'+sorted.length+" session"+(sorted.length!==1?"s":"")+(totalHrs>0?" · "+Math.round(totalHrs)+"h at the tables":"")+(deps?" · "+brFmt(deps)+" deposited":"")+'</div><div class="br-hero-spark"><canvas id="chHeroSpark"></canvas></div></div>';
+    +'<div class="b3-chips"><span class="b3-chip '+_pc(total)+'"><i>All-time</i><b>'+_sg(total)+'</b></span><span class="b3-chip '+_pc(_mp)+'"><i>'+_now.toLocaleDateString("en-GB",{month:"long"})+'</i><b>'+(_m.length||_pm?_sg(_mp):"—")+'</b></span><span class="b3-chip '+_pc(_dp)+'"><i>Last 30 days</i><b>'+(_d.length||_p30?_sg(_dp):"—")+'</b></span></div>'
+    +'<div class="b3-mood">'+brMood(sorted,_mp,_m.length,_dp,_d.length,total)+'</div><div class="br-hero-sub">'+sorted.length+" session"+(sorted.length!==1?"s":"")+(totalHrs>0?" · "+Math.round(totalHrs)+"h at the tables":"")+(promoAll?" · "+(promoAll>0?"+":"−")+brFmt(Math.abs(promoAll))+" rewards & promos":"")+(deps?" · "+brFmt(deps)+" deposited":"")+'</div><div class="br-hero-spark"><canvas id="chHeroSpark"></canvas></div></div>';
   syncBalToggles();
   {const dp=$("brDash");if(dp)dp.classList.toggle("b3-none",!sorted.length)}
   // recent sessions
   {const rc=$("brRecent");if(rc){const last=sorted.slice(-5).reverse();rc.innerHTML=last.length?'<h3>Latest sessions <button class="b3-link" onclick="switchBrTab(\'brHistory\')">View all →</button></h3><div class="br-sess-list">'+last.map(brRowHtml).join("")+"</div>":'<div class="b3-empty"><b>🃏 Your first session awaits</b><span>Log a game and your bankroll story starts here — graphs, streaks and all.</span><button class="btn pri btn-s" onclick="switchBrTab(\'brSess\')">＋ Log session</button></div>'}}
   brRenderGGCard(sorted);
-  $("brDashStats").innerHTML='<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'" data-ic="💷"><div class="brs-label">Total profit</div><div class="brs-val '+(Math.abs(total)<1e-9?"zero":total>0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+(sorted.length?"across "+sorted.length+" session"+(sorted.length!==1?"s":""):"nothing logged yet")+'</div></div><div class="br-stat" data-ic="🃏"><div class="brs-label">Sessions</div><div class="brs-val" style="color:var(--pk)">'+sorted.length+'</div><div class="brs-sub">'+wins+" won · "+losses+' lost</div></div><div class="br-stat '+(hourly>=0?"stat-pos":"stat-neg")+'" data-ic="⏱"><div class="brs-label">Hourly rate</div><div class="brs-val '+(hourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(hourly).toFixed(2)+'/hr</div><div class="brs-sub">'+(totalHrs>0?Math.round(totalHrs)+'h at the tables'+(untimed?' · '+untimed+' untimed':''):'log times to see this')+'</div></div><div class="br-stat" data-ic="🏆"><div class="brs-label">Win rate</div><div class="brs-val" style="color:var(--li)">'+winRate.toFixed(1)+'%</div><div class="brs-sub">'+(sorted.length?(winRate>=55?"winning more often than not":winRate>=45?"coin-flip territory — size matters more":"fewer wins — make them count"):"—")+'</div></div>'+(()=>{const bbh=computeBBPerHour(sorted);return'<div class="br-stat '+(bbh.overall>=0?"stat-pos":"stat-neg")+'" data-ic="📈" style="cursor:pointer" onclick="openBBPerHourBreakdown()"><div class="brs-label">BB / hr <span style="opacity:.5">▸</span></div><div class="brs-val '+(bbh.overall>=0?"pos":"neg")+'">'+(bbh.overall>=0?"+":"")+bbh.overall.toFixed(1)+'</div><div class="brs-sub">'+Math.round(bbh.totalHrs)+'h tracked · tap to break it down</div></div>'})()+'<div class="br-stat" data-ic="⚖️"><div class="brs-label">Avg / session</div><div class="brs-val '+(Math.abs(total)<1e-9?"zero":total>0?"pos":"neg")+'">'+(sorted.length?brFmt(Math.round(total/sorted.length)):"—")+'</div><div class="brs-sub">'+(timed.length?"typical session: "+Math.round(totalMins/timed.length/60*10)/10+"h":"—")+'</div></div>';
+  $("brDashStats").innerHTML='<div class="br-stat '+(total>=0?"stat-pos":"stat-neg")+'" data-ic="💷"><div class="brs-label">Total profit</div><div class="brs-val '+(Math.abs(total)<1e-9?"zero":total>0?"pos":"neg")+'">'+brFmt(total)+'</div><div class="brs-sub">'+(sorted.length?"across "+sorted.length+" session"+(sorted.length!==1?"s":""):promoAll?"":"nothing logged yet")+(promoAll?(sorted.length?" · ":"")+"incl. "+(promoAll>0?"+":"−")+brFmt(Math.abs(promoAll))+" rewards":"")+'</div></div><div class="br-stat" data-ic="🃏"><div class="brs-label">Sessions</div><div class="brs-val" style="color:var(--pk)">'+sorted.length+'</div><div class="brs-sub">'+wins+" won · "+losses+' lost</div></div><div class="br-stat '+(hourly>=0?"stat-pos":"stat-neg")+'" data-ic="⏱"><div class="brs-label">Hourly rate</div><div class="brs-val '+(hourly>=0?"pos":"neg")+'">'+brSym()+Math.abs(hourly).toFixed(2)+'/hr</div><div class="brs-sub">'+(totalHrs>0?Math.round(totalHrs)+'h at the tables'+(untimed?' · '+untimed+' untimed':''):'log times to see this')+'</div></div><div class="br-stat" data-ic="🏆"><div class="brs-label">Win rate</div><div class="brs-val" style="color:var(--li)">'+winRate.toFixed(1)+'%</div><div class="brs-sub">'+(sorted.length?(winRate>=55?"winning more often than not":winRate>=45?"coin-flip territory — size matters more":"fewer wins — make them count"):"—")+'</div></div>'+(()=>{const bbh=computeBBPerHour(sorted);return'<div class="br-stat '+(bbh.overall>=0?"stat-pos":"stat-neg")+'" data-ic="📈" style="cursor:pointer" onclick="openBBPerHourBreakdown()"><div class="brs-label">BB / hr <span style="opacity:.5">▸</span></div><div class="brs-val '+(bbh.overall>=0?"pos":"neg")+'">'+(bbh.overall>=0?"+":"")+bbh.overall.toFixed(1)+'</div><div class="brs-sub">'+Math.round(bbh.totalHrs)+'h tracked · tap to break it down</div></div>'})()+'<div class="br-stat" data-ic="⚖️"><div class="brs-label">Avg / session</div><div class="brs-val '+(Math.abs(total)<1e-9?"zero":total>0?"pos":"neg")+'">'+(sorted.length?brFmt(Math.round(total/sorted.length)):"—")+'</div><div class="brs-sub">'+(timed.length?"typical session: "+Math.round(totalMins/timed.length/60*10)/10+"h":"—")+'</div></div>';
   // Dep history
   const depHist=(BR.d.deposits||[]).slice().reverse();const depArea=$("brDepHist");
-  if(depArea&&depHist.length){depArea.innerHTML='<h3>Deposits &amp; withdrawals <small>'+depHist.length+'</small></h3><div class="b3-tx">'+depHist.slice(0,8).map(d=>{const isPos=d.amt>0,kind=d.promoType?"promo":isPos?"dep":"wd",icon=d.promoType?PROMO_TYPE_ICONS[d.promoType]:(isPos?"↓":"↑");
-    return'<div class="b3-txr '+kind+'"><div class="b3-txi">'+icon+'</div><div class="b3-txm"><b>'+escapeHtml(d.desc)+'</b><span>'+new Date(d.ts).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})+(kind==="promo"?" · promo":kind==="dep"?" · deposit":" · withdrawal")+'</span></div><div class="b3-txa '+(isPos?"pos":"neg")+'">'+(isPos?"+":"−")+brFmt(Math.abs(d.amt))+'</div><button class="b3-txe" onclick="openDepEdit(\''+d.id+'\')" title="Edit or remove">✎</button></div>'}).join("")+(depHist.length>8?'<div class="b3-txmore">Showing the latest 8 of '+depHist.length+"</div>":"")+"</div>"}else if(depArea)depArea.innerHTML="";
+  if(depArea&&depHist.length){depArea.innerHTML='<h3>Deposits, withdrawals &amp; rewards <small>'+depHist.length+'</small></h3><div class="b3-tx">'+depHist.slice(0,8).map(d=>{const isPos=d.amt>0,kind=d.promoType?"promo":isPos?"dep":"wd",icon=d.promoType?PROMO_TYPE_ICONS[d.promoType]:(isPos?"↓":"↑");
+    return'<div class="b3-txr '+kind+'"><div class="b3-txi">'+icon+'</div><div class="b3-txm"><b>'+escapeHtml(d.desc)+'</b><span>'+new Date(d.ts).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"})+(kind==="promo"?" · "+(d.promoType==="daily"?"daily reward":"promo")+" · earnings":kind==="dep"?" · deposit":" · withdrawal")+'</span></div><div class="b3-txa '+(isPos?"pos":"neg")+'">'+(isPos?"+":"−")+brFmt(Math.abs(d.amt))+'</div><button class="b3-txe" onclick="openDepEdit(\''+d.id+'\')" title="Edit or remove">✎</button></div>'}).join("")+(depHist.length>8?'<div class="b3-txmore">Showing the latest 8 of '+depHist.length+"</div>":"")+"</div>"}else if(depArea)depArea.innerHTML="";
   brDefer(()=>{
   destroyBrChart("br");const labels=[],data=[],dates=[],refs=[];let cum=(parseFloat(BR.d.settings?.startBankroll)||0)*100+deps;sorted.forEach(s=>{cum+=s.resultCents;labels.push(brDayLbl(s.date));data.push(cum/100);dates.push(s.date);refs.push(s)});
   {const cut=brPerCut();let whole=true;if(cut){let i=dates.findIndex(d=>d>=cut);if(i<0)i=dates.length;whole=i===0;i=Math.max(0,i-1);labels.splice(0,i);data.splice(0,i);refs.splice(0,i)}
@@ -14553,12 +14578,12 @@ async function renderHome(){
   let cards="";
   /* bankroll */
   try{
-    const ss=getViewedSessions(),bal=getViewedBankrollValue(),mk=today.slice(0,7),m=ss.filter(x=>(x.date||"").slice(0,7)===mk),mp=m.reduce((a,x)=>a+x.resultCents,0);
-    const c30=shD(new Date(now-30*864e5)),d=ss.filter(x=>(x.date||"")>=c30),dp=d.reduce((a,x)=>a+x.resultCents,0),last=ss[ss.length-1];
+    const ss=getViewedSessions(),bal=getViewedBankrollValue(),mk=today.slice(0,7),m=ss.filter(x=>(x.date||"").slice(0,7)===mk),pm=brPromoSum(mk+"-01",mk+"-31"),mp=m.reduce((a,x)=>a+x.resultCents,0)+pm;
+    const c30=shD(new Date(now-30*864e5)),d=ss.filter(x=>(x.date||"")>=c30),p30=brPromoSum(c30),dp=d.reduce((a,x)=>a+x.resultCents,0)+p30,last=ss[ss.length-1];
     const tm=ss.filter(x=>x.duration>0),hrs=tm.reduce((a,x)=>a+x.duration,0)/60,hr=hrs?tm.reduce((a,x)=>a+x.resultCents,0)/hrs:null;
     cards+='<button class="hm-card hm-br" onclick="go(\'bankroll\')"><div class="hm-ch"><span>💰 Bankroll</span><em>Open →</em></div>'
       +'<div class="hm-big br-hero-val">'+brFmt(bal)+"</div>"
-      +'<div class="hm-chips"><span class="b3-chip '+pc(mp)+'"><i>'+now.toLocaleDateString("en-GB",{month:"long"})+"</i><b>"+(m.length?sg(mp):"—")+'</b></span><span class="b3-chip '+pc(dp)+'"><i>Last 30 days</i><b>'+(d.length?sg(dp):"—")+'</b></span><span class="b3-chip '+pc(hr)+'"><i>Hourly</i><b>'+(hr==null?"—":(hr<0?"−":"")+brSym()+Math.abs(hr/100).toFixed(2))+"</b></span></div>"
+      +'<div class="hm-chips"><span class="b3-chip '+pc(mp)+'"><i>'+now.toLocaleDateString("en-GB",{month:"long"})+"</i><b>"+(m.length||pm?sg(mp):"—")+'</b></span><span class="b3-chip '+pc(dp)+'"><i>Last 30 days</i><b>'+(d.length||p30?sg(dp):"—")+'</b></span><span class="b3-chip '+pc(hr)+'"><i>Hourly</i><b>'+(hr==null?"—":(hr<0?"−":"")+brSym()+Math.abs(hr/100).toFixed(2))+"</b></span></div>"
       +(last?'<div class="hm-foot">Last session · '+brDayLbl(last.date)+" · "+escapeHtml(last.stakes||"")+" "+escapeHtml(last.location||"")+' · <span class="profit '+pc(last.resultCents)+'">'+sg(last.resultCents)+"</span></div>":'<div class="hm-foot">No sessions yet — log your first one.</div>')+"</button>";
   }catch(e){}
   /* shifts */
@@ -16817,14 +16842,14 @@ function renderChal(){const el=$("brChal");if(!el)return;const b=BR.d,ch=chalGet
   // TILES
   const hrs=C.mins/60,hourly=hrs>0?C.sess.filter(e=>e.s.duration>0).reduce((a,e)=>a+e.v,0)/hrs:null;
   const tiles=[
-    ["💰","Challenge profit",chSg(C.profit),chPc(C.profit),C.sess.length+" session"+(C.sess.length!==1?"s":"")+(C.winDays?" · "+C.winDays+"/"+C.dayKeys.length+" winning days":""),"--c4"],
+    ["💰","Challenge profit",chSg(C.profit+C.rbTotal),chPc(C.profit+C.rbTotal),(C.rbTotal?"incl. "+chSg(C.rbTotal)+" rewards · ":"")+C.sess.length+" session"+(C.sess.length!==1?"s":"")+(C.winDays?" · "+C.winDays+"/"+C.dayKeys.length+" winning days":""),"--c4"],
     ["⛰","Peak",chC(C.peak),"",C.peak>ch.start?"on "+chDate(C.peakK):"you're at the start","--c5"],
     ["📉","From peak",curDD>0?"−"+chC(curDD):"At peak ✦",curDD>0?"neg":"pos",curDD>0?(curDD/st.bi).toFixed(1)+" BI · worst "+chC(C.maxDD):"worst swing "+(C.maxDD?chC(C.maxDD):"—"),"--c6"],
     M.unit!=="cash"?(()=>{const ts=C.sess.filter(e=>e.s.buyin>0),bi=ts.reduce((a,e)=>a+e.s.buyin*100,0),pl=ts.reduce((a,e)=>a+e.v,0),roi=bi?pl/bi*100:null;return["🏅","ROI",roi!=null?(roi>=0?"+":"−")+Math.abs(roi).toFixed(0)+"%":"—",roi!=null?chPc(roi):"",ts.length?ts.length+" game"+(ts.length>1?"s":"")+" · "+chC(bi)+" in buy-ins"+(ts.length<200?" · small sample":""):"log games with buy-ins","--c2"]})():["🃏","Win rate",G.n?(G.bb100>=0?"+":"−")+Math.abs(G.bb100).toFixed(1)+"<small> bb/100</small>":"—",G.n?chPc(G.bb100):"",G.n?G.n.toLocaleString()+" GG hands"+(G.n<10000?" · small sample":""):"import GG hands to see this","--c2"],
     ["⏱","Hourly",hourly!=null?chSg(Math.round(hourly))+"<small>/hr</small>":"—",hourly!=null?chPc(hourly):"",hrs?Math.round(hrs)+"h played":"log session times","--c3"],
     ["🔥","Streak",C.dstreak?C.dstreak+" day"+(C.dstreak>1?"s":""):"—",C.dstreak?"pos":"",(C.curStreak>0?C.curStreak+" winning session"+(C.curStreak>1?"s":"")+" in a row":C.curStreak<0?-C.curStreak+" losing in a row — reset":"best run "+C.bestW+" wins"),"--c1"],
     ["📈","Growth pace",gRate!=null?(gRate>=0?"+":"−")+Math.abs(gRate*100).toFixed(gRate*100<1?2:1)+"%<small>/day</small>":"—",gRate!=null?chPc(gRate):"",paceDays!=null&&!done?"🏁 "+chDateY(shD(new Date(Date.now()+paceDays*864e5)))+" at this pace":gRate!=null?"compound daily growth":"needs 3+ days","--c2"],
-    ["💵","Rakeback",C.rbTotal?"+"+chC(C.rbTotal):"—",C.rbTotal?"pos":"",C.rbTotal?(M.rb100?"+"+M.rb100.toFixed(1)+" bb/100 on top · ":"")+C.rbs.length+" payment"+(C.rbs.length>1?"s":""):"log it with 💵 below","--c5"],
+    ["💵","Rakeback & rewards",C.rbTotal?"+"+chC(C.rbTotal):"—",C.rbTotal?"pos":"",C.rbTotal?(M.rb100?"+"+M.rb100.toFixed(1)+" bb/100 on top · ":"")+C.rbs.length+" payment"+(C.rbs.length>1?"s":""):"log it with 💵 below","--c5"],
     ["🧭","Discipline",(ch.plans||[]).length?Math.round(ch.plans.reduce((a,x)=>a+x.score,0)/ch.plans.length*100)+"%":"—",(ch.plans||[]).length?(ch.plans.reduce((a,x)=>a+x.score,0)/ch.plans.length>=0.8?"pos":"neg"):"",(ch.plans||[]).length?ch.plans.length+" planned session"+(ch.plans.length>1?"s":""):"plan a session to start","--c3"],
     ["🧼","Top-ups",C.topups>0?chC(C.topups):"None",C.topups>0?"neg":"pos",C.topups>0?C.deps.length+" deposit"+(C.deps.length>1?"s":"")+" — not a clean run":"clean run"+(C.cashed>0?" · "+chC(C.cashed)+" cashed out":""),"--c4"]];
   h+='<div class="chx-tiles">'+tiles.map(t=>'<div class="chx-tile" style="--acc:var('+t[5]+')"><span class="chx-ti">'+t[0]+'</span><span class="chx-tl">'+t[1]+'</span><b class="'+t[3]+'">'+t[2]+'</b><i>'+t[4]+'</i></div>').join("")+'</div>';
@@ -17126,7 +17151,7 @@ function renderBrDeep(ss,el){if(!el)return;const n=ss.length;
   const tmH=tm.slice().sort((a,b)=>b.resultCents/b.duration-a.resultCents/a.duration),bestHr=tm.filter(s=>s.duration>=60).sort((a,b)=>b.resultCents/b.duration-a.resultCents/a.duration)[0];
   let h2=per;
   // hero
-  h2+='<div class="brd-hero"><div class="brd-hm"><span>Profit</span><b class="'+brdPc(A.p)+'">'+brdSg(A.p)+'</b><i>'+n+' session'+(n!==1?"s":"")+(hrs?" · "+Math.round(hrs)+"h":"")+" · "+brdDate(ss[0].date)+" – "+brdDate(ss[n-1].date)+'</i></div>'
+  const _pr=brPromoSum(ss[0].date);h2+='<div class="brd-hero"><div class="brd-hm"><span>Profit</span><b class="'+brdPc(A.p+_pr)+'">'+brdSg(A.p+_pr)+'</b><i>'+(_pr?"incl. "+brdSg(_pr)+" rewards · ":"")+n+' session'+(n!==1?"s":"")+(hrs?" · "+Math.round(hrs)+"h":"")+" · "+brdDate(ss[0].date)+" – "+brdDate(ss[n-1].date)+'</i></div>'
     +'<div class="brd-hg"><div><span>Hourly</span><b class="'+brdPc(h||0)+'">'+(h==null?"—":brdSg(h)+"/h")+'</b></div><div><span>Per session</span><b class="'+brdPc(mean)+'">'+brdSg(mean)+'</b></div><div><span>Win rate</span><b>'+Math.round(A.won/n*100)+'%</b></div><div><span>Profit factor</span><b class="'+(gl&&gw/gl>=1?"pos":"neg")+'">'+(gl?(gw/gl).toFixed(2):"∞")+'</b></div></div></div>';
   // results
   h2+=brdCard("💷","Results","what a typical session looks like",brdKV([
@@ -17637,6 +17662,25 @@ psSyncChCols();
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});else start();
   window.psTintRun=run;
 })();
+</script>
+<script>
+// ═══ v120 · Daily reward: one-tap logging into the bankroll as a promo ═══
+function brDailyList(){return(BR.d&&BR.d.deposits||[]).filter(d=>d.promoType==="daily")}
+function brDailyStreak(){const days=new Set(brDailyList().map(d=>shD(new Date(d.ts||0))));let n=0,t=new Date();if(!days.has(shD(t)))t=new Date(t.getTime()-864e5);while(days.has(shD(t))){n++;t=new Date(t.getTime()-864e5)}return n}
+function brDailyOpen(){depResetEdit();$("depAmt").value="";$("depDesc").value="";openM("depM");$("depSign").value="1";
+  const done=brDailyList().some(d=>shD(new Date(d.ts||0))===shD(new Date()));
+  $("depMTitle").textContent=done?"📆 Daily reward (already logged today)":"📆 Daily reward";depSetPromoMode(true,"daily");setTimeout(()=>{try{$("depAmt").focus()}catch(e){}},120)}
+function brDailyPaint(){const b=$("brDailyBtn");if(!b)return;const L=brDailyList(),today=shD(new Date()),done=L.some(d=>shD(new Date(d.ts||0))===today),st=brDailyStreak();
+  const tot=L.reduce((a,d)=>a+(d.amt||0),0);b.classList.toggle("done",done);
+  b.innerHTML="<b>"+(done?"✓":"📆")+"</b>"+(done?"Daily":"Daily")+(st>1?' <small>🔥'+st+'</small>':"");b.title=L.length?("Daily rewards: "+L.length+" · "+brFmt(tot)+(st?" · "+st+"-day streak":"")):"Log today's daily reward"}
+(function(){if(typeof renderBrAll!=="function")return;const _r=renderBrAll;renderBrAll=function(){const x=_r.apply(this,arguments);try{brDailyPaint()}catch(e){}return x}})();
+</script>
+<script>
+// v121 · GG Daily Freebie presets inside the daily reward form
+function depDailySync(){const w=$("depDailyPresets");if(!w)return;const promo=$("depPromoTypeWrap").style.display!=="none",sel=$("depPromoTypeRow").querySelector("button.sel");w.style.display=promo&&sel&&sel.dataset.ptype==="daily"?"":"none"}
+(function(){const row=$("depPromoTypeRow");if(row)row.addEventListener("click",()=>setTimeout(depDailySync,0));
+  const w=$("depDailyPresets");if(w)w.addEventListener("click",e=>{const b=e.target.closest("button[data-desc]");if(!b)return;w.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));if(b.dataset.amt)$("depAmt").value=b.dataset.amt;$("depDesc").value=b.dataset.desc;if(!b.dataset.amt)setTimeout(()=>{try{$("depAmt").focus()}catch(e){}},50);haptic("light")});
+  const _sp=depSetPromoMode;depSetPromoMode=function(){const r=_sp.apply(this,arguments);try{depDailySync();$("depDailyPresets").querySelectorAll("button").forEach(x=>x.classList.remove("on"))}catch(e){}return r}})();
 </script>
 </body>
 </html>
