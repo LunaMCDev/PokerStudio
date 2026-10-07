@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="PokerStudio"/>
 <meta name="color-scheme" content="dark light"/>
 <title>PokerStudio</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;1,9..144,700;1,9..144,800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&family=Roboto:wght@500;700;900&family=Roboto+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
 :root,[data-theme="obsidian"]{--b0:#0a0a0c;--b1:#101014;--b2:#16161c;--b3:#1e1e26;--b4:#282834;--bd:rgba(200,165,92,0.08);--bd2:rgba(200,165,92,0.18);--bd3:rgba(200,165,92,0.35);--pk:#c8a55c;--pk2:#e8c87c;--pk3:#f0dca0;--mg:#a08848;--li:#8b9cc4;--mt:#6ec89b;--ic:#6cc4d8;--gd:#c8a55c;--gd2:#e8c87c;--rs:#d47272;--t1:#e8e4dc;--t2:#b8b0a4;--t3:#918981;--t4:#88817e;--t5:#383434;--gP:0 0 40px rgba(0,0,0,0.4);--gS:0 0 18px rgba(0,0,0,0.25);--ff:"Sora",system-ui,sans-serif;--fd:"Fraunces",Georgia,serif;--fm:"JetBrains Mono",monospace;--r1:8px;--r2:12px;--r3:18px;--e:cubic-bezier(0.4,0,0.2,1);--spring:cubic-bezier(0.34,1.56,0.64,1)}
@@ -6008,6 +6008,201 @@ html body .gg-lk{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--cc) 70%,transp
 .gg-hud-t.ok{--cc:var(--mt)}.gg-hud-t.warn{--cc:var(--gd)}
 html body .gg-hud-t:is(.wait,.na,.n){background:linear-gradient(160deg,color-mix(in srgb,var(--cc) 9%,var(--b2)),var(--b2) 70%)}
 html body .gg-lk:is(.wait,.na){opacity:1}html body .gg-lk:is(.wait,.na) .gg-lk-v{opacity:.85}
+
+/* ═══ v105 · contrast pass for the girly themes ═══ */
+/* deeper canvas, clearly lifted cards, neutral body text, crisp values; WCAG ≥4.5:1 for all text tokens */
+[data-theme="rose"]{--b0:#0b060d;--b1:#170e1b;--b2:#1f1424;--b3:#2a1b30;--b4:#3a2641;--t1:#fff6fa;--t2:#e6dae3;--t3:#b3a2af;--t4:#988795;--t5:#4d3a4b;--co:#ff8f7e;--hl:rgba(255,226,240,.075);--sh:0 1px 0 var(--hl) inset,0 18px 40px -26px rgba(0,0,0,.9),0 2px 6px -2px rgba(0,0,0,.5)}
+[data-theme="royale"]{--b0:#09070f;--b1:#151020;--b2:#1c162a;--b3:#272038;--b4:#352b4a;--t1:#f8f5ff;--t2:#dcd6ea;--t3:#a99fbe;--t4:#948aaa;--t5:#433a5e;--co:#ff8f7e;--hl:rgba(232,224,255,.075);--sh:0 1px 0 var(--hl) inset,0 18px 40px -26px rgba(0,0,0,.9),0 2px 6px -2px rgba(0,0,0,.5)}
+[data-theme="rosegold"]{--b0:#0d0909;--b1:#1a1314;--b2:#22191b;--b3:#2e2225;--b4:#3c2d31;--t1:#fff6f3;--t2:#e6dad6;--t3:#b3a19c;--t4:#9a8883;--t5:#4d3b38;--co:#ff9b86;--hl:rgba(255,232,224,.07);--sh:0 1px 0 var(--hl) inset,0 18px 40px -26px rgba(0,0,0,.9),0 2px 6px -2px rgba(0,0,0,.5)}
+[data-theme="blush"]{--b0:#fbeef3;--b1:#ffffff;--b2:#fff7fa;--b3:#fbeaf1;--b4:#f4d6e3;--t1:#21101c;--t2:#43303d;--t3:#6a5563;--t4:#7a6573;--t5:#e2c6d3;--pk:#c92f72;--pk2:#b8286a;--pk3:#9c1f59;--li:#6d4fc9;--mt:#0f7a5f;--ic:#1f69b3;--gd:#9a5a0c;--gd2:#8a500a;--rs:#c8323f;--co:#b8452f;--hl:rgba(255,255,255,.9);--sh:0 1px 0 #fff inset,0 14px 34px -22px rgba(150,30,90,.35),0 2px 6px -3px rgba(150,30,90,.18);--bd:rgba(150,30,90,.11);--bd2:rgba(150,30,90,.18)}
+/* alternate warm/cool so neighbouring cards and tiles never blur together */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"],[data-theme="blush"]){--c1:var(--pk);--c2:var(--ic);--c3:var(--gd);--c4:var(--li);--c5:var(--mt);--c6:var(--co)}
+/* surfaces: lifted cards with a lit top edge and a real shadow */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"],[data-theme="blush"]) :is(.br-chart-box,.card,.hm-card,.gg-card,.chx-card,.cx-card,.brd-card,.gg-an-take,.gg-an-sec,.gg-panel,.br-stat,.gg-bs-tile,.gg-hud-t,.gg-lk,.tk,.tk2,.settings-category,.br-sess-card,.shm,.g2-m,.gg-an-kv>div,.brd-k,.chx-tile){box-shadow:var(--sh)!important}
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]) :is(.br-chart-box,.hm-card,.gg-card,.chx-card,.brd-card,.gg-an-take,.gg-an-sec,.settings-category,.br-sess-card){background-image:linear-gradient(180deg,rgba(255,255,255,.028),rgba(255,255,255,0) 40%)}
+/* inner tiles sit one step deeper than their card: depth contrast */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]) :is(.g2-m,.gg-an-kv>div,.brd-k,.brd-hg>div,.gg-hud-t){background-color:var(--b0)!important}
+/* header & nav: darker bands with a thin gradient rule */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]) .hdr{background:color-mix(in srgb,var(--b0) 88%,transparent)!important;backdrop-filter:blur(16px);border-bottom:1px solid transparent!important;border-image:linear-gradient(90deg,transparent,color-mix(in srgb,var(--pk) 55%,transparent),color-mix(in srgb,var(--li) 55%,transparent),transparent) 1!important}
+[data-theme="blush"] .hdr{background:rgba(255,255,255,.88)!important;backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)!important}
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]) #bnav{background:color-mix(in srgb,var(--b0) 90%,transparent)!important}
+[data-theme="blush"] #bnav{background:rgba(255,255,255,.92)!important;box-shadow:0 -10px 30px -20px rgba(150,30,90,.3)}
+/* hero numbers pop: brightest ink + soft glow */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]) :is(.brs-val,.g2-v,.hm-big,.brd-hm b,.gg-an-big,.chx-bal):not(.pos):not(.neg){text-shadow:0 0 22px color-mix(in srgb,var(--pk) 22%,transparent)}
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]) .pos{text-shadow:0 0 18px color-mix(in srgb,var(--mt) 18%,transparent)}
+/* labels: quiet neutral caps so values carry the colour */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"],[data-theme="blush"]) :is(.brs-label,.gg-hud-l,.gg-bs-l,.gg-plbl,.slbl,.brd-hm span,.brd-hg span){letter-spacing:.09em}
+/* selected states: solid, high-contrast pills */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]) :is(.br-sub-nav button.on,.gg-ant button.on,.br-toggle button.on,.seg-row button.sel){background:linear-gradient(135deg,var(--pri1),var(--pri2))!important;color:var(--onpri)!important;box-shadow:0 6px 16px -10px var(--pri1)!important}
+[data-theme="blush"] :is(.br-sub-nav button.on,.gg-ant button.on,.br-toggle button.on,.seg-row button.sel){background:linear-gradient(135deg,var(--pri1),var(--pri2))!important;color:#fff!important}
+/* dividers and borders crisper */
+:root:is([data-theme="rose"],[data-theme="royale"],[data-theme="rosegold"]){--bd:rgba(255,220,238,.075);--bd2:rgba(255,220,238,.13);--bd3:rgba(255,220,238,.24)}
+/* ═══ v106 · GG Full Colour deck: solid suit-coloured faces, white rank top-left, big suit bottom-right ═══ */
+[data-deck="ggfull"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card){--sc:#2a2a2e;position:relative;overflow:hidden;color:#fff!important;-webkit-text-fill-color:#fff;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--sc) 78%,#fff) 0%,var(--sc) 34%,color-mix(in srgb,var(--sc) 82%,#000) 100%)!important;
+  border:1px solid color-mix(in srgb,var(--sc) 60%,#fff)!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 1px 0 rgba(255,255,255,.28),0 3px 10px -2px rgba(0,0,0,.45)!important;text-shadow:0 1px 1px rgba(0,0,0,.25);font-variant-emoji:text}
+[data-deck="ggfull"] [data-suit="s"]{--sc:#2a2a2e}
+[data-deck="ggfull"] [data-suit="h"]{--sc:#e0283c}
+[data-deck="ggfull"] [data-suit="d"]{--sc:#1d6fe0}
+[data-deck="ggfull"] [data-suit="c"]{--sc:#1e9e45}
+[data-deck="ggfull"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card) *{color:#fff!important;-webkit-text-fill-color:#fff}
+[data-deck="ggfull"] .comm-card{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;padding:.16em .24em!important;font-family:var(--ff)!important}
+[data-deck="ggfull"] .comm-card>span{font-size:1.18em;font-weight:800;line-height:1;letter-spacing:-.03em}
+[data-deck="ggfull"] .comm-card .mc-suit{font-size:.66em!important;line-height:1;margin-top:.06em;opacity:.95}
+[data-deck="ggfull"] .comm-card::after{position:absolute;right:.06em;bottom:-.06em;font-size:1.95em;line-height:1;opacity:.96;pointer-events:none}
+[data-deck="ggfull"] .comm-card[data-suit="s"]::after{content:"\2660\FE0E"}
+[data-deck="ggfull"] .comm-card[data-suit="h"]::after{content:"\2665\FE0E"}
+[data-deck="ggfull"] .comm-card[data-suit="d"]::after{content:"\2666\FE0E"}
+[data-deck="ggfull"] .comm-card[data-suit="c"]::after{content:"\2663\FE0E"}
+[data-deck="ggfull"] .pcard{align-items:flex-start!important;justify-content:flex-start!important;border-radius:12px!important}
+[data-deck="ggfull"] .pcard>span:not(.cs),[data-deck="ggfull"] .pcard .cbr{display:none!important}
+[data-deck="ggfull"] .pcard .ctl{top:7px!important;left:10px!important;align-items:flex-start!important;font-size:34px!important;font-weight:800!important;line-height:.95!important;letter-spacing:-.03em}
+[data-deck="ggfull"] .pcard .ctl span:last-child{font-size:20px!important;margin-top:2px}
+[data-deck="ggfull"] .pcard .cs{position:absolute!important;right:6px;bottom:0;font-size:66px!important;line-height:1!important;margin:0!important}
+[data-deck="ggfull"] .qh-card{border-radius:6px!important}
+[data-deck="ggfull"] .eq-matchup-card{align-items:flex-start!important;justify-content:space-between!important;padding:4px 5px!important}
+[data-deck="ggfull"] .lr-card{font-family:var(--ff)!important}
+[data-deck="ggfull"] .comm-card{container-type:inline-size}
+@container (max-width:38px){[data-deck="ggfull"] .comm-card .mc-suit{display:none!important}}
+@container (max-width:38px){[data-deck="ggfull"] .comm-card>span{font-size:1.25em}}
+
+/* v107 · GG deck: flat matte faces (no shine/glow) so cards read crisply against the background */
+html[data-deck="ggfull"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card){background:var(--sc)!important;border:1px solid rgba(255,255,255,.16)!important;box-shadow:0 1px 2px rgba(0,0,0,.45)!important;text-shadow:none!important;filter:none!important}
+html[data-deck="ggfull"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card) *{text-shadow:none!important;filter:none!important}
+html[data-deck="ggfull"] [data-suit="s"]{--sc:#34343a}
+html[data-deck="ggfull"] [data-suit="h"]{--sc:#d42a3a}
+html[data-deck="ggfull"] [data-suit="d"]{--sc:#1f66d1}
+html[data-deck="ggfull"] [data-suit="c"]{--sc:#1f9140}
+html[data-deck="ggfull"] .comm-card::after{opacity:1}
+html[data-deck="ggfull"][data-theme="blush"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card),html[data-deck="ggfull"][data-theme="daylight"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card){border-color:rgba(0,0,0,.12)!important;box-shadow:0 1px 2px rgba(0,0,0,.18)!important}
+/* ═══ v108 · GG deck matched to the GGPoker client: shaded suit colours, clean white index, slanted rank bottom-right ═══ */
+html[data-deck="ggfull"] [data-suit="c"]{--sc:#3a8530;--st:#46953b;--sb:#2d6a24}
+html[data-deck="ggfull"] [data-suit="d"]{--sc:#244c92;--st:#2b5aa6;--sb:#1d3f78}
+html[data-deck="ggfull"] [data-suit="h"]{--sc:#9c231b;--st:#b0291f;--sb:#7c1b14}
+html[data-deck="ggfull"] [data-suit="s"]{--sc:#222;--st:#2e2e2e;--sb:#181818}
+html[data-deck="ggfull"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card){background:linear-gradient(180deg,var(--st) 0%,var(--sc) 45%,var(--sb) 100%)!important;border:1px solid rgba(0,0,0,.55)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 2px 5px rgba(0,0,0,.5)!important;font-family:Roboto,"Helvetica Neue",Arial,var(--ff),sans-serif!important}
+html[data-deck="ggfull"] .comm-card{padding:.12em .2em!important;border-radius:.42em!important}
+html[data-deck="ggfull"] .comm-card>span{font-weight:500!important;font-size:1.22em!important;letter-spacing:-.02em;line-height:1}
+html[data-deck="ggfull"] .comm-card .mc-suit{font-size:.78em!important;margin-top:.04em;align-self:flex-start;width:1.22em;text-align:center}
+html[data-deck="ggfull"] .comm-card::after{content:attr(data-rank)!important;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:700;font-style:italic;font-size:1.5em;right:.12em!important;bottom:.02em!important;transform:skewX(-10deg);letter-spacing:-.04em;opacity:1}
+@container (max-width:38px){html[data-deck="ggfull"] .comm-card::after{display:none}html[data-deck="ggfull"] .comm-card .mc-suit{display:block!important;font-size:.85em!important}html[data-deck="ggfull"] .comm-card>span{font-size:1.15em!important}}
+html[data-deck="ggfull"] .pcard{border-radius:10px!important}
+html[data-deck="ggfull"] .pcard .ctl{font-weight:500!important;font-size:36px!important;left:9px!important;top:6px!important;align-items:center!important}
+html[data-deck="ggfull"] .pcard .ctl span:last-child{font-size:24px!important}
+html[data-deck="ggfull"] .pcard .cs{display:none!important}
+html[data-deck="ggfull"] .pcard::after{content:attr(data-rank);position:absolute;right:10px;bottom:4px;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:700;font-style:italic;font-size:46px;line-height:1;color:#fff;transform:skewX(-10deg);letter-spacing:-.04em}
+html[data-deck="ggfull"] :is(.qh-card,.lr-card,.eq-matchup-card){font-weight:500!important}
+html[data-deck="ggfull"] .comm-card>span{font-weight:600!important}
+html[data-deck="ggfull"] .comm-card::after{font-size:1.32em!important;bottom:.04em!important}
+html[data-deck="ggfull"] .pcard .ctl{font-weight:600!important}
+html[data-deck="ggfull"] .pcard::after{font-size:40px!important;bottom:6px!important}
+
+/* v109 · GG deck proportions: index fills the card at every size; slanted rank shown whenever there is room */
+html[data-deck="ggfull"] .comm-card>span{font-size:1.32em!important;font-weight:600!important;line-height:.95!important}
+html[data-deck="ggfull"] .comm-card .mc-suit{display:block!important;font-size:1.02em!important;width:1.3em!important;text-align:center;margin-top:.02em!important;line-height:1!important}
+html[data-deck="ggfull"] .comm-card::after{display:block!important;font-size:1.28em!important;right:.1em!important;bottom:.02em!important}
+@container (max-width:38px){html[data-deck="ggfull"] .comm-card::after{display:block!important}html[data-deck="ggfull"] .comm-card .mc-suit{font-size:1.02em!important}html[data-deck="ggfull"] .comm-card>span{font-size:1.32em!important}}
+@container (max-width:27px){html[data-deck="ggfull"] .comm-card::after{display:none!important}html[data-deck="ggfull"] .comm-card>span{font-size:1.4em!important}html[data-deck="ggfull"] .comm-card .mc-suit{font-size:1.15em!important;width:1.25em!important}}
+@container (max-width:27px){html[data-deck="ggfull"] .comm-card .mc-suit{position:absolute!important;right:.12em;bottom:.06em;font-size:1.45em!important;width:auto!important;margin:0!important}}
+
+/* v109 · no italic: upright GG layout — rank + suit top-left, large upright suit bottom-right */
+html[data-deck="ggfull"] .comm-card::after,html[data-deck="ggfull"] .pcard::after{font-style:normal!important;transform:none!important;font-weight:400!important;letter-spacing:0!important}
+html[data-deck="ggfull"] .comm-card[data-suit="s"]::after{content:"\2660\FE0E"!important}
+html[data-deck="ggfull"] .comm-card[data-suit="h"]::after{content:"\2665\FE0E"!important}
+html[data-deck="ggfull"] .comm-card[data-suit="d"]::after{content:"\2666\FE0E"!important}
+html[data-deck="ggfull"] .comm-card[data-suit="c"]::after{content:"\2663\FE0E"!important}
+html[data-deck="ggfull"] .comm-card::after{display:block!important;font-size:1.75em!important;right:.08em!important;bottom:-.04em!important;line-height:1!important}
+html[data-deck="ggfull"] .comm-card>span{font-size:1.3em!important;font-weight:700!important;font-style:normal!important;line-height:.95!important}
+html[data-deck="ggfull"] .comm-card .mc-suit{position:static!important;display:block!important;font-size:.8em!important;width:1.3em!important;text-align:center;margin-top:.04em!important}
+@container (max-width:38px){html[data-deck="ggfull"] .comm-card::after{display:block!important;font-size:1.6em!important}html[data-deck="ggfull"] .comm-card .mc-suit{display:none!important}html[data-deck="ggfull"] .comm-card>span{font-size:1.38em!important}}
+@container (max-width:27px){html[data-deck="ggfull"] .comm-card::after{display:block!important;font-size:1.5em!important}html[data-deck="ggfull"] .comm-card .mc-suit{display:none!important;position:static!important}}
+/* big trainer cards: upright big suit, no rank repeat */
+html[data-deck="ggfull"] .pcard::after{content:none!important;display:none!important}
+html[data-deck="ggfull"] .pcard .cs{display:block!important;position:absolute!important;right:7px!important;bottom:2px!important;font-size:60px!important;line-height:1!important;font-style:normal!important}
+html[data-deck="ggfull"] .pcard .ctl{font-weight:700!important;font-style:normal!important}
+/* boards: even spacing, crisp separation from the felt/background */
+html[data-deck="ggfull"] :is(.hhb-board,.ggr-board,.gg-board,.hh-board){gap:5px!important}
+html[data-deck="ggfull"] :is(.comm-card,.pcard){box-shadow:0 0 0 1px rgba(0,0,0,.6),0 3px 8px -2px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.14)!important;border:1px solid rgba(255,255,255,.14)!important}
+html[data-deck="ggfull"][data-theme="blush"] :is(.comm-card,.pcard),html[data-deck="ggfull"][data-theme="daylight"] :is(.comm-card,.pcard){box-shadow:0 0 0 1px rgba(0,0,0,.18),0 3px 8px -3px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.18)!important;border-color:rgba(0,0,0,.1)!important}
+html[data-deck="ggfull"] *{font-synthesis:none}
+
+/* v110 · bigger cards: upright rank bottom-right (small cards keep the big suit) */
+html[data-deck="ggfull"] .comm-card[data-rank]::after{content:attr(data-rank)!important;font-weight:700!important;font-style:normal!important;font-size:1.55em!important;right:.14em!important;bottom:.04em!important;letter-spacing:-.02em!important}
+@container (max-width:34px){
+ html[data-deck="ggfull"] .comm-card[data-suit="s"]::after{content:"\2660\FE0E"!important}
+ html[data-deck="ggfull"] .comm-card[data-suit="h"]::after{content:"\2665\FE0E"!important}
+ html[data-deck="ggfull"] .comm-card[data-suit="d"]::after{content:"\2666\FE0E"!important}
+ html[data-deck="ggfull"] .comm-card[data-suit="c"]::after{content:"\2663\FE0E"!important}
+ html[data-deck="ggfull"] .comm-card::after{font-weight:400!important;font-size:1.6em!important;right:.08em!important;bottom:-.04em!important}}
+@container (max-width:27px){html[data-deck="ggfull"] .comm-card::after{font-size:1.5em!important}}
+html[data-deck="ggfull"] .comm-card .mc-suit{font-size:.9em!important}
+html[data-deck="ggfull"] .pcard .cs{display:none!important}
+html[data-deck="ggfull"] .pcard[data-rank]::after{content:attr(data-rank)!important;display:block!important;position:absolute;right:10px;bottom:6px;font-family:Roboto,"Helvetica Neue",Arial,sans-serif;font-weight:700!important;font-style:normal!important;font-size:46px;line-height:1;color:#fff;letter-spacing:-.02em}
+@container (max-width:38px) and (min-width:34.01px){html[data-deck="ggfull"] .comm-card .mc-suit{display:block!important;font-size:.85em!important}html[data-deck="ggfull"] .comm-card>span{font-size:1.25em!important}html[data-deck="ggfull"] .comm-card[data-rank]::after{font-size:1.35em!important}}
+
+/* v111 · GG font (Roboto, as used on the GGPoker client) + bigger values */
+html[data-deck="ggfull"] :is(.comm-card,.pcard,.qh-card,.eq-matchup-card,.lr-card),html[data-deck="ggfull"] :is(.comm-card,.pcard) *{font-family:"Roboto","Helvetica Neue",Arial,sans-serif!important}
+html[data-deck="ggfull"] .comm-card{padding:.08em .16em!important}
+html[data-deck="ggfull"] .comm-card>span{font-size:1.6em!important;font-weight:700!important;letter-spacing:-.035em!important;line-height:.92!important}
+html[data-deck="ggfull"] .comm-card .mc-suit{font-size:.95em!important;width:1.45em!important}
+html[data-deck="ggfull"] .comm-card[data-rank]::after{font-family:"Roboto","Helvetica Neue",Arial,sans-serif!important;font-weight:700!important;font-size:2.05em!important;right:.1em!important;bottom:0!important;letter-spacing:-.04em!important;line-height:.9!important}
+@container (max-width:38px) and (min-width:34.01px){html[data-deck="ggfull"] .comm-card>span{font-size:1.5em!important}html[data-deck="ggfull"] .comm-card[data-rank]::after{font-size:1.75em!important}html[data-deck="ggfull"] .comm-card .mc-suit{font-size:.85em!important}}
+@container (max-width:34px){html[data-deck="ggfull"] .comm-card>span{font-size:1.55em!important}html[data-deck="ggfull"] .comm-card::after{font-size:1.55em!important;font-family:inherit!important;font-weight:400!important}}
+@container (max-width:27px){html[data-deck="ggfull"] .comm-card>span{font-size:1.6em!important}html[data-deck="ggfull"] .comm-card::after{font-size:1.45em!important}}
+html[data-deck="ggfull"] .pcard .ctl{font-size:46px!important;font-weight:700!important;letter-spacing:-.04em!important;top:4px!important;left:8px!important}
+html[data-deck="ggfull"] .pcard .ctl span:last-child{font-size:26px!important;margin-top:0!important}
+html[data-deck="ggfull"] .pcard[data-rank]::after{font-family:"Roboto","Helvetica Neue",Arial,sans-serif!important;font-weight:700!important;font-size:62px!important;right:8px!important;bottom:2px!important;letter-spacing:-.04em!important;line-height:.9!important}
+html[data-deck="ggfull"] :is(.qh-card,.eq-matchup-card,.lr-card){font-weight:700!important}
+html[data-deck="ggfull"] .comm-card[data-rank]::after{font-size:1.72em!important;right:.12em!important;bottom:.02em!important}
+@container (max-width:38px) and (min-width:34.01px){html[data-deck="ggfull"] .comm-card[data-rank]::after{font-size:1.45em!important}html[data-deck="ggfull"] .comm-card .mc-suit{font-size:.78em!important}}
+html[data-deck="ggfull"] .pcard[data-rank]::after{font-size:56px!important}
+
+/* ═══ v112 · GG card faces (from the GGPoker client): small rank top-left, same-size suit under it, big rank bottom-right ═══ */
+/* everything sized from the card's own width (cqw), so every card size has identical proportions */
+html[data-deck="ggfull"] body .comm-card{padding:0!important;container-type:inline-size!important}
+html[data-deck="ggfull"] body .comm-card>span{position:absolute!important;left:10cqw;top:5cqw;font-family:"Roboto Condensed","Roboto","Arial Narrow",Arial,sans-serif!important;font-weight:500!important;font-size:34cqw!important;line-height:1!important;letter-spacing:-.02em!important;width:24cqw;text-align:center}
+html[data-deck="ggfull"] body .comm-card .mc-suit{display:block!important;position:absolute!important;left:10cqw;top:39cqw;width:24cqw;text-align:center;font-size:27cqw!important;line-height:1!important;margin:0!important;opacity:1!important}
+html[data-deck="ggfull"] body .comm-card[data-rank]::after{content:attr(data-rank)!important;display:block!important;position:absolute!important;right:9cqw!important;bottom:3cqw!important;font-family:"Roboto Condensed","Roboto","Arial Narrow",Arial,sans-serif!important;font-weight:500!important;font-style:normal!important;font-size:74cqw!important;line-height:.9!important;letter-spacing:-.03em!important;transform:none!important}
+/* very small seat cards: no room for three marks, show rank over suit */
+@container (max-width:22px){
+ html[data-deck="ggfull"] body .comm-card[data-rank]::after{display:none!important}
+ html[data-deck="ggfull"] body .comm-card>span{left:0;width:100%;top:6cqw;font-size:58cqw!important}
+ html[data-deck="ggfull"] body .comm-card .mc-suit{left:0;width:100%;top:62cqw;font-size:48cqw!important}}
+/* big trainer / gauntlet cards */
+html[data-deck="ggfull"] body .pcard{font-family:"Roboto Condensed","Roboto","Arial Narrow",Arial,sans-serif!important}
+html[data-deck="ggfull"] body .pcard .ctl{top:6px!important;left:9px!important;font-family:"Roboto Condensed","Roboto",Arial,sans-serif!important;font-weight:500!important;font-size:30px!important;line-height:1!important;align-items:center!important;letter-spacing:-.02em!important}
+html[data-deck="ggfull"] body .pcard .ctl span:last-child{font-size:25px!important;margin-top:4px!important}
+html[data-deck="ggfull"] body .pcard .cs{display:none!important}
+html[data-deck="ggfull"] body .pcard[data-rank]::after{content:attr(data-rank)!important;display:block!important;position:absolute;right:9px!important;bottom:5px!important;font-family:"Roboto Condensed","Roboto",Arial,sans-serif!important;font-weight:500!important;font-style:normal!important;font-size:66px!important;line-height:.9!important;letter-spacing:-.03em!important;color:#fff}
+/* face finish like the client: thin lighter rim along the top edge */
+html[data-deck="ggfull"] body :is(.comm-card,.pcard){box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 0 0 1px rgba(255,255,255,.06),0 0 0 1px rgba(0,0,0,.55),0 3px 8px -2px rgba(0,0,0,.5)!important;border:none!important}
+html[data-deck="ggfull"] body :is(.qh-card,.eq-matchup-card,.lr-card){font-family:"Roboto Condensed","Roboto",Arial,sans-serif!important;font-weight:500!important}
+
+/* v113 · bigger suit under the corner rank */
+html[data-deck="ggfull"] body .comm-card .mc-suit{font-size:36cqw!important;top:37cqw!important;width:26cqw!important;left:9cqw!important}
+html[data-deck="ggfull"] body .pcard .ctl span:last-child{font-size:33px!important;margin-top:2px!important}
+@container (max-width:22px){html[data-deck="ggfull"] body .comm-card .mc-suit{font-size:56cqw!important;top:58cqw!important;left:0!important;width:100%!important}}
+
+/* v114 · smaller cards (≤40px wide): rank + suit centred, nothing else; bigger cards unchanged */
+@container (max-width:40px){
+ html[data-deck="ggfull"] body .comm-card[data-rank]::after{display:none!important}
+ html[data-deck="ggfull"] body .comm-card>span{left:0!important;width:100%!important;top:18cqw!important;font-size:54cqw!important;font-weight:500!important;text-align:center!important;letter-spacing:-.02em!important}
+ html[data-deck="ggfull"] body .comm-card .mc-suit{left:0!important;width:100%!important;top:72cqw!important;font-size:46cqw!important;text-align:center!important}}
+@container (max-width:40px){html[data-deck="ggfull"] body .comm-card>span{font-weight:700!important;font-family:"Roboto","Roboto Condensed","Helvetica Neue",Arial,sans-serif!important;letter-spacing:-.04em!important;-webkit-text-stroke:.02em #fff}}
+@container (max-width:40px){html[data-deck="ggfull"] body .comm-card>span{top:14cqw!important}html[data-deck="ggfull"] body .comm-card .mc-suit{font-size:56cqw!important;top:66cqw!important}}
+
+/* v117 · small cards: bigger suit, rank+suit pair centred on the card's middle (both axes) */
+@container (max-width:40px){
+ html[data-deck="ggfull"] body .comm-card>span{top:50%!important;left:0!important;width:100%!important;transform:translateY(-96%)!important;letter-spacing:0!important;text-align:center!important;font-size:54cqw!important;line-height:1!important}
+ html[data-deck="ggfull"] body .comm-card .mc-suit{top:50%!important;left:0!important;width:100%!important;transform:translateY(-2%)!important;text-align:center!important;font-size:64cqw!important;line-height:1!important}}
+@container (max-width:40px){html[data-deck="ggfull"] body .comm-card>span,html[data-deck="ggfull"] body .comm-card .mc-suit{margin-top:-3cqw!important}}
+@container (max-width:28px){html[data-deck="ggfull"] body .comm-card>span,html[data-deck="ggfull"] body .comm-card .mc-suit{margin-top:-1cqw!important}}
+@container (max-width:23px){html[data-deck="ggfull"] body .comm-card>span,html[data-deck="ggfull"] body .comm-card .mc-suit{margin-top:1cqw!important}}
+
+/* v118 · GG shortcut in the header */
+.hdr-gg{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 10px;margin-right:6px;border-radius:999px;font-family:"Roboto","Helvetica Neue",Arial,sans-serif;font-weight:900;font-size:12px;letter-spacing:.04em;color:#fff;background:linear-gradient(135deg,#e0283c,#b31b2c);box-shadow:0 0 0 1px rgba(255,255,255,.14) inset,0 4px 12px -6px rgba(224,40,60,.8);transition:transform .15s}
+.hdr-gg:active{transform:scale(.94)}
+#ggV.on~* .hdr-gg,html:has(#ggV.on) .hdr-gg{box-shadow:0 0 0 2px #fff inset,0 4px 14px -4px rgba(224,40,60,.9)}
 </style>
 </head>
 <body>
@@ -6528,7 +6723,7 @@ html body .gg-lk:is(.wait,.na){opacity:1}html body .gg-lk:is(.wait,.na) .gg-lk-v
       <button class="tk" style="--tc:#fbbf24" onclick="go('notes')"><span class="tk-ico">📝</span><span class="tk-label">Notes</span><span class="tk-sub">Study notes</span></button>
       <button class="tk" style="--tc:#34d399" onclick="go('notes');switchNotesHub('hhPlayers')"><span class="tk-ico">👤</span><span class="tk-label">Player Notes</span><span class="tk-sub">Reads &amp; tendencies</span></button>
       <button class="tk" style="--tc:#22d3ee" onclick="go('flow')"><span class="tk-ico">🧠</span><span class="tk-label">Flowcharts</span><span class="tk-sub">Strategy trees</span></button>
-      <button class="tk" style="--tc:#f87171" onclick="go('shifts')"><span class="tk-ico">⏱️</span><span class="tk-label">Shift Log</span><span class="tk-sub">Hours &amp; overtime</span></button>
+      <button class="tk" style="--tc:#f87171" onclick="go('shifts')"><span class="tk-ico">⏱️</span><span class="tk-label">Shift Log</span><span class="tk-sub">Hours &amp; overtime</span></button><button class="tk" style="--tc:#60a5fa" onclick="go('files')"><span class="tk-ico">📁</span><span class="tk-label">Range Files</span><span class="tk-sub">Saved ranges</span></button>
     </div>
   </div>
 
@@ -6883,7 +7078,7 @@ html body .gg-lk:is(.wait,.na){opacity:1}html body .gg-lk:is(.wait,.na) .gg-lk-v
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v104</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v119</div>
   </div>
 </div>
 </div>
@@ -8242,11 +8437,11 @@ function runEquityCalc(){
     // Build card display HTML
     const heroCardHtml=hero.map(c=>{
       const isRed=c.suit==='h'||c.suit==='d';
-      return'<div class="eq-matchup-card '+(isRed?'red':'black')+'"><div style="font-size:18px">'+c.rank+'</div><div style="font-size:16px">'+SYM[c.suit]+'</div></div>';
+      return'<div class="eq-matchup-card '+(isRed?'red':'black')+'" data-suit="'+c.suit+'"><div style="font-size:18px">'+c.rank+'</div><div style="font-size:16px">'+SYM[c.suit]+'</div></div>';
     }).join('');
     const villainCardHtml=villain.map(c=>{
       const isRed=c.suit==='h'||c.suit==='d';
-      return'<div class="eq-matchup-card '+(isRed?'red':'black')+'"><div style="font-size:18px">'+c.rank+'</div><div style="font-size:16px">'+SYM[c.suit]+'</div></div>';
+      return'<div class="eq-matchup-card '+(isRed?'red':'black')+'" data-suit="'+c.suit+'"><div style="font-size:18px">'+c.rank+'</div><div style="font-size:16px">'+SYM[c.suit]+'</div></div>';
     }).join('');
     
     let h='<div class="eq-result-card">';
@@ -8750,7 +8945,7 @@ window.addEventListener("popstate",e=>{
   const v=e.state&&e.state.v;
   if(v&&$(v+"V")){_navPop=true;try{go(v)}finally{_navPop=false}}
 });
-const NAV_PARENT={gg:"tools",shifts:"tools",notes:"tools",flow:"tools",handHistory:"tools"};
+const NAV_PARENT={files:"tools",gg:"tools",shifts:"tools",notes:"tools",flow:"tools",handHistory:"tools"};
 function go(v){if(!_navPop)navPush(v);navRecentAdd(v);var _ml=document.querySelector(".main");if(_ml)_ml.scrollTop=0;const nv=document.querySelector('.bnav-t[data-v="'+v+'"]')?v:(NAV_PARENT[v]||v);document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===nv));document.querySelectorAll(".dn-t").forEach(t=>t.classList.toggle("on",t.dataset.v===nv));document.querySelectorAll(".hd-item").forEach(t=>t.classList.toggle("on",t.dataset.v===nv));closeHamburgerMenu();document.querySelectorAll(".view").forEach(x=>{x.classList.remove("on");x.style.opacity="0"});const vw=$(v+"V");vw.classList.add("on");requestAnimationFrame(()=>{vw.style.opacity="";vw.querySelectorAll(".gp,.br-stat,.note-card,.br-chart-box,.br-form,.settings-category").forEach((el,i)=>{if(i>10)return;el.style.animation="none";el.offsetHeight;el.style.animation="slideUp .35s var(--e) "+i*30+"ms backwards"})});setTimeout(updateNavIndicator,20);setTimeout(()=>{if(typeof sxfScan==="function")sxfScan()},450);if(v==="trainer")popTrSel();if(v==="files")initFs();if(v==="bankroll"){if(!window._brTabRestored){window._brTabRestored=1;const bt=LG("ps_br_tab","brDash");if(bt&&bt!=="brDash")setTimeout(()=>switchBrTab(bt),0)}renderBrAll();}if(v==="editor"&&!viewerMode)showEditorMode();if(v==="trainer")renderStudyReminder();if(v==="settings"){loadSettingsUI();}if(v==="notes"){renderNotes();closeNoteEditor()}if(v==="tools"){initTools()}if(v==="flow"){initFlow()}if(v==="shifts"){initShifts()}if(v==="gg"){initGG()}if(v==="handHistory"){initHH()}if(v==="home"){renderHome()}}
 let _cfCb=null;
 function confirmAction(msg,name,cb){$("cfMsg").innerHTML=msg+(name?'<br><span class="cfn">'+escapeHtml(name)+"</span>":"");_cfCb=cb;$("cfOv").classList.add("open")}
@@ -9099,7 +9294,7 @@ function lrEdgePhrase(c){
   return out.slice(0,4).join(", ")||"nothing played here";
 }
 function lrCardsHtml(lb){const S2=["♠","♥","♦","♣"],r1=lb[0],r2=lb[1],suited=lb[2]==="s";const s1=Math.floor(Math.random()*4);let s2=suited?s1:(s1+1+Math.floor(Math.random()*3))%4;
-  const card=(r,s)=>'<span class="lr-card'+(s===1||s===2?" red":"")+'">'+(r==="T"?"10":r)+"<small>"+S2[s]+"</small></span>";return card(r1,s1)+card(r2,s2)}
+  const card=(r,s)=>'<span class="lr-card'+(s===1||s===2?" red":"")+'" data-suit="'+"shdc"[s]+'">'+(r==="T"?"10":r)+"<small>"+S2[s]+"</small></span>";return card(r1,s1)+card(r2,s2)}
 function lrStartPaint(){LR.paint={};LR.graded=null;LR.paintScore=null}
 function lrBindPaint(){
   const g=$("lrGrid");if(!g||LR.graded)return;
@@ -9607,7 +9802,7 @@ const Tr={active:false,range:null,acts:null,cur:null,trainIdx:null,stats:{ok:0,t
     $("tType").textContent=t==="pair"?"POCKET PAIR":t==="suited"?"SUITED":"OFFSUIT";$("tFb").textContent="";$("tFb").className="tfb";$("tExp").innerHTML="";$("tExp").className="texp";$("tCard").className="tcard";
     $("hCnt").textContent=(this.stats.total+1)+(this.limit>0?"/"+this.limit:"");$("trNextBtn").style.display="none";$("tBtns").style.display="";
     const sb=$("streakB");if(this.stats.streak>=3){sb.classList.add("show");$("streakN").textContent=this.stats.streak}else sb.classList.remove("show");
-    const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));
+    const ct=$("tCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'" data-rank="'+c.rank+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p,i)=>setTimeout(()=>p.classList.add("dealt"),60+i*150));
     document.querySelectorAll("#tBtns .tabtn").forEach(b=>{b.disabled=false;b.classList.remove("tabtn-correct","tabtn-wrong")});this._ts=Date.now()},
   answer(ai){if(!this.cur||this.waiting)return;const{r,c,label,type}=this.cur;const ca=this.range[r][c];const J=trJudge(ca,ai,this.acts),ok=J.ok;
   this.stats.prec=(this.stats.prec||0)+(J.max>0?J.v/J.max:(ca.length?0:1));this.stats.precN=(this.stats.precN||0)+1;
@@ -9651,7 +9846,7 @@ const Gauntlet={active:false,pool:[],cur:null,timer:null,timeLeft:5,stats:{ok:0,
     this.cur={r:p.r,c:p.c,cards,label:hl(p.r,p.c),type:t,acts:p.acts,range:p.range,rangeName:p.rangeName,trainIdx};
     $("gRangeName").textContent=p.rangeName;$("gFb").textContent="";$("gFb").className="tfb";$("gExp").textContent="";$("gExp").className="texp";$("gCard").className="tcard gaunt-card";$("gCnt").textContent="#"+(this.stats.total+1);
     const sb=$("gStreakB");if(this.stats.streak>=3){sb.classList.add("show");$("gStreakN").textContent=this.stats.streak}else sb.classList.remove("show");
-    const ct=$("gCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p2,i)=>setTimeout(()=>p2.classList.add("dealt"),40+i*100));
+    const ct=$("gCards");ct.innerHTML=cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="pcard '+(red?"red":"blk")+'" data-suit="'+c.suit+'" data-rank="'+c.rank+'"><div class="ctl"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div><span>"+c.rank+'</span><span class="cs">'+SYM[c.suit]+'</span><div class="cbr"><span>'+c.rank+"</span><span>"+SYM[c.suit]+"</span></div></div>"}).join("");ct.querySelectorAll(".pcard").forEach((p2,i)=>setTimeout(()=>p2.classList.add("dealt"),40+i*100));
     const bc=$("gBtns");bc.innerHTML="";trainIdx.forEach((ai,i)=>{const a=p.acts[ai];const b=document.createElement("button");b.className="tabtn";b.style.setProperty("--ac",a.color);b.style.borderColor=a.color;b.style.color=a.color;b.innerHTML='<span class="tab-k">'+(i+1)+"</span>"+escapeHtml(a.name);b.dataset.kb=i+1;b.addEventListener("click",()=>this.answer(ai));bc.appendChild(b)});
     this.timeLeft=5;const tf=$("gTimer");tf.style.transition="none";tf.style.width="100%";requestAnimationFrame(()=>{tf.style.transition="width .1s linear"});
     this.timer=setInterval(()=>{this.timeLeft-=0.1;const pct=Math.max(0,this.timeLeft/5*100);tf.style.width=pct+"%";tf.style.background=pct<30?"var(--rs)":pct<60?"var(--gd)":"var(--mt)";if(this.timeLeft<=0){clearInterval(this.timer);this.answer(-1)}},100)},
@@ -14226,7 +14421,7 @@ function openQuickHand(){
 function qhRender(){
   const used=new Set([...QH.hole,...QH.board].map(c=>c.rank+c.suit)),cur=QH.mode==="hole"?QH.hole:QH.board,max=QH.mode==="hole"?2:5;
   $("qhMode").querySelectorAll("button").forEach(b=>{b.classList.toggle("on",b.dataset.qm===QH.mode);b.onclick=()=>{QH.mode=b.dataset.qm;QH.rank=null;qhRender()}});
-  const card=(c,i,kind)=>'<button class="qh-card '+(c.suit==="h"||c.suit==="d"?"red":"blk")+'" data-rm="'+kind+":"+i+'" title="Tap to remove">'+c.rank+SYM[c.suit]+"</button>";
+  const card=(c,i,kind)=>'<button class="qh-card '+(c.suit==="h"||c.suit==="d"?"red":"blk")+'" data-suit="'+c.suit+'" data-rm="'+kind+":"+i+'" title="Tap to remove">'+c.rank+SYM[c.suit]+"</button>";
   const slot=(n,kind)=>Array.from({length:n},(_,i)=>'<span class="qh-slot'+(kind===QH.mode?" act":"")+'"></span>').join("");
   $("qhCards").innerHTML='<div class="qh-grp"><span>You</span>'+QH.hole.map((c,i)=>card(c,i,"hole")).join("")+slot(2-QH.hole.length,"hole")+'</div><div class="qh-grp"><span>Board</span>'+QH.board.map((c,i)=>card(c,i,"board")).join("")+slot(5-QH.board.length,"board")+"</div>";
   $("qhCards").onclick=e=>{const b=e.target.closest("[data-rm]");if(!b)return;const [k,i]=b.dataset.rm.split(":");QH[k].splice(+i,1);QH.mode=k;qhRender()};
@@ -14653,7 +14848,7 @@ function parseCardStr(str){
   }
   return cards;
 }
-function renderCommCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="comm-card '+(red?"red":"blk")+(dealt?" dealt":"")+'" data-suit="'+c.suit+'"><span>'+c.rank+'</span><div class="mc-suit">'+SYM[c.suit]+'</div></div>'}).join("")}
+function renderCommCardsHtml(cards,dealt){return cards.map(c=>{const red=c.suit==="h"||c.suit==="d";return'<div class="comm-card '+(red?"red":"blk")+(dealt?" dealt":"")+'" data-suit="'+c.suit+'" data-rank="'+c.rank+'"><span>'+c.rank+'</span><div class="mc-suit">'+SYM[c.suit]+'</div></div>'}).join("")}
 /* ── New Hand Log: multi-player + card-picker state ── */
 let hhPlayersState=[];
 let hhBoardState={flop:[],turn:[],river:[]};
@@ -16174,13 +16369,14 @@ function initNoteTags(){initTags("nTagsW","nTagsI","nTags");["noteTitle","noteBo
 const THEMES=[{id:"rose",name:"Midnight Rose",icon:"🌸",sub:"Rose & lilac glow",dots:["#f76fae","#c3a6ff","#6fdcb6"]},{id:"blush",name:"Blush",icon:"🎀",sub:"Soft pink · light",dots:["#d63b7f","#7d5fd6","#f8dfe8"]},{id:"rosegold",name:"Rose Gold",icon:"💗",sub:"Warm & glam",dots:["#eba595","#e8a8ca","#f0c987"]},{id:"royale",name:"Lavender Haze",icon:"💜",sub:"Lilac & pink",dots:["#bb9dff","#ff9ccc","#72dcc0"]},{id:"obsidian",name:"Obsidian Gold",icon:"🌑",sub:"Dark & classic",dots:["#c8a55c","#8b9cc4","#6ec89b"]},{id:"emerald",name:"Emerald Felt",icon:"🌿",sub:"Casino green",dots:["#34d399","#67e8f9","#fbbf24"]},{id:"ocean",name:"Deep Ocean",icon:"🌊",sub:"Cool blue",dots:["#3b82f6","#a78bfa","#6ee7b7"]},{id:"daylight",name:"Daylight",icon:"☀️",sub:"Clean & bright",dots:["#b8863f","#4a5fc0","#1f9d68"]}];
 function applyTheme(id){document.documentElement.setAttribute("data-theme",id);try{document.querySelector('meta[name="theme-color"]').setAttribute("content",getComputedStyle(document.documentElement).getPropertyValue("--b1").trim()||"#120c18")}catch(e){}LS("ps_theme",id);renderThemeGrid();renderBrAll();toast(THEMES.find(t=>t.id===id)?.icon+" Theme applied")}
 const DECKS=[
+  {id:"ggfull",name:"GG Full Colour",icon:"🟥",sub:"GGPoker-style solid four-colour cards",dots:["#2a2a2e","#e0283c","#1d6fe0","#1e9e45"]},
   {id:"classic",name:"Classic",icon:"🂡",sub:"Traditional red & black",dots:["#c0282a","#1a1a2e","#c0282a","#1a1a2e"]},
   {id:"fourcolor",name:"Four-Color",icon:"🎨",sub:"Easier to read suits at a glance",dots:["#c0282a","#2563eb","#16a34a","#1a1a2e"]},
   {id:"highcontrast",name:"High Contrast",icon:"⚡",sub:"Bold, dark cards & vivid suits",dots:["#ff3b5c","#00d4ff","#00ff88","#f4f4f5"]},
   {id:"minimal",name:"Minimal",icon:"◻️",sub:"Clean, flat, no gradients",dots:["#e11d48","#0f172a","#e11d48","#0f172a"]}
 ];
 function renderDeckGrid(){
-  var cur=LG("ps_deck","classic");
+  var cur=LG("ps_deck","ggfull");
   var g=$("deckGrid");
   if(!g)return;
   g.innerHTML=DECKS.map(function(d){
@@ -16352,8 +16548,8 @@ function updateUserGreeting(){const name=LG("ps_username","");const icon=LG("ps_
 
 /* ══ NAVIGATION SHORTCUTS: custom bottom bar · tap-again · jump-anywhere search · keyboard ══ */
 const NAV_ITEMS={home:["🏠","Home"],editor:["♠️","Editor"],trainer:["🎯","Train"],files:["📁","Files"],bankroll:["💰","Bank"],gg:["📈","GG"],shifts:["⏱️","Shifts"],handHistory:["📔","Hands"],notes:["📝","Notes"],flow:["🧠","Flow"],tools:["🛠","Tools"],settings:["⚙️","More"]};
-const NAV_ORDER=Object.keys(NAV_ITEMS),NAV_DEFAULT=["home","editor","trainer","files","bankroll","tools","settings"];
-function navItems(){let l=LG("ps_bnav",null);if(!Array.isArray(l)||!l.length)l=NAV_DEFAULT;l=NAV_ORDER.filter(k=>l.includes(k)&&k!=="settings");return[...l.slice(0,6),"settings"]}
+const NAV_ORDER=Object.keys(NAV_ITEMS),NAV_DEFAULT=["home","editor","trainer","gg","bankroll","tools","settings"];
+function navItems(){let l=LG("ps_bnav",null);if(!LG("ps_bnav_gg",false)){try{let c=Array.isArray(l)&&l.length?l.slice():NAV_DEFAULT.slice();if(!c.includes("gg")){const i=c.indexOf("files");if(i>=0)c[i]="gg";else{const nonS=c.filter(k=>k!=="settings");if(nonS.length<6)c.push("gg");else c[c.lastIndexOf(nonS[nonS.length-1])]="gg"}}LS("ps_bnav",c);l=c}catch(e){}LS("ps_bnav_gg",true)}if(!Array.isArray(l)||!l.length)l=NAV_DEFAULT;l=NAV_ORDER.filter(k=>l.includes(k)&&k!=="settings");return[...l.slice(0,6),"settings"]}
 const NAV_GROUPS=[["Study",["editor","trainer","files","tools","flow"]],["Play & track",["bankroll","gg","shifts","handHistory","notes"]]];
 const NAV_FULL={home:"Home",editor:"Range Editor",trainer:"Trainer",files:"Files",bankroll:"Bankroll",gg:"GG Results",shifts:"Shift Log",handHistory:"Hand History",notes:"Notes",flow:"Flowcharts",tools:"Tools",settings:"Settings"};
 // desktop top bar + hamburger drawer follow the user's pinned tabs and include every screen
@@ -16442,7 +16638,7 @@ function impShowTab(t){["N","J","S"].forEach(x=>{$("impTab"+x).classList.toggle(
 
 
 // ═══ INIT ═══
-(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=LG("ps_deck","classic");document.documentElement.setAttribute("data-deck",dk);const fnt=FONTS.find(x=>x.id===LG("ps_font","sora"));if(fnt)document.documentElement.style.setProperty("--ff",fnt.stack);// Refresh DACTS after theme
+(function init(){const t=LG("ps_theme","rose");document.documentElement.setAttribute("data-theme",t);const dk=(()=>{let d=LG("ps_deck","ggfull");if(!LG("ps_deck_gg_auto",false)){d="ggfull";LS("ps_deck","ggfull");LS("ps_deck_gg_auto",true)}return d})();document.documentElement.setAttribute("data-deck",dk);const fnt=FONTS.find(x=>x.id===LG("ps_font","sora"));if(fnt)document.documentElement.style.setProperty("--ff",fnt.stack);// Refresh DACTS after theme
 const fd=getDACTS();DACTS[0]=fd[0];DACTS[1]=fd[1];DACTS[2]=fd[2];if(!LG("ps_cur",null))S.acts=JSON.parse(JSON.stringify(DACTS));
 (function(){const set=()=>{const h=Math.max(window.innerHeight||0,(window.visualViewport&&window.visualViewport.height)||0,document.documentElement.clientHeight||0);if(h>0)document.documentElement.style.setProperty("--app-h",h+"px")};set();window.addEventListener("resize",set);window.addEventListener("orientationchange",()=>setTimeout(set,250));if(window.visualViewport)window.visualViewport.addEventListener("resize",set);setTimeout(set,500)})();
 Ed.init();checkDirty();resetBrForm();initNoteTags();try{a11yInit()}catch(e){console.warn(e)}
@@ -17428,7 +17624,7 @@ psSyncChCols();
         e._tint=1;if(e.closest(SKIP)||!e.getClientRects().length)continue;{const b=e.closest("button,[role=tab]");if(b&&b.parentElement&&b.parentElement.querySelector(":scope>.on,:scope>.sel,:scope>.active"))continue}const cs=getComputedStyle(e);const fill=cs.webkitTextFillColor;if(fill&&/rgba\(0, 0, 0, 0\)|transparent/.test(fill))continue;
         const c=rgb(cs.color);if(!c)continue;const L=level(c);if(L<0)continue;
         const big=(+cs.fontWeight>=700)||parseFloat(cs.fontSize)>=15;const acc=accentFor(e,cs);
-        const val=big&&L<=1?"color-mix(in srgb,"+acc+" 72%,var(--t1))":L===0?(big?"color-mix(in srgb,"+acc+" 72%,var(--t1))":"color-mix(in srgb,"+acc+" 48%,var(--t1))"):L===1?"color-mix(in srgb,"+acc+" 55%,var(--t2))":"color-mix(in srgb,"+acc+" 42%,var(--t3))";
+        const val=big&&L<=1?"color-mix(in srgb,"+acc+" 78%,var(--t1))":L===0?"color-mix(in srgb,"+acc+" 30%,var(--t1))":L===1?"color-mix(in srgb,"+acc+" 22%,var(--t2))":"color-mix(in srgb,"+acc+" 16%,var(--t3))";
         todo.push([e,val])}});
       todo.forEach(([e,v])=>{e.style.setProperty("color",v,"important");e.dataset.tinted="1"})}catch(err){console.warn("psTint",err)}}
   let q=false;function schedule(){if(q)return;q=true;setTimeout(()=>{q=false;run()},220)}
