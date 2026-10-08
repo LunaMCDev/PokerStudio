@@ -1573,8 +1573,6 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 #bankrollV #brNav button:not(.on){color:var(--t3)}
 #bankrollV .br-hist-count{color:var(--li)}
 #bankrollV .goal-summary b{color:var(--pk2)}
-.bal-hidden .b3-mood b{display:inline-block;min-width:2.8em;vertical-align:bottom}
-.bal-hidden .b3-mood b::before{font-size:11px}
 .b3-tx{display:flex;flex-direction:column;gap:4px}
 .b3-txr{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 10px;border-radius:11px;background:var(--b0);border:1px solid var(--bd)}
 .b3-txi{flex:0 0 32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800}
@@ -2504,20 +2502,6 @@ button.rc-leak{display:block;width:100%;text-align:left;background:transparent;b
 .sd-acts{display:flex;gap:8px;padding:16px 22px}
 .sd-acts .btn{flex:1;text-align:center}
 @media(max-width:480px){.br-stats{grid-template-columns:repeat(2,1fr)}}
-
-/* Hide-balance mode — actually blurs the numbers now */
-/* Hide-balance mode — amounts swap for clean dots (no blur halos / boxy edges); charts with money axes are veiled */
-.bal-hidden :is(.brs-val,.brs-v,.br-hero-val,.lm-val,.profit,.live-timer,.b3-chip b,.b2-res,.bsc-group-sub,.b3-txa,.b3-mood b,.b3-pd,.b2-s .pos,.b2-s .neg,.br-result-live,.goal-nums b,.goal-nums span,.goal-nums em){
-  color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;filter:none!important;user-select:none;position:relative;white-space:nowrap}
-.bal-hidden :is(.brs-val,.brs-v,.br-hero-val,.lm-val,.profit,.live-timer,.b3-chip b,.b2-res,.bsc-group-sub,.b3-txa,.b3-mood b,.b3-pd,.b2-s .pos,.b2-s .neg,.br-result-live,.goal-nums b,.goal-nums span,.goal-nums em)::before{
-  content:"••••";position:absolute;left:0;top:50%;transform:translateY(-50%);color:var(--t3);-webkit-text-fill-color:var(--t3);letter-spacing:.12em;font-family:var(--fm);font-weight:800;font-style:normal;pointer-events:none}
-.bal-hidden :is(.b2-res,.b3-txa,.bsc-group-sub,.profit)::before{left:auto;right:0}
-.bal-hidden .br-hero-val::before{content:"••••••";letter-spacing:.14em}
-.bal-hidden .br-hero-sub{visibility:hidden}
-.bal-hidden .br-hero-spark{opacity:.22}
-.bal-hidden .br-chart-h,.bal-hidden #brAnalCharts .br-chart-h{position:relative}
-.bal-hidden .br-chart-h canvas{visibility:hidden}
-.bal-hidden .br-chart-h::after{content:"🙈 Hidden — tap the eye to show";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--t4);border:1px dashed var(--bd2);border-radius:12px}
 
 /* ════════════════════════════════════════════════════
    HAND HISTORY & PLAYER NOTES
@@ -4751,7 +4735,7 @@ input[type="checkbox"]:checked:focus{background:var(--pk)}
 .hm-links button{display:flex;align-items:center;gap:8px;padding:10px 11px;border-radius:12px;background:var(--b1);border:1px solid var(--bd);color:var(--t2);font-size:11.5px;font-weight:600;cursor:pointer;text-align:left;min-width:0}
 .hm-links button i{font-style:normal;font-size:15px;flex-shrink:0}
 @media(hover:hover){.hm-links button:hover{border-color:var(--bd3);color:var(--t1)}}
-.bal-hidden .hm-big::before{content:"••••••";letter-spacing:.14em}
+
 
 .hm-card{display:flex!important;flex-direction:column;justify-content:flex-start;align-items:stretch}
 .hm-card>*{width:100%}
@@ -5554,7 +5538,7 @@ html body .shp-stats>div b:not(.pos):not(.neg),html body .shm b{color:color-mix(
 
 /* ═══ Stats polish (v83): numbers in the UI sans, crisp tiles ═══ */
 :root{--fm:var(--ff)}
-code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.edq-ex code,.ggdel-lbl code{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace!important}
+code,kbd,pre,.ggs-preview,.note-preview-pane code,.lr-sl code,.ar-sh-line code,.edq-ex code,.ggdel-lbl code{font-family:var(--ff)!important}
 .gg-table .num,.gg-table td,table td,.chx-wk,.shr-r b,.gg-an-kv b,.gg-fun-r b{font-variant-numeric:tabular-nums}
 :is(.brs-val,.brs-v,.br-hero-val,.hm-big,.gg-hero-v,.gg-an-bigv,.lm-val,.shift-sum-val,.chx-bal,.g2-v,.gg-bs-v,.bcg-val,.eq-pct-val,.ar-hero-pct){letter-spacing:-.025em;font-feature-settings:"ss01"}
 #bankrollV .brs-val,.view:not(#bankrollV) .brs-val{font-weight:800!important;letter-spacing:-.03em}
@@ -6248,7 +6232,7 @@ html body .ed-tb.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
 .gp-bar{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}.gp-bar .minp{margin:0}
 .gp-note{font-size:10.5px;color:var(--t3);margin:6px 2px 10px;line-height:1.45}
 .gp-t{border-radius:14px;overflow:hidden;border:1px solid var(--bd);background:var(--b1)}
-.gp-hd,.gp-r{display:grid;grid-template-columns:minmax(0,1fr) 44px 40px 38px 70px 38px 24px;gap:4px;align-items:center;padding:9px 10px}
+.gp-hd,.gp-r{display:grid;grid-template-columns:minmax(0,1fr) 40px 36px 34px 70px 52px 20px;gap:4px;align-items:center;padding:9px 10px}
 .gp-hd{background:color-mix(in srgb,var(--li) 10%,var(--b2));font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--t3)}
 .gp-hd>span:first-child{grid-column:1}.gp-hd::after{content:""}
 .gp-th{font:inherit;color:inherit;text-align:right;letter-spacing:inherit;text-transform:inherit;padding:0}.gp-th.on{color:var(--pk2)}
@@ -6269,6 +6253,117 @@ html body .gp-sum b.pos,html body .gp-r .pos{color:var(--mt)!important}html body
 html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in srgb,var(--gd) 40%,var(--bd))!important;background:color-mix(in srgb,var(--gd) 12%,var(--b2))!important;margin-left:6px}
 #edLive .edl-main{display:flex;align-items:center;gap:8px;flex:1;width:100%}
 .edl-files{margin-left:auto;padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:800;white-space:nowrap;color:var(--gd2);background:color-mix(in srgb,var(--gd) 12%,var(--b2));border:1px solid color-mix(in srgb,var(--gd) 40%,var(--bd))}
+
+/* v136 · grouped range-check mistakes */
+.rc-multi{margin:8px 0;padding:8px 12px;border-radius:10px;font-size:11.5px;color:var(--t2);background:color-mix(in srgb,var(--gd) 10%,var(--b1));border:1px solid color-mix(in srgb,var(--gd) 28%,var(--bd))}
+.rc-grp{align-items:flex-start}
+.rc-grp .rc-row-t b{color:var(--gd2)}
+.rc-gi{display:flex;gap:8px;align-items:flex-start;margin-top:7px;padding-top:7px;border-top:1px dashed var(--bd)}
+.rc-gn{flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;background:color-mix(in srgb,var(--rs) 20%,var(--b2));color:var(--rs);margin-top:1px}
+.rc-gi-t{font-size:12px;font-weight:700;color:var(--t1)}
+
+/* ═══ v138 · one font across the app (your chosen UI font); logo + card faces keep their own lettering ═══ */
+html,html body{--fd:var(--ff);--fm:var(--ff)}
+html body :is(h1,h2,h3,h4,.section-head h2,.br-chart-box h3,.br-chart-box>h3,.hm-hi,.mdl h3,.slbl,.tool-card h3,.tk-head h2,.gg-hands-hdr h3,.ggr-title,.br-hist-hdr h3,.lsc-title,.bsc-group-name,.br-hero-label,.brs-sub,.b3-sec,.b3-empty b,.es-title,.xp-title,.teach-title,.tsh-title,.gaunt-title,.hhr-title,.shift-cal-month-label,.lvlup-title,.chx-bal,.eq2-vs,.tpb-label,.hud-ref-sec h4,.ar-hero-tight,.fmov-title,.shr-n){font-family:var(--ff)!important;font-style:normal!important;letter-spacing:-.01em}
+html body :is(.section-head h2,.hm-hi){font-weight:800!important}
+html body :is(.br-chart-box>h3,.br-chart-box h3,.gg-hands-hdr h3,.br-hist-hdr h3){font-weight:800!important}
+html body :is(input,select,textarea,button,code,pre,kbd,.mono){font-family:var(--ff)}
+/* ═══ text never spills out of its box ═══ */
+html body .seg-row{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:6px}
+html body .seg-row>button{min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.2;padding:8px 6px;font-size:11.5px}
+html body :is(.btn,.gg-chip,.br-act,.b3-chip,.br-stat,.gg-bs-tile,.chx-tile,.brd-k,.hm-kv>div,.g2-m,.gp-sum>div){min-width:0}
+html body :is(.brs-val,.g2-v,.brd-k b,.chx-tile b,.gg-bs-v){overflow-wrap:anywhere}
+html body .br-act{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body .btn.btn-xs{white-space:normal;line-height:1.2}
+
+/* v139 home redesign */
+#homeV .hm-hero{margin-bottom:12px;--hc:var(--pk)}
+#homeV .hm-hero .hm-big{font-size:38px;line-height:1.05;margin:2px 0 10px}
+.hm-cx{margin-top:12px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--mt) 9%,transparent);border:1px solid color-mix(in srgb,var(--mt) 28%,transparent);cursor:pointer}
+.hm-cx-t{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--t2);margin-bottom:7px;min-width:0}
+.hm-cx-t span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hm-cx-t b{font-size:12px}.hm-cx-t em{font-style:normal;font-size:11px;color:var(--mt);font-weight:700;white-space:nowrap}
+.hm-cx small{display:block;margin-top:6px;font-size:10.5px;color:var(--t3)}
+.hm-sec-r{display:flex;align-items:center;justify-content:space-between}
+.hm-sec-r em{font-style:normal;letter-spacing:.3px;text-transform:none;font-size:11px;color:var(--pk)}.hm-sec-r em.ok{color:var(--wn,#4ade80)}
+#homeV .hm-today{padding:4px 12px;margin-bottom:18px;cursor:default;--hc:var(--li)}
+.hm-row{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--bd);min-width:0}
+.hm-row:last-child{border-bottom:0}.hm-row[role=button]{cursor:pointer}
+.hm-ri2{flex:0 0 34px;height:34px;display:grid;place-items:center;border-radius:11px;font-size:16px;background:color-mix(in srgb,var(--hc) 16%,transparent);color:var(--hc);font-weight:900}
+.hm-row.done .hm-ri2{background:color-mix(in srgb,var(--wn,#4ade80) 18%,transparent);color:var(--wn,#4ade80)}
+.hm-rt{flex:1;min-width:0}.hm-rt b{display:block;font-size:13px;color:var(--t1);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hm-row.done .hm-rt b{color:var(--t3);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--t3) 60%,transparent)}
+.hm-rt small{display:block;font-size:11px;color:var(--t3);margin-top:2px;line-height:1.35}
+.hm-rt .hm-bar{margin:7px 0 1px;height:4px}
+.hm-row .hm-bar span{background:var(--hc)!important}
+.hm-rb{flex-shrink:0;padding:7px 12px;border-radius:10px;font-size:11.5px;font-weight:700;cursor:pointer;border:1px solid color-mix(in srgb,var(--hc,var(--pk)) 45%,transparent);background:color-mix(in srgb,var(--hc,var(--pk)) 16%,transparent);color:var(--hc,var(--pk))}
+.hm-rb.ghost{background:transparent;color:var(--t3);border-color:var(--bd)}
+.hm-sh-add{align-self:flex-start;margin-top:10px;--hc:var(--ic)}
+@media(min-width:760px){.hm-grid .hm-br{grid-row:auto}.hm-links{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}}
+
+/* v140 hide amounts */
+.bal-hidden .bm-p{color:var(--t3)!important;-webkit-text-fill-color:var(--t3)!important;background-image:none!important;text-shadow:none!important;letter-spacing:.08em}
+.hm-eye{margin-left:auto;margin-right:10px}
+.section-head .gg-eye{margin-left:auto}
+.bal-eye[aria-pressed=true]{background:color-mix(in srgb,var(--pk) 20%,transparent)!important;border-color:color-mix(in srgb,var(--pk) 50%,transparent)!important}
+
+/* v141 share options */
+#ggShareBody .ggs-opts{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+#ggShareBody .seg-row.ggs-mini{display:inline-grid!important;grid-template-columns:repeat(2,minmax(58px,auto))!important;gap:4px;width:auto;margin:0}
+#ggShareBody .seg-row.ggs-mini button{padding:9px 14px;min-height:0}
+#ggShareBody .seg-row.ggs-mini button:disabled{opacity:.35;cursor:not-allowed}
+
+/* v142 image looks */
+#ggShareBody .ggs-look{display:flex;flex-direction:column;gap:10px;margin:4px 0 12px;padding:12px;border-radius:14px;background:var(--b0);border:1px solid var(--bd)}
+.ggl-row{display:flex;align-items:center;gap:10px;min-width:0}
+.ggl-row>b{flex:0 0 52px;font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--t3)}
+.ggl-sw{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px;min-width:0}
+.ggl-sw::-webkit-scrollbar{display:none}
+.ggl-sty,.ggl-acc{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:2px;cursor:pointer;color:var(--t3)}
+.ggl-sty i{display:block;width:46px;height:32px;border-radius:9px;border:2px solid var(--bd2);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.ggl-acc i{display:block;width:28px;height:28px;border-radius:50%;border:2px solid var(--bd2)}
+.ggl-sty span,.ggl-acc span{font-size:9.5px;font-weight:700}
+.ggl-sty.sel i,.ggl-acc.sel i{border-color:var(--pk);box-shadow:0 0 0 2px color-mix(in srgb,var(--pk) 35%,transparent)}
+.ggl-sty.sel span,.ggl-acc.sel span{color:var(--pk)}
+
+#ggShareBody .ggl-row{flex-direction:column;align-items:flex-start;gap:6px}
+#ggShareBody .ggl-row>b{flex:none}
+#ggShareBody .ggl-sw{flex-wrap:wrap;overflow:visible;gap:4px 2px}
+#ggShareBody .ggl-acc{flex:0 0 34px!important;width:34px!important;min-width:0!important;padding:2px 0!important;margin:0!important}
+#ggShareBody .ggl-sty{min-width:0!important;margin:0!important;padding:2px 3px!important}
+#ggShareBody .ggl-sty i{width:42px;height:28px}
+#ggShareBody .ggl-acc i{width:24px;height:24px}
+#ggShareBody .ggl-acc span{font-size:9px}
+#ggShareBody .ggl-sw{gap:4px 3px}
+
+/* v145 navigation */
+#moreM.mov{align-items:flex-end;padding:0}
+#moreM .more-sheet{width:100%;max-width:560px;margin:0 auto;border-radius:24px 24px 0 0;max-height:86vh;overflow:auto;padding:8px 16px calc(18px + env(safe-area-inset-bottom));background:var(--b1);border:1px solid var(--bd);border-bottom:0;animation:msUp .28s var(--e,ease) both}
+@keyframes msUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.ms-grab{width:42px;height:5px;border-radius:3px;background:var(--bd3,var(--bd2));margin:2px auto 10px}
+.ms-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ms-hd h3{font-size:20px;font-weight:800;margin:0}
+.ms-x{width:34px;height:34px;border-radius:50%;background:var(--b2);border:1px solid var(--bd);color:var(--t2);cursor:pointer}
+.ms-search{display:flex;align-items:center;gap:8px;width:100%;padding:11px 14px;border-radius:14px;background:var(--b0);border:1px solid var(--bd);color:var(--t3);font-size:13px;cursor:pointer;margin-bottom:6px;text-align:left}
+.ms-sec{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--t4);margin:14px 2px 7px}
+.ms-rec{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.ms-rec::-webkit-scrollbar{display:none}
+.ms-rec button{flex:0 0 auto;padding:8px 12px;border-radius:20px;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.ms-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ms-tile{position:relative;display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:14px;background:var(--b2);border:1px solid var(--bd);cursor:pointer;text-align:left;min-width:0;color:var(--t2)}
+.ms-tile.on{border-color:color-mix(in srgb,var(--pk) 60%,transparent);background:color-mix(in srgb,var(--pk) 10%,var(--b2))}
+.ms-ico{flex:0 0 34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--b0);font-size:17px}
+.ms-tx{min-width:0;display:flex;flex-direction:column}
+.ms-tx b{font-size:13px;color:var(--t1);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-tx small{font-size:10.5px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+.ms-pin{position:absolute;top:7px;right:9px;font-style:normal;font-size:7px;color:var(--pk)}
+.ms-foot{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.ms-foot button{padding:11px;border-radius:14px;background:var(--b0);border:1px solid var(--bd);color:var(--t2);font-size:12.5px;font-weight:700;cursor:pointer}
+[data-nav-back]{gap:4px!important}
+[data-nav-back] .nb-ar{font-size:17px;line-height:0;margin-top:-2px}
+.nav-flash{animation:navFlash 1.6s ease}
+@keyframes navFlash{0%,60%{box-shadow:0 0 0 3px color-mix(in srgb,var(--pk) 55%,transparent);border-radius:12px}100%{box-shadow:none}}
+.bnav-t[data-v="settings"] .bi{font-weight:900;font-size:17px}
 </style>
 </head>
 <body>
@@ -6309,19 +6404,23 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
 <!-- HOME -->
 <div id="homeV" class="view">
   <div class="hm-hello"><div><div class="hm-date" id="hmDate"></div><h1 class="hm-hi" id="hmHi">Welcome back</h1></div><div class="hm-streak" id="hmStreak"></div></div>
+  <div id="hmAlert"></div>
+  <div id="hmHero"></div>
   <div class="hm-quick">
     <button class="hm-q" style="--qc:var(--pk)" onclick="go('bankroll');setTimeout(()=>switchBrTab('brSess'),30)"><i>＋</i><b>Log session</b></button>
-    <button class="hm-q" style="--qc:var(--li)" onclick="go('trainer')"><i>🎯</i><b>Train</b></button>
-    <button class="hm-q" style="--qc:var(--ic)" onclick="go('shifts');setTimeout(()=>{try{openShiftForm()}catch(e){}},60)"><i>⏱</i><b>Log shift</b></button>
     <button class="hm-q" style="--qc:var(--mt)" onclick="go('gg');setTimeout(()=>{const f=$('ggFileInput');if(f)f.click()},80)"><i>📥</i><b>Import GG</b></button>
+    <button class="hm-q" style="--qc:var(--go,#f5c451)" onclick="go('bankroll');setTimeout(()=>{try{brDailyOpen()}catch(e){}},80)"><i>🎁</i><b>Add reward</b></button>
+    <button class="hm-q" style="--qc:var(--li)" onclick="go('trainer')"><i>🎯</i><b>Train</b></button>
   </div>
-  <div id="hmNow"></div>
+  <div id="hmToday"></div>
+  <div class="hm-sec">Your results</div>
   <div class="hm-grid" id="hmGrid"></div>
   <div id="hmRecent"></div>
   <div class="hm-sec">Jump back in</div>
   <div class="hm-links">
     <button onclick="go('editor')"><i>♠</i>Range editor</button><button onclick="go('files')"><i>📁</i>My ranges</button><button onclick="go('handHistory')"><i>📔</i>Hand history</button>
-    <button onclick="go('notes')"><i>📝</i>Notes</button><button onclick="go('flow')"><i>🧠</i>Flowcharts</button><button onclick="go('tools');setTimeout(()=>{showToolsSection('tlPLO');genPLOHand()},30)"><i>🎰</i>PLO trainer</button>
+    <button onclick="go('gg')"><i>📈</i>GG results</button><button onclick="go('shifts')"><i>⏱</i>Shift log</button><button onclick="go('notes')"><i>📝</i>Notes</button>
+    <button onclick="go('flow')"><i>🧠</i>Flowcharts</button><button onclick="go('tools');setTimeout(()=>{showToolsSection('tlPLO');genPLOHand()},30)"><i>🎰</i>PLO trainer</button><button onclick="go('tools')"><i>🛠</i>All tools</button>
   </div>
 </div>
 <div id="editorV" class="view on">
@@ -6587,7 +6686,7 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
 </div>
 <!-- NOTES -->
 <div id="notesV" class="view" style="max-width:900px;margin:0 auto">
-  <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
+  <button class="flow-back-btn" style="margin-bottom:12px" onclick="navBack()" data-nav-back>← Back</button>
   <div class="section-head"><span style="font-size:20px">📓</span><h2>Notes &amp; Players</h2></div>
   <nav class="br-sub-nav" id="notesHubNav">
     <button class="on" data-nh="notesMain">📝 My Notes</button>
@@ -6676,7 +6775,7 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
 
 <!-- HAND HISTORY -->
 <div id="handHistoryV" class="view" style="max-width:900px;margin:0 auto">
-  <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
+  <button class="flow-back-btn" style="margin-bottom:12px" onclick="navBack()" data-nav-back>← Back</button>
   <div class="section-head"><span style="font-size:20px">📔</span><h2>Hand History</h2></div>
     <div class="hhq-top" id="hhqTop"><button class="btn pri hhq-new" onclick="hhqOpen()">＋ Log a hand</button><span class="hhq-hint" id="hhqTopHint"></span></div>
     <div class="hhb-workspace hhq-closed" id="hhFormCard">
@@ -6906,7 +7005,7 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
 <div id="flowV" class="view">
   <!-- LIST VIEW -->
   <div id="flowListArea">
-    <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
+    <button class="flow-back-btn" style="margin-bottom:12px" onclick="navBack()" data-nav-back>← Back</button>
     <div class="section-head"><span style="font-size:20px">🧠</span><h2>Flowcharts</h2></div>
     <div class="setting-desc" style="margin-bottom:14px">Map out decision trees, study plans, or any thought process visually.</div>
     <button class="btn pri" style="width:100%;padding:14px;font-weight:800;margin-bottom:16px" onclick="createNewFlowchart()">+ New Flowchart</button>
@@ -6963,7 +7062,7 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
 </div>
 <!-- SHIFT LOG -->
 <div id="shiftsV" class="view">
-  <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
+  <button class="flow-back-btn" style="margin-bottom:12px" onclick="navBack()" data-nav-back>← Back</button>
   <div class="section-head"><span style="font-size:20px">⏱️</span><h2>Shift Log</h2><button class="sh-gear" onclick="openShiftSettings()" title="Shift settings">⚙</button></div>
   <div class="sh-tabs">
     <button class="mode-tab on" id="shiftTabOverview" onclick="shiftSwitchTab('overview')">📅 Overview</button>
@@ -7002,8 +7101,8 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
 </div>
 <!-- GG RESULTS -->
 <div id="ggV" class="view" style="max-width:900px;margin:0 auto">
-  <button class="flow-back-btn" style="margin-bottom:12px" onclick="go('tools')">← Back to Tools</button>
-  <div class="section-head"><span style="font-size:20px">📈</span><h2>GG Results</h2></div>
+  <button class="flow-back-btn" style="margin-bottom:12px" onclick="navBack()" data-nav-back>← Back</button>
+  <div class="section-head"><span style="font-size:20px">📈</span><h2>GG Results</h2><button class="b3-eye bal-eye gg-eye" onclick="toggleBal()" title="Hide amounts">👁</button></div>
   <input type="file" id="ggFileInput" accept=".txt,text/plain" multiple style="display:none" onchange="ggImportFiles(this.files)"/>
   <input type="file" id="ggPvInput" accept=".txt,text/plain" multiple style="display:none" onchange="ggPreviewFiles(this.files)"/>
   <div class="gg-toolbar">
@@ -7148,7 +7247,7 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v135</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v146</div>
   </div>
 </div>
 </div>
@@ -7204,6 +7303,7 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
     <label class="slbl">Type</label>
     <div class="seg-row" id="depPromoTypeRow">
       <button data-ptype="daily">📆 Daily</button>
+      <button data-ptype="leaderboard">🏆 Leaderboard</button>
       <button data-ptype="rakeback" class="sel">💵 Rakeback</button>
       <button data-ptype="highhand">🃏 High Hand</button>
       <button data-ptype="badbeat">💥 Bad Beat</button>
@@ -7214,7 +7314,8 @@ html body .ed-ib.ed-files{color:var(--gd2)!important;border-color:color-mix(in s
       <button type="button" data-amt="0.25" data-desc="Daily Freebie · Spin & Gold $0.25">🎟 Spin &amp; Gold <b>$0.25</b></button>
       <button type="button" data-amt="0.25" data-desc="Daily Freebie · Mystery Battle Royale $0.25">🎟 Mystery Battle Royale <b>$0.25</b></button>
       <button type="button" data-amt="" data-desc="Daily Freebie · ticket cashed">🏆 Ticket cashed <b>prize</b></button>
-      <button type="button" data-amt="" data-desc="Weekly mystery code">✉️ Weekly mystery code</button></div></div>
+      <button type="button" data-amt="" data-desc="Weekly mystery code">✉️ Weekly mystery code</button>
+      <button type="button" data-amt="" data-desc="Leaderboard prize" data-pt="leaderboard">🏆 Leaderboard prize</button></div></div>
   <div style="margin-bottom:10px"><label class="slbl" id="depAmtLabel">Amount</label><input class="minp" id="depAmt" type="number" placeholder="0.00" step="0.01" style="margin:0;font-size:16px;text-align:center;font-family:var(--fm)"/></div>
   <div style="margin-bottom:10px"><label class="slbl">Description</label><input class="minp" id="depDesc" placeholder="Optional..." style="margin:0"/></div>
   <div style="margin-bottom:10px"><label class="slbl">Date</label><input class="minp" id="depDate" type="date" style="margin:0"/></div>
@@ -8773,7 +8874,8 @@ function hcn(r,c){return r===c?6:c>r?4:12}
 function mkR(){return Array.from({length:13},()=>Array.from({length:13},()=>[]))}
 function $(id){return document.getElementById(id)}
 let _storageQuotaWarned=false;
-function LS(k,v){
+var _psDataGen=0;
+function LS(k,v){if(!/^ps_(recent_views|bnav|nav|launch|last|scroll|ui_)/.test(k))_psDataGen++;
   try{
     localStorage.setItem(k,JSON.stringify(v));
   }catch(e){
@@ -10544,9 +10646,15 @@ function ggFmt(c,bb){ // cents → "$1.23" or "12.5 bb" per unit toggle
 function ggRakeFmt(c,bb){if((window._ggUO||ggUnit)==="bb")return(c/bb).toFixed(2)+" bb";const v=c/100;return"$"+(v<0.01?v.toFixed(4):v.toFixed(3))}
 function ggSigned(c,bb){return(c>0?"+":"")+ggFmt(c,bb)}
 
+function ggViewSig(){try{const c=GGDB.cache||[];let mx=0,net=0;for(const h of c){if(h.ts>mx)mx=h.ts;net+=h.net}return[c.length,mx,net,ggUnit,document.documentElement.getAttribute("data-theme"),shD(new Date()),(typeof ggList!=="undefined"?ggList.tab:""),_psDataGenAway].join("|")}catch(e){return Math.random()+""}}
+let _ggSig=null,_psDataGenAway=0,_psGenSeen=0;
+/* any saved change made while away from the GG screen means it must be rebuilt */
 async function initGG(){
   $("ggUnitTog").querySelectorAll("button").forEach(b=>b.classList.toggle("on",b.dataset.u===ggUnit));
   await GGDB.all();
+  /* coming back to an unchanged GG screen: keep what's already drawn instead of rebuilding it */
+  if(_psDataGen!==_psGenSeen){_psDataGenAway++;_psGenSeen=_psDataGen}
+  if(_ggSig&&_ggSig===ggViewSig()&&$("ggV").querySelector(".gg-tabs,#ggTabs")){await ggBackfillRake();return}
   renderGG();
   await ggBackfillRake();
 }
@@ -10712,7 +10820,9 @@ async function ggClearAll(){
 function ggDelClose(){clearInterval(_ggDelT);_ggDelT=null;closeM("ggDelM")}
 function ggStakeFiltered(){const v=$("ggStakeFilter")?.value;const all=getGGHands();return v?all.filter(h=>h.bb===+v):all}
 
+function renderGG_sig(){try{_ggSig=ggViewSig()}catch(e){}}
 function renderGG(topOnly){
+  _psGenSeen=_psDataGen;renderGG_sig();
   const all=getGGHands(),ct=$("ggContent");if(!ct)return;
   {const pb=$("ggPvBar");if(pb){pb.style.display=GGPV?"":"none";pb.innerHTML=ggPvBarHtml()}const gv=$("ggV");if(gv)gv.classList.toggle("gg-pvmode",!!GGPV)}
   if(topOnly&&!$("ggTop"))topOnly=false;
@@ -11024,7 +11134,7 @@ function ggRcHandsList(res){
 }
 function ggRcHandsHtml(res){
   const f=ggList.rcf||"miss",p=ggList.rcp||"",g=ggList.rcg||"",srt=ggList.rcs||"sev";
-  const L=ggRcHandsList(res);window._rcList=L;
+  const L0=ggRcHandsList(res),G=ggRcGroup(L0,res),L=G.map(g=>g.items[0]);window._rcList=L;
   const cnt=k=>k==="miss"?res.filter(r=>r.verdict==="miss"&&!r.ex).length:k==="minor"?res.filter(r=>r.verdict==="minor"&&!r.ex).length:k==="ex"?res.filter(r=>r.ex).length:k==="todo"?res.filter(r=>r.verdict!=="ok"&&!r.ex&&!ggRcHasTag(r.h,RC_DONE)).length:k==="flag"?res.filter(r=>ggRcHasTag(r.h,RC_FLAG)).length:k==="done"?res.filter(r=>ggRcHasTag(r.h,RC_DONE)).length:res.length;
   const chip=(k,l)=>'<button class="'+(f===k?"on":"")+'" onclick="ggList.rcf=\''+k+'\';ggList.rcLimit=40;ggRenderList()">'+l+" <small>"+cnt(k)+"</small></button>";
   const poss=RC_POS_ORDER.filter(x=>res.some(r=>r.pos===x)),grps=RC_GROUPS.filter(x=>res.some(r=>r.grp===x));
@@ -11034,9 +11144,20 @@ function ggRcHandsHtml(res){
     +'<select class="sel-sm" onchange="ggList.rcs=this.value;ggRenderList()"><option value="sev"'+(srt==="sev"?" selected":"")+'>Worst first</option><option value="new"'+(srt==="new"?" selected":"")+'>Newest</option><option value="pot"'+(srt==="pot"?" selected":"")+">Biggest pot</option></select></div>"
     +(ggList.rcq?'<div class="rc-active">'+escapeHtml(L[0]?L[0].name:ggList.rcq)+' <button onclick="ggList.rcq=\'\';ggRenderList()">✕</button></div>':"");
   const lim=ggList.rcLimit||40;
-  h+=(L.length?'<div class="rc-list">'+L.slice(0,lim).map((r,i)=>ggRcRowHtml(r,i)).join("")+"</div>"+(L.length>lim?'<button class="btn btn-s" style="width:100%;margin-top:8px" onclick="ggList.rcLimit='+(lim+40)+';ggRenderList()">Show more ('+(L.length-lim)+")</button>":""):'<div class="rc-empty">'+(f==="todo"?"✨ Review queue is empty.":"No hands here.")+"</div>")+"</div>";
+  const multi=G.filter(g=>g.items.length>1).length;
+  if(multi)h+='<div class="rc-multi">🔁 <b>'+multi+'</b> hand'+(multi!==1?"s":"")+' with more than one mistake — grouped so you review them together</div>';
+  h+=(L.length?'<div class="rc-list">'+G.slice(0,lim).map((g,i)=>g.items.length>1?ggRcGroupHtml(g,i):ggRcRowHtml(g.items[0],i)).join("")+"</div>"+(G.length>lim?'<button class="btn btn-s" style="width:100%;margin-top:8px" onclick="ggList.rcLimit='+(lim+40)+';ggRenderList()">Show more ('+(G.length-lim)+")</button>":""):'<div class="rc-empty">'+(f==="todo"?"✨ Review queue is empty.":"No hands here.")+"</div>")+"</div>";
   return h;
 }
+// group mistakes by hand: a hand appears once, with every spot it was judged in, in the order they happened
+function ggRcGroup(L,res){const pos=new Map(res.map((r,i)=>[r,i])),m=new Map(),out=[];
+  L.forEach(r=>{const k=r.h.id;if(!m.has(k)){const g={h:r.h,items:[]};m.set(k,g);out.push(g)}m.get(k).items.push(r)});
+  out.forEach(g=>g.items.sort((a,b)=>(pos.get(a)??0)-(pos.get(b)??0)));if((ggList.rcs||"sev")==="sev"){const tot=g=>g.items.reduce((x,r)=>x+(r.ex?0:r.sev||0),0);out.sort((a,b)=>tot(b)-tot(a)||b.h.ts-a.h.ts)}return out}
+function ggRcGroupHtml(g,i){const h=g.h,fl=ggRcHasTag(h,RC_FLAG),done=ggRcHasTag(h,RC_DONE),worst=g.items.some(r=>r.verdict==="miss"&&!r.ex)?"miss":g.items[0].verdict;
+  return'<div class="rc-row rc-grp '+worst+(done?" done":"")+'" data-rci="'+i+'"><div class="gg-row-cards">'+ggMiniCards(h.hc)+'</div>'
+    +'<div class="rc-row-m"><div class="rc-row-t"><b>🔁 '+g.items.length+' mistakes in this hand</b>'+(done?'<span class="rc-done">✓ reviewed</span>':"")+'</div>'
+    +g.items.map((r,k)=>'<div class="rc-gi"><span class="rc-gn">'+(k+1)+'</span><div><div class="rc-gi-t">'+escapeHtml(r.name)+'</div><div class="rc-row-y">You <b class="'+r.verdict+'">'+escapeHtml(r.act)+"</b>"+(r.ex?' <span class="rc-exchip">'+ggRcExLabel(r.ex)+"</span>":r.verdict!=="ok"?' <span class="rc-sev">−'+r.sev+"</span>":"")+'</div><div class="rc-row-g">'+ggRcMixHtml(r.mix)+"</div></div></div>").join("")+"</div>"
+    +'<div class="rc-row-r"><div class="profit '+(Math.abs(h.net)<1e-9?"zero":h.net>0?"pos":"neg")+'">'+ggSigned(h.net,h.bb)+'</div><button class="rc-flag'+(fl?" on":"")+'" data-rcflag="'+i+'" title="Flag for review">🚩</button></div></div>'}
 function ggRcRowHtml(r,i){
   const h=r.h,fl=ggRcHasTag(h,RC_FLAG),done=ggRcHasTag(h,RC_DONE);
   return'<div class="rc-row '+(r.ex?"excused":r.verdict)+(done?" done":"")+'" data-rci="'+i+'"><div class="gg-row-cards">'+ggMiniCards(h.hc)+'</div>'
@@ -12427,7 +12548,7 @@ ggRenderNotesPanel=ggRWrap(ggRenderNotesPanel);
 {const _gnp=ggRenderNotesPanel;ggRenderNotesPanel=function(){const r=_gnp.apply(this,arguments);const nc=$("ggrNoteCount");if(nc&&ggR.hand){const n=(ggR.hand.cm||[]).length;nc.textContent=n?" · "+n:""}return r}}
 /* ══ Share a hand as readable text (for a coach / friends) ══ */
 const GG_SUIT_SYM={s:"♠",h:"♥",d:"♦",c:"♣"};
-let ggShareOpts=Object.assign({fmt:"readable",unit:"money",sym:true,notes:true,quiz:false},LG("ps_gg_share",{}));
+let ggShareOpts=Object.assign({fmt:"readable",unit:"money",sym:true,notes:true,quiz:false,hideStakes:false},LG("ps_gg_share",{}));
 function ggShAmt(c,bb,unit){
   if(unit==="bb"){const v=Math.round(c/bb*10)/10;return(Number.isInteger(v)?v:v.toFixed(1))+"bb"}
   const v=c/100;return"$"+v.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -12451,6 +12572,7 @@ function ggHandDesc(cards,board){
 function ggShCard(code,sym){return sym?code[0]+GG_SUIT_SYM[code[1]]:code}
 function ggShCards(arr,sym){return(arr||[]).map(c=>ggShCard(c,sym)).join(" ")}
 function ggHandToText(R,h,o){
+  if(o.hideStakes&&o.unit!=="bb")o=Object.assign({},o,{unit:"bb"});
   const S=R.states,end=S.length-1;
   const cut=o.quiz&&ggR.step<end?Math.max(1,ggR.step):end;
   const quiz=cut<end;
@@ -12463,7 +12585,7 @@ function ggHandToText(R,h,o){
   const signed=c=>o.unit==="bb"?sg(c)+ggShAmt(Math.abs(c),R.bb,"bb"):sg(c)+ggShAmt(Math.abs(c),R.bb,"money")+" ("+sg(c)+ggShAmt(Math.abs(c),R.bb,"bb")+")";
   const L=[];
   const d=new Date(h.ts).toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
-  L.push("GGPoker · Hold'em No Limit "+ggStakeLabel(R.bb)+" · "+R.maxSeats+"-max");
+  L.push("GGPoker · Hold'em No Limit "+(o.hideStakes?"":ggStakeLabel(R.bb)+" · ")+R.maxSeats+"-max");
   L.push(d+" · Hand #"+R.id);
   L.push("");
   const order=["UTG","UTG+1","LJ","HJ","CO","BTN","BTN/SB","SB","BB"];
@@ -12550,9 +12672,9 @@ function ggRenderShare(){
   $("ggShareBody").innerHTML=
     '<div class="seg-row ggs-fmt">'+seg("fmt","readable","📝 Readable")+seg("fmt","raw","🗂 Original GG history")+"</div>"
     +(readable?'<div class="ggs-opts"><div class="seg-row ggs-mini">'+seg("unit","money","$")+seg("unit","bb","bb")+'</div><div class="seg-row ggs-mini">'+seg("sym","true","A♠ K♥")+seg("sym","false","As Kh")+"</div>"
-      +tog("notes","Include my notes"+((ggR.hand.cm||[]).length||(ggR.hand.tags||[]).length?"":" (none yet)"))
+      +tog("hideStakes","🙈 Hide stakes")+tog("notes","Include my notes"+((ggR.hand.cm||[]).length||(ggR.hand.tags||[]).length?"":" (none yet)"))
       +(canQuiz?tog("quiz","Stop here — quiz"):"")+"</div>"
-      +(o.quiz?'<div class="ggs-hint">Quiz mode: shares the hand only up to the moment on the table, hides the result, and asks what to do next.</div>':"")
+      +(o.hideStakes?'<div class="ggs-hint">Stakes hidden — every amount is shown in big blinds so the stake can\'t be worked out.</div>':"")+(o.quiz?'<div class="ggs-hint">Quiz mode: shares the hand only up to the moment on the table, hides the result, and asks what to do next.</div>':"")
     :'<div class="ggs-hint">The exact hand history from GGPoker — your coach can load it into their tracker or replayer.</div>')
     +'<textarea class="ggs-preview" id="ggSharePreview" readonly>'+escapeHtml(text)+"</textarea>"
     +'<div class="ggs-actions"><button class="btn pri" onclick="ggShareCopy()">📋 Copy</button>'
@@ -12562,7 +12684,7 @@ function ggRenderShare(){
     const b=e.target.closest("[data-k],[data-t]");if(!b||b.disabled)return;
     if(b.dataset.k){const k=b.dataset.k;o[k]=k==="sym"?b.dataset.v==="true":b.dataset.v}
     else o[b.dataset.t]=!o[b.dataset.t];
-    LS("ps_gg_share",{fmt:o.fmt,unit:o.unit,sym:o.sym,notes:o.notes});
+    LS("ps_gg_share",{fmt:o.fmt,unit:o.unit,sym:o.sym,notes:o.notes,hideStakes:!!o.hideStakes,imgStyle:o.imgStyle,imgAcc:o.imgAcc,imgDeck:o.imgDeck});
     ggRenderShare();playSound("tick");
   };
 }
@@ -13466,7 +13588,7 @@ function hhRefreshCurrencyDisplays(){
   document.querySelectorAll(".hha-amt-prefix").forEach(el=>el.textContent=hhSym());
   renderHhbTable();
 }
-function brFmt(cents){const v=cents/100;const s=brSym();return(v<0?"-"+s:s)+Math.abs(v).toLocaleString("en-GB",{minimumFractionDigits:0,maximumFractionDigits:2})}
+function brFmt(cents){const v=cents/100;const s=brSym();return(v<0?"-"+s:s)+Math.abs(v).toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2})}
 function brParseDur(start,end){if(!start||!end)return 0;const[sh,sm]=start.split(":").map(Number);const[eh,em]=end.split(":").map(Number);let m=eh*60+em-(sh*60+sm);if(m<0)m+=1440;return m}
 function brFmtDur(m){if(!m)return"-";const h=Math.floor(m/60);return h>0?h+"h "+(m%60)+"m":(m%60)+"m"}
 function getBrBankroll(){const total=BR.sorted.reduce((a,s)=>a+s.resultCents,0);const startBR=(parseFloat(BR.d.settings?.startBankroll)||0)*100;const deps=(BR.d.deposits||[]).reduce((a,d)=>a+d.amt,0);return startBR+total+deps}
@@ -13523,9 +13645,9 @@ function delBrSess(id,bid){const b=bid?getBankrollById(bid):BR.d;if(!b)return;co
 function setupAC(inputId,acId,getList){const inp=$(inputId),ac=$(acId);if(!inp||!ac)return;inp._acList=getList;if(inp._acBound)return;inp._acBound=true;getList=()=>inp._acList();inp.addEventListener("input",()=>{const v=inp.value.toLowerCase();if(!v){ac.classList.remove("show");return}const m=getList().filter(x=>x.toLowerCase().includes(v));if(!m.length){ac.classList.remove("show");return}ac.innerHTML=m.slice(0,6).map(x=>"<div>"+escapeHtml(x)+"</div>").join("");ac.classList.add("show");ac.querySelectorAll("div").forEach(d=>d.onclick=()=>{inp.value=d.textContent;ac.classList.remove("show")})});inp.addEventListener("blur",()=>setTimeout(()=>ac.classList.remove("show"),200))}
 let balHidden=LG("ps_balhide",false);
 function toggleBal(){balHidden=!balHidden;LS("ps_balhide",balHidden);applyBalHide()}
-function applyBalHide(){["bankrollV","homeV"].forEach(id=>{const bv=$(id);if(bv)bv.classList.toggle("bal-hidden",!!balHidden)});syncBalToggles()}
-const PROMO_TYPE_LABELS={daily:"Daily Reward",rakeback:"Rakeback",highhand:"High Hand Bonus",badbeat:"Bad Beat Jackpot",otherpromo:"Promo"};
-const PROMO_TYPE_ICONS={daily:"📆",rakeback:"💵",highhand:"🃏",badbeat:"💥",otherpromo:"🎁"};
+function applyBalHide(){document.body.classList.toggle("bal-hidden",!!balHidden);["bankrollV","homeV"].forEach(id=>{const bv=$(id);if(bv)bv.classList.toggle("bal-hidden",!!balHidden)});try{bmApply()}catch(e){console.warn(e)}syncBalToggles()}
+const PROMO_TYPE_LABELS={daily:"Daily Reward",leaderboard:"Leaderboard Prize",rakeback:"Rakeback",highhand:"High Hand Bonus",badbeat:"Bad Beat Jackpot",otherpromo:"Promo"};
+const PROMO_TYPE_ICONS={daily:"📆",leaderboard:"🏆",rakeback:"💵",highhand:"🃏",badbeat:"💥",otherpromo:"🎁"};
 function depResetEdit(){const e=$("depEditId");if(e)e.value="";const db=$("depDelBtn");if(db)db.style.display="none";const ok=$("depOkBtn");if(ok)ok.textContent="Confirm"}
 function openDepEdit(id){
   const d=(BR.d.deposits||[]).find(x=>x.id===id);if(!d)return;
@@ -13733,7 +13855,7 @@ function openEndLive(){
   $("liveEndStack").value=isTourney?"":(liveData.currentStack!=null?(liveData.currentStack/100).toFixed(0):"");
   const inv=liveData.invested;
   $("liveEndSummary").innerHTML="Total invested: <strong style='color:var(--pk2)'>"+brSym()+(inv/100).toFixed(0)+"</strong>";
-  $("liveEndStack").oninput=function(){const st=parseFloat(this.value)||0;const pnl=Math.round(st*100)-inv;$("liveEndSummary").innerHTML="Invested: "+brSym()+(inv/100).toFixed(0)+' → P&L: <strong style="color:'+(pnl>=0?"var(--mt)":"var(--rs)")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(2)+"</strong>"};
+  $("liveEndStack").oninput=function(){const st=parseFloat(this.value)||0;const pnl=Math.round(st*100)-inv;$("liveEndSummary").innerHTML="Invested: "+brSym()+(inv/100).toFixed(2)+' → P&L: <strong style="color:'+(pnl>=0?"var(--mt)":"var(--rs)")+'">'+(pnl>=0?"+":"-")+brSym()+(Math.abs(pnl)/100).toFixed(2)+"</strong>"};
   mgSet("liveMG",null);openM("liveEndM");
   if(!isTourney&&liveData.currentStack!=null)$("liveEndStack").oninput();
   setTimeout(()=>$("liveEndStack").focus(),100);
@@ -13814,7 +13936,7 @@ if(window.Chart){const _C=window.Chart;try{_C.register(PS_POLISH)}catch(e){}
 // opt in per chart with options.plugins.psPolish = {peaks, endLabel, avg, barLabels, fmt}
 function psFmtV(chart,v){const o=chart.config.options?.plugins?.psPolish||{};if(typeof o.fmt==="function")return o.fmt(v);
   const hz=chart.options.indexAxis==="y",sc=hz?chart.scales.x:chart.scales.y,cb=sc&&sc.options&&sc.options.ticks&&sc.options.ticks.callback;
-  if(typeof cb==="function"&&cb!==Chart.defaults.scale?.ticks?.callback){try{const r=cb.call(sc,v,0,[{value:v}]);if(r!=null&&r!=="")return String(r)}catch(e){}}
+  if(typeof cb==="function"&&cb!==Chart.defaults.scale?.ticks?.callback){try{const r=cb.call(sc,v,0,[{value:v}]);if(r!=null&&r!==""){const t=String(r),m=t.match(/^([+−\-]?)([£$€])[\d,.]+$/);if(m&&isFinite(v))return m[1]+m[2]+Math.abs(v).toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});return t}}catch(e){}}
   const a=Math.abs(v);return(v<0?"−":"")+(a>=1000?a.toLocaleString("en-GB",{maximumFractionDigits:0}):+a.toFixed(a<10?2:1))}
 function psPill(ctx,x,y,text,bg,fg,align,ca){ctx.save();ctx.font="700 10.5px "+(Chart.defaults.font.family||"system-ui");const w=ctx.measureText(text).width+12,h=19;
   let lx=align==="right"?x-w:align==="center"?x-w/2:x;lx=Math.max(ca.left+1,Math.min(ca.right-w-1,lx));let ly=Math.max(ca.top+1,Math.min(ca.bottom-h-1,y-h/2));
@@ -13881,7 +14003,7 @@ function trendDataset(key,values,CT){
   if(!isTrendOn(key))return[];
   return[{label:"Trend",data:computeLinearTrend(values),borderColor:CT.gold,borderDash:[6,4],borderWidth:2,pointRadius:0,pointHoverRadius:0,fill:false,tension:0,order:0}];
 }
-function animateCount(el,targetCents){if(!el)return;const dur=650;const start=performance.now();const from=0;const to=targetCents/100;const isNeg=to<0;const sym=brSym();function step(now){const p=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-p,3);const cur=from+(to-from)*eased;el.textContent=(cur<0?"−":"")+sym+Math.abs(cur).toLocaleString(undefined,{maximumFractionDigits:0});if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+function animateCount(el,targetCents){if(!el)return;const dur=650;const start=performance.now();const from=0;const to=targetCents/100;const isNeg=to<0;const sym=brSym();function step(now){const p=Math.min(1,(now-start)/dur);const eased=1-Math.pow(1-p,3);const cur=from+(to-from)*eased;el.textContent=(cur<0?"−":"")+sym+Math.abs(cur).toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 function renderHeroSpark(){if(Object.keys(getViewedCurrencyGroups()).length>1)return;const CT=getCT();const sorted=getViewedSessions();const canvas=$("chHeroSpark");if(!canvas)return;destroyBrChart("spark");if(!sorted.length||typeof Chart==="undefined")return;const deps=getViewedDepositsTotal();let cum=getViewedStartBankroll()+deps;const data=[];sorted.forEach(s=>{cum+=s.resultCents;data.push(cum/100)});const pos=data[data.length-1]>=data[0];const col=pos?CT.green_a.slice(0,7):CT.red_a.slice(0,7);brCharts.spark=new Chart(canvas.getContext("2d"),{type:"line",data:{labels:data.map((_,i)=>i),datasets:[{data,borderColor:col,backgroundColor:brAreaGrad(col),fill:true,tension:.4,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false}},scales:{x:{display:false},y:{display:false}}}})}
 function renderBrAll(){renderBankrollSwitcher();renderBrViewFilterChip();renderLivePanel();renderBrDash();try{const bp=$("brPace");if(bp)bp.innerHTML=brPaceHtml()}catch(e){console.warn("pace",e)}try{const cs=$("brChalStrip");if(cs)cs.innerHTML=chalStripHtml();if($("brChal")&&$("brChal").classList.contains("on"))renderChal()}catch(e){console.warn("chal",e)}if(Object.keys(getViewedCurrencyGroups()).length<=1){brDefer(renderHeroSpark,"spark");if($("brHistory")&&$("brHistory").classList.contains("on"))renderBrSessions();renderBrGoals()}if(liveData&&!liveTimer)startLiveTimer();const name=LG("ps_username","");const bt=$("brTitle");if(bt)bt.textContent=name?name+"'s Bankroll":"Bankroll";updateCurrencyLabels()}
 let currentCurrencyTab=null;
@@ -13959,7 +14081,7 @@ function renderBrDashSingle(){
   const _now=new Date(),_mk=shD(_now).slice(0,7),_c30=shD(new Date(_now.getTime()-30*864e5));
   const _pm=brPromoSum(_mk+"-01",_mk+"-31"),_p30=brPromoSum(_c30);const _m=sorted.filter(x=>(x.date||"").slice(0,7)===_mk),_mp=_m.reduce((a,x)=>a+x.resultCents,0)+_pm,_d=sorted.filter(x=>(x.date||"")>=_c30),_dp=_d.reduce((a,x)=>a+x.resultCents,0)+_p30;
   const _sg=v=>(v>0?"+":v<0?"−":"")+brFmt(Math.abs(v)),_pc=v=>v>0?"pos":v<0?"neg":"";
-  $("brHero").innerHTML='<div class="br-hero b3 '+(heroPos?"up":"down")+'"><div class="b3-top"><span class="br-hero-label">Bankroll</span><button class="b3-eye" id="balToggle" onclick="toggleBal()" title="Hide amounts">👁</button></div>'
+  $("brHero").innerHTML='<div class="br-hero b3 '+(heroPos?"up":"down")+'"><div class="b3-top"><span class="br-hero-label">Bankroll</span><button class="b3-eye" id="balToggle" onclick="toggleBal()" title="Hide amounts">'+(balHidden?"🙈":"👁")+'</button></div>'
     +'<div class="br-hero-val '+(heroPos?"pos":"neg")+'" id="brHeroVal">'+brFmt(bankroll)+'</div>'
     +'<div class="b3-chips"><span class="b3-chip '+_pc(total)+'"><i>All-time</i><b>'+_sg(total)+'</b></span><span class="b3-chip '+_pc(_mp)+'"><i>'+_now.toLocaleDateString("en-GB",{month:"long"})+'</i><b>'+(_m.length||_pm?_sg(_mp):"—")+'</b></span><span class="b3-chip '+_pc(_dp)+'"><i>Last 30 days</i><b>'+(_d.length||_p30?_sg(_dp):"—")+'</b></span></div>'
     +'<div class="b3-mood">'+brMood(sorted,_mp,_m.length,_dp,_d.length,total)+'</div><div class="br-hero-sub">'+sorted.length+" session"+(sorted.length!==1?"s":"")+(totalHrs>0?" · "+Math.round(totalHrs)+"h at the tables":"")+(promoAll?" · "+(promoAll>0?"+":"−")+brFmt(Math.abs(promoAll))+" rewards & promos":"")+(deps?" · "+brFmt(deps)+" deposited":"")+'</div><div class="br-hero-spark"><canvas id="chHeroSpark"></canvas></div></div>';
@@ -13984,7 +14106,7 @@ function renderBrDashSingle(){
   renderBrHeatmap()
   })}
 function renderBrHeatmap(){brHeatmap0();const c=$("calendarHM");if(c)requestAnimationFrame(()=>{[c,c.querySelector(".heatmap")].forEach(x=>{if(x)x.scrollLeft=x.scrollWidth})})}
-function brHeatmap0(){const c=$("calendarHM");const sorted=BR.sorted;const dayMap={};sorted.forEach(s=>{dayMap[s.date]=(dayMap[s.date]||0)+s.resultCents});const today=new Date();const start=new Date(today.getFullYear(),0,1);const weeks=[];let cw=[];for(let i=0;i<start.getDay();i++)cw.push(null);const d=new Date(start);while(d<=today){const ds=shD(d);cw.push({date:ds,val:dayMap[ds]||0,has:!!dayMap[ds]});if(cw.length===7){weeks.push(cw);cw=[]}d.setDate(d.getDate()+1)}if(cw.length)weeks.push(cw);const gc=v=>{const cv=v/100;if(cv>=500)return"hm-l4";if(cv>=200)return"hm-l3";if(cv>=50)return"hm-l2";if(cv>0)return"hm-l1";if(cv<=-500)return"hm-d4";if(cv<=-200)return"hm-d3";if(cv<=-50)return"hm-d2";return"hm-d1"};const legend='<div class="heatmap-legend"><span>Loss</span><span class="hml-box" style="background:var(--rs)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--rs) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--b3);border:1px solid var(--bd)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--mt) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--mt)"></span><span>Profit</span></div>';c.innerHTML='<div class="heatmap">'+weeks.map(w=>'<div class="heatmap-week">'+w.map(d=>!d?'<div class="heatmap-day" style="visibility:hidden"></div>':'<div class="heatmap-day '+(d.has?gc(d.val):'')+'\" data-tip="'+d.date+": "+(d.has?(d.val>=0?"+":"-")+brSym()+Math.abs(d.val/100).toFixed(0):"—")+'"></div>').join("")+"</div>").join("")+"</div>"+legend}
+function brHeatmap0(){const c=$("calendarHM");const sorted=BR.sorted;const dayMap={};sorted.forEach(s=>{dayMap[s.date]=(dayMap[s.date]||0)+s.resultCents});const today=new Date();const start=new Date(today.getFullYear(),0,1);const weeks=[];let cw=[];for(let i=0;i<start.getDay();i++)cw.push(null);const d=new Date(start);while(d<=today){const ds=shD(d);cw.push({date:ds,val:dayMap[ds]||0,has:!!dayMap[ds]});if(cw.length===7){weeks.push(cw);cw=[]}d.setDate(d.getDate()+1)}if(cw.length)weeks.push(cw);const gc=v=>{const cv=v/100;if(cv>=500)return"hm-l4";if(cv>=200)return"hm-l3";if(cv>=50)return"hm-l2";if(cv>0)return"hm-l1";if(cv<=-500)return"hm-d4";if(cv<=-200)return"hm-d3";if(cv<=-50)return"hm-d2";return"hm-d1"};const legend='<div class="heatmap-legend"><span>Loss</span><span class="hml-box" style="background:var(--rs)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--rs) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--b3);border:1px solid var(--bd)"></span><span class="hml-box" style="background:color-mix(in srgb,var(--mt) 55%,var(--b3))"></span><span class="hml-box" style="background:var(--mt)"></span><span>Profit</span></div>';c.innerHTML='<div class="heatmap">'+weeks.map(w=>'<div class="heatmap-week">'+w.map(d=>!d?'<div class="heatmap-day" style="visibility:hidden"></div>':'<div class="heatmap-day '+(d.has?gc(d.val):'')+'\" data-tip="'+d.date+": "+(d.has?(d.val>=0?"+":"-")+brSym()+Math.abs(d.val/100).toFixed(2):"—")+'"></div>').join("")+"</div>").join("")+"</div>"+legend}
 let brHistDir=LG("ps_brhist_dir","desc");
 function toggleBrHistDir(){brHistDir=brHistDir==="desc"?"asc":"desc";LS("ps_brhist_dir",brHistDir);renderBrSessions()}
 function brHistDirLabel(){const f=$("brHistSort")?.value||"date";const asc=brHistDir==="asc";const arrow=asc?"⬆":"⬇";const word={date:asc?"Oldest":"Newest",result:asc?"Lowest":"Highest",duration:asc?"Shortest":"Longest",hourly:asc?"Lowest":"Highest",stakes:asc?"A→Z":"Z→A",location:asc?"A→Z":"Z→A"}[f]||"";return arrow+" "+word}
@@ -14084,7 +14206,7 @@ function openSessDetail(id,bid){const b=bid?getBankrollById(bid):BR.d;const s=(b
     sessDetailStackHist=s.stackHistory;sessDetailStackFormat=s.format;
     h+='<div class="sd-stack-hist"><div class="sd-lbl" style="margin-bottom:6px">🔴 Live Stack Progression'+(brIsTour(s.format)?" (chips)":"")+'<button class="chart-trend-btn" id="trendBtn_sessStack" onclick="toggleChartTrend(\'sessStack\',renderSessDetailStackChart)">📈 Trend</button></div><div style="height:140px"><canvas id="chSessStack"></canvas></div></div>';
   }
-  {const lh=(typeof HH!=="undefined"?HH.d.hands:[]).filter(x=>x.sessionId===s.id||(s.liveId&&x.liveId===s.liveId));if(lh.length)h+='<div class="sd-notes"><div class="sd-lbl">Hands from this session ('+lh.length+')</div><div class="qh-linked">'+lh.map(x=>'<button onclick="document.querySelectorAll(\'.mov.open\').forEach(m=>m.classList.remove(\'open\'));go(\'handHistory\');setTimeout(()=>openHhDetail(\''+x.id+'\'),80)"><span class="qh-lc">'+escapeHtml(x.hero||"??")+'</span><span>'+escapeHtml(x.position||"")+(x.title?" · "+escapeHtml(x.title):"")+'</span><b class="'+(Math.abs(x.resultCents)<1e-9?"zero":x.resultCents>0?"pos":"neg")+'">'+(x.resultCents>=0?"+":"−")+brSym()+Math.abs(x.resultCents/100).toFixed(0)+"</b></button>").join("")+"</div></div>"}
+  {const lh=(typeof HH!=="undefined"?HH.d.hands:[]).filter(x=>x.sessionId===s.id||(s.liveId&&x.liveId===s.liveId));if(lh.length)h+='<div class="sd-notes"><div class="sd-lbl">Hands from this session ('+lh.length+')</div><div class="qh-linked">'+lh.map(x=>'<button onclick="document.querySelectorAll(\'.mov.open\').forEach(m=>m.classList.remove(\'open\'));go(\'handHistory\');setTimeout(()=>openHhDetail(\''+x.id+'\'),80)"><span class="qh-lc">'+escapeHtml(x.hero||"??")+'</span><span>'+escapeHtml(x.position||"")+(x.title?" · "+escapeHtml(x.title):"")+'</span><b class="'+(Math.abs(x.resultCents)<1e-9?"zero":x.resultCents>0?"pos":"neg")+'">'+(x.resultCents>=0?"+":"−")+brSym()+Math.abs(x.resultCents/100).toFixed(2)+"</b></button>").join("")+"</div></div>"}
 if(false)h+='<div class="sd-notes"><div class="sd-lbl">How you felt</div><div class="mg-show">'+MG_F.filter(f=>s.mg[f[0]]).map(f=>'<span><i>'+f[1]+"</i>"+f[2]+" <b>"+s.mg[f[0]]+"/5</b></span>").join("")+"</div></div>";if(s.notes)h+='<div class="sd-notes"><div class="sd-lbl">Notes</div><div class="sd-notes-body">'+escapeHtml(s.notes)+'</div></div>';
   h+='<div class="sd-acts"><button class="btn" onclick="closeM(\'sessDetailM\');editBrSess(\''+s.id+'\',\''+(bid||getActiveBankrollId())+'\')">✎ Edit</button><button class="btn btn-d" onclick="closeM(\'sessDetailM\');delBrSess(\''+s.id+'\',\''+(bid||getActiveBankrollId())+'\')">✕ Delete</button></div>';
   $("sessDetailContent").innerHTML=h;openM("sessDetailM");
@@ -14120,7 +14242,7 @@ function renderBrAnalytics(){
   const el=$("brAnalCharts");if(!el)return;const sorted=getViewedSessions();
   ["stk","dow","an"].forEach(k=>destroyBrChart(k));
   if(!sorted.length){el.innerHTML='<div class="empty-state" style="grid-column:1/-1"><span class="es-icon">📊</span><div class="es-title">No sessions yet</div><div class="es-sub">Log a few sessions and this page shows where — and when — you win.</div><button class="btn pri btn-s" onclick="switchBrTab(\'brSess\')">＋ Log session</button></div>';return}
-  const sy=brSym(),money=c=>(c>0?"+":c<0?"−":"")+sy+Math.abs(c/100).toLocaleString("en-GB",{maximumFractionDigits:0}),pc=v=>v>0?"pos":v<0?"neg":"",hm=c=>(c<0?"−":"+")+sy+Math.abs(c/100).toFixed(Math.abs(c)<10000?2:0);
+  const sy=brSym(),money=c=>(c>0?"+":c<0?"−":"")+sy+Math.abs(c/100).toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2}),pc=v=>v>0?"pos":v<0?"neg":"",hm=c=>(c<0?"−":"+")+sy+Math.abs(c/100).toFixed(Math.abs(c)<10000?2:0);
   const T=brAnAgg(sorted);
   // streaks + downswing
   let cw=0,cl=0,bw=0,bl=0,cum=0,peak=0,dd=0;sorted.forEach(s=>{if(s.resultCents>0){cw++;cl=0}else if(s.resultCents<0){cl++;cw=0}bw=Math.max(bw,cw);bl=Math.max(bl,cl);cum+=s.resultCents;peak=Math.max(peak,cum);dd=Math.min(dd,cum-peak)});
@@ -14595,7 +14717,7 @@ function wkCardHtml(){
   const cells=[];
   if(L.n)cells.push(kv(wkMoney(L.p),"live · "+L.n+" sess",L.p>0?"pos":L.p<0?"neg":""));
   if(L.hrs)cells.push(kv(L.hrs.toFixed(1)+"h","at the tables"));
-  if(W.gg)cells.push(kv((W.gg.bb100>=0?"+":"−")+Math.abs(W.gg.bb100).toFixed(0),"GG bb/100",W.gg.bb100>=0?"pos":"neg"));
+  if(W.gg)cells.push(kv((W.gg.bb100>=0?"+":"−")+Math.abs(W.gg.bb100).toFixed(0),"GG bb/100 · "+W.gg.n.toLocaleString()+" hands",W.gg.bb100>=0?"pos":"neg"));
   if(W.sh)cells.push(kv(W.sh.hrs.toFixed(1)+"h","worked"));
   if(W.tr&&W.tr.hands)cells.push(kv(W.tr.hands,"hands trained"));
   const f=wkFocus(W);
@@ -14637,51 +14759,57 @@ function homeNowHtml(){
     h+='<div class="hm-now live"><button class="hm-now-main" onclick="go(\'bankroll\');setTimeout(()=>switchBrTab(\'brSess\'),30)"><span class="hm-dot"></span><div><b>Live session running</b><small>'+escapeHtml(liveData.stakes||"")+(liveData.location?" · "+escapeHtml(liveData.location):"")+" · "+(m>=60?Math.floor(m/60)+"h "+(m%60)+"m":m+"m")+(qn?" · "+qn+" hand"+(qn!==1?"s":""):"")+'</small></div><em>Open →</em></button><button class="hm-now-qh" onclick="openQuickHand()">⚡ Hand</button></div>'}
   return h;
 }
+function hmRewardToday(){const td=shD(new Date());let n=0,amt=0;try{getBankrollsList().forEach(b=>(b.deposits||[]).forEach(d=>{if(d.promoType&&d.ts&&shD(new Date(d.ts))===td){n++;amt+=d.amt||0}}))}catch(e){}return{n,amt}}
+function hmRow(o){return'<div class="hm-row'+(o.done?" done":"")+'" style="--hc:'+(o.c||"var(--pk)")+'"'+(o.go?' onclick="'+o.go+'" role="button"':"")+'><span class="hm-ri2">'+(o.done?"✓":o.i)+'</span><div class="hm-rt"><b>'+o.t+'</b><small>'+o.s+'</small>'+(o.pct!=null?'<div class="hm-bar"><span style="width:'+Math.min(100,Math.max(0,o.pct)).toFixed(1)+'%"></span></div>':"")+'</div>'+(o.btn||"")+"</div>"}
 async function renderHome(){
   const g=$("hmGrid");if(!g)return;
-  {const n=$("hmNow");if(n){let ch="";try{ch=cxHomeHtml()}catch(e){console.warn(e)}n.innerHTML=homeNowHtml()+ch+homeSafetyHtml()}}
-  {const rc=$("hmRecent"),ix=rangeRecentList();if(rc)rc.innerHTML=ix.length?'<div class="hm-sec">Recent ranges</div><div class="hm-rr">'+ix.map(i=>{const r=S.saved[i];return'<div class="hm-r"><span class="hm-ri">'+escapeHtml(r.icon||"♠")+'</span><b title="'+escapeHtml(r.name)+'">'+escapeHtml(r.name)+'</b><button onclick="go(\'trainer\');setTimeout(()=>pickTrRange(\''+i+'\'),40)">Train</button><button onclick="go(\'editor\');setTimeout(()=>showViewerMode('+i+'),40)">View</button></div>'}).join("")+"</div>":""}
-  const now=new Date(),h=now.getHours(),name=(LG("ps_username","")||"").trim().split(" ")[0];
+  const now=new Date(),h=now.getHours(),name=(LG("ps_username","")||"").trim().split(" ")[0],today=shD(now);
   $("hmHi").textContent=(h<5?"Late one":h<12?"Good morning":h<18?"Good afternoon":"Good evening")+(name?", "+name:"");
   $("hmDate").textContent=now.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
-  const st=getStreak(),today=shD(now),alive=st.last===today;
+  const st=getStreak(),alive=st.last===today;
   $("hmStreak").innerHTML=st.count?'<span class="'+(alive?"on":"")+'" title="Training streak">🔥 '+st.count+'<small>day'+(st.count!==1?"s":"")+"</small></span>":"";
   const pc=v=>v>0?"pos":v<0?"neg":"",sg=c=>(c>0?"+":c<0?"−":"")+brFmt(Math.abs(c));
-  let cards="";
-  /* bankroll */
+  /* alerts: live session + storage warning only (backup is a to-do below) */
+  {const el=$("hmAlert");if(el){let a=homeNowHtml();try{const mb=getStorageUsageBytes()/1048576;if(mb/5>=.8)a+=homeSafetyHtml()}catch(e){}el.innerHTML=a}}
+  /* hero: bankroll + challenge journey */
+  let cx=null;try{const b=chalOwner();if(b)cx=cxWithSym(b,()=>{const ch=b.settings.challenge,C=chalCompute(b,ch),G=chalGG(ch,C),cf=cxCfg(ch),J=chalJourney(ch,C.bal),stp=C.steps[cxPlayIdx(ch,C)],th=(G.daysH||{})[today]||0,pl=C.days[today]||0;
+    return{h:'<div class="hm-cx" onclick="event.stopPropagation();go(\'bankroll\');setTimeout(()=>switchBrTab(\'brChal\'),60)" role="button"><div class="hm-cx-t"><span>🚀 '+chC(ch.start,1)+' → '+chC(ch.target,1)+'</span><b class="'+(C.bal>=ch.start?"pos":"neg")+'">'+(C.bal/ch.start).toFixed(2)+'×</b><em>Day '+C.dayN+' →</em></div><div class="chx-bar sm"><div class="chx-fill" style="--w:'+(J*100).toFixed(2)+'%"></div></div>'+((()=>{try{const v=getViewedBankrolls();return!(v.length===1&&v[0].id===b.id)}catch(e){return true}})()?'<small>Challenge roll '+chC(C.bal)+'</small>':'')+'</div>',
+      th,hpd:cf.hpd,stake:stp.l,pl,stop:cf.dayStop&&pl/stp.bi<=-cf.dayStop}})}catch(e){console.warn(e)}
   try{
     const ss=getViewedSessions(),bal=getViewedBankrollValue(),mk=today.slice(0,7),m=ss.filter(x=>(x.date||"").slice(0,7)===mk),pm=brPromoSum(mk+"-01",mk+"-31"),mp=m.reduce((a,x)=>a+x.resultCents,0)+pm;
     const c30=shD(new Date(now-30*864e5)),d=ss.filter(x=>(x.date||"")>=c30),p30=brPromoSum(c30),dp=d.reduce((a,x)=>a+x.resultCents,0)+p30,last=ss[ss.length-1];
     const tm=ss.filter(x=>x.duration>0),hrs=tm.reduce((a,x)=>a+x.duration,0)/60,hr=hrs?tm.reduce((a,x)=>a+x.resultCents,0)/hrs:null;
-    cards+='<button class="hm-card hm-br" onclick="go(\'bankroll\')"><div class="hm-ch"><span>💰 Bankroll</span><em>Open →</em></div>'
+    $("hmHero").innerHTML='<div class="hm-card hm-br hm-hero" onclick="go(\'bankroll\')" role="button"><div class="hm-ch"><span>💰 Bankroll</span><button class="b3-eye bal-eye hm-eye" onclick="event.stopPropagation();toggleBal()" title="Hide amounts">'+(balHidden?"🙈":"👁")+'</button><em>Open →</em></div>'
       +'<div class="hm-big br-hero-val">'+brFmt(bal)+"</div>"
       +'<div class="hm-chips"><span class="b3-chip '+pc(mp)+'"><i>'+now.toLocaleDateString("en-GB",{month:"long"})+"</i><b>"+(m.length||pm?sg(mp):"—")+'</b></span><span class="b3-chip '+pc(dp)+'"><i>Last 30 days</i><b>'+(d.length||p30?sg(dp):"—")+'</b></span><span class="b3-chip '+pc(hr)+'"><i>Hourly</i><b>'+(hr==null?"—":(hr<0?"−":"")+brSym()+Math.abs(hr/100).toFixed(2))+"</b></span></div>"
-      +(last?'<div class="hm-foot">Last session · '+brDayLbl(last.date)+" · "+escapeHtml(last.stakes||"")+" "+escapeHtml(last.location||"")+' · <span class="profit '+pc(last.resultCents)+'">'+sg(last.resultCents)+"</span></div>":'<div class="hm-foot">No sessions yet — log your first one.</div>')+"</button>";
-  }catch(e){}
-  /* shifts */
-  try{
-    const shifts=getShifts();
-    if(shifts.length){const period=getOTPeriodForDate(shD(now)),P=shAgg(shifts.filter(s=>shInRange(s,period.start,period.end)));
+      +(cx?cx.h:"")
+      +(last?'<div class="hm-foot">Last session · '+brDayLbl(last.date)+" · "+escapeHtml(last.stakes||"")+" "+escapeHtml(last.location||"")+' · <span class="profit '+pc(last.resultCents)+'">'+sg(last.resultCents)+"</span></div>":'<div class="hm-foot">No sessions yet — log your first one.</div>')+"</div>";
+  }catch(e){console.warn(e);$("hmHero").innerHTML=""}
+  /* today: one to-do list */
+  {const rows=[];
+    try{const dp=getDailyProgress();rows.push({i:"🎯",c:"var(--li)",done:dp.done,t:escapeHtml(dp.title||dp.label||"Train today"),s:dp.progress+" / "+dp.target+" · +"+(dp.xp||50)+" XP"+(st.count?" · 🔥 "+st.count+(alive?"":" — train to keep it"):""),pct:dp.pct,go:"go('trainer')",btn:dp.done?"":'<button class="hm-rb">Train</button>'})}catch(e){}
+    if(cx){const ok=cx.th>=cx.hpd;rows.push({i:"🚀",c:"var(--mt)",done:ok,t:"Play "+cx.hpd.toLocaleString()+" hands at "+escapeHtml(cx.stake),s:cx.th.toLocaleString()+" / "+cx.hpd.toLocaleString()+" hands"+(cx.stop?' · <span class="neg">🛑 stop-loss hit</span>':cx.pl?' · today <span class="'+pc(cx.pl)+'">'+chSg(cx.pl)+"</span>":""),pct:cx.th/cx.hpd*100,go:"go('bankroll');setTimeout(()=>switchBrTab('brChal'),60)"})}
+    {const r=hmRewardToday();rows.push({i:"🎁",c:"var(--go,#f5c451)",done:r.n>0,t:r.n?"Rewards logged":"Daily reward",s:r.n?'<span class="pos">+'+brFmt(r.amt)+"</span> from "+r.n+" reward"+(r.n!==1?"s":"")+" today":"Claimed a Daily Freebie or prize? Log it as earnings.",go:"go('bankroll');setTimeout(()=>{try{brDailyOpen()}catch(e){}},80)",btn:r.n?"":'<button class="hm-rb">Add</button>'})}
+    try{if(backupDue()){const d=backupDaysAgo();rows.push({i:"🛟",c:"var(--ic)",t:"Back up your data",s:d==null?"Never backed up — it only lives on this device.":"Last backup "+d+" days ago.",btn:'<button class="hm-rb" onclick="event.stopPropagation();dlJSON()">Back up</button><button class="hm-rb ghost" onclick="event.stopPropagation();LS(\'ps_backup_snooze\',Date.now()+3*864e5);renderHome()" title="Remind me in 3 days">Later</button>'})}}catch(e){}
+    const dn=rows.filter(r=>r.done).length,el=$("hmToday");
+    if(el)el.innerHTML='<div class="hm-sec hm-sec-r"><span>Today</span><em class="'+(dn===rows.length?"ok":"")+'">'+dn+" / "+rows.length+" done</em></div>"+'<div class="hm-card hm-today">'+rows.map(hmRow).join("")+"</div>"}
+  /* recent ranges */
+  {const rc=$("hmRecent"),ix=rangeRecentList();if(rc)rc.innerHTML=ix.length?'<div class="hm-sec">Recent ranges</div><div class="hm-rr">'+ix.map(i=>{const r=S.saved[i];return'<div class="hm-r"><span class="hm-ri">'+escapeHtml(r.icon||"♠")+'</span><b title="'+escapeHtml(r.name)+'">'+escapeHtml(r.name)+'</b><button onclick="go(\'trainer\');setTimeout(()=>pickTrRange(\''+i+'\'),40)">Train</button><button onclick="go(\'editor\');setTimeout(()=>showViewerMode('+i+'),40)">View</button></div>'}).join("")+"</div>":""}
+  /* results: week, GG all-time, pay period */
+  let cards="";try{cards+=wkCardHtml()}catch(e){}
+  cards+='<div class="hm-card hm-gg" id="hmGG" style="display:none"></div>';
+  try{const shifts=getShifts();
+    if(shifts.length){const period=getOTPeriodForDate(today),P=shAgg(shifts.filter(s=>shInRange(s,period.start,period.end)));
       const days=Math.round((period.end-period.start)/864e5),done=Math.min(days,Math.max(0,Math.floor((now-period.start)/864e5)+1));
-      cards+='<button class="hm-card hm-sh" onclick="go(\'shifts\')"><div class="hm-ch"><span>⏱ Pay period</span><em>'+fmtShiftDate(period.start)+" – "+fmtShiftDate(new Date(period.end.getTime()-864e5))+"</em></div>"
+      cards+='<div class="hm-card hm-sh" onclick="go(\'shifts\')" role="button"><div class="hm-ch"><span>⏱ Pay period</span><em>'+fmtShiftDate(period.start)+" – "+fmtShiftDate(new Date(period.end.getTime()-864e5))+"</em></div>"
         +'<div class="hm-bar"><span style="width:'+(done/days*100).toFixed(1)+'%"></span></div>'
-        +'<div class="hm-kv"><div><b>'+P.hrs.toFixed(1)+'h</b><span>worked</span></div><div><b class="ot">'+P.ot.toFixed(1)+'h</b><span>overtime</span></div><div><b>'+P.n+'</b><span>shifts</span></div><div><b>'+(days-done)+'</b><span>days left</span></div></div></button>';
-    }else cards+='<button class="hm-card hm-empty" onclick="go(\'shifts\')"><div class="hm-ch"><span>⏱ Shift log</span><em>Set up →</em></div><div class="hm-foot">Track your hours and overtime against each pay period.</div></button>';
-  }catch(e){}
-  /* training */
-  try{
-    const dp=getDailyProgress();
-    cards+='<button class="hm-card hm-tr" onclick="go(\'trainer\')"><div class="hm-ch"><span>🎯 Daily challenge</span><em class="'+(dp.done?"ok":"")+'">'+(dp.done?"✓ Done":"+"+(dp.xp||50)+" XP")+"</em></div>"
-      +'<div class="hm-t">'+escapeHtml(dp.title||dp.label||"Train today")+"</div>"
-      +'<div class="hm-bar"><span style="width:'+dp.pct+'%"></span></div><div class="hm-foot">'+dp.progress+" / "+dp.target+(st.count?" · streak "+st.count+(alive?" — kept today":" — train today to keep it"):"")+"</div></button>";
-  }catch(e){}
-  let wk="";try{wk=wkCardHtml()}catch(e){}
-  g.innerHTML=wk+cards+'<div class="hm-card hm-gg" id="hmGG" style="display:none"></div>';
-  /* GG (loads from the database, so it fills in a moment later) */
+        +'<div class="hm-kv"><div><b>'+P.hrs.toFixed(1)+'h</b><span>worked</span></div><div><b class="ot">'+P.ot.toFixed(1)+'h</b><span>overtime</span></div><div><b>'+P.n+'</b><span>shifts</span></div><div><b>'+(days-done)+'</b><span>days left</span></div></div>'
+        +'<button class="hm-rb hm-sh-add" onclick="event.stopPropagation();go(\'shifts\');setTimeout(()=>{try{openShiftForm()}catch(e){}},60)">＋ Log shift</button></div>'}}catch(e){}
+  g.innerHTML=cards;
   try{await GGDB.all();const hs=ggSavedHands(),el=$("hmGG");if(!el)return;el.style.display="";
     if(!hs.length){el.outerHTML='<button class="hm-card hm-empty" onclick="go(\'gg\')"><div class="hm-ch"><span>📈 GG Results</span><em>Import →</em></div><div class="hm-foot">Import GGPoker hand histories for graphs, stats and leak finding.</div></button>';return}
     let net=0,nbb=0,last=0;hs.forEach(x=>{net+=x.net;nbb+=x.net/x.bb;last=Math.max(last,x.ts)});const bb100=nbb/hs.length*100,days=Math.floor((Date.now()-last)/864e5);
-    el.outerHTML='<button class="hm-card hm-gg" onclick="go(\'gg\')"><div class="hm-ch"><span>📈 GG online</span><em>'+(days===0?"played today":days===1?"yesterday":days+" days ago")+"</em></div>"
+    el.outerHTML='<button class="hm-card hm-gg" onclick="go(\'gg\')"><div class="hm-ch"><span>📈 GG · all time</span><em>'+(days===0?"played today":days===1?"played yesterday":"played "+days+" days ago")+"</em></div>"
       +'<div class="hm-kv"><div onclick="event.stopPropagation();openBB100(bbSet(\'home\',ggSavedHands(),\'All GG hands\'))" role="button" title="See how this is calculated" style="cursor:pointer"><b class="'+pc(bb100)+'">'+(bb100>=0?"+":"−")+Math.abs(bb100).toFixed(1)+'</b><span>bb/100 ⓘ</span></div><div><b class="'+pc(net)+' profit">'+(net>=0?"+$":"−$")+Math.abs(net/100).toFixed(2)+'</b><span>net</span></div><div><b>'+hs.length.toLocaleString()+"</b><span>hands</span></div></div></button>"}catch(e){}
 }
 /* ══════════════════════ BANKROLL GOALS ══════════════════════ */
@@ -16639,7 +16767,7 @@ function setEditorRadius(px){LS("ps_editor_radius",px);applyEditorAppearance();r
 function renderEditorSizeUI(){const sz=LG("ps_editor_size",520);const rad=LG("ps_editor_radius",3);const szr=$("editorSizeRow");if(szr){szr.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.sz===sz))}const radr=$("editorRadiusRow");if(radr){radr.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",+b.dataset.rad===rad))}}
 function renderStreakUI(){const s=getStreak();const el=$("setStreakVal");if(el)el.textContent=s.count;const d=$("setStreakDesc");if(d)d.textContent=s.count>0?"Best: "+s.best+" day"+(s.best!==1?"s":"")+" · keep it going!":"Keep training daily to build your streak"}
 function openHudRef(){openM("hudRefM")}
-function syncBalToggles(){const bt=$("balToggle");if(bt){bt.textContent=balHidden?"🙈":"👁";bt.title=balHidden?"Show amounts":"Hide amounts"}const sb=$("setBalToggle");if(sb)sb.textContent=balHidden?"👁 Show":"👁 Hide"}
+function syncBalToggles(){document.querySelectorAll(".bal-eye").forEach(b=>{b.textContent=balHidden?"🙈":"👁";b.title=balHidden?"Show amounts":"Hide amounts";b.setAttribute("aria-pressed",balHidden?"true":"false")});const bt=$("balToggle");if(bt){bt.textContent=balHidden?"🙈":"👁";bt.title=balHidden?"Show amounts":"Hide amounts"}const sb=$("setBalToggle");if(sb)sb.textContent=balHidden?"👁 Show":"👁 Hide"}
 function updateUserGreeting(){const name=LG("ps_username","");const icon=LG("ps_user_icon","😎");const el=$("headerGreeting");if(el)el.textContent=name?icon+" Hey "+name+" ♡":"";const hg=$("hdGreeting");if(hg)hg.textContent=name?icon+" Hey "+name+" ♡":"Welcome ♠"}
 
 
@@ -16812,7 +16940,7 @@ function chNum(v){return(+v.toFixed(2)).toString()}
 function chStakeLbl(sb,bb){const f=c=>{const v=c/100;return v<1?v.toFixed(2):chNum(v)};return f(sb)+"/"+f(bb)}
 function chalGet(b){b=b||BR.d;return b&&b.settings&&b.settings.challenge||null}
 function chalOwner(){return getBankrollsList().find(b=>b.settings&&b.settings.challenge&&!b.settings.challenge.ended)||null}
-function chC(c,compact){const s=CHV.sym||brSym(),v=c/100,a=Math.abs(v);let t;if(compact&&a>=1000)t=(a/1000).toFixed(a>=10000||a%1000===0?0:1).replace(/\.0$/,"")+"K";else if(compact&&a>=100)t=Math.round(a).toLocaleString("en-GB");else t=a.toLocaleString("en-GB",{minimumFractionDigits:a<1000&&a%1?2:0,maximumFractionDigits:2});return(v<0?"−":"")+s+t}
+function chC(c,compact){const s=CHV.sym||brSym(),v=c/100,a=Math.abs(v);let t;if(compact&&a>=1000)t=(a/1000).toFixed(a>=10000||a%1000===0?0:1).replace(/\.0$/,"")+"K";else if(compact&&a>=100)t=Math.round(a).toLocaleString("en-GB");else t=a.toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});return(v<0?"−":"")+s+t}
 function chSg(c){return(c>0?"+":c<0?"−":"")+chC(Math.abs(c))}
 function chPc(v){return v>0?"pos":v<0?"neg":""}
 function chalMilestones(ch){const out=[];let m=ch.start*2;while(m<ch.target*0.98){out.push(m);m*=2}out.push(ch.target);return out}
@@ -17694,7 +17822,7 @@ psSyncChCols();
         const sg=t.match(/^([+−\-–])\s?[$£€]?\d/);let c=null;if(sg)c=/[+]/.test(sg[1])?"ink-pos":"ink-neg";else if(/^[$£€]?\d/.test(t))c=good?"ink-pos":bad?"ink-neg":/%$/.test(t)?"ink-pct":"ink-num";
         if(c&&plainColour(b))todo.push([1,b,c])}));
       todo.forEach(([k,n,c])=>{if(k===1)n.classList.add(c);else if(n.parentNode)inkText(n)})}catch(err){console.warn("psInk",err)}mo.takeRecords();busy=false}
-  function schedule(){if(queued)return;queued=true;setTimeout(run,160)}
+  function schedule(){if(queued)return;queued=true;requestAnimationFrame(run)} /* before the next paint — no flash of uncoloured text */
   const mo=new MutationObserver(ms=>{if(busy)return;for(const m of ms){if(m.addedNodes.length){schedule();break}}});
   function start(){mo.observe(document.body,{childList:true,subtree:true});schedule();
     try{const _go=go;go=function(){const r=_go.apply(this,arguments);schedule();return r}}catch(e){}
@@ -17724,7 +17852,7 @@ psSyncChCols();
         const val=big&&L<=1?"color-mix(in srgb,"+acc+" 78%,var(--t1))":L===0?"color-mix(in srgb,"+acc+" 30%,var(--t1))":L===1?"color-mix(in srgb,"+acc+" 22%,var(--t2))":"color-mix(in srgb,"+acc+" 16%,var(--t3))";
         todo.push([e,val])}});
       todo.forEach(([e,v])=>{e.style.setProperty("color",v,"important");e.dataset.tinted="1"})}catch(err){console.warn("psTint",err)}}
-  let q=false;function schedule(){if(q)return;q=true;setTimeout(()=>{q=false;run()},220)}
+  let q=false;function schedule(){if(q)return;q=true;requestAnimationFrame(()=>{q=false;run()})} /* before the next paint */
   const mo=new MutationObserver(ms=>{for(const m of ms)if(m.addedNodes.length){schedule();break}});
   function start(){mo.observe(document.body,{childList:true,subtree:true});schedule();
     try{const _go=go;go=function(){const r=_go.apply(this,arguments);schedule();return r}}catch(e){}
@@ -17751,7 +17879,7 @@ function brDailyPaint(){const b=$("brDailyBtn");if(!b)return;const L=brDailyList
 // v121 · GG Daily Freebie presets inside the daily reward form
 function depDailySync(){const w=$("depDailyPresets");if(!w)return;const promo=$("depPromoTypeWrap").style.display!=="none",sel=$("depPromoTypeRow").querySelector("button.sel");w.style.display=promo&&sel&&sel.dataset.ptype==="daily"?"":"none"}
 (function(){const row=$("depPromoTypeRow");if(row)row.addEventListener("click",()=>setTimeout(depDailySync,0));
-  const w=$("depDailyPresets");if(w)w.addEventListener("click",e=>{const b=e.target.closest("button[data-desc]");if(!b)return;w.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));if(b.dataset.amt)$("depAmt").value=b.dataset.amt;$("depDesc").value=b.dataset.desc;if(!b.dataset.amt)setTimeout(()=>{try{$("depAmt").focus()}catch(e){}},50);haptic("light")});
+  const w=$("depDailyPresets");if(w)w.addEventListener("click",e=>{const b=e.target.closest("button[data-desc]");if(!b)return;if(b.dataset.pt){$("depPromoTypeRow").querySelectorAll("button").forEach(x=>x.classList.toggle("sel",x.dataset.ptype===b.dataset.pt));if($("depMTitle"))$("depMTitle").textContent="🏆 Leaderboard prize"}w.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));if(b.dataset.amt)$("depAmt").value=b.dataset.amt;$("depDesc").value=b.dataset.desc;if(!b.dataset.amt)setTimeout(()=>{try{$("depAmt").focus()}catch(e){}},50);haptic("light")});
   const _sp=depSetPromoMode;depSetPromoMode=function(){const r=_sp.apply(this,arguments);try{depDailySync();$("depDailyPresets").querySelectorAll("button").forEach(x=>x.classList.remove("on"))}catch(e){}return r}})();
 </script>
 <script>
@@ -17886,6 +18014,12 @@ eq2Calc=function(){
 <script>// ═══ v124 · Share a hand as an image card (PNG) ═══
 const GG_IMG_SUIT={"♣":"#3a8530","♦":"#244c92","♥":"#9c231b","♠":"#262626"};
 function ggImgCard(ctx,x,y,w,h,code){const m=code.match(/^(10|[2-9TJQKA])([♠♥♦♣])/);if(!m)return;const r=m[1]==="10"?"T":m[1],su=m[2],col=GG_IMG_SUIT[su];
+  if(window.GG_DECK==="classic"){const ink=su==="♥"||su==="♦"?"#cf1f37":"#15171b";ctx.save();ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=w*.1;ctx.shadowOffsetY=w*.04;ctx.fillStyle="#fbfbf8";ctx.beginPath();ctx.roundRect(x,y,w,h,w*.12);ctx.fill();ctx.restore();
+    ctx.save();ctx.strokeStyle="rgba(0,0,0,.18)";ctx.lineWidth=Math.max(1,w*.015);ctx.beginPath();ctx.roundRect(x,y,w,h,w*.12);ctx.stroke();ctx.fillStyle=ink;ctx.textBaseline="top";ctx.textAlign="center";
+    if(w>=70){ctx.font="600 "+(w*.34)+'px "Roboto Condensed","Roboto",Arial,sans-serif';ctx.fillText(r,x+w*.22,y+w*.06);ctx.font=(w*.3)+"px Arial,sans-serif";ctx.fillText(su,x+w*.22,y+w*.42);
+      ctx.textAlign="right";ctx.textBaseline="alphabetic";ctx.font=(w*.7)+"px Arial,sans-serif";ctx.fillText(su,x+w*.92,y+h-w*.08)}
+    else{ctx.font="700 "+(w*.56)+'px "Roboto",Arial,sans-serif';ctx.fillText(r,x+w/2,y+h*.12);ctx.font=(w*.52)+"px Arial,sans-serif";ctx.fillText(su,x+w/2,y+h*.5)}
+    ctx.restore();return}
   const g=ctx.createLinearGradient(0,y,0,y+h);g.addColorStop(0,psA(col,1));g.addColorStop(1,psA(col,.82));
   ctx.save();ctx.shadowColor="rgba(0,0,0,.45)";ctx.shadowBlur=w*.12;ctx.shadowOffsetY=w*.05;ctx.fillStyle=g;ctx.beginPath();ctx.roundRect(x,y,w,h,w*.12);ctx.fill();ctx.restore();
   ctx.save();ctx.strokeStyle="rgba(0,0,0,.55)";ctx.lineWidth=Math.max(1,w*.02);ctx.beginPath();ctx.roundRect(x,y,w,h,w*.12);ctx.stroke();
@@ -17952,7 +18086,7 @@ function ggHandImage(text,hand){
   return cv;
 }
 let _ggImgUrl=null;
-function ggShareImgCanvas(){return ggHandImage(ggHandToText(ggR.rep,ggR.hand,Object.assign({},ggShareOpts,{fmt:"readable",sym:true})),ggR.hand)}
+function ggShareImgCanvas(){return ggHandImage3(ggR.rep,ggR.hand,Object.assign({},ggShareOpts,{fmt:"readable",sym:true}))}
 function ggShareImgBlob(){return new Promise(res=>ggShareImgCanvas().toBlob(b=>res(b),"image/png"))}
 async function ggShareImgNative(){try{const b=await ggShareImgBlob(),f=new File([b],"hand-"+ggR.rep.id+".png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]}))await navigator.share({files:[f],title:"Poker hand"});else{ggShareImgDownload();toast("Sharing images isn't supported here — saved instead")}}catch(e){}}
 async function ggShareImgCopy(){try{const b=await ggShareImgBlob();await navigator.clipboard.write([new ClipboardItem({"image/png":b})]);toast("Image copied — paste it into a chat ✦");haptic("success")}catch(e){toast("Copying images isn't supported here — use Save")}}
@@ -17962,8 +18096,10 @@ async function ggShareImgDownload(){const b=await ggShareImgBlob(),a=document.cr
   const body=$("ggShareBody");if(!body)return;const fr=body.querySelector(".ggs-fmt");
   if(fr&&!fr.querySelector('[data-v="img"]')){const b=document.createElement("button");b.dataset.k="fmt";b.dataset.v="img";b.textContent="🖼 Image";fr.prepend(b)}
   if(fr)fr.querySelectorAll("button").forEach(b=>b.classList.toggle("sel",b.dataset.v===o.fmt));
+  if(o.hideStakes){const mb=body.querySelector('.ggs-mini [data-k="unit"][data-v="money"]'),bb=body.querySelector('.ggs-mini [data-k="unit"][data-v="bb"]');if(mb){mb.disabled=true;mb.classList.remove("sel");mb.title="Stakes are hidden"}if(bb)bb.classList.add("sel")}
   if(img){const ta=body.querySelector(".ggs-preview");try{const cv=ggShareImgCanvas();const im=document.createElement("img");im.className="ggs-img";im.src=cv.toDataURL("image/png");im.alt="Hand image";if(ta)ta.replaceWith(im)}catch(e){console.warn(e)}
     body.querySelectorAll('.ggs-mini')[1]?.remove();
+    const im0=body.querySelector(".ggs-img");if(im0){const d=document.createElement("div");d.className="ggs-look";d.innerHTML=ggImgLookHtml(o);im0.before(d)}
     const acts=body.querySelector(".ggs-actions");if(acts)acts.innerHTML=(navigator.share?'<button class="btn pri" onclick="ggShareImgNative()">📤 Share image</button>':"")+(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write?'<button class="btn'+(navigator.share?"":" pri")+'" onclick="ggShareImgCopy()">📋 Copy image</button>':"")+'<button class="btn" onclick="ggShareImgDownload()">⬇ Save PNG</button>'}
 }})();
 </script>
@@ -18011,6 +18147,345 @@ function ggRenderPlayers(body,arr){
     const nk=t.closest("[data-nick]");if(nk){const id=nk.dataset.nick,cur=ggOppNames()[id]||"";const v=prompt("Nickname for "+id,cur);if(v===null)return;const m=ggOppNames();if(v.trim())m[id]=v.trim().slice(0,30);else delete m[id];LS("ps_gg_oppnames",m);return ggRenderPlayers(body,arr)}
     const row=t.closest("[data-opp]");if(row){ggList.f.opp=row.dataset.opp;ggList.tab="list";ggRefresh();toast("Showing hands with "+ggOppName(row.dataset.opp))}};
 }
+</script>
+<script>
+/* ── Hide amounts: masks every money figure in the app (text + charts) ── */
+const BM_RE=/(?<![\/\w.])(?:[+\-−–]\s?)?(?:[CA]\$|US\$|[$£€¥])\s?\d[\d,]*(?:\.\d+)?\s?[kKmM]?(?![\w]|\.\d|\/[$£€¥]?\d)/g; /* stakes like $0.01/$0.02 stay visible */
+const BM_SKIP='input,textarea,select,option,script,style,noscript,[contenteditable="true"],.no-bm,#editorV,#trainerV,#filesV,#notesV,#handHistoryV,#toolsV,#flowV,#ggReplayM,#ggShareM,#hhReplayM,#hhDetailM,#qhM,#rcExM,#rcSpotM,#learnM';
+const BM_REC=new Map();let BM_OBS=null;
+function bmMaskText(t){return t.replace(BM_RE,"••••")}
+function bmSkip(el){return!el||!!el.closest(BM_SKIP)}
+function bmNode(n){
+  const v=n.nodeValue;if(!v||v.length>4000)return;
+  const r=BM_REC.get(n);if(r&&r.m===v)return;
+  BM_RE.lastIndex=0;if(!/\d/.test(v)||!BM_RE.test(v)){if(r)BM_REC.delete(n);return}
+  const p=n.parentElement;if(bmSkip(p))return;
+  const m=bmMaskText(v);if(m===v)return;BM_REC.set(n,{o:v,m});n.nodeValue=m;p.classList.add("bm-p");
+}
+function bmWalk(root){
+  if(!root)return;if(root.nodeType===3){bmNode(root);return}if(root.nodeType!==1&&root.nodeType!==11)return;
+  if(root.nodeType===1&&bmSkip(root))return;
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;const L=[];while(n=w.nextNode())L.push(n);L.forEach(bmNode);
+}
+function bmRestore(){
+  BM_REC.forEach((r,n)=>{if(n.isConnected&&n.nodeValue===r.m)n.nodeValue=r.o});BM_REC.clear();
+  document.querySelectorAll(".bm-p").forEach(e=>e.classList.remove("bm-p"));
+}
+function bmCharts(){try{if(window.Chart&&Chart.instances)Object.values(Chart.instances).forEach(c=>{try{c.render()}catch(e){}})}catch(e){}}
+function bmApply(){
+  if(balHidden){
+    bmWalk(document.body);
+    if(!BM_OBS){BM_OBS=new MutationObserver(ms=>{if(!balHidden)return;for(const m of ms){if(m.type==="characterData")bmNode(m.target);else m.addedNodes.forEach(bmWalk)}});
+      BM_OBS.observe(document.body,{childList:true,subtree:true,characterData:true})}
+  }else{if(BM_OBS){BM_OBS.disconnect();BM_OBS=null}bmRestore()}
+  bmCharts();
+}
+/* charts: everything Chart.js draws (axis ticks, tooltips, end labels, bar labels) goes through fillText */
+(function(){const P=CanvasRenderingContext2D.prototype,F=P.fillText;
+  P.fillText=function(t,...a){
+    if(balHidden&&typeof t==="string"&&/\d/.test(t)){const c=this.canvas;
+      if(c&&c.isConnected&&window.Chart&&Chart.getChart&&Chart.getChart(c)&&!bmSkip(c)){BM_RE.lastIndex=0;t=bmMaskText(t)}}
+    return F.call(this,t,...a)}})();
+setTimeout(()=>{if(balHidden)bmApply();syncBalToggles()},150);
+</script>
+<script>
+/* ═══ v141 · Professional hand image — drawn straight from the replay ═══ */
+function ggHandImage2(R,h,o){
+  const unit=o.hideStakes?"bb":o.unit,S=R.states,end=S.length-1,cut=o.quiz&&ggR.step<end&&ggR.step>0?Math.max(1,ggR.step):end,quiz=cut<end;
+  const A=c=>ggShAmt(c,R.bb,unit),Abb=c=>ggShAmt(c,R.bb,"bb");
+  const label=n=>n===R.hero?"Hero":(R.pos&&R.pos[n])||("Seat "+(R.seats.find(x=>x.name===n)||{}).seat);
+  const byLen=R.seats.map(x=>x.name).sort((a,b)=>b.length-a.length);
+  const tidy=t=>{t=t.replace(/\{\{(-?\d+)\}\}/g,(_,c)=>A(+c));byLen.forEach(n=>{t=t.split(n).join(label(n))});return t};
+  const W=1080,P=64,IN=W-P*2,FF='"Sora","Inter",system-ui,sans-serif',acc=psCss("--pk")||"#f76fae";
+  const C=ggImgPalette(o.imgStyle,o.imgAcc);
+  const STC={PREFLOP:C.check,FLOP:C.call,TURN:C.bet,RIVER:C.allin};
+  window.GG_DECK=o.imgDeck==="classic"?"classic":"four";
+  /* ── collect the hand ── */
+  const seatsOrd=["UTG","UTG+1","UTG+2","LJ","HJ","CO","BTN","BTN/SB","SB","BB"];
+  const seats=[...R.seats].sort((a,b)=>seatsOrd.indexOf(R.pos[a.name])-seatsOrd.indexOf(R.pos[b.name]));
+  const start=S[0].stacks||{};
+  const streets=[];let cur=null;const shows=[],wins=[];let endTxt="";
+  for(let k=1;k<=cut;k++){const st=S[k];
+    if(st.kind==="street"){const live=R.seats.filter(x=>!(st.folded||[]).includes(x.name)).length;
+      if(st.text==="Cards are dealt"){cur={t:"PREFLOP",pot:st.pot+Object.values(st.bets||{}).reduce((a,b)=>a+b,0),live,board:[],nb:0,rows:[]};streets.push(cur);continue}
+      const nm=st.text.split(":")[0].toUpperCase(),bd=/RUN 2/.test(nm)?(st.board2||[]):(st.board||[]),prev=streets.length?streets[streets.length-1].board:[];
+      cur={t:nm,pot:st.pot,live,board:bd,nb:Math.max(0,bd.length-(/RUN 2/.test(nm)?0:prev.length)),rows:[]};streets.push(cur);continue}
+    if(st.kind==="start"||st.kind==="end"){if(st.kind==="end")endTxt=st.text;continue}
+    if(st.kind==="post"){if(!/blind/.test(st.text)){if(!cur){cur={t:"PREFLOP",pot:0,live:R.seats.length,board:[],nb:0,rows:[]};streets.push(cur)}cur.rows.push({who:[label(st.actor)],kind:"post",txt:tidy(st.text).replace(label(st.actor)+" ","")})}continue}
+    if(st.kind==="show"){shows.push(st);continue}
+    if(st.kind==="win"){wins.push(st);continue}
+    if(!cur)continue;
+    if(st.kind==="cd"){cur.rows.push({who:[],kind:"cd",txt:"Cash Drop · "+A(st.cd||0)+" added to the pot"});continue}
+    if(st.kind==="fold"){const pr=cur.rows[cur.rows.length-1];if(pr&&pr.kind==="fold")pr.who.push(label(st.actor));else cur.rows.push({who:[label(st.actor)],kind:"fold",txt:"folds"});continue}
+    const lb=label(st.actor);let t=tidy(st.text);
+    if(st.kind==="return"){cur.rows.push({who:[lb],kind:"return",txt:t.replace(/^Uncalled\s*/i,"").replace(/\s*returned to .*$/,"")+" uncalled, returned"});continue}
+    if(t.indexOf(lb+" ")===0)t=t.slice(lb.length+1);
+    const ai=/all-in/.test(t);cur.rows.push({who:[lb],kind:ai?"allin":st.kind,txt:t.replace(/\s*and is all-in/," · all-in")});
+  }
+  streets.forEach(x=>x.rows.forEach(r=>{if(r.kind==="fold"&&r.who.length>1)r.txt="fold"}));
+  let nextActor=null;if(quiz){const nx=S.slice(cut+1).find(x=>x.actor&&["fold","check","call","bet","raise"].includes(x.kind));nextActor=nx?label(nx.actor):"?"}
+  const notes=[];if(o.notes){(h.tags||[]).length&&!quiz&&notes.push("Tags: "+h.tags.join(", "));(h.cm||[]).filter(c=>!quiz||(c.step!=null&&ggPinStep(c)<=cut)).forEach(c=>notes.push((c.street?c.street+" · ":"")+c.text))}
+  /* ── measure ── */
+  const cv=document.createElement("canvas"),ctx=cv.getContext("2d");
+  const wrap=(t,font,maxW)=>{ctx.font=font;const ws=String(t).split(" "),out=[];let ln="";ws.forEach(w=>{const tr=ln?ln+" "+w:w;if(ctx.measureText(tr).width>maxW&&ln){out.push(ln);ln=w}else ln=tr});if(ln)out.push(ln);return out.length?out:[""]};
+  const RH=56,CHW=104,noteF="400 26px "+FF;
+  let H=P+44+28+52+44+58+36;          // brand, title, pills, divider
+  H+=212+24+(seats.length>1?Math.ceil((seats.length-1)/3)*70+24:0); // hero + table
+  streets.forEach(x=>{H+=70+(x.board.length?134:0)+x.rows.length*RH+30});
+  if(quiz)H+=120;else{H+=shows.length?60+shows.reduce((a,st)=>a+Object.keys(st.shown||{}).length*76,0)+16:0;H+=170}
+  const nl=notes.map(n=>wrap(n,noteF,IN-56));if(nl.length)H+=60+nl.reduce((a,l)=>a+l.length*38+10,0)+20;
+  H+=90;
+  const DPR=1;cv.width=W*DPR;cv.height=H*DPR;ctx.scale(DPR,DPR);
+  /* ── helpers ── */
+  const rr=(x,y,w,hh,r,fill,stroke)=>{ctx.beginPath();ctx.roundRect(x,y,w,hh,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}};
+  const txt=(t,x,y,font,col,al)=>{ctx.font=font;ctx.fillStyle=col;ctx.textAlign=al||"left";ctx.fillText(t,x,y);ctx.textAlign="left";return ctx.measureText(t).width};
+  const pill=(t,x,y,col,bg,font)=>{ctx.font=font||"600 22px "+FF;const w=ctx.measureText(t).width+32;rr(x,y,w,42,21,bg||psA(col,.12),psA(col,.32));txt(t,x+16,y+21,ctx.font,col);return w};
+  const chip=(t,x,y,hero)=>{const f="700 21px "+FF;ctx.font=f;const w=Math.max(CHW-12,ctx.measureText(t).width+24);rr(x,y,w,38,10,hero?psA(C.acc,.22):C.pan2,hero?psA(C.acc,.55):C.ln);txt(t,x+w/2,y+19,f,hero?C.accT:C.t2,"center");return w};
+  ctx.textBaseline="middle";
+  /* background */
+  const bg=C.radial?ctx.createRadialGradient(W/2,H*.3,40,W/2,H*.4,Math.max(W,H)*.75):ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,C.bg1);bg.addColorStop(1,C.bg0);ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  if(C.radial){ctx.strokeStyle="rgba(255,255,255,.035)";ctx.lineWidth=1;for(let i=-H;i<W;i+=7){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+H,H);ctx.stroke()}}
+  ctx.fillStyle=C.acc;ctx.fillRect(0,0,W,6);
+  let y=P;
+  /* brand row */
+  rr(P,y-4,44,44,12,psA(C.acc,.16),psA(C.acc,.4));txt("♠",P+22,y+18,"700 24px "+FF,C.accT,"center");
+  txt("PokerStudio",P+60,y+18,"700 28px "+FF,C.t1);
+  const dt=new Date(h.ts).toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
+  txt(dt,W-P,y+18,"500 22px "+FF,C.t3,"right");
+  y+=44+28;
+  /* title */
+  txt("No Limit Hold'em · "+R.maxSeats+"-max",P,y+24,"700 42px "+FF,C.t1);y+=52+12;
+  let px=P;
+  if(!o.hideStakes)px+=pill(ggStakeLabel(R.bb),px,y,C.t2,C.pan2)+10;
+  px+=pill(unit==="bb"?"Amounts in big blinds":"Amounts in $",px,y,C.t3,C.pan2)+10;
+  pill("#"+R.id,px,y,C.t3,C.pan2);
+  y+=58+16;ctx.fillStyle=C.ln;ctx.fillRect(P,y,IN,2);y+=20;
+  /* hero panel */
+  rr(P,y,IN,212,24,C.pan,C.ln);
+  const hc=(R.heroCards||[]).map(c=>ggShCard(c,true));
+  hc.forEach((c,i)=>ggImgCard(ctx,P+28+i*128,y+26,116,160,c));
+  const hx=P+28+Math.max(2,hc.length)*128+18;
+  ctx.textBaseline="middle";
+  pill(R.pos[R.hero]||"Hero",hx,y+40,C.accT,psA(C.acc,.16),"700 22px "+FF);
+  txt("Hero",hx,y+112,"800 46px "+FF,C.t1);
+  txt("Stack "+A(start[R.hero]||0)+(unit==="money"?"  ·  "+Abb(start[R.hero]||0):""),hx,y+164,"500 24px "+FF,C.t3);
+  y+=212+24;
+  /* table: everyone else */
+  const others=seats.filter(x=>x.name!==R.hero);
+  if(others.length){const cw=(IN-20)/3;others.forEach((x,i)=>{const cx=P+(i%3)*(cw+10),cy=y+Math.floor(i/3)*70;rr(cx,cy,cw,60,14,C.pan,C.ln);
+      txt(label(x.name),cx+20,cy+30,"700 22px "+FF,C.t2);txt(A(start[x.name]||0),cx+cw-20,cy+30,"500 22px "+FF,C.t3,"right")});
+    y+=Math.ceil(others.length/3)*70+24}
+  /* streets */
+  streets.forEach(x=>{const col=STC[x.t]||C.check;
+    ctx.fillStyle=col;ctx.fillRect(P,y+14,5,32);
+    txt(x.t.replace(/^RUN 2/,"RUN 2 ·"),P+20,y+30,"800 26px "+FF,col);
+    ctx.font="800 26px "+FF;const tw=ctx.measureText(x.t).width;
+    txt(x.live+" players",P+20+tw+18,y+31,"500 22px "+FF,C.t3);
+    const pt="Pot "+A(x.pot);ctx.font="700 22px "+FF;const pw=ctx.measureText(pt).width+32;rr(W-P-pw,y+9,pw,42,21,C.pan2,C.ln);txt(pt,W-P-pw/2,y+30,"700 22px "+FF,C.t1,"center");
+    y+=70;
+    if(x.board.length){x.board.forEach((c,i)=>{const nw=i>=x.board.length-x.nb&&x.t!=="FLOP";ggImgCard(ctx,P+20+i*92,y,82,110,ggShCard(c,true));if(nw){ctx.fillStyle=col;ctx.beginPath();ctx.roundRect(P+20+i*92+21,y+116,40,5,3);ctx.fill()}});y+=134}
+    x.rows.forEach(r=>{ctx.textBaseline="middle";
+      if(r.kind==="cd"){rr(P+20,y+4,IN-20,44,12,"rgba(80,170,255,.12)","rgba(80,170,255,.35)");txt("💧 "+r.txt,P+40,y+26,"600 23px "+FF,C.light?"#1f6fc0":"#7cc4ff");y+=RH;return}
+      let cx=P+20;r.who.forEach(w=>{cx+=chip(w,cx,y+7,w==="Hero")+8});
+      const kc=r.kind==="fold"?C.fold:r.kind==="check"?C.check:r.kind==="call"?C.call:r.kind==="allin"?C.allin:r.kind==="return"||r.kind==="post"?C.t3:C.bet;
+      const m=r.txt.match(/^(\S+(?: to)?)(.*)$/)||[r.txt,r.txt,""];
+      const w1=txt(m[1],cx+10,y+27,"700 25px "+FF,kc);txt(m[2],cx+10+w1,y+27,(r.kind==="fold"||r.kind==="return"?"500 ":"700 ")+"25px "+FF,r.kind==="fold"||r.kind==="return"?C.t3:C.t1);
+      y+=RH});
+    y+=30});
+  /* showdown */
+  if(!quiz&&shows.length){txt("SHOWDOWN",P,y+24,"800 24px "+FF,C.t3);y+=60;const done=new Set();
+    shows.forEach(st=>Object.entries(st.shown||{}).forEach(([n,cards])=>{if(done.has(n))return;done.add(n);
+      const lst=S[end],b1=lst.board||[];let desc="";try{if(b1.length===5)desc=ggHandDesc(cards,b1)}catch(e){}
+      const cx=P+20+chip(label(n),P+20,y+12,n===R.hero)+16;cards.forEach((c,i)=>ggImgCard(ctx,cx+i*50,y,46,62,ggShCard(c,true)));
+      txt(desc,cx+cards.length*50+16,y+31,"600 24px "+FF,C.t2);y+=76}));y+=16}
+  /* result / quiz */
+  ctx.textBaseline="middle";
+  if(quiz){rr(P,y,IN,96,20,psA(C.acc,.12),psA(C.acc,.4));txt("❓  Action on "+nextActor+" — what's your play?",P+32,y+48,"700 30px "+FF,C.t1);y+=120}
+  else{const net=h.net,col=net>0?C.call:net<0?C.allin:C.t2,sg=net>0?"+":net<0?"−":"";
+    rr(P,y,IN,146,24,C.pan,C.ln);ctx.save();ctx.beginPath();ctx.roundRect(P,y,IN,146,24);ctx.clip();ctx.fillStyle=col;ctx.fillRect(P,y,6,146);ctx.restore();
+    txt("HERO RESULT",P+36,y+40,"700 20px "+FF,C.t3);
+    const big=sg+A(Math.abs(net));const bw=txt(big,P+36,y+94,"800 54px "+FF,col);
+    if(unit==="money")txt(sg+Abb(Math.abs(net)),P+36+bw+16,y+100,"600 26px "+FF,C.t3);
+    const fin=S[end];let potT="";const rk=(endTxt.match(/rake\s*\{\{(\d+)\}\}/)||[])[1];
+    const totalPot=h.pot||null;if(totalPot)potT="Pot "+A(totalPot);if(rk!=null)potT+=(potT?"  ·  ":"")+"Rake "+A(+rk);
+    if(h.ev!=null&&Math.abs(h.ev-net)>0.5)txt("All-in EV "+(h.ev>=0?"+":"−")+A(Math.abs(h.ev)),W-P-32,y+56,"600 22px "+FF,C.t2,"right");
+    if(potT)txt(potT,W-P-32,y+98,"500 22px "+FF,C.t3,"right");
+    y+=170}
+  /* notes */
+  if(nl.length){txt("NOTES",P,y+24,"800 22px "+FF,C.t3);y+=60;nl.forEach(ls=>{ctx.fillStyle=psA(C.acc,.6);ctx.fillRect(P+20,y+2,3,ls.length*38-6);ls.forEach(l=>{txt(l,P+40,y+17,noteF,C.t2);y+=38});y+=10});y+=20}
+  /* footer — then trim the canvas to the content */
+  y+=6;ctx.fillStyle=C.ln;ctx.fillRect(P,y,IN,2);
+  txt("Shared from PokerStudio",P,y+36,"500 20px "+FF,C.t4);txt("GGPoker hand history",W-P,y+36,"500 20px "+FF,C.t4,"right");
+  const FH=Math.min(H,Math.ceil(y+36+P)),out=document.createElement("canvas");out.width=W;out.height=FH;out.getContext("2d").drawImage(cv,0,0);
+  return out;
+}
+</script>
+<script>
+/* ═══ v142 · Hand image looks: style, accent colour, deck ═══ */
+const GG_IMG_STYLES={
+  dark:{n:"Dark",sw:["#13161b","#1e222a"],bg0:"#0e1014",bg1:"#13161b",pan:"#181b21",pan2:"#1e222a",ln:"rgba(255,255,255,.07)",t1:"#f1f3f6",t2:"#c9ced6",t3:"#868d98",t4:"#5d636d",fold:"#6f7681",check:"#9aa3ae",call:"#43c08a",bet:"#f2a93b",allin:"#ef5b6e"},
+  midnight:{n:"Midnight",sw:["#0b1430","#1a2a5a"],bg0:"#060a1a",bg1:"#0d1736",pan:"#111d40",pan2:"#18275a",ln:"rgba(160,190,255,.12)",t1:"#eef2ff",t2:"#c3cdf0",t3:"#8592bf",t4:"#56618e",fold:"#6d79a6",check:"#a3afd8",call:"#3fd0a0",bet:"#ffb74d",allin:"#ff6b81"},
+  felt:{n:"Felt",sw:["#1d6a43","#0c3a23"],radial:1,bg0:"#0a3320",bg1:"#1e7048",pan:"rgba(0,0,0,.24)",pan2:"rgba(0,0,0,.30)",ln:"rgba(255,255,255,.12)",t1:"#ffffff",t2:"#e1eee6",t3:"#a8c9b5",t4:"#79a48a",fold:"#9cbca8",check:"#d4e6da",call:"#7ff0b8",bet:"#ffd166",allin:"#ff8a8a",acc0:"#ffd166"},
+  light:{n:"Light",sw:["#ffffff","#e9ecf1"],light:1,bg0:"#eef0f4",bg1:"#f8f9fb",pan:"#ffffff",pan2:"#f1f3f6",ln:"rgba(0,0,0,.08)",t1:"#14171c",t2:"#3a4049",t3:"#6c737e",t4:"#9aa0a9",fold:"#8a9099",check:"#596270",call:"#13925f",bet:"#c97d06",allin:"#d23a50"},
+  blush:{n:"Blush",sw:["#fff1f6","#ffd6e6"],light:1,bg0:"#ffe4ee",bg1:"#fff6f9",pan:"#ffffff",pan2:"#fff0f5",ln:"rgba(190,60,110,.13)",t1:"#33141f",t2:"#5b3443",t3:"#93687a",t4:"#b996a5",fold:"#ae8c9a",check:"#7b5566",call:"#14935f",bet:"#c97806",allin:"#d23a5e",acc0:"#e0468f"}
+};
+const GG_IMG_ACC={theme:["Theme",null],pink:["Pink","#f0549a"],lilac:["Lilac","#9b7bff"],mint:["Mint","#22b886"],gold:["Gold","#e3a535"],sky:["Sky","#3d9cf5"],red:["Red","#e5484d"],mono:["Mono",null]};
+function ggHexMix(h,t,a){const p=x=>{x=x.replace("#","");if(x.length===3)x=x.split("").map(c=>c+c).join("");return[0,2,4].map(i=>parseInt(x.substr(i,2),16))};try{const A=p(h),B=p(t);return"#"+A.map((v,i)=>Math.round(v+(B[i]-v)*a).toString(16).padStart(2,"0")).join("")}catch(e){return h}}
+function ggImgPalette(style,accK){const S=Object.assign({},GG_IMG_STYLES[style]||GG_IMG_STYLES.dark);
+  let acc=accK&&accK!=="theme"?(GG_IMG_ACC[accK]||[])[1]:null;
+  if(accK==="mono")acc=S.light?"#2a2f37":"#e6e9ee";
+  if(!acc)acc=(!accK||accK==="theme")&&S.acc0&&style!=="dark"?S.acc0:(psCss("--pk")||"#f76fae");
+  if(!/^#/.test(acc))acc="#f76fae";
+  S.acc=acc;S.accT=S.light?ggHexMix(acc,"#000000",.22):acc;S.raise=S.bet;return S}
+function ggImgLookHtml(o){
+  const st=o.imgStyle||"dark",ac=o.imgAcc||"theme",dk=o.imgDeck||"four";
+  const sty=Object.entries(GG_IMG_STYLES).map(([k,v])=>'<button class="ggl-sty'+(k===st?" sel":"")+'" data-k="imgStyle" data-v="'+k+'" title="'+v.n+'"><i style="background:linear-gradient(135deg,'+v.sw[0]+','+v.sw[1]+')"></i><span>'+v.n+"</span></button>").join("");
+  const pal=ggImgPalette(st,"theme");
+  const acs=Object.entries(GG_IMG_ACC).map(([k,v])=>{const c=k==="theme"?pal.acc:k==="mono"?(GG_IMG_STYLES[st].light?"#2a2f37":"#e6e9ee"):v[1];return'<button class="ggl-acc'+(k===ac?" sel":"")+'" data-k="imgAcc" data-v="'+k+'" title="'+v[0]+'" aria-label="'+v[0]+'"><i style="background:'+c+'"></i><span>'+v[0]+"</span></button>"}).join("");
+  return'<div class="ggl-row"><b>Style</b><div class="ggl-sw">'+sty+'</div></div><div class="ggl-row"><b>Colour</b><div class="ggl-sw">'+acs+'</div></div><div class="ggl-row"><b>Cards</b><div class="seg-row ggs-mini ggl-deck"><button class="'+(dk==="four"?"sel":"")+'" data-k="imgDeck" data-v="four">4-colour</button><button class="'+(dk==="classic"?"sel":"")+'" data-k="imgDeck" data-v="classic">Classic</button></div></div>';
+}
+</script>
+<script>
+/* ═══ v143 · Compact hand image ═══ */
+function ggHandImage3(R,h,o){
+  const unit=o.hideStakes?"bb":o.unit,S=R.states,end=S.length-1,cut=o.quiz&&ggR.step<end&&ggR.step>0?Math.max(1,ggR.step):end,quiz=cut<end;
+  const A=c=>ggShAmt(c,R.bb,unit),Abb=c=>ggShAmt(c,R.bb,"bb");
+  const label=n=>n===R.hero?"Hero":(R.pos&&R.pos[n])||("Seat "+(R.seats.find(x=>x.name===n)||{}).seat);
+  const byLen=R.seats.map(x=>x.name).sort((a,b)=>b.length-a.length);
+  const tidy=t=>{t=t.replace(/\{\{(-?\d+)\}\}/g,(_,c)=>A(+c));byLen.forEach(n=>{t=t.split(n).join(label(n))});return t};
+  const C=ggImgPalette(o.imgStyle,o.imgAcc);window.GG_DECK=o.imgDeck==="classic"?"classic":"four";
+  const STC={PREFLOP:C.check,FLOP:C.call,TURN:C.bet,RIVER:C.allin};
+  const W=900,P=40,FF='"Sora","Inter",system-ui,sans-serif',start=S[0].stacks||{};
+  /* collect */
+  const streets=[];let cur=null;const shows=[];let endTxt="";const vol=new Set();
+  for(let k=1;k<=cut;k++){const st=S[k];
+    if(st.kind==="street"){if(st.text==="Cards are dealt"){cur={t:"PREFLOP",pot:st.pot+Object.values(st.bets||{}).reduce((a,b)=>a+b,0),cards:[],it:[]};streets.push(cur);continue}
+      const nm=st.text.split(":")[0].toUpperCase(),r2=/RUN 2/.test(nm),bd=r2?(st.board2||[]):(st.board||[]);
+      const prev=r2?[]:(streets.filter(x=>!/RUN 2/.test(x.t)).slice(-1)[0]||{all:[]}).all||[];
+      cur={t:nm.replace(/^RUN 2.*?(FLOP|TURN|RIVER)/,"R2 $1"),pot:st.pot,cards:bd.slice(prev.length),all:bd,it:[]};streets.push(cur);continue}
+    if(st.kind==="end"){endTxt=st.text;continue}
+    if(st.kind==="start")continue;
+    if(st.kind==="show"){shows.push(st);continue}
+    if(st.kind==="win"||st.kind==="return")continue;
+    if(st.kind==="post"){if(!/blind/.test(st.text)){if(!cur){cur={t:"PREFLOP",pot:0,cards:[],it:[]};streets.push(cur)}cur.it.push({who:label(st.actor),v:tidy(st.text).replace(label(st.actor)+" ",""),k:"post"})}continue}
+    if(!cur)continue;
+    if(st.kind==="cd"){cur.it.push({who:"",v:"💧 Cash Drop +"+A(st.cd||0),k:"cd"});continue}
+    if(st.kind==="fold"){const lb=label(st.actor),pr=cur.it[cur.it.length-1];if(lb!=="Hero"&&pr&&pr.k==="fold"&&!pr.hero)pr.who.push(lb);else cur.it.push({who:[lb],k:"fold",hero:lb==="Hero"});continue}
+    const lb=label(st.actor);vol.add(st.actor);let t=tidy(st.text);if(t.indexOf(lb+" ")===0)t=t.slice(lb.length+1);
+    const ai=/all-in/.test(t);cur.it.push({who:lb,v:t.replace(/\s*and is all-in/,""),k:ai?"allin":st.kind,ai});
+  }
+  const vill=R.seats.filter(x=>x.name!==R.hero&&vol.has(x.name)).map(x=>label(x.name)+" "+A(start[x.name]||0));
+  let nextActor=null;if(quiz){const nx=S.slice(cut+1).find(x=>x.actor&&["fold","check","call","bet","raise"].includes(x.kind));nextActor=nx?label(nx.actor):"?"}
+  const notes=[];if(o.notes){(h.tags||[]).length&&!quiz&&notes.push("Tags: "+h.tags.join(", "));(h.cm||[]).filter(c=>!quiz||(c.step!=null&&ggPinStep(c)<=cut)).forEach(c=>notes.push(c.text))}
+  /* draw on a transparent layer, then trim and put the background under it */
+  const cv=document.createElement("canvas");cv.width=W;cv.height=3200;const ctx=cv.getContext("2d");ctx.textBaseline="middle";
+  const rr=(x,y,w,hh,r,fill,stroke)=>{ctx.beginPath();ctx.roundRect(x,y,w,hh,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1.5;ctx.stroke()}};
+  const txt=(t,x,y,font,col,al)=>{ctx.font=font;ctx.fillStyle=col;ctx.textAlign=al||"left";ctx.fillText(t,x,y);const w=ctx.measureText(t).width;ctx.textAlign="left";return w};
+  const mw=(t,font)=>{ctx.font=font;return ctx.measureText(t).width};
+  const CHF="700 16px "+FF,chipW=t=>Math.max(44,mw(t,CHF)+18);
+  const chip=(t,x,y,hero)=>{const w=chipW(t);rr(x,y-14,w,28,8,hero?psA(C.acc,.2):C.pan2,hero?psA(C.acc,.55):C.ln);txt(t,x+w/2,y,CHF,hero?C.accT:C.t2,"center");return w};
+  const AF="700 19px "+FF,AF2="500 19px "+FF;
+  let y=P;
+  /* header */
+  rr(P,y-17,34,34,9,psA(C.acc,.16),psA(C.acc,.45));txt("♠",P+17,y,"700 18px "+FF,C.accT,"center");
+  const game="NLH · "+R.maxSeats+"-max"+(o.hideStakes?"":" · "+ggStakeLabel(R.bb));
+  txt(game,P+48,y,"700 21px "+FF,C.t1);
+  const dt=new Date(h.ts).toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
+  txt(dt,W-P,y,"500 16px "+FF,C.t3,"right");
+  y+=36;
+  /* hero + result */
+  const HP=140;rr(P,y,W-P*2,HP,18,C.pan,C.ln);
+  const hc=(R.heroCards||[]).map(c=>ggShCard(c,true));hc.forEach((c,i)=>ggImgCard(ctx,P+20+i*80,y+20,72,100,c));
+  const hx=P+20+Math.max(2,hc.length)*80+12;
+  const pos=R.pos[R.hero]||"";ctx.font="700 15px "+FF;const pw=ctx.measureText(pos).width+20;
+  if(pos){rr(hx,y+24,pw,26,13,psA(C.acc,.16),psA(C.acc,.45));txt(pos,hx+pw/2,y+37,"700 15px "+FF,C.accT,"center")}
+  txt("Hero",hx+(pos?pw+10:0),y+38,"800 26px "+FF,C.t1);
+  txt("Stack "+A(start[R.hero]||0),hx,y+78,"500 17px "+FF,C.t2);
+  if(vill.length){let vt="vs "+vill.join(" · ");const maxw=W-P-250-hx;while(mw(vt,"500 16px "+FF)>maxw&&vt.length>8)vt=vt.slice(0,-2);if(vt!=="vs "+vill.join(" · "))vt=vt.replace(/[\s·]+$/,"")+"…";txt(vt,hx,y+106,"500 16px "+FF,C.t3)}
+  const rx=W-P-24;
+  if(quiz){txt("QUIZ",rx,y+48,"700 13px "+FF,C.t3,"right");txt("Your play?",rx,y+84,"800 28px "+FF,C.accT,"right")}
+  else{const net=h.net,col=net>0?C.call:net<0?C.allin:C.t2,sg=net>0?"+":net<0?"−":"";
+    txt("RESULT",rx,y+40,"700 13px "+FF,C.t3,"right");txt(sg+A(Math.abs(net)),rx,y+78,"800 36px "+FF,col,"right");
+    if(unit==="money")txt(sg+Abb(Math.abs(net)),rx,y+110,"600 16px "+FF,C.t3,"right")}
+  y+=HP+14;
+  /* streets */
+  const GX=P+120,RX=W-P,LH=40;
+  const block=(lbl,col,potT,cards,items)=>{
+    const top=y;let cy=y+24;
+    let x=GX;
+    if(cards.length){cards.forEach((c,i)=>ggImgCard(ctx,GX+i*50,y+8,44,60,ggShCard(c,true)));cy=y+38;x=GX+cards.length*50+14}
+    const lineStart=()=>GX;
+    items.forEach(it=>{const parts=[];
+      if(it.k==="fold"){const t=(it.who.length>1?it.who.join(", ")+" fold":it.who[0]+" folds");if(it.hero){parts.push(["chip","Hero"]);parts.push(["t","folds",C.fold,AF2])}else parts.push(["t",t,C.fold,AF2])}
+      else if(it.k==="cd")parts.push(["t",it.v,C.light?"#1f6fc0":"#7cc4ff",AF]);
+      else{parts.push(["chip",it.who]);const kc=it.k==="check"?C.check:it.k==="call"?C.call:it.k==="allin"?C.allin:it.k==="post"?C.t3:C.bet;
+        const m=it.v.match(/^(\S+(?: to)?)\s*(.*)$/)||[0,it.v,""];parts.push(["t",m[1],kc,AF]);if(m[2])parts.push(["t"," "+m[2],C.t1,AF]);if(it.ai)parts.push(["t"," all-in",C.allin,"800 15px "+FF])}
+      const w=parts.reduce((a,p)=>a+(p[0]==="chip"?chipW(p[1])+8:mw(p[1],p[3])),0);
+      if(x>GX&&x+w>RX){x=GX;cy+=cy===y+38&&cards.length?50:LH}
+      parts.forEach(p=>{if(p[0]==="chip")x+=chip(p[1],x,cy,p[1]==="Hero")+8;else x+=txt(p[1],x,cy+1,p[3],p[2])});
+      x+=22});
+    const bh=Math.max(cy+22-top,cards.length?84:56);
+    txt(lbl,P,top+24,"800 16px "+FF,col);if(potT)txt(potT,P,top+46,"500 15px "+FF,C.t3);
+    y=top+bh;ctx.fillStyle=C.ln;ctx.fillRect(P,y+6,W-P*2,1.5);y+=14};
+  streets.forEach(x=>block(x.t,STC[x.t.replace(/^R2 /,"")]||C.check,"Pot "+A(x.pot),x.cards,x.it));
+  if(quiz){rr(P,y+4,W-P*2,52,14,psA(C.acc,.12),psA(C.acc,.4));txt("❓  Action on "+nextActor+" — what's your play?",P+20,y+30,"700 19px "+FF,C.t1);y+=70}
+  if(!quiz&&shows.length){const top=y;let cy=y+24;const done=new Set(),b1=S[end].board||[];
+    shows.forEach(st=>Object.entries(st.shown||{}).forEach(([n,cards])=>{if(done.has(n))return;done.add(n);let desc="";try{if(b1.length===5)desc=ggHandDesc(cards,b1)}catch(e){}
+      chip(label(n),GX,cy,n===R.hero);let x=GX+72;cards.forEach((c,i)=>{ggImgCard(ctx,x+i*36,cy-22,32,44,ggShCard(c,true))});x+=cards.length*36+10;txt(desc,x,cy+1,"600 18px "+FF,C.t2);cy+=52}));
+    txt("SHOWDOWN",P,top+24,"800 16px "+FF,C.t3);y=cy-52+30;ctx.fillStyle=C.ln;ctx.fillRect(P,y+6,W-P*2,1.5);y+=14}
+  if(notes.length){const top=y;let cy=y+24;const NF="400 17px "+FF;notes.forEach(n=>{ctx.font=NF;const ws=n.split(" ");let ln="";ws.forEach(w=>{const tr=ln?ln+" "+w:w;if(mw(tr,NF)>RX-GX&&ln){txt(ln,GX,cy,NF,C.t2);cy+=26;ln=w}else ln=tr});if(ln){txt(ln,GX,cy,NF,C.t2);cy+=26}cy+=6});
+    txt("NOTES",P,top+24,"800 16px "+FF,C.accT);y=cy+4;ctx.fillStyle=C.ln;ctx.fillRect(P,y+6,W-P*2,1.5);y+=14}
+  /* footer */
+  const rk=(endTxt.match(/rake\s*\{\{(\d+)\}\}/)||[])[1];let ft=[];if(!quiz&&h.pot)ft.push("Pot "+A(h.pot));if(!quiz&&rk!=null)ft.push("Rake "+A(+rk));if(!quiz&&h.ev!=null&&Math.abs(h.ev-h.net)>0.5)ft.push("EV "+(h.ev>=0?"+":"−")+A(Math.abs(h.ev)));
+  if(unit==="bb"&&!o.hideStakes)ft.push("amounts in bb");else if(o.hideStakes)ft.push("amounts in bb");
+  ctx.clearRect(0,y-10,W,6);y-=14;
+  const FH=Math.ceil(y+P-6);
+  const out=document.createElement("canvas");out.width=W;out.height=FH;const o2=out.getContext("2d");
+  const bg=C.radial?o2.createRadialGradient(W/2,FH*.3,30,W/2,FH*.4,Math.max(W,FH)*.75):o2.createLinearGradient(0,0,0,FH);bg.addColorStop(0,C.bg1);bg.addColorStop(1,C.bg0);o2.fillStyle=bg;o2.fillRect(0,0,W,FH);
+  o2.fillStyle=C.acc;o2.fillRect(0,0,W,4);o2.drawImage(cv,0,0);
+  return out;
+}
+</script>
+<script>
+/* ═══ v145 · Navigation: smart back, More sheet, honest tab highlight ═══ */
+const NAV_FROM={};let _navTab=false,_navBacking=false;
+const NAV_SUB={home:"Today & shortcuts",editor:"Build & edit ranges",trainer:"Drill your ranges",files:"Folders & saved ranges",flow:"Strategy trees",bankroll:"Sessions, balance & goals",gg:"Graphs, stats & replays",handHistory:"Log & review hands",shifts:"Hours & overtime",notes:"Study & player notes",tools:"Calculators & trainers",settings:"Theme, data & backup"};
+const NAV_SHEET=[["Study",["editor","trainer","files","flow"]],["Play & track",["bankroll","gg","handHistory","shifts","notes","tools"]]];
+function navCur(){return((document.querySelector(".view.on")||{}).id||"").replace(/V$/,"")}
+(function(){const g0=go;go=function(v){const cur=navCur();
+    if(!_navPop&&!_navBacking&&cur&&cur!==v)NAV_FROM[v]=_navTab?null:cur;
+    if(_navTab)NAV_FROM[v]=null;
+    try{closeM("moreM")}catch(e){}
+    g0.apply(this,arguments);try{navAfter(v)}catch(e){console.warn(e)}};
+  const t0=navTap;navTap=function(v){if(v==="settings"){openMoreSheet();return}_navTab=true;try{t0(v)}finally{_navTab=false}};})();
+function navBackTarget(v){const f=NAV_FROM[v];if(f&&f!==v)return f;if(f===null)return null;return NAV_PARENT[v]||null}
+function navAfter(v){
+  const tgt=navBackTarget(v),vw=$(v+"V");
+  if(vw)vw.querySelectorAll("[data-nav-back]").forEach(b=>{if(b.closest("#flowEditor"))return;b.style.display=tgt?"":"none";if(tgt)b.innerHTML='<span class="nb-ar">‹</span> '+(NAV_FULL[tgt]||"Back")});
+  // bar: the screen's own tab if pinned, otherwise More
+  const bar=[...document.querySelectorAll(".bnav-t")].map(b=>b.dataset.v),key=bar.includes(v)?v:"settings";
+  document.querySelectorAll(".bnav-t").forEach(t=>t.classList.toggle("on",t.dataset.v===key));
+  try{updateNavIndicator()}catch(e){}
+}
+function navGoTab(k){_navTab=true;try{go(k)}finally{_navTab=false}}
+function navBack(){const v=navCur(),t=navBackTarget(v)||"home";_navBacking=true;try{go(t)}finally{_navBacking=false}}
+function openMoreSheet(){
+  let m=$("moreM");if(!m){m=document.createElement("div");m.className="mov";m.id="moreM";m.innerHTML='<div class="mdl more-sheet" role="dialog" aria-label="All screens"></div>';m.addEventListener("click",e=>{if(e.target===m)closeM("moreM")});document.body.appendChild(m)}
+  const cur=navCur(),pins=navItems(),rec=LG("ps_recent_views",[]).filter(k=>k!==cur&&NAV_ITEMS[k]&&k!=="settings").slice(0,4);
+  const tile=k=>'<button class="ms-tile'+(k===cur?" on":"")+'" onclick="closeM(\'moreM\');navGoTab(\''+k+'\')"><span class="ms-ico">'+NAV_ITEMS[k][0]+'</span><span class="ms-tx"><b>'+NAV_FULL[k]+'</b><small>'+(NAV_SUB[k]||"")+'</small></span>'+(pins.includes(k)?'<em class="ms-pin" title="On your tab bar">●</em>':"")+"</button>";
+  m.querySelector(".more-sheet").innerHTML='<div class="ms-grab"></div><div class="ms-hd"><h3>Go to</h3><button class="ms-x" onclick="closeM(\'moreM\')" aria-label="Close">✕</button></div>'
+    +'<button class="ms-search" onclick="closeM(\'moreM\');openGlobalSearch()">🔍 <span>Search screens, ranges, actions…</span></button>'
+    +(rec.length?'<div class="ms-sec">Recent</div><div class="ms-rec">'+rec.map(k=>'<button onclick="closeM(\'moreM\');go(\''+k+'\')">'+NAV_ITEMS[k][0]+" "+NAV_FULL[k]+"</button>").join("")+"</div>":"")
+    +NAV_SHEET.map(([g,ks])=>'<div class="ms-sec">'+g+'</div><div class="ms-grid">'+ks.map(tile).join("")+"</div>").join("")
+    +'<div class="ms-foot"><button onclick="closeM(\'moreM\');go(\'settings\')">⚙️ Settings</button><button onclick="closeM(\'moreM\');navEditBar()">✏️ Edit tab bar</button></div>';
+  openM("moreM");haptic("light");
+}
+function navEditBar(){navGoTab("settings");setTimeout(()=>{const el=$("navPinRow");if(!el)return;
+  const sec=el.closest(".settings-section-content");if(sec&&sec.classList.contains("closed")){const hd=sec.previousElementSibling;if(hd&&hd.classList.contains("settings-category"))toggleSettingsSection(hd)}
+  try{renderNavPinUI()}catch(e){}el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("nav-flash");setTimeout(()=>el.classList.remove("nav-flash"),1600)},120)}
+/* the More tab gets a menu icon, not a cog */
+NAV_ITEMS.settings=["☰","More"];NAV_FULL.files="My Ranges";
+setTimeout(()=>{try{renderBottomNav();navAfter(navCur())}catch(e){}},200);
 </script>
 </body>
 </html>
