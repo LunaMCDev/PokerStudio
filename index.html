@@ -7542,7 +7542,7 @@ html body .vs.vs-land #vsLogSlot .hha-builder{border-width:1px}
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v154</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v155</div>
   </div>
 </div>
 </div>
@@ -10940,7 +10940,7 @@ function ggAmt(c){const v=c/100;return"$"+(v>=1&&Number.isInteger(v)?v:v.toFixed
 function ggStakeLabel(bb){const h=getGGHands().find(x=>x.bb===bb);return ggAmt(h&&h.sb!=null?h.sb:bb/2)+"/"+ggAmt(bb)}
 function ggFmt(c,bb){ // cents → "$1.23" or "12.5 bb" per unit toggle
   if((window._ggUO||ggUnit)==="bb"&&bb){const v=c/bb;return(v<0?"−":"")+(Math.abs(v)%1===0?Math.abs(v).toFixed(0):Math.abs(v).toFixed(1))+" bb"}
-  const v=c/100;return(v<0?"−$":"$")+Math.abs(v).toFixed(2);
+  const v=c/100,sy=window._ggSym||"$";return(v<0?"−"+sy:sy)+Math.abs(v).toFixed(2);
 }
 function ggRakeFmt(c,bb){if((window._ggUO||ggUnit)==="bb")return(c/bb).toFixed(2)+" bb";const v=c/100;return"$"+(v<0.01?v.toFixed(4):v.toFixed(3))}
 function ggSigned(c,bb){return(c>0?"+":"")+ggFmt(c,bb)}
@@ -12777,6 +12777,7 @@ function ggTagColor(t){const fixed={Review:"#fbbf24",Mistake:"#f87171","Good pla
 function ggTagHtml(t,extra){return'<span class="gg-tag" style="--tg:'+ggTagColor(t)+'">'+escapeHtml(t)+(extra||"")+"</span>"}
 function ggAllTags(){const m=new Map();getGGHands().forEach(h=>(h.tags||[]).forEach(t=>m.set(t,(m.get(t)||0)+1)));return[...m.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))}
 async function ggSaveNote(h){
+  if(h.hh){const L=HH.d.hands.find(x=>x.id===h.hh);if(L){L.rcm=(h.cm||[]).filter(c=>!c.auto);L.tags=[...(h.tags||[])];HH.save();try{renderHhHands()}catch(e){}}return}
   if(h.pv){if(!ggSaveNote._w){ggSaveNote._w=1;toast("👁 View only — notes on these hands aren't saved")}return}
   h.nu=Date.now();
   const empty=!(h.cm||[]).length&&!(h.tags||[]).length;
@@ -13012,7 +13013,7 @@ function openGGGraph(){
   ggBigChart=new Chart($("chGGBig").getContext("2d"),ggWinChartCfg(ggChartSpec,true));
 }
 function closeGGGraph(){if(ggBigChart){ggBigChart.destroy();ggBigChart=null}closeM("ggGraphM")}
-async function ggOpenReplay(i,list,opts){
+async function ggOpenReplay(i,list,opts){window._ggSym=null;
   const L=list||ggList.current,h=L[i];if(!h)return;
   ggR.rc=opts?!!opts.rc:(list&&list===ggR.list?!!ggR.rc:false); // range-check verdicts only when opened from the Range check tab (kept while stepping hands)
   if(!h.raw){toast("Re-import this file to enable the replay for older hands");return}
@@ -13026,7 +13027,7 @@ async function ggOpenReplay(i,list,opts){
   playSound("tick");haptic("light");
 }
 ggRenderStage=ggRWrap(ggRenderStage);ggRenderLog=ggRWrap(ggRenderLog);ggUpdatePinBox=ggRWrap(ggUpdatePinBox);
-function ggReplayNav(d){const j=ggR.idx+d;if(j<0||j>=ggR.list.length)return;ggOpenReplay(j,ggR.list)}
+function ggReplayNav(d){const j=ggR.idx+d;if(j<0||j>=ggR.list.length)return;if(ggR.list[j]&&ggR.list[j].hhId){ggR.idx=j;hhOpenGGReplay(ggR.list[j].hhId);return}ggOpenReplay(j,ggR.list)}
 function ggStep(d){const n=ggR.rep.states.length;ggR.step=Math.max(0,Math.min(n-1,ggR.step+d));ggRenderReplay()}
 function ggGoto(s){ggR.step=Math.max(0,Math.min(ggR.rep.states.length-1,s));if(!ggR.timer)ggR.pausedAtNote=false;ggRenderReplay()}
 function ggJumpStreet(dir){ // jump to next/previous street marker
@@ -13099,7 +13100,7 @@ function ggMoneyText(t){const o=window._ggUO;window._ggUO=ggRUnit;try{return t.r
 let ggRUnit=LG("ps_gg_runit","bb");
 function ggRWrap(fn){return function(){const o=window._ggUO;window._ggUO=ggRUnit;try{return fn.apply(this,arguments)}finally{window._ggUO=o}}}
 function ggRSetUnit(u){ggRUnit=u;LS("ps_gg_runit",u);document.querySelectorAll("#ggrUnit button").forEach(b=>b.classList.toggle("on",b.dataset.u===u));ggRenderStage();ggRenderLog();ggUpdatePinBox();try{ggRenderNotesPanel()}catch(e){}playSound("tick");haptic("light")}
-function ggRStakeHtml(R){const n=R.maxSeats||(R.seats||[]).length;return'<span class="ggr-stake"><b>'+ggStakeLabel(R.bb)+'</b>'+(n?"<i>"+n+"-max</i>":"")+"</span>"}
+function ggRStakeHtml(R){const n=R.maxSeats||(R.seats||[]).length;return'<span class="ggr-stake"><b>'+(ggR.hand&&ggR.hand.hh?escapeHtml(ggR.hand.stakeLbl):ggStakeLabel(R.bb))+'</b>'+(n?"<i>"+n+"-max</i>":"")+"</span>"}
 function ggCardHtml(code,big){const c={rank:code[0],suit:code[1]};return renderCommCardsHtml([c],true)}
 /* ── pins: a comment remembers its step index AND the action text; if the index ever drifts, re-find it by text ── */
 function ggPinStep(c){
@@ -13182,7 +13183,7 @@ function ggRenderStage(){
     return'<div class="ggr-seat'+(isHero?" hero":"")+(folded?" folded":"")+(actor?" actor":"")+(won?" winner":"")+'" data-s="'+s.seat+'" style="left:'+x+"%;top:"+y+'%">'
       +'<div class="ggr-top">'+cardHtml+"</div>"
       +'<div class="ggr-plate">'+(pos&&/BTN/.test(pos)?'<span class="ggr-dealer" title="Dealer button">D</span>':"")
-      +'<div class="ggr-pos">'+(pos||"")+(isHero?' <em>YOU</em>':"")+"</div>"
+      +'<div class="ggr-pos">'+(pos||"")+(isHero?' <em>'+(ggR.hand&&ggR.hand.who?escapeHtml(ggR.hand.who.slice(0,10)):"YOU")+'</em>':"")+"</div>"
       +'<div class="ggr-stack">'+(allIn?"All-in":ggFmt(st.stacks[s.name],R.bb))+"</div>"
       +(isHero?"":'<div class="ggr-name" title="'+escapeHtml(s.name)+'">'+escapeHtml(s.name.slice(0,6))+"</div>")
       +(folded?'<div class="ggr-foldtag">folded</div>':"")
@@ -13196,11 +13197,11 @@ function ggRenderStage(){
   const winners=Object.keys(st.won||{});
   let centerTop='<div class="hhb-pot">Pot '+ggFmt(totalPot,R.bb)+"</div>";
   if(st.runs>1&&Object.keys(st.runWon||{}).length&&(st.kind==="win"||st.kind==="end"||totalPot===0)){
-    centerTop="";if(false)centerTop='<div class="ggr-win ggr-winruns">'+Object.keys(st.runWon).sort().map(k=>{const bd=k==="1"?st.board:st["board"+k];return Object.keys(st.runWon[k]).map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&bd&&bd.length===5?ggHandDesc(c,bd):"";const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));
+    centerTop="";if(false)centerTop='<div class="ggr-win ggr-winruns">'+Object.keys(st.runWon).sort().map(k=>{const bd=k==="1"?st.board:st["board"+k];return Object.keys(st.runWon[k]).map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&bd&&bd.length===5?ggHandDesc(c,bd):"";const pl=w===R.hero?(ggR.hand&&ggR.hand.who||"Hero"):((R.pos&&R.pos[w])||w.slice(0,6));
       return'<div><b><i class="ggr-rn">R'+k+'</i>'+escapeHtml(pl)+" wins "+ggFmt(st.runWon[k][w],R.bb)+"</b>"+(desc?"<span>"+escapeHtml(desc)+"</span>":"")+"</div>"}).join("")}).join("")+"</div>";
   }else if(winners.length&&(st.kind==="win"||st.kind==="end"||totalPot===0)){
     const full=(st.board||[]).length===5;
-    centerTop='<div class="ggr-win">'+winners.map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&full?ggHandDesc(c,st.board):"";const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));
+    centerTop='<div class="ggr-win">'+winners.map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&full?ggHandDesc(c,st.board):"";const pl=w===R.hero?(ggR.hand&&ggR.hand.who||"Hero"):((R.pos&&R.pos[w])||w.slice(0,6));
       return'<div><b>🏆 '+escapeHtml(pl)+" wins "+ggFmt(st.won[w],R.bb)+"</b>"+(desc?"<span>"+escapeHtml(desc)+"</span>":"")+"</div>"}).join("")+"</div>";
   }
   const here=(h.cm||[]).filter(c=>ggPinStep(c)===ggR.step);
@@ -13208,7 +13209,7 @@ function ggRenderStage(){
   const ps=ggPinnedSteps(),idx=ps.indexOf(ggR.step);
   // action card
   const info=ggRStepInfo(ggR.step)||{};const ap=st.actor&&R.pos?R.pos[st.actor]:"";const isHeroAct=st.actor&&st.actor===R.hero;
-  let txt=ggMoneyText(st.text);if(st.actor&&txt.startsWith(st.actor))txt=(isHeroAct?"Hero":st.actor.slice(0,6))+txt.slice(st.actor.length);
+  let txt=ggMoneyText(st.text);if(st.actor&&txt.startsWith(st.actor))txt=(isHeroAct?(ggR.hand&&ggR.hand.who||"Hero"):st.actor.slice(0,6))+txt.slice(st.actor.length);
   const actCard='<div class="ggr-actcard'+(isHeroAct?" hero":"")+(st.kind?" k-"+st.kind:"")+'"><div class="ggr-act-top"><span class="ggr-street">'+escapeHtml(ggRStreetOf(R,ggR.step))+'</span><span class="ggr-stepno">'+ggR.step+" / "+(n-1)+"</span></div>"
     +'<div class="ggr-action">'+(ap?'<span class="ggr-act-pos">'+escapeHtml(ap)+"</span>":"")+escapeHtml(txt)+(info.size?'<span class="ggr-size">'+info.size+"</span>":"")+"</div>"
     +"</div>";
@@ -16325,7 +16326,7 @@ function hxLiveToGG(h){if(!hxConvertible(h))return null;const bl=h.blinds,bb=bl.
   // uncalled bet: top contributor's excess over the next biggest
   const sorted=contrib.map((v,i)=>[v,i]).sort((a,b)=>b[0]-a[0]);let ret=null;if(sorted.length>1&&sorted[0][0]>sorted[1][0]+1e-9)ret={i:sorted[0][1],amt:sorted[0][0]-sorted[1][0]};
   const pot=contrib.reduce((a,b)=>a+b,0)-(ret?ret.amt:0);
-  const stacks=P.map((p,i)=>sim.allin.has(i)?Math.max(contrib[i],bb):Math.max(100*bb,contrib[i]+bb));
+  const stacks=P.map((p,i)=>p.stack!=null&&p.stack>0?Math.max(+p.stack,contrib[i]):sim.allin.has(i)?Math.max(contrib[i],bb):Math.max(100*bb,contrib[i]+bb));
   // board
   const fl=h.flopCards||[],tu=h.turnCards||[],rv=h.riverCards||[],board=[...fl,...tu,...rv];
   const live=P.map((p,i)=>i).filter(i=>!folded.has(i));
@@ -18662,10 +18663,10 @@ function ggImgLookHtml(o){
 </script>
 <script>
 /* ═══ v143 · Compact hand image ═══ */
-function ggHandImage3(R,h,o){
+function ggHandImage3(R,h,o){const HN=(ggR.hand&&ggR.hand.who)||"Hero";
   const unit=o.hideStakes?"bb":o.unit,S=R.states,end=S.length-1,cut=o.quiz&&ggR.step<end&&ggR.step>0?Math.max(1,ggR.step):end,quiz=cut<end;
   const A=c=>ggShAmt(c,R.bb,unit),Abb=c=>ggShAmt(c,R.bb,"bb");
-  const label=n=>n===R.hero?"Hero":(R.pos&&R.pos[n])||("Seat "+(R.seats.find(x=>x.name===n)||{}).seat);
+  const label=n=>n===R.hero?HN:(R.pos&&R.pos[n])||("Seat "+(R.seats.find(x=>x.name===n)||{}).seat);
   const byLen=R.seats.map(x=>x.name).sort((a,b)=>b.length-a.length);
   const tidy=t=>{t=t.replace(/\{\{(-?\d+)\}\}/g,(_,c)=>A(+c));byLen.forEach(n=>{t=t.split(n).join(label(n))});return t};
   const C=ggImgPalette(o.imgStyle,o.imgAcc);window.GG_DECK=o.imgDeck==="classic"?"classic":"four";
@@ -18688,7 +18689,7 @@ function ggHandImage3(R,h,o){
     if(st.kind==="post"){if(!/blind/.test(st.text)){if(!cur){cur={t:"PREFLOP",pot:0,cards:[],it:[]};streets.push(cur)}cur.it.push({who:label(st.actor),v:tidy(st.text).replace(label(st.actor)+" ",""),k:"post"})}continue}
     if(!cur)continue;
     if(st.kind==="cd"){cur.it.push({who:"",v:"💧 Cash Drop +"+A(st.cd||0),k:"cd"});continue}
-    if(st.kind==="fold"){const lb=label(st.actor),pr=cur.it[cur.it.length-1];if(lb!=="Hero"&&pr&&pr.k==="fold"&&!pr.hero)pr.who.push(lb);else cur.it.push({who:[lb],k:"fold",hero:lb==="Hero"});continue}
+    if(st.kind==="fold"){const lb=label(st.actor),pr=cur.it[cur.it.length-1];if(lb!==HN&&pr&&pr.k==="fold"&&!pr.hero)pr.who.push(lb);else cur.it.push({who:[lb],k:"fold",hero:lb===HN});continue}
     const lb=label(st.actor);vol.add(st.actor);let t=tidy(st.text);if(t.indexOf(lb+" ")===0)t=t.slice(lb.length+1);
     const ai=/all-in/.test(t);cur.it.push({who:lb,v:t.replace(/\s*and is all-in/,""),k:ai?"allin":st.kind,ai});
   }
@@ -18717,7 +18718,7 @@ function ggHandImage3(R,h,o){
   const hx=P+20+Math.max(2,hc.length)*80+12;
   const pos=R.pos[R.hero]||"";ctx.font="700 15px "+FF;const pw=ctx.measureText(pos).width+20;
   if(pos){rr(hx,y+24,pw,26,13,psA(C.acc,.16),psA(C.acc,.45));txt(pos,hx+pw/2,y+37,"700 15px "+FF,C.accT,"center")}
-  txt("Hero",hx+(pos?pw+10:0),y+38,"800 26px "+FF,C.t1);
+  txt(HN,hx+(pos?pw+10:0),y+38,"800 26px "+FF,C.t1);
   txt("Stack "+A(start[R.hero]||0),hx,y+78,"500 17px "+FF,C.t2);
   if(vill.length){let vt="vs "+vill.join(" · ");const maxw=W-P-250-hx;while(mw(vt,"500 16px "+FF)>maxw&&vt.length>8)vt=vt.slice(0,-2);if(vt!=="vs "+vill.join(" · "))vt=vt.replace(/[\s·]+$/,"")+"…";txt(vt,hx,y+106,"500 16px "+FF,C.t3)}
   const rx=W-P-24;
@@ -18734,13 +18735,13 @@ function ggHandImage3(R,h,o){
     if(cards.length){cards.forEach((c,i)=>ggImgCard(ctx,GX+i*50,y+8,44,60,ggShCard(c,true)));cy=y+38;x=GX+cards.length*50+14}
     const lineStart=()=>GX;
     items.forEach(it=>{const parts=[];
-      if(it.k==="fold"){const t=(it.who.length>1?it.who.join(", ")+" fold":it.who[0]+" folds");if(it.hero){parts.push(["chip","Hero"]);parts.push(["t","folds",C.fold,AF2])}else parts.push(["t",t,C.fold,AF2])}
+      if(it.k==="fold"){const t=(it.who.length>1?it.who.join(", ")+" fold":it.who[0]+" folds");if(it.hero){parts.push(["chip",HN]);parts.push(["t","folds",C.fold,AF2])}else parts.push(["t",t,C.fold,AF2])}
       else if(it.k==="cd")parts.push(["t",it.v,C.light?"#1f6fc0":"#7cc4ff",AF]);
       else{parts.push(["chip",it.who]);const kc=it.k==="check"?C.check:it.k==="call"?C.call:it.k==="allin"?C.allin:it.k==="post"?C.t3:C.bet;
         const m=it.v.match(/^(\S+(?: to)?)\s*(.*)$/)||[0,it.v,""];parts.push(["t",m[1],kc,AF]);if(m[2])parts.push(["t"," "+m[2],C.t1,AF]);if(it.ai)parts.push(["t"," all-in",C.allin,"800 15px "+FF])}
       const w=parts.reduce((a,p)=>a+(p[0]==="chip"?chipW(p[1])+8:mw(p[1],p[3])),0);
       if(x>GX&&x+w>RX){x=GX;cy+=cy===y+38&&cards.length?50:LH}
-      parts.forEach(p=>{if(p[0]==="chip")x+=chip(p[1],x,cy,p[1]==="Hero")+8;else x+=txt(p[1],x,cy+1,p[3],p[2])});
+      parts.forEach(p=>{if(p[0]==="chip")x+=chip(p[1],x,cy,p[1]===HN)+8;else x+=txt(p[1],x,cy+1,p[3],p[2])});
       x+=22});
     const bh=Math.max(cy+22-top,cards.length?84:56);
     txt(lbl,P,top+24,"800 16px "+FF,col);if(potT)txt(potT,P,top+46,"500 15px "+FF,C.t3);
@@ -18818,7 +18819,7 @@ function ggRBoards(st,boardRow){
     const won=st.runWon&&st.runWon[k]?Object.keys(st.runWon[k]):[];
     const R=ggR.rep;let wn="";
     if(won.length){wn=won.map(w=>{const c=w===R.hero?R.heroCards:(st.shown||{})[w];let d="";try{if(c&&c.length===2&&cards&&cards.length===5)d=ggHandDesc(c,cards)}catch(e){}
-      const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));return'<span class="ggr-rw'+(w===R.hero?" hero":"")+'" title="'+escapeHtml(d)+'"><b>🏆 '+escapeHtml(pl)+"</b><i>"+ggFmt(st.runWon[k][w],R.bb)+"</i>"+(d?"<small>"+escapeHtml(d.replace(/^Three of a kind.*/,"Trips").replace(/^(Straight flush|Straight|Flush|Full house|Four of a kind|Two pair|High card)[, ].*$/,"$1").replace(/ high$/," high"))+"</small>":"")+"</span>"}).join("")}
+      const pl=w===R.hero?(ggR.hand&&ggR.hand.who||"Hero"):((R.pos&&R.pos[w])||w.slice(0,6));return'<span class="ggr-rw'+(w===R.hero?" hero":"")+'" title="'+escapeHtml(d)+'"><b>🏆 '+escapeHtml(pl)+"</b><i>"+ggFmt(st.runWon[k][w],R.bb)+"</i>"+(d?"<small>"+escapeHtml(d.replace(/^Three of a kind.*/,"Trips").replace(/^(Straight flush|Straight|Flush|Full house|Four of a kind|Two pair|High card)[, ].*$/,"$1").replace(/ high$/," high"))+"</small>":"")+"</span>"}).join("")}
     h+='<div class="ggr-runrow'+(act?" on":"")+(won.length?" won":"")+(cards&&cards.length?"":" empty")+'"><span class="ggr-rl">R'+k+'</span>'+boardRow(cards)+wn+"</div>"}
   const anyWon=st.runWon&&Object.keys(st.runWon).length;return'<div class="ggr-runs'+(anyWon?" haswin":"")+'">'+h+"</div>";
 }
@@ -19115,6 +19116,31 @@ setTimeout(()=>{try{const s=$("hhSort"),d=LG("ps_hh_dir","desc");if(s&&s.value==
 function vsLandCheck(){const el=$("vsStudio");if(!el)return;const L=matchMedia("(orientation:landscape) and (max-height:540px)").matches;el.classList.toggle("vs-land",L)}
 window.addEventListener("resize",vsLandCheck);window.addEventListener("orientationchange",()=>setTimeout(vsLandCheck,200));
 (function(){const o=vsOpen;vsOpen=function(){const r=o.apply(this,arguments);vsLandCheck();return r}})();
+</script>
+<script>
+/* ═══ v155 · Logged hands open in the GG replayer ═══ */
+function hhVisibleIds(){return[...document.querySelectorAll("#hhList .hr2")].map(r=>((r.getAttribute("onclick")||"").match(/'([^']+)'/)||[])[1]).filter(Boolean)}
+function hhClsOf(cards){if(!cards||cards.length!==2)return"Hand";const O="AKQJT98765432",a=cards[0],b=cards[1];let r1=a.rank==="10"?"T":a.rank,r2=b.rank==="10"?"T":b.rank;if(O.indexOf(r1)>O.indexOf(r2))[r1,r2]=[r2,r1];return r1===r2?r1+r2:r1+r2+(a.suit===b.suit?"s":"o")}
+function hhOpenGGReplay(id){const h=HH.d.hands.find(x=>x.id===id);if(!h)return false;const txt=hxLiveToGG(h);if(!txt)return false;let rep;try{rep=ggBuildReplay(txt)}catch(e){console.warn(e);return false}
+  const sym=hhSymFor(h.currency),bbC=Math.round(((h.blinds&&h.blinds.bb)||0)*100),t=h.ts?new Date(h.ts):new Date((h.date||shD(new Date()))+"T12:00:00");
+  const ts=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate(),t.getHours(),t.getMinutes());
+  // each logged explanation becomes a note pinned to the moment it happened
+  const flat=[];HH_STREETS.forEach(st=>((h.streetActions||{})[st]||[]).forEach(a=>{if(a.playerIdx==null)return;if(["call","bet","raise","allin"].includes(a.action)&&a.amount==null&&a.action!=="call")return;flat.push(Object.assign({st},a))}));
+  const steps=rep.states.map((x,k)=>["fold","check","call","bet","raise"].includes(x.kind)?k:-1).filter(k=>k>=0);
+  const cm=[];flat.forEach((a,k)=>{if(a.note&&steps[k]!=null){const S=rep.states[steps[k]];cm.push({id:"auto"+k,text:a.note,step:steps[k],street:S.street,act:(S.text||"").replace(S.actor||"",a.playerIdx===0?(h.watch?h.watch.player:"Hero"):"").trim(),ts:Date.now(),auto:true})}});
+  HH_STREETS.forEach((st,si)=>{const sn=(h.streetNotes||{})[st];if(!sn)return;const k=rep.states.findIndex(x=>x.kind==="street"&&(si===0?x.text==="Cards are dealt":(x.street||"").toLowerCase().startsWith(st)));if(k>=0)cm.push({id:"autos"+si,text:sn,step:k,street:rep.states[k].street,act:"Street note",ts:Date.now(),auto:true})});
+  if(h.notes)cm.push({id:"auton",text:h.notes,step:null,ts:Date.now(),auto:true});
+  (h.rcm||[]).forEach(c=>cm.push(c));
+  let pot=0;const pm=txt.match(/Total pot \$([\d.]+)/);if(pm)pot=Math.round(parseFloat(pm[1])*100);
+  const hero=(h.players&&h.players[0])||{};
+  const pseudo={id:"hh:"+h.id,hh:h.id,ts,bb:bbC,sb:Math.round(((h.blinds&&h.blinds.sb)||0)*100),net:h.resultCents||0,pot,ev:null,cls:hhClsOf(hero.cards),pos:hero.position||"",cm,tags:[...(h.tags||[])],who:h.watch?h.watch.player:"",stakeLbl:sym+(h.blinds.sb!=null?h.blinds.sb:h.blinds.bb/2)+"/"+sym+h.blinds.bb,raw:1};
+  window._ggSym=sym;ggR.rc=false;ggR.raw=txt;ggR.rep=rep;ggR.hand=pseudo;ggR.step=0;ggR.draft="";ggR.pinStep=null;ggR.pin=true;ggR.built=null;ggR.pausedAtNote=false;try{ggStopAuto()}catch(e){}
+  const dealtAt=rep.states.findIndex(x=>x.text==="Cards are dealt");if(dealtAt>0)ggR.step=dealtAt;
+  ggRenderReplay();if(!$("ggReplayM").classList.contains("open")){openM("ggReplayM");requestAnimationFrame(()=>requestAnimationFrame(ggPlaceChips));setTimeout(ggPlaceChips,260);setTimeout(ggPlaceChips,520)}
+  try{playSound("tick");haptic("light")}catch(e){}return true}
+(function(){const o=openHhReplay;openHhReplay=function(id){const vis=hhVisibleIds(),ids=vis.includes(id)?vis:[id];const prevList=ggR.list,prevIdx=ggR.idx;ggR.list=ids.map(x=>({id:"hh:"+x,hhId:x}));ggR.idx=ids.indexOf(id);closeM("hhDetailM");
+  if(hhOpenGGReplay(id))return;ggR.list=prevList;ggR.idx=prevIdx;return o.apply(this,arguments)};
+  const cm=closeM;closeM=function(id){if(id==="ggReplayM"&&ggR.hand&&ggR.hand.hh){setTimeout(()=>{if(!$("ggReplayM").classList.contains("open"))window._ggSym=null},300)}return cm.apply(this,arguments)};})();
 </script>
 </body>
 </html>
