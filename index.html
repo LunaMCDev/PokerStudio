@@ -6665,6 +6665,66 @@ html body .vs.vs-land #vsLogSlot .hhq-sum>span:first-child{flex:1;min-width:0;ov
 html body .vs.vs-land #vsLogSlot .hhq-sum .hhq-mc{font-size:10px;padding:1px 4px}
 html body .vs.vs-land #vsLogSlot .hha-next-label{margin:0 0 3px}
 html body .vs.vs-land #vsLogSlot .hha-builder{border-width:1px}
+
+/* v156 simple step logger */
+.vs-step{display:none}
+.vs.vs-simple .vs-panel{display:none!important}
+.vs.vs-simple .vs-step{display:block;flex:0 0 auto;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:var(--b1);border-top:1px solid var(--bd);overflow:auto;max-height:52vh}
+.vs.vs-simple .vs-stage{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.vs.vs-simple .vs-stage video{flex:1 1 auto;min-height:0;max-height:none!important;height:100%;object-fit:contain}
+.vs.vs-simple.vs-ov .vs-step{position:absolute;left:0;right:0;bottom:0;z-index:4;background:color-mix(in srgb,var(--b1) 86%,transparent);backdrop-filter:blur(10px)}
+.vs.vs-simple.vs-ov .vs-stage{bottom:var(--vss-h,190px)!important}
+.vs-tabs .vs-simbtn{font-size:13px}
+.vss-hd{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.vss-k{font-size:10.5px;font-weight:900;letter-spacing:1px;color:var(--pk2);text-transform:uppercase}
+.vss-t{flex:1;font-size:11px;color:var(--t3);font-variant-numeric:tabular-nums}
+.vss-hd button{width:32px;height:30px;border-radius:9px;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:14px;cursor:pointer}
+.vss-q{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;min-width:0}
+.vss-q b{font-size:14px;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.vss-q b.hero{color:var(--pk2)}.vss-q b i{font-style:normal;font-size:11px;color:var(--t3)}
+.vss-q span{font-size:11.5px;color:var(--t3);white-space:nowrap}
+.vss-slots{display:flex;gap:4px;margin-left:auto}
+.vss-cd{display:inline-grid;place-items:center;min-width:30px;height:30px;padding:0 4px;border-radius:6px;background:#fbfaf7;color:#1c1c22;font-weight:800;font-size:13px}.vss-cd.r{color:#cf1f37}.vss-cd.e{background:var(--b2);color:var(--t4);border:1px dashed var(--bd2)}
+.vss-ranks{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;margin-bottom:5px}
+.vss-ranks button{height:34px;border-radius:7px;background:var(--b2);border:1px solid var(--bd);color:var(--t1);font-weight:800;font-size:13px;padding:0;cursor:pointer}
+.vss-ranks button.on{background:var(--pk);border-color:var(--pk);color:#fff}
+.vss-suits{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.vss-suits.off{opacity:.4}
+.vss-suits button{height:38px;border-radius:9px;border:0;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+.vss-suits .s-s{background:#262626}.vss-suits .s-h{background:#9c231b}.vss-suits .s-d{background:#244c92}.vss-suits .s-c{background:#3a8530}
+.vss-suits button.used{opacity:.25}
+.vss-acts{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px}
+.vss-acts button{height:46px;border-radius:12px;border:1px solid var(--bd);font-weight:800;font-size:13.5px;cursor:pointer;color:#fff}
+.vss-acts .a-f{background:#4b5563}.vss-acts .a-k{background:#64748b}.vss-acts .a-c{background:#16a34a}.vss-acts .a-b{background:#d97706}.vss-acts .a-a{background:#dc2626}
+.vss-sz .hhq-sz{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:0 0 6px}.vss-sz .hhq-szb{min-width:0;padding:6px 2px}
+.vss-row{display:flex;gap:5px;align-items:center;margin-bottom:6px;overflow-x:auto;scrollbar-width:none}.vss-row::-webkit-scrollbar{display:none}
+.vss-l{flex:0 0 auto;font-size:10px;font-weight:800;color:var(--t3);text-transform:uppercase}
+.vss-c{flex:0 0 auto;height:34px;padding:0 11px;border-radius:10px;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-weight:700;font-size:12px;cursor:pointer}
+.vss-c.on{background:color-mix(in srgb,var(--pk) 25%,transparent);border-color:var(--pk);color:#fff}
+.vss-who{margin:0 0 6px!important;height:36px}
+.vss-amt{flex:1;margin:0!important;height:40px}.vss-go{flex:0 0 46px;height:40px;border-radius:10px;background:var(--pk);border:0;color:#fff;font-weight:900;font-size:16px;cursor:pointer}
+.vss-why{display:flex;align-items:center;gap:6px;margin-top:6px;padding-top:6px;border-top:1px dashed var(--bd2)}
+.vss-why span{flex:0 1 auto;max-width:42%;font-size:11px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vss-why .minp{flex:1;margin:0;height:36px;font-size:13px}
+.vss-mic{flex:0 0 36px;height:36px;border-radius:9px;background:var(--b2);border:1px solid var(--bd);font-size:15px;cursor:pointer}.vss-mic.rec{background:color-mix(in srgb,#ef4444 25%,transparent);border-color:#ef4444}
+.vss-sum{flex:1;margin:0!important;height:38px}
+.vss-save{flex:1.4;height:44px;border-radius:12px;background:var(--pk);border:0;color:#fff;font-weight:800;font-size:14px;cursor:pointer}.vss-save.sec{flex:1;background:var(--b2);border:1px solid var(--bd);color:var(--t2)}
+.vss-memo .minp{flex:1;margin:0;height:36px}
+/* landscape phone: step logger as a slim right column */
+@media(orientation:landscape) and (max-height:540px){
+  .vs.vs-simple .vs-body{flex-direction:row!important}
+  .vs.vs-simple .vs-step{flex:0 0 min(270px,34vw);max-height:none;border-top:0;border-left:1px solid var(--bd);padding:6px 8px;padding-right:max(8px,env(safe-area-inset-right))}
+  .vs.vs-simple.vs-ov .vs-step{position:absolute;left:auto;top:0;right:0;bottom:0;width:min(270px,34vw)}
+  .vs.vs-simple.vs-ov .vs-stage{bottom:0!important;right:min(270px,34vw)!important}
+  .vs.vs-simple .vss-ranks{grid-template-columns:repeat(7,1fr)}.vs.vs-simple .vss-ranks button{height:28px;font-size:12px}
+  .vs.vs-simple .vss-suits button{height:32px;font-size:14px}
+  .vs.vs-simple .vss-acts{grid-auto-flow:row;grid-template-columns:1fr 1fr}.vs.vs-simple .vss-acts button{height:38px;font-size:12.5px}
+  .vs.vs-simple .vss-sz .hhq-sz{grid-template-columns:repeat(2,1fr)}
+  .vs.vs-simple .vss-c{height:30px;padding:0 9px;font-size:11px}
+}
+
+.vss-set{display:flex;align-items:center;gap:6px;width:100%;margin-bottom:6px;padding:6px 10px;border-radius:10px;background:var(--b0);border:1px solid var(--bd);color:var(--t2);font-size:11.5px;font-weight:600;cursor:pointer;text-align:left}.vss-set b{margin-left:auto;color:var(--pk2)}
+.vss-hint{font-size:11px;color:var(--t3);text-align:center;padding:4px}
+
+@media(orientation:landscape) and (max-height:540px){.vs.vs-simple .vss-why{flex-wrap:wrap}.vs.vs-simple .vss-why span{flex:1 1 100%;max-width:none}}
 </style>
 </head>
 <body>
@@ -7542,7 +7602,7 @@ html body .vs.vs-land #vsLogSlot .hha-builder{border-width:1px}
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v155</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v156</div>
   </div>
 </div>
 </div>
@@ -16403,7 +16463,7 @@ function hhqRender(){const su=$("hhqSetup");if(!su)return;
   hc.innerHTML=open?hhqDeckHtml("player0",2):"";hc.onclick=hhqDeckClick}
 // pot (all money in so far) for size chips
 function hhqPotNow(){const bl=hhGetLiveBlinds();const r=hhComputeSidePots(hhStreetActions,hhPlayersState,bl);return r.pots.reduce((a,p)=>a+p.amount,0)+r.returns.reduce((a,x)=>a+x.amount,0)}
-function hhqRound(v,bb){const u=bb&&bb<1?0.05:bb&&bb<=5?0.5:1;return Math.max(u,Math.round(v/u)*u)}
+function hhqRound(v,bb){const u=bb&&bb<0.25?0.01:bb&&bb<1?0.05:bb&&bb<=5?0.5:1;return Math.max(u,+(Math.round(v/u)*u).toFixed(2))}
 function hhqSizeChips(street,actor){const bl=hhGetLiveBlinds(),bb=bl&&bl.bb;if(!bb)return'<div class="hhq-sz-hint">Set the stakes to get one-tap bet sizes</div>';
   const st=hhComputeStreetState(street),toCall=hhAmountToCall(street),min=hhMinLegalBet(street)||bb,sym=hhSym(),chips=[];
   const fmt=v=>hhFmtAmt(+v.toFixed(2),bb);
@@ -18922,7 +18982,7 @@ function vsBuild(){let el=$("vsStudio");if(el)return el;el=document.createElemen
    +'<div class="vs-ctl" id="vsCtl" style="display:none"><div class="vs-prog"><input type="range" id="vsSeek" min="0" max="1000" value="0" step="1" aria-label="Seek"/><div class="vs-marks" id="vsMarks"></div></div>'
    +'<div class="vs-btns"><button onclick="vsSkip(-10)" title="Back 10s (J)">⏪</button><button onclick="vsSkip(-5)" title="Back 5s (←)">−5</button><button class="vs-play" id="vsPlay" onclick="vsToggle()" title="Play / pause (space)">▶</button><button onclick="vsSkip(5)" title="Forward 5s (→)">+5</button><button onclick="vsSkip(10)" title="Forward 10s (L)">⏩</button><span class="vs-time" id="vsTime">0:00 / 0:00</span><select id="vsRate" onchange="vsV().playbackRate=+this.value;LS(\'ps_vs_rate\',+this.value)" aria-label="Speed"><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div></div></div>'
    +'<div class="vs-fb"><button onclick="vsOvAlpha()" title="See-through panel">◐</button><button id="vsPanelBtn" onclick="vsOvPanel()" title="Hide / show the logger (P)">🃏</button><button onclick="vsFull(false)" title="Exit full screen (F)">⤡</button></div><button class="vs-pill" onclick="vsOvPanel(true)">🃏 Log hand ▴</button>'
-   +'<div class="vs-panel"><div class="vs-grab" onclick="vsOvPanel()"></div><div class="ds-seg vs-tabs" id="vsTabs"></div><div id="vsLogSlot" class="vs-pane"></div><div id="vsNotesPane" class="vs-pane"></div><div id="vsHandsPane" class="vs-pane"></div></div></div>';
+   +'<div class="vs-step" id="vsStep"></div><div class="vs-panel"><div class="vs-grab" onclick="vsOvPanel()"></div><div class="ds-seg vs-tabs" id="vsTabs"></div><div id="vsLogSlot" class="vs-pane"></div><div id="vsNotesPane" class="vs-pane"></div><div id="vsHandsPane" class="vs-pane"></div></div></div>';
   document.body.appendChild(el);
   const v=vsV();v.addEventListener("timeupdate",vsTick);v.addEventListener("play",vsTick);v.addEventListener("pause",vsTick);v.addEventListener("loadedmetadata",()=>{vsTick();vsMarks()});v.addEventListener("click",vsToggle);
   $("vsSeek").addEventListener("input",e=>{const v=vsV();if(v.duration)v.currentTime=e.target.value/1000*v.duration});
@@ -19141,6 +19201,68 @@ function hhOpenGGReplay(id){const h=HH.d.hands.find(x=>x.id===id);if(!h)return f
 (function(){const o=openHhReplay;openHhReplay=function(id){const vis=hhVisibleIds(),ids=vis.includes(id)?vis:[id];const prevList=ggR.list,prevIdx=ggR.idx;ggR.list=ids.map(x=>({id:"hh:"+x,hhId:x}));ggR.idx=ids.indexOf(id);closeM("hhDetailM");
   if(hhOpenGGReplay(id))return;ggR.list=prevList;ggR.idx=prevIdx;return o.apply(this,arguments)};
   const cm=closeM;closeM=function(id){if(id==="ggReplayM"&&ggR.hand&&ggR.hand.hh){setTimeout(()=>{if(!$("ggReplayM").classList.contains("open"))window._ggSym=null},300)}return cm.apply(this,arguments)};})();
+</script>
+<script>
+/* ═══ v156 · Video studio "simple" logger: one step at a time, video as big as possible ═══ */
+const VSS={sizing:false,rank:null,note:null,memo:false};
+function vsSimple(){const v=LG("ps_vs_simple",null);return v==null?matchMedia("(max-width:899px)").matches:!!v}
+function vsSetSimple(on){LS("ps_vs_simple",!!on);vsApplySimple();haptic("light")}
+function vsApplySimple(){const el=$("vsStudio");if(!el)return;const on=vsSimple();el.classList.toggle("vs-simple",on);if(on)vssRender();else{try{vsTabs()}catch(e){}}}
+function vssState(){const P=hhPlayersState,bl=hhGetLiveBlinds();
+  if(VSS.edit||!(bl&&bl.bb)||!P[0]||!P[0].position)return{k:"setup"};
+  if((P[0].cards||[]).length<2)return{k:"cards"};
+  if(hhCheckAutoWin()!=null)return{k:"done"};
+  for(let si=0;si<4;si++){const st=HH_STREETS[si];
+    if(si>0){const need=[3,1,1][si-1];if((hhBoardState[st]||[]).length<need)return{k:"board",st,need}}
+    const S=hhComputeStreetState(st);if(S.activeAtStart.length>1){const na=hhNextActor(st);if(na!=null)return{k:"act",st,actor:na,S}}
+    if(hhCheckAutoWin()!=null)return{k:"done"}}
+  return{k:"done"}}
+function vssNm(i){return hhPName(i)}
+function vssAmt(v){return hhFmtAmt(v,hhGetLiveBlinds()?.bb)}
+function vssEnsureTab(st){if(hhCurrentStreetTab!==st)hhSwitchStreetTab(st)}
+function vssRec(st,actor,action,amount){vssEnsureTab(st);const inp=$("hhAmtInput"+st);if(inp&&amount!=null)inp.value=amount;const n=(hhStreetActions[st]||[]).length;hhRecordAction(st,actor,action);
+  if((hhStreetActions[st]||[]).length>n){if(actor===0)VSS.note={st,idx:hhStreetActions[st].length-1};VSS.sizing=false;try{vsStamp()}catch(e){}}vssRender()}
+function vssPick(target,need,su){const r=VSS.rank;if(!r)return;const arr=hhGetTargetArr(target);const used=new Set(hhAllUsedCards().map(c=>c.rank+c.suit));if(used.has(r+su))return toast("That card is already used");
+  if(arr.length>=need)arr.shift();arr.push({rank:r,suit:su});VSS.rank=null;if(target==="player0"){const p=hhPlayersState[0];if(p)p.cardsUnknown=false;try{vsStamp()}catch(e){}}
+  hhSaveDraft();try{if(target==="player0"){hhqRender();renderHhbTable()}else{hhUpdateSlotDisplay(target);renderHhStreetContent();renderHhbTable()}}catch(e){}haptic("light");vssRender()}
+function vssUndo(){const P=hhPlayersState;for(let si=3;si>=0;si--){const st=HH_STREETS[si];if((hhStreetActions[st]||[]).length){hhStreetActions[st].pop();VSS.note=null;vssEnsureTab(st);renderStreetActions(st);renderHhbTable();hhSaveDraft();vssRender();return}
+    if(si>0&&(hhBoardState[st]||[]).length){hhBoardState[st].pop();hhSaveDraft();try{renderHhStreetContent()}catch(e){}vssRender();return}}
+  if(P[0]&&P[0].cards.length){P[0].cards.pop();hhSaveDraft();try{hhqRender()}catch(e){}vssRender()}}
+function vssCardsHtml(target,need,label){const arr=hhGetTargetArr(target)||[],used=new Set(hhAllUsedCards().map(c=>c.rank+c.suit));
+  const slots=Array.from({length:need},(_,i)=>{const c=arr[i];return c?'<span class="vss-cd'+(c.suit==="h"||c.suit==="d"?" r":"")+'">'+c.rank+SYM[c.suit]+'</span>':'<span class="vss-cd e">?</span>'}).join("");
+  return'<div class="vss-q"><b>'+label+'</b><span class="vss-slots">'+slots+'</span></div>'
+    +'<div class="vss-ranks">'+RK.map(r=>'<button class="'+(VSS.rank===r?"on":"")+'" onclick="VSS.rank=\''+r+'\';vssRender()">'+r+'</button>').join("")+'</div>'
+    +'<div class="vss-suits'+(VSS.rank?"":" off")+'">'+SU.map(su=>{const u=VSS.rank&&used.has(VSS.rank+su);return'<button class="s-'+su+(u?" used":"")+'" '+(u||!VSS.rank?"disabled":"")+' onclick="vssPick(\''+target+'\','+need+',\''+su+'\')">'+(VSS.rank||"")+SYM[su]+'</button>'}).join("")+'</div>'}
+function vssRender(){const el=$("vsStep");if(!el||!vsSimple())return;const P=hhPlayersState;if(!P||!P.length){el.innerHTML="";return}
+  const S=vssState(),sym=hhSym();let body="",label="";
+  if(S.k==="setup"){label="Set up";const bl=hhGetLiveBlinds(),n=P.length,pos=P[0]&&P[0].position;
+    body='<input class="minp vss-who" placeholder="Who are you watching?" value="'+escapeHtml(hhWatch.player||"")+'" oninput="hhWatch.player=this.value.trim();hhWatchSave()"/>'
+      +'<div class="vss-row">'+HH_NL.map(([a,b,l])=>'<button class="vss-c'+(bl&&Math.abs(bl.bb-b)<1e-9&&Math.abs((bl.sb||0)-a)<1e-9?" on":"")+'" onclick="hhqSetStakes('+a+','+b+');vssRender()">'+l+'</button>').join("")+'</div>'
+      +'<div class="vss-row">'+[2,3,4,5,6,7,8,9].filter(k=>HH_POS_SETS[k]).map(k=>'<button class="vss-c'+(k===n?" on":"")+'" onclick="hhSetNumPlayers('+k+');hhSaveDraft();vssRender()">'+(k===2?"HU":k+"-max")+'</button>').join("")+'</div>'
+      +'<div class="vss-row"><span class="vss-l">Their seat</span>'+(HH_POS_SETS[n]||HH_POS_SETS[8]).map(ps=>'<button class="vss-c'+(ps===pos?" on":"")+'" onclick="hhSetHeroPosition(\''+ps+'\');vssRender()">'+ps+'</button>').join("")+'</div>'
+      +(bl&&bl.bb&&pos?'<button class="vss-save" style="width:100%" onclick="VSS.edit=false;vssRender()">Done ✓</button>':'<div class="vss-hint">Pick the stakes to start</div>')}
+  else if(S.k==="cards"){label=(hhWatch.player||"Their")+" cards";const bl=hhGetLiveBlinds(),nl=(HH_NL.find(x=>Math.abs(x[1]-bl.bb)<1e-9)||[])[2];body='<button class="vss-set" onclick="VSS.edit=true;vssRender()">'+escapeHtml((hhWatch.player||"Study")+" · "+(P[0].position||"?")+" · "+(P.length===2?"HU":P.length+"-max")+" · "+(nl||sym+bl.sb+"/"+sym+bl.bb))+' <b>✎</b></button>'+vssCardsHtml("player0",2,"Tap a rank, then a suit")}
+  else if(S.k==="board"){label=S.st.toUpperCase();body=vssCardsHtml(S.st,S.need,S.st==="flop"?"Deal the flop":"Deal the "+S.st)}
+  else if(S.k==="act"){const st=S.st,i=S.actor,p=P[i],ST=S.S,bbIdx=P.findIndex(q=>q.position==="BB");const canCheck=st!=="preflop"?!ST.hasBet:(p.position==="BB"&&ST.lastAggressor===bbIdx);const toCall=hhAmountToCall(st);const lf=hhStackLeft(i);
+    label=st.toUpperCase();
+    body='<div class="vss-q"><b class="'+(i===0?"hero":"")+'">'+(i===0?"🎯 ":"")+escapeHtml(vssNm(i))+(vssNm(i)!==p.position?' <i>'+escapeHtml(p.position||"")+'</i>':"")+'</b><span>'+(ST.hasBet&&toCall!=null?"to call "+vssAmt(toCall):"to act")+(lf!=null?" · "+vssAmt(+lf.toFixed(2))+" behind":"")+'</span></div>';
+    if(VSS.sizing){body+='<div class="vss-sz">'+hhqSizeChips(st,i).replace(/hhqDo\(/g,"vssDo(")+'</div><div class="vss-row"><button class="vss-c" onclick="VSS.sizing=false;vssRender()">‹</button><input class="minp vss-amt" id="vssAmt" inputmode="decimal" placeholder="'+(ST.hasBet?"Raise to":"Bet")+' '+sym+'"/><button class="vss-go" onclick="const v=parseFloat($(\'vssAmt\').value);if(!(v>0))return toast(\'Enter an amount\');vssRec(\''+st+'\','+i+',\''+(ST.hasBet?"raise":"bet")+'\',v)">✓</button></div>'}
+    else body+='<div class="vss-acts"><button class="a-f" onclick="vssRec(\''+st+'\','+i+',\'fold\')">Fold</button>'+(canCheck?'<button class="a-k" onclick="vssRec(\''+st+'\','+i+',\'check\')">Check</button>':"")+(ST.hasBet&&!canCheck?'<button class="a-c" onclick="vssRec(\''+st+'\','+i+',\'call\','+(toCall!=null?toCall:"null")+')">Call'+(toCall!=null?" "+vssAmt(toCall):"")+'</button>':"")+'<button class="a-b" onclick="VSS.sizing=true;vssRender();setTimeout(()=>{},0)">'+(ST.hasBet?"Raise":"Bet")+'</button><button class="a-a" onclick="vssRec(\''+st+'\','+i+',\'allin\')">All-in</button></div>'}
+  else{label="Hand over";const net=hhAutoHeroNet(),aw=hhCheckAutoWin();
+    body='<div class="vss-q"><b>✓ '+(aw!=null?escapeHtml(vssNm(aw))+" wins":"Hand complete")+'</b><span>'+(net!=null?escapeHtml(vssNm(0))+" "+(net>=0?"+":"−")+sym+Math.abs(net).toFixed(2):"")+'</span></div>'
+      +'<div class="vss-row"><input class="minp vss-sum" placeholder="💬 Their summary / key lesson (optional)" value="'+escapeHtml(($("hhNotes")||{}).value||"")+'" oninput="$(\'hhNotes\').value=this.value;hhSaveDraft()"/>'+(hhMicOk()?'<button class="vss-mic" onclick="hhDictate(\'hhNotes\',this);setTimeout(vssRender,50)">🎤</button>':"")+'</div>'
+      +'<div class="vss-row"><button class="vss-save sec" onclick="saveHhHand()">Save</button><button class="vss-save" onclick="saveHhHand(true)">Save &amp; next ▶</button></div>'}
+  // explanation for the action just logged
+  let why="";const N=VSS.note,A=N&&(hhStreetActions[N.st]||[])[N.idx];
+  if(A&&S.k!=="setup"){const amt=A.amount!=null&&!["fold","check"].includes(A.action)?" "+vssAmt(A.amount):"";why='<div class="vss-why"><span>💬 '+escapeHtml(vssNm(A.playerIdx))+' '+A.action+amt+'</span><input class="minp" id="vssWhy" placeholder="Why? (optional)" value="'+escapeHtml(A.note||"")+'" oninput="const a=(hhStreetActions[\''+N.st+'\']||[])['+N.idx+'];if(a){a.note=this.value;hhSaveDraft()}" onblur="try{renderStreetActions(\''+N.st+'\')}catch(e){}"/>'+(hhMicOk()?'<button class="vss-mic" onclick="hhDictate(\'vssWhy\',this)">🎤</button>':"")+'</div>'}
+  const memo=VSS.memo?'<div class="vss-row vss-memo"><input class="minp" id="vssMemo" placeholder="📝 Note at '+hhFmtT(vsNow())+'"/><button class="vss-go" onclick="const t=$(\'vssMemo\').value.trim();if(!t)return;const L=vsNotes();L.push({id:\'vn_\'+Date.now(),t:VSS.memoAt!=null?VSS.memoAt:vsNow(),text:t});vsSetNotes(L);VSS.memo=false;vsMarks();vssRender();toast(\'📝 Note saved\')">✓</button></div>':"";
+  el.innerHTML='<div class="vss-hd"><span class="vss-k">'+label+'</span><span class="vss-t">'+(hhWatch.t?"⏱ "+escapeHtml(hhWatch.t):"")+'</span><button onclick="vssUndo()" title="Undo">↶</button><button onclick="VSS.memo=!VSS.memo;VSS.memoAt=vsNow();vssRender();setTimeout(()=>{const m=$(\'vssMemo\');if(m)m.focus()},30)" title="Note at this moment">📝</button><button onclick="vsSetSimple(false)" title="Full logger">≡</button></div>'+memo+body+why}
+function vssDo(st,actor,act,v){vssRec(st,actor,act,v)}
+(function(){const ap=[["hhqOpen"],["vsLoad"],["vsOpen"],["saveHhHand"],["hhqRender"]];
+  const o1=vsOpen;vsOpen=function(){const r=o1.apply(this,arguments);vsApplySimple();return r};
+  const o2=hhqOpen;hhqOpen=function(){const r=o2.apply(this,arguments);if(VS.active){VSS.note=null;VSS.sizing=false;VSS.rank=null;setTimeout(vssRender,0)}return r};
+  const o3=vsTabs;vsTabs=function(){const r=o3.apply(this,arguments);try{const t=$("vsTabs");if(t&&!t.querySelector(".vs-simbtn"))t.insertAdjacentHTML("beforeend",'<button class="vs-simbtn" onclick="vsSetSimple(true)" title="Simple one-step logger">⚡</button>')}catch(e){}return r};
+  const o4=hhRecordAction;hhRecordAction=function(){const r=o4.apply(this,arguments);if(VS.active&&vsSimple())setTimeout(vssRender,0);return r};})();
 </script>
 </body>
 </html>
