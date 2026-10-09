@@ -6364,6 +6364,127 @@ html body .btn.btn-xs{white-space:normal;line-height:1.2}
 .nav-flash{animation:navFlash 1.6s ease}
 @keyframes navFlash{0%,60%{box-shadow:0 0 0 3px color-mix(in srgb,var(--pk) 55%,transparent);border-radius:12px}100%{box-shadow:none}}
 .bnav-t[data-v="settings"] .bi{font-weight:900;font-size:17px}
+
+/* v147 run it twice / three times */
+.ggr-runs{display:flex;flex-direction:column;gap:4px;align-items:center}
+.ggr-runrow{display:flex;align-items:center;gap:6px;opacity:.55;transition:opacity .2s}
+.ggr-runrow.on{opacity:1}
+.ggr-runrow.empty{opacity:.35}
+.ggr-rl{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--t3);writing-mode:vertical-rl;transform:rotate(180deg)}
+.ggr-runrow.on .ggr-rl{color:var(--pk)}
+.ggr-center.runs2 .ggr-board{transform:scale(.86);transform-origin:center;margin:-3px 0}
+.ggr-center.runs3 .ggr-board{transform:scale(.72);transform-origin:center;margin:-8px 0}
+.ggr-center.runs3 .hhb-pot,.ggr-center.runs3 .ggr-win{transform:scale(.9)}
+.ggr-winruns{display:flex;flex-direction:column;gap:2px}
+.ggr-winruns b{font-size:11px}
+.ggr-rn{font-style:normal;display:inline-block;padding:1px 5px;margin-right:5px;border-radius:5px;background:color-mix(in srgb,var(--pk) 22%,transparent);color:var(--pk);font-size:9.5px}
+.gg-badge.rit,.gg-b.rit{background:color-mix(in srgb,var(--c3,#a78bfa) 18%,transparent)!important;color:var(--c3,#a78bfa)!important}
+
+.ggr-rl{writing-mode:horizontal-tb!important;transform:none!important;font-size:9.5px!important;padding:2px 5px;border-radius:5px;background:color-mix(in srgb,var(--t3) 14%,transparent)}
+.ggr-runrow.on .ggr-rl{background:color-mix(in srgb,var(--pk) 22%,transparent)}
+.ggr-runrow.won{opacity:1}
+.ggr-runs{gap:2px}
+.ggr-center.runs2 .ggr-board,.ggr-center.runs3 .ggr-board{transform:none!important;margin:0!important;gap:2px}
+html body #ggrStage .ggr-center.runs2 .ggr-board :is(.comm-card,.ggr-slot){width:27px!important;height:38px!important;min-width:0!important;font-size:11px!important}
+html body #ggrStage .ggr-center.runs3 .ggr-board :is(.comm-card,.ggr-slot){width:23px!important;height:31px!important;min-width:0!important;font-size:10px!important}
+html body #ggrStage .ggr-center:is(.runs2,.runs3) .ggr-board{gap:2px!important}
+.ggr-rw{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15;padding:2px 6px;border-radius:7px;background:color-mix(in srgb,var(--t3) 12%,transparent);max-width:96px}
+.ggr-rw.hero{background:color-mix(in srgb,var(--pk) 18%,transparent)}
+.ggr-rw b{font-size:10px;color:var(--t1);white-space:nowrap}.ggr-rw i{font-style:normal;font-size:10px;font-weight:800;color:var(--wn,#4ade80)}
+.ggr-rw small{font-size:8.5px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
+.ggr-tl-l{font-size:9px}
+
+.ggr-runs{display:flex;flex-direction:column;align-items:stretch!important}
+.ggr-runrow{display:grid!important;grid-template-columns:22px auto;align-items:center;gap:4px}
+.ggr-runs.haswin .ggr-runrow{grid-template-columns:22px auto 66px!important}
+.ggr-runs.haswin .ggr-runrow{grid-template-columns:24px auto 66px}
+.ggr-rw{max-width:66px!important;width:66px;padding:2px 5px!important;box-sizing:border-box}
+.ggr-rw b{font-size:9.5px!important;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.ggr-rw small{max-width:100%!important}
+
+/* v148 streamlined hand logging */
+#hhFormCard:not(.hhq-tbl-open) .hhb-table-outer{display:none}
+.hhq-tbl-tog{display:flex;align-items:center;justify-content:space-between;width:100%;margin:6px 0 10px;padding:10px 14px;border-radius:12px;background:var(--b0);border:1px dashed var(--bd2);color:var(--t2);font-size:12.5px;font-weight:600;cursor:pointer}
+.hhq-tbl-tog b{font-size:11px;color:var(--pk2)}
+#hhFormCard .hha-log-empty{display:none}
+#hhFormCard .hhq-acthdr{display:none}
+.hhq-addnote{margin-top:8px;padding:6px 10px;border-radius:9px;background:none;border:1px dashed var(--bd2);color:var(--t3);font-size:11.5px;font-weight:600;cursor:pointer}
+#hhFormCard .hhq-bar{position:sticky;bottom:0;z-index:6;margin:12px -14px -14px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--b1) 94%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid var(--bd)}
+.hhq-sum{position:relative}
+
+/* v149 watching mode */
+.hhw-bar{margin:0 0 12px}
+.hhw-seg{display:grid!important;grid-template-columns:1fr 1fr;margin-bottom:8px}.hhw-seg button{font-size:12px;padding:9px 6px}
+.hhw-fields{display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:14px;background:color-mix(in srgb,var(--c3,#a78bfa) 9%,var(--b0));border:1px solid color-mix(in srgb,var(--c3,#a78bfa) 30%,transparent)}
+.hhw-fields .minp{margin:0}.hhw-row2{display:grid;grid-template-columns:1fr 78px;gap:6px}.hhw-t{text-align:center}
+.hhw-quick{display:flex;flex-wrap:wrap;gap:6px}
+.hhw-tip{font-size:11px;color:var(--t3);line-height:1.45}
+#hhFormCard.hhq-watch .hha-input-row{flex-wrap:wrap}
+#hhFormCard.hhq-watch .hha-note-input{flex:1 1 calc(100% - 52px);min-height:44px;font-size:13.5px;border-color:color-mix(in srgb,var(--c3,#a78bfa) 45%,transparent)!important}
+.hha-mic{flex:0 0 44px;height:44px;border-radius:12px;background:var(--b2);border:1px solid var(--bd);font-size:18px;cursor:pointer}
+.hha-mic.rec{background:color-mix(in srgb,#ef4444 25%,transparent);border-color:#ef4444;animation:hhMic 1s ease-in-out infinite}
+@keyframes hhMic{50%{box-shadow:0 0 0 6px rgba(239,68,68,.18)}}
+#hhFormCard.hhq-watch .hha-log-note{display:block;margin-top:3px;font-size:12px;color:var(--t2);font-style:italic}
+.hhw-takes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}.hhw-take{margin-bottom:10px}
+.hh-row-watch{font-size:10px;font-weight:700;padding:2px 7px;border-radius:7px;background:color-mix(in srgb,var(--c3,#a78bfa) 20%,transparent);color:var(--c3,#a78bfa)}
+.hhw-who{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}.hhw-who:empty{display:none}
+.hhw-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;padding:2px}.hhw-chips::-webkit-scrollbar{display:none}.hhw-chips .gg-chip{flex:0 0 auto;white-space:nowrap}
+.hhw-learn{flex:0 0 auto;padding:8px 12px;border-radius:12px;background:color-mix(in srgb,var(--c3,#a78bfa) 16%,transparent);border:1px solid color-mix(in srgb,var(--c3,#a78bfa) 40%,transparent);color:var(--c3,#a78bfa);font-weight:700;font-size:12px;cursor:pointer}
+.hhw-detail{padding:12px 22px;border-bottom:1px solid var(--bd)}
+.hhw-dh{display:flex;align-items:center;gap:10px}.hhw-dh>span{font-size:20px}.hhw-dh>div{flex:1;min-width:0}.hhw-dh b{display:block;font-size:14px;color:var(--t1)}.hhw-dh i{font-style:normal;font-size:11.5px;color:var(--t3)}
+.hhw-dtake{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--b0);border:1px solid var(--bd)}.hhw-dtake b{font-size:12.5px;color:var(--t1)}.hhw-dtake p{margin:4px 0 0;font-size:12.5px;color:var(--t2);line-height:1.45}
+.hh-wa{display:block;padding:4px 0}.hh-why{display:block;margin:3px 0 2px 10px;padding:6px 10px;border-left:3px solid var(--c3,#a78bfa);border-radius:0 8px 8px 0;background:color-mix(in srgb,var(--c3,#a78bfa) 8%,transparent);font-size:12.5px;color:var(--t2);line-height:1.45}
+#hhLearnM .hhl-mdl{max-width:640px;width:100%;max-height:90vh;overflow:auto}
+.hhl-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.hhl-hd h3{margin:0;font-size:18px}
+.hhl-st-seg{display:grid!important;grid-template-columns:repeat(5,1fr);margin:8px 0}
+.hhl-q{margin:0 0 8px!important}.hhl-n{font-size:11px;color:var(--t3);margin:2px 2px 10px}
+.hhl-hand{position:relative;padding:10px;margin-bottom:10px;border-radius:14px;background:var(--b0);border:1px solid var(--bd)}
+.hhl-hh{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:0 70px 8px 0;cursor:pointer;text-align:left;color:var(--t2)}
+.hhl-c{flex:0 0 auto;display:flex;gap:2px}.hhl-hh b{display:block;font-size:13px;color:var(--t1)}.hhl-hh i{font-style:normal;font-size:11px;color:var(--t3)}
+.hhl-play{position:absolute;top:10px;right:10px;padding:5px 10px;border-radius:9px;background:color-mix(in srgb,#ef4444 18%,transparent);color:#f87171;font-size:11.5px;font-weight:800;text-decoration:none}
+.hhl-i{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--bd)}
+.hhl-st{flex:0 0 52px;font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--t3);padding-top:2px}
+.hhl-i>div{flex:1;min-width:0}.hhl-i em{font-style:normal;font-size:11.5px;font-weight:700;color:var(--t3)}.hhl-i em.me{color:var(--c3,#a78bfa)}
+.hhl-i p{margin:2px 0 0;font-size:13px;color:var(--t1);line-height:1.45}
+
+/* v150 video studio */
+.hhq-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.hhq-vid{border:1px solid color-mix(in srgb,#ef4444 40%,transparent)!important;background:color-mix(in srgb,#ef4444 10%,transparent)!important;color:#f87171!important;font-weight:700}
+.vs{position:fixed;inset:0;z-index:960;display:none;flex-direction:column;background:var(--b0)}
+.vs.on{display:flex}
+body.vs-on{overflow:hidden}
+.vs-top{display:flex;align-items:center;gap:8px;padding:8px 10px calc(8px);padding-top:max(8px,env(safe-area-inset-top));background:var(--b1);border-bottom:1px solid var(--bd)}
+.vs-x,.vs-ib{flex:0 0 36px;height:36px;border-radius:10px;background:var(--b2);border:1px solid var(--bd);color:var(--t2);cursor:pointer;font-size:15px}
+.vs-tt{flex:1;min-width:0}.vs-tt b{display:block;font-size:14px;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.vs-tt i{display:block;font-style:normal;font-size:11px;color:var(--t3)}
+.vs-body{flex:1;min-height:0;display:flex;flex-direction:column}
+.vs-stage{flex:0 0 auto;background:#000;position:relative}
+.vs-stage video{width:100%;max-height:36vh;display:block;background:#000}
+.vs-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:26px 20px;background:var(--b1);border-bottom:1px solid var(--bd)}
+.vs-empty>span{font-size:38px}.vs-empty b{font-size:16px;color:var(--t1)}.vs-empty p{margin:0;font-size:12.5px;color:var(--t3);line-height:1.5;max-width:420px}.vs-empty small{font-size:10.5px;color:var(--t4)}
+.vs-ctl{background:var(--b1);padding:6px 10px 8px;border-bottom:1px solid var(--bd)}
+.vs-prog{position:relative;height:22px}.vs-prog input{position:absolute;inset:0;width:100%;margin:0;accent-color:var(--pk)}
+.vs-marks{position:absolute;left:0;right:0;top:0;height:6px;pointer-events:none}.vs-marks i{position:absolute;top:0;width:4px;height:7px;margin-left:-2px;border-radius:2px;pointer-events:auto;cursor:pointer}
+.vs-marks i.n{background:#f5b14c}.vs-marks i.h{background:var(--pk)}
+.vs-btns{display:flex;align-items:center;gap:6px;margin-top:2px}
+.vs-btns button{height:34px;min-width:38px;padding:0 8px;border-radius:10px;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:12px;font-weight:700;cursor:pointer}
+.vs-btns .vs-play{min-width:48px;background:var(--pk);border-color:var(--pk);color:#fff;font-size:15px}
+.vs-time{flex:1;text-align:center;font-size:11.5px;color:var(--t2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.vs-btns select{height:34px;border-radius:10px;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-size:12px;padding:0 4px}
+.vs-panel{flex:1;min-height:0;overflow:auto;padding:10px 10px calc(12px + env(safe-area-inset-bottom))}
+.vs-tabs{display:grid!important;grid-template-columns:repeat(3,1fr);margin-bottom:10px;position:sticky;top:-10px;z-index:7}
+.vs-tabs button{font-size:11.5px;padding:8px 4px}
+#vsLogSlot #hhFormCard{margin:0}
+#vsLogSlot .hhq-head h3{font-size:16px}
+#vsLogSlot #hhFormCard .hhq-bar{margin-left:-10px;margin-right:-10px}
+.vs-file .hhw-t{grid-column:1}
+.vs-file{grid-template-columns:1fr auto!important}
+.hhw-now{height:40px;padding:0 12px;border-radius:10px;background:var(--b2);border:1px solid var(--bd);color:var(--t2);font-weight:700;font-size:12px;cursor:pointer}
+.vs-nadd textarea{min-height:64px;margin-bottom:8px}.vs-nrow{display:flex;gap:8px;justify-content:flex-end}
+.vs-note,.vs-hand{display:flex;align-items:center;gap:10px;padding:9px 10px;margin-top:6px;border-radius:12px;background:var(--b1);border:1px solid var(--bd)}
+.vs-note p{flex:1;margin:0;font-size:13px;color:var(--t1);line-height:1.45}
+.vs-tbtn{flex:0 0 auto;padding:5px 9px;border-radius:9px;background:color-mix(in srgb,var(--pk) 16%,transparent);border:1px solid color-mix(in srgb,var(--pk) 40%,transparent);color:var(--pk2);font-size:11.5px;font-weight:800;cursor:pointer;font-variant-numeric:tabular-nums}
+.vs-hand>div{flex:1;min-width:0}.vs-hand b{display:block;font-size:12.5px;color:var(--t1)}.vs-hand i{font-style:normal;font-size:11px;color:var(--t3)}
+@media(min-width:900px){.vs-body{flex-direction:row}.vs-stage{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}.vs-stage video{max-height:calc(100vh - 150px)}.vs-panel{flex:0 0 440px;border-left:1px solid var(--bd)}}
 </style>
 </head>
 <body>
@@ -6777,10 +6898,11 @@ html body .btn.btn-xs{white-space:normal;line-height:1.2}
 <div id="handHistoryV" class="view" style="max-width:900px;margin:0 auto">
   <button class="flow-back-btn" style="margin-bottom:12px" onclick="navBack()" data-nav-back>← Back</button>
   <div class="section-head"><span style="font-size:20px">📔</span><h2>Hand History</h2></div>
-    <div class="hhq-top" id="hhqTop"><button class="btn pri hhq-new" onclick="hhqOpen()">＋ Log a hand</button><span class="hhq-hint" id="hhqTopHint"></span></div>
+    <div class="hhq-top" id="hhqTop"><button class="btn pri hhq-new" onclick="hhqOpen()">＋ Log a hand</button><button class="btn hhq-vid" onclick="vsOpen()">🎬 Study a video</button><span class="hhq-hint" id="hhqTopHint"></span></div>
     <div class="hhb-workspace hhq-closed" id="hhFormCard">
       <div class="hhq-head"><h3 id="hhFormTitle">✦ New hand</h3><button class="hhq-x" onclick="hhCancelWithConfirm()" aria-label="Close">✕</button></div>
       <input type="hidden" id="hhEditId"/>
+      <div class="hhw-bar" id="hhWatchBar"></div>
       <div class="hhq-setup" id="hhqSetup">
         <div class="hhq-row hhq-row-meta">
           <div class="ds-seg hhq-seg" id="hhFmtTog"><button class="on" data-f="cash" onclick="setHhFmt('cash')">Cash</button><button data-f="tourney" onclick="setHhFmt('tourney')">MTT</button></div>
@@ -6798,6 +6920,7 @@ html body .btn.btn-xs{white-space:normal;line-height:1.2}
         <div class="hhq-lbl">Your cards <span id="hhqCardsTxt"></span></div>
         <div id="hhqHero"></div>
       </div>
+      <button class="hhq-tbl-tog" id="hhqTblTog" onclick="hhqToggleTable()"><span>🪑 Table &amp; opponents' cards</span><b id="hhqTblArrow">Show ▾</b></button>
       <div class="hhb-table-outer">
         <div class="hhb-table-felt" id="hhbTableFelt">
           <div class="hhb-seats" id="hhbSeats"></div>
@@ -6826,6 +6949,7 @@ html body .btn.btn-xs{white-space:normal;line-height:1.2}
 
       <button class="hhb-notes-toggle" onclick="hhToggleNotesPanel()"><span>📝</span>Result, Tags &amp; Notes<span class="hh-collapse-arrow" id="hhbNotesArrow">▸</span></button>
       <div class="hhb-notes-panel" id="hhbNotesPanel" style="display:none">
+        <div id="hhTakeWrap"></div>
         <div class="br-fg full"><label>Title <span class="tool-optional">(optional)</span></label><input class="minp" id="hhTitle" placeholder="e.g. Hero call vs aggro reg" style="margin:0"/></div>
         <div class="br-fg full" style="margin-top:8px"><label>Result <span class="tool-optional" id="hhqAutoRes"></span></label><input type="number" id="hhResult" placeholder="e.g. 450 or -120 (net for this hand)" step="0.01" style="margin:0"/></div>
         <div class="br-fg full" style="margin-top:8px">
@@ -6855,6 +6979,7 @@ html body .btn.btn-xs{white-space:normal;line-height:1.2}
     </div>
     <div class="hh-folder-grid" id="hhFolderGrid"></div>
 
+    <div class="hhw-who" id="hhWhoChips"></div>
     <div class="ac-wrap" style="margin-bottom:8px"><input type="text" class="minp" id="hhSearch" placeholder="🔍 Search hands…" style="margin:0" oninput="renderHhHands()"/></div>
     <div class="br-hist-toolbar">
       <div class="br-hist-toolbar-left">
@@ -7247,7 +7372,7 @@ html body .btn.btn-xs{white-space:normal;line-height:1.2}
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v146</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v150</div>
   </div>
 </div>
 </div>
@@ -10342,7 +10467,7 @@ function ggParseHand(txt){
     if(ln.startsWith("*** HOLE CARDS")){section="play";continue}
     if(ln.startsWith("*** SUMMARY")){section="summary";continue}
     if((m=ln.match(/^\*\*\* (FIRST |SECOND |THIRD )?(FLOP|TURN|RIVER) \*\*\*(.*)$/))){
-      if(m[1]){rit=true;if(m[1]==="FIRST "){runBoard=[...m[3].matchAll(/\[([^\]]*)\]/g)].map(x=>ggParseCards(x[1])).flat()}continue} // run-it-twice runouts don't change the pre-runout board
+      if(m[1]){rit=Math.max(+rit||0,m[1]==="THIRD "?3:2);if(m[1]==="FIRST "){runBoard=[...m[3].matchAll(/\[([^\]]*)\]/g)].map(x=>ggParseCards(x[1])).flat()}continue} // run-it-twice runouts don't change the pre-runout board
       const cards=[...m[3].matchAll(/\[([^\]]*)\]/g)].map(x=>ggParseCards(x[1])).flat();
       board=cards;street=m[2].toLowerCase();boardAt[street]=[...board];
       for(const k in streetPut)streetPut[k]=0;continue}
@@ -10486,7 +10611,7 @@ function ggBuildReplay(text){
   const tm=(lines[1]||"").match(/^Table '([^']+)'\s*(\d+)-max.*?Seat #(\d+) is the button/);
   const R={id:head?head[1]:"",sb:head?ggMoney(head[2]):0,bb:head?ggMoney(head[3]):0,date:head?head[4]:"",
     table:tm?tm[1]:"",maxSeats:tm?+tm[2]:6,btnSeat:tm?+tm[3]:null,seats:[],hero:null,heroCards:[],states:[]};
-  const st={stacks:{},bets:{},pot:0,folded:[],board:[],board2:null,shown:{},last:{},won:{},street:"Preflop",allin:[]};
+  const st={stacks:{},bets:{},pot:0,folded:[],board:[],board2:null,board3:null,runs:1,run:0,sdRun:0,runWon:{},shown:{},last:{},won:{},street:"Preflop",allin:[]};
   const snap=(text,actor,kind)=>R.states.push(JSON.parse(JSON.stringify({...st,text,actor:actor||null,kind:kind||"act"})));
   const sweep=()=>{for(const p in st.bets)st.pot+=st.bets[p];st.bets={}};
   const newStreet=name=>{sweep();st.street=name;for(const p in st.last)if(st.last[p]!=="Fold")delete st.last[p]};
@@ -10505,15 +10630,19 @@ function ggBuildReplay(text){
     if((m=ln.match(/^\*\*\* (FIRST |SECOND |THIRD )?(FLOP|TURN|RIVER) \*\*\*(.*)$/))){
       const cards=[...m[3].matchAll(/\[([^\]]*)\]/g)].map(x=>x[1]).join(" ").split(/\s+/).filter(Boolean);
       const nm=m[2][0]+m[2].slice(1).toLowerCase();
-      if(m[1]==="SECOND "||m[1]==="THIRD "){sweep();st.board2=cards;st.street="Run 2 · "+nm;snap("Run 2 "+nm.toLowerCase()+": "+cards.slice(-(nm==="Flop"?3:1)).join(" "),null,"street");continue}
-      newStreet((m[1]?"Run 1 · ":"")+nm);st.board=cards;
-      snap((m[1]?"Run 1 "+nm.toLowerCase():nm)+": "+cards.slice(-(nm==="Flop"?3:1)).join(" "),null,"street");continue}
-    if(/^\*\*\* (FIRST |SECOND )?SHOWDOWN/.test(ln)){sweep();st.street="Showdown";continue}
+      const rk=m[1]==="SECOND "?2:m[1]==="THIRD "?3:m[1]?1:0;
+      if(rk>=2){sweep();st["board"+rk]=cards;st.runs=Math.max(st.runs,rk);st.run=rk;st.street="Run "+rk+" · "+nm;snap("Run "+rk+" "+nm.toLowerCase()+": "+cards.slice(-(nm==="Flop"?3:1)).join(" "),null,"street");continue}
+      if(rk===1){st.runs=Math.max(st.runs,2);st.run=1}
+      newStreet((rk?"Run 1 · ":"")+nm);st.board=cards;
+      snap((rk?"Run 1 "+nm.toLowerCase():nm)+": "+cards.slice(-(nm==="Flop"?3:1)).join(" "),null,"street");continue}
+    if((m=ln.match(/^\*\*\* (FIRST |SECOND |THIRD )?SHOWDOWN/))){sweep();st.street="Showdown";st.sdRun=m[1]==="SECOND "?2:m[1]==="THIRD "?3:m[1]?1:0;continue}
     if(ln.startsWith("***"))continue;
     if((m=ln.match(/^Dealt to (.+?)(?: \[([^\]]+)\])?$/))){if(m[2]){R.hero=m[1];R.heroCards=m[2].split(/\s+/)}continue}
     if((m=ln.match(/^Cash\s*Drop\s*to\s*Pot\s*:?\s*(?:total\s*)?\$?([\d.,]+)/i))){if(!R.states.length)snap("Hand #"+R.id+" — blinds "+f(R.sb)+" / "+f(R.bb),null,"start");const v=ggMoney(m[1]);st.pot+=v;st.cd=(st.cd||0)+v;R.cd=st.cd;snap("💧 Cash Drop — "+f(v)+" added to the pot",null,"cd");continue}
     if((m=ln.match(/^Uncalled bet \(\$?([\d.,]+)\) returned to (.+)$/))){const a=ggMoney(m[1]),p=m[2];st.bets[p]=(st.bets[p]||0)-a;st.stacks[p]+=a;snap("Uncalled "+f(a)+" returned to "+p,p,"return");continue}
-    if((m=ln.match(/^(.+?) collected \$?([\d.,]+) from/))){sweep();const a=ggMoney(m[2]),p=m[1];st.pot=Math.max(0,st.pot-a);st.stacks[p]+=a;st.won[p]=(st.won[p]||0)+a;snap(p+" wins "+f(a),p,"win");continue}
+    if((m=ln.match(/^(.+?) collected \$?([\d.,]+) from/))){sweep();const a=ggMoney(m[2]),p=m[1];st.pot=Math.max(0,st.pot-a);st.stacks[p]+=a;st.won[p]=(st.won[p]||0)+a;
+      const rr=st.sdRun&&st.runs>1?st.sdRun:0;if(rr){st.runWon[rr]=st.runWon[rr]||{};st.runWon[rr][p]=(st.runWon[rr][p]||0)+a;st.run=rr}
+      snap(p+" wins "+f(a)+(rr?" on run "+rr:""),p,"win");continue}
     if(!(m=ln.match(/^(.+?): (.+)$/))||!(m[1] in st.stacks))continue;
     const p=m[1],act=m[2];let a;const ai=/and is all-in/.test(act);
     if(ai&&!st.allin.includes(p))st.allin.push(p);
@@ -10604,7 +10733,7 @@ const GGDB={db:null,cache:null,failed:false,
     try{await this.open();await new Promise((res,rej)=>{const tx=this.db.transaction(["hands","raw"],"readwrite");tx.objectStore("hands").clear();tx.objectStore("raw").clear();tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}catch(e){}
   }
 };
-const GG_SV=9; // summary schema version — older saved hands are re-read from their stored text
+const GG_SV=10; // summary schema version — older saved hands are re-read from their stored text
 let GGPV=null; // view-only GG session: parsed in memory, never written to storage
 function getGGHands(){return GGPV?GGPV.hands:(GGDB.cache||[])}
 function ggSavedHands(){return GGDB.cache||[]}
@@ -10635,7 +10764,7 @@ function ggPvBarHtml(){if(!GGPV)return"";const H=GGPV.hands,net=H.reduce((a,h)=>
 function ggPvClose(){if(!GGPV)return;const k=GGPV.keep;GGPV=null;if(k){ggList.f=k.f;ggGF.per=k.per;ggGF.pos=k.pos;ggList.tab=k.tab||ggList.tab}ggList.limit=50;renderGG();const sf=$("ggStakeFilter");if(k&&sf&&[...sf.options].some(o=>o.value===k.stake)){sf.value=k.stake;renderGG()}toast("Closed — back to your saved results")}
 async function ggPvSave(){if(!GGPV)return;const src=GGPV.src.map(x=>({name:x.name,text:async()=>x.text}));const k=GGPV.keep;GGPV=null;if(k){ggList.f=k.f;ggGF.per=k.per;ggGF.pos=k.pos;ggList.tab=k.tab||ggList.tab}await ggImportFiles(src)}
 function ggAttachNote(h){const n=GGDB.notes&&GGDB.notes.get(h.id);h.cm=n?n.comments||[]:[];h.tags=n?n.tags||[]:[];h.nu=n?n.upd||0:0}
-function ggSummary(h,hasRaw){return{id:h.id,ts:h.ts,bb:h.bb,sb:h.sb,net:h.net,sd:h.showdown?1:0,ev:h.allinEv,pos:h.pos,hc:h.hc,cls:h.cls,pot:h.pot,board:h.board,table:h.table,rk:+h.rakePaid.toFixed(4),fe:+h.feesPaid.toFixed(4),pf:h.pf,pt:h.pt,st:h.st,vpip:h.vpip,pfr:h.pfr,ax:h.ax,sq:h.sq,cd:h.cd||undefined,op:h.op,sv:GG_SV,raw:hasRaw?1:0}}
+function ggSummary(h,hasRaw){return{id:h.id,ts:h.ts,bb:h.bb,sb:h.sb,net:h.net,sd:h.showdown?1:0,ev:h.allinEv,pos:h.pos,hc:h.hc,cls:h.cls,pot:h.pot,board:h.board,table:h.table,rk:+h.rakePaid.toFixed(4),fe:+h.feesPaid.toFixed(4),pf:h.pf,pt:h.pt,st:h.st,vpip:h.vpip,pfr:h.pfr,ax:h.ax,sq:h.sq,cd:h.cd||undefined,rt:h.rit>1?h.rit:undefined,op:h.op,sv:GG_SV,raw:hasRaw?1:0}}
 
 function ggAmt(c){const v=c/100;return"$"+(v>=1&&Number.isInteger(v)?v:v.toFixed(2))}
 function ggStakeLabel(bb){const h=getGGHands().find(x=>x.bb===bb);return ggAmt(h&&h.sb!=null?h.sb:bb/2)+"/"+ggAmt(bb)}
@@ -10938,7 +11067,7 @@ const GG_PF=[["fold","Fold"],["check","Check"],["walk","Walk"],["limp","Limp"],[
 const GG_PT=[["limped","Limped"],["srp","Single-raised"],["3bet","3-bet"],["4bet","4-bet+"]];
 const GG_ST=["Preflop","Flop","Turn","River","Showdown"];
 const GG_PF_L=Object.fromEntries(GG_PF),GG_PT_L=Object.fromEntries(GG_PT);
-const GG_F0={pos:[],res:"",sd:"",pf:[],pt:[],st:0,allin:false,from:"",to:"",minPot:"",minNet:"",maxNet:"",range:[],study:"",tags:[],line:"",mh:[],cd:"",opp:""};
+const GG_F0={pos:[],res:"",sd:"",pf:[],pt:[],st:0,allin:false,from:"",to:"",minPot:"",minNet:"",maxNet:"",range:[],study:"",tags:[],line:"",mh:[],cd:"",opp:"",rt:""};
 const ggList=Object.assign({q:"",limit:50,current:[],panel:false,tab:"analysis",collapsed:{}},
   {f:JSON.parse(JSON.stringify(GG_F0)),sort:{key:"date",dir:-1},view:"cards",group:"session",metric:"total",bdim:"pos",bcols:"core",bsort:null},
   (()=>{const p=LG("ps_gg_listprefs",null);if(!p)return{};p.f=Object.assign(JSON.parse(JSON.stringify(GG_F0)),p.f||{});return p})());
@@ -11349,6 +11478,7 @@ function ggFilterHands(arr,opt){
     if(f.cd==="y"&&!h.cd)return false;
     if(f.opp&&!(h.op||[]).some(o=>o[0]===f.opp))return false;
     if(f.cd==="n"&&h.cd)return false;
+    if(f.rt==="y"&&!h.rt)return false;if(f.rt==="n"&&h.rt)return false;
     const ncm=(h.cm||[]).length,ntg=(h.tags||[]).length;
     if(f.study==="cm"&&!ncm)return false;
     if(f.study==="tag"&&!ntg)return false;
@@ -11556,7 +11686,7 @@ const ggDt=ts=>new Date(ts).toLocaleString("en-GB",{day:"numeric",month:"short",
 function ggRowHtml(h,i){
   const b=(t,c)=>'<span class="gg-badge'+(c?" "+c:"")+'">'+t+"</span>";
   const ncm=(h.cm||[]).length;
-  const badges=(ncm?b("💬 "+ncm,"cm"):"")+(h.pos?b(h.pos):"")+(h.pf&&h.pf!=="fold"?b(GG_PF_L[h.pf],"act"):"")+(h.pt==="3bet"||h.pt==="4bet"?b(GG_PT_L[h.pt]+" pot","pt"):"")+(h.sd?b("SD","sd"):"")+(h.ev!=null?b("All-in","ai"):"")+(h.cd?b("💧 "+ggFmt(h.cd,h.bb),"cd"):"");
+  const badges=(ncm?b("💬 "+ncm,"cm"):"")+(h.pos?b(h.pos):"")+(h.pf&&h.pf!=="fold"?b(GG_PF_L[h.pf],"act"):"")+(h.pt==="3bet"||h.pt==="4bet"?b(GG_PT_L[h.pt]+" pot","pt"):"")+(h.sd?b("SD","sd"):"")+(h.ev!=null?b("All-in","ai"):"")+(h.cd?b("💧 "+ggFmt(h.cd,h.bb),"cd"):"")+(h.rt?b("🔁 Ran "+(h.rt===3?"3×":"2×"),"rit"):"");
   return'<div class="gg-row'+(h.raw?"":" no-raw")+'" data-i="'+i+'">'
     +'<div class="gg-row-cards">'+ggMiniCards(h.hc)+"</div>"
     +'<div class="gg-row-mid"><div class="gg-row-top"><b>'+(h.cls||"—")+"</b>"+badges+"</div>"
@@ -12383,6 +12513,7 @@ function ggActiveFilters(){
   if(f.line&&GG_LINE_MAP[f.line])out.push(["line","Line: "+GG_LINE_MAP[f.line][1]]);
   if(f.opp)out.push(["opp","vs "+ggOppName(f.opp)]);
   if(f.cd)out.push(["cd",f.cd==="y"?"💧 Cash Drop pots":"No Cash Drop pots"]);
+  if(f.rt)out.push(["rt",f.rt==="y"?"🔁 Ran it twice / three times":"Ran once only"]);
   if(f.mh&&f.mh.length)out.push(["mh","Made hand: "+f.mh.map(x=>GG_MH_L[x]||x).join(", ")]);
   if(f.range.length)out.push(["range","Hands: "+(f.range.length<=6?f.range.join(", "):f.range.length+" selected")]);
   return out;
@@ -12433,6 +12564,7 @@ function ggRenderPanel(){
     +'<div class="gg-psec" style="--sc:var(--c5)"><div class="gg-plbl">Pot type</div>'+chips("pt",GG_PT)+"</div>"
     +'<div class="gg-psec" style="--sc:var(--c1)" id="ggMhSec"><div class="gg-plbl">Hand ranking <span class="gg-hint">your best made hand by the last street you saw</span></div>'+chips("mh",GG_MH.slice(0,3).concat([["2p+","Two pair +"]]))+chips("mh",GG_MH.slice(3,7))+chips("mh",GG_MH.slice(7))+"</div>"
     +'<div class="gg-psec" style="--sc:var(--ic)"><div class="gg-plbl">💧 Cash Drop <span class="gg-hint">GG Rush &amp; Cash splash pots</span></div>'+seg("cd",[["","Any"],["y","Only Cash Drop pots"],["n","Exclude"]])+"</div>"
+    +'<div class="gg-psec" style="--sc:var(--c3)"><div class="gg-plbl">🔁 Run it twice / three times <span class="gg-hint">all-in pots dealt more than once</span></div>'+seg("rt",[["","Any"],["y","Only multi-run pots"],["n","Exclude"]])+"</div>"
     +'<div class="gg-psec" style="--sc:var(--c4)"><div class="gg-plbl">You reached</div>'+seg("st",[[0,"Any"],[1,"Flop+"],[2,"Turn+"],[3,"River+"],[4,"Showdown"]])+"</div>"
     +'<div class="gg-psec" style="--sc:var(--c6)"><div class="gg-plbl">Result</div>'+seg("res",[["","Any"],["won","Won"],["lost","Lost"],["even","Broke even"]])+"</div>"
     +'<div class="gg-psec" style="--sc:var(--c3)"><div class="gg-plbl">Showdown</div>'+seg("sd",[["","Any"],["sd","Went to SD"],["nsd","No SD"],["sdwon","Won at SD"],["sdlost","Lost at SD"]])+"</div>"
@@ -12610,7 +12742,7 @@ function ggHandToText(R,h,o){
       const live=R.seats.filter(x=>!s.folded.includes(x.name)).length;
       if(s.text==="Cards are dealt"){street="PREFLOP";L.push("");L.push("PREFLOP ("+amt(s.pot+Object.values(s.bets).reduce((a,b)=>a+b,0))+", "+live+" players)");continue}
       const nm=s.text.split(":")[0].toUpperCase();
-      const board=/RUN 2/.test(nm)?s.board2:s.board;
+      const board=/RUN 3/.test(nm)?s.board3:/RUN 2/.test(nm)?s.board2:s.board;
       street=nm;L.push("");L.push(nm+" ("+amt(s.pot)+", "+live+" players)  "+ggShCards(board,o.sym));
       continue;
     }
@@ -12634,7 +12766,9 @@ function ggHandToText(R,h,o){
           if(sdNote.includes(n))return;sdNote.push(n);
           let hand="";
           try{
-            if(b2&&b2.length===5&&b1.length===5)hand=" (run 1: "+ggHandDesc(cards,b1)+" · run 2: "+ggHandDesc(cards,b2)+")";
+            const b3=last.board3||null;
+            if(b3&&b3.length===5&&b2&&b2.length===5&&b1.length===5)hand=" (run 1: "+ggHandDesc(cards,b1)+" · run 2: "+ggHandDesc(cards,b2)+" · run 3: "+ggHandDesc(cards,b3)+")";
+            else if(b2&&b2.length===5&&b1.length===5)hand=" (run 1: "+ggHandDesc(cards,b1)+" · run 2: "+ggHandDesc(cards,b2)+")";
             else if(b1.length===5)hand=" ("+ggHandDesc(cards,b1)+")";
           }catch(e){}
           L.push(label(n)+" shows "+ggShCards(cards,o.sym)+hand);
@@ -12822,7 +12956,7 @@ function ggRenderReplay(){
     const dateTxt=new Date(h.ts).toLocaleString("en-GB",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"UTC"});
     const tab=ggR.tab||LG("ps_gg_rtab","log");ggR.tab=tab;
     $("ggReplayContent").innerHTML=
-      '<div class="ggr-hdr"><div><div class="ggr-title">'+(h.cls||"Hand")+(h.pos?' <span class="gg-badge">'+h.pos+"</span>":"")+(h.cd?' <span class="gg-badge cd" title="Cash Drop added to this pot">💧 '+ggFmt(h.cd,h.bb)+"</span>":"")+'</div>'+ggRStakeHtml(R)+'<div class="ggr-sub">'+dateTxt+' · #'+escapeHtml(R.id)+'</div></div><div class="ggr-hdr-r"><div class="ggr-hdr-btns"><div class="br-toggle ggr-unit" id="ggrUnit"><button data-u="bb" class="'+(ggRUnit==="bb"?"on":"")+'" onclick="ggRSetUnit(\'bb\')">BB</button><button data-u="money" class="'+(ggRUnit!=="bb"?"on":"")+'" onclick="ggRSetUnit(\'money\')">$</button></div><button class="ggr-share-btn" onclick="openGGShare()" title="Share this hand as an image or text">📤<span class="ggr-share-l"> Share</span></button><button class="sd-close" onclick="ggStopAuto();closeM(\'ggReplayM\')">✕</button></div><div class="ggr-hnav" id="ggrHNav"></div></div></div>'
+      '<div class="ggr-hdr"><div><div class="ggr-title">'+(h.cls||"Hand")+(h.pos?' <span class="gg-badge">'+h.pos+"</span>":"")+(h.cd?' <span class="gg-badge cd" title="Cash Drop added to this pot">💧 '+ggFmt(h.cd,h.bb)+"</span>":"")+(((R.states[R.states.length-1]||{}).runs||1)>1?' <span class="gg-badge rit" title="All-in pot dealt more than once">🔁 Ran it '+(R.states[R.states.length-1].runs===3?"three times":"twice")+"</span>":"")+'</div>'+ggRStakeHtml(R)+'<div class="ggr-sub">'+dateTxt+' · #'+escapeHtml(R.id)+'</div></div><div class="ggr-hdr-r"><div class="ggr-hdr-btns"><div class="br-toggle ggr-unit" id="ggrUnit"><button data-u="bb" class="'+(ggRUnit==="bb"?"on":"")+'" onclick="ggRSetUnit(\'bb\')">BB</button><button data-u="money" class="'+(ggRUnit!=="bb"?"on":"")+'" onclick="ggRSetUnit(\'money\')">$</button></div><button class="ggr-share-btn" onclick="openGGShare()" title="Share this hand as an image or text">📤<span class="ggr-share-l"> Share</span></button><button class="sd-close" onclick="ggStopAuto();closeM(\'ggReplayM\')">✕</button></div><div class="ggr-hnav" id="ggrHNav"></div></div></div>'
       +'<div id="ggrRange">'+(ggR.rc?ggRcReplayHtml(h):"")+'</div>'
       +'<div class="ggr-body"><div class="ggr-main"><div id="ggrStage"></div></div>'
       +'<div class="ggr-side" data-tab="'+tab+'"><div class="br-toggle ggr-tabs" id="ggrTabs"><button data-t="log" class="'+(tab==="log"?"on":"")+'">📜 Actions</button><button data-t="notes" class="'+(tab==="notes"?"on":"")+'">📝 Notes<span id="ggrNoteCount"></span></button></div>'
@@ -12891,7 +13025,10 @@ function ggRenderStage(){
   // end of hand: show who won and with what instead of an empty pot
   const winners=Object.keys(st.won||{});
   let centerTop='<div class="hhb-pot">Pot '+ggFmt(totalPot,R.bb)+"</div>";
-  if(winners.length&&(st.kind==="win"||st.kind==="end"||totalPot===0)){
+  if(st.runs>1&&Object.keys(st.runWon||{}).length&&(st.kind==="win"||st.kind==="end"||totalPot===0)){
+    centerTop="";if(false)centerTop='<div class="ggr-win ggr-winruns">'+Object.keys(st.runWon).sort().map(k=>{const bd=k==="1"?st.board:st["board"+k];return Object.keys(st.runWon[k]).map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&bd&&bd.length===5?ggHandDesc(c,bd):"";const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));
+      return'<div><b><i class="ggr-rn">R'+k+'</i>'+escapeHtml(pl)+" wins "+ggFmt(st.runWon[k][w],R.bb)+"</b>"+(desc?"<span>"+escapeHtml(desc)+"</span>":"")+"</div>"}).join("")}).join("")+"</div>";
+  }else if(winners.length&&(st.kind==="win"||st.kind==="end"||totalPot===0)){
     const full=(st.board||[]).length===5;
     centerTop='<div class="ggr-win">'+winners.map(w=>{const c=w===R.hero?R.heroCards:st.shown[w],desc=c&&c.length===2&&full?ggHandDesc(c,st.board):"";const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));
       return'<div><b>🏆 '+escapeHtml(pl)+" wins "+ggFmt(st.won[w],R.bb)+"</b>"+(desc?"<span>"+escapeHtml(desc)+"</span>":"")+"</div>"}).join("")+"</div>";
@@ -12908,12 +13045,12 @@ function ggRenderStage(){
   // street timeline
   const segs=[];R.states.forEach((s,k)=>{if(k===0)return;const key=ggRStreetKey(s,k);if(!segs.length||segs[segs.length-1].key!==key)segs.push({key,steps:[]});segs[segs.length-1].steps.push(k)});
   const tl='<div class="ggr-tl" id="ggrTl">'+segs.map(sg=>{const on=sg.steps.includes(ggR.step),past=sg.steps[sg.steps.length-1]<ggR.step;
-    return'<div class="ggr-tl-seg'+(on?" on":"")+(past?" past":"")+'" style="flex:'+Math.max(2,sg.steps.length)+'"><button class="ggr-tl-l" data-go="'+sg.steps[0]+'">'+escapeHtml(GG_R_SHORT[sg.key]||sg.key.replace("Run ","R").replace(" · ",""))+"</button>"
+    return'<div class="ggr-tl-seg'+(on?" on":"")+(past?" past":"")+'" style="flex:'+Math.max(2,sg.steps.length)+'"><button class="ggr-tl-l" data-go="'+sg.steps[0]+'">'+escapeHtml(GG_R_SHORT[sg.key]||sg.key.replace(/^Run (\d) · (\w).*$/,"R$1·$2"))+"</button>"
       +'<div class="ggr-tl-ticks">'+sg.steps.map(k=>{const s=R.states[k];return'<button class="ggr-tk'+(k===ggR.step?" cur":"")+(k<ggR.step?" done":"")+(s.actor===R.hero&&/bet|raise|call|check|fold/.test(s.kind)?" hero":"")+(ps.includes(k)?" note":"")+'" data-go="'+k+'" title="'+escapeHtml(ggMoneyText(s.text))+'"></button>'}).join("")+"</div></div>"}).join("")+"</div>";
   const spd=ggRSpd();
   $("ggrStage").innerHTML=
     '<div class="ggr-felt-wrap"><div class="hhb-table-felt ggr-felt'+(R.seats.length>6?" many":"")+'" id="ggrFelt">'+seatsHtml+chips.join("")
-    +'<div class="ggr-center">'+centerTop+boardRow(st.board)+(st.board2?boardRow(st.board2):"")+"</div></div></div>"
+    +'<div class="ggr-center'+(st.board3?" runs3":st.board2||st.runs>1?" runs2":"")+'">'+centerTop+ggRBoards(st,boardRow)+"</div></div></div>"
     +actCard+callouts+tl
     +(ps.length?'<div class="ggr-notenav"><button class="btn btn-s" onclick="ggJumpNote(-1)">◀ Prev note</button><span>💬 '+(idx>=0?"Note "+(idx+1)+" of "+ps.length:ps.length+" pinned note"+(ps.length!==1?"s":""))+'</span><button class="btn btn-s" onclick="ggJumpNote(1)">Next note ▶</button></div>':"")
     +'<div class="ggr-controls"><button class="btn ggr-cb" onclick="ggJumpStreet(-1)" title="Previous street (↑)">⏮</button><button class="btn ggr-cb" onclick="ggStep(-1)" title="Back (←)">◀</button>'
@@ -12936,7 +13073,7 @@ function ggRenderLog(){
   S.forEach((s,k)=>{
     if(k===0)return;
     const key=ggRStreetOf(R,k);
-    if(key!==cur){cur=key;const potAt=s.pot+sum(s.bets),brd=s.kind==="street"&&s.board&&s.board.length?s.board:null;
+    if(key!==cur){cur=key;const potAt=s.pot+sum(s.bets),_rk=(/^Run (\d)/.exec(s.street||"")||[])[1],_bd=_rk==="2"?s.board2:_rk==="3"?s.board3:s.board,brd=s.kind==="street"&&_bd&&_bd.length?_bd:null;
       h+='<div class="ggr-lg-h'+(k>ggR.step?" future":"")+'" data-s="'+k+'"><span>'+escapeHtml(key)+"</span>"+(brd?'<span class="ggr-lg-b">'+brd.map(c=>'<i class="'+(c[1]==="h"||c[1]==="d"?"r":"")+'">'+c[0].replace("T","10")+GG_SUIT_SYM[c[1]]+"</i>").join("")+"</span>":"")+(potAt>0&&key!=="Showdown"?'<em>pot '+ggFmt(potAt,R.bb)+"</em>":"")+"</div>"}
     if(s.kind==="street"&&s.board&&s.board.length)return; // the header already shows the new cards
     const isHero=s.actor&&s.actor===R.hero,pos=s.actor&&R.pos?R.pos[s.actor]:"";
@@ -15339,9 +15476,9 @@ function renderHhStreetContent(){
       +'<div class="card-slot-trigger hh-board-slot" onclick="hhqToggleBoardDeck(\''+street+'\')" id="hh'+cap+'Slot"><span class="cst-placeholder">🎴 Tap to select</span></div>'
       +((hhBoardState[street].length<boardCfg[0]||hhqBoardOpen===street)?'<div class="hhq-bdeck" onclick="hhqDeckClick(event)">'+hhqDeckHtml(street,boardCfg[0])+"</div>":"");
   }
-  html+='<div class="hh-section-hdr" style="font-size:12px;margin-top:'+(boardCfg?"14":"0")+'px"><span>🎬</span>'+cap+' Action</div>'
+  html+='<div class="hh-section-hdr hhq-acthdr" style="font-size:12px;margin-top:'+(boardCfg?"14":"0")+'px"><span>🎬</span>'+cap+' Action</div>'
     +'<div class="hha-log" id="hhLog'+cap+'"></div><div class="hha-builder" id="hhBuilder'+cap+'"></div>'
-    +'<textarea class="rnote hhw-street-note" id="hhStreetNote'+cap+'" placeholder="'+cap+' notes (optional)…" oninput="hhStreetNotesDraft.'+street+'=this.value;hhSaveDraft()">'+escapeHtml(hhStreetNotesDraft[street]||"")+'</textarea>';
+    +((hhStreetNotesDraft[street]||"").trim()||window._hhNoteOpen===street?'<textarea class="rnote hhw-street-note" id="hhStreetNote'+cap+'" placeholder="'+cap+' notes…" oninput="hhStreetNotesDraft.'+street+'=this.value;hhSaveDraft()">'+escapeHtml(hhStreetNotesDraft[street]||"")+'</textarea>':'<button class="hhq-addnote" onclick="window._hhNoteOpen=\''+street+'\';renderHhStreetContent();setTimeout(()=>{const t=$(\'hhStreetNote'+cap+'\');if(t)t.focus()},30)">＋ Note on the '+street+'</button>');
   html+="</div>";
   ct.innerHTML=html;
   if(boardCfg)hhUpdateSlotDisplay(street);
@@ -15586,12 +15723,12 @@ function hhUndoAction(street,idx){hhStreetActions[street].splice(idx,1);renderSt
 function hhEditAction(street,idx){
   const a=hhStreetActions[street]&&hhStreetActions[street][idx];if(!a)return;
   $("hhEditActionStreet").value=street;$("hhEditActionIdx").value=idx;
-  const p=hhPlayersState[a.playerIdx];const name=a.playerIdx===0?"Hero":(p?p.name:"?");
+  const p=hhPlayersState[a.playerIdx];const name=hhPName(a.playerIdx);
   $("hhEditActionTitle").textContent="Edit — "+name+" "+a.action;
   const needsAmt=a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin";
   $("hhEditActionAmtWrap").style.display=needsAmt?"":"none";
   $("hhEditActionAmt").value=a.amount!=null?a.amount:"";
-  $("hhEditActionNote").value=a.note||"";
+  $("hhEditActionNote").value=a.note||"";$("hhEditActionNote").placeholder=window.hhWatch&&hhWatch.on?"💬 Their explanation":"Optional note";
   openM("hhEditActionM");
 }
 function hhSaveActionEdit(){
@@ -15676,7 +15813,7 @@ function renderStreetActions(street){
     +'<button class="hha-btn hha-bet" onclick="hhRecordAction(\''+street+"',"+nextActor+",'"+(state.hasBet?"raise":"bet")+'\')">'+(state.hasBet?"Raise":"Bet")+"</button>"
     +'<button class="hha-btn hha-allin" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'allin\')">All-In</button>'
     +"</div>"+hhqSizeChips(street,nextActor)
-    +'<div class="hha-input-row"><div class="hha-amt-wrap"><span class="hha-amt-prefix">'+hhSym()+'</span><input type="number" class="minp hha-amt" id="hhAmtInput'+street+'" placeholder="Amount" value="'+(toCall!=null?toCall:"")+'"/></div><input class="minp hha-note-input" id="hhNoteInput'+street+'" placeholder="Note (optional)"/></div>';
+    +'<div class="hha-input-row"><div class="hha-amt-wrap"><span class="hha-amt-prefix">'+hhSym()+'</span><input type="number" class="minp hha-amt" id="hhAmtInput'+street+'" placeholder="Amount" value="'+(toCall!=null?toCall:"")+'"/></div><input class="minp hha-note-input" id="hhNoteInput'+street+'" placeholder="'+(window.hhWatch&&hhWatch.on?"💬 Why? Their explanation for this…":"Note (optional)")+'"/>'+(hhMicOk()?'<button class="hha-mic" type="button" onclick="hhDictate(\'hhNoteInput'+street+'\',this)" title="Dictate (speak the explanation)" aria-label="Dictate">🎤</button>':"")+'</div>';
 }
 
 /* ── Showdown ── */
@@ -16077,7 +16214,7 @@ function hhqDeckClick(e){const b=e.target.closest(".hhq-d");if(!b||b.disabled)re
   if(tg==="player0"){hhqRender();renderHhbTable();renderHhFlowHint()}else{hhUpdateSlotDisplay(tg);if(["flop","turn","river"].includes(tg))renderHhStreetContent()}}
 function hhqCardsMini(cards){return cards.map(c=>'<span class="hhq-mc'+(c.suit==="h"||c.suit==="d"?" red":"")+'">'+c.rank+SYM[c.suit]+"</span>").join("")}
 function hhqRender(){const su=$("hhqSetup");if(!su)return;
-  const started=HH_STREETS.some(s=>(hhStreetActions[s]||[]).length)&&hhPlayersState[0]&&hhPlayersState[0].cards.length===2;
+  const _bl0=hhGetLiveBlinds();const started=hhPlayersState[0]&&hhPlayersState[0].cards.length===2&&!!(_bl0&&_bl0.bb)&&!!hhPlayersState[0].position;
   const col=started&&su.dataset.expand!=="1";su.classList.toggle("hhq-col",col);
   let sum=$("hhqSum");if(!sum){sum=document.createElement("button");sum.id="hhqSum";sum.className="hhq-sum";sum.onclick=()=>{su.dataset.expand=su.dataset.expand==="1"?"0":"1";hhqRender()};su.parentNode.insertBefore(sum,su)}
   const bl=hhGetLiveBlinds(),sym=hhSym();sum.style.display=started?"":"none";
@@ -16260,7 +16397,8 @@ function renderHhHands(){
   let hands=[...HH.d.hands];
   if(!q)hands=hands.filter(h=>(h.folder||"/")===hhCurrentFolder); // searching looks across all folders, like the ranges browser
   if(fmtFilter)hands=hands.filter(h=>(h.format||"cash")===fmtFilter);
-  if(q)hands=hands.filter(h=>(h.title||"").toLowerCase().includes(q)||(h.stakes||"").toLowerCase().includes(q)||(h.villain||"").toLowerCase().includes(q)||(h.notes||"").toLowerCase().includes(q)||(h.tags||[]).some(t=>t.includes(q))||(h.position||"").toLowerCase().includes(q));
+  if(hhWho==="me")hands=hands.filter(h=>!h.watch);else if(hhWho)hands=hands.filter(h=>h.watch&&h.watch.player===hhWho);
+  if(q)hands=hands.filter(h=>(h.title||"").toLowerCase().includes(q)||(h.stakes||"").toLowerCase().includes(q)||(h.villain||"").toLowerCase().includes(q)||(h.notes||"").toLowerCase().includes(q)||(h.watch&&((h.watch.player||"")+" "+(h.watch.ep||"")).toLowerCase().includes(q))||HH_STREETS.some(st=>((h.streetActions||{})[st]||[]).some(a=>(a.note||"").toLowerCase().includes(q)))||(h.tags||[]).some(t=>t.includes(q))||(h.position||"").toLowerCase().includes(q));
   const mul=hhHistDir==="asc"?1:-1;
   hands.sort((a,b)=>{if(sortField==="position")return mul*(a.position||"").localeCompare(b.position||"");if(sortField==="result")return mul*(a.resultCents-b.resultCents);return mul*(new Date(a.date)-new Date(b.date))});
   if(dirBtn){const asc=hhHistDir==="asc";dirBtn.textContent=(asc?"⬆ ":"⬇ ")+(sortField==="result"?(asc?"Lowest":"Highest"):sortField==="position"?(asc?"A→Z":"Z→A"):(asc?"Oldest":"Newest"))}
@@ -16269,9 +16407,9 @@ function renderHhHands(){
   list.innerHTML=hands.map((h,i)=>{
     const hero=(h.players&&h.players[0])?h.players[0].cards:parseCardStr(h.hero);const cls=h.resultCents>=0?"pos":"neg";
     const folderTag=q&&(h.folder||"/")!=="/"?(()=>{const f=getHhFolders().find(x=>x.path===h.folder);return f?'<span class="hh-tag-chip">'+f.icon+" "+escapeHtml(f.name)+"</span>":""})():"";
-    return'<div class="hh-row" style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openHhDetail(\''+h.id+'\')"><div class="hh-row-cards">'+(hero.length?renderCommCardsHtml(hero,true):'<span class="hh-row-nocard">🂠</span>')+'</div><div class="hh-row-mid">'+(h.title?'<div class="hh-row-title">'+escapeHtml(h.title)+'</div>':"")+'<div class="hh-row-top"><span class="hh-row-stakes">'+escapeHtml(h.stakes||"—")+'</span>'+(h.position?'<span class="hh-row-pos">'+escapeHtml(h.position)+'</span>':"")+(h.numPlayers?'<span class="hh-row-players">👥 '+h.numPlayers+'</span>':"")+(h.villain?'<span class="hh-row-villain">vs '+escapeHtml(h.villain)+'</span>':"")+folderTag+'</div><div class="hh-row-tags">'+(h.tags||[]).slice(0,4).map(t=>'<span class="hh-tag-chip">'+escapeHtml(t)+'</span>').join("")+'</div></div><button class="hh-row-move-btn" onclick="event.stopPropagation();openHhMoveToFolder(\''+h.id+'\')" title="Move to folder">📂</button><button class="hh-row-replay-btn" onclick="event.stopPropagation();openHhReplay(\''+h.id+'\')" title="Replay hand">🎬</button><div class="hh-row-right"><div class="profit '+cls+'">'+brFmt(h.resultCents)+'</div><div class="hh-row-date">'+h.date+'</div></div></div>';
+    return'<div class="hh-row" style="animation-delay:'+Math.min(i*25,300)+'ms" onclick="openHhDetail(\''+h.id+'\')"><div class="hh-row-cards">'+(hero.length?renderCommCardsHtml(hero,true):'<span class="hh-row-nocard">🂠</span>')+'</div><div class="hh-row-mid">'+(h.title?'<div class="hh-row-title">'+escapeHtml(h.title)+'</div>':"")+'<div class="hh-row-top"><span class="hh-row-stakes">'+escapeHtml(h.stakes||"—")+'</span>'+(h.position?'<span class="hh-row-pos">'+escapeHtml(h.position)+'</span>':"")+(h.numPlayers?'<span class="hh-row-players">👥 '+h.numPlayers+'</span>':"")+(h.villain?'<span class="hh-row-villain">vs '+escapeHtml(h.villain)+'</span>':"")+(h.watch?'<span class="hh-row-watch">📺 '+escapeHtml(h.watch.player||"Watched")+'</span>':"")+folderTag+'</div><div class="hh-row-tags">'+(h.tags||[]).slice(0,4).map(t=>'<span class="hh-tag-chip">'+escapeHtml(t)+'</span>').join("")+'</div></div><button class="hh-row-move-btn" onclick="event.stopPropagation();openHhMoveToFolder(\''+h.id+'\')" title="Move to folder">📂</button><button class="hh-row-replay-btn" onclick="event.stopPropagation();openHhReplay(\''+h.id+'\')" title="Replay hand">🎬</button><div class="hh-row-right"><div class="profit '+cls+'">'+brFmt(h.resultCents)+'</div><div class="hh-row-date">'+h.date+'</div></div></div>';
   }).join("")||'<div class="empty-state"><span class="es-icon">📔</span><div class="es-title">'+(q||fmtFilter?"No matching hands":hhCurrentFolder!=="/"?"No hands in this folder yet":"No hands logged yet")+'</div><div class="es-sub">'+(q||fmtFilter?"Try a different search or filter.":"Log a hand above to start building your history.")+'</div></div>';
-  renderHhStats(hands);
+  renderHhStats(hhWho?hands:hands.filter(h=>!h.watch));try{hhWhoRender()}catch(e){}
 }
 function renderHhStats(hands){
   const el=$("hhStats");if(!el)return;
@@ -16295,15 +16433,16 @@ function hhFormatStreetActions(h,street){
   const verbs={fold:"folds",check:"checks",call:"calls",bet:"bets",raise:"raises to",allin:"goes all-in"};
   return acts.map(a=>{
     const p=players[a.playerIdx];if(!p)return"";
-    const name=a.playerIdx===0?"Hero":p.name;
+    const name=a.playerIdx===0?(h.watch&&h.watch.player||"Hero"):p.name;
     const amt=(a.action==="call"||a.action==="bet"||a.action==="raise"||a.action==="allin")&&a.amount!=null?" "+hhFmtAmt(a.amount,bb,sym):"";
+    if(h.watch)return'<span class="hh-wa"><b>'+escapeHtml(name)+"</b> "+(verbs[a.action]||a.action)+amt+(a.note?'<span class="hh-why">💬 '+escapeHtml(a.note)+"</span>":"")+"</span>";
     const note=a.note?" ("+escapeHtml(a.note)+")":"";
     return escapeHtml(name)+" "+(verbs[a.action]||a.action)+amt+note;
-  }).filter(Boolean).join(", ");
+  }).filter(Boolean).join(h.watch?"":", ");
 }
 function openHhDetail(id){
   const h=HH.d.hands.find(x=>x.id===id);if(!h)return;
-  const players=h.players&&h.players.length?h.players:[{name:"Hero",cards:parseCardStr(h.hero||"")},...(h.villain?[{name:h.villain,cards:[]}]:[])];
+  const players=(h.players&&h.players.length?h.players:[{name:"Hero",cards:parseCardStr(h.hero||"")},...(h.villain?[{name:h.villain,cards:[]}]:[])]).map((p,i)=>i===0&&h.watch?Object.assign({},p,{name:h.watch.player||p.name}):p);
   const flop=h.flopCards||parseCardStr(h.flop||"");const turn=h.turnCards||parseCardStr(h.turn||"");const river=h.riverCards||parseCardStr(h.river||"");
   const pos=h.resultCents>=0;
   let hh='<div class="sd-hdr"><div class="sd-hdr-top"><span class="sd-format-pill">'+(h.format==="tourney"?"🏆 Tournament":"🃏 Cash Game")+'</span><button class="sd-close" onclick="closeM(\'hhDetailM\')">✕</button></div>';
@@ -16358,6 +16497,7 @@ function openHhDetail(id){
   if((h.tags||[]).length)hh+='<div style="padding:12px 22px;border-bottom:1px solid var(--bd)">'+h.tags.map(t=>'<span class="hh-tag-chip">'+escapeHtml(t)+'</span>').join(" ")+'</div>';
   if(h.notes)hh+='<div class="sd-notes"><div class="sd-lbl">Action / Analysis</div><div class="sd-notes-body">'+escapeHtml(h.notes)+'</div></div>';
   hh+='<div class="sd-acts"><button class="btn pri" onclick="openHhReplay(\''+h.id+'\')">🎬 Replay</button><button class="btn" onclick="editHhHand(\''+h.id+'\')">✎ Edit</button><button class="btn btn-d" onclick="delHhHand(\''+h.id+'\')">✕ Delete</button></div>';
+  if(h.watch)hh=hh.replace('<div class="hh-detail-players">',hhWatchDetailHtml(h)+'<div class="hh-detail-players">');
   $("hhDetailContent").innerHTML=hh;openM("hhDetailM");
 }
 
@@ -16755,7 +16895,7 @@ function runGlobalSearch(){
   if(rangeMatches.length)sections.push({title:"♠ Ranges",items:rangeMatches.map(({r,i})=>({icon:r.icon||"♠",label:r.name,sub:(r.folder||"/")+" · "+r.range.flat().filter(c=>c.length).length+" hands",action:"showViewerMode("+i+")"}))});
   const noteMatches=Notes.d.notes.filter(n=>n.title.toLowerCase().includes(q)||n.body.toLowerCase().includes(q)||(n.tags||[]).some(t=>t.includes(q))).slice(0,6);
   if(noteMatches.length)sections.push({title:"📝 Notes",items:noteMatches.map(n=>({icon:"📝",label:n.title,sub:(n.body||"").replace(/\n/g," ").slice(0,64)||"(empty note)",action:"go('notes');switchNotesHub('notesMain');openNote('"+n.id+"')"}))});
-  const handMatches=HH.d.hands.filter(h=>(h.stakes||"").toLowerCase().includes(q)||(h.villain||"").toLowerCase().includes(q)||(h.notes||"").toLowerCase().includes(q)||(h.tags||[]).some(t=>t.includes(q))).slice(0,6);
+  const handMatches=HH.d.hands.filter(h=>(h.stakes||"").toLowerCase().includes(q)||(h.villain||"").toLowerCase().includes(q)||(h.notes||"").toLowerCase().includes(q)||(h.watch&&((h.watch.player||"")+" "+(h.watch.ep||"")).toLowerCase().includes(q))||HH_STREETS.some(st=>((h.streetActions||{})[st]||[]).some(a=>(a.note||"").toLowerCase().includes(q)))||(h.tags||[]).some(t=>t.includes(q))).slice(0,6);
   if(handMatches.length)sections.push({title:"📔 Hand History",items:handMatches.map(h=>({icon:"📔",label:(h.stakes||"Hand")+(h.villain?" vs "+h.villain:""),sub:h.date+" · "+brFmt(h.resultCents),action:"go('handHistory');openHhDetail('"+h.id+"')"}))});
   const playerMatches=HH.d.players.filter(p=>p.name.toLowerCase().includes(q)||(p.notes||"").toLowerCase().includes(q)||(p.tags||[]).some(t=>t.includes(q))||(p.type||"").toLowerCase().includes(q)).slice(0,6);
   if(playerMatches.length)sections.push({title:"👤 Players",items:playerMatches.map(p=>({icon:"👤",label:p.name,sub:(p.type||"Unknown type")+(p.venue?" · "+p.venue:""),action:"go('notes');switchNotesHub('hhPlayers');openPlDetail('"+p.id+"')"}))});
@@ -18357,16 +18497,19 @@ function ggHandImage3(R,h,o){
   const STC={PREFLOP:C.check,FLOP:C.call,TURN:C.bet,RIVER:C.allin};
   const W=900,P=40,FF='"Sora","Inter",system-ui,sans-serif',start=S[0].stacks||{};
   /* collect */
-  const streets=[];let cur=null;const shows=[];let endTxt="";const vol=new Set();
+  const streets=[];let cur=null;const shows=[];let endTxt="";const vol=new Set();let preBoard=[];const lastRun={};const runWins=[];
   for(let k=1;k<=cut;k++){const st=S[k];
     if(st.kind==="street"){if(st.text==="Cards are dealt"){cur={t:"PREFLOP",pot:st.pot+Object.values(st.bets||{}).reduce((a,b)=>a+b,0),cards:[],it:[]};streets.push(cur);continue}
-      const nm=st.text.split(":")[0].toUpperCase(),r2=/RUN 2/.test(nm),bd=r2?(st.board2||[]):(st.board||[]);
-      const prev=r2?[]:(streets.filter(x=>!/RUN 2/.test(x.t)).slice(-1)[0]||{all:[]}).all||[];
-      cur={t:nm.replace(/^RUN 2.*?(FLOP|TURN|RIVER)/,"R2 $1"),pot:st.pot,cards:bd.slice(prev.length),all:bd,it:[]};streets.push(cur);continue}
+      const nm=st.text.split(":")[0].toUpperCase(),rm=nm.match(/^RUN (\d)/),rk=rm?+rm[1]:0,bd=rk>=2?(st["board"+rk]||[]):(st.board||[]);
+      if(!rk)preBoard=bd.slice();
+      const prev=rk?(lastRun[rk]||preBoard):(streets.filter(x=>!x.rk).slice(-1)[0]||{all:[]}).all||[];
+      if(rk)lastRun[rk]=bd.slice();
+      cur={t:rk?"R"+rk+" "+nm.replace(/^RUN \d\s*/,""):nm,rk,pot:st.pot,cards:bd.slice(prev.length),all:bd,it:[]};streets.push(cur);continue}
     if(st.kind==="end"){endTxt=st.text;continue}
     if(st.kind==="start")continue;
     if(st.kind==="show"){shows.push(st);continue}
-    if(st.kind==="win"||st.kind==="return")continue;
+    if(st.kind==="win"){const rm=st.text.match(/on run (\d)/);if(rm)runWins.push({k:+rm[1],who:st.actor,amt:(st.text.match(/\{\{(\d+)\}\}/)||[])[1]});continue}
+    if(st.kind==="return")continue;
     if(st.kind==="post"){if(!/blind/.test(st.text)){if(!cur){cur={t:"PREFLOP",pot:0,cards:[],it:[]};streets.push(cur)}cur.it.push({who:label(st.actor),v:tidy(st.text).replace(label(st.actor)+" ",""),k:"post"})}continue}
     if(!cur)continue;
     if(st.kind==="cd"){cur.it.push({who:"",v:"💧 Cash Drop +"+A(st.cd||0),k:"cd"});continue}
@@ -18427,12 +18570,16 @@ function ggHandImage3(R,h,o){
     const bh=Math.max(cy+22-top,cards.length?84:56);
     txt(lbl,P,top+24,"800 16px "+FF,col);if(potT)txt(potT,P,top+46,"500 15px "+FF,C.t3);
     y=top+bh;ctx.fillStyle=C.ln;ctx.fillRect(P,y+6,W-P*2,1.5);y+=14};
-  streets.forEach(x=>block(x.t,STC[x.t.replace(/^R2 /,"")]||C.check,"Pot "+A(x.pot),x.cards,x.it));
+  const multi=runWins.length&&!quiz;
+  streets.forEach(x=>{if(multi&&x.rk&&!x.it.length)return;block(x.t,STC[x.t.replace(/^R\d /,"")]||C.check,x.rk>=2?"":"Pot "+A(x.pot),x.cards,x.it)});
   if(quiz){rr(P,y+4,W-P*2,52,14,psA(C.acc,.12),psA(C.acc,.4));txt("❓  Action on "+nextActor+" — what's your play?",P+20,y+30,"700 19px "+FF,C.t1);y+=70}
   if(!quiz&&shows.length){const top=y;let cy=y+24;const done=new Set(),b1=S[end].board||[];
     shows.forEach(st=>Object.entries(st.shown||{}).forEach(([n,cards])=>{if(done.has(n))return;done.add(n);let desc="";try{if(b1.length===5)desc=ggHandDesc(cards,b1)}catch(e){}
-      chip(label(n),GX,cy,n===R.hero);let x=GX+72;cards.forEach((c,i)=>{ggImgCard(ctx,x+i*36,cy-22,32,44,ggShCard(c,true))});x+=cards.length*36+10;txt(desc,x,cy+1,"600 18px "+FF,C.t2);cy+=52}));
-    txt("SHOWDOWN",P,top+24,"800 16px "+FF,C.t3);y=cy-52+30;ctx.fillStyle=C.ln;ctx.fillRect(P,y+6,W-P*2,1.5);y+=14}
+      chip(label(n),GX,cy,n===R.hero);let x=GX+72;cards.forEach((c,i)=>{ggImgCard(ctx,x+i*36,cy-22,32,44,ggShCard(c,true))});x+=cards.length*36+10;if(!runWins.length)txt(desc,x,cy+1,"600 18px "+FF,C.t2);cy+=52}));
+    if(runWins.length){const fin=S[end];runWins.forEach(w=>{const bd=w.k===1?fin.board:fin["board"+w.k];const cs=w.who===R.hero?R.heroCards:(fin.shown||{})[w.who];let d="";try{if(cs&&bd&&bd.length===5)d=ggHandDesc(cs,bd)}catch(e){}
+        let x=GX;txt("Run "+w.k,x,cy+1,"800 16px "+FF,C.t3);x+=58;(bd||[]).forEach((c,i)=>ggImgCard(ctx,x+i*30,cy-20,27,38,ggShCard(c,true)));x+=5*30+10;
+        x+=chip(label(w.who),x,cy,w.who===R.hero)+8;x+=txt("wins "+A(+w.amt||0),x,cy+1,"700 17px "+FF,C.call)+10;if(d)txt(d,x,cy+1,"500 16px "+FF,C.t3);cy+=48});cy+=4}
+    txt(runWins.length?"RAN IT "+(Math.max(...runWins.map(w=>w.k))===3?"3×":"2×"):"SHOWDOWN",P,top+24,"800 16px "+FF,runWins.length?C.accT:C.t3);y=cy-52+30;ctx.fillStyle=C.ln;ctx.fillRect(P,y+6,W-P*2,1.5);y+=14}
   if(notes.length){const top=y;let cy=y+24;const NF="400 17px "+FF;notes.forEach(n=>{ctx.font=NF;const ws=n.split(" ");let ln="";ws.forEach(w=>{const tr=ln?ln+" "+w:w;if(mw(tr,NF)>RX-GX&&ln){txt(ln,GX,cy,NF,C.t2);cy+=26;ln=w}else ln=tr});if(ln){txt(ln,GX,cy,NF,C.t2);cy+=26}cy+=6});
     txt("NOTES",P,top+24,"800 16px "+FF,C.accT);y=cy+4;ctx.fillStyle=C.ln;ctx.fillRect(P,y+6,W-P*2,1.5);y+=14}
   /* footer */
@@ -18486,6 +18633,176 @@ function navEditBar(){navGoTab("settings");setTimeout(()=>{const el=$("navPinRow
 /* the More tab gets a menu icon, not a cog */
 NAV_ITEMS.settings=["☰","More"];NAV_FULL.files="My Ranges";
 setTimeout(()=>{try{renderBottomNav();navAfter(navCur())}catch(e){}},200);
+</script>
+<script>
+/* ═══ v147 · Run it twice / three times in the replayer ═══ */
+function ggRBoards(st,boardRow){
+  const rows=[st.board,st.board2,st.board3];const n=st.board3?3:st.board2?2:(st.runs>1?2:1);
+  if(n<2)return boardRow(st.board);
+  let h="";for(let k=1;k<=n;k++){const cards=rows[k-1]||null;const act=st.run===k||(st.sdRun===k&&st.kind!=="end");
+    const won=st.runWon&&st.runWon[k]?Object.keys(st.runWon[k]):[];
+    const R=ggR.rep;let wn="";
+    if(won.length){wn=won.map(w=>{const c=w===R.hero?R.heroCards:(st.shown||{})[w];let d="";try{if(c&&c.length===2&&cards&&cards.length===5)d=ggHandDesc(c,cards)}catch(e){}
+      const pl=w===R.hero?"Hero":((R.pos&&R.pos[w])||w.slice(0,6));return'<span class="ggr-rw'+(w===R.hero?" hero":"")+'" title="'+escapeHtml(d)+'"><b>🏆 '+escapeHtml(pl)+"</b><i>"+ggFmt(st.runWon[k][w],R.bb)+"</i>"+(d?"<small>"+escapeHtml(d.replace(/^Three of a kind.*/,"Trips").replace(/^(Straight flush|Straight|Flush|Full house|Four of a kind|Two pair|High card)[, ].*$/,"$1").replace(/ high$/," high"))+"</small>":"")+"</span>"}).join("")}
+    h+='<div class="ggr-runrow'+(act?" on":"")+(won.length?" won":"")+(cards&&cards.length?"":" empty")+'"><span class="ggr-rl">R'+k+'</span>'+boardRow(cards)+wn+"</div>"}
+  const anyWon=st.runWon&&Object.keys(st.runWon).length;return'<div class="ggr-runs'+(anyWon?" haswin":"")+'">'+h+"</div>";
+}
+</script>
+<script>
+/* ═══ v148 · Streamlined hand logging ═══ */
+function hhqTableOpen(){const st=typeof hhCurrentStreetTab!=="undefined"?hhCurrentStreetTab:"";return LG("ps_hh_tbl",false)||st==="showdown"}
+function hhqSyncTable(){const f=$("hhFormCard");if(!f)return;const o=hhqTableOpen();f.classList.toggle("hhq-tbl-open",o);const a=$("hhqTblArrow");if(a)a.textContent=o?"Hide ▴":"Show ▾"}
+function hhqToggleTable(){LS("ps_hh_tbl",!LG("ps_hh_tbl",false));hhqSyncTable();haptic("light")}
+(function(){const sw=hhSwitchStreetTab;hhSwitchStreetTab=function(){const r=sw.apply(this,arguments);try{hhqSyncTable()}catch(e){}return r};
+  const op=hhqOpen;hhqOpen=function(){const r=op.apply(this,arguments);try{hhqSyncTable()}catch(e){}return r};})();
+</script>
+<script>
+/* ═══ v149 · Watching mode: log another player's hands with their explanations ═══ */
+var hhWatch=Object.assign({on:false,player:"",url:"",t:"",ep:""},LG("ps_hh_watch",{}),{t:""});
+let hhTake={v:"",text:""},hhWho="";
+function hhWatchSave(){LS("ps_hh_watch",{on:hhWatch.on,player:hhWatch.player,url:hhWatch.url,ep:hhWatch.ep})}
+function hhWatchedPlayers(){const m={};HH.d.hands.forEach(h=>{if(h.watch&&h.watch.player)m[h.watch.player]=(m[h.watch.player]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1])}
+function hhMicOk(){return!!(window.SpeechRecognition||window.webkitSpeechRecognition)}
+let _hhRec=null;
+function hhDictate(id,btn){const el=$(id);if(!el)return;const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return toast("Dictation isn't supported in this browser");
+  if(_hhRec){try{_hhRec.stop()}catch(e){}return}
+  const r=new SR();r.lang="en-GB";r.interimResults=true;r.continuous=true;const base=el.value?el.value.trim()+" ":"";let fin="";
+  r.onresult=e=>{let interim="";for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0].transcript;if(e.results[i].isFinal)fin+=t;else interim+=t}el.value=(base+fin+interim).replace(/\s+/g," ");el.dispatchEvent(new Event("input"))};
+  r.onend=()=>{_hhRec=null;if(btn)btn.classList.remove("rec");el.focus()};r.onerror=()=>{_hhRec=null;if(btn)btn.classList.remove("rec")};
+  _hhRec=r;if(btn)btn.classList.add("rec");try{r.start();haptic("light")}catch(e){_hhRec=null}}
+function hhParseT(t){t=String(t||"").trim();if(!t)return null;if(/^\d+$/.test(t))return+t;const p=t.split(":").map(Number);if(p.some(isNaN))return null;return p.reduce((a,v)=>a*60+v,0)}
+function hhFmtT(sec){if(sec==null)return"";const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return(h?h+":"+String(m).padStart(2,"0"):m)+":"+String(s).padStart(2,"0")}
+function hhVidUrl(url,t){if(!url)return"";let u=url.trim();if(!/^https?:\/\//i.test(u))u="https://"+u;const sec=hhParseT(t);if(sec==null)return u;
+  try{const U=new URL(u);if(/youtu\.?be/.test(U.hostname)){U.searchParams.set("t",sec+"s");return U.toString()}if(/twitch\.tv/.test(U.hostname)){const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s2=sec%60;U.searchParams.set("t",h+"h"+m+"m"+s2+"s");return U.toString()}return u+(u.includes("#")?"":"#t="+sec)}catch(e){return u}}
+function hhWatchRender(){const bar=$("hhWatchBar");if(!bar)return;const W=hhWatch,f=$("hhFormCard");if(f)f.classList.toggle("hhq-watch",!!W.on);
+  const pl=hhWatchedPlayers();
+  bar.innerHTML='<div class="ds-seg hhw-seg"><button class="'+(W.on?"":"on")+'" onclick="hhWatchSet(false)">🙋 My hand</button><button class="'+(W.on?"on":"")+'" onclick="hhWatchSet(true)">📺 Watching someone</button></div>'
+    +(W.on?'<div class="hhw-fields"><input class="minp hhw-player" id="hhWPlayer" list="hhWList" placeholder="Who are you watching?" value="'+escapeHtml(W.player||"")+'" oninput="hhWatch.player=this.value.trim();hhWatchSave();hhSaveDraft();hhWatchRefreshNames()"/><datalist id="hhWList">'+pl.map(x=>'<option value="'+escapeHtml(x[0])+'">').join("")+'</datalist>'
+      +'<input class="minp" id="hhWEp" placeholder="Episode / video title" value="'+escapeHtml(W.ep||"")+'" oninput="hhWatch.ep=this.value;hhWatchSave()"/>'
+      +'<div class="hhw-row2"><input class="minp" id="hhWUrl" inputmode="url" placeholder="Video / stream link (optional)" value="'+escapeHtml(W.url||"")+'" oninput="hhWatch.url=this.value.trim();hhWatchSave()"/><input class="minp hhw-t" id="hhWT" inputmode="numeric" placeholder="12:34" title="Timestamp in the video" value="'+escapeHtml(W.t||"")+'" oninput="hhWatch.t=this.value.trim()"/></div>'
+      +(pl.length&&!W.player?'<div class="hhw-quick">'+pl.slice(0,5).map(x=>'<button class="gg-chip" onclick="hhWatch.player=\''+escapeHtml(x[0]).replace(/'/g,"\\'")+'\';hhWatchSave();hhWatchRender();hhWatchRefreshNames()">📺 '+escapeHtml(x[0])+'</button>').join("")+'</div>':'')
+      +'<div class="hhw-tip">Their seat is the 🎯 seat. Log the action as normal and type (or 🎤 say) <b>why</b> under each move.</div></div>':"");
+  // notes panel: their summary + your take
+  const tw=$("hhTakeWrap");if(tw)tw.innerHTML=W.on?'<div class="br-fg full hhw-take"><label>Would you play it the same way?</label><div class="hhw-takes">'+[["agree","👍 Same"],["unsure","🤔 Not sure"],["disagree","✋ Differently"]].map(x=>'<button class="gg-chip'+(hhTake.v===x[0]?" on":"")+'" onclick="hhTake.v=hhTake.v===\''+x[0]+'\'?\'\':\''+x[0]+'\';hhWatchRender()">'+x[1]+'</button>').join("")+'</div><textarea class="rnote" id="hhTakeText" placeholder="Your take — what would you do, and what are you stealing from this?" oninput="hhTake.text=this.value" style="min-height:58px">'+escapeHtml(hhTake.text||"")+'</textarea></div>':"";
+  const nl=document.querySelector('#hhbNotesPanel label[for="hhNotes"]')||[...document.querySelectorAll("#hhbNotesPanel .br-fg label")].find(l=>/Analysis|explanation/i.test(l.textContent));if(nl)nl.textContent=W.on?"Their overall explanation / key lesson":"Overall Analysis";
+  const nt=$("hhNotes");if(nt)nt.placeholder=W.on?"What did they say about the hand as a whole? The big takeaway…":"Why you played it this way, what you'd do differently…";
+  const tog=document.querySelector(".hhb-notes-toggle");if(tog){const sp=tog.childNodes[1];if(sp&&sp.nodeType===3)sp.nodeValue=W.on?"Their summary & your take":"Result, Tags & Notes"}
+}
+function hhWatchRefreshNames(){try{renderStreetActions(hhCurrentStreetTab);renderHhbTable();hhqRender()}catch(e){}}
+function hhWatchSet(on){hhWatch.on=!!on;hhWatchSave();hhWatchRender();hhWatchRefreshNames();hhSaveDraft();haptic("light");if(on&&!hhWatch.player)setTimeout(()=>{const i=$("hhWPlayer");if(i)i.focus()},40)}
+(function(){
+  const pn=hhPName;hhPName=function(i){if(i===0&&hhWatch.on&&hhWatch.player)return hhWatch.player;return pn.apply(this,arguments)};
+  const qr=hhqRender;hhqRender=function(){const r=qr.apply(this,arguments);try{const sm=document.querySelector("#hhqSum span");if(sm&&hhWatch.on&&!/^📺/.test(sm.textContent))sm.textContent="📺 "+(hhWatch.player||"Watching")+" · "+sm.textContent}catch(e){}return r};
+  const op=hhqOpen;hhqOpen=function(){const r=op.apply(this,arguments);try{hhWatchRender()}catch(e){}return r};
+  const rs=resetHhForm;resetHhForm=function(){hhTake={v:"",text:""};hhWatch.t="";const r=rs.apply(this,arguments);try{hhWatchRender()}catch(e){}return r};
+  const ed=editHhHand;editHhHand=function(id){const h=HH.d.hands.find(x=>x.id===id);if(h){if(h.watch)hhWatch=Object.assign({on:true},h.watch,{t:h.watch.t||""});else hhWatch.on=false;hhTake=Object.assign({v:"",text:""},h.take||{})}const r=ed.apply(this,arguments);try{hhWatchRender();hhWatchRefreshNames()}catch(e){}return r};
+  const sv=saveHhHand;saveHhHand=function(next){const W=hhWatch.on?{player:hhWatch.player||"Unknown player",url:hhWatch.url||"",t:hhWatch.t||"",ep:hhWatch.ep||"",file:hhWatch.file||""}:null,T=hhWatch.on&&(hhTake.v||hhTake.text.trim())?{v:hhTake.v,text:hhTake.text.trim()}:null;
+    const editId=$("hhEditId").value,before=new Set(HH.d.hands.map(x=>x.id));const r=sv.apply(this,arguments);
+    const h=editId?HH.d.hands.find(x=>x.id===editId):HH.d.hands.find(x=>!before.has(x.id));
+    if(h){if(W)h.watch=W;else delete h.watch;if(T)h.take=T;else delete h.take;HH.save();renderHhHands()}return r};
+  const sd=hhSaveDraftNow;hhSaveDraftNow=function(){sd.apply(this,arguments);try{LS("ps_hh_watch_draft",{watch:hhWatch,take:hhTake})}catch(e){}};
+  const rd=hhRestoreDraftIfAny;hhRestoreDraftIfAny=function(){const d=LG("ps_hh_watch_draft",null);if(d&&LG("ps_hh_draft",null)){if(d.watch)hhWatch=Object.assign(hhWatch,d.watch);if(d.take)hhTake=d.take}return rd.apply(this,arguments)};
+})();
+function hhWatchDetailHtml(h){const W=h.watch,link=hhVidUrl(W.url,W.t),T=h.take;const tl={agree:"👍 I'd play it the same",unsure:"🤔 Not sure I'd play it this way",disagree:"✋ I'd play it differently"};
+  return'<div class="hhw-detail"><div class="hhw-dh"><span>📺</span><div><b>'+escapeHtml(W.player)+'</b><i>'+escapeHtml(W.ep||"Watched hand")+(W.t?" · "+escapeHtml(W.t):"")+'</i></div>'+(W.file?'<button class="btn btn-s" onclick="vsJump(\''+escapeHtml(W.file).replace(/'/g,"\\'")+'\','+(hhParseT(W.t)||0)+')">🎬 Jump'+(W.t?" to "+escapeHtml(W.t):"")+'</button>':link?'<a class="btn btn-s" href="'+escapeHtml(link)+'" target="_blank" rel="noopener">▶ Watch'+(W.t?" at "+escapeHtml(W.t):"")+'</a>':"")+'</div>'
+    +(T?'<div class="hhw-dtake"><b>'+(tl[T.v]||"My take")+'</b>'+(T.text?'<p>'+escapeHtml(T.text)+'</p>':"")+'</div>':"")+'</div>'}
+/* who filter + lessons */
+function hhWhoRender(){const el=$("hhWhoChips");if(!el)return;const pl=hhWatchedPlayers();if(!pl.length){el.innerHTML="";if(hhWho){hhWho="";}return}
+  const mine=HH.d.hands.filter(h=>!h.watch).length;
+  el.innerHTML='<div class="hhw-chips">'+[["","All"],["me","🙋 Mine ("+mine+")"]].concat(pl.map(x=>[x[0],"📺 "+x[0]+" ("+x[1]+")"])).map(([k,l])=>'<button class="gg-chip'+(hhWho===k?" on":"")+'" data-who="'+escapeHtml(k)+'">'+escapeHtml(l)+'</button>').join("")+'</div><button class="hhw-learn" onclick="hhLearnOpen()">📚 What they explained</button>';
+  el.querySelectorAll("[data-who]").forEach(b=>b.onclick=()=>{hhWho=b.dataset.who;renderHhHands()})}
+let HHL={who:"",q:"",st:""};
+function hhLearnOpen(){let m=$("hhLearnM");if(!m){m=document.createElement("div");m.className="mov";m.id="hhLearnM";m.innerHTML='<div class="mdl hhl-mdl"><div class="hhl-hd"><h3>📚 What they explained</h3><button class="gs-close" onclick="closeM(\'hhLearnM\')">✕</button></div><div id="hhLearnBody"></div></div>';m.addEventListener("click",e=>{if(e.target===m)closeM("hhLearnM")});document.body.appendChild(m)}
+  if(hhWho&&hhWho!=="me")HHL.who=hhWho;openM("hhLearnM");hhLearnRender()}
+function hhLearnRender(){const el=$("hhLearnBody");if(!el)return;const pl=hhWatchedPlayers();const q=HHL.q.toLowerCase();
+  let hands=HH.d.hands.filter(h=>h.watch&&(!HHL.who||h.watch.player===HHL.who)).sort((a,b)=>(b.ts||0)-(a.ts||0));
+  const SL={preflop:"Preflop",flop:"Flop",turn:"Turn",river:"River"};let n=0,body="";
+  hands.forEach(h=>{const bb=h.blinds&&h.blinds.bb,sym=hhSymFor(h.currency),items=[];const pos=h.players||[];
+    HH_STREETS.forEach(st=>{if(HHL.st&&HHL.st!==st)return;((h.streetActions||{})[st]||[]).forEach(a=>{if(!a.note)return;const who=a.playerIdx===0?h.watch.player:((pos[a.playerIdx]||{}).position||(pos[a.playerIdx]||{}).name||"?");const amt=a.amount!=null&&a.action!=="fold"&&a.action!=="check"?" "+hhFmtAmt(a.amount,bb,sym):"";items.push({st,txt:who+" "+a.action+amt,why:a.note,me:a.playerIdx===0})});
+      const sn=(h.streetNotes||{})[st];if(sn)items.push({st,txt:"Street note",why:sn})});
+    if(!HHL.st&&h.notes)items.push({st:"",txt:"Overall",why:h.notes});
+    const its=q?items.filter(i=>(i.why+" "+i.txt).toLowerCase().includes(q)):items;if(!its.length)return;n+=its.length;
+    const hero=(h.players&&h.players[0])?h.players[0].cards:[];const link=hhVidUrl(h.watch.url,h.watch.t);
+    body+='<div class="hhl-hand"><button class="hhl-hh" onclick="closeM(\'hhLearnM\');openHhDetail(\''+h.id+'\')"><span class="hhl-c">'+(hero.length?renderCommCardsHtml(hero,true):"🂠")+'</span><div><b>'+escapeHtml(h.title||((h.position||"")+" · "+(h.stakes||"")))+'</b><i>📺 '+escapeHtml(h.watch.player)+(h.watch.ep?" · "+escapeHtml(h.watch.ep):"")+(h.take&&h.take.v?" · "+({agree:"👍",unsure:"🤔",disagree:"✋"}[h.take.v]||""):"")+'</i></div></button>'+(link?'<a class="hhl-play" href="'+escapeHtml(link)+'" target="_blank" rel="noopener" title="Watch this moment">▶'+(h.watch.t?" "+escapeHtml(h.watch.t):"")+'</a>':"")
+      +its.map(i=>'<div class="hhl-i"><span class="hhl-st">'+(SL[i.st]||"Hand")+'</span><div><em class="'+(i.me?"me":"")+'">'+escapeHtml(i.txt)+'</em><p>“'+escapeHtml(i.why)+'”</p></div></div>').join("")+'</div>'});
+  el.innerHTML='<div class="hhw-chips">'+[["","Everyone"]].concat(pl.map(x=>[x[0],x[0]])).map(([k,l])=>'<button class="gg-chip'+(HHL.who===k?" on":"")+'" onclick="HHL.who=\''+escapeHtml(k).replace(/'/g,"\\'")+'\';hhLearnRender()">'+escapeHtml(l)+'</button>').join("")+'</div>'
+    +'<div class="ds-seg hhl-st-seg">'+[["","All"],["preflop","Pre"],["flop","Flop"],["turn","Turn"],["river","River"]].map(([k,l])=>'<button class="'+(HHL.st===k?"on":"")+'" onclick="HHL.st=\''+k+'\';hhLearnRender()">'+l+'</button>').join("")+'</div>'
+    +'<input class="minp hhl-q" placeholder="🔍 Search explanations — e.g. “blocker”, “range advantage”" value="'+escapeHtml(HHL.q)+'" oninput="HHL.q=this.value;clearTimeout(window._hhlT);window._hhlT=setTimeout(()=>{hhLearnRender();const i=document.querySelector(\'.hhl-q\');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}},250)"/>'
+    +'<div class="hhl-n">'+n+' explanation'+(n!==1?"s":"")+' across '+hands.filter(h=>1).length+' hand'+(hands.length!==1?"s":"")+'</div>'+(body||'<div class="sdy-empty">No explanations yet. When you log a watched hand, type or 🎤 say <b>why</b> under each move.</div>')}
+</script>
+<script>
+/* ═══ v150 · Video studio: play a downloaded video with the hand logger and notes alongside ═══ */
+const VS={active:false,name:"",url:null,tab:"log",autoPaused:false,wasPlaying:false,home:null};
+function vsPauseTyping(){return LG("ps_vs_pausetype",true)}
+function vsNotes(){const all=LG("ps_vid_notes",{});return all[VS.name]||[]}
+function vsSetNotes(L){const all=LG("ps_vid_notes",{});all[VS.name]=L;LS("ps_vid_notes",all)}
+function vsHands(){return HH.d.hands.filter(h=>h.watch&&h.watch.file&&h.watch.file===VS.name).sort((a,b)=>(hhParseT(a.watch.t)||0)-(hhParseT(b.watch.t)||0))}
+function vsV(){return $("vsVideo")}
+function vsNow(){const v=vsV();return v?Math.floor(v.currentTime||0):0}
+function vsBuild(){let el=$("vsStudio");if(el)return el;el=document.createElement("div");el.id="vsStudio";el.className="vs";el.setAttribute("role","dialog");el.setAttribute("aria-label","Video study");
+  el.innerHTML='<div class="vs-top"><button class="vs-x" onclick="vsClose()" aria-label="Close">✕</button><div class="vs-tt"><b id="vsName">Video study</b><i id="vsSub">Pick a downloaded video to start</i></div><button class="vs-ib" id="vsPipBtn" onclick="vsPip()" title="Picture in picture">⧉</button><button class="vs-ib" onclick="$(\'vsFile\').click()" title="Open another video">📂</button><input type="file" id="vsFile" accept="video/*,.mkv,.mov,.mp4,.webm" style="display:none" onchange="vsLoad(this.files[0]);this.value=\'\'"/></div>'
+   +'<div class="vs-body"><div class="vs-stage" id="vsStage"><div class="vs-empty" id="vsEmpty"><span>🎬</span><b>Watch and log at the same time</b><p>Open a video from your phone or computer. Hands you log get the video time stamped on them automatically, so you can jump back to any spot later.</p><button class="btn pri" onclick="$(\'vsFile\').click()">📂 Choose a video</button><small>Nothing is uploaded — the video plays straight from your device.</small></div>'
+   +'<video id="vsVideo" playsinline preload="metadata" style="display:none"></video>'
+   +'<div class="vs-ctl" id="vsCtl" style="display:none"><div class="vs-prog"><input type="range" id="vsSeek" min="0" max="1000" value="0" step="1" aria-label="Seek"/><div class="vs-marks" id="vsMarks"></div></div>'
+   +'<div class="vs-btns"><button onclick="vsSkip(-10)" title="Back 10s (J)">⏪</button><button onclick="vsSkip(-5)" title="Back 5s (←)">−5</button><button class="vs-play" id="vsPlay" onclick="vsToggle()" title="Play / pause (space)">▶</button><button onclick="vsSkip(5)" title="Forward 5s (→)">+5</button><button onclick="vsSkip(10)" title="Forward 10s (L)">⏩</button><span class="vs-time" id="vsTime">0:00 / 0:00</span><select id="vsRate" onchange="vsV().playbackRate=+this.value;LS(\'ps_vs_rate\',+this.value)" aria-label="Speed"><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div></div></div>'
+   +'<div class="vs-panel"><div class="ds-seg vs-tabs" id="vsTabs"></div><div id="vsLogSlot" class="vs-pane"></div><div id="vsNotesPane" class="vs-pane"></div><div id="vsHandsPane" class="vs-pane"></div></div></div>';
+  document.body.appendChild(el);
+  const v=vsV();v.addEventListener("timeupdate",vsTick);v.addEventListener("play",vsTick);v.addEventListener("pause",vsTick);v.addEventListener("loadedmetadata",()=>{vsTick();vsMarks()});v.addEventListener("click",vsToggle);
+  $("vsSeek").addEventListener("input",e=>{const v=vsV();if(v.duration)v.currentTime=e.target.value/1000*v.duration});
+  el.addEventListener("focusin",e=>{if(!vsPauseTyping()||!vsTextField(e.target))return;const v=vsV();if(v&&!v.paused){v.pause();VS.autoPaused=true}});
+  el.addEventListener("focusout",()=>{setTimeout(()=>{if(VS.autoPaused&&!vsTextField(document.activeElement)){VS.autoPaused=false;const v=vsV();if(v&&VS.active)v.play().catch(()=>{})}},250)});
+  return el}
+function vsTextField(t){return t&&(t.tagName==="TEXTAREA"||(t.tagName==="INPUT"&&!/^(range|file|checkbox|radio|button)$/.test(t.type)))&&!t.closest(".vs-ctl")}
+function vsOpen(){if(typeof go==="function"&&!document.querySelector("#handHistoryV.on"))go("handHistory");const el=vsBuild();el.classList.add("on");document.body.classList.add("vs-on");VS.active=true;
+  const fc=$("hhFormCard");if(fc&&fc.parentElement!==$("vsLogSlot")){VS.home=fc.parentElement;VS.homeNext=fc.nextSibling;$("vsLogSlot").appendChild(fc)}
+  hhWatch.on=true;hhWatchSave();if(!hhqIsOpen())hhqOpen();else{try{hhWatchRender();hhWatchRefreshNames()}catch(e){}}
+  vsTabs();if(!VS.name)setTimeout(()=>{},0)}
+function vsClose(){const v=vsV();if(v)v.pause();try{if(document.pictureInPictureElement)document.exitPictureInPicture()}catch(e){}
+  const fc=$("hhFormCard");if(fc&&VS.home){VS.home.insertBefore(fc,VS.homeNext&&VS.homeNext.parentNode===VS.home?VS.homeNext:null)}
+  VS.active=false;document.body.classList.remove("vs-on");const el=$("vsStudio");if(el)el.classList.remove("on");
+  if(!hhHasUnsavedProgress())hhqClose();try{renderHhHands();hhWatchRender()}catch(e){}}
+function vsLoad(f){if(!f)return;const v=vsBuild()&&vsV();if(VS.url)URL.revokeObjectURL(VS.url);VS.url=URL.createObjectURL(f);VS.name=f.name;
+  v.src=VS.url;v.style.display="";$("vsEmpty").style.display="none";$("vsCtl").style.display="";v.playbackRate=LG("ps_vs_rate",1);$("vsRate").value=String(LG("ps_vs_rate",1));
+  $("vsName").textContent=f.name.replace(/\.[^.]+$/,"");hhWatch.file=f.name;if(!hhWatch.ep)hhWatch.ep=f.name.replace(/\.[^.]+$/,"");hhWatchSave();try{hhWatchRender()}catch(e){}
+  const pos=(LG("ps_vid_pos",{})[f.name])||0;v.addEventListener("loadedmetadata",function once(){v.removeEventListener("loadedmetadata",once);if(VS.jumpTo!=null){v.currentTime=VS.jumpTo;VS.jumpTo=null;v.play().catch(()=>{})}else if(pos>15&&pos<v.duration-15){v.currentTime=pos;toast("▶ Picked up where you left off · "+hhFmtT(Math.floor(pos)))}});
+  vsTabs();haptic("light")}
+function vsToggle(){const v=vsV();if(!v||!v.src)return;if(v.paused)v.play().catch(()=>{});else v.pause()}
+function vsSkip(d){const v=vsV();if(!v||!v.duration)return;v.currentTime=Math.max(0,Math.min(v.duration,v.currentTime+d))}
+function vsSeekTo(sec){const v=vsV();if(!v||!v.src)return;v.currentTime=sec;haptic("light")}
+let _vsPosT=0;
+function vsTick(){const v=vsV();if(!v)return;const d=v.duration||0,c=v.currentTime||0;$("vsTime").textContent=hhFmtT(Math.floor(c))+" / "+hhFmtT(Math.floor(d));const sk=$("vsSeek");if(d&&document.activeElement!==sk)sk.value=Math.round(c/d*1000);$("vsPlay").textContent=v.paused?"▶":"⏸";
+  $("vsSub").textContent=(v.paused?"Paused":"Playing")+" · "+hhFmtT(Math.floor(c))+(vsHands().length?" · "+vsHands().length+" hand"+(vsHands().length>1?"s":"")+" logged":"");
+  const ti=$("hhWT");if(ti&&!hhWatch.t&&document.activeElement!==ti)ti.placeholder=hhFmtT(Math.floor(c));
+  if(Date.now()-_vsPosT>4000&&VS.name){_vsPosT=Date.now();const all=LG("ps_vid_pos",{});all[VS.name]=c;LS("ps_vid_pos",all)}}
+function vsMarks(){const el=$("vsMarks"),v=vsV();if(!el||!v||!v.duration)return;const d=v.duration;
+  el.innerHTML=vsNotes().map(n=>'<i class="n" style="left:'+(n.t/d*100).toFixed(2)+'%" title="'+escapeHtml(n.text)+'" onclick="vsSeekTo('+n.t+')"></i>').join("")+vsHands().map(h=>{const t=hhParseT(h.watch.t)||0;return'<i class="h" style="left:'+(t/d*100).toFixed(2)+'%" title="Hand at '+escapeHtml(h.watch.t)+'" onclick="vsSeekTo('+t+')"></i>'}).join("")}
+function vsTabs(){const t=$("vsTabs");if(!t)return;const nN=vsNotes().length,nH=vsHands().length;
+  t.innerHTML=[["log","🃏 Log hand"],["notes","📝 Notes"+(nN?" ("+nN+")":"")],["hands","📼 This video"+(nH?" ("+nH+")":"")]].map(x=>'<button class="'+(VS.tab===x[0]?"on":"")+'" onclick="VS.tab=\''+x[0]+'\';vsTabs()">'+x[1]+'</button>').join("");
+  $("vsLogSlot").style.display=VS.tab==="log"?"":"none";$("vsNotesPane").style.display=VS.tab==="notes"?"":"none";$("vsHandsPane").style.display=VS.tab==="hands"?"":"none";
+  if(VS.tab==="notes")vsRenderNotes();if(VS.tab==="hands")vsRenderHands();vsMarks()}
+function vsRenderNotes(){const el=$("vsNotesPane");if(!el)return;if(!VS.name){el.innerHTML='<div class="sdy-empty sm">Open a video first.</div>';return}
+  const L=vsNotes().slice().sort((a,b)=>a.t-b.t);
+  el.innerHTML='<div class="vs-nadd"><textarea class="rnote" id="vsNoteT" placeholder="A thought, a concept they explained, something to look up…"></textarea><div class="vs-nrow">'+(hhMicOk()?'<button class="hha-mic" type="button" onclick="hhDictate(\'vsNoteT\',this)" title="Dictate">🎤</button>':"")+'<button class="btn pri" onclick="vsAddNote()">＋ Note at <span id="vsNoteAt">'+hhFmtT(vsNow())+'</span></button></div></div>'
+   +(L.length?L.map(n=>'<div class="vs-note"><button class="vs-tbtn" onclick="vsSeekTo('+n.t+')">▶ '+hhFmtT(n.t)+'</button><p>'+escapeHtml(n.text)+'</p><button class="sdy-x" onclick="vsDelNote(\''+n.id+'\')" aria-label="Delete">✕</button></div>').join(""):'<div class="sdy-empty sm">No notes for this video yet.<br>Press <b>N</b> on a keyboard to add one at the current time.</div>');
+  const ta=$("vsNoteT");if(ta)ta.addEventListener("focus",()=>{VS.noteAt=vsNow();const s=$("vsNoteAt");if(s)s.textContent=hhFmtT(VS.noteAt)})}
+function vsAddNote(){const t=($("vsNoteT").value||"").trim();if(!t)return toast("Write the note first");const L=vsNotes();L.push({id:"vn_"+Date.now(),t:VS.noteAt!=null?VS.noteAt:vsNow(),text:t});vsSetNotes(L);VS.noteAt=null;vsRenderNotes();vsTabs();haptic("light");const v=vsV();if(VS.autoPaused&&v){VS.autoPaused=false;v.play().catch(()=>{})}}
+function vsDelNote(id){vsSetNotes(vsNotes().filter(n=>n.id!==id));vsRenderNotes();vsTabs()}
+function vsRenderHands(){const el=$("vsHandsPane");if(!el)return;const H=vsHands();
+  el.innerHTML=H.length?H.map(h=>{const hero=(h.players&&h.players[0])?h.players[0].cards:[];const t=hhParseT(h.watch.t)||0;const n=HH_STREETS.reduce((a,st)=>a+((h.streetActions||{})[st]||[]).filter(x=>x.note).length,0);
+    return'<div class="vs-hand"><button class="vs-tbtn" onclick="vsSeekTo('+t+')">▶ '+escapeHtml(h.watch.t||"0:00")+'</button><span class="hhl-c">'+(hero.length?renderCommCardsHtml(hero,true):"🂠")+'</span><div><b>'+escapeHtml(h.title||((h.position||"")+" · "+(h.stakes||"")))+'</b><i>'+escapeHtml(h.watch.player)+(n?" · 💬 "+n:"")+(h.take&&h.take.v?" · "+({agree:"👍",unsure:"🤔",disagree:"✋"}[h.take.v]||""):"")+'</i></div><button class="btn btn-xs" onclick="openHhDetail(\''+h.id+'\')">Open</button></div>'}).join(""):'<div class="sdy-empty sm">Hands you log while this video is open show up here, in video order.</div>'}
+function vsPip(){const v=vsV();if(!v||!v.src)return toast("Open a video first");try{if(document.pictureInPictureElement)document.exitPictureInPicture();else if(v.requestPictureInPicture)v.requestPictureInPicture().catch(()=>toast("Picture-in-picture isn't available here"));else toast("Picture-in-picture isn't available here")}catch(e){}}
+function vsJump(file,sec){closeM("hhDetailM");vsOpen();if(VS.name===file){vsSeekTo(sec);VS.tab="log";vsTabs();vsV().play().catch(()=>{})}else{VS.jumpTo=sec;toast("Open “"+file+"” again to jump to "+hhFmtT(sec));setTimeout(()=>$("vsFile").click(),300)}}
+/* auto timestamp: the hand's time is when you start logging it (first card or first action) */
+function vsStamp(){if(VS.active&&VS.name&&!hhWatch.t){hhWatch.t=hhFmtT(vsNow());const i=$("hhWT");if(i)i.value=hhWatch.t}}
+(function(){const dc=hhqDeckClick;hhqDeckClick=function(e){const r=dc.apply(this,arguments);try{if(e.target.closest(".hhq-deck[data-tg=player0]"))vsStamp()}catch(x){}return r};
+  const ra=hhRecordAction;hhRecordAction=function(){vsStamp();return ra.apply(this,arguments)};
+  const qc=hhqClose;hhqClose=function(){const r=qc.apply(this,arguments);if(VS.active){setTimeout(()=>{hhqOpen();vsTabs();const v=vsV();if(VS.autoPaused&&v){VS.autoPaused=false;v.play().catch(()=>{})}},30)}return r};
+  const wr=hhWatchRender;hhWatchRender=function(){const r=wr.apply(this,arguments);try{if(VS.active){const u=$("hhWUrl");if(u){u.style.display="none";u.parentElement.classList.add("vs-file")}const t=$("hhWT");if(t&&!t.dataset.vs){t.dataset.vs=1;const b=document.createElement("button");b.className="hhw-now";b.type="button";b.textContent="⏱ Now";b.title="Set the hand time to the current video time";b.onclick=()=>{hhWatch.t=hhFmtT(vsNow());t.value=hhWatch.t};t.after(b)}const tip=document.querySelector(".hhw-tip");if(tip&&VS.name)tip.innerHTML="🎬 <b>"+escapeHtml(VS.name)+"</b> · the hand gets the video time when you pick the cards. Typing pauses the video."}}catch(e){}return r};
+  const sv=saveHhHand;saveHhHand=function(){const r=sv.apply(this,arguments);try{if(VS.active){vsMarks();vsTabs()}}catch(e){}return r};
+})();
+document.addEventListener("keydown",e=>{if(!VS.active||vsTextField(e.target)||e.target.tagName==="SELECT"||document.querySelector(".mov.open"))return;const k=e.key;
+  if(k===" "){e.preventDefault();vsToggle()}else if(k==="ArrowLeft"){e.preventDefault();vsSkip(-5)}else if(k==="ArrowRight"){e.preventDefault();vsSkip(5)}else if(k==="j"||k==="J")vsSkip(-10);else if(k==="l"||k==="L")vsSkip(10);
+  else if(k==="n"||k==="N"){e.preventDefault();VS.tab="notes";vsTabs();VS.noteAt=vsNow();setTimeout(()=>{const t=$("vsNoteT");if(t)t.focus()},30)}else if(k==="h"||k==="H"){e.preventDefault();VS.tab="log";vsTabs()}else if(k==="Escape")vsClose()});
 </script>
 </body>
 </html>
