@@ -6485,6 +6485,72 @@ body.vs-on{overflow:hidden}
 .vs-tbtn{flex:0 0 auto;padding:5px 9px;border-radius:9px;background:color-mix(in srgb,var(--pk) 16%,transparent);border:1px solid color-mix(in srgb,var(--pk) 40%,transparent);color:var(--pk2);font-size:11.5px;font-weight:800;cursor:pointer;font-variant-numeric:tabular-nums}
 .vs-hand>div{flex:1;min-width:0}.vs-hand b{display:block;font-size:12.5px;color:var(--t1)}.vs-hand i{font-style:normal;font-size:11px;color:var(--t3)}
 @media(min-width:900px){.vs-body{flex-direction:row}.vs-stage{flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}.vs-stage video{max-height:calc(100vh - 150px)}.vs-panel{flex:0 0 440px;border-left:1px solid var(--bd)}}
+
+/* v151 stacks */
+.hhq-stk-tog{border-style:solid!important;margin-top:0!important}
+.hhq-stk{margin:-4px 0 10px;padding:10px;border-radius:12px;background:var(--b0);border:1px solid var(--bd)}
+.hhq-stk-q{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.hhq-stk-r{display:grid;grid-template-columns:48px 1fr 110px 54px;gap:8px;align-items:center;padding:4px 0}
+.hhq-stk-r .minp{margin:0;height:36px;text-align:right}
+.hhq-stk-p{font-size:11px;font-weight:800;color:var(--t3);text-align:center;padding:4px 0;border-radius:7px;background:var(--b2)}
+.hhq-stk-r.hero .hhq-stk-p{background:color-mix(in srgb,var(--pk) 20%,transparent);color:var(--pk2)}
+.hhq-stk-n{font-size:12.5px;color:var(--t1);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hhq-stk-r em{font-style:normal;font-size:11px;color:var(--t3);text-align:right}
+.hhq-stk-tip{font-size:10.5px;color:var(--t3);margin-top:6px;line-height:1.45}
+.hhb-seat-stack{font-size:9px;font-weight:800;color:var(--t2);padding:1px 6px;border-radius:6px;background:rgba(0,0,0,.35);margin-top:1px;font-variant-numeric:tabular-nums}
+.hhb-seat-stack.ai{color:#fff;background:#dc2626}
+.hha-stk{font-weight:600;color:var(--t3);font-size:.92em}
+.hhd-stack{font-size:11px;font-weight:700;color:var(--t3);margin-top:4px}
+/* v151 full-screen overlay */
+.vs-fb,.vs-pill{display:none}
+.vs.vs-ov{background:#000}
+.vs.vs-ov .vs-top{display:none}
+.vs.vs-ov .vs-body{position:relative;display:block}
+.vs.vs-ov .vs-stage{position:absolute;inset:0;display:block;background:#000}
+.vs.vs-ov .vs-stage video{width:100%;height:100%;max-height:none!important;object-fit:contain}
+.vs.vs-ov .vs-ctl{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.78) 40%);border:0;padding:26px 14px calc(10px + env(safe-area-inset-bottom));transition:opacity .3s}
+.vs.vs-ov .vs-ctl .vs-time{color:#fff}
+.vs.vs-ov .vs-ctl button,.vs.vs-ov .vs-ctl select{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff}
+.vs.vs-ov .vs-ctl .vs-play{background:var(--pk);border-color:var(--pk)}
+.vs.vs-ov .vs-fb{display:flex;gap:6px;position:absolute;top:max(10px,env(safe-area-inset-top));left:10px;z-index:5;transition:opacity .3s}
+.vs.vs-ov .vs-fb button{width:40px;height:40px;border-radius:12px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:16px;cursor:pointer;backdrop-filter:blur(6px)}
+.vs.vs-ov .vs-panel{position:absolute;z-index:4;right:12px;top:12px;bottom:84px;width:400px;border-radius:18px;border:1px solid rgba(255,255,255,.14);background:color-mix(in srgb,var(--b1) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 18px 50px rgba(0,0,0,.5);padding-top:6px}
+.vs.vs-ov.vs-glass .vs-panel{background:color-mix(in srgb,var(--b1) 58%,transparent)}
+.vs.vs-ov.vs-glass .vs-panel #hhFormCard,.vs.vs-ov.vs-glass .vs-panel .hhb-panel{background:transparent!important}
+.vs.vs-ov .vs-ctl{right:424px}
+.vs.vs-ov.vs-pc .vs-panel{display:none}
+.vs.vs-ov.vs-pc .vs-ctl{right:0}
+.vs.vs-ov.vs-pc .vs-pill{display:block;position:absolute;z-index:5;right:14px;bottom:86px;padding:10px 16px;border-radius:22px;background:var(--pk);color:#fff;border:0;font-weight:800;font-size:13px;box-shadow:0 8px 24px rgba(0,0,0,.45);cursor:pointer}
+.vs-grab{display:none}
+.vs.vs-idle .vs-ctl,.vs.vs-idle .vs-fb{opacity:0;pointer-events:none}
+.vs.vs-idle{cursor:none}
+#vsLogSlot #hhFormCard .hhq-bar{background:color-mix(in srgb,var(--b1) 92%,transparent)}
+@media(max-width:899px) and (orientation:portrait){
+  .vs.vs-ov .vs-panel{left:0;right:0;top:auto;bottom:0;width:auto;height:56%;border-radius:20px 20px 0 0;border-bottom:0}
+  .vs.vs-ov:not(.vs-pc) .vs-stage{bottom:56%}
+  .vs.vs-ov .vs-ctl{right:0;bottom:0;padding-bottom:8px}
+  .vs.vs-ov.vs-pc .vs-pill{bottom:90px}
+  .vs.vs-ov .vs-grab{display:block;width:44px;height:5px;border-radius:3px;background:var(--bd3,var(--bd2));margin:2px auto 8px;cursor:pointer}
+}
+@media(max-width:899px) and (orientation:landscape){
+  .vs.vs-ov .vs-panel{top:8px;bottom:8px;right:8px;width:46%}
+  .vs.vs-ov:not(.vs-pc) .vs-stage{right:calc(46% + 12px)}
+  .vs.vs-ov .vs-ctl{right:0}
+}
+
+/* v152 edit hand time */
+.hhw-tedit{display:inline;background:none;border:0;padding:0;color:var(--pk2);font-weight:700;font-size:inherit;cursor:pointer;font-variant-numeric:tabular-nums}
+.hhw-tbox:empty{display:none}.hhw-tbox{margin-top:8px}
+.hhw-tform{display:flex;gap:6px}.hhw-tform .minp{margin:0;max-width:120px;text-align:center;font-variant-numeric:tabular-nums}
+.hhw-tq{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.vs-tnow{flex:0 0 32px;height:32px;border-radius:9px;background:var(--b2);border:1px solid var(--bd);cursor:pointer;font-size:14px}
+
+/* v153 online NL stake chips */
+#hhqStakes{display:flex;flex-direction:column;gap:8px}
+.hhq-stk-grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.hhq-stk-grp>span{flex:0 0 100%;font-size:9.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--t4)}
+.hhq-nl{display:inline-flex;flex-direction:column;align-items:center;line-height:1.1;padding:6px 11px!important}
+.hhq-nl b{font-size:12.5px}.hhq-nl i{font-style:normal;font-size:9px;opacity:.7;margin-top:1px}
 </style>
 </head>
 <body>
@@ -6920,6 +6986,7 @@ body.vs-on{overflow:hidden}
         <div class="hhq-lbl">Your cards <span id="hhqCardsTxt"></span></div>
         <div id="hhqHero"></div>
       </div>
+      <div id="hhqStacks"></div>
       <button class="hhq-tbl-tog" id="hhqTblTog" onclick="hhqToggleTable()"><span>🪑 Table &amp; opponents' cards</span><b id="hhqTblArrow">Show ▾</b></button>
       <div class="hhb-table-outer">
         <div class="hhb-table-felt" id="hhbTableFelt">
@@ -7372,7 +7439,7 @@ body.vs-on{overflow:hidden}
     <div style="font-family:var(--fd);font-size:22px;font-style:italic;font-weight:800;background:linear-gradient(135deg,var(--pk),var(--mg),var(--li));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px">PokerStudio</div>
     <div style="font-size:10px;color:var(--t4)">Range Editor · Trainer · Bankroll · Notes</div>
     <div style="font-size:9px;color:var(--t5);margin-top:4px">All data stored locally on your device ♡</div>
-    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v150</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:6px;font-family:var(--fm)">Build v153</div>
   </div>
 </div>
 </div>
@@ -15487,7 +15554,7 @@ function renderHhStreetContent(){
 
 /* ── Derived hand-state helpers ── */
 function hhFoldedBefore(playerIdx,uptoStreetIdx){for(let s=0;s<uptoStreetIdx;s++){if((hhStreetActions[HH_STREETS[s]]||[]).some(a=>a.playerIdx===playerIdx&&a.action==="fold"))return true}return false}
-function hhAllInBefore(playerIdx,uptoStreetIdx){for(let s=0;s<uptoStreetIdx;s++){if((hhStreetActions[HH_STREETS[s]]||[]).some(a=>a.playerIdx===playerIdx&&a.action==="allin"))return true}return false}
+function hhAllInBefore(playerIdx,uptoStreetIdx){for(let s=0;s<uptoStreetIdx;s++){if((hhStreetActions[HH_STREETS[s]]||[]).some(a=>a.playerIdx===playerIdx&&(a.action==="allin"||a.ai)))return true}return false}
 function hhPlayersStillInHand(uptoStreetIdx){return hhPlayersState.map((p,i)=>i).filter(i=>!hhFoldedBefore(i,uptoStreetIdx))}
 let hhBBViewEnabled=LG("ps_hh_bbview",false);
 function hhToggleBBView(){
@@ -15534,7 +15601,7 @@ function hhComputeStreetState(street){
   actions.forEach(a=>{
     if(a.action==="fold"){folded.add(a.playerIdx);settled.delete(a.playerIdx)}
     else if(a.action==="allin"){allIn.add(a.playerIdx);hasBet=true;lastAggressor=a.playerIdx;settled=new Set([a.playerIdx])}
-    else if(a.action==="check"||a.action==="call"){settled.add(a.playerIdx)}
+    else if(a.action==="check"||a.action==="call"){settled.add(a.playerIdx);if(a.ai)allIn.add(a.playerIdx)}
     else if(a.action==="bet"||a.action==="raise"){hasBet=true;lastAggressor=a.playerIdx;settled=new Set([a.playerIdx])}
   });
   const stillActive=activeAtStart.filter(i=>!folded.has(i)&&!allIn.has(i));
@@ -15779,7 +15846,7 @@ function renderStreetActions(street){
       const winnerName=autoWinIdx===0?"Hero":hhPlayersState[autoWinIdx].name;
       builderCt.innerHTML='<div class="hha-complete hha-autowin">🏆 <b>'+escapeHtml(winnerName)+"</b> wins the pot — everyone else folded. No further action is needed for this hand.</div>"+hhNextStreetCTA(street,autoWinIdx);
     }else{
-      builderCt.innerHTML='<div class="hha-done-note">'+(state.activeAtStart.length===1?"Only "+escapeHtml(hhPlayersState[state.activeAtStart[0]].name)+" is still live — nothing left to act on.":"Everyone has folded.")+"</div>"+hhNextStreetCTA(street);
+      builderCt.innerHTML='<div class="hha-done-note">'+(hhPlayersStillInHand(HH_STREETS.indexOf(street)).length>=2?"💰 All-in — no more betting. "+(street==="river"?"Go to the showdown.":"Add the board cards, then carry on to the showdown."):state.activeAtStart.length===1?"Only "+escapeHtml(hhPName(state.activeAtStart[0]))+" is still live — nothing left to act on.":"Everyone has folded.")+"</div>"+hhNextStreetCTA(street);
     }
     updateHhwTabProgress();
     return;
@@ -15804,7 +15871,7 @@ function renderStreetActions(street){
   const lastAggro=[...state.actions].reverse().find(a=>a.action==="bet"||a.action==="raise"||a.action==="allin");
   const callIsAllin=lastAggro&&lastAggro.action==="allin";
   const liveBBAmt=hhGetLiveBlinds()?.bb;
-  builderCt.innerHTML='<div class="hha-next-label hha-auto"><span class="hha-turn-dot"></span>'+(nextActor===0?"🎯 ":"")+escapeHtml(hhPName(nextActor))+(hhPName(nextActor)!==p.position?' <span class="hha-pos-tag">'+(p.position||"?")+"</span>":"")+" to act</div>"
+  builderCt.innerHTML='<div class="hha-next-label hha-auto"><span class="hha-turn-dot"></span>'+(nextActor===0?"🎯 ":"")+escapeHtml(hhPName(nextActor))+(hhPName(nextActor)!==p.position?' <span class="hha-pos-tag">'+(p.position||"?")+"</span>":"")+" to act"+hhStackHint(street,nextActor)+"</div>"
     +(state.hasBet?'<div class="hha-tocall-hint">Facing '+(toCall!=null&&hhFmtAmt(toCall,liveBBAmt)?(callIsAllin?"an all-in of ":"a bet of ")+"<b>"+hhFmtAmt(toCall,liveBBAmt)+"</b>":(callIsAllin?"an all-in":"a bet"))+(callIsAllin?" — calling for less than a full raise is fine":"")+"</div>":"")
     +'<div class="hha-btns">'
     +'<button class="hha-btn hha-fold" onclick="hhRecordAction(\''+street+"',"+nextActor+',\'fold\')">Fold</button>'
@@ -15887,7 +15954,7 @@ function renderHhbTable(){
     html+='<div class="hhb-seat'+(i===0?" hero":"")+(folded?" folded":"")+'" style="left:'+x+'%;top:'+y+'%" onclick="openHhCardPicker(\'player'+i+"',2,'"+cardLabel+' — select up to 2 cards\')">'
       +'<div class="hhb-seat-pos">'+(p.position||"")+'</div>'
       +'<div class="hhb-seat-avatar">'+(i===0?"🎯":allIn?"💰":"👤")+'</div>'
-      +'<div class="hhb-seat-name">'+escapeHtml(p.name)+'</div>'
+      +'<div class="hhb-seat-name">'+escapeHtml(p.name)+'</div>'+(p.stack!=null?(()=>{const lf=hhStackLeft(i);return'<div class="hhb-seat-stack'+(lf<=0?" ai":"")+'">'+(lf<=0?"All-in":hhFmtAmt(+lf.toFixed(2),hhGetLiveBlinds()?.bb))+"</div>"})():"")
       +(folded?'<div class="hhb-seat-status folded">Folded</div>':statusTxt?'<div class="hhb-seat-status">'+statusTxt+"</div>":"")
       +(showBlindChip?'<div class="hhb-seat-blind-chip" title="'+(isBB?"Big blind":"Small blind")+' posted"><span class="hhb-blind-chip-ico">'+(isBB?"🔵":"⚪")+'</span>'+hhFmtAmt(blindAmt,liveBlinds?.bb)+"</div>":"")
       +(p.cards.length?'<div class="hhb-seat-cards">'+renderCommCardsHtml(p.cards,true)+"</div>":p.cardsUnknown?'<div class="hhb-seat-unknown-tag">🤷 Unknown</div>':'<div class="hhb-seat-tap-hint">🎴 Tap for cards</div>')
@@ -16200,8 +16267,12 @@ function hhqTopHint(){const el=$("hhqTopHint");if(!el)return;const d=LG("ps_hh_d
 function hhqStakeList(){const out=[],seen=new Set(),add=(sb,bb)=>{const k=sb+"/"+bb;if(seen.has(k)||!(bb>0))return;seen.add(k);out.push([sb,bb])};
   HH.d.hands.slice().sort((a,b)=>(b.ts||0)-(a.ts||0)).forEach(h=>{if(h.blinds&&h.blinds.bb)add(h.blinds.sb||h.blinds.bb/2,h.blinds.bb)});
   [[1,2],[1,3],[2,5],[0.5,1],[5,10]].forEach(([a,b])=>add(a,b));return out.slice(0,6)}
+const HH_NL=[[0.01,0.02,"2NL"],[0.02,0.05,"5NL"],[0.05,0.1,"10NL"],[0.1,0.25,"25NL"],[0.25,0.5,"50NL"],[0.5,1,"100NL"]];
 function hhqRenderStakes(){const el=$("hhqStakes");if(!el)return;const sb=parseFloat($("hhBlindsSB").value),bb=parseFloat($("hhBlindsBB").value),sym=hhSym();
-  el.innerHTML=hhqStakeList().map(([a,b])=>'<button class="gg-chip'+(a===sb&&b===bb?" on":"")+'" onclick="hhqSetStakes('+a+","+b+')">'+sym+a+"/"+sym+b+"</button>").join("")}
+  const on=(a,b)=>Math.abs(a-sb)<1e-9&&Math.abs(b-bb)<1e-9;const isNL=(a,b)=>HH_NL.some(n=>n[0]===a&&n[1]===b);
+  const live=hhqStakeList().filter(([a,b])=>!isNL(a,b)).slice(0,6);
+  el.innerHTML='<div class="hhq-stk-grp"><span>Online</span>'+HH_NL.map(([a,b,l])=>'<button class="gg-chip hhq-nl'+(on(a,b)?" on":"")+'" onclick="hhqSetStakes('+a+","+b+')" title="'+sym+a+"/"+sym+b+'"><b>'+l+'</b><i>'+sym+(a<1?a.toFixed(2):a)+"/"+sym+(b<1?b.toFixed(2):b)+"</i></button>").join("")+'</div>'
+    +'<div class="hhq-stk-grp"><span>Live</span>'+live.map(([a,b])=>'<button class="gg-chip'+(on(a,b)?" on":"")+'" onclick="hhqSetStakes('+a+","+b+')">'+sym+a+"/"+sym+b+"</button>").join("")+"</div>"}
 function hhqSetStakes(sb,bb){$("hhBlindsSB").value=sb;$("hhBlindsBB").value=bb;hhSyncStakesFromBlinds();hhqRenderStakes();renderHhbTable();renderStreetActions(hhCurrentStreetTab);hhSaveDraft();haptic("light")}
 function hhqDeckHtml(target,max,label){const arr=hhGetTargetArr(target),sel=new Set(arr.map(cardKey)),used=new Set(hhAllUsedCards().map(cardKey));
   let h='<div class="hhq-deck" data-tg="'+target+'" data-max="'+max+'">'+(label?'<div class="hhq-dl">'+label+"</div>":"");
@@ -16256,7 +16327,7 @@ function saveHhHand(next){
   if(!heroCards.length&&!anyAct&&!$("hhNotes").value.trim()&&!$("hhTitle").value.trim())return toast("Add your cards or some action first");
   if($("hhResult").value.trim()===""){const a=hhAutoHeroNet();if(a!=null)$("hhResult").value=a}
   const result=parseFloat($("hhResult").value)||0;
-  const players=hhPlayersState.map(p=>({name:p.name,cards:[...p.cards],position:p.position,cardsUnknown:!!p.cardsUnknown}));
+  const players=hhPlayersState.map(p=>({name:p.name,cards:[...p.cards],position:p.position,cardsUnknown:!!p.cardsUnknown,stack:p.stack!=null&&isFinite(p.stack)?p.stack:null}));
   const sb=parseFloat($("hhBlindsSB").value),bb=parseFloat($("hhBlindsBB").value);
   const blinds=(!isNaN(sb)||!isNaN(bb))?{sb:isNaN(sb)?null:sb,bb:isNaN(bb)?null:bb}:null;
   const editId=$("hhEditId").value;
@@ -16304,7 +16375,7 @@ function editHhHand(id){
   S.hhTags=[...(h.tags||[])];renTags("hhTagsW","hhTagsI","hhTags");
   // Migrate legacy hands (single hero/villain strings) or load new player-array format
   if(h.players&&h.players.length){
-    hhPlayersState=h.players.map(p=>({name:p.name,cards:[...(p.cards||[])],position:p.position||null,cardsUnknown:!!p.cardsUnknown}));
+    hhPlayersState=h.players.map(p=>({name:p.name,cards:[...(p.cards||[])],position:p.position||null,cardsUnknown:!!p.cardsUnknown,stack:p.stack!=null?p.stack:null}));
   }else{
     const heroCards=parseCardStr(h.hero||"");
     hhPlayersState=[{name:"Hero",cards:heroCards,position:h.position||null},{name:h.villain||"Player 2",cards:[],position:null}];
@@ -16450,7 +16521,7 @@ function openHhDetail(id){
   hh+='<div class="sd-result '+(pos?"pos":"neg")+'">'+brFmt(h.resultCents)+'</div><div class="sd-date">'+new Date(h.date+"T00:00:00").toLocaleDateString("en-GB",{weekday:"long",year:"numeric",month:"long",day:"numeric"})+'</div></div>';
   hh+='<div class="hh-detail-players">'+players.map(p=>{
     const linked=HH.d.players.find(pl=>pl.name.toLowerCase()===p.name.toLowerCase()&&p.name.toLowerCase()!=="hero");
-    return'<div class="hhd-player-card"><div class="hhd-player-name">'+(linked?'<span class="hh-villain-link" onclick="closeM(\'hhDetailM\');openPlDetail(\''+linked.id+'\')">'+escapeHtml(p.name)+' 👤</span>':escapeHtml(p.name))+'</div><div class="hhd-player-cards">'+(p.cards&&p.cards.length?renderCommCardsHtml(p.cards,true):p.cardsUnknown?'<span class="hh-row-nocard" style="font-size:11px">🤷 Unknown</span>':'<span class="hh-row-nocard" style="font-size:16px">🂠🂠</span>')+'</div></div>';
+    return'<div class="hhd-player-card"><div class="hhd-player-name">'+(linked?'<span class="hh-villain-link" onclick="closeM(\'hhDetailM\');openPlDetail(\''+linked.id+'\')">'+escapeHtml(p.name)+' 👤</span>':escapeHtml(p.name))+'</div><div class="hhd-player-cards">'+(p.cards&&p.cards.length?renderCommCardsHtml(p.cards,true):p.cardsUnknown?'<span class="hh-row-nocard" style="font-size:11px">🤷 Unknown</span>':'<span class="hh-row-nocard" style="font-size:16px">🂠🂠</span>')+'</div>'+(p.stack!=null?'<div class="hhd-stack">'+hhFmtAmt(p.stack,h.blinds&&h.blinds.bb,hhSymFor(h.currency))+'</div>':"")+'</div>';
   }).join("")+'</div>';
   const board=[...flop,...turn,...river];
   if(board.length)hh+='<div style="padding:14px 22px;border-bottom:1px solid var(--bd)"><div class="hh-preview-grp"><span class="hh-preview-lbl">Board</span><div class="hh-preview-cards">'+renderCommCardsHtml(board,true)+'</div></div></div>';
@@ -18704,7 +18775,7 @@ function hhWatchSet(on){hhWatch.on=!!on;hhWatchSave();hhWatchRender();hhWatchRef
   const rd=hhRestoreDraftIfAny;hhRestoreDraftIfAny=function(){const d=LG("ps_hh_watch_draft",null);if(d&&LG("ps_hh_draft",null)){if(d.watch)hhWatch=Object.assign(hhWatch,d.watch);if(d.take)hhTake=d.take}return rd.apply(this,arguments)};
 })();
 function hhWatchDetailHtml(h){const W=h.watch,link=hhVidUrl(W.url,W.t),T=h.take;const tl={agree:"👍 I'd play it the same",unsure:"🤔 Not sure I'd play it this way",disagree:"✋ I'd play it differently"};
-  return'<div class="hhw-detail"><div class="hhw-dh"><span>📺</span><div><b>'+escapeHtml(W.player)+'</b><i>'+escapeHtml(W.ep||"Watched hand")+(W.t?" · "+escapeHtml(W.t):"")+'</i></div>'+(W.file?'<button class="btn btn-s" onclick="vsJump(\''+escapeHtml(W.file).replace(/'/g,"\\'")+'\','+(hhParseT(W.t)||0)+')">🎬 Jump'+(W.t?" to "+escapeHtml(W.t):"")+'</button>':link?'<a class="btn btn-s" href="'+escapeHtml(link)+'" target="_blank" rel="noopener">▶ Watch'+(W.t?" at "+escapeHtml(W.t):"")+'</a>':"")+'</div>'
+  return'<div class="hhw-detail"><div class="hhw-dh"><span>📺</span><div><b>'+escapeHtml(W.player)+'</b><i>'+escapeHtml(W.ep||"Watched hand")+' · <button class="hhw-tedit" onclick="hhTimeEdit(\''+h.id+'\')" title="Edit the video time">⏱ '+escapeHtml(W.t||"add time")+' ✎</button></i><div class="hhw-tbox" id="hhTBox'+h.id+'"></div></div>'+(W.file?'<button class="btn btn-s" onclick="vsJump(\''+escapeHtml(W.file).replace(/'/g,"\\'")+'\','+(hhParseT(W.t)||0)+')">🎬 Jump'+(W.t?" to "+escapeHtml(W.t):"")+'</button>':link?'<a class="btn btn-s" href="'+escapeHtml(link)+'" target="_blank" rel="noopener">▶ Watch'+(W.t?" at "+escapeHtml(W.t):"")+'</a>':"")+'</div>'
     +(T?'<div class="hhw-dtake"><b>'+(tl[T.v]||"My take")+'</b>'+(T.text?'<p>'+escapeHtml(T.text)+'</p>':"")+'</div>':"")+'</div>'}
 /* who filter + lessons */
 function hhWhoRender(){const el=$("hhWhoChips");if(!el)return;const pl=hhWatchedPlayers();if(!pl.length){el.innerHTML="";if(hhWho){hhWho="";}return}
@@ -18740,12 +18811,13 @@ function vsHands(){return HH.d.hands.filter(h=>h.watch&&h.watch.file&&h.watch.fi
 function vsV(){return $("vsVideo")}
 function vsNow(){const v=vsV();return v?Math.floor(v.currentTime||0):0}
 function vsBuild(){let el=$("vsStudio");if(el)return el;el=document.createElement("div");el.id="vsStudio";el.className="vs";el.setAttribute("role","dialog");el.setAttribute("aria-label","Video study");
-  el.innerHTML='<div class="vs-top"><button class="vs-x" onclick="vsClose()" aria-label="Close">✕</button><div class="vs-tt"><b id="vsName">Video study</b><i id="vsSub">Pick a downloaded video to start</i></div><button class="vs-ib" id="vsPipBtn" onclick="vsPip()" title="Picture in picture">⧉</button><button class="vs-ib" onclick="$(\'vsFile\').click()" title="Open another video">📂</button><input type="file" id="vsFile" accept="video/*,.mkv,.mov,.mp4,.webm" style="display:none" onchange="vsLoad(this.files[0]);this.value=\'\'"/></div>'
+  el.innerHTML='<div class="vs-top"><button class="vs-x" onclick="vsClose()" aria-label="Close">✕</button><div class="vs-tt"><b id="vsName">Video study</b><i id="vsSub">Pick a downloaded video to start</i></div><button class="vs-ib" onclick="vsFull()" title="Full screen with the logger on top (F)">⛶</button><button class="vs-ib" id="vsPipBtn" onclick="vsPip()" title="Picture in picture">⧉</button><button class="vs-ib" onclick="$(\'vsFile\').click()" title="Open another video">📂</button><input type="file" id="vsFile" accept="video/*,.mkv,.mov,.mp4,.webm" style="display:none" onchange="vsLoad(this.files[0]);this.value=\'\'"/></div>'
    +'<div class="vs-body"><div class="vs-stage" id="vsStage"><div class="vs-empty" id="vsEmpty"><span>🎬</span><b>Watch and log at the same time</b><p>Open a video from your phone or computer. Hands you log get the video time stamped on them automatically, so you can jump back to any spot later.</p><button class="btn pri" onclick="$(\'vsFile\').click()">📂 Choose a video</button><small>Nothing is uploaded — the video plays straight from your device.</small></div>'
    +'<video id="vsVideo" playsinline preload="metadata" style="display:none"></video>'
    +'<div class="vs-ctl" id="vsCtl" style="display:none"><div class="vs-prog"><input type="range" id="vsSeek" min="0" max="1000" value="0" step="1" aria-label="Seek"/><div class="vs-marks" id="vsMarks"></div></div>'
    +'<div class="vs-btns"><button onclick="vsSkip(-10)" title="Back 10s (J)">⏪</button><button onclick="vsSkip(-5)" title="Back 5s (←)">−5</button><button class="vs-play" id="vsPlay" onclick="vsToggle()" title="Play / pause (space)">▶</button><button onclick="vsSkip(5)" title="Forward 5s (→)">+5</button><button onclick="vsSkip(10)" title="Forward 10s (L)">⏩</button><span class="vs-time" id="vsTime">0:00 / 0:00</span><select id="vsRate" onchange="vsV().playbackRate=+this.value;LS(\'ps_vs_rate\',+this.value)" aria-label="Speed"><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select></div></div></div>'
-   +'<div class="vs-panel"><div class="ds-seg vs-tabs" id="vsTabs"></div><div id="vsLogSlot" class="vs-pane"></div><div id="vsNotesPane" class="vs-pane"></div><div id="vsHandsPane" class="vs-pane"></div></div></div>';
+   +'<div class="vs-fb"><button onclick="vsOvAlpha()" title="See-through panel">◐</button><button id="vsPanelBtn" onclick="vsOvPanel()" title="Hide / show the logger (P)">🃏</button><button onclick="vsFull(false)" title="Exit full screen (F)">⤡</button></div><button class="vs-pill" onclick="vsOvPanel(true)">🃏 Log hand ▴</button>'
+   +'<div class="vs-panel"><div class="vs-grab" onclick="vsOvPanel()"></div><div class="ds-seg vs-tabs" id="vsTabs"></div><div id="vsLogSlot" class="vs-pane"></div><div id="vsNotesPane" class="vs-pane"></div><div id="vsHandsPane" class="vs-pane"></div></div></div>';
   document.body.appendChild(el);
   const v=vsV();v.addEventListener("timeupdate",vsTick);v.addEventListener("play",vsTick);v.addEventListener("pause",vsTick);v.addEventListener("loadedmetadata",()=>{vsTick();vsMarks()});v.addEventListener("click",vsToggle);
   $("vsSeek").addEventListener("input",e=>{const v=vsV();if(v.duration)v.currentTime=e.target.value/1000*v.duration});
@@ -18757,7 +18829,7 @@ function vsOpen(){if(typeof go==="function"&&!document.querySelector("#handHisto
   const fc=$("hhFormCard");if(fc&&fc.parentElement!==$("vsLogSlot")){VS.home=fc.parentElement;VS.homeNext=fc.nextSibling;$("vsLogSlot").appendChild(fc)}
   hhWatch.on=true;hhWatchSave();if(!hhqIsOpen())hhqOpen();else{try{hhWatchRender();hhWatchRefreshNames()}catch(e){}}
   vsTabs();if(!VS.name)setTimeout(()=>{},0)}
-function vsClose(){const v=vsV();if(v)v.pause();try{if(document.pictureInPictureElement)document.exitPictureInPicture()}catch(e){}
+function vsClose(){if(VS.ov)vsFull(false);const v=vsV();if(v)v.pause();try{if(document.pictureInPictureElement)document.exitPictureInPicture()}catch(e){}
   const fc=$("hhFormCard");if(fc&&VS.home){VS.home.insertBefore(fc,VS.homeNext&&VS.homeNext.parentNode===VS.home?VS.homeNext:null)}
   VS.active=false;document.body.classList.remove("vs-on");const el=$("vsStudio");if(el)el.classList.remove("on");
   if(!hhHasUnsavedProgress())hhqClose();try{renderHhHands();hhWatchRender()}catch(e){}}
@@ -18789,7 +18861,7 @@ function vsAddNote(){const t=($("vsNoteT").value||"").trim();if(!t)return toast(
 function vsDelNote(id){vsSetNotes(vsNotes().filter(n=>n.id!==id));vsRenderNotes();vsTabs()}
 function vsRenderHands(){const el=$("vsHandsPane");if(!el)return;const H=vsHands();
   el.innerHTML=H.length?H.map(h=>{const hero=(h.players&&h.players[0])?h.players[0].cards:[];const t=hhParseT(h.watch.t)||0;const n=HH_STREETS.reduce((a,st)=>a+((h.streetActions||{})[st]||[]).filter(x=>x.note).length,0);
-    return'<div class="vs-hand"><button class="vs-tbtn" onclick="vsSeekTo('+t+')">▶ '+escapeHtml(h.watch.t||"0:00")+'</button><span class="hhl-c">'+(hero.length?renderCommCardsHtml(hero,true):"🂠")+'</span><div><b>'+escapeHtml(h.title||((h.position||"")+" · "+(h.stakes||"")))+'</b><i>'+escapeHtml(h.watch.player)+(n?" · 💬 "+n:"")+(h.take&&h.take.v?" · "+({agree:"👍",unsure:"🤔",disagree:"✋"}[h.take.v]||""):"")+'</i></div><button class="btn btn-xs" onclick="openHhDetail(\''+h.id+'\')">Open</button></div>'}).join(""):'<div class="sdy-empty sm">Hands you log while this video is open show up here, in video order.</div>'}
+    return'<div class="vs-hand"><button class="vs-tbtn" onclick="vsSeekTo('+t+')">▶ '+escapeHtml(h.watch.t||"0:00")+'</button><span class="hhl-c">'+(hero.length?renderCommCardsHtml(hero,true):"🂠")+'</span><div><b>'+escapeHtml(h.title||((h.position||"")+" · "+(h.stakes||"")))+'</b><i>'+escapeHtml(h.watch.player)+(n?" · 💬 "+n:"")+(h.take&&h.take.v?" · "+({agree:"👍",unsure:"🤔",disagree:"✋"}[h.take.v]||""):"")+'</i></div><button class="vs-tnow" onclick="hhSetHandTime(\''+h.id+'\',hhFmtT(vsNow()))" title="Set this hand to the current video time">⏱</button><button class="btn btn-xs" onclick="openHhDetail(\''+h.id+'\')">Open</button></div>'}).join(""):'<div class="sdy-empty sm">Hands you log while this video is open show up here, in video order.</div>'}
 function vsPip(){const v=vsV();if(!v||!v.src)return toast("Open a video first");try{if(document.pictureInPictureElement)document.exitPictureInPicture();else if(v.requestPictureInPicture)v.requestPictureInPicture().catch(()=>toast("Picture-in-picture isn't available here"));else toast("Picture-in-picture isn't available here")}catch(e){}}
 function vsJump(file,sec){closeM("hhDetailM");vsOpen();if(VS.name===file){vsSeekTo(sec);VS.tab="log";vsTabs();vsV().play().catch(()=>{})}else{VS.jumpTo=sec;toast("Open “"+file+"” again to jump to "+hhFmtT(sec));setTimeout(()=>$("vsFile").click(),300)}}
 /* auto timestamp: the hand's time is when you start logging it (first card or first action) */
@@ -18802,7 +18874,74 @@ function vsStamp(){if(VS.active&&VS.name&&!hhWatch.t){hhWatch.t=hhFmtT(vsNow());
 })();
 document.addEventListener("keydown",e=>{if(!VS.active||vsTextField(e.target)||e.target.tagName==="SELECT"||document.querySelector(".mov.open"))return;const k=e.key;
   if(k===" "){e.preventDefault();vsToggle()}else if(k==="ArrowLeft"){e.preventDefault();vsSkip(-5)}else if(k==="ArrowRight"){e.preventDefault();vsSkip(5)}else if(k==="j"||k==="J")vsSkip(-10);else if(k==="l"||k==="L")vsSkip(10);
-  else if(k==="n"||k==="N"){e.preventDefault();VS.tab="notes";vsTabs();VS.noteAt=vsNow();setTimeout(()=>{const t=$("vsNoteT");if(t)t.focus()},30)}else if(k==="h"||k==="H"){e.preventDefault();VS.tab="log";vsTabs()}else if(k==="Escape")vsClose()});
+  else if(k==="n"||k==="N"){e.preventDefault();VS.tab="notes";vsTabs();VS.noteAt=vsNow();setTimeout(()=>{const t=$("vsNoteT");if(t)t.focus()},30)}else if(k==="h"||k==="H"){e.preventDefault();VS.tab="log";vsTabs()}else if(k==="f"||k==="F"){e.preventDefault();vsFull()}else if((k==="p"||k==="P")&&VS.ov){e.preventDefault();vsOvPanel()}else if(k==="Escape"){if(VS.ov)vsFull(false);else vsClose()}});
+</script>
+<script>
+/* ═══ v151 · Player stacks in the hand logger + full-screen video overlay ═══ */
+function hhContribAll(){const n=hhPlayersState.length,bl=hhGetLiveBlinds(),tot=new Array(n).fill(0),street={};
+  HH_STREETS.forEach(st=>{const com=new Array(n).fill(0);if(st==="preflop"&&bl){const bi=hhPlayersState.findIndex(p=>p.position==="BB"),si=hhPlayersState.findIndex(p=>p.position==="SB"||p.position==="BTN/SB");if(bi>=0&&bl.bb){com[bi]=bl.bb}if(si>=0&&bl.sb&&si!==bi){com[si]=bl.sb}}
+    (hhStreetActions[st]||[]).forEach(a=>{if(["call","bet","raise","allin"].includes(a.action)&&a.amount!=null)com[a.playerIdx]=Math.max(com[a.playerIdx],a.amount)});
+    const ret=[];street[st]=com.slice();com.forEach((v,i)=>tot[i]+=v)});
+  // uncalled bets come back
+  try{const{returns}=hhComputeSidePots(hhStreetActions,hhPlayersState,bl);returns.forEach(r=>tot[r.playerIdx]-=r.amount)}catch(e){}
+  return{tot,street}}
+function hhStackLeft(i){const p=hhPlayersState[i];if(!p||p.stack==null||!isFinite(p.stack))return null;return Math.max(0,p.stack-hhContribAll().tot[i])}
+function hhStreetCommit(st,i){return(hhContribAll().street[st]||[])[i]||0}
+function hhStackHint(street,i){const lf=hhStackLeft(i);if(lf==null)return"";const bb=hhGetLiveBlinds()?.bb;let h=' <span class="hha-stk">· '+hhFmtAmt(+lf.toFixed(2),bb)+" behind";
+  if(street!=="preflop"){try{const pot=hhqPotNow()-HH_STREETS.slice(HH_STREETS.indexOf(street)).reduce((a,st)=>a+(hhContribAll().street[st]||[]).reduce((x,y)=>x+y,0),0);const act=hhComputeStreetState(street).stillActive;const eff=Math.min(...act.map(j=>{const l=hhStackLeft(j);return l==null?Infinity:l+hhStreetCommit(street,j)}));if(isFinite(eff)&&pot>0)h+=" · SPR "+(eff/pot).toFixed(1)}catch(e){}}
+  return h+"</span>"}
+/* recording: all-in fills the stack, oversize bets become all-ins, calls are capped at the stack */
+(function(){const ra=hhRecordAction;hhRecordAction=function(street,i,action){const p=hhPlayersState[i],lf=hhStackLeft(i);let aiCall=false;
+  if(p&&lf!=null){const inp=$("hhAmtInput"+street),max=+(hhStreetCommit(street,i)+lf).toFixed(2),v=parseFloat(inp&&inp.value);
+    if(action==="allin"&&inp)inp.value=max;
+    else if((action==="bet"||action==="raise")&&inp&&isFinite(v)&&v>=max-1e-9){inp.value=max;action="allin"}
+    else if(action==="call"&&inp&&isFinite(v)&&v>=max-1e-9){inp.value=max;aiCall=true}}
+  const before=(hhStreetActions[street]||[]).length;const r=ra.call(this,street,i,action);
+  if(aiCall&&(hhStreetActions[street]||[]).length>before){hhStreetActions[street][hhStreetActions[street].length-1].ai=true;renderStreetActions(street);renderHhbTable();hhSaveDraft()}
+  return r}})();
+/* stacks editor */
+function hhqStacksOpen(){return!!window._hhStkOpen}
+function hhParseStack(v){v=String(v||"").trim().toLowerCase();if(!v)return null;const bb=hhGetLiveBlinds()?.bb;let m=v.match(/^([\d.]+)\s*bb$/);if(m&&bb)return+(parseFloat(m[1])*bb).toFixed(2);const n=parseFloat(v.replace(/[^\d.]/g,""));return isFinite(n)?n:null}
+function hhqStacksRender(){const el=$("hhqStacks");if(!el)return;const bb=hhGetLiveBlinds()?.bb,P=hhPlayersState,set=P.filter(p=>p.stack!=null).length;
+  const effOf=()=>{const h=P[0]&&P[0].stack;if(h==null)return null;const o=P.slice(1).filter(p=>p.stack!=null).map(p=>p.stack);return o.length?Math.min(h,Math.max(...o)):h};
+  const fmtBB=v=>bb?(Math.round(v/bb*10)/10)+"bb":hhSym()+v;
+  let sum=set?'💰 Stacks · '+(P[0].stack!=null?escapeHtml(hhPName(0))+" "+fmtBB(P[0].stack):set+" set")+(effOf()!=null&&set>1?" · eff "+fmtBB(effOf()):""):"💰 Add stack sizes";
+  let h='<button class="hhq-tbl-tog hhq-stk-tog" onclick="window._hhStkOpen=!window._hhStkOpen;hhqStacksRender()"><span>'+sum+'</span><b>'+(hhqStacksOpen()?"Done ▴":set?"Edit ▾":"Add ▾")+"</b></button>";
+  if(hhqStacksOpen()){const order=(typeof hhTableSeatOrder==="function"?hhTableSeatOrder():P.map((_,i)=>i));
+    h+='<div class="hhq-stk"><div class="hhq-stk-q">'+(bb?[50,100,150,200].map(x=>'<button class="gg-chip" onclick="hhStkAll('+x*bb+')">All '+x+'bb</button>').join(""):"")+'<button class="gg-chip" onclick="hhStkAll(null)">Clear</button></div>'
+      +order.map(i=>{const p=P[i];return'<label class="hhq-stk-r'+(i===0?" hero":"")+'"><span class="hhq-stk-p">'+escapeHtml(p.position||"?")+'</span><span class="hhq-stk-n">'+escapeHtml(hhPName(i))+'</span><input class="minp" inputmode="decimal" placeholder="'+(bb?"e.g. "+100*bb+" or 100bb":"stack")+'" value="'+(p.stack!=null?p.stack:"")+'" onchange="hhStkSet('+i+',this.value)"/><em>'+(p.stack!=null&&bb?fmtBB(p.stack):"")+"</em></label>"}).join("")
+      +'<div class="hhq-stk-tip">Type an amount, or add “bb” (e.g. 85bb). With stacks set, All-in fills itself, big bets become all-ins and SPR shows on each street.</div></div>'}
+  el.innerHTML=h}
+function hhStkSet(i,v){const p=hhPlayersState[i];if(!p)return;p.stack=hhParseStack(v);hhqStacksRender();renderHhbTable();try{renderStreetActions(hhCurrentStreetTab)}catch(e){}hhSaveDraft()}
+function hhStkAll(v){hhPlayersState.forEach(p=>p.stack=v);hhqStacksRender();renderHhbTable();try{renderStreetActions(hhCurrentStreetTab)}catch(e){}hhSaveDraft();haptic("light")}
+(function(){const qr=hhqRender;hhqRender=function(){const r=qr.apply(this,arguments);try{hhqStacksRender()}catch(e){}return r}})();
+/* ── full-screen overlay ── */
+VS.ov=false;
+function vsFull(on){const el=$("vsStudio");if(!el)return;if(on==null)on=!VS.ov;VS.ov=on;el.classList.toggle("vs-ov",on);
+  if(on){if(!VS.name){toast("Open a video first");VS.ov=false;el.classList.remove("vs-ov");return}
+    el.classList.toggle("vs-pc",!!LG("ps_vs_ovhide",false));el.classList.toggle("vs-glass",!!LG("ps_vs_glass",false));
+    try{if(el.requestFullscreen&&!document.fullscreenElement)el.requestFullscreen({navigationUI:"hide"}).then(()=>{try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock("landscape").catch(()=>{})}catch(e){}}).catch(()=>{});else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen()}catch(e){}
+    vsIdle()}
+  else{try{if(document.fullscreenElement)document.exitFullscreen();else if(document.webkitFullscreenElement)document.webkitExitFullscreen()}catch(e){}try{screen.orientation&&screen.orientation.unlock&&screen.orientation.unlock()}catch(e){}el.classList.remove("vs-idle")}
+  haptic("light")}
+document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement&&VS.ov){VS.ov=false;const el=$("vsStudio");if(el)el.classList.remove("vs-ov","vs-idle")}});
+function vsOvPanel(show){const el=$("vsStudio");if(!el)return;const hide=show==null?!el.classList.contains("vs-pc"):!show;el.classList.toggle("vs-pc",hide);LS("ps_vs_ovhide",hide);haptic("light")}
+function vsOvAlpha(){const el=$("vsStudio");if(!el)return;const g=!el.classList.contains("vs-glass");el.classList.toggle("vs-glass",g);LS("ps_vs_glass",g)}
+let _vsIdleT=null;
+function vsIdle(){const el=$("vsStudio");if(!el)return;el.classList.remove("vs-idle");clearTimeout(_vsIdleT);if(!VS.ov)return;_vsIdleT=setTimeout(()=>{const v=vsV();if(VS.ov&&v&&!v.paused)el.classList.add("vs-idle")},2600)}
+document.addEventListener("pointermove",e=>{if(VS.ov)vsIdle()},{passive:true});document.addEventListener("pointerdown",e=>{if(VS.ov)vsIdle()},{passive:true});
+</script>
+<script>
+/* ═══ v152 · Edit a saved hand's video time ═══ */
+function hhSetHandTime(id,t){const h=HH.d.hands.find(x=>x.id===id);if(!h||!h.watch)return;const sec=hhParseT(t);if(t&&sec==null)return toast("Use a time like 12:34 or 1:02:03");
+  const old=h.watch.t;h.watch.t=t?hhFmtT(sec):"";HH.save();try{renderHhHands()}catch(e){}try{if(VS.active){vsMarks();vsTabs()}}catch(e){}
+  if($("hhDetailM")&&$("hhDetailM").classList.contains("open"))openHhDetail(id);
+  toastUndo("⏱ Time set to "+(h.watch.t||"none"),()=>{h.watch.t=old;HH.save();try{renderHhHands();if(VS.active){vsMarks();vsTabs()}}catch(e){}if($("hhDetailM").classList.contains("open"))openHhDetail(id)});haptic("light")}
+function hhTimeEdit(id){const h=HH.d.hands.find(x=>x.id===id),box=$("hhTBox"+id);if(!h||!box)return;if(box.innerHTML){box.innerHTML="";return}
+  const live=VS.active&&VS.name&&h.watch.file===VS.name;const nudge=d=>'<button class="gg-chip" onclick="hhTNudge(\''+id+'\','+d+')">'+(d>0?"+":"−")+Math.abs(d)+'s</button>';
+  box.innerHTML='<div class="hhw-tform"><input class="minp" id="hhTIn'+id+'" inputmode="numeric" placeholder="12:34" value="'+escapeHtml(h.watch.t||"")+'"/><button class="btn btn-s pri" onclick="hhSetHandTime(\''+id+'\',$(\'hhTIn'+id+'\').value.trim())">Save</button></div><div class="hhw-tq">'+nudge(-10)+nudge(-5)+nudge(5)+nudge(10)+(live?'<button class="gg-chip on" onclick="hhSetHandTime(\''+id+'\',hhFmtT(vsNow()))">⏱ Now ('+hhFmtT(vsNow())+')</button>':"")+'</div>';
+  const i=$("hhTIn"+id);if(i){i.focus();i.select();i.onkeydown=e=>{if(e.key==="Enter")hhSetHandTime(id,i.value.trim())}}}
+function hhTNudge(id,d){const i=$("hhTIn"+id);if(!i)return;const v=hhParseT(i.value)||0;i.value=hhFmtT(Math.max(0,v+d))}
 </script>
 </body>
 </html>
